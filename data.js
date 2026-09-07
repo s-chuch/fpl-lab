@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 19:04 UTC",
+  "generated_at": "2026-09-07 19:14 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -48,9 +48,6 @@ window.FPL_DATA = {
       "transfers": 0,
       "hits": 0,
       "rank": 1142767,
-      "gw_rank": 1142769,
-      "value": 100.0,
-      "bank": 0.0,
       "field_avg": 50,
       "delta": 14,
       "chip": "bboost"
@@ -62,9 +59,6 @@ window.FPL_DATA = {
       "transfers": 0,
       "hits": 0,
       "rank": 1053358,
-      "gw_rank": 2140252,
-      "value": 100.2,
-      "bank": 0.0,
       "field_avg": 81,
       "delta": 15,
       "chip": null
@@ -76,9 +70,6 @@ window.FPL_DATA = {
       "transfers": 2,
       "hits": 0,
       "rank": 1516623,
-      "gw_rank": 6701473,
-      "value": 100.6,
-      "bank": 0.3,
       "field_avg": 51,
       "delta": -3,
       "chip": "3xc"
@@ -229,18 +220,16 @@ window.FPL_DATA = {
     }
   },
   "plan": {
-    "note": "Plan uses your GW3 squad. Last finished GW is 3. Next 2 unfinished gameweeks.",
+    "note": "GW3 squad. Last finished 3.",
     "last_finished": 3,
     "squad_from_gw": 3,
     "upcoming": [
       {
         "gw": 4,
-        "name": "Gameweek 4",
         "deadline": "2026-09-12 12:30 UTC"
       },
       {
         "gw": 5,
-        "name": "Gameweek 5",
         "deadline": "2026-09-18 17:30 UTC"
       }
     ],
@@ -414,11 +403,11 @@ window.FPL_DATA = {
     "xis": {
       "gw4": {
         "xi": [
-          "Verbruggen",
+          "Verbruggen (VC)",
           "De Cuyper",
           "Calafiori",
           "Davis",
-          "B.Fernandes (VC)",
+          "B.Fernandes",
           "Cherki",
           "Gro\u00df",
           "Szoboszlai",
@@ -435,11 +424,11 @@ window.FPL_DATA = {
       },
       "gw5": {
         "xi": [
-          "Kinsky",
+          "Kinsky (VC)",
           "Calafiori",
           "De Cuyper",
           "Davis",
-          "B.Fernandes (VC)",
+          "B.Fernandes",
           "Cherki",
           "Szoboszlai",
           "Gro\u00df",
@@ -482,7 +471,7 @@ window.FPL_DATA = {
     "transfer": {
       "ft_available": 1,
       "action": "ROLL",
-      "reason": "You have 1 FT. FH is still unused. A transfer this week dies with the chip. Roll; the FT comes back with Shaaland.",
+      "reason": "You have 1 FT. FH unused \u2014 roll so the FT returns with Shaaland.",
       "move": null,
       "fh_unused": true
     }
@@ -511,5 +500,334 @@ window.FPL_DATA = {
     ],
     "captain": "Palmer vs Hull",
     "warning": "FH is a one-week squad. After GW4 you return to Shaaland. Do not take hits to keep Palmer/Isak."
+  },
+  "leagues": {
+    "mini": [
+      {
+        "id": 125784,
+        "name": "European Super League",
+        "rank": 4,
+        "last_rank": 5,
+        "size": 13,
+        "table": [
+          {
+            "rank": 1,
+            "team": "I'z Amad Man",
+            "pts": 235,
+            "me": false
+          },
+          {
+            "rank": 2,
+            "team": "Borde to be wild",
+            "pts": 225,
+            "me": false
+          },
+          {
+            "rank": 3,
+            "team": "Bacalhau",
+            "pts": 211,
+            "me": false
+          },
+          {
+            "rank": 4,
+            "team": "Shaaland",
+            "pts": 208,
+            "me": true
+          },
+          {
+            "rank": 5,
+            "team": "xG Capital",
+            "pts": 206,
+            "me": false
+          },
+          {
+            "rank": 6,
+            "team": "HanSoloDolo",
+            "pts": 204,
+            "me": false
+          },
+          {
+            "rank": 7,
+            "team": "Haaland Leeds Norway",
+            "pts": 203,
+            "me": false
+          },
+          {
+            "rank": 8,
+            "team": "Must win one",
+            "pts": 198,
+            "me": false
+          },
+          {
+            "rank": 9,
+            "team": "Top Bin FC",
+            "pts": 194,
+            "me": false
+          },
+          {
+            "rank": 10,
+            "team": "Blasters United",
+            "pts": 194,
+            "me": false
+          },
+          {
+            "rank": 11,
+            "team": "Kroos Kontrol",
+            "pts": 188,
+            "me": false
+          },
+          {
+            "rank": 12,
+            "team": "Viking Robot",
+            "pts": 170,
+            "me": false
+          },
+          {
+            "rank": 13,
+            "team": "Chubs United",
+            "pts": 161,
+            "me": false
+          }
+        ],
+        "template": [
+          {
+            "name": "Mbeumo",
+            "club": "MUN",
+            "own": 46,
+            "count": 6,
+            "n": 13
+          }
+        ],
+        "diffs": [
+          {
+            "name": "Shaw",
+            "club": "MUN",
+            "own": 23,
+            "count": 3,
+            "n": 13
+          },
+          {
+            "name": "De Cuyper",
+            "club": "BHA",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "Hume",
+            "club": "SUN",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "Tzolis",
+            "club": "ARS",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "Davis",
+            "club": "IPS",
+            "own": 8,
+            "count": 1,
+            "n": 13
+          }
+        ],
+        "picks_gw": 3
+      },
+      {
+        "id": 494594,
+        "name": "Decision league",
+        "rank": 4,
+        "last_rank": 4,
+        "size": 4,
+        "table": [
+          {
+            "rank": 1,
+            "team": "Old iphone",
+            "pts": 242,
+            "me": false
+          },
+          {
+            "rank": 2,
+            "team": "Android phone",
+            "pts": 231,
+            "me": false
+          },
+          {
+            "rank": 3,
+            "team": "Seen TPS",
+            "pts": 212,
+            "me": false
+          },
+          {
+            "rank": 4,
+            "team": "Shaaland",
+            "pts": 208,
+            "me": true
+          }
+        ],
+        "template": [
+          {
+            "name": "N.Williams",
+            "club": "NFO",
+            "own": 50,
+            "count": 2,
+            "n": 4
+          },
+          {
+            "name": "Kayode",
+            "club": "BRE",
+            "own": 50,
+            "count": 2,
+            "n": 4
+          },
+          {
+            "name": "Kusi-Asare",
+            "club": "FUL",
+            "own": 50,
+            "count": 2,
+            "n": 4
+          },
+          {
+            "name": "Walle Egeli",
+            "club": "IPS",
+            "own": 50,
+            "count": 2,
+            "n": 4
+          }
+        ],
+        "diffs": [
+          {
+            "name": "Shaw",
+            "club": "MUN",
+            "own": 25,
+            "count": 1,
+            "n": 4
+          }
+        ],
+        "picks_gw": 3
+      },
+      {
+        "id": 494595,
+        "name": "Momo Cup",
+        "rank": 3,
+        "last_rank": 2,
+        "size": 3,
+        "table": [
+          {
+            "rank": 1,
+            "team": "I'z Amad Man",
+            "pts": 235,
+            "me": false
+          },
+          {
+            "rank": 2,
+            "team": "Bacalhau",
+            "pts": 211,
+            "me": false
+          },
+          {
+            "rank": 3,
+            "team": "Shaaland",
+            "pts": 208,
+            "me": true
+          }
+        ],
+        "template": [
+          {
+            "name": "Raya",
+            "club": "ARS",
+            "own": 67,
+            "count": 2,
+            "n": 3
+          },
+          {
+            "name": "Dubravka",
+            "club": "TOT",
+            "own": 67,
+            "count": 2,
+            "n": 3
+          }
+        ],
+        "diffs": [],
+        "picks_gw": 3
+      },
+      {
+        "id": 2024106,
+        "name": "tps",
+        "rank": 1,
+        "last_rank": 1,
+        "size": 1,
+        "table": [
+          {
+            "rank": 1,
+            "team": "Shaaland",
+            "pts": 208,
+            "me": true
+          }
+        ],
+        "template": [],
+        "diffs": [],
+        "picks_gw": 3
+      }
+    ],
+    "public": [
+      {
+        "id": 15,
+        "name": "Man City",
+        "rank": 86279,
+        "last_rank": 54221
+      },
+      {
+        "id": 59,
+        "name": "Canada",
+        "rank": 16971,
+        "last_rank": 12555
+      },
+      {
+        "id": 314,
+        "name": "Overall",
+        "rank": 1516623,
+        "last_rank": 1053358
+      }
+    ],
+    "overall_template": [
+      {
+        "name": "Raya",
+        "club": "ARS",
+        "own": 38.7
+      },
+      {
+        "name": "Rogers",
+        "club": "CHE",
+        "own": 27.7
+      },
+      {
+        "name": "Mbeumo",
+        "club": "MUN",
+        "own": 25.8
+      },
+      {
+        "name": "Gabriel",
+        "club": "ARS",
+        "own": 25.0
+      }
+    ],
+    "overall_diffs": [
+      {
+        "name": "Hume",
+        "club": "SUN",
+        "own": 4.7
+      },
+      {
+        "name": "Davis",
+        "club": "IPS",
+        "own": 5.1
+      }
+    ],
+    "picks_gw": 3
   }
 };
