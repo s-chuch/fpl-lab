@@ -67,6 +67,9 @@ def free_transfers_for_next(hist):
         ft = max(0, ft - int(row.get("event_transfers") or 0))
     return min(2, ft + 1)
 
+def bare(name):
+    return name.split(" (")[0]
+
 def build_plan(boot, team_id, hist=None, chips_used=None):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
@@ -109,6 +112,17 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
         key = f"gw{ev['id']}"
         xi, bn = pick_lineup(players, key)
         xis[key] = {"xi": xi, "bench": bn}
+    for i, ev in enumerate(upcoming):
+        started = {bare(n) for n in xis[f"gw{ev['id']}"]["xi"]}
+        for r in rows:
+            fix = r[3 + i * 3]
+            r[5 + i * 3] = "BLANK" if fix == "Blank" else ("START" if r[1] in started else "SIT")
+        for p in players:
+            cell = p["gws"].get(f"gw{ev['id']}") or {}
+            if cell.get("fixture") == "Blank":
+                cell["call"] = "BLANK"
+            else:
+                cell["call"] = "START" if p["name"] in started else "SIT"
     ft = free_transfers_for_next(hist or {})
     fh_used = bool((chips_used or {}).get("freehit"))
     bench_calls = []
@@ -120,6 +134,33 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
         bench_calls.append({"gw": ev["id"], "sit": xis[key]["bench"], "worst": top["player"] if top else None, "why": f"{top['player']} {top['fixture']} FDR {top['fdr']}" if top else "No sit"})
     action, move, reason = "ROLL", None, f"You have {ft} FT. " + ("FH unused — roll so the FT returns with Shaaland." if not fh_used else "No forced move. Bank it.")
     return {"note": f"GW{picks_gw} squad. Last finished {(last_fin or {}).get('id')}.", "last_finished": (last_fin or {}).get("id"), "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}}
+
+def captain_audit(boot, team_id):
+    names = {e["id"]: e["web_name"] for e in boot["elements"]}
+    out = []
+    for ev in boot["events"]:
+        if not ev.get("finished"): continue
+        gw = ev["id"]
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+            live = get(f"https://fantasy.premierleague.com/api/event/{gw}/live/")
+        except Exception:
+            continue
+        pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
+        cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
+        vc = next((p for p in pk.get("picks", []) if p.get("is_vice_captain")), None)
+        if not cap: continue
+        cap_raw = pts.get(cap["element"], 0)
+        vc_raw = pts.get(vc["element"], 0) if vc else 0
+        mult = cap.get("multiplier") or 2
+        best_id, best_raw = cap["element"], cap_raw
+        for p in pk.get("picks", []):
+            raw = pts.get(p["element"], 0)
+            if raw > best_raw:
+                best_id, best_raw = p["element"], raw
+        got = cap_raw * mult
+        out.append({"gw": gw, "chip": pk.get("active_chip"), "captain": names.get(cap["element"], "?"), "captain_raw": cap_raw, "got": got, "vc": names.get(vc["element"], "?") if vc else "-", "vc_raw": vc_raw, "best": names.get(best_id, "?"), "best_raw": best_raw, "vs_vc": got - vc_raw * mult, "vs_best": got - best_raw * mult})
+    return out
 
 def analyze_leagues(boot, entry, team_id, picks_gw):
     teams = {t["id"]: t for t in boot["teams"]}
@@ -169,9 +210,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
     overall_template.sort(key=lambda x: -x["own"])
     overall_diffs.sort(key=lambda x: x["own"])
     overall = next((L for L in classic if L.get("id") == 314), None)
-    public = []
-    if overall:
-        public.append({"id": 314, "name": "Overall", "rank": overall.get("entry_rank"), "last_rank": overall.get("entry_last_rank")})
+    public = [{"id": 314, "name": "Overall", "rank": overall.get("entry_rank"), "last_rank": overall.get("entry_last_rank")}] if overall else []
     return {"mini": leagues, "public": public, "overall_template": overall_template[:8], "overall_diffs": overall_diffs[:8], "picks_gw": picks_gw}
 
 def main():
@@ -193,10 +232,11 @@ def main():
     plan = build_plan(boot, TEAM_ID, hist, chips_used)
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
     leagues = analyze_leagues(boot, entry, TEAM_ID, plan.get("squad_from_gw") or last_fin)
+    caps = captain_audit(boot, TEAM_ID)
     data = existing or {}
-    data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan, "leagues": leagues})
+    data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan, "leagues": leagues, "captain_audit": caps})
     DATA.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
-    print("Updated", [u["gw"] for u in plan.get("upcoming", [])], "leagues", [x["name"] for x in leagues.get("mini", [])])
+    print("Updated", [u["gw"] for u in plan.get("upcoming", [])], "caps", len(caps))
 
 if __name__ == "__main__":
     main()
