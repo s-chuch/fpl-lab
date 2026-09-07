@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0D1B2A" />
+<title>Shaaland · FPL Lab</title>
+<style>
+  :root {
+    --bg:#070B10; --card:#101820; --ink:#F3F6F8; --muted:#8B95A1;
+    --line:#1E2A36; --teal:#1B7F6E; --teal2:#2BB59A; --gold:#C9A227;
+    --red:#E85D4C; --green:#3DDC97; --amber:#E7B84A; --navy:#0D1B2A;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+  body{padding:16px 14px 64px;max-width:980px;margin:0 auto;}
+  header{padding:8px 4px 18px}
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  h1{font-size:28px;margin:6px 0 4px;letter-spacing:-.03em}
+  .sub{color:var(--muted);font-size:13px}
+  .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .kpi b{display:block;font-size:22px;letter-spacing:-.03em}
+  .kpi span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .tabs{display:flex;gap:6px;overflow:auto;padding:6px 0 14px;position:sticky;top:0;background:linear-gradient(var(--bg),var(--bg) 80%,transparent);z-index:5}
+  .tabs button{border:1px solid var(--line);background:#0C141C;color:var(--ink);border-radius:999px;padding:8px 12px;font-size:13px;white-space:nowrap}
+  .tabs button.on{background:var(--teal);border-color:var(--teal);font-weight:700}
+  section{display:none}
+  section.on{display:block}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 12px}
+  .card h2{font-size:15px;margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .pos,.neg,.meh{font-weight:700}
+  .pos{color:var(--green)} .neg{color:var(--red)} .meh{color:var(--amber)}
+  .pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
+  .pill.used{background:#3a1d1a;color:#ffb4a8}
+  .pill.free{background:#16352e;color:#7dffc8}
+  .xi{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{background:#0C141C;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
+  .chip.sit{opacity:.55}
+  .note{font-size:13px;color:var(--muted);line-height:1.45}
+  .warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
+  footer{margin-top:22px;color:var(--muted);font-size:12px}
+  @media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">FPL Performance Lab · 2026/27</div>
+  <h1 id="teamName">Shaaland</h1>
+  <div class="sub" id="meta"></div>
+</header>
+
+<div class="kpis" id="kpis"></div>
+<nav class="tabs" id="tabs"></nav>
+
+<section id="season" class="on"></section>
+<section id="bench"></section>
+<section id="transfers"></section>
+<section id="plan"></section>
+<section id="fh"></section>
+<section id="chips"></section>
+
+<footer id="foot"></footer>
+
+<script src="data.js"></script>
+<script>
+const D = window.FPL_DATA;
+const fmt = n => n==null ? "—" : Number(n).toLocaleString();
+const sign = n => n==null ? "—" : (n>0? "+"+n : String(n));
+const cls = n => n==null ? "meh" : n>0 ? "pos" : n<0 ? "neg" : "meh";
+
+document.getElementById("teamName").textContent = D.team.name;
+document.getElementById("meta").textContent =
+  D.team.manager + " · ID " + D.team.id + " · updated " + D.generated_at;
+
+document.getElementById("kpis").innerHTML = [
+  ["Season points", D.team.overall_points],
+  ["Overall rank", fmt(D.team.overall_rank)],
+  ["Squad value", "£"+D.team.value.toFixed(1)+"m"],
+  ["Bank", "£"+D.team.bank.toFixed(1)+"m"],
+].map(([k,v]) => `<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+
+const tabs = [
+  ["season","Season"],
+  ["bench","Bench audit"],
+  ["transfers","Transfers"],
+  ["plan","GW4–5 plan"],
+  ["fh","Free Hit XI"],
+  ["chips","Chips"],
+];
+const tabsEl = document.getElementById("tabs");
+tabsEl.innerHTML = tabs.map(([id,label],i)=>`<button class="${i===0?"on":""}" data-id="${id}">${label}</button>`).join("");
+tabsEl.addEventListener("click", e => {
+  const btn = e.target.closest("button"); if(!btn) return;
+  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b===btn));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on", s.id===btn.dataset.id));
+});
+
+function gwTable(){
+  const rows = D.gameweeks.map(g => {
+    const chip = g.chip ? ` <span class="pill used">${g.chip}</span>` : "";
+    return `<tr>
+      <td>GW${g.gw}${chip}</td>
+      <td><b>${g.points}</b></td>
+      <td>${g.field_avg ?? "—"}</td>
+      <td class="${cls(g.delta)}">${sign(g.delta)}</td>
+      <td>${g.bench}</td>
+      <td>${g.transfers}${g.hits? " (−"+g.hits+")":""}</td>
+      <td>${fmt(g.rank)}</td>
+    </tr>`;
+  }).join("");
+  const tot = D.gameweeks.reduce((a,g)=>a+g.points,0);
+  const field = D.gameweeks.reduce((a,g)=>a+(g.field_avg||0),0);
+  return `<div class="card"><h2>Gameweek log</h2>
+    <table>
+      <thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>Δ</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p class="note">Season ${tot} vs field ${field}. Goal: beat last season (523,729 / top 4%). Last year 2,241 pts.</p>
+  </div>`;
+}
+
+document.getElementById("season").innerHTML = gwTable() + `
+  <div class="card">
+    <h2>Season so far</h2>
+    <p class="note">GW1 Bench Boost 64 (+14 vs field). GW2 96 (+15) — season-best, 25 left on the pine. GW3 Triple Captain 48 (−3) as Haaland’s 9 became 18 and the rest of the attack died. Rank drift after GW3 is the TC week, not a collapse.</p>
+  </div>`;
+
+function benchBlock(key, title){
+  const b = D.bench_audit[key];
+  const yours = b.your_bench.map(x=>`<div class="chip sit">${x[0]} · ${x[1]}</div>`).join("");
+  const best = b.better_bench.map(x=>`<div class="chip">${x[0]} · ${x[1]}</div>`).join("");
+  const swaps = b.swaps.map(s=>`<tr><td>${s[0]}</td><td class="pos">${s[1]}</td><td>${s[2]}</td></tr>`).join("");
+  return `<div class="card">
+    <h2>${title}</h2>
+    <p class="note">You ${b.you} · process best ${b.process} · hindsight ${b.hindsight}</p>
+    <p class="note">Your bench</p><div class="xi">${yours}</div>
+    <p class="note" style="margin-top:10px">Better bench</p><div class="xi">${best}</div>
+    <table style="margin-top:10px"><thead><tr><th>Swap</th><th>Swing</th><th>Type</th></tr></thead><tbody>${swaps}</tbody></table>
+  </div>`;
+}
+document.getElementById("bench").innerHTML =
+  benchBlock("gw2","GW2 · you sat 25 points") +
+  benchBlock("gw3","GW3 · you sat 16 points") +
+  `<div class="card"><h2>Habit</h2><p class="note">Tzolis and Hume keep ending up on the wrong side of the pine. Start the 90-minute mid (Groß) at Coventry. Sit Hume vs Arsenal then City.</p></div>`;
+
+document.getElementById("transfers").innerHTML = `
+  <div class="card"><h2>GW3 transfers · 2 FT · 0 hits</h2>
+    <table>
+      <thead><tr><th>Move</th><th>Net</th><th>Verdict</th></tr></thead>
+      <tbody>
+        ${D.transfers.map(t=>`<tr><td>${t.out} → ${t.inn}</td><td class="${cls(parseInt(t.net))}">${t.net}</td><td>${t.verdict}<div class="note">${t.note}</div></td></tr>`).join("")}
+      </tbody>
+    </table>
+  </div>`;
+
+const planRows = D.plan.rows.map(r=>{
+  const c4 = r[5].includes("SIT") ? "neg" : "pos";
+  const c5 = r[8].includes("SIT") ? "neg" : "pos";
+  return `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[3]} <b class="${c4}">${r[5]}</b></td><td>${r[6]} <b class="${c5}">${r[8]}</b></td></tr>`;
+}).join("");
+document.getElementById("plan").innerHTML = `
+  <div class="warn">${D.plan.note}</div>
+  <div class="card">
+    <h2>Real squad · start / sit</h2>
+    <p class="note">GW4 deadline ${D.plan.gw4_deadline} · GW5 ${D.plan.gw5_deadline}</p>
+    <table><thead><tr><th>Pos</th><th>Player</th><th>GW4</th><th>GW5</th></tr></thead><tbody>${planRows}</tbody></table>
+  </div>
+  <div class="card"><h2>If you are NOT free-hitting GW4</h2>
+    <p class="note">XI</p><div class="xi">${D.plan.gw4_xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
+    <p class="note" style="margin-top:10px">Bench</p><div class="xi">${D.plan.gw4_bn.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
+  </div>
+  <div class="card"><h2>GW5 XI (Shaaland is back either way)</h2>
+    <div class="xi">${D.plan.gw5_xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
+    <p class="note" style="margin-top:10px">Bench</p><div class="xi">${D.plan.gw5_bn.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
+  </div>`;
+
+document.getElementById("fh").innerHTML = `
+  <div class="warn">${D.fh.officially_used ? "Official FPL has Free Hit recorded." : "Official FPL still shows Free Hit UNUSED. A planner screenshot is not the chip. Confirm it on the official app if you really want this week to be FH."}</div>
+  <div class="card">
+    <h2>FH XI · captain Palmer vs Hull</h2>
+    <div class="xi">${D.fh.xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
+    <p class="note" style="margin-top:10px">Bench</p>
+    <div class="xi">${D.fh.bench.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
+    <p class="note" style="margin-top:12px">${D.fh.warning}</p>
+  </div>`;
+
+const co = D.chips_official;
+const chipRow = (name, ev, half) => {
+  const used = ev != null;
+  return `<tr><td>${name}</td><td>${half}</td><td>${used ? `<span class="pill used">GW${ev}</span>` : `<span class="pill free">available</span>`}</td></tr>`;
+};
+document.getElementById("chips").innerHTML = `
+  <div class="card">
+    <h2>Chip window 1 · GW1–19</h2>
+    <table>
+      <thead><tr><th>Chip</th><th>Window</th><th>Status</th></tr></thead>
+      <tbody>
+        ${chipRow("Bench Boost", co.bboost, "1st half")}
+        ${chipRow("Triple Captain", co["3xc"], "1st half")}
+        ${chipRow("Free Hit", co.freehit, "1st half")}
+        ${chipRow("Wildcard", co.wildcard, "1st half")}
+      </tbody>
+    </table>
+    <p class="note">${D.chips_notes}</p>
+    <p class="note">Planned blanks this season are GW30 (Carabao final) and GW33 (FA Cup semis). First-half FH is insurance, not a calendar event. WC still belongs around GW6 after the international break if you want Palmer/Isak for more than one week.</p>
+  </div>`;
+
+document.getElementById("foot").textContent =
+  "Official FPL API · team "+D.team.id+". Hosted on GitHub Pages; data.js refreshes twice daily via GitHub Actions.";
+</script>
+</body>
+</html>
