@@ -62,10 +62,17 @@ function renderLeagues(){
     const diffs=(lg.diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">No low-owned picks here.</p>`;
     mini+=`<div class="card"><h2>${lg.name} · ${lg.size} teams · you P${lg.rank}</h2><table><thead><tr><th>#</th><th>Team</th><th>Pts</th></tr></thead><tbody>${table}</tbody></table><p class="note">Template missing (40%+)</p><div class="xi">${templ}</div><p class="note">Your differentials (≤25%)</p><div class="xi">${diffs}</div></div>`;
   }
-  document.getElementById("leagues").innerHTML=`<div class="warn">European Super League and Decision league only. Ownership from GW${L.picks_gw||""}.</div>${mini||`<div class="card"><p class="note">Waiting for the next data refresh.</p></div>`}`;
+  const ov=(L.public||[]).find(p=>p.id===314) || {rank:D.team&&D.team.overall_rank, last_rank:null};
+  const ot=(L.overall_template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">You own the overall template (25%+).</p>`;
+  const od=(L.overall_diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">No overall differentials under 12%.</p>`;
+  document.getElementById("leagues").innerHTML=`<div class="warn">Overall uses global selected %. Mini-leagues counted from GW${L.picks_gw||""} picks.</div>
+    <div class="card"><h2>Overall</h2><p class="note">Rank <b>${fmt(ov.rank)}</b>${ov.last_rank?" · was "+fmt(ov.last_rank):""} · ${D.team.overall_points} pts</p>
+      <p class="note">Template missing (25%+ owned, not in Shaaland)</p><div class="xi">${ot}</div>
+      <p class="note">Your differentials (≤12% owned)</p><div class="xi">${od}</div></div>
+    ${mini}`;
 }
 renderLeagues();
 const co=D.chips_official||{};document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">BB ${co.bboost??"-"} · TC ${co["3xc"]??"-"} · FH ${co.freehit??"open"} · WC ${co.wildcard??"open"}</p></div>`;
 document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
-document.getElementById("foot").textContent="Leagues: European Super League + Decision league.";
+document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
 </script></body></html>
