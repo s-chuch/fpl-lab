@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 18:47 UTC",
+  "generated_at": "2026-09-07 18:56 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -229,18 +229,30 @@ window.FPL_DATA = {
     }
   },
   "plan": {
-    "note": "This is the REAL squad plan (Shaaland). If FH is confirmed for GW4, ignore the GW4 column this week and use the FH XI instead.",
-    "gw4_deadline": "Sat 12 Sep 2026, 08:30 EDT",
-    "gw5_deadline": "Fri 18 Sep 2026, 13:30 EDT",
+    "note": "Plan uses your GW3 squad (last saved picks). Last finished GW is 3. Showing the next 2 unfinished gameweeks.",
+    "last_finished": 3,
+    "squad_from_gw": 3,
+    "upcoming": [
+      {
+        "gw": 4,
+        "name": "Gameweek 4",
+        "deadline": "2026-09-12 12:30 UTC"
+      },
+      {
+        "gw": 5,
+        "name": "Gameweek 5",
+        "deadline": "2026-09-18 17:30 UTC"
+      }
+    ],
     "rows": [
       [
         "GKP",
         "Verbruggen",
         "BHA",
-        "A Coventry",
+        "A COV",
         2,
         "START",
-        "H Arsenal",
+        "H ARS",
         4,
         "SIT"
       ],
@@ -248,10 +260,21 @@ window.FPL_DATA = {
         "GKP",
         "Kinsky",
         "TOT",
-        "H Everton",
+        "H EVE",
         3,
-        "SIT",
-        "H Villa",
+        "START",
+        "H AVL",
+        3,
+        "START"
+      ],
+      [
+        "DEF",
+        "Calafiori",
+        "ARS",
+        "A SUN",
+        3,
+        "START",
+        "A BHA",
         3,
         "START"
       ],
@@ -259,43 +282,32 @@ window.FPL_DATA = {
         "DEF",
         "De Cuyper",
         "BHA",
-        "A Coventry",
+        "A COV",
         2,
         "START",
-        "H Arsenal",
+        "H ARS",
         4,
-        "START"
-      ],
-      [
-        "DEF",
-        "Calafiori",
-        "ARS",
-        "A Sunderland",
-        3,
-        "START",
-        "A Brighton",
-        3,
-        "START"
+        "SIT"
       ],
       [
         "DEF",
         "Davis",
         "IPS",
-        "A Palace",
+        "A CRY",
         3,
         "START",
-        "A Everton",
+        "A EVE",
         3,
-        "SIT"
+        "START"
       ],
       [
         "DEF",
         "Shaw",
         "MUN",
-        "H Man City",
+        "H MCI",
         4,
         "SIT",
-        "A Fulham",
+        "A FUL",
         3,
         "START"
       ],
@@ -303,43 +315,32 @@ window.FPL_DATA = {
         "DEF",
         "Hume",
         "SUN",
-        "H Arsenal",
+        "H ARS",
         4,
         "SIT",
-        "A Man City",
+        "A MCI",
         5,
+        "SIT"
+      ],
+      [
+        "MID",
+        "Gro\u00df",
+        "BHA",
+        "A COV",
+        2,
+        "START",
+        "H ARS",
+        4,
         "SIT"
       ],
       [
         "MID",
         "Szoboszlai",
         "LIV",
-        "H Fulham",
+        "H FUL",
         2,
         "START",
-        "A Bournemouth",
-        3,
-        "START"
-      ],
-      [
-        "MID",
-        "Gro\u00df",
-        "BHA",
-        "A Coventry",
-        2,
-        "START",
-        "H Arsenal",
-        4,
-        "SIT"
-      ],
-      [
-        "MID",
-        "B.Fernandes",
-        "MUN",
-        "H Man City",
-        4,
-        "START",
-        "A Fulham",
+        "A BOU",
         3,
         "START"
       ],
@@ -347,21 +348,32 @@ window.FPL_DATA = {
         "MID",
         "Cherki",
         "MCI",
-        "A Man United",
+        "A MUN",
         4,
         "START",
-        "H Sunderland",
+        "H SUN",
         2,
+        "START"
+      ],
+      [
+        "MID",
+        "B.Fernandes",
+        "MUN",
+        "H MCI",
+        4,
+        "START",
+        "A FUL",
+        3,
         "START"
       ],
       [
         "MID",
         "Tzolis",
         "ARS",
-        "A Sunderland",
+        "A SUN",
         3,
-        "SIT",
-        "A Brighton",
+        "START",
+        "A BHA",
         3,
         "START"
       ],
@@ -369,10 +381,21 @@ window.FPL_DATA = {
         "FWD",
         "Jo\u00e3o Pedro",
         "CHE",
-        "H Hull",
+        "H HUL",
         2,
-        "START (VC)",
-        "A Brentford",
+        "START",
+        "A BRE",
+        3,
+        "START"
+      ],
+      [
+        "FWD",
+        "Calvert-Lewin",
+        "LEE",
+        "H NEW",
+        2,
+        "START",
+        "H CRY",
         3,
         "START"
       ],
@@ -380,63 +403,58 @@ window.FPL_DATA = {
         "FWD",
         "Haaland",
         "MCI",
-        "A Man United",
+        "A MUN",
         4,
-        "START (C)",
-        "H Sunderland",
-        2,
-        "START (C)"
-      ],
-      [
-        "FWD",
-        "Calvert-Lewin",
-        "LEE",
-        "H Newcastle",
-        2,
         "START",
-        "H Palace",
-        3,
+        "H SUN",
+        2,
         "START"
       ]
     ],
-    "gw4_xi": [
-      "Verbruggen",
-      "De Cuyper",
-      "Calafiori",
-      "Davis",
-      "Szoboszlai",
-      "Gro\u00df",
-      "B.Fernandes",
-      "Cherki",
-      "Haaland (C)",
-      "Jo\u00e3o Pedro (VC)",
-      "Calvert-Lewin"
-    ],
-    "gw4_bn": [
-      "Kinsky",
-      "Tzolis",
-      "Shaw",
-      "Hume"
-    ],
-    "gw5_xi": [
-      "Kinsky",
-      "Calafiori",
-      "Shaw",
-      "De Cuyper",
-      "B.Fernandes",
-      "Cherki",
-      "Szoboszlai",
-      "Tzolis",
-      "Haaland (C)",
-      "Jo\u00e3o Pedro",
-      "Calvert-Lewin"
-    ],
-    "gw5_bn": [
-      "Verbruggen",
-      "Gro\u00df",
-      "Davis",
-      "Hume"
-    ]
+    "xis": {
+      "gw4": {
+        "xi": [
+          "Verbruggen",
+          "De Cuyper",
+          "Calafiori",
+          "Davis",
+          "B.Fernandes (VC)",
+          "Cherki",
+          "Gro\u00df",
+          "Szoboszlai",
+          "Jo\u00e3o Pedro (C)",
+          "Haaland",
+          "Calvert-Lewin"
+        ],
+        "bench": [
+          "Kinsky",
+          "Hume",
+          "Shaw",
+          "Tzolis"
+        ]
+      },
+      "gw5": {
+        "xi": [
+          "Kinsky",
+          "Calafiori",
+          "De Cuyper",
+          "Davis",
+          "B.Fernandes (VC)",
+          "Cherki",
+          "Szoboszlai",
+          "Gro\u00df",
+          "Haaland (C)",
+          "Jo\u00e3o Pedro",
+          "Calvert-Lewin"
+        ],
+        "bench": [
+          "Verbruggen",
+          "Shaw",
+          "Hume",
+          "Tzolis"
+        ]
+      }
+    }
   },
   "fh": {
     "planned": true,
