@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 TEAM_ID = 1360999
-TRACKED_LEAGUES = {125784, 494594}  # European Super League, Decision league
+TRACKED_LEAGUES = {125784, 494594}
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data.js"
 POS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -159,7 +159,20 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                 if pct >= 40 and pid not in my_picks: template.append(item)
                 if pid in my_picks and pct <= 25: diffs.append(item)
         leagues.append({"id": L["id"], "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank"), "size": len(rows), "table": table, "template": template[:8], "diffs": diffs[:8], "picks_gw": picks_gw})
-    return {"mini": leagues, "public": [], "overall_template": [], "overall_diffs": [], "picks_gw": picks_gw}
+    overall_template, overall_diffs = [], []
+    for el in boot["elements"]:
+        sel = float(el.get("selected_by_percent") or 0)
+        item = {"name": el["web_name"], "club": teams[el["team"]]["short_name"], "own": sel}
+        if my_picks:
+            if sel >= 25 and el["id"] not in my_picks: overall_template.append(item)
+            if el["id"] in my_picks and sel <= 12: overall_diffs.append(item)
+    overall_template.sort(key=lambda x: -x["own"])
+    overall_diffs.sort(key=lambda x: x["own"])
+    overall = next((L for L in classic if L.get("id") == 314), None)
+    public = []
+    if overall:
+        public.append({"id": 314, "name": "Overall", "rank": overall.get("entry_rank"), "last_rank": overall.get("entry_last_rank")})
+    return {"mini": leagues, "public": public, "overall_template": overall_template[:8], "overall_diffs": overall_diffs[:8], "picks_gw": picks_gw}
 
 def main():
     existing = {}
