@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 19:24 UTC",
+  "generated_at": "2026-09-07 19:52 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -251,7 +251,7 @@ window.FPL_DATA = {
         "TOT",
         "H EVE",
         3,
-        "START",
+        "SIT",
         "H AVL",
         3,
         "START"
@@ -276,7 +276,7 @@ window.FPL_DATA = {
         "START",
         "H ARS",
         4,
-        "SIT"
+        "START"
       ],
       [
         "DEF",
@@ -298,7 +298,7 @@ window.FPL_DATA = {
         "SIT",
         "A FUL",
         3,
-        "START"
+        "SIT"
       ],
       [
         "DEF",
@@ -320,7 +320,7 @@ window.FPL_DATA = {
         "START",
         "H ARS",
         4,
-        "SIT"
+        "START"
       ],
       [
         "MID",
@@ -361,10 +361,10 @@ window.FPL_DATA = {
         "ARS",
         "A SUN",
         3,
-        "START",
+        "SIT",
         "A BHA",
         3,
-        "START"
+        "SIT"
       ],
       [
         "FWD",
@@ -723,7 +723,7 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 38.7
+        "own": 38.8
       },
       {
         "name": "Rogers",
@@ -754,5 +754,46 @@ window.FPL_DATA = {
       }
     ],
     "picks_gw": 3
-  }
+  },
+  "captain_audit": [
+    {
+      "gw": 1,
+      "chip": "bboost",
+      "captain": "Haaland",
+      "captain_raw": 2,
+      "got": 4,
+      "vc": "B.Fernandes",
+      "vc_raw": 2,
+      "best": "Jo\u00e3o Pedro",
+      "best_raw": 11,
+      "vs_vc": 0,
+      "vs_best": -18
+    },
+    {
+      "gw": 2,
+      "chip": null,
+      "captain": "Haaland",
+      "captain_raw": 13,
+      "got": 26,
+      "vc": "B.Fernandes",
+      "vc_raw": 23,
+      "best": "B.Fernandes",
+      "best_raw": 23,
+      "vs_vc": -20,
+      "vs_best": -20
+    },
+    {
+      "gw": 3,
+      "chip": "3xc",
+      "captain": "Haaland",
+      "captain_raw": 9,
+      "got": 27,
+      "vc": "Cherki",
+      "vc_raw": 3,
+      "best": "Haaland",
+      "best_raw": 9,
+      "vs_vc": 18,
+      "vs_best": 0
+    }
+  ]
 };
