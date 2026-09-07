@@ -87,7 +87,7 @@ const tabs = [
   ["season","Season"],
   ["bench","Bench audit"],
   ["transfers","Transfers"],
-  ["plan","GW4–5 plan"],
+  ["plan","Next 2 GWs"],
   ["fh","Free Hit XI"],
   ["chips","Chips"],
 ];
@@ -126,7 +126,7 @@ function gwTable(){
 document.getElementById("season").innerHTML = gwTable() + `
   <div class="card">
     <h2>Season so far</h2>
-    <p class="note">GW1 Bench Boost 64 (+14 vs field). GW2 96 (+15) — season-best, 25 left on the pine. GW3 Triple Captain 48 (−3) as Haaland’s 9 became 18 and the rest of the attack died. Rank drift after GW3 is the TC week, not a collapse.</p>
+    <p class="note">GW1 Bench Boost 64 (+14 vs field). GW2 96 (+15). GW3 Triple Captain 48 (−3).</p>
   </div>`;
 
 function benchBlock(key, title){
@@ -145,7 +145,7 @@ function benchBlock(key, title){
 document.getElementById("bench").innerHTML =
   benchBlock("gw2","GW2 · you sat 25 points") +
   benchBlock("gw3","GW3 · you sat 16 points") +
-  `<div class="card"><h2>Habit</h2><p class="note">Tzolis and Hume keep ending up on the wrong side of the pine. Start the 90-minute mid (Groß) at Coventry. Sit Hume vs Arsenal then City.</p></div>`;
+  `<div class="card"><h2>Habit</h2><p class="note">Tzolis and Hume keep ending up on the wrong side of the pine.</p></div>`;
 
 document.getElementById("transfers").innerHTML = `
   <div class="card"><h2>GW3 transfers · 2 FT · 0 hits</h2>
@@ -157,38 +157,55 @@ document.getElementById("transfers").innerHTML = `
     </table>
   </div>`;
 
-const planRows = D.plan.rows.map(r=>{
-  const c4 = r[5].includes("SIT") ? "neg" : "pos";
-  const c5 = r[8].includes("SIT") ? "neg" : "pos";
-  return `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[3]} <b class="${c4}">${r[5]}</b></td><td>${r[6]} <b class="${c5}">${r[8]}</b></td></tr>`;
-}).join("");
-document.getElementById("plan").innerHTML = `
-  <div class="warn">${D.plan.note}</div>
-  <div class="card">
-    <h2>Real squad · start / sit</h2>
-    <p class="note">GW4 deadline ${D.plan.gw4_deadline} · GW5 ${D.plan.gw5_deadline}</p>
-    <table><thead><tr><th>Pos</th><th>Player</th><th>GW4</th><th>GW5</th></tr></thead><tbody>${planRows}</tbody></table>
-  </div>
-  <div class="card"><h2>If you are NOT free-hitting GW4</h2>
-    <p class="note">XI</p><div class="xi">${D.plan.gw4_xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
-    <p class="note" style="margin-top:10px">Bench</p><div class="xi">${D.plan.gw4_bn.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
-  </div>
-  <div class="card"><h2>GW5 XI (Shaaland is back either way)</h2>
-    <div class="xi">${D.plan.gw5_xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
-    <p class="note" style="margin-top:10px">Bench</p><div class="xi">${D.plan.gw5_bn.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
-  </div>`;
+function renderPlan(){
+  const P = D.plan || {};
+  const up = P.upcoming || [];
+  if (!up.length) {
+    document.getElementById("plan").innerHTML = `<div class="warn">No upcoming gameweeks yet. Wait for the next data refresh.</div>`;
+    return;
+  }
+  const label = up.map(u => "GW" + u.gw).join("–");
+  const heads = up.map(u => `<th>GW${u.gw}</th>`).join("");
+  const rows = (P.rows || []).map(r => {
+    let cells = `<td>${r[0]}</td><td>${r[1]}</td>`;
+    for (let i = 0; i < up.length; i++) {
+      const fix = r[3 + i*3], call = String(r[5 + i*3] || "");
+      const klass = call.includes("SIT") || call === "BLANK" ? "neg" : "pos";
+      cells += `<td>${fix} <b class="${klass}">${call}</b></td>`;
+    }
+    return `<tr>${cells}</tr>`;
+  }).join("");
+  const deadlines = up.map(u => `GW${u.gw} deadline ${u.deadline || "TBC"}`).join(" · ");
+  let xis = "";
+  for (const u of up) {
+    const block = (P.xis || {})["gw" + u.gw] || {xi: [], bench: []};
+    xis += `<div class="card"><h2>GW${u.gw} suggested XI</h2>
+      <p class="note">${u.deadline || ""}</p>
+      <p class="note">XI</p><div class="xi">${(block.xi||[]).map(x=>`<div class="chip">${x}</div>`).join("")}</div>
+      <p class="note" style="margin-top:10px">Bench</p><div class="xi">${(block.bench||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
+    </div>`;
+  }
+  document.getElementById("plan").innerHTML = `
+    <div class="warn">${P.note || ""} After a gameweek finishes this tab rolls forward automatically.</div>
+    <div class="card">
+      <h2>Next ${up.length} gameweeks · ${label}</h2>
+      <p class="note">${deadlines}</p>
+      <table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table>
+    </div>${xis}`;
+}
+renderPlan();
 
 document.getElementById("fh").innerHTML = `
-  <div class="warn">${D.fh.officially_used ? "Official FPL has Free Hit recorded." : "Official FPL still shows Free Hit UNUSED. A planner screenshot is not the chip. Confirm it on the official app if you really want this week to be FH."}</div>
+  <div class="warn">${D.fh && D.fh.officially_used ? "Official FPL has Free Hit recorded." : "Official FPL still shows Free Hit UNUSED unless you confirm it on the official app."}</div>
   <div class="card">
     <h2>FH XI · captain Palmer vs Hull</h2>
-    <div class="xi">${D.fh.xi.map(x=>`<div class="chip">${x}</div>`).join("")}</div>
+    <div class="xi">${((D.fh&&D.fh.xi)||[]).map(x=>`<div class="chip">${x}</div>`).join("")}</div>
     <p class="note" style="margin-top:10px">Bench</p>
-    <div class="xi">${D.fh.bench.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
-    <p class="note" style="margin-top:12px">${D.fh.warning}</p>
+    <div class="xi">${((D.fh&&D.fh.bench)||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>
+    <p class="note" style="margin-top:12px">${(D.fh&&D.fh.warning)||""}</p>
   </div>`;
 
-const co = D.chips_official;
+const co = D.chips_official || {};
 const chipRow = (name, ev, half) => {
   const used = ev != null;
   return `<tr><td>${name}</td><td>${half}</td><td>${used ? `<span class="pill used">GW${ev}</span>` : `<span class="pill free">available</span>`}</td></tr>`;
@@ -205,12 +222,11 @@ document.getElementById("chips").innerHTML = `
         ${chipRow("Wildcard", co.wildcard, "1st half")}
       </tbody>
     </table>
-    <p class="note">${D.chips_notes}</p>
-    <p class="note">Planned blanks this season are GW30 (Carabao final) and GW33 (FA Cup semis). First-half FH is insurance, not a calendar event. WC still belongs around GW6 after the international break if you want Palmer/Isak for more than one week.</p>
+    <p class="note">${D.chips_notes || ""}</p>
   </div>`;
 
 document.getElementById("foot").textContent =
-  "Official FPL API · team "+D.team.id+". Hosted on GitHub Pages; data.js refreshes twice daily via GitHub Actions.";
+  "Official FPL API · team "+D.team.id+". Next 2 GWs roll forward after each finished gameweek.";
 </script>
 </body>
 </html>
