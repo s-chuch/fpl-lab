@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh Shaaland dashboard from the official FPL API. Run from this folder."""
+"""Refresh Shaaland dashboard from the official FPL API."""
 from __future__ import annotations
 
 import json
@@ -20,23 +20,13 @@ def get(url: str):
         return json.loads(r.read().decode())
 
 
-def fixture_map(event_id: int, teams: dict) -> dict:
+def fixture_map(event_id, teams):
     fx = get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
     out = {}
     for f in fx:
         h, a = f["team_h"], f["team_a"]
-        out[h] = {
-            "side": "H",
-            "opp": teams[a]["short_name"],
-            "fdr": f.get("team_h_difficulty"),
-            "kickoff": f.get("kickoff_time"),
-        }
-        out[a] = {
-            "side": "A",
-            "opp": teams[h]["short_name"],
-            "fdr": f.get("team_a_difficulty"),
-            "kickoff": f.get("kickoff_time"),
-        }
+        out[h] = {"side": "H", "opp": teams[a]["short_name"], "fdr": f.get("team_h_difficulty")}
+        out[a] = {"side": "A", "opp": teams[h]["short_name"], "fdr": f.get("team_a_difficulty")}
     return out
 
 
@@ -46,7 +36,7 @@ def fmt_fix(info):
     return f"{info['side']} {info['opp']}"
 
 
-def recommend(pos: str, fdr, cost: float, minutes: int) -> str:
+def recommend(pos, fdr, cost, minutes):
     if fdr is None:
         return "BLANK"
     if minutes < 60 and cost < 5.5:
@@ -70,11 +60,10 @@ def recommend(pos: str, fdr, cost: float, minutes: int) -> str:
     return "START"
 
 
-def score(pos: str, fdr, form: float, minutes: int, cost: float) -> float:
+def score(pos, fdr, form, minutes, cost):
     if fdr is None:
         return -99
-    ease = 6 - int(fdr)
-    return form * 2 + ease * 2.2 + min(minutes, 270) / 90 + (0.4 if cost >= 9 else 0)
+    return form * 2 + (6 - int(fdr)) * 2.2 + min(minutes, 270) / 90 + (0.4 if cost >= 9 else 0)
 
 
 def pick_lineup(players, gw_key):
@@ -88,9 +77,7 @@ def pick_lineup(players, gw_key):
     for pos, n in NEED.items():
         for i, (_s, p, info) in enumerate(ranked[pos]):
             name = p["name"]
-            tag = ""
-            if pos == "FWD" and i == 0:
-                tag = " (C)"
+            tag = " (C)" if pos == "FWD" and i == 0 else ""
             if i < n:
                 xi.append(name + tag)
             else:
@@ -105,7 +92,15 @@ def pick_lineup(players, gw_key):
     return xi, bn[:4]
 
 
-def build_plan(boot, team_id):
+def free_transfers_for_next(hist):
+    ft = 0
+    for row in hist.get("current", []):
+        ft = min(2, ft + 1)
+        ft = max(0, ft - int(row.get("event_transfers") or 0))
+    return min(2, ft + 1)
+
+
+def build_plan(boot, team_id, hist=None, chips_used=None):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     events = sorted(boot["events"], key=lambda e: e["id"])
@@ -132,30 +127,24 @@ def build_plan(boot, team_id):
     for ev in upcoming:
         maps[ev["id"]] = fixture_map(ev["id"], teams)
         dl = ev.get("deadline_time") or ""
-        headers.append({
-            "gw": ev["id"],
-            "name": ev.get("name") or f"GW{ev['id']}",
-            "deadline": dl.replace("T", " ")[:16] + " UTC" if dl else "",
-        })
+        headers.append({"gw": ev["id"], "name": ev.get("name") or f"GW{ev['id']}", "deadline": dl.replace("T", " ")[:16] + " UTC" if dl else ""})
     players = []
     rows = []
     for pick in sorted(picks, key=lambda p: (elements[p["element"]]["element_type"], p["element"])):
         el = elements[pick["element"]]
         pos = POS[el["element_type"]]
-        club = teams[el["team"]]["short_name"]
         form = float(el.get("form") or 0)
         mins = int(el.get("minutes") or 0)
         cost = el["now_cost"] / 10
         gws = {}
-        row = [pos, el["web_name"], club]
+        row = [pos, el["web_name"], teams[el["team"]]["short_name"]]
         for ev in upcoming:
             info = maps[ev["id"]].get(el["team"])
             fdr = info["fdr"] if info else None
             call = recommend(pos, fdr, cost, mins)
-            sc = score(pos, fdr, form, mins, cost)
-            cell = {"fixture": fmt_fix(info), "fdr": fdr, "call": call, "score": round(sc, 2)}
+            cell = {"fixture": fmt_fix(info), "fdr": fdr, "call": call, "score": round(score(pos, fdr, form, mins, cost), 2)}
             gws[f"gw{ev['id']}"] = cell
-            row.extend([cell["fixture"], fdr if fdr is not None else "—", cell["call"]])
+            row.extend([cell["fixture"], fdr if fdr is not None else "-", cell["call"]])
         players.append({"name": el["web_name"], "pos": pos, "gws": gws, "form": form, "cost": cost})
         rows.append(row)
     xis = {}
@@ -164,28 +153,79 @@ def build_plan(boot, team_id):
         xi, bn = pick_lineup(players, key)
         xis[key] = {"xi": xi, "bench": bn}
     last_id = last_fin["id"] if last_fin else 0
-    note = (
-        f"Plan uses your GW{picks_gw} squad (last saved picks). "
-        f"Last finished GW is {last_id}. Showing the next {len(upcoming)} unfinished gameweeks."
-    )
-    return {
-        "note": note,
-        "last_finished": last_id,
-        "squad_from_gw": picks_gw,
-        "upcoming": headers,
-        "rows": rows,
-        "xis": xis,
-    }
+    ft = free_transfers_for_next(hist or {})
+    fh_used = bool((chips_used or {}).get("freehit"))
+    bench_calls = []
+    for ev in upcoming:
+        key = f"gw{ev['id']}"
+        sits = []
+        for p in players:
+            cell = p["gws"].get(key) or {}
+            if cell.get("call") in ("SIT", "BLANK"):
+                sits.append({"player": p["name"], "fixture": cell.get("fixture"), "fdr": cell.get("fdr")})
+        sits.sort(key=lambda x: -(x["fdr"] or 0))
+        top = sits[0] if sits else None
+        bench_calls.append({
+            "gw": ev["id"],
+            "sit": xis[key]["bench"],
+            "worst": top["player"] if top else None,
+            "why": f"{top['player']} {top['fixture']} FDR {top['fdr']}" if top else "No obvious sit",
+        })
+    owned = {p["name"] for p in players}
+    weakest = None
+    weakest_score = -1
+    for p in players:
+        if p["pos"] == "GKP" or p["cost"] >= 9:
+            continue
+        fdrs = []
+        for ev in upcoming:
+            cell = p["gws"].get(f"gw{ev['id']}") or {}
+            fdrs.append(int(cell["fdr"]) if cell.get("fdr") is not None else 5)
+        comb = sum(fdrs)
+        if comb > weakest_score:
+            weakest_score = comb
+            weakest = {"name": p["name"], "pos": p["pos"], "cost": p["cost"], "fdrs": fdrs, "comb": comb}
+    replacement = None
+    if weakest:
+        cand = []
+        for el in boot["elements"]:
+            if POS.get(el["element_type"]) != weakest["pos"]:
+                continue
+            if el["status"] != "a" or el["web_name"] in owned or el["minutes"] < 180:
+                continue
+            price = el["now_cost"] / 10
+            if price > weakest["cost"] + 0.5:
+                continue
+            fdrs = []
+            for ev in upcoming:
+                info = maps[ev["id"]].get(el["team"])
+                fdrs.append(int(info["fdr"]) if info and info.get("fdr") is not None else 5)
+            cand.append((sum(fdrs), price, el["web_name"], teams[el["team"]]["short_name"], fdrs))
+        cand.sort()
+        if cand and cand[0][0] <= weakest["comb"] - 2:
+            replacement = {"name": cand[0][2], "club": cand[0][3], "fdrs": cand[0][4]}
+    if not fh_used:
+        action, move = "ROLL", None
+        reason = f"You have {ft} FT. FH is still unused. A transfer this week dies with the chip. Roll; the FT comes back with Shaaland."
+    elif replacement and weakest:
+        action = "TRANSFER"
+        move = {"out": weakest["name"], "inn": replacement["name"], "inn_club": replacement["club"]}
+        reason = f"{weakest['name']} has the worst two-week run (FDR {weakest['fdrs']}). {replacement['name']} ({replacement['club']}) is FDR {replacement['fdrs']}."
+    else:
+        action, move = "ROLL", None
+        reason = f"You have {ft} FT. No clear two-week sell. Bank it."
+    transfer = {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}
+    note = f"Plan uses your GW{picks_gw} squad. Last finished GW is {last_id}. Next {len(upcoming)} unfinished gameweeks."
+    return {"note": note, "last_finished": last_id, "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "transfer": transfer}
 
 
-def main() -> None:
+def main():
     existing = {}
     if DATA.exists():
         raw = DATA.read_text()
-        start = raw.find("{")
-        end = raw.rfind("}")
+        start, end = raw.find("{"), raw.rfind("}")
         if start != -1 and end != -1:
-            existing = json.loads(raw[start : end + 1])
+            existing = json.loads(raw[start:end + 1])
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
     entry = get(f"https://fantasy.premierleague.com/api/entry/{TEAM_ID}/")
     hist = get(f"https://fantasy.premierleague.com/api/entry/{TEAM_ID}/history/")
@@ -198,51 +238,13 @@ def main() -> None:
         fa = field_avg.get(gw) or avg.get(gw) or None
         if fa:
             field_avg[gw] = fa
-        gws.append({
-            "gw": gw,
-            "points": row["points"],
-            "bench": row["points_on_bench"],
-            "transfers": row["event_transfers"],
-            "hits": row["event_transfers_cost"],
-            "rank": row["overall_rank"],
-            "gw_rank": row.get("rank"),
-            "value": row.get("value", 0) / 10,
-            "bank": row.get("bank", 0) / 10,
-            "field_avg": fa,
-            "delta": (row["points"] - fa) if fa else None,
-            "chip": next((n for n, ev in chips_used.items() if ev == gw), None),
-        })
-    plan = build_plan(boot, TEAM_ID)
+        gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "gw_rank": row.get("rank"), "value": row.get("value", 0) / 10, "bank": row.get("bank", 0) / 10, "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
+    plan = build_plan(boot, TEAM_ID, hist, chips_used)
     data = existing or {}
-    data.update({
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "team": {
-            **(existing.get("team") or {}),
-            "id": entry["id"],
-            "name": entry["name"],
-            "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(),
-            "overall_points": entry.get("summary_overall_points"),
-            "overall_rank": entry.get("summary_overall_rank"),
-            "gw_points": entry.get("summary_event_points"),
-            "bank": entry.get("last_deadline_bank", 0) / 10,
-            "value": entry.get("last_deadline_value", 0) / 10,
-        },
-        "history": hist.get("past", []),
-        "chips_official": {
-            "bboost": chips_used.get("bboost"),
-            "3xc": chips_used.get("3xc"),
-            "freehit": chips_used.get("freehit"),
-            "wildcard": chips_used.get("wildcard"),
-        },
-        "gameweeks": gws,
-        "field_avg_known": field_avg,
-        "plan": plan,
-    })
+    data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "gw_points": entry.get("summary_event_points"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan})
     DATA.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
     print(f"Updated {DATA}")
-    print(f"{data['team']['name']}  {data['team']['overall_points']} pts  OR {data['team']['overall_rank']}")
-    print("Upcoming:", [u["gw"] for u in plan.get("upcoming", [])])
-    print("Chips:", data["chips_official"])
+    print("Upcoming:", [u["gw"] for u in plan.get("upcoming", [])], plan.get("transfer"))
 
 
 if __name__ == "__main__":
