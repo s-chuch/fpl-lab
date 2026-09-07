@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#0D1B2A" />
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
 <style>
 :root{--bg:#070B10;--card:#101820;--ink:#F3F6F8;--muted:#8B95A1;--line:#1E2A36;--teal:#1B7F6E;--gold:#C9A227;--red:#E85D4C;--green:#3DDC97}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,sans-serif}
 body{padding:16px 14px 64px;max-width:980px;margin:0 auto}
 .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
 h1{font-size:28px;margin:6px 0 4px}.sub{color:var(--muted);font-size:13px}
@@ -21,8 +17,7 @@ h1{font-size:28px;margin:6px 0 4px}.sub{color:var(--muted);font-size:13px}
 section{display:none}section.on{display:block}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 12px}
 .card h2{font-size:15px;margin:0 0 10px}table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}
-th{color:var(--muted);font-size:11px;text-transform:uppercase}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase}
 .pos{color:var(--green);font-weight:700}.neg{color:var(--red);font-weight:700}
 .pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
 .pill.used{background:#3a1d1a;color:#ffb4a8}.pill.free{background:#16352e;color:#7dffc8}
@@ -31,79 +26,33 @@ th{color:var(--muted);font-size:11px;text-transform:uppercase}
 .warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
 footer{margin-top:22px;color:var(--muted);font-size:12px}
 </style></head><body>
-<header><div class="eyebrow">FPL Performance Lab · 2026/27</div>
-<h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
+<header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="leagues"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="data.js"></script>
 <script>
-const D = window.FPL_DATA;
-const fmt = n => n==null ? "-" : Number(n).toLocaleString();
-const sign = n => n==null ? "-" : (n>0? "+"+n : String(n));
-const cls = n => n==null ? "" : n>0 ? "pos" : n<0 ? "neg" : "";
-document.getElementById("teamName").textContent = D.team.name;
-document.getElementById("meta").textContent = D.team.manager + " · ID " + D.team.id + " · updated " + D.generated_at;
-document.getElementById("kpis").innerHTML = [
-  ["Season points", D.team.overall_points],
-  ["Overall rank", fmt(D.team.overall_rank)],
-  ["Squad value", "£"+D.team.value.toFixed(1)+"m"],
-  ["Bank", "£"+D.team.bank.toFixed(1)+"m"],
-].map(([k,v]) => `<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
-const tabs = [["season","Season"],["bench","Bench audit"],["transfers","Transfers"],["plan","Next 2 GWs"],["fh","Free Hit XI"],["chips","Chips"]];
-document.getElementById("tabs").innerHTML = tabs.map(([id,label],i)=>`<button class="${i===0?"on":""}" data-id="${id}">${label}</button>`).join("");
-document.getElementById("tabs").addEventListener("click", e => {
-  const btn = e.target.closest("button"); if(!btn) return;
-  document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on", b===btn));
-  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on", s.id===btn.dataset.id));
-});
-function gwTable(){
-  const rows = D.gameweeks.map(g => {
-    const chip = g.chip ? ` <span class="pill used">${g.chip}</span>` : "";
-    return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg ?? "-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}${g.hits? " (-"+g.hits+")":""}</td><td>${fmt(g.rank)}</td></tr>`;
-  }).join("");
-  return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-}
-document.getElementById("season").innerHTML = gwTable();
-function benchBlock(key, title){
-  const b = D.bench_audit[key];
-  if(!b) return "";
-  const yours = b.your_bench.map(x=>`<div class="chip sit">${x[0]} · ${x[1]}</div>`).join("");
-  const best = b.better_bench.map(x=>`<div class="chip">${x[0]} · ${x[1]}</div>`).join("");
-  const swaps = b.swaps.map(s=>`<tr><td>${s[0]}</td><td class="pos">${s[1]}</td><td>${s[2]}</td></tr>`).join("");
-  return `<div class="card"><h2>${title}</h2><p class="note">You ${b.you} · process ${b.process} · hindsight ${b.hindsight}</p><p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Better bench</p><div class="xi">${best}</div><table><thead><tr><th>Swap</th><th>Swing</th><th>Type</th></tr></thead><tbody>${swaps}</tbody></table></div>`;
-}
-document.getElementById("bench").innerHTML = benchBlock("gw2","GW2") + benchBlock("gw3","GW3");
-document.getElementById("transfers").innerHTML = `<div class="card"><h2>Transfers</h2><table><thead><tr><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${(D.transfers||[]).map(t=>`<tr><td>${t.out} → ${t.inn}</td><td class="${cls(parseInt(t.net))}">${t.net}</td><td>${t.verdict}<div class="note">${t.note}</div></td></tr>`).join("")}</tbody></table></div>`;
-function renderPlan(){
-  const P = D.plan || {}, up = P.upcoming || [];
-  if (!up.length) { document.getElementById("plan").innerHTML = `<div class="warn">Waiting for refresh.</div>`; return; }
-  const label = up.map(u => "GW"+u.gw).join("-");
-  const heads = up.map(u => `<th>GW${u.gw}</th>`).join("");
-  const rows = (P.rows||[]).map(r => {
-    let cells = `<td>${r[0]}</td><td>${r[1]}</td>`;
-    for (let i=0;i<up.length;i++){
-      const fix=r[3+i*3], call=String(r[5+i*3]||"");
-      cells += `<td>${fix} <b class="${call.includes("SIT")||call==="BLANK"?"neg":"pos"}">${call}</b></td>`;
-    }
-    return `<tr>${cells}</tr>`;
-  }).join("");
-  let xis="";
-  for (const u of up){
-    const block=(P.xis||{})["gw"+u.gw]||{xi:[],bench:[]};
-    xis += `<div class="card"><h2>GW${u.gw} suggested XI</h2><p class="note">${u.deadline||""}</p><div class="xi">${(block.xi||[]).map(x=>`<div class="chip">${x}</div>`).join("")}</div><p class="note">Bench</p><div class="xi">${(block.bench||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`;
-  }
-  const T=P.transfer||{};
-  const move=T.move;
-  const actionLine = T.action==="TRANSFER" && move ? `${move.out} → ${move.inn}${move.inn_club?" ("+move.inn_club+")":""}` : "Roll the free transfer";
-  const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} · bench these</h2><p class="note">Priority sit: <b>${b.worst||"-"}</b> · ${b.why||""}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`).join("");
-  document.getElementById("plan").innerHTML = `<div class="warn">${P.note||""}</div><div class="card"><h2>Transfer · ${T.action||"ROLL"} · ${T.ft_available??"?"} FT</h2><p class="note"><b>${actionLine}</b></p><p class="note">${T.reason||""}</p></div>${benches}<div class="card"><h2>Next ${up.length} gameweeks · ${label}</h2><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${xis}`;
-}
+const D=window.FPL_DATA;
+const fmt=n=>n==null?"-":Number(n).toLocaleString();
+const sign=n=>n==null?"-":(n>0?"+"+n:String(n));
+const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
+document.getElementById("teamName").textContent=D.team.name;
+document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+D.generated_at;
+document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+D.team.value.toFixed(1)+"m"],["Bank","£"+D.team.bank.toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+const tabs=[["season","Season"],["bench","Bench audit"],["transfers","Transfers"],["plan","Next 2 GWs"],["leagues","Leagues"],["fh","Free Hit XI"],["chips","Chips"]];
+document.getElementById("tabs").innerHTML=tabs.map(([id,label],i)=>`<button class="${i===0?"on":""}" data-id="${id}">${label}</button>`).join("");
+document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===b.dataset.id));};
+function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${g.chip}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
+document.getElementById("season").innerHTML=gwTable();
+function benchBlock(key,title){const b=D.bench_audit&&D.bench_audit[key];if(!b)return"";return `<div class="card"><h2>${title}</h2><p class="note">You ${b.you} · process ${b.process} · hindsight ${b.hindsight}</p><div class="xi">${b.your_bench.map(x=>`<div class="chip sit">${x[0]} · ${x[1]}</div>`).join("")}</div></div>`;}
+document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3");
+document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfers</h2><table><tbody>${(D.transfers||[]).map(t=>`<tr><td>${t.out} → ${t.inn}</td><td>${t.net}</td><td>${t.verdict}</td></tr>`).join("")}</tbody></table></div>`;
+function renderPlan(){const P=D.plan||{},up=P.upcoming||[];if(!up.length){document.getElementById("plan").innerHTML=`<div class="warn">Waiting for refresh.</div>`;return;}const heads=up.map(u=>`<th>GW${u.gw}</th>`).join("");const rows=(P.rows||[]).map(r=>{let c=`<td>${r[0]}</td><td>${r[1]}</td>`;for(let i=0;i<up.length;i++){const call=String(r[5+i*3]||"");c+=`<td>${r[3+i*3]} <b class="${call.includes("SIT")?"neg":"pos"}">${call}</b></td>`;}return `<tr>${c}</tr>`;}).join("");const T=P.transfer||{};const move=T.move;const actionLine=T.action==="TRANSFER"&&move?`${move.out} → ${move.inn}`:"Roll the free transfer";const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${b.worst||"-"}</b> · ${b.why||""}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`).join("");document.getElementById("plan").innerHTML=`<div class="card"><h2>Transfer · ${T.action||"ROLL"} · ${T.ft_available??"?"} FT</h2><p class="note"><b>${actionLine}</b></p><p class="note">${T.reason||""}</p></div>${benches}<div class="card"><h2>Fixtures</h2><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;}
 renderPlan();
-document.getElementById("fh").innerHTML = `<div class="warn">${D.fh&&D.fh.officially_used?"FH recorded.":"Official FPL still shows Free Hit unused."}</div><div class="card"><h2>FH XI</h2><div class="xi">${((D.fh&&D.fh.xi)||[]).map(x=>`<div class="chip">${x}</div>`).join("")}</div><div class="xi">${((D.fh&&D.fh.bench)||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`;
-const co=D.chips_official||{};
-const chipRow=(n,ev)=>`<tr><td>${n}</td><td>${ev!=null?`<span class="pill used">GW${ev}</span>`:`<span class="pill free">available</span>`}</td></tr>`;
-document.getElementById("chips").innerHTML = `<div class="card"><h2>Chips</h2><table><tbody>${chipRow("Bench Boost",co.bboost)}${chipRow("Triple Captain",co["3xc"])}${chipRow("Free Hit",co.freehit)}${chipRow("Wildcard",co.wildcard)}</tbody></table><p class="note">${D.chips_notes||""}</p></div>`;
-document.getElementById("foot").textContent = "Next 2 GWs include bench + transfer/roll. Rolls forward after each finished GW.";
+function renderLeagues(){const L=D.leagues||{};const pub=(L.public||[]).map(p=>`<tr><td>${p.name}</td><td>${fmt(p.rank)}</td><td>${fmt(p.last_rank)}</td></tr>`).join("");let mini="";for(const lg of(L.mini||[])){const table=(lg.table||[]).map(r=>`<tr class="${r.me?"pos":""}"><td>${r.rank}</td><td>${r.team}${r.me?" · you":""}</td><td>${r.pts}</td></tr>`).join("");const templ=(lg.template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">You own the league template.</p>`;const diffs=(lg.diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">No low-owned picks here.</p>`;mini+=`<div class="card"><h2>${lg.name} · ${lg.size} teams · you P${lg.rank}</h2><table><thead><tr><th>#</th><th>Team</th><th>Pts</th></tr></thead><tbody>${table}</tbody></table><p class="note">Template missing (40%+)</p><div class="xi">${templ}</div><p class="note">Your differentials (≤25%)</p><div class="xi">${diffs}</div></div>`;}const ot=(L.overall_template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">You own the overall template.</p>`;const od=(L.overall_diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">No sub-12% overall diffs.</p>`;document.getElementById("leagues").innerHTML=`<div class="warn">Mini-league ownership from last finished GW${L.picks_gw||""}. Overall uses global selected %.</div><div class="card"><h2>Public ranks</h2><table><thead><tr><th>League</th><th>Rank</th><th>Prev</th></tr></thead><tbody>${pub}</tbody></table></div>${mini}<div class="card"><h2>Overall template missing</h2><div class="xi">${ot}</div><p class="note">Overall differentials you own</p><div class="xi">${od}</div></div>`;}
+renderLeagues();
+const co=D.chips_official||{};document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">BB ${co.bboost??"-"} · TC ${co["3xc"]??"-"} · FH ${co.freehit??"open"} · WC ${co.wildcard??"open"}</p></div>`;
+document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
+document.getElementById("foot").textContent="Leagues tab: template vs differentials.";
 </script></body></html>
