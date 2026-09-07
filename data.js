@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 19:14 UTC",
+  "generated_at": "2026-09-07 19:18 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -709,125 +709,11 @@ window.FPL_DATA = {
           }
         ],
         "picks_gw": 3
-      },
-      {
-        "id": 494595,
-        "name": "Momo Cup",
-        "rank": 3,
-        "last_rank": 2,
-        "size": 3,
-        "table": [
-          {
-            "rank": 1,
-            "team": "I'z Amad Man",
-            "pts": 235,
-            "me": false
-          },
-          {
-            "rank": 2,
-            "team": "Bacalhau",
-            "pts": 211,
-            "me": false
-          },
-          {
-            "rank": 3,
-            "team": "Shaaland",
-            "pts": 208,
-            "me": true
-          }
-        ],
-        "template": [
-          {
-            "name": "Raya",
-            "club": "ARS",
-            "own": 67,
-            "count": 2,
-            "n": 3
-          },
-          {
-            "name": "Dubravka",
-            "club": "TOT",
-            "own": 67,
-            "count": 2,
-            "n": 3
-          }
-        ],
-        "diffs": [],
-        "picks_gw": 3
-      },
-      {
-        "id": 2024106,
-        "name": "tps",
-        "rank": 1,
-        "last_rank": 1,
-        "size": 1,
-        "table": [
-          {
-            "rank": 1,
-            "team": "Shaaland",
-            "pts": 208,
-            "me": true
-          }
-        ],
-        "template": [],
-        "diffs": [],
-        "picks_gw": 3
       }
     ],
-    "public": [
-      {
-        "id": 15,
-        "name": "Man City",
-        "rank": 86279,
-        "last_rank": 54221
-      },
-      {
-        "id": 59,
-        "name": "Canada",
-        "rank": 16971,
-        "last_rank": 12555
-      },
-      {
-        "id": 314,
-        "name": "Overall",
-        "rank": 1516623,
-        "last_rank": 1053358
-      }
-    ],
-    "overall_template": [
-      {
-        "name": "Raya",
-        "club": "ARS",
-        "own": 38.7
-      },
-      {
-        "name": "Rogers",
-        "club": "CHE",
-        "own": 27.7
-      },
-      {
-        "name": "Mbeumo",
-        "club": "MUN",
-        "own": 25.8
-      },
-      {
-        "name": "Gabriel",
-        "club": "ARS",
-        "own": 25.0
-      }
-    ],
-    "overall_diffs": [
-      {
-        "name": "Hume",
-        "club": "SUN",
-        "own": 4.7
-      },
-      {
-        "name": "Davis",
-        "club": "IPS",
-        "own": 5.1
-      }
-    ],
+    "public": [],
+    "overall_template": [],
+    "overall_diffs": [],
     "picks_gw": 3
   }
 };
