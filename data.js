@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 19:53 UTC",
+  "generated_at": "2026-09-07 22:40 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -728,17 +728,12 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 27.7
+        "own": 27.8
       },
       {
         "name": "Mbeumo",
         "club": "MUN",
         "own": 25.8
-      },
-      {
-        "name": "Gabriel",
-        "club": "ARS",
-        "own": 25.0
       }
     ],
     "overall_diffs": [
