@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 TEAM_ID = 1360999
+TRACKED_LEAGUES = {125784, 494594}  # European Super League, Decision league
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data.js"
 POS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -130,7 +131,9 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
     except Exception:
         pass
     leagues = []
-    for L in [x for x in classic if x.get("league_type") == "x"]:
+    tracked = [x for x in classic if x.get("id") in TRACKED_LEAGUES]
+    tracked.sort(key=lambda x: 0 if x.get("id") == 125784 else 1)
+    for L in tracked:
         try:
             rows = (get(f"https://fantasy.premierleague.com/api/leagues-classic/{L['id']}/standings/?page_standings=1").get("standings") or {}).get("results") or []
         except Exception:
@@ -156,17 +159,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                 if pct >= 40 and pid not in my_picks: template.append(item)
                 if pid in my_picks and pct <= 25: diffs.append(item)
         leagues.append({"id": L["id"], "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank"), "size": len(rows), "table": table, "template": template[:8], "diffs": diffs[:8], "picks_gw": picks_gw})
-    overall_template, overall_diffs = [], []
-    for el in boot["elements"]:
-        sel = float(el.get("selected_by_percent") or 0)
-        item = {"name": el["web_name"], "club": teams[el["team"]]["short_name"], "own": sel}
-        if my_picks:
-            if sel >= 25 and el["id"] not in my_picks: overall_template.append(item)
-            if el["id"] in my_picks and sel <= 12: overall_diffs.append(item)
-    overall_template.sort(key=lambda x: -x["own"])
-    overall_diffs.sort(key=lambda x: x["own"])
-    public = [{"id": L.get("id"), "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank")} for L in classic if L.get("id") in (15, 59, 314)]
-    return {"mini": leagues, "public": public, "overall_template": overall_template[:8], "overall_diffs": overall_diffs[:8], "picks_gw": picks_gw}
+    return {"mini": leagues, "public": [], "overall_template": [], "overall_diffs": [], "picks_gw": picks_gw}
 
 def main():
     existing = {}
@@ -190,7 +183,7 @@ def main():
     data = existing or {}
     data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan, "leagues": leagues})
     DATA.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
-    print("Updated", [u["gw"] for u in plan.get("upcoming", [])], "leagues", len(leagues.get("mini", [])))
+    print("Updated", [u["gw"] for u in plan.get("upcoming", [])], "leagues", [x["name"] for x in leagues.get("mini", [])])
 
 if __name__ == "__main__":
     main()
