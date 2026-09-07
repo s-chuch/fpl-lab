@@ -25,6 +25,11 @@ th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{col
 .chip.sit{opacity:.55}.note{font-size:13px;color:var(--muted);line-height:1.45}
 .warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
 footer{margin-top:22px;color:var(--muted);font-size:12px}
+.chiplist{list-style:none;margin:0;padding:0}
+.chiplist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.chiplist li:last-child{border-bottom:0}
+.chiplist .who{font-weight:700}
+.chiplist .detail{width:100%;color:var(--muted);font-size:13px;margin-top:4px}
 </style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
@@ -72,7 +77,16 @@ function renderLeagues(){
     ${mini}`;
 }
 renderLeagues();
-const co=D.chips_official||{};document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">BB ${co.bboost??"-"} · TC ${co["3xc"]??"-"} · FH ${co.freehit??"open"} · WC ${co.wildcard??"open"}</p></div>`;
+const co=D.chips_official||{};
+const CHIP_NET={bboost:{net:12,note:"Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"},"3xc":{net:9,note:"Haaland 9 raw. Triple gave 27 instead of a normal 18 captain."}};
+function chipRow(label,key){
+  const gw=co[key];
+  const used=gw!=null;
+  const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;
+  const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";
+  return `<li><span class="who">${label}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b>`:`<span class="note">—</span>`}</span><div class="detail">${used?(note||"Net vs the same team without the chip."):"Still available."}</div></li>`;
+}
+document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul><p class="note">Net = extra points the chip added that week, not the whole GW score.</p></div>`;
 document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
 </script></body></html>
