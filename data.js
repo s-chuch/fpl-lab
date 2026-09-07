@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-07 18:57 UTC",
+  "generated_at": "2026-09-07 19:03 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -229,7 +229,7 @@ window.FPL_DATA = {
     }
   },
   "plan": {
-    "note": "Plan uses your GW3 squad (last saved picks). Last finished GW is 3. Showing the next 2 unfinished gameweeks.",
+    "note": "Plan uses your GW3 squad. Last finished GW is 3. Next 2 unfinished gameweeks.",
     "last_finished": 3,
     "squad_from_gw": 3,
     "upcoming": [
@@ -454,6 +454,37 @@ window.FPL_DATA = {
           "Tzolis"
         ]
       }
+    },
+    "bench_calls": [
+      {
+        "gw": 4,
+        "sit": [
+          "Kinsky",
+          "Hume",
+          "Shaw",
+          "Tzolis"
+        ],
+        "worst": "Shaw",
+        "why": "Shaw H MCI FDR 4"
+      },
+      {
+        "gw": 5,
+        "sit": [
+          "Verbruggen",
+          "Shaw",
+          "Hume",
+          "Tzolis"
+        ],
+        "worst": "Hume",
+        "why": "Hume A MCI FDR 5"
+      }
+    ],
+    "transfer": {
+      "ft_available": 1,
+      "action": "ROLL",
+      "reason": "You have 1 FT. FH is still unused. A transfer this week dies with the chip. Roll; the FT comes back with Shaaland.",
+      "move": null,
+      "fh_unused": true
     }
   },
   "fh": {
