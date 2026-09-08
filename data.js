@@ -1,11 +1,11 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-08 12:42 UTC",
+  "generated_at": "2026-09-08 22:29 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 208,
-    "overall_rank": 1516616,
+    "overall_rank": 1516595,
     "gw_points": 48,
     "bank": 0.3,
     "value": 100.6,
@@ -715,7 +715,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1516616,
+        "rank": 1516595,
         "last_rank": 1053358
       }
     ],
@@ -723,17 +723,17 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 38.8
+        "own": 38.9
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 28.1
+        "own": 28.4
       },
       {
         "name": "Mbeumo",
         "club": "MUN",
-        "own": 25.7
+        "own": 25.6
       }
     ],
     "overall_diffs": [
