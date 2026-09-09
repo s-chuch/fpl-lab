@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-09 21:35 UTC",
+  "generated_at": "2026-09-09 21:37 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -83,8 +83,7 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL",
-        "FPL Page"
+        "AAFPL"
       ]
     },
     {
@@ -93,8 +92,7 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL",
-        "FPL Page"
+        "AAFPL"
       ]
     },
     {
@@ -120,7 +118,6 @@ window.FPL_NEWS = {
       "text": "United assets are fade / sell into City.",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -150,59 +147,8 @@ window.FPL_NEWS = {
       "url": "https://fpl.page/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Hub",
-      "title": "FPL team news and predicted lineups for Gameweek 4",
-      "url": "https://www.fantasyfootballhub.co.uk/premier-league-predicted-lineups"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL Dashboard",
-      "url": "https://fpl.page/"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL Price Changes | FPL Dashboard",
-      "url": "https://fpl.page/price-changes"
-    },
-    {
-      "source": "FPL Page",
-      "title": "LIVE Bonus Points | FPL Dashboard",
-      "url": "https://fpl.page/bonus"
-    },
-    {
-      "source": "FPL Page",
-      "title": "Expert Transfers & Captaincy Picks | FPL Dashboard",
-      "url": "https://fpl.page/experts"
-    },
-    {
-      "source": "FPL Page",
-      "title": "Fixture Ticker | FPL Dashboard",
-      "url": "https://fpl.page/fixture-ticker"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW4 Team Selection - TRIPLE CAPTAIN ACTIVE! | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw4-team-selection-2627"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW4 Players To Buy | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW3 Predicted Line-ups & Team News | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw3-predicted-lineups-team-news-2627"
-    },
-    {
-      "source": "FPL Page",
-      "title": "Privacy Policy | FPL Dashboard",
-      "url": "https://fpl.page/privacy"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
