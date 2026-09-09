@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, urllib.request
+import argparse, json, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
 TEAM_ID = 1360999
+TRACKED_BY_TEAM = {
+    1360999: {125784, 494594},   # ESL + Decision
+    1360920: {125784, 494595},   # ESL + Momo Cup
+}
 TRACKED_LEAGUES = {125784, 494594}
 ROOT = Path(__file__).resolve().parent
-DATA = ROOT / "data.js"
 POS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
 NEED = {"GKP": 1, "DEF": 3, "MID": 4, "FWD": 3}
 
@@ -119,10 +122,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
             r[5 + i * 3] = "BLANK" if fix == "Blank" else ("START" if r[1] in started else "SIT")
         for p in players:
             cell = p["gws"].get(f"gw{ev['id']}") or {}
-            if cell.get("fixture") == "Blank":
-                cell["call"] = "BLANK"
-            else:
-                cell["call"] = "START" if p["name"] in started else "SIT"
+            cell["call"] = "BLANK" if cell.get("fixture") == "Blank" else ("START" if p["name"] in started else "SIT")
     ft = free_transfers_for_next(hist or {})
     fh_used = bool((chips_used or {}).get("freehit"))
     bench_calls = []
@@ -132,7 +132,8 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
         sits.sort(key=lambda x: -(x["fdr"] or 0))
         top = sits[0] if sits else None
         bench_calls.append({"gw": ev["id"], "sit": xis[key]["bench"], "worst": top["player"] if top else None, "why": f"{top['player']} {top['fixture']} FDR {top['fdr']}" if top else "No sit"})
-    action, move, reason = "ROLL", None, f"You have {ft} FT. " + ("FH unused — roll so the FT returns with Shaaland." if not fh_used else "No forced move. Bank it.")
+    who = "Shaaland" if team_id == 1360999 else "the original squad"
+    action, move, reason = "ROLL", None, f"You have {ft} FT. " + (f"FH unused — roll so the FT returns with {who}." if not fh_used else "No forced move. Bank it.")
     return {"note": f"GW{picks_gw} squad. Last finished {(last_fin or {}).get('id')}.", "last_finished": (last_fin or {}).get("id"), "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}}
 
 def captain_audit(boot, team_id):
@@ -166,13 +167,14 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     classic = entry.get("leagues", {}).get("classic") or []
+    tracked_ids = TRACKED_BY_TEAM.get(team_id, TRACKED_LEAGUES)
     my_picks = set()
     try:
         my_picks = {p["element"] for p in get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/").get("picks") or []}
     except Exception:
         pass
     leagues = []
-    tracked = [x for x in classic if x.get("id") in TRACKED_LEAGUES]
+    tracked = [x for x in classic if x.get("id") in tracked_ids]
     tracked.sort(key=lambda x: 0 if x.get("id") == 125784 else 1)
     for L in tracked:
         try:
@@ -213,30 +215,35 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
     public = [{"id": 314, "name": "Overall", "rank": overall.get("entry_rank"), "last_rank": overall.get("entry_last_rank")}] if overall else []
     return {"mini": leagues, "public": public, "overall_template": overall_template[:8], "overall_diffs": overall_diffs[:8], "picks_gw": picks_gw}
 
-def main():
+def main(team_id=TEAM_ID, out_path=None):
+    data_file = Path(out_path) if out_path else ROOT / "data.js"
     existing = {}
-    if DATA.exists():
-        raw = DATA.read_text(); s, e = raw.find("{"), raw.rfind("}")
+    if data_file.exists():
+        raw = data_file.read_text(); s, e = raw.find("{"), raw.rfind("}")
         if s != -1 and e != -1: existing = json.loads(raw[s:e+1])
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
-    entry = get(f"https://fantasy.premierleague.com/api/entry/{TEAM_ID}/")
-    hist = get(f"https://fantasy.premierleague.com/api/entry/{TEAM_ID}/history/")
+    entry = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/")
+    hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
     avg = {e["id"]: e.get("average_entry_score") for e in boot["events"]}
-    field_avg = dict(existing.get("field_avg_known") or {1: 50, 2: 81, 3: 51})
+    field_avg = dict(existing.get("field_avg_known") or {})
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
     gws = []
     for row in hist.get("current", []):
         gw = row["event"]; fa = field_avg.get(gw) or avg.get(gw)
         if fa: field_avg[gw] = fa
         gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
-    plan = build_plan(boot, TEAM_ID, hist, chips_used)
+    plan = build_plan(boot, team_id, hist, chips_used)
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
-    leagues = analyze_leagues(boot, entry, TEAM_ID, plan.get("squad_from_gw") or last_fin)
-    caps = captain_audit(boot, TEAM_ID)
+    leagues = analyze_leagues(boot, entry, team_id, plan.get("squad_from_gw") or last_fin)
+    caps = captain_audit(boot, team_id)
     data = existing or {}
     data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan, "leagues": leagues, "captain_audit": caps})
-    DATA.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
-    print("Updated", [u["gw"] for u in plan.get("upcoming", [])], "caps", len(caps))
+    data_file.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
+    print("Updated", data_file.name, entry.get("name"), [u["gw"] for u in plan.get("upcoming", [])])
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--team", type=int, default=TEAM_ID)
+    ap.add_argument("--out", default=None)
+    args = ap.parse_args()
+    main(args.team, args.out)
