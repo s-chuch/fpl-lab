@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-09 20:45 UTC",
+  "generated_at": "2026-09-09 21:00 UTC",
   "note": "Public pages only. Agreed = 3+ of Fix, Hub, Scout, AAFPL.",
   "agreed": [
     {"text": "Gakpo is a priority GW transfer in.", "sources": ["Fix", "Hub", "Scout", "AAFPL"]},
