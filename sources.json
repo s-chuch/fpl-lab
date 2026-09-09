@@ -3,7 +3,17 @@
     {"name": "Fix", "url": "https://www.fantasyfootballfix.com/"},
     {"name": "Hub", "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips"},
     {"name": "Scout", "url": "https://www.fantasyfootballscout.co.uk/"},
-    {"name": "AAFPL", "url": "https://allaboutfpl.com/"}
+    {"name": "AAFPL", "url": "https://allaboutfpl.com/"},
+    {"name": "FPL Page", "url": "https://fpl.page/"}
   ],
-  "x_accounts": []
+  "x_accounts": [
+    {"name": "FPL Kayman", "handle": "FPLKayman"},
+    {"name": "Benjy FPL", "handle": "BenjyFPL"},
+    {"name": "FPL Meerkat", "handle": "FPLMeerkat"},
+    {"name": "Ghono FF", "handle": "Ghono_FF"},
+    {"name": "FPL GOAT", "handle": "FPLGOAT7"},
+    {"name": "FPL Focal", "handle": "FPLFocal"},
+    {"name": "FPL Loc", "handle": "LovroBudisin"},
+    {"name": "All About FPL", "handle": "allaboutfpl"}
+  ]
 }
