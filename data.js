@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-09 19:47 UTC",
+  "generated_at": "2026-09-09 19:48 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",

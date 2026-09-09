@@ -1,5 +1,5 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-09 19:47 UTC",
+  "generated_at": "2026-09-09 19:48 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -65,6 +65,9 @@ window.FPL_DATA = {
     }
   ],
   "field_avg_known": {
+    "1": 50,
+    "2": 81,
+    "3": 51,
     "1": 50,
     "2": 81,
     "3": 51
