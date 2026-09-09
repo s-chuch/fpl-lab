@@ -24,5 +24,13 @@ window.FPL_NEWS = {
     {"name": "Hub", "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips"},
     {"name": "Scout", "url": "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4/"},
     {"name": "AAFPL", "url": "https://allaboutfpl.com/category/fpl-gw4-ultimate-guide-and-tips/"}
+  ],
+  "new_articles": [],
+  "no_new": true,
+  "seen": [
+    "https://www.fantasyfootballfix.com/",
+    "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+    "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4/",
+    "https://allaboutfpl.com/category/fpl-gw4-ultimate-guide-and-tips/"
   ]
 };
