@@ -119,7 +119,9 @@ function renderNews(){
   const agreed=(N.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No 3-site overlap yet.</span></li>`;
   const split=(N.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
   const links=(N.links||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(" · ");
-  document.getElementById("news").innerHTML=`<div class="warn">Public GW${N.gw||""} previews only. Agreed = at least 3 of Fix, Hub, Scout, All About FPL. Not full articles.</div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting for refresh."}</p><p class="note">Built ${N.generated_at||"-"}</p></div>`;
+  const fresh=N.new_articles||[];
+  const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles recently.</span></li>`;
+  document.getElementById("news").innerHTML=`<div class="warn">Public GW${N.gw||""} previews only. Agreed = at least 3 of Fix, Hub, Scout, All About FPL. Not full articles.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting for refresh."}</p><p class="note">Built ${N.generated_at||"-"}</p></div>`;
 }
 renderNews();
 document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
