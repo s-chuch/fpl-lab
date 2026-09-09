@@ -15,6 +15,10 @@ on:
       - "refresh.py"
       - ".github/workflows/refresh.yml"
 
+concurrency:
+  group: refresh-main
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -25,6 +29,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -44,5 +49,6 @@ jobs:
             echo "No data change"
           else
             git commit -m "Refresh FPL data $(date -u +%Y-%m-%dT%H:%MZ)"
-            git push
+            git pull --rebase origin main
+            git push origin main
           fi
