@@ -1,11 +1,145 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-09 19:54 UTC",
+  "transfers": [
+    {
+      "gw": 2,
+      "out": "Shaw",
+      "inn": "Kayode",
+      "net": "0",
+      "verdict": "Even that GW"
+    }
+  ],
+  "bench_audit": {
+    "gw1": {
+      "you": 56,
+      "process": 56,
+      "hindsight": 65,
+      "your_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          1
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          0
+        ]
+      ],
+      "better_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          1
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          0
+        ]
+      ]
+    },
+    "gw2": {
+      "you": 102,
+      "process": 102,
+      "hindsight": 123,
+      "your_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          0
+        ]
+      ],
+      "better_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          0
+        ]
+      ]
+    },
+    "gw3": {
+      "you": 53,
+      "process": 53,
+      "hindsight": 53,
+      "your_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          1
+        ]
+      ],
+      "better_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          1
+        ]
+      ]
+    }
+  },
+  "generated_at": "2026-09-09 20:08 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 211,
-    "overall_rank": 1240817,
+    "overall_rank": 1240816,
     "bank": 1.0,
     "value": 100.3
   },
@@ -67,9 +201,6 @@ window.FPL_DATA = {
   "field_avg_known": {
     "1": 50,
     "2": 81,
-    "3": 51,
-    "1": 50,
-    "2": 81,
     "3": 51
   },
   "plan": {
@@ -118,7 +249,7 @@ window.FPL_DATA = {
         "START",
         "A BHA",
         3,
-        "SIT"
+        "START"
       ],
       [
         "DEF",
@@ -137,10 +268,10 @@ window.FPL_DATA = {
         "BRE",
         "A BOU",
         3,
-        "SIT",
+        "START",
         "H CHE",
         4,
-        "SIT"
+        "START"
       ],
       [
         "DEF",
@@ -159,7 +290,7 @@ window.FPL_DATA = {
         "NFO",
         "A AVL",
         4,
-        "SIT",
+        "START",
         "H COV",
         2,
         "START"
@@ -225,10 +356,10 @@ window.FPL_DATA = {
         "FUL",
         "A LIV",
         4,
-        "START",
+        "SIT",
         "H MUN",
         4,
-        "START"
+        "SIT"
       ],
       [
         "FWD",
@@ -236,10 +367,10 @@ window.FPL_DATA = {
         "IPS",
         "A CRY",
         3,
-        "START",
+        "SIT",
         "A EVE",
         3,
-        "START"
+        "SIT"
       ],
       [
         "FWD",
@@ -262,17 +393,17 @@ window.FPL_DATA = {
           "Gabriel",
           "B.Fernandes",
           "Gro\u00df",
+          "Haaland (C)",
           "Szoboszlai",
           "Dewsbury-Hall",
-          "Haaland (C)",
-          "Walle Egeli",
-          "Kusi-Asare"
+          "Kayode",
+          "N.Williams"
         ],
         "bench": [
           "Dubravka",
-          "Kayode",
-          "N.Williams",
-          "Hughes"
+          "Hughes",
+          "Walle Egeli",
+          "Kusi-Asare"
         ]
       },
       "gw5": {
@@ -283,17 +414,17 @@ window.FPL_DATA = {
           "N.Williams",
           "B.Fernandes",
           "Dewsbury-Hall",
+          "Haaland (C)",
+          "Gabriel",
           "Szoboszlai",
           "Gro\u00df",
-          "Haaland (C)",
-          "Walle Egeli",
-          "Kusi-Asare"
+          "Kayode"
         ],
         "bench": [
           "Dubravka",
-          "Gabriel",
-          "Kayode",
-          "Hughes"
+          "Hughes",
+          "Walle Egeli",
+          "Kusi-Asare"
         ]
       }
     },
@@ -302,23 +433,23 @@ window.FPL_DATA = {
         "gw": 4,
         "sit": [
           "Dubravka",
-          "Kayode",
-          "N.Williams",
-          "Hughes"
+          "Hughes",
+          "Walle Egeli",
+          "Kusi-Asare"
         ],
-        "worst": "N.Williams",
-        "why": "N.Williams A AVL FDR 4"
+        "worst": "Kusi-Asare",
+        "why": "Kusi-Asare A LIV FDR 4"
       },
       {
         "gw": 5,
         "sit": [
           "Dubravka",
-          "Gabriel",
-          "Kayode",
-          "Hughes"
+          "Hughes",
+          "Walle Egeli",
+          "Kusi-Asare"
         ],
-        "worst": "Kayode",
-        "why": "Kayode H CHE FDR 4"
+        "worst": "Kusi-Asare",
+        "why": "Kusi-Asare H MUN FDR 4"
       }
     ],
     "transfer": {
@@ -557,7 +688,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1240817,
+        "rank": 1240816,
         "last_rank": 1268044
       }
     ],
@@ -575,7 +706,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 28.7
+        "own": 28.8
       },
       {
         "name": "Mbeumo",

@@ -1,17 +1,154 @@
 window.FPL_DATA = {
-  "generated_at": "2026-09-09 19:54 UTC",
+  "transfers": [
+    {
+      "gw": 3,
+      "out": "Mbeumo",
+      "inn": "Cherki",
+      "net": "-5",
+      "verdict": "Lost that GW"
+    },
+    {
+      "gw": 3,
+      "out": "Rodon",
+      "inn": "De Cuyper",
+      "net": "+4",
+      "verdict": "Good that GW"
+    }
+  ],
+  "bench_audit": {
+    "gw1": {
+      "you": 64,
+      "process": 64,
+      "hindsight": 67,
+      "your_bench": [
+        [
+          "Kinsky",
+          2
+        ],
+        [
+          "Gro\u00df",
+          2
+        ],
+        [
+          "Davis",
+          2
+        ],
+        [
+          "Rodon",
+          6
+        ]
+      ],
+      "better_bench": [
+        [
+          "Shaw",
+          1
+        ],
+        [
+          "Haaland",
+          2
+        ],
+        [
+          "Calvert-Lewin",
+          1
+        ],
+        [
+          "Kinsky",
+          2
+        ]
+      ]
+    },
+    "gw2": {
+      "you": 96,
+      "process": 96,
+      "hindsight": 128,
+      "your_bench": [
+        [
+          "Verbruggen",
+          0
+        ],
+        [
+          "Gro\u00df",
+          13
+        ],
+        [
+          "Hume",
+          6
+        ],
+        [
+          "Davis",
+          6
+        ]
+      ],
+      "better_bench": [
+        [
+          "Shaw",
+          2
+        ],
+        [
+          "Rodon",
+          1
+        ],
+        [
+          "Tzolis",
+          0
+        ],
+        [
+          "Verbruggen",
+          0
+        ]
+      ]
+    },
+    "gw3": {
+      "you": 48,
+      "process": 48,
+      "hindsight": 58,
+      "your_bench": [
+        [
+          "Kinsky",
+          6
+        ],
+        [
+          "Tzolis",
+          5
+        ],
+        [
+          "Shaw",
+          4
+        ],
+        [
+          "Davis",
+          1
+        ]
+      ],
+      "better_bench": [
+        [
+          "Verbruggen",
+          3
+        ],
+        [
+          "Gro\u00df",
+          1
+        ],
+        [
+          "Calvert-Lewin",
+          1
+        ],
+        [
+          "Jo\u00e3o Pedro",
+          1
+        ]
+      ]
+    }
+  },
+  "generated_at": "2026-09-09 20:08 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 208,
     "overall_rank": 1516623,
-    "gw_points": 48,
     "bank": 0.3,
-    "value": 100.6,
-    "favourite": "Man City",
-    "mini_league": "European Super League",
-    "goal": "Beat last season (524k / top 4%)"
+    "value": 100.6
   },
   "history": [
     {
@@ -39,7 +176,6 @@ window.FPL_DATA = {
     "freehit": null,
     "wildcard": null
   },
-  "chips_notes": "Official API still shows Free Hit unused. If you only built the FH squad in a planner app, it is not spent until you confirm the chip on the official FPL site/app.",
   "gameweeks": [
     {
       "gw": 1,
@@ -78,146 +214,7 @@ window.FPL_DATA = {
   "field_avg_known": {
     "1": 50,
     "2": 81,
-    "3": 51,
-    "1": 50,
-    "2": 81,
     "3": 51
-  },
-  "transfers": [
-    {
-      "gw": 3,
-      "out": "Rodon",
-      "inn": "De Cuyper",
-      "net": "+4",
-      "verdict": "Good process",
-      "note": "Injury news landed 30 Aug. Minutes + fixture upgrade."
-    },
-    {
-      "gw": 3,
-      "out": "Mbeumo",
-      "inn": "Cherki",
-      "net": "-5",
-      "verdict": "Chase / unlucky mix",
-      "note": "Sold a 90-min attacker after a blank. Cherki minutes still settling. GW5 H Sunderland is the payoff week."
-    }
-  ],
-  "bench_audit": {
-    "gw2": {
-      "you": 96,
-      "hindsight": 118,
-      "process": 114,
-      "your_bench": [
-        [
-          "Verbruggen",
-          0
-        ],
-        [
-          "Gro\u00df",
-          13
-        ],
-        [
-          "Hume",
-          6
-        ],
-        [
-          "Davis",
-          6
-        ]
-      ],
-      "better_bench": [
-        [
-          "Verbruggen",
-          0
-        ],
-        [
-          "Tzolis",
-          0
-        ],
-        [
-          "Shaw",
-          2
-        ],
-        [
-          "Rodon",
-          1
-        ]
-      ],
-      "swaps": [
-        [
-          "Sit Tzolis, start Gro\u00df",
-          "+13",
-          "Process + variance"
-        ],
-        [
-          "Sit Rodon, start Hume",
-          "+5",
-          "Process"
-        ],
-        [
-          "Sit Shaw, start Davis",
-          "+4",
-          "Variance"
-        ]
-      ]
-    },
-    "gw3": {
-      "you": 48,
-      "hindsight": 58,
-      "process": 51,
-      "your_bench": [
-        [
-          "Kinsky",
-          6
-        ],
-        [
-          "Tzolis",
-          5
-        ],
-        [
-          "Shaw",
-          4
-        ],
-        [
-          "Davis",
-          1
-        ]
-      ],
-      "better_bench": [
-        [
-          "Verbruggen",
-          3
-        ],
-        [
-          "Gro\u00df",
-          1
-        ],
-        [
-          "Hume",
-          1
-        ],
-        [
-          "Davis",
-          1
-        ]
-      ],
-      "swaps": [
-        [
-          "Sit Verbruggen, start Kinsky",
-          "+3",
-          "Variance"
-        ],
-        [
-          "Sit Hume, start Shaw",
-          "+3",
-          "Process"
-        ],
-        [
-          "Sit Gro\u00df, start Tzolis",
-          "+4",
-          "Variance"
-        ]
-      ]
-    }
   },
   "plan": {
     "note": "GW3 squad. Last finished 3.",
@@ -364,7 +361,7 @@ window.FPL_DATA = {
         "SIT",
         "A BHA",
         3,
-        "SIT"
+        "START"
       ],
       [
         "FWD",
@@ -386,7 +383,7 @@ window.FPL_DATA = {
         "START",
         "H CRY",
         3,
-        "START"
+        "SIT"
       ],
       [
         "FWD",
@@ -409,17 +406,17 @@ window.FPL_DATA = {
           "Davis",
           "B.Fernandes",
           "Cherki",
-          "Gro\u00df",
-          "Szoboszlai",
           "Jo\u00e3o Pedro (C)",
           "Haaland",
+          "Gro\u00df",
+          "Szoboszlai",
           "Calvert-Lewin"
         ],
         "bench": [
           "Kinsky",
+          "Tzolis",
           "Hume",
-          "Shaw",
-          "Tzolis"
+          "Shaw"
         ]
       },
       "gw5": {
@@ -430,17 +427,17 @@ window.FPL_DATA = {
           "Davis",
           "B.Fernandes",
           "Cherki",
-          "Szoboszlai",
-          "Gro\u00df",
           "Haaland (C)",
           "Jo\u00e3o Pedro",
-          "Calvert-Lewin"
+          "Szoboszlai",
+          "Gro\u00df",
+          "Tzolis"
         ],
         "bench": [
           "Verbruggen",
+          "Calvert-Lewin",
           "Shaw",
-          "Hume",
-          "Tzolis"
+          "Hume"
         ]
       }
     },
@@ -449,9 +446,9 @@ window.FPL_DATA = {
         "gw": 4,
         "sit": [
           "Kinsky",
+          "Tzolis",
           "Hume",
-          "Shaw",
-          "Tzolis"
+          "Shaw"
         ],
         "worst": "Shaw",
         "why": "Shaw H MCI FDR 4"
@@ -460,9 +457,9 @@ window.FPL_DATA = {
         "gw": 5,
         "sit": [
           "Verbruggen",
+          "Calvert-Lewin",
           "Shaw",
-          "Hume",
-          "Tzolis"
+          "Hume"
         ],
         "worst": "Hume",
         "why": "Hume A MCI FDR 5"
@@ -475,31 +472,6 @@ window.FPL_DATA = {
       "move": null,
       "fh_unused": true
     }
-  },
-  "fh": {
-    "planned": true,
-    "officially_used": false,
-    "xi": [
-      "Raya",
-      "De Cuyper",
-      "Calafiori",
-      "Mitchell",
-      "Palmer (C)",
-      "Rogers",
-      "Szoboszlai",
-      "Gro\u00df",
-      "Jo\u00e3o Pedro (VC)",
-      "Isak",
-      "Haaland"
-    ],
-    "bench": [
-      "D\u00fabravka",
-      "Konsa",
-      "Mendy",
-      "Gomez"
-    ],
-    "captain": "Palmer vs Hull",
-    "warning": "FH is a one-week squad. After GW4 you return to Shaaland. Do not take hits to keep Palmer/Isak."
   },
   "leagues": {
     "mini": [
@@ -728,7 +700,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 28.7
+        "own": 28.8
       },
       {
         "name": "Mbeumo",
