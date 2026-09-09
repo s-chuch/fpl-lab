@@ -36,6 +36,10 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Syntax check
+        run: |
+          python -m py_compile news_scrape.py refresh.py
+
       - name: Pull live FPL data
         run: |
           python news_scrape.py
