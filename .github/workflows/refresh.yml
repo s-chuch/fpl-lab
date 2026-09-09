@@ -13,6 +13,7 @@ on:
     branches: [main]
     paths:
       - "refresh.py"
+      - "news_scrape.py"
       - ".github/workflows/refresh.yml"
 
 concurrency:
@@ -37,6 +38,7 @@ jobs:
 
       - name: Pull live FPL data
         run: |
+          python news_scrape.py
           python refresh.py
           python refresh.py --team 1360920 --out bacalhau-data.js
 
