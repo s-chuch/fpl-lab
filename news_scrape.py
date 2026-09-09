@@ -26,7 +26,7 @@ def load_news():
     if not NEWS_PATH.exists():
         return {}
     raw = NEWS_PATH.read_text()
-    s, e = raw.find("{"), raw.rfind("}")
+    s, e = raw.find("{'), raw.rfind("}")
     if s == -1 or e == -1:
         return {}
     try:
@@ -48,7 +48,7 @@ def extract_article_links(html, base, source):
         if urlparse(href).netloc != host:
             continue
         low = href.lower()
-        if not any(x in low for x in ("gameweek", "gw4", "gw5", "/fpl", "fpl-", "transfer", "captain", "wildcard", "differential", "/2026/", "/blog")):
+        if not any(x in low for x in ("gameweek", "gw4", "gw5", "/fpl", "fpl-", "transfer", "captain", "wildcard", "differential", "/2026/", "/blog", "lineup", "preview")):
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
         if len(text) < 12 or href in seen:
@@ -56,6 +56,29 @@ def extract_article_links(html, base, source):
         seen.add(href)
         out.append({"source": source, "url": href, "title": text[:160]})
     return out[:25]
+
+def site_listings():
+    listings = []
+    path = ROOT / "sources.json"
+    if path.exists():
+        try:
+            for s in json.loads(path.read_text()).get("sites") or []:
+                listings.append((s.get("name") or "Site", s["url"]))
+        except Exception:
+            listings = []
+    if not listings:
+        listings = [
+            ("Fix", "https://www.fantasyfootballfix.com/"),
+            ("Hub", "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips"),
+            ("Scout", "https://www.fantasyfootballscout.co.uk/"),
+            ("AAFPL", "https://allaboutfpl.com/"),
+        ]
+    listings.extend([
+        ("Fix", "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-transfer-tips-2026-27/"),
+        ("Scout", "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4/"),
+        ("AAFPL", "https://allaboutfpl.com/category/fpl-gw4-ultimate-guide-and-tips/"),
+    ])
+    return listings
 
 def main():
     prev = load_news()
@@ -66,15 +89,7 @@ def main():
         gw = upcoming[0]["id"] if upcoming else prev.get("gw")
     except Exception:
         gw = prev.get("gw")
-    listings = [
-        ("Fix", "https://www.fantasyfootballfix.com/"),
-        ("Fix", "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-transfer-tips-2026-27/"),
-        ("Hub", "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips"),
-        ("Scout", "https://www.fantasyfootballscout.co.uk/"),
-        ("Scout", "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4/"),
-        ("AAFPL", "https://allaboutfpl.com/"),
-        ("AAFPL", "https://allaboutfpl.com/category/fpl-gw4-ultimate-guide-and-tips/"),
-    ]
+    listings = site_listings()
     blobs, links, discovered, used = {}, [], [], set()
     for source, url in listings:
         html = fetch_html(url)
@@ -126,7 +141,7 @@ def main():
     news = {
         "gw": gw,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "note": "Public pages only. Agreed = 3+ of Fix, Hub, Scout, AAFPL.",
+        "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
         "agreed": agreed,
         "split": split,
         "links": links,
