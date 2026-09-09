@@ -26,7 +26,8 @@ def load_news():
     if not NEWS_PATH.exists():
         return {}
     raw = NEWS_PATH.read_text()
-    s, e = raw.find("{'), raw.rfind("}")
+    s, e = raw.find("{{"), raw.rfind("}}" )
+    s, e = raw.find("{"), raw.rfind("}")
     if s == -1 or e == -1:
         return {}
     try:
@@ -119,7 +120,7 @@ def main():
         {"keys": ["de cuyper", "decuyper"], "text": "De Cuyper is the standout cheap / OOP defender."},
         {"keys": ["palmer"], "text": "Palmer is in the captain conversation (Hull / Chelsea attack)."},
         {"keys": ["haaland"], "text": "Haaland remains the default captain."},
-        {"keys": ["joao pedro", "joão pedro"], "text": "João Pedro stays in the template forward line."},
+        {"keys": ["joao pedro", "jo\u00e3o pedro"], "text": "Jo\u00e3o Pedro stays in the template forward line."},
         {"keys": ["szoboszlai", "szobos"], "text": "Szoboszlai is listed as a Liverpool mid option."},
         {"keys": ["chelsea"], "text": "Chelsea attack is the main fixture to load (Hull)."},
         {"keys": ["liverpool"], "text": "Liverpool attackers are a second stack (Fulham)."},
