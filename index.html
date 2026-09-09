@@ -45,6 +45,7 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 <script src="data.js"></script>
 <script src="news.js"></script>
 <script src="x-posts.js"></script>
+<script src="fh.js"></script>
 <script>
 const D=window.FPL_DATA;
 const fmt=n=>n==null?"-":Number(n).toLocaleString();
@@ -136,6 +137,14 @@ function renderX(){
   document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the tracked X list. Agreed = at least 3 accounts on the same GW idea.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul><p class="note">Built ${X.generated_at||"-"}</p></div>`;
 }
 renderX();
-document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
+function renderFh(){
+  const F=window.FPL_FH||{};
+  if(!F.xi){document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">No draft saved.</p></div>`;return;}
+  const xi=(F.xi||[]).map(p=>`<div class="chip ${p.tag==="C"?"ok":""}">${p.pos} · ${p.name}${p.tag?" ("+p.tag+")":""} · ${p.fix}</div>`).join("");
+  const bench=(F.bench||[]).map(p=>`<div class="chip sit">${p.pos} · ${p.name} · ${p.fix}</div>`).join("");
+  const recs=(F.recs||[]).map(r=>`<li><span class="who">${r.verdict}</span><div class="detail">${r.text}</div></li>`).join("");
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${F.gw||""} draft only. Chip not played on FPL yet. Deadline ${F.deadline||""}.</div><div class="card"><h2>XI · ${F.captain} (C) · ${F.vice} (V)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Bench</h2><div class="xi">${bench}</div></div><div class="card"><h2>News + X</h2><ul class="chiplist">${recs}</ul></div>`;
+}
+renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
 </script></body></html>
