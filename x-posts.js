@@ -1,5 +1,6 @@
 window.FPL_X = {
-  "generated_at": "2026-09-09 21:25 UTC",
+  "gw": 4,
+  "generated_at": "2026-09-09 21:30 UTC",
   "accounts": [
     {"name": "FPL Kayman", "handle": "FPLKayman"},
     {"name": "Benjy FPL", "handle": "BenjyFPL"},
@@ -12,17 +13,16 @@ window.FPL_X = {
   ],
   "new_posts": [],
   "no_new": true,
-  "posts": [
-    {"handle": "allaboutfpl", "text": "Iraola on Gakpo: adductor issues both sides, not a proper injury, chance for the weekend. 584k+ bringing him in for GW4.", "url": "https://x.com/allaboutfpl/status/2097792436244554180"},
-    {"handle": "FPLFocal", "text": "Palmer with 2 goals in 3 minutes after coming on at half time.", "url": "https://x.com/FPLFocal/status/2097784697648492610"},
-    {"handle": "FPLMeerkat", "text": "Was getting Palmer in to join Joao Pedro, now considering Rogers to have all 3.", "url": "https://x.com/FPLMeerkat/status/2097785670940942376"},
-    {"handle": "BenjyFPL", "text": "All eyes on whether Palmer starts tonight.", "url": "https://x.com/BenjyFPL/status/2097652277305643042"},
-    {"handle": "FPLGOAT7", "text": "Probably 2 or 3 Chelsea attackers, or 2 attackers and leave room if a good Chelsea defender emerges. Wait for GW4 pressers.", "url": "https://x.com/FPLGOAT7/status/2097728843893408233"},
-    {"handle": "Ghono_FF", "text": "Price risers and fallers (09-09-26).", "url": "https://x.com/Ghono_FF/status/2097536854845432319"},
-    {"handle": "allaboutfpl", "text": "FPL GW4 Wildcard guide: WC4 vs WC6, targets, drafts with/without Bruno.", "url": "https://x.com/allaboutfpl/status/2097666343365640538"},
-    {"handle": "allaboutfpl", "text": "FPL GW4 Free Hit guide: targets and drafts.", "url": "https://x.com/allaboutfpl/status/2097579161522983171"},
-    {"handle": "LovroBudisin", "text": "Bringing Haaland in was the right call on paper at least.", "url": "https://x.com/LovroBudisin/status/2096015195118112997"},
-    {"handle": "FPLKayman", "text": "Latest public replies only in this window (no standalone GW thread yet).", "url": "https://x.com/FPLKayman"}
+  "agreed": [
+    {"text": "Palmer / Chelsea attack is the main GW4 load (start watch, cameo goals, 2-3 Chelsea attackers).", "sources": ["BenjyFPL", "FPLMeerkat", "FPLGOAT7", "FPLFocal"]}
   ],
-  "note": "First seed. New since last scrape stays empty until the next pull."
+  "split": [
+    {"text": "Gakpo adductor issue — not a proper injury, chance for the weekend; still the most-bought IN.", "sources": ["allaboutfpl"]},
+    {"text": "Rogers to complete a Palmer + Joao Pedro + Rogers triple.", "sources": ["FPLMeerkat"]},
+    {"text": "Wait for GW4 press conferences before locking moves.", "sources": ["FPLGOAT7"]},
+    {"text": "Haaland in was the right call on paper.", "sources": ["LovroBudisin"]},
+    {"text": "GW4 wildcard and free hit drafts are live talking points.", "sources": ["allaboutfpl"]},
+    {"text": "Daily price risers / fallers.", "sources": ["Ghono_FF"]}
+  ],
+  "note": "Agreed = 3+ of the tracked X accounts. Public posts only."
 };
