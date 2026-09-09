@@ -128,11 +128,12 @@ renderNews();
 function renderX(){
   const X=window.FPL_X||{};
   const accounts=X.accounts||[];
-  const acc=accounts.length?accounts.map(a=>`<div class="chip">@${a.handle||a}</div>`).join(""):`<p class="note">No X accounts yet. Add handles in sources.json or send them here.</p>`;
+  const acc=accounts.length?accounts.map(a=>`<div class="chip">@${a.handle||a}</div>`).join(""):`<p class="note">No X accounts yet.</p>`;
   const fresh=X.new_posts||[];
-  const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""} ${p.url?`<a href="${p.url}" target="_blank" rel="noopener">open</a>`:""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
-  const posts=(X.posts||[]).map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""} ${p.url?`<a href="${p.url}" target="_blank" rel="noopener">open</a>`:""}</div></li>`).join("")||`<li><span class="note">No posts loaded.</span></li>`;
-  document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the x_accounts list in sources.json. Add or remove handles anytime.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Recent posts</h2><ul class="chiplist">${posts}</ul><p class="note">Built ${X.generated_at||"-"}</p></div>`;
+  const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
+  const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
+  const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
+  document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the tracked X list. Agreed = at least 3 accounts on the same GW idea.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul><p class="note">Built ${X.generated_at||"-"}</p></div>`;
 }
 renderX();
 document.getElementById("fh").innerHTML=`<div class="card"><h2>FH</h2><p class="note">${D.fh&&D.fh.officially_used?"Recorded":"Officially unused"}</p></div>`;
