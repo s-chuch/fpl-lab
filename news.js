@@ -1,14 +1,15 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-09 21:06 UTC",
-  "note": "Public pages only. Agreed = 3+ of Fix, Hub, Scout, AAFPL.",
+  "generated_at": "2026-09-09 21:35 UTC",
+  "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
       "text": "Gakpo is a priority GW transfer in.",
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -17,7 +18,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -25,7 +27,8 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -33,7 +36,8 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -42,7 +46,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -50,7 +55,16 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
+      ]
+    },
+    {
+      "text": "Jo\u00e3o Pedro stays in the template forward line.",
+      "sources": [
+        "Scout",
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -59,7 +73,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -68,7 +83,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -77,7 +93,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -85,7 +102,8 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -94,27 +112,22 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
       "text": "United assets are fade / sell into City.",
       "sources": [
         "Fix",
+        "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     }
   ],
-  "split": [
-    {
-      "text": "Jo\u00e3o Pedro stays in the template forward line.",
-      "sources": [
-        "Scout",
-        "AAFPL"
-      ]
-    }
-  ],
+  "split": [],
   "links": [
     {
       "name": "Fix",
@@ -131,10 +144,65 @@ window.FPL_NEWS = {
     {
       "name": "AAFPL",
       "url": "https://allaboutfpl.com/"
+    },
+    {
+      "name": "FPL Page",
+      "url": "https://fpl.page/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Hub",
+      "title": "FPL team news and predicted lineups for Gameweek 4",
+      "url": "https://www.fantasyfootballhub.co.uk/premier-league-predicted-lineups"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL Dashboard",
+      "url": "https://fpl.page/"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL Price Changes | FPL Dashboard",
+      "url": "https://fpl.page/price-changes"
+    },
+    {
+      "source": "FPL Page",
+      "title": "LIVE Bonus Points | FPL Dashboard",
+      "url": "https://fpl.page/bonus"
+    },
+    {
+      "source": "FPL Page",
+      "title": "Expert Transfers & Captaincy Picks | FPL Dashboard",
+      "url": "https://fpl.page/experts"
+    },
+    {
+      "source": "FPL Page",
+      "title": "Fixture Ticker | FPL Dashboard",
+      "url": "https://fpl.page/fixture-ticker"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL GW4 Team Selection - TRIPLE CAPTAIN ACTIVE! | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw4-team-selection-2627"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL GW4 Players To Buy | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL GW3 Predicted Line-ups & Team News | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw3-predicted-lineups-team-news-2627"
+    },
+    {
+      "source": "FPL Page",
+      "title": "Privacy Policy | FPL Dashboard",
+      "url": "https://fpl.page/privacy"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
@@ -161,6 +229,15 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/tag/fpl-gw4-team-selection/",
     "https://allaboutfpl.com/tag/gameweek-4-team-selection/",
     "https://allaboutfpl.com/tag/top-player-picks-for-fpl-gw4/",
+    "https://fpl.page/",
+    "https://fpl.page/article/fpl-gw3-predicted-lineups-team-news-2627",
+    "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627",
+    "https://fpl.page/article/fpl-gw4-team-selection-2627",
+    "https://fpl.page/bonus",
+    "https://fpl.page/experts",
+    "https://fpl.page/fixture-ticker",
+    "https://fpl.page/price-changes",
+    "https://fpl.page/privacy",
     "https://www.fantasyfootballfix.com/",
     "https://www.fantasyfootballfix.com/blog-index/",
     "https://www.fantasyfootballfix.com/blog-index/?category=Differentials",
@@ -193,6 +270,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/gianni-buttice-fpl-team-reveal",
     "https://www.fantasyfootballhub.co.uk/jossys-fpl-planner",
     "https://www.fantasyfootballhub.co.uk/my-team/transfers",
+    "https://www.fantasyfootballhub.co.uk/premier-league-predicted-lineups",
     "https://www.fantasyfootballhub.co.uk/team-reveals/fpl_heisenberg",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
     "https://www.fantasyfootballscout.co.uk/2026/08/31/how-to-play-uefa-champions-league-fantasy-2026-27-rules-scoring-chips",
