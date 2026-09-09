@@ -55,20 +55,7 @@ const tabs=[["season","Season"],["bench","Bench audit"],["transfers","Transfers"
 document.getElementById("tabs").innerHTML=tabs.map(([id,label],i)=>`<button class="${i===0?"on":""}" data-id="${id}">${label}</button>`).join("");
 document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button");if(!b)return;document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===b.dataset.id));};
 function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${g.chip}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
-function capCard(){
-  const rows=D.captain_audit||[];
-  if(!rows.length) return "";
-  const max=Math.max(...rows.map(r=>Math.max(r.got,r.got-r.vs_best,1)));
-  const body=rows.map(r=>{
-    const bestGot=r.got-r.vs_best; const vcGot=r.got-r.vs_vc;
-    return `<div style="margin:12px 0 16px"><b>GW${r.gw} · ${r.captain}</b> <span class="note">got ${r.got} · VC ${r.vc} · best ${r.best}</span>
-      <div class="barrow"><span>They</span><div class="track"><span style="width:${100*r.got/max}%"></span></div><b>${r.got}</b></div>
-      <div class="barrow"><span>If VC</span><div class="track"><span class="mid" style="width:${100*vcGot/max}%"></span></div><b class="${cls(r.vs_vc)}">${sign(r.vs_vc)}</b></div>
-      <div class="barrow"><span>If best</span><div class="track"><span class="${r.vs_best<0?"bad":""}" style="width:${100*bestGot/max}%"></span></div><b class="${cls(r.vs_best)}">${sign(r.vs_best)}</b></div></div>`;
-  }).join("");
-  return `<div class="card"><h2>Captaincy differentials</h2><p class="note">vs VC and vs the top scorer already in their squad that week (same chip multiplier).</p>${body}</div>`;
-}
-document.getElementById("season").innerHTML=gwTable()+capCard();
+document.getElementById("season").innerHTML=gwTable();
 function bar(label,val,max,klass){return `<div class="barrow"><span>${label}</span><div class="track"><span class="${klass||""}" style="width:${Math.max(4,100*val/max)}%"></span></div><b>${val}</b></div>`;}
 function benchBlock(key,title){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
