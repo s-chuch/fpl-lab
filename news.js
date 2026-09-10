@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-10 20:22 UTC",
+  "generated_at": "2026-09-10 21:35 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -19,7 +19,8 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -28,7 +29,8 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -37,7 +39,8 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -47,7 +50,8 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -56,7 +60,8 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -64,7 +69,8 @@ window.FPL_NEWS = {
       "sources": [
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -74,7 +80,8 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -83,7 +90,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "Ingenuity"
       ]
     },
     {
@@ -92,7 +100,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "Ingenuity"
       ]
     },
     {
@@ -101,7 +110,8 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     },
     {
@@ -120,7 +130,8 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page"
+        "FPL Page",
+        "Ingenuity"
       ]
     }
   ],
@@ -145,10 +156,55 @@ window.FPL_NEWS = {
     {
       "name": "FPL Page",
       "url": "https://fpl.page/"
+    },
+    {
+      "name": "Ingenuity",
+      "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "AAFPL",
+      "title": "allaboutfpl differentials Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential",
+      "url": "https://allaboutfpl.com/tag/allaboutfpl-differentials/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "top punts for fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pic",
+      "url": "https://allaboutfpl.com/tag/top-punts-for-fpl-gw4/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "Best FPL Budget Forwards (\u00a34.5 - \u00a36.0 Million) | 26/27 FPL Season",
+      "url": "https://allaboutfpl.com/2026/08/best-fpl-budget-forwards-4-5-6-0-million-26-27-fpl-season/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "Best FPL Defenders Analysis Series | 2025/26 FPL Season",
+      "url": "https://allaboutfpl.com/category/fpl-defenders/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "Best \u00a34.0 Million FPL Defenders for 2026/27 FPL Season",
+      "url": "https://allaboutfpl.com/2026/07/best-4-0-million-fpl-defenders-for-2026-27-fpl-season/"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "FPL Player Rankings - Ingenuity Fantasy Football",
+      "url": "https://ingenuityfantasy.com/fpl-player-rankings/"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "What the Bookies Say - Ingenuity Fantasy Football",
+      "url": "https://ingenuityfantasy.com/fpl-bookies/"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "FPL Guidebook - Ingenuity Fantasy Football",
+      "url": "https://ingenuityfantasy.com/fpl-guidebook/"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
@@ -160,16 +216,20 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/2022/07/what-is-wildcard-in-fpl-fpl-wildcard-chip-explained/",
     "https://allaboutfpl.com/2025/08/fpl-defensive-contribution-points-top-picks-stats-impact/",
     "https://allaboutfpl.com/2026/07/aks-fpl-first-draft-team-reveal-3x-top-5k-finishes/",
+    "https://allaboutfpl.com/2026/07/best-4-0-million-fpl-defenders-for-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/07/fpl-rotational-pairs-combinations-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/2026-2027-fpl-team-structure-guide-with-drafts-ratings/",
     "https://allaboutfpl.com/2026/08/best-6m-forwards-comparison-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-budget-forwards-4-5-6-0-million-26-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-forwards-at-each-price-point-for-the-2026-27-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-gw1-drafts-for-the-26-27-fpl-season-with-pros-cons/",
     "https://allaboutfpl.com/2026/08/best-fpl-value-forwards-to-consider-for-the-2026-27-season/",
+    "https://allaboutfpl.com/category/fpl-defenders/",
     "https://allaboutfpl.com/category/fpl-forwards-strikers/",
     "https://allaboutfpl.com/category/fpl-goalkeepers/",
     "https://allaboutfpl.com/category/fpl-gw4-ultimate-guide-and-tips/",
+    "https://allaboutfpl.com/tag/allaboutfpl-differentials/",
     "https://allaboutfpl.com/tag/allaboutfpl-scout-seleciton/",
     "https://allaboutfpl.com/tag/best-gw4-team/",
     "https://allaboutfpl.com/tag/best-transfers-for-fpl-gw4/",
@@ -180,6 +240,7 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/tag/gameweek-4-scout-team/",
     "https://allaboutfpl.com/tag/gameweek-4-team-selection/",
     "https://allaboutfpl.com/tag/top-player-picks-for-fpl-gw4/",
+    "https://allaboutfpl.com/tag/top-punts-for-fpl-gw4/",
     "https://fpl.page/",
     "https://fpl.page/article/fpl-gw3-predicted-lineups-team-news-2627",
     "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627",
@@ -189,6 +250,9 @@ window.FPL_NEWS = {
     "https://fpl.page/fixture-ticker",
     "https://fpl.page/price-changes",
     "https://fpl.page/privacy",
+    "https://ingenuityfantasy.com/fpl-bookies/",
+    "https://ingenuityfantasy.com/fpl-guidebook/",
+    "https://ingenuityfantasy.com/fpl-player-rankings/",
     "https://www.fantasyfootballfix.com/",
     "https://www.fantasyfootballfix.com/blog-index/",
     "https://www.fantasyfootballfix.com/blog-index/?category=Differentials",
