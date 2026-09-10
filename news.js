@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-10 21:35 UTC",
+  "generated_at": "2026-09-10 21:58 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -19,8 +19,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -29,8 +28,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -39,8 +37,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -50,8 +47,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -60,8 +56,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -69,8 +64,7 @@ window.FPL_NEWS = {
       "sources": [
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -80,8 +74,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -90,8 +83,7 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL",
-        "Ingenuity"
+        "AAFPL"
       ]
     },
     {
@@ -110,8 +102,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     },
     {
@@ -130,8 +121,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "Ingenuity"
+        "FPL Page"
       ]
     }
   ],
@@ -162,49 +152,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "AAFPL",
-      "title": "allaboutfpl differentials Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential",
-      "url": "https://allaboutfpl.com/tag/allaboutfpl-differentials/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "top punts for fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pic",
-      "url": "https://allaboutfpl.com/tag/top-punts-for-fpl-gw4/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Best FPL Budget Forwards (\u00a34.5 - \u00a36.0 Million) | 26/27 FPL Season",
-      "url": "https://allaboutfpl.com/2026/08/best-fpl-budget-forwards-4-5-6-0-million-26-27-fpl-season/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Best FPL Defenders Analysis Series | 2025/26 FPL Season",
-      "url": "https://allaboutfpl.com/category/fpl-defenders/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Best \u00a34.0 Million FPL Defenders for 2026/27 FPL Season",
-      "url": "https://allaboutfpl.com/2026/07/best-4-0-million-fpl-defenders-for-2026-27-fpl-season/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "FPL Player Rankings - Ingenuity Fantasy Football",
-      "url": "https://ingenuityfantasy.com/fpl-player-rankings/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "What the Bookies Say - Ingenuity Fantasy Football",
-      "url": "https://ingenuityfantasy.com/fpl-bookies/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "FPL Guidebook - Ingenuity Fantasy Football",
-      "url": "https://ingenuityfantasy.com/fpl-guidebook/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
