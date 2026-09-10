@@ -133,13 +133,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-09 22:23 UTC",
+  "generated_at": "2026-09-10 20:21 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 211,
-    "overall_rank": 1240809,
+    "overall_rank": 1240802,
     "bank": 1.0,
     "value": 100.3
   },
@@ -688,7 +688,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1240809,
+        "rank": 1240802,
         "last_rank": 1268044
       }
     ],
@@ -696,22 +696,22 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 72.5
-      },
-      {
-        "name": "Cherki",
-        "club": "MCI",
-        "own": 30.2
+        "own": 72.7
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 29.0
+        "own": 30.1
+      },
+      {
+        "name": "Cherki",
+        "club": "MCI",
+        "own": 30.0
       },
       {
         "name": "Mbeumo",
         "club": "MUN",
-        "own": 25.3
+        "own": 25.0
       }
     ],
     "overall_diffs": [
@@ -728,7 +728,7 @@ window.FPL_DATA = {
       {
         "name": "Kusi-Asare",
         "club": "FUL",
-        "own": 6.3
+        "own": 6.2
       },
       {
         "name": "N.Williams",
@@ -738,7 +738,7 @@ window.FPL_DATA = {
       {
         "name": "Hughes",
         "club": "CRY",
-        "own": 8.8
+        "own": 8.7
       },
       {
         "name": "Kayode",
@@ -748,7 +748,7 @@ window.FPL_DATA = {
       {
         "name": "Tarkowski",
         "club": "EVE",
-        "own": 11.3
+        "own": 11.4
       }
     ],
     "picks_gw": 3
