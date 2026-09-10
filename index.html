@@ -74,6 +74,51 @@ function benchBlock(key,title){
 }
 document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss (you had the info). Yellow = variance (reasonable call, points went the other way). Process XI = best lineup using only pre-deadline info. Hindsight = best lineup after the matches.</p>`;
 document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${(D.transfers||[]).map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${t.out} → ${t.inn}</td><td>${t.net}</td><td>${t.verdict}</td></tr>`).join("")}</tbody></table></div>`;
+const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"]];
+function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+function agreedPool(){
+  const N=window.FPL_NEWS||{},X=window.FPL_X||{};
+  return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News"})),(X.agreed||[]).map(x=>({text:x.text,from:"X"})));
+}
+function namesInText(text){
+  const t=normTxt(text), hits=[];
+  for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name); }
+  return hits;
+}
+function newsVsSquad(squadNames, startedNames, clubsByName){
+  const have=new Set((squadNames||[]).map(n=>n));
+  const start=new Set(startedNames||[]);
+  const owned=[], missing=[], fade=[], caps=[];
+  for(const it of agreedPool()){
+    const t=normTxt(it.text);
+    const names=namesInText(it.text);
+    const isFade=/fade|sell into|sell /.test(t);
+    const isCap=/captain/.test(t);
+    const isIn=/transfer in|to target|popular forward|priority/.test(t);
+    if(isCap) caps.push(it.text);
+    if(isFade){
+      const startedUnited=(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN");
+      const hit=names.filter(n=>start.has(n)).concat(startedUnited);
+      const uniq=[...new Set(hit)];
+      if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text);
+      continue;
+    }
+    const mine=names.filter(n=>have.has(n));
+    const other=names.filter(n=>!have.has(n));
+    if(mine.length) owned.push(mine.join(", ")+" · "+it.text);
+    if(other.length && isIn) missing.push(other.join(", ")+" · "+it.text);
+  }
+  return {owned, missing, fade, caps};
+}
+function newsCard(title, vs){
+  const li=(arr,empty)=>arr.length?arr.map(x=>`<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`).join(""):`<li><span class="note">${empty}</span></li>`;
+  const cap=vs.caps[0]?`<p class="note">Captain check: ${vs.caps[0]}</p>`:"";
+  return `<div class="card"><h2>${title}</h2>
+    <p class="note">Own and agreed</p><ul class="chiplist">${li(vs.owned,"None of the agreed names are in this squad.")}</ul>
+    <p class="note">Missing and agreed</p><ul class="chiplist">${li(vs.missing,"You already own the agreed targets, or none were named.")}</ul>
+    <p class="note">Fade, but you still start them</p><ul class="chiplist">${li(vs.fade,"No fade conflict.")}</ul>
+    ${cap}<p class="note">News/X is a check. FDR + minutes still pick the 11.</p></div>`;
+}
 function renderPlan(){
   const P=D.plan||{},up=P.upcoming||[];
   if(!up.length){document.getElementById("plan").innerHTML=`<div class="warn">Waiting for refresh.</div>`;return;}
@@ -90,8 +135,14 @@ function renderPlan(){
   }).join("");
   const T=P.transfer||{}; const move=T.move;
   const actionLine=T.action==="TRANSFER"&&move?`${move.out} → ${move.inn}`:"Roll the free transfer";
+  const squad=(P.rows||[]).map(r=>r[1]);
+  const clubs={}; (P.rows||[]).forEach(r=>clubs[r[1]]=r[2]);
+  const gw0=up[0]&&up[0].gw;
+  const started=((((P.xis||{})["gw"+gw0]||{}).xi)||[]).map(n=>n.split(" (")[0]);
+  const vs=newsVsSquad(squad, started, clubs);
+  const missNote=vs.missing.length?` News wants ${vs.missing.map(x=>x.split(" · ")[0]).join(", ")} — not a forced hit if you roll.`:"";
   const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${b.worst||"-"}</b> · ${b.why||""}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`).join("");
-  document.getElementById("plan").innerHTML=`<div class="card"><h2>Transfer · ${T.action||"ROLL"} · ${T.ft_available??"?"} FT</h2><p class="note"><b>${actionLine}</b></p><p class="note">${T.reason||""}</p></div>${benches}<div class="card"><h2>Fixtures</h2><p class="note">START is the 11 in the suggested XI. Everyone else is SIT.</p><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  document.getElementById("plan").innerHTML=`<div class="card"><h2>Transfer · ${T.action||"ROLL"} · ${T.ft_available??"?"} FT</h2><p class="note"><b>${actionLine}</b></p><p class="note">${T.reason||""}${missNote}</p></div>${newsCard("News + X vs this squad",vs)}${benches}<div class="card"><h2>Fixtures</h2><p class="note">START is the 11 in the suggested XI. Everyone else is SIT.</p><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 renderPlan();
 function renderLeagues(){
@@ -144,7 +195,11 @@ function renderFh(){
   const xi=(F.xi||[]).map(p=>`<div class="chip ${p.tag==="C"?"ok":""}">${p.pos} · ${p.name}${p.tag?" ("+p.tag+")":""} · ${p.fix}</div>`).join("");
   const bench=(F.bench||[]).map(p=>`<div class="chip sit">${p.pos} · ${p.name} · ${p.fix}</div>`).join("");
   const recs=(F.recs||[]).map(r=>`<li><span class="who">${r.verdict}</span><div class="detail">${r.text}</div></li>`).join("");
-  document.getElementById("fh").innerHTML=`<div class="warn">GW${F.gw||""} draft only. Chip not played on FPL yet. Deadline ${F.deadline||""}.</div><div class="card"><h2>XI · ${F.captain} (C) · ${F.vice} (V)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Bench</h2><div class="xi">${bench}</div></div><div class="card"><h2>News + X</h2><ul class="chiplist">${recs}</ul></div>`;
+  const names=(F.xi||[]).map(p=>p.name).concat((F.bench||[]).map(p=>p.name));
+  const started=(F.xi||[]).map(p=>p.name);
+  const clubs={}; (F.xi||[]).concat(F.bench||[]).forEach(p=>clubs[p.name]=p.club||"");
+  const vs=newsVsSquad(names, started, clubs);
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${F.gw||""} draft only. Chip not played on FPL yet. Deadline ${F.deadline||""}.</div><div class="card"><h2>XI · ${F.captain} (C) · ${F.vice} (V)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Bench</h2><div class="xi">${bench}</div></div>${newsCard("News + X vs this FH",vs)}<div class="card"><h2>Saved notes</h2><ul class="chiplist">${recs||""}</ul></div>`;
 }
 renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
