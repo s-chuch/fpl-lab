@@ -140,7 +140,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-11 12:42 UTC",
+  "generated_at": "2026-09-11 20:12 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -700,14 +700,19 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 31.3
+        "own": 32.5
+      },
+      {
+        "name": "Palmer",
+        "club": "CHE",
+        "own": 25.8
       }
     ],
     "overall_diffs": [
       {
         "name": "Hume",
         "club": "SUN",
-        "own": 4.2
+        "own": 4.0
       },
       {
         "name": "Davis",

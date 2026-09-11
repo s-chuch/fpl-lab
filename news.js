@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-11 12:41 UTC",
+  "generated_at": "2026-09-11 20:11 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -63,6 +63,7 @@ window.FPL_NEWS = {
     {
       "text": "Jo\u00e3o Pedro stays in the template forward line.",
       "sources": [
+        "Fix",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -84,7 +85,8 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
@@ -94,6 +96,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
+        "FPL Page",
         "Ingenuity"
       ]
     },
@@ -120,6 +123,7 @@ window.FPL_NEWS = {
       "text": "United assets are fade / sell into City.",
       "sources": [
         "Fix",
+        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -156,38 +160,23 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Fix",
-      "title": "FPL Gameweek 4 Transfer Tips: Top 5 Popular Moves",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-transfer-tips-2026-27/"
-    },
-    {
-      "source": "Fix",
-      "title": "FPL Price Changes: Calafiori, Palmer and \u00d8degaard Rise",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-11-sep/"
-    },
-    {
-      "source": "Fix",
-      "title": "Best FPL Captain for Gameweek 4: Top 3 Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-captaincy-2026/"
+      "title": "FPL Gameweek 4 Tips: Transfers, Captain & Team News",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-tips/"
     },
     {
       "source": "Scout",
-      "title": "FPL General\u2019s Gameweek 4 team reveal + Triple Captain: 33k rank",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain"
+      "title": "FPL Gameweek 4 Scout Picks: Three triple-ups in Free Hit XI",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups"
     },
     {
-      "source": "AAFPL",
-      "title": "Pedro FPL GW4 Captain Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pic",
-      "url": "https://allaboutfpl.com/tag/pedro-fpl-gw4-captain/"
+      "source": "Scout",
+      "title": "\u00ad\u00ad\u00adFPL Gameweek 4 differentials: 3 low-owned picks to consider",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-differentials-3-low-owned-picks-to-consider"
     },
     {
-      "source": "AAFPL",
-      "title": "Joao Pedro FPL GW4 Captain Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differentia",
-      "url": "https://allaboutfpl.com/tag/joao-pedro-fpl-gw4-captain/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Haaland FPL GW4 Captain Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential p",
-      "url": "https://allaboutfpl.com/tag/haaland-fpl-gw4-captain/"
+      "source": "FPL Page",
+      "title": "FPL GW4 Predicted Line-ups & Team News | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw4-predicted-lineups-team-news-2627"
     }
   ],
   "no_new": false,
@@ -233,6 +222,7 @@ window.FPL_NEWS = {
     "https://fpl.page/",
     "https://fpl.page/article/fpl-gw3-predicted-lineups-team-news-2627",
     "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627",
+    "https://fpl.page/article/fpl-gw4-predicted-lineups-team-news-2627",
     "https://fpl.page/article/fpl-gw4-team-selection-2627",
     "https://fpl.page/bonus",
     "https://fpl.page/experts",
@@ -253,6 +243,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-3-elite-chip-plans/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-captaincy-2026/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-differentials/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-tips/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-top-5-players-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-transfer-tips-2026-27/",
@@ -302,6 +293,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/09/how-fpl-harry-mark-sutherns-more-did-in-gameweek-3",
     "https://www.fantasyfootballscout.co.uk/2026/09/10/fantasy-efl-gameweek-5-scout-picks-3",
     "https://www.fantasyfootballscout.co.uk/2026/09/10/gakpo-v-rogers-v-mgw-top-everton-picks-buy-konsa-fpl-qa",
+    "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-differentials-3-low-owned-picks-to-consider",
+    "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
