@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-11 22:11 UTC",
+  "generated_at": "2026-09-11 22:22 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -155,39 +155,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Who is the best captain for FPL Gameweek 4?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5"
-    },
-    {
-      "source": "AAFPL",
-      "title": "rogers fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks, ana",
-      "url": "https://allaboutfpl.com/tag/rogers-fpl-gw4/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "palmer fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks, ana",
-      "url": "https://allaboutfpl.com/tag/palmer-fpl-gw4/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "fpl gameweek 4 transfer plans Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differen",
-      "url": "https://allaboutfpl.com/tag/fpl-gameweek-4-transfer-plans/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "gw4 team selection Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks,",
-      "url": "https://allaboutfpl.com/tag/gw4-team-selection/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "gameweek 4 transfers Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pick",
-      "url": "https://allaboutfpl.com/tag/gameweek-4-transfers/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
