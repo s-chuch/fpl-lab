@@ -6,11 +6,11 @@ window.FPL_FH = {
   "captain": "Palmer",
   "vice": "Haaland",
   "xi": [
-    {"pos": "GKP", "name": "Raya", "fix": "SUN (A)"},
+    {"pos": "GKP", "name": "Verbruggen", "fix": "COV (A)"},
     {"pos": "DEF", "name": "De Cuyper", "fix": "COV (A)"},
     {"pos": "DEF", "name": "Calafiori", "fix": "SUN (A)"},
-    {"pos": "DEF", "name": "Thomas", "fix": "BHA (H)"},
-    {"pos": "MID", "name": "Gakpo", "fix": "FUL (H)", "tag": "flag"},
+    {"pos": "DEF", "name": "Van Hecke", "fix": "EVE (H)"},
+    {"pos": "DEF", "name": "Khalaili", "fix": "IPS (H)"},
     {"pos": "MID", "name": "Szoboszlai", "fix": "FUL (H)"},
     {"pos": "MID", "name": "Palmer", "fix": "HUL (H)", "tag": "C"},
     {"pos": "MID", "name": "Rogers", "fix": "HUL (H)"},
@@ -20,15 +20,16 @@ window.FPL_FH = {
   ],
   "bench": [
     {"pos": "GKP", "name": "Dubravka", "fix": "EVE (H)"},
+    {"pos": "MID", "name": "Gro\u00df", "fix": "COV (A)"},
     {"pos": "MID", "name": "Slater", "fix": "CHE (A)"},
-    {"pos": "DEF", "name": "Davis", "fix": "CRY (A)"},
     {"pos": "DEF", "name": "Mendy", "fix": "CHE (A)"}
   ],
   "recs": [
-    {"verdict": "Keep", "text": "Palmer (C) vs Hull. News and X both load Chelsea attack."},
-    {"verdict": "Good", "text": "Haaland as vice is the right cover for the derby if Palmer is benched or blanks."},
-    {"verdict": "Watch", "text": "Gakpo is flagged. Iraola: adductor both sides, not a proper injury, chance for the weekend. News still wants him. If Friday presser rules him out, you only have Slater (CHE A) as the mid bench — swap Gakpo before deadline rather than hope auto-subs."},
-    {"verdict": "Keep", "text": "Liverpool vs Fulham (Gakpo, Szoboszlai, Isak) and Chelsea vs Hull (Palmer, Rogers, Jo\u00e3o Pedro) match both News and X."},
-    {"verdict": "Optional", "text": "Thomas is the one starter neither tab is pushing. Fine as third defender; do not drop De Cuyper or Calafiori."}
+    {"verdict": "Keep", "text": "Palmer (C) vs Hull. News and X both load Chelsea attack. Haaland as vice covers the derby."},
+    {"verdict": "Good", "text": "Isak + Szoboszlai vs Fulham replaces the flagged Gakpo draft. News still lists both Liverpool and Isak as agreed."},
+    {"verdict": "Good", "text": "Rogers + Jo\u00e3o Pedro + Palmer is the Chelsea triple the sources wanted."},
+    {"verdict": "Keep", "text": "De Cuyper stays. Van Hecke (EVE H) and Khalaili (IPS H) are the extra defensive slots instead of Thomas."},
+    {"verdict": "Sit", "text": "Bench order is fine: Dubravka, Gro\u00df, Slater, Mendy. Slater and Mendy both play Chelsea away — they should not start."},
+    {"verdict": "Note", "text": "Gakpo is out of this draft. If you still want the Liverpool mid, Gro\u00df is the Coventry-away bench piece, not a starter."}
   ]
 };
