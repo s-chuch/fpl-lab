@@ -133,13 +133,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-10 22:22 UTC",
+  "generated_at": "2026-09-11 12:42 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 211,
-    "overall_rank": 1240799,
+    "overall_rank": 1240797,
     "bank": 1.0,
     "value": 100.3
   },
@@ -688,7 +688,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1240799,
+        "rank": 1240797,
         "last_rank": 1268044
       }
     ],
@@ -696,17 +696,17 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 72.7
+        "own": 72.9
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 30.3
+        "own": 31.3
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 29.9
+        "own": 29.7
       }
     ],
     "overall_diffs": [
@@ -738,7 +738,7 @@ window.FPL_DATA = {
       {
         "name": "Kayode",
         "club": "BRE",
-        "own": 9.0
+        "own": 8.9
       },
       {
         "name": "Tarkowski",
