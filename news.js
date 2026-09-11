@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-11 20:11 UTC",
+  "generated_at": "2026-09-11 22:11 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -85,8 +85,7 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL",
-        "FPL Page"
+        "AAFPL"
       ]
     },
     {
@@ -96,7 +95,6 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
         "Ingenuity"
       ]
     },
@@ -159,24 +157,34 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Gameweek 4 Tips: Transfers, Captain & Team News",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-tips/"
-    },
-    {
       "source": "Scout",
-      "title": "FPL Gameweek 4 Scout Picks: Three triple-ups in Free Hit XI",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups"
+      "title": "Who is the best captain for FPL Gameweek 4?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5"
     },
     {
-      "source": "Scout",
-      "title": "\u00ad\u00ad\u00adFPL Gameweek 4 differentials: 3 low-owned picks to consider",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-differentials-3-low-owned-picks-to-consider"
+      "source": "AAFPL",
+      "title": "rogers fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks, ana",
+      "url": "https://allaboutfpl.com/tag/rogers-fpl-gw4/"
     },
     {
-      "source": "FPL Page",
-      "title": "FPL GW4 Predicted Line-ups & Team News | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw4-predicted-lineups-team-news-2627"
+      "source": "AAFPL",
+      "title": "palmer fpl gw4 Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks, ana",
+      "url": "https://allaboutfpl.com/tag/palmer-fpl-gw4/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "fpl gameweek 4 transfer plans Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differen",
+      "url": "https://allaboutfpl.com/tag/fpl-gameweek-4-transfer-plans/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "gw4 team selection Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks,",
+      "url": "https://allaboutfpl.com/tag/gw4-team-selection/"
+    },
+    {
+      "source": "AAFPL",
+      "title": "gameweek 4 transfers Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pick",
+      "url": "https://allaboutfpl.com/tag/gameweek-4-transfers/"
     }
   ],
   "no_new": false,
@@ -209,14 +217,19 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/tag/best-gw4-team/",
     "https://allaboutfpl.com/tag/best-transfers-for-fpl-gw4/",
     "https://allaboutfpl.com/tag/fantasy-premier-league-gw4-team-selection/",
+    "https://allaboutfpl.com/tag/fpl-gameweek-4-transfer-plans/",
     "https://allaboutfpl.com/tag/fpl-gw4-free-hit-draft/",
     "https://allaboutfpl.com/tag/fpl-gw4-team-selection/",
     "https://allaboutfpl.com/tag/fpl-scout-picks-allaboutfpl/",
     "https://allaboutfpl.com/tag/gameweek-4-scout-team/",
     "https://allaboutfpl.com/tag/gameweek-4-team-selection/",
+    "https://allaboutfpl.com/tag/gameweek-4-transfers/",
+    "https://allaboutfpl.com/tag/gw4-team-selection/",
     "https://allaboutfpl.com/tag/haaland-fpl-gw4-captain/",
     "https://allaboutfpl.com/tag/joao-pedro-fpl-gw4-captain/",
+    "https://allaboutfpl.com/tag/palmer-fpl-gw4/",
     "https://allaboutfpl.com/tag/pedro-fpl-gw4-captain/",
+    "https://allaboutfpl.com/tag/rogers-fpl-gw4/",
     "https://allaboutfpl.com/tag/top-player-picks-for-fpl-gw4/",
     "https://allaboutfpl.com/tag/top-punts-for-fpl-gw4/",
     "https://fpl.page/",
@@ -296,6 +309,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-differentials-3-low-owned-picks-to-consider",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
+    "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
