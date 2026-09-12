@@ -5,7 +5,8 @@
     {"name": "Scout", "url": "https://www.fantasyfootballscout.co.uk/"},
     {"name": "AAFPL", "url": "https://allaboutfpl.com/"},
     {"name": "FPL Page", "url": "https://fpl.page/"},
-    {"name": "Ingenuity", "url": "https://ingenuityfantasy.com/"}
+    {"name": "Ingenuity", "url": "https://ingenuityfantasy.com/"},
+    {"name": "RotoWire", "url": "https://www.rotowire.com/"}
   ],
   "x_accounts": [
     {"name": "FPL Kayman", "handle": "FPLKayman"},
