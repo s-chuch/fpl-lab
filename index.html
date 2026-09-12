@@ -85,7 +85,17 @@ function benchBlock(key,title){
     <p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
 document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss (you had the info). Yellow = variance (reasonable call, points went the other way). Process XI = best lineup using only pre-deadline info. Hindsight = best lineup after the matches.</p>`;
-document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${(D.transfers||[]).map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${t.out} → ${t.inn}</td><td>${t.net}</td><td>${t.verdict}</td></tr>`).join("")}</tbody></table></div>`;
+function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
+function renderTransfers(){
+  const rows=D.transfers||[];
+  const total=rows.reduce((s,t)=>s+trNet(t),0);
+  const by={};
+  for(const t of rows){const g=t.gw??"?"; by[g]=(by[g]||0)+trNet(t);}
+  const gwLines=Object.keys(by).sort((a,b)=>Number(a)-Number(b)).map(g=>`<div class="chip">GW${g} · <b class="${cls(by[g])}">${sign(by[g])}</b></div>`).join("");
+  const body=rows.map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${t.out} → ${t.inn}</td><td class="${cls(trNet(t))}">${t.net}</td><td>${t.verdict}</td></tr>`).join("");
+  document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfer points</h2><p class="note">Season net <b class="${cls(total)}">${sign(total)}</b></p><div class="xi">${gwLines}</div><p class="note">Net = incoming player's points that GW minus the player sold. Hits are not included. GW4 lists Free Hit moves as well as normal transfers.</p></div><div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+renderTransfers();
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
 function agreedPool(){
