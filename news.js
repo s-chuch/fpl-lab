@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 15:30 UTC",
+  "generated_at": "2026-09-12 18:17 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -158,8 +158,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "3pm team news: Pedro, Palmer + Rogers start as expected",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected"
+      "title": "Spurs v Everton team news: Porro + Udogie out, Grealish still a sub",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub"
     }
   ],
   "no_new": false,
@@ -287,6 +287,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected",
+    "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
