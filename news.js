@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 00:57 UTC",
+  "generated_at": "2026-09-12 12:01 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -10,8 +10,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -21,8 +20,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -31,8 +29,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -41,8 +38,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -52,8 +48,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -62,8 +57,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -72,8 +66,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -83,8 +76,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -93,8 +85,7 @@ window.FPL_NEWS = {
         "Fix",
         "Hub",
         "Scout",
-        "AAFPL",
-        "RotoWire"
+        "AAFPL"
       ]
     },
     {
@@ -104,8 +95,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "Ingenuity",
-        "RotoWire"
+        "Ingenuity"
       ]
     },
     {
@@ -114,8 +104,7 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -125,8 +114,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     },
     {
@@ -136,8 +124,7 @@ window.FPL_NEWS = {
         "Hub",
         "Scout",
         "AAFPL",
-        "FPL Page",
-        "RotoWire"
+        "FPL Page"
       ]
     }
   ],
@@ -166,72 +153,13 @@ window.FPL_NEWS = {
     {
       "name": "Ingenuity",
       "url": "https://ingenuityfantasy.com/"
-    },
-    {
-      "name": "RotoWire",
-      "url": "https://www.rotowire.com/"
     }
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Price Changes: Ajayi, Hall, Elanga and Konsa All Rise",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-12-sep/"
-    },
-    {
-      "source": "RotoWire",
-      "title": "MLB Daily Starting Lineups for Today's Games | RotoWire",
-      "url": "https://www.rotowire.com/baseball/daily-lineups.php"
-    },
-    {
-      "source": "RotoWire",
-      "title": "NBA Starting Lineups: Basketball Daily Lineups | RotoWire",
-      "url": "https://www.rotowire.com/basketball/nba-lineups.php"
-    },
-    {
-      "source": "RotoWire",
-      "title": "Leeds vs Newcastle Prediction, Lineups & Team News | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/leeds-vs-newcastle-prediction-predicted-lineups-team-news-133582"
-    },
-    {
-      "source": "RotoWire",
-      "title": "FPL GW4 Free Hit Team: Best Squad for Gameweek 4 | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/fpl-gw4-free-hit-team-best-squad-gameweek-4-133583"
-    },
-    {
-      "source": "RotoWire",
-      "title": "FPL GW4: Best Fixture Runs and Teams to Target | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/fpl-gw4-best-teams-fixtures-teams-to-target-gameweek-4-133625"
-    },
-    {
-      "source": "RotoWire",
-      "title": "Premier League GW4 Betting Tips, Best Bets & Predictions | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/premier-league-gameweek-4-best-bets-picks-odds-predictions-133633"
-    },
-    {
-      "source": "RotoWire",
-      "title": "UFC Predictions: Preview, Picks & Props for UFC Paris - Silva vs. Delgado | RotoWire",
-      "url": "https://www.rotowire.com/mma/article/ufc-predictions-preview-picks-props-for-ufc-noche-the-mma-mashup-133787"
-    },
-    {
-      "source": "RotoWire",
-      "title": "NFL DFS Picks & Projections Week 1: Top Plays & Lineup Strategy for Sunday | RotoWire",
-      "url": "https://www.rotowire.com/football/article/nfl-dfs-week-1-top-picks-lineup-strategy-for-sundays-games-133655"
-    },
-    {
-      "source": "RotoWire",
-      "title": "NFL DFS Picks & Projections: Top Plays & Lineup Strategy for Week 1 | RotoWire",
-      "url": "https://www.rotowire.com/football/article/fanduel-nfl-week-1-top-picks-lineup-strategy-for-sundays-games-133790"
-    },
-    {
-      "source": "RotoWire",
-      "title": "Manchester United vs Manchester City Prediction, Lineups & Team News | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/manchester-united-vs-manchester-city-prediction-predicted-lineups-team-news-133581"
-    },
-    {
-      "source": "RotoWire",
-      "title": "Rennes vs Marseille Prediction, Lineups & Best Bets | RotoWire",
-      "url": "https://www.rotowire.com/soccer/article/rennes-vs-marseille-prediction-predicted-lineups-best-bets-ligue-1-gw4-133371"
+      "source": "Scout",
+      "title": "The idiot\u2019s guide to Gameweek 4 of FPL 2026/27",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27"
     }
   ],
   "no_new": false,
@@ -358,6 +286,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
+    "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",

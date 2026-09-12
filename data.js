@@ -140,7 +140,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 00:57 UTC",
+  "generated_at": "2026-09-12 12:01 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -695,29 +695,34 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 39.1
+        "own": 39.2
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 33.1
+        "own": 35.3
       },
       {
         "name": "Palmer",
         "club": "CHE",
-        "own": 26.3
+        "own": 28.3
       }
     ],
     "overall_diffs": [
       {
         "name": "Hume",
         "club": "SUN",
-        "own": 4.0
+        "own": 3.7
       },
       {
         "name": "Davis",
         "club": "IPS",
         "own": 5.1
+      },
+      {
+        "name": "Shaw",
+        "club": "MUN",
+        "own": 11.5
       }
     ],
     "picks_gw": 3
