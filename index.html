@@ -49,11 +49,23 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 <script src="fh.js"></script>
 <script>
 const D=window.FPL_DATA;
+const TZ="America/Toronto";
+function toToronto(s){
+  if(s==null||s==="") return "-";
+  const raw=String(s).trim();
+  if(/\b(EDT|EST)\b/i.test(raw) && !/UTC/i.test(raw)) return raw.replace(/\bUTC\b/g,"").trim()+" (Toronto)";
+  let d=null;
+  const m=raw.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::(\d{2}))?\s*(UTC|Z)?$/i);
+  if(m) d=new Date(m[1]+"T"+m[2]+":"+(m[3]||"00")+"Z");
+  else { const ms=Date.parse(raw); if(!isNaN(ms)) d=new Date(ms); }
+  if(!d||isNaN(+d)) return raw;
+  return new Intl.DateTimeFormat("en-CA",{timeZone:TZ,weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true,timeZoneName:"short"}).format(d);
+}
 const fmt=n=>n==null?"-":Number(n).toLocaleString();
 const sign=n=>n==null?"-":(n>0?"+"+n:String(n));
 const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
 document.getElementById("teamName").textContent=D.team.name;
-document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+D.generated_at;
+document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
 document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+D.team.value.toFixed(1)+"m"],["Bank","£"+D.team.bank.toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
 const tabs=[["season","Season"],["bench","Bench audit"],["transfers","Transfers"],["plan","Next 2 GWs"],["leagues","Leagues"],["news","News"],["xtab","X"],["fh","Free Hit XI"],["chips","Chips"]];
 document.getElementById("tabs").innerHTML=tabs.map(([id,label],i)=>`<button class="${i===0?"on":""}" data-id="${id}">${label}</button>`).join("");
@@ -175,7 +187,7 @@ function renderNews(){
   const links=(N.links||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(" · ");
   const fresh=N.new_articles||[];
   const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles recently.</span></li>`;
-  document.getElementById("news").innerHTML=`<div class="warn">Public GW${N.gw||""} previews only. Agreed = at least 3 of Fix, Hub, Scout, All About FPL. Not full articles.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting for refresh."}</p><p class="note">Built ${N.generated_at||"-"}</p></div>`;
+  document.getElementById("news").innerHTML=`<div class="warn">Public GW${N.gw||""} previews only. Agreed = at least 3 of Fix, Hub, Scout, All About FPL. Not full articles.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting for refresh."}</p><p class="note">Built ${toToronto(N.generated_at)}</p></div>`;
 }
 renderNews();
 function renderX(){
@@ -186,7 +198,7 @@ function renderX(){
   const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
   const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
   const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
-  document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the tracked X list. Agreed = at least 3 accounts on the same GW idea.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul><p class="note">Built ${X.generated_at||"-"}</p></div>`;
+  document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the tracked X list. Agreed = at least 3 accounts on the same GW idea.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul><p class="note">Built ${toToronto(X.generated_at)}</p></div>`;
 }
 renderX();
 function renderFh(){
@@ -199,7 +211,7 @@ function renderFh(){
   const started=(F.xi||[]).map(p=>p.name);
   const clubs={}; (F.xi||[]).concat(F.bench||[]).forEach(p=>clubs[p.name]=p.club||"");
   const vs=newsVsSquad(names, started, clubs);
-  document.getElementById("fh").innerHTML=`<div class="warn">GW${F.gw||""} draft only. Chip not played on FPL yet. Deadline ${F.deadline||""}.</div><div class="card"><h2>XI · ${F.captain} (C) · ${F.vice} (V)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Bench</h2><div class="xi">${bench}</div></div>${newsCard("News + X vs this FH",vs)}<div class="card"><h2>Saved notes</h2><ul class="chiplist">${recs||""}</ul></div>`;
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${F.gw||""} draft only. Chip not played on FPL yet. Deadline ${toToronto(F.deadline)}.</div><div class="card"><h2>XI · ${F.captain} (C) · ${F.vice} (V)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Bench</h2><div class="xi">${bench}</div></div>${newsCard("News + X vs this FH",vs)}<div class="card"><h2>Saved notes</h2><ul class="chiplist">${recs||""}</ul></div>`;
 }
 renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
