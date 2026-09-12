@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 23:39 UTC",
+  "generated_at": "2026-09-12 23:44 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -155,19 +155,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Price Changes: Nunes Falls Among Low Ownership Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-13-sep/"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Iraola on fatigue + Barcola fitness, Fulham improve",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
