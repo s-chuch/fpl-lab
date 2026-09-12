@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 22:04 UTC",
+  "generated_at": "2026-09-12 23:39 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 248,
-    "overall_rank": 2129677,
+    "overall_rank": 2129704,
     "bank": 4.9,
     "value": 100.5
   },
@@ -213,20 +213,21 @@ window.FPL_DATA = {
     },
     {
       "gw": 4,
-      "points": 0,
-      "bench": 0,
+      "points": 37,
+      "bench": 1,
       "transfers": 2,
       "hits": 0,
-      "rank": 1240844,
-      "field_avg": 0,
-      "delta": null,
+      "rank": 2129676,
+      "field_avg": 42,
+      "delta": -5,
       "chip": null
     }
   ],
   "field_avg_known": {
     "1": 50,
     "2": 81,
-    "3": 51
+    "3": 51,
+    "4": 42
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -692,7 +693,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 2129677,
+        "rank": 2129704,
         "last_rank": 1240844
       }
     ],
@@ -705,7 +706,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 35.1
+        "own": 35.2
       },
       {
         "name": "Cherki",

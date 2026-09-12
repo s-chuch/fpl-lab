@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 22:04 UTC",
+  "generated_at": "2026-09-12 23:39 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -157,9 +157,14 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
+      "source": "Fix",
+      "title": "FPL Price Changes: Nunes Falls Among Low Ownership Picks",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-13-sep/"
+    },
+    {
       "source": "Scout",
-      "title": "FPL Gameweek 4: Saturday\u2019s goals, assists, bonus + DefCon points",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/fpl-gameweek-4-saturdays-goals-assists-bonus-defcon-points-2"
+      "title": "FPL notes: Iraola on fatigue + Barcola fitness, Fulham improve",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve"
     }
   ],
   "no_new": false,
@@ -238,6 +243,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-10-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-11-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-12-sep/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-13-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-5-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-6-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-7-sep/",
@@ -293,6 +299,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
+    "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
