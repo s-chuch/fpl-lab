@@ -13,6 +13,188 @@ window.FPL_DATA = {
       "inn": "De Cuyper",
       "net": "+4",
       "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Gro\u00df",
+      "inn": "Hughes",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Verbruggen",
+      "inn": "Raya",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Mendy",
+      "inn": "Konsa",
+      "net": "-1",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Mitchell",
+      "inn": "Khalaili",
+      "net": "+6",
+      "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Raya",
+      "inn": "Verbruggen",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Konsa",
+      "inn": "Calafiori",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Calafiori",
+      "inn": "Konsa",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Verbruggen",
+      "inn": "Raya",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Khalaili",
+      "inn": "Mitchell",
+      "net": "-6",
+      "verdict": "Lost that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Raya",
+      "inn": "Verbruggen",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Davis",
+      "inn": "Khalaili",
+      "net": "-6",
+      "verdict": "Lost that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Thomas",
+      "inn": "Van Hecke",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Gakpo",
+      "inn": "Gro\u00df",
+      "net": "-1",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Konsa",
+      "inn": "Thomas",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Mitchell",
+      "inn": "Davis",
+      "net": "+12",
+      "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Gomez",
+      "inn": "Slater",
+      "net": "+2",
+      "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Gro\u00df",
+      "inn": "Gakpo",
+      "net": "+1",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Davis",
+      "inn": "Konsa",
+      "net": "-13",
+      "verdict": "Lost that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Tzolis",
+      "inn": "Rogers",
+      "net": "+8",
+      "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Shaw",
+      "inn": "Mitchell",
+      "net": "+1",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Hume",
+      "inn": "Mendy",
+      "net": "+1",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Verbruggen",
+      "inn": "Raya",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Kinsky",
+      "inn": "Dubravka",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "B.Fernandes",
+      "inn": "Gomez",
+      "net": "0",
+      "verdict": "Even that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Cherki",
+      "inn": "Palmer",
+      "net": "+5",
+      "verdict": "Good that GW"
+    },
+    {
+      "gw": 4,
+      "out": "Calvert-Lewin",
+      "inn": "Isak",
+      "net": "+2",
+      "verdict": "Good that GW"
     }
   ],
   "bench_audit": {
@@ -140,15 +322,15 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 12:01 UTC",
+  "generated_at": "2026-09-12 15:30 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
-    "overall_points": 208,
-    "overall_rank": 1516623,
+    "overall_points": 250,
+    "overall_rank": 680138,
     "bank": 0.3,
-    "value": 100.6
+    "value": 100.7
   },
   "history": [
     {
@@ -173,7 +355,7 @@ window.FPL_DATA = {
   "chips_official": {
     "bboost": 1,
     "3xc": 3,
-    "freehit": null,
+    "freehit": 4,
     "wildcard": null
   },
   "gameweeks": [
@@ -209,6 +391,17 @@ window.FPL_DATA = {
       "field_avg": 51,
       "delta": -3,
       "chip": "3xc"
+    },
+    {
+      "gw": 4,
+      "points": 0,
+      "bench": 0,
+      "transfers": 0,
+      "hits": 0,
+      "rank": 1516623,
+      "field_avg": 0,
+      "delta": null,
+      "chip": "freehit"
     }
   ],
   "field_avg_known": {
@@ -217,9 +410,9 @@ window.FPL_DATA = {
     "3": 51
   },
   "plan": {
-    "note": "GW3 squad. Last finished 3.",
+    "note": "GW4 squad. Last finished 3.",
     "last_finished": 3,
-    "squad_from_gw": 3,
+    "squad_from_gw": 4,
     "upcoming": [
       {
         "gw": 4,
@@ -233,25 +426,25 @@ window.FPL_DATA = {
     "rows": [
       [
         "GKP",
-        "Verbruggen",
-        "BHA",
-        "A COV",
-        2,
+        "Raya",
+        "ARS",
+        "A SUN",
+        3,
         "START",
-        "H ARS",
-        4,
-        "SIT"
+        "A BHA",
+        3,
+        "START"
       ],
       [
         "GKP",
-        "Kinsky",
+        "Dubravka",
         "TOT",
         "H EVE",
         3,
         "SIT",
         "H AVL",
         3,
-        "START"
+        "SIT"
       ],
       [
         "DEF",
@@ -266,6 +459,28 @@ window.FPL_DATA = {
       ],
       [
         "DEF",
+        "Konsa",
+        "ARS",
+        "A SUN",
+        3,
+        "SIT",
+        "A BHA",
+        3,
+        "SIT"
+      ],
+      [
+        "DEF",
+        "Van Hecke",
+        "TOT",
+        "H EVE",
+        3,
+        "START",
+        "H AVL",
+        3,
+        "SIT"
+      ],
+      [
+        "DEF",
         "De Cuyper",
         "BHA",
         "A COV",
@@ -277,46 +492,57 @@ window.FPL_DATA = {
       ],
       [
         "DEF",
-        "Davis",
-        "IPS",
-        "A CRY",
-        3,
+        "Khalaili",
+        "CRY",
+        "H IPS",
+        2,
         "START",
-        "A EVE",
+        "A LEE",
         3,
         "START"
       ],
       [
-        "DEF",
-        "Shaw",
-        "MUN",
-        "H MCI",
-        4,
+        "MID",
+        "Rogers",
+        "CHE",
+        "H HUL",
+        2,
+        "START",
+        "A BRE",
+        3,
+        "START"
+      ],
+      [
+        "MID",
+        "Palmer",
+        "CHE",
+        "H HUL",
+        2,
+        "START",
+        "A BRE",
+        3,
+        "START"
+      ],
+      [
+        "MID",
+        "Hughes",
+        "CRY",
+        "H IPS",
+        2,
         "SIT",
-        "A FUL",
+        "A LEE",
         3,
         "SIT"
       ],
       [
-        "DEF",
-        "Hume",
-        "SUN",
-        "H ARS",
+        "MID",
+        "Slater",
+        "HUL",
+        "A CHE",
         4,
         "SIT",
-        "A MCI",
-        5,
-        "SIT"
-      ],
-      [
-        "MID",
-        "Gro\u00df",
-        "BHA",
-        "A COV",
-        2,
-        "START",
-        "H ARS",
-        4,
+        "A NEW",
+        3,
         "START"
       ],
       [
@@ -327,39 +553,6 @@ window.FPL_DATA = {
         2,
         "START",
         "A BOU",
-        3,
-        "START"
-      ],
-      [
-        "MID",
-        "Cherki",
-        "MCI",
-        "A MUN",
-        4,
-        "START",
-        "H SUN",
-        2,
-        "START"
-      ],
-      [
-        "MID",
-        "B.Fernandes",
-        "MUN",
-        "H MCI",
-        4,
-        "START",
-        "A FUL",
-        3,
-        "START"
-      ],
-      [
-        "MID",
-        "Tzolis",
-        "ARS",
-        "A SUN",
-        3,
-        "SIT",
-        "A BHA",
         3,
         "START"
       ],
@@ -376,14 +569,14 @@ window.FPL_DATA = {
       ],
       [
         "FWD",
-        "Calvert-Lewin",
-        "LEE",
-        "H NEW",
+        "Isak",
+        "LIV",
+        "H FUL",
         2,
         "START",
-        "H CRY",
+        "A BOU",
         3,
-        "SIT"
+        "START"
       ],
       [
         "FWD",
@@ -400,44 +593,44 @@ window.FPL_DATA = {
     "xis": {
       "gw4": {
         "xi": [
-          "Verbruggen (VC)",
+          "Raya (VC)",
           "De Cuyper",
           "Calafiori",
-          "Davis",
-          "B.Fernandes",
-          "Cherki",
+          "Khalaili",
+          "Rogers",
+          "Palmer",
           "Jo\u00e3o Pedro (C)",
-          "Haaland",
-          "Gro\u00df",
+          "Isak",
           "Szoboszlai",
-          "Calvert-Lewin"
+          "Haaland",
+          "Van Hecke"
         ],
         "bench": [
-          "Kinsky",
-          "Tzolis",
-          "Hume",
-          "Shaw"
+          "Dubravka",
+          "Slater",
+          "Konsa",
+          "Hughes"
         ]
       },
       "gw5": {
         "xi": [
-          "Kinsky (VC)",
+          "Raya (VC)",
           "Calafiori",
           "De Cuyper",
-          "Davis",
-          "B.Fernandes",
-          "Cherki",
-          "Haaland (C)",
-          "Jo\u00e3o Pedro",
+          "Khalaili",
+          "Rogers",
+          "Palmer",
+          "Jo\u00e3o Pedro (C)",
+          "Haaland",
+          "Isak",
           "Szoboszlai",
-          "Gro\u00df",
-          "Tzolis"
+          "Slater"
         ],
         "bench": [
-          "Verbruggen",
-          "Calvert-Lewin",
-          "Shaw",
-          "Hume"
+          "Dubravka",
+          "Van Hecke",
+          "Konsa",
+          "Hughes"
         ]
       }
     },
@@ -445,32 +638,32 @@ window.FPL_DATA = {
       {
         "gw": 4,
         "sit": [
-          "Kinsky",
-          "Tzolis",
-          "Hume",
-          "Shaw"
+          "Dubravka",
+          "Slater",
+          "Konsa",
+          "Hughes"
         ],
-        "worst": "Shaw",
-        "why": "Shaw H MCI FDR 4"
+        "worst": "Slater",
+        "why": "Slater A CHE FDR 4"
       },
       {
         "gw": 5,
         "sit": [
-          "Verbruggen",
-          "Calvert-Lewin",
-          "Shaw",
-          "Hume"
+          "Dubravka",
+          "Van Hecke",
+          "Konsa",
+          "Hughes"
         ],
-        "worst": "Hume",
-        "why": "Hume A MCI FDR 5"
+        "worst": "Dubravka",
+        "why": "Dubravka H AVL FDR 3"
       }
     ],
     "transfer": {
-      "ft_available": 1,
+      "ft_available": 2,
       "action": "ROLL",
-      "reason": "You have 1 FT. FH unused \u2014 roll so the FT returns with Shaaland.",
+      "reason": "You have 2 FT. No forced move. Bank it.",
       "move": null,
-      "fh_unused": true
+      "fh_unused": false
     }
   },
   "leagues": {
@@ -478,194 +671,194 @@ window.FPL_DATA = {
       {
         "id": 125784,
         "name": "European Super League",
-        "rank": 4,
-        "last_rank": 5,
+        "rank": 2,
+        "last_rank": 4,
         "size": 13,
         "table": [
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 235,
+            "pts": 261,
             "me": false
           },
           {
             "rank": 2,
-            "team": "Borde to be wild",
-            "pts": 225,
-            "me": false
+            "team": "Shaaland",
+            "pts": 250,
+            "me": true
           },
           {
             "rank": 3,
-            "team": "Bacalhau",
-            "pts": 211,
+            "team": "Haaland Leeds Norway",
+            "pts": 236,
             "me": false
           },
           {
             "rank": 4,
-            "team": "Shaaland",
-            "pts": 208,
-            "me": true
+            "team": "Borde to be wild",
+            "pts": 231,
+            "me": false
           },
           {
             "rank": 5,
             "team": "xG Capital",
-            "pts": 206,
+            "pts": 228,
             "me": false
           },
           {
             "rank": 6,
             "team": "HanSoloDolo",
-            "pts": 204,
+            "pts": 226,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Haaland Leeds Norway",
-            "pts": 203,
+            "team": "Bacalhau",
+            "pts": 222,
             "me": false
           },
           {
             "rank": 8,
-            "team": "Must win one",
-            "pts": 198,
+            "team": "Blasters United",
+            "pts": 221,
             "me": false
           },
           {
             "rank": 9,
-            "team": "Top Bin FC",
-            "pts": 194,
+            "team": "Must win one",
+            "pts": 215,
             "me": false
           },
           {
             "rank": 10,
-            "team": "Blasters United",
-            "pts": 194,
+            "team": "Top Bin FC",
+            "pts": 212,
             "me": false
           },
           {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 188,
+            "pts": 206,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 170,
+            "pts": 183,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 161,
+            "pts": 173,
             "me": false
           }
         ],
         "template": [
           {
-            "name": "Mbeumo",
+            "name": "B.Fernandes",
             "club": "MUN",
-            "own": 46,
-            "count": 6,
+            "own": 69,
+            "count": 9,
+            "n": 13
+          },
+          {
+            "name": "Gro\u00df",
+            "club": "BHA",
+            "own": 54,
+            "count": 7,
             "n": 13
           }
         ],
         "diffs": [
           {
-            "name": "Shaw",
-            "club": "MUN",
+            "name": "Szoboszlai",
+            "club": "LIV",
             "own": 23,
             "count": 3,
             "n": 13
           },
           {
-            "name": "De Cuyper",
-            "club": "BHA",
-            "own": 15,
-            "count": 2,
-            "n": 13
-          },
-          {
-            "name": "Hume",
-            "club": "SUN",
-            "own": 15,
-            "count": 2,
-            "n": 13
-          },
-          {
-            "name": "Tzolis",
+            "name": "Konsa",
             "club": "ARS",
             "own": 15,
             "count": 2,
             "n": 13
           },
           {
-            "name": "Davis",
-            "club": "IPS",
+            "name": "Van Hecke",
+            "club": "TOT",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "Palmer",
+            "club": "CHE",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "Slater",
+            "club": "HUL",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
+            "name": "De Cuyper",
+            "club": "BHA",
+            "own": 8,
+            "count": 1,
+            "n": 13
+          },
+          {
+            "name": "Khalaili",
+            "club": "CRY",
             "own": 8,
             "count": 1,
             "n": 13
           }
         ],
-        "picks_gw": 3
+        "picks_gw": 4
       },
       {
         "id": 494594,
         "name": "Decision league",
-        "rank": 4,
+        "rank": 3,
         "last_rank": 4,
         "size": 4,
         "table": [
           {
             "rank": 1,
             "team": "Old iphone",
-            "pts": 242,
+            "pts": 268,
             "me": false
           },
           {
             "rank": 2,
             "team": "Android phone",
-            "pts": 231,
+            "pts": 267,
             "me": false
           },
           {
             "rank": 3,
-            "team": "Seen TPS",
-            "pts": 212,
-            "me": false
+            "team": "Shaaland",
+            "pts": 250,
+            "me": true
           },
           {
             "rank": 4,
-            "team": "Shaaland",
-            "pts": 208,
-            "me": true
+            "team": "Seen TPS",
+            "pts": 245,
+            "me": false
           }
         ],
         "template": [
           {
-            "name": "N.Williams",
-            "club": "NFO",
-            "own": 50,
-            "count": 2,
-            "n": 4
-          },
-          {
-            "name": "Kayode",
-            "club": "BRE",
-            "own": 50,
-            "count": 2,
-            "n": 4
-          },
-          {
-            "name": "Kusi-Asare",
-            "club": "FUL",
-            "own": 50,
-            "count": 2,
-            "n": 4
-          },
-          {
-            "name": "Walle Egeli",
-            "club": "IPS",
+            "name": "Mitchell",
+            "club": "CRY",
             "own": 50,
             "count": 2,
             "n": 4
@@ -673,59 +866,73 @@ window.FPL_DATA = {
         ],
         "diffs": [
           {
-            "name": "Shaw",
-            "club": "MUN",
+            "name": "Van Hecke",
+            "club": "TOT",
+            "own": 25,
+            "count": 1,
+            "n": 4
+          },
+          {
+            "name": "Khalaili",
+            "club": "CRY",
+            "own": 25,
+            "count": 1,
+            "n": 4
+          },
+          {
+            "name": "Hughes",
+            "club": "CRY",
             "own": 25,
             "count": 1,
             "n": 4
           }
         ],
-        "picks_gw": 3
+        "picks_gw": 4
       }
     ],
     "public": [
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1516623,
-        "last_rank": 1053358
+        "rank": 680138,
+        "last_rank": 1516623
       }
     ],
     "overall_template": [
       {
-        "name": "Raya",
-        "club": "ARS",
-        "own": 39.2
+        "name": "B.Fernandes",
+        "club": "MUN",
+        "own": 42.9
       },
       {
-        "name": "Rogers",
-        "club": "CHE",
-        "own": 35.3
-      },
-      {
-        "name": "Palmer",
-        "club": "CHE",
-        "own": 28.3
+        "name": "Cherki",
+        "club": "MCI",
+        "own": 29.4
       }
     ],
     "overall_diffs": [
       {
-        "name": "Hume",
-        "club": "SUN",
-        "own": 3.7
+        "name": "Khalaili",
+        "club": "CRY",
+        "own": 0.3
       },
       {
-        "name": "Davis",
-        "club": "IPS",
-        "own": 5.1
+        "name": "Slater",
+        "club": "HUL",
+        "own": 5.5
       },
       {
-        "name": "Shaw",
-        "club": "MUN",
-        "own": 11.5
+        "name": "Van Hecke",
+        "club": "TOT",
+        "own": 6.8
+      },
+      {
+        "name": "Hughes",
+        "club": "CRY",
+        "own": 8.4
       }
     ],
-    "picks_gw": 3
+    "picks_gw": 4
   },
   "captain_audit": [
     {

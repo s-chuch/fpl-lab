@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 12:01 UTC",
+  "generated_at": "2026-09-12 15:30 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -158,8 +158,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "The idiot\u2019s guide to Gameweek 4 of FPL 2026/27",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27"
+      "title": "3pm team news: Pedro, Palmer + Rogers start as expected",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected"
     }
   ],
   "no_new": false,
@@ -286,6 +286,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
     "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
+    "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
