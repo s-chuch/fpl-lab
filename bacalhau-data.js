@@ -11,7 +11,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gabriel",
       "inn": "Ajayi",
-      "net": "+1",
+      "net": "0",
       "verdict": "Even that GW"
     },
     {
@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 18:56 UTC",
+  "generated_at": "2026-09-12 20:00 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
-    "overall_points": 228,
-    "overall_rank": 2580086,
+    "overall_points": 230,
+    "overall_rank": 2683519,
     "bank": 4.9,
     "value": 100.5
   },
@@ -414,8 +414,8 @@ window.FPL_DATA = {
         "xi": [
           "Raya (VC)",
           "Tarkowski",
-          "Ajayi",
           "Calafiori",
+          "Ajayi",
           "B.Fernandes",
           "Szoboszlai",
           "Haaland (C)",
@@ -490,20 +490,20 @@ window.FPL_DATA = {
       {
         "id": 125784,
         "name": "European Super League",
-        "rank": 7,
+        "rank": 8,
         "last_rank": 3,
         "size": 13,
         "table": [
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 263,
+            "pts": 266,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 258,
+            "pts": 260,
             "me": false
           },
           {
@@ -515,61 +515,61 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "Borde to be wild",
-            "pts": 233,
+            "pts": 235,
             "me": false
           },
           {
             "rank": 5,
             "team": "xG Capital",
-            "pts": 230,
+            "pts": 232,
             "me": false
           },
           {
             "rank": 5,
             "team": "HanSoloDolo",
-            "pts": 230,
+            "pts": 232,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Bacalhau",
-            "pts": 228,
-            "me": true
+            "team": "Blasters United",
+            "pts": 231,
+            "me": false
           },
           {
             "rank": 8,
-            "team": "Blasters United",
-            "pts": 223,
-            "me": false
+            "team": "Bacalhau",
+            "pts": 230,
+            "me": true
           },
           {
             "rank": 9,
             "team": "Must win one",
-            "pts": 220,
+            "pts": 228,
             "me": false
           },
           {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 215,
+            "pts": 218,
             "me": false
           },
           {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 206,
+            "pts": 207,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 186,
+            "pts": 192,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 179,
+            "pts": 180,
             "me": false
           }
         ],
@@ -652,19 +652,19 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 263,
+            "pts": 266,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 258,
+            "pts": 260,
             "me": false
           },
           {
             "rank": 3,
             "team": "Bacalhau",
-            "pts": 228,
+            "pts": 230,
             "me": true
           }
         ],
@@ -692,7 +692,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 2580086,
+        "rank": 2683519,
         "last_rank": 1240844
       }
     ],
@@ -705,7 +705,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 34.8
+        "own": 34.9
       },
       {
         "name": "Cherki",
@@ -752,7 +752,7 @@ window.FPL_DATA = {
       {
         "name": "Tarkowski",
         "club": "EVE",
-        "own": 11.6
+        "own": 11.7
       }
     ],
     "picks_gw": 4

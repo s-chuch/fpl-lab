@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 18:56 UTC",
+  "generated_at": "2026-09-12 19:59 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -155,24 +155,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Sunderland v Arsenal team news: No changes from last weekend",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL 2026/27: The ultimate best chip strategy guide",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide"
-    },
-    {
-      "source": "Scout",
-      "title": "Get your FPL 2026/27 team rated - and transfer tips too!",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/07/25/get-your-fpl-2026-27-team-rated-and-transfer-tips"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
