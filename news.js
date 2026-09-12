@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-12 18:17 UTC",
+  "generated_at": "2026-09-12 18:56 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -158,8 +158,18 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Spurs v Everton team news: Porro + Udogie out, Grealish still a sub",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub"
+      "title": "Sunderland v Arsenal team news: No changes from last weekend",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL 2026/27: The ultimate best chip strategy guide",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide"
+    },
+    {
+      "source": "Scout",
+      "title": "Get your FPL 2026/27 team rated - and transfer tips too!",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/07/25/get-your-fpl-2026-27-team-rated-and-transfer-tips"
     }
   ],
   "no_new": false,
@@ -262,6 +272,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/premier-league-predicted-lineups",
     "https://www.fantasyfootballhub.co.uk/team-reveals/fpl_heisenberg",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
+    "https://www.fantasyfootballscout.co.uk/2026/07/25/get-your-fpl-2026-27-team-rated-and-transfer-tips",
+    "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide",
     "https://www.fantasyfootballscout.co.uk/2026/08/19/introducing-our-new-fpl-stats-centre",
     "https://www.fantasyfootballscout.co.uk/2026/08/31/how-to-play-uefa-champions-league-fantasy-2026-27-rules-scoring-chips",
     "https://www.fantasyfootballscout.co.uk/2026/09/01/how-the-great-and-the-good-did-in-fpl-gameweek-2",
@@ -288,6 +300,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub",
+    "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",

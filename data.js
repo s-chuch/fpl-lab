@@ -95,7 +95,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Thomas",
       "inn": "Van Hecke",
-      "net": "+6",
+      "net": "+8",
       "verdict": "Good that GW"
     },
     {
@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 18:17 UTC",
+  "generated_at": "2026-09-12 18:56 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
-    "overall_points": 256,
-    "overall_rank": 566804,
+    "overall_points": 258,
+    "overall_rank": 497040,
     "bank": 0.3,
     "value": 100.7
   },
@@ -596,14 +596,14 @@ window.FPL_DATA = {
           "Raya (VC)",
           "De Cuyper",
           "Calafiori",
-          "Khalaili",
+          "Van Hecke",
           "Rogers",
           "Palmer",
           "Jo\u00e3o Pedro (C)",
           "Isak",
           "Szoboszlai",
           "Haaland",
-          "Van Hecke"
+          "Khalaili"
         ],
         "bench": [
           "Dubravka",
@@ -684,7 +684,7 @@ window.FPL_DATA = {
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 256,
+            "pts": 258,
             "me": true
           },
           {
@@ -706,13 +706,13 @@ window.FPL_DATA = {
             "me": false
           },
           {
-            "rank": 6,
+            "rank": 5,
             "team": "HanSoloDolo",
-            "pts": 228,
+            "pts": 230,
             "me": false
           },
           {
-            "rank": 6,
+            "rank": 7,
             "team": "Bacalhau",
             "pts": 228,
             "me": false
@@ -845,7 +845,7 @@ window.FPL_DATA = {
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 256,
+            "pts": 258,
             "me": true
           },
           {
@@ -894,7 +894,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 566804,
+        "rank": 497040,
         "last_rank": 1516623
       }
     ],
@@ -907,7 +907,7 @@ window.FPL_DATA = {
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 29.4
+        "own": 29.3
       }
     ],
     "overall_diffs": [

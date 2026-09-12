@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 18:17 UTC",
+  "generated_at": "2026-09-12 18:56 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 228,
-    "overall_rank": 2567538,
+    "overall_rank": 2580086,
     "bank": 4.9,
     "value": 100.5
   },
@@ -490,7 +490,7 @@ window.FPL_DATA = {
       {
         "id": 125784,
         "name": "European Super League",
-        "rank": 6,
+        "rank": 7,
         "last_rank": 3,
         "size": 13,
         "table": [
@@ -503,7 +503,7 @@ window.FPL_DATA = {
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 256,
+            "pts": 258,
             "me": false
           },
           {
@@ -525,13 +525,13 @@ window.FPL_DATA = {
             "me": false
           },
           {
-            "rank": 6,
+            "rank": 5,
             "team": "HanSoloDolo",
-            "pts": 228,
+            "pts": 230,
             "me": false
           },
           {
-            "rank": 6,
+            "rank": 7,
             "team": "Bacalhau",
             "pts": 228,
             "me": true
@@ -658,7 +658,7 @@ window.FPL_DATA = {
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 256,
+            "pts": 258,
             "me": false
           },
           {
@@ -692,7 +692,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 2567538,
+        "rank": 2580086,
         "last_rank": 1240844
       }
     ],
@@ -700,7 +700,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 73.8
+        "own": 73.9
       },
       {
         "name": "Rogers",
@@ -710,7 +710,7 @@ window.FPL_DATA = {
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 29.4
+        "own": 29.3
       },
       {
         "name": "Palmer",
