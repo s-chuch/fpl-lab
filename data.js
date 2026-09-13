@@ -18,14 +18,14 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gro\u00df",
       "inn": "Hughes",
-      "net": "+1",
+      "net": "0",
       "verdict": "Even that GW"
     },
     {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+14",
+      "net": "+13",
       "verdict": "Good that GW"
     },
     {
@@ -46,7 +46,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Raya",
       "inn": "Verbruggen",
-      "net": "-14",
+      "net": "-13",
       "verdict": "Lost that GW"
     },
     {
@@ -67,7 +67,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+14",
+      "net": "+13",
       "verdict": "Good that GW"
     },
     {
@@ -81,7 +81,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Raya",
       "inn": "Verbruggen",
-      "net": "-14",
+      "net": "-13",
       "verdict": "Lost that GW"
     },
     {
@@ -95,21 +95,21 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Thomas",
       "inn": "Van Hecke",
-      "net": "+8",
+      "net": "+7",
       "verdict": "Good that GW"
     },
     {
       "gw": 4,
       "out": "Gakpo",
       "inn": "Gro\u00df",
-      "net": "-1",
+      "net": "0",
       "verdict": "Even that GW"
     },
     {
       "gw": 4,
       "out": "Konsa",
       "inn": "Thomas",
-      "net": "-6",
+      "net": "-5",
       "verdict": "Lost that GW"
     },
     {
@@ -123,14 +123,14 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gomez",
       "inn": "Slater",
-      "net": "+2",
-      "verdict": "Good that GW"
+      "net": "+1",
+      "verdict": "Even that GW"
     },
     {
       "gw": 4,
       "out": "Gro\u00df",
       "inn": "Gakpo",
-      "net": "+1",
+      "net": "0",
       "verdict": "Even that GW"
     },
     {
@@ -165,7 +165,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+14",
+      "net": "+13",
       "verdict": "Good that GW"
     },
     {
@@ -179,7 +179,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "B.Fernandes",
       "inn": "Gomez",
-      "net": "0",
+      "net": "+1",
       "verdict": "Even that GW"
     },
     {
@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-12 23:44 UTC",
+  "generated_at": "2026-09-13 13:11 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
-    "overall_points": 278,
-    "overall_rank": 375544,
+    "overall_points": 279,
+    "overall_rank": 377041,
     "bank": 0.3,
     "value": 100.7
   },
@@ -679,37 +679,37 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 289,
+            "pts": 290,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 278,
+            "pts": 279,
             "me": true
           },
           {
             "rank": 3,
             "team": "Borde to be wild",
-            "pts": 253,
+            "pts": 254,
             "me": false
           },
           {
             "rank": 4,
             "team": "Bacalhau",
-            "pts": 248,
+            "pts": 249,
             "me": false
           },
           {
             "rank": 5,
             "team": "HanSoloDolo",
-            "pts": 244,
+            "pts": 245,
             "me": false
           },
           {
             "rank": 5,
             "team": "Haaland Leeds Norway",
-            "pts": 244,
+            "pts": 245,
             "me": false
           },
           {
@@ -719,9 +719,9 @@ window.FPL_DATA = {
             "me": false
           },
           {
-            "rank": 8,
+            "rank": 7,
             "team": "xG Capital",
-            "pts": 239,
+            "pts": 242,
             "me": false
           },
           {
@@ -733,17 +733,17 @@ window.FPL_DATA = {
           {
             "rank": 10,
             "team": "Blasters United",
-            "pts": 229,
+            "pts": 231,
             "me": false
           },
           {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 212,
+            "pts": 216,
             "me": false
           },
           {
-            "rank": 11,
+            "rank": 12,
             "team": "Viking Robot",
             "pts": 212,
             "me": false
@@ -840,19 +840,19 @@ window.FPL_DATA = {
           {
             "rank": 2,
             "team": "Android phone",
-            "pts": 290,
+            "pts": 291,
             "me": false
           },
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 278,
+            "pts": 279,
             "me": true
           },
           {
             "rank": 4,
             "team": "Seen TPS",
-            "pts": 272,
+            "pts": 271,
             "me": false
           }
         ],
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 375544,
+        "rank": 377041,
         "last_rank": 1516623
       }
     ],
@@ -930,7 +930,7 @@ window.FPL_DATA = {
       {
         "name": "Hughes",
         "club": "CRY",
-        "own": 8.4
+        "own": 8.3
       }
     ],
     "picks_gw": 4
