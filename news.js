@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-13 22:15 UTC",
+  "generated_at": "2026-09-13 23:43 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -156,9 +156,14 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
+      "source": "Fix",
+      "title": "FPL Price Changes: Gvardiol and Tarkowski Both Rise",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-14-sep/"
+    },
+    {
       "source": "Scout",
-      "title": "FPL notes: Gross 17-pointer, another De Cuyper assist + Awoniyi ban",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-gross-17-pointer-another-de-cuyper-assist-awoniyi-ban"
+      "title": "FPL notes: White injury, Le Bris on Le Fee's pen miss + Raya haul",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-white-injury-le-bris-on-le-fee-pen-miss-raya-haul"
     }
   ],
   "no_new": false,
@@ -238,6 +243,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-11-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-12-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-13-sep/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-14-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-5-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-6-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-7-sep/",
@@ -296,6 +302,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/13/coventry-v-brighton-team-news-both-sides-unchanged",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-gross-17-pointer-another-de-cuyper-assist-awoniyi-ban",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
+    "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-white-injury-le-bris-on-le-fee-pen-miss-raya-haul",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/man-utd-v-man-city-team-news-enzo-cherki-foden-start-oreilly-a-sub",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
