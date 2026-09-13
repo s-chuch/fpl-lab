@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-13 13:58 UTC",
+  "generated_at": "2026-09-13 16:15 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
-    "overall_points": 254,
-    "overall_rank": 1811744,
+    "overall_points": 268,
+    "overall_rank": 1565102,
     "bank": 4.9,
     "value": 100.5
   },
@@ -439,11 +439,11 @@ window.FPL_DATA = {
           "Calafiori",
           "Ajayi",
           "B.Fernandes",
-          "Dewsbury-Hall",
+          "Gro\u00df",
           "Haaland (C)",
           "N.Williams",
+          "Dewsbury-Hall",
           "Szoboszlai",
-          "Gro\u00df",
           "Mitchell"
         ],
         "bench": [
@@ -498,79 +498,79 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 290,
+            "pts": 293,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 279,
+            "pts": 290,
             "me": false
           },
           {
             "rank": 3,
             "team": "Borde to be wild",
-            "pts": 259,
+            "pts": 274,
             "me": false
           },
           {
             "rank": 4,
             "team": "Bacalhau",
-            "pts": 254,
+            "pts": 268,
             "me": true
           },
           {
             "rank": 5,
             "team": "xG Capital",
-            "pts": 248,
+            "pts": 267,
             "me": false
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 246,
+            "pts": 256,
             "me": false
           },
           {
             "rank": 6,
-            "team": "HanSoloDolo",
-            "pts": 246,
+            "team": "Blasters United",
+            "pts": 256,
             "me": false
           },
           {
             "rank": 8,
-            "team": "Must win one",
-            "pts": 242,
+            "team": "HanSoloDolo",
+            "pts": 255,
             "me": false
           },
           {
             "rank": 9,
-            "team": "Blasters United",
-            "pts": 237,
+            "team": "Must win one",
+            "pts": 244,
             "me": false
           },
           {
             "rank": 10,
-            "team": "Top Bin FC",
-            "pts": 235,
+            "team": "Kroos Kontrol",
+            "pts": 241,
             "me": false
           },
           {
             "rank": 11,
-            "team": "Kroos Kontrol",
-            "pts": 222,
+            "team": "Top Bin FC",
+            "pts": 237,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 212,
+            "pts": 215,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 185,
+            "pts": 187,
             "me": false
           }
         ],
@@ -653,19 +653,19 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 290,
+            "pts": 293,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 279,
+            "pts": 290,
             "me": false
           },
           {
             "rank": 3,
             "team": "Bacalhau",
-            "pts": 254,
+            "pts": 268,
             "me": true
           }
         ],
@@ -693,7 +693,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1811744,
+        "rank": 1565102,
         "last_rank": 1240844
       }
     ],
@@ -701,12 +701,12 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 74.2
+        "own": 74.3
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 35.5
+        "own": 35.7
       },
       {
         "name": "Cherki",
