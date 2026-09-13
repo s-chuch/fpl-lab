@@ -18,14 +18,14 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gro\u00df",
       "inn": "Hughes",
-      "net": "0",
-      "verdict": "Even that GW"
+      "net": "-5",
+      "verdict": "Lost that GW"
     },
     {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+13",
+      "net": "+12",
       "verdict": "Good that GW"
     },
     {
@@ -46,7 +46,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Raya",
       "inn": "Verbruggen",
-      "net": "-13",
+      "net": "-12",
       "verdict": "Lost that GW"
     },
     {
@@ -67,7 +67,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+13",
+      "net": "+12",
       "verdict": "Good that GW"
     },
     {
@@ -81,7 +81,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Raya",
       "inn": "Verbruggen",
-      "net": "-13",
+      "net": "-12",
       "verdict": "Lost that GW"
     },
     {
@@ -102,8 +102,8 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gakpo",
       "inn": "Gro\u00df",
-      "net": "0",
-      "verdict": "Even that GW"
+      "net": "+5",
+      "verdict": "Good that GW"
     },
     {
       "gw": 4,
@@ -130,8 +130,8 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Gro\u00df",
       "inn": "Gakpo",
-      "net": "0",
-      "verdict": "Even that GW"
+      "net": "-5",
+      "verdict": "Lost that GW"
     },
     {
       "gw": 4,
@@ -165,7 +165,7 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Verbruggen",
       "inn": "Raya",
-      "net": "+13",
+      "net": "+12",
       "verdict": "Good that GW"
     },
     {
@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-13 13:11 UTC",
+  "generated_at": "2026-09-13 13:58 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 279,
-    "overall_rank": 377041,
+    "overall_rank": 433157,
     "bank": 0.3,
     "value": 100.7
   },
@@ -691,55 +691,55 @@ window.FPL_DATA = {
           {
             "rank": 3,
             "team": "Borde to be wild",
-            "pts": 254,
+            "pts": 259,
             "me": false
           },
           {
             "rank": 4,
             "team": "Bacalhau",
-            "pts": 249,
+            "pts": 254,
             "me": false
           },
           {
             "rank": 5,
-            "team": "HanSoloDolo",
-            "pts": 245,
+            "team": "xG Capital",
+            "pts": 248,
             "me": false
           },
           {
-            "rank": 5,
+            "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 245,
+            "pts": 246,
             "me": false
           },
           {
-            "rank": 7,
+            "rank": 6,
+            "team": "HanSoloDolo",
+            "pts": 246,
+            "me": false
+          },
+          {
+            "rank": 8,
             "team": "Must win one",
             "pts": 242,
             "me": false
           },
           {
-            "rank": 7,
-            "team": "xG Capital",
-            "pts": 242,
+            "rank": 9,
+            "team": "Blasters United",
+            "pts": 237,
             "me": false
           },
           {
-            "rank": 9,
+            "rank": 10,
             "team": "Top Bin FC",
             "pts": 235,
             "me": false
           },
           {
-            "rank": 10,
-            "team": "Blasters United",
-            "pts": 231,
-            "me": false
-          },
-          {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 216,
+            "pts": 222,
             "me": false
           },
           {
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 377041,
+        "rank": 433157,
         "last_rank": 1516623
       }
     ],

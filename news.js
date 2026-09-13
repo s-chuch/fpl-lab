@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-13 13:11 UTC",
+  "generated_at": "2026-09-13 13:58 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -155,14 +155,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Coventry v Brighton team news: Both sides unchanged - Best FPL Tips, Advice, Team News, Picks, and Statistics from Fantasy Football Scout",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/coventry-v-brighton-team-news-both-sides-unchanged"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
