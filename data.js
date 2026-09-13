@@ -179,8 +179,8 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "B.Fernandes",
       "inn": "Gomez",
-      "net": "+2",
-      "verdict": "Good that GW"
+      "net": "+1",
+      "verdict": "Even that GW"
     },
     {
       "gw": 4,
@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-13 16:15 UTC",
+  "generated_at": "2026-09-13 22:15 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
-    "overall_points": 290,
-    "overall_rank": 493672,
+    "overall_points": 298,
+    "overall_rank": 618426,
     "bank": 0.3,
     "value": 100.7
   },
@@ -394,13 +394,13 @@ window.FPL_DATA = {
     },
     {
       "gw": 4,
-      "points": 70,
+      "points": 89,
       "bench": 9,
       "transfers": 0,
       "hits": 0,
-      "rank": 375544,
-      "field_avg": 42,
-      "delta": 28,
+      "rank": 613337,
+      "field_avg": 63,
+      "delta": 26,
       "chip": "freehit"
     }
   ],
@@ -408,7 +408,7 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 42
+    "4": 63
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -602,8 +602,8 @@ window.FPL_DATA = {
           "Palmer",
           "Jo\u00e3o Pedro (C)",
           "Isak",
-          "Szoboszlai",
           "Haaland",
+          "Szoboszlai",
           "Khalaili"
         ],
         "bench": [
@@ -621,8 +621,8 @@ window.FPL_DATA = {
           "Van Hecke",
           "Rogers",
           "Palmer",
-          "Jo\u00e3o Pedro (C)",
-          "Haaland",
+          "Haaland (C)",
+          "Jo\u00e3o Pedro",
           "Isak",
           "Szoboszlai",
           "Khalaili"
@@ -679,79 +679,79 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 293,
+            "pts": 303,
             "me": false
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 290,
+            "pts": 298,
             "me": true
           },
           {
             "rank": 3,
             "team": "Borde to be wild",
-            "pts": 274,
+            "pts": 292,
             "me": false
           },
           {
             "rank": 4,
             "team": "Bacalhau",
-            "pts": 268,
+            "pts": 285,
             "me": false
           },
           {
             "rank": 5,
             "team": "xG Capital",
-            "pts": 267,
+            "pts": 284,
             "me": false
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 256,
+            "pts": 268,
             "me": false
           },
           {
-            "rank": 6,
+            "rank": 7,
             "team": "Blasters United",
-            "pts": 256,
+            "pts": 265,
             "me": false
           },
           {
             "rank": 8,
             "team": "HanSoloDolo",
-            "pts": 255,
+            "pts": 257,
             "me": false
           },
           {
             "rank": 9,
-            "team": "Must win one",
-            "pts": 244,
+            "team": "Top Bin FC",
+            "pts": 253,
             "me": false
           },
           {
             "rank": 10,
-            "team": "Kroos Kontrol",
-            "pts": 241,
+            "team": "Must win one",
+            "pts": 253,
             "me": false
           },
           {
             "rank": 11,
-            "team": "Top Bin FC",
-            "pts": 237,
+            "team": "Kroos Kontrol",
+            "pts": 249,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 215,
+            "pts": 232,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 187,
+            "pts": 199,
             "me": false
           }
         ],
@@ -834,25 +834,25 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "Old iphone",
-            "pts": 305,
+            "pts": 313,
             "me": false
           },
           {
             "rank": 2,
             "team": "Android phone",
-            "pts": 302,
+            "pts": 310,
             "me": false
           },
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 290,
+            "pts": 298,
             "me": true
           },
           {
             "rank": 4,
             "team": "Seen TPS",
-            "pts": 274,
+            "pts": 278,
             "me": false
           }
         ],
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 493672,
+        "rank": 618426,
         "last_rank": 1516623
       }
     ],
@@ -903,12 +903,12 @@ window.FPL_DATA = {
       {
         "name": "B.Fernandes",
         "club": "MUN",
-        "own": 42.7
+        "own": 42.4
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 29.3
+        "own": 29.0
       }
     ],
     "overall_diffs": [
@@ -930,7 +930,7 @@ window.FPL_DATA = {
       {
         "name": "Hughes",
         "club": "CRY",
-        "own": 8.3
+        "own": 8.2
       }
     ],
     "picks_gw": 4

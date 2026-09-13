@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-13 16:15 UTC",
+  "generated_at": "2026-09-13 22:15 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -112,7 +112,6 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Hub",
-        "Scout",
         "AAFPL",
         "FPL Page"
       ]
@@ -158,8 +157,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Man Utd v Man City team news: Enzo, Cherki + Foden start, O\u2019Reilly a sub - Best FPL Tips, Advice, Team News, Picks, and Statistics from Fantasy Football Scout",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/man-utd-v-man-city-team-news-enzo-cherki-foden-start-oreilly-a-sub"
+      "title": "FPL notes: Gross 17-pointer, another De Cuyper assist + Awoniyi ban",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-gross-17-pointer-another-de-cuyper-assist-awoniyi-ban"
     }
   ],
   "no_new": false,
@@ -295,6 +294,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend",
     "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/coventry-v-brighton-team-news-both-sides-unchanged",
+    "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-gross-17-pointer-another-de-cuyper-assist-awoniyi-ban",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/man-utd-v-man-city-team-news-enzo-cherki-foden-start-oreilly-a-sub",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
