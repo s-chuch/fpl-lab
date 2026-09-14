@@ -1,13 +1,12 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-13 23:43 UTC",
+  "generated_at": "2026-09-14 14:51 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
       "text": "Gakpo is a priority GW transfer in.",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -17,7 +16,6 @@ window.FPL_NEWS = {
       "text": "Isak is a priority GW transfer in after the Ipswich brace.",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -45,7 +43,6 @@ window.FPL_NEWS = {
       "text": "Palmer is in the captain conversation (Hull / Chelsea attack).",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -55,6 +52,7 @@ window.FPL_NEWS = {
       "text": "Haaland remains the default captain.",
       "sources": [
         "Fix",
+        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -73,7 +71,6 @@ window.FPL_NEWS = {
       "text": "Szoboszlai is listed as a Liverpool mid option.",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -83,18 +80,18 @@ window.FPL_NEWS = {
       "text": "Chelsea attack is the main fixture to load (Hull).",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
-        "AAFPL"
+        "AAFPL",
+        "FPL Page"
       ]
     },
     {
       "text": "Liverpool attackers are a second stack (Fulham).",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
+        "FPL Page",
         "Ingenuity"
       ]
     },
@@ -112,6 +109,7 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Hub",
+        "Scout",
         "AAFPL",
         "FPL Page"
       ]
@@ -120,7 +118,6 @@ window.FPL_NEWS = {
       "text": "United assets are fade / sell into City.",
       "sources": [
         "Fix",
-        "Hub",
         "Scout",
         "AAFPL",
         "FPL Page"
@@ -156,14 +153,24 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Price Changes: Gvardiol and Tarkowski Both Rise",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-14-sep/"
+      "source": "Hub",
+      "title": "FPL Heisenberg team reveals | Fantasy Football Hub",
+      "url": "https://www.fantasyfootballhub.co.uk/team-reveals/fplheisenberg"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: White injury, Le Bris on Le Fee's pen miss + Raya haul",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-white-injury-le-bris-on-le-fee-pen-miss-raya-haul"
+      "title": "FPL Gameweek 5 tips: Best players, predicted line-ups, team news + more",
+      "url": "https://www.fantasyfootballscout.co.uk/fpl-gameweek-5-tips-best-players-predicted-line-ups-team-news-more-4"
+    },
+    {
+      "source": "Scout",
+      "title": "Careful with early moves! 15 Premier League teams play before Gameweek 5",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/which-premier-league-teams-are-in-midweek-action-ahead-of-gameweek-5"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL GW5 Players To Buy | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw5-best-players-to-buy-2627"
     }
   ],
   "no_new": false,
@@ -216,6 +223,7 @@ window.FPL_NEWS = {
     "https://fpl.page/article/fpl-gw4-best-players-to-buy-2627",
     "https://fpl.page/article/fpl-gw4-predicted-lineups-team-news-2627",
     "https://fpl.page/article/fpl-gw4-team-selection-2627",
+    "https://fpl.page/article/fpl-gw5-best-players-to-buy-2627",
     "https://fpl.page/bonus",
     "https://fpl.page/experts",
     "https://fpl.page/fixture-ticker",
@@ -267,6 +275,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/my-team/transfers",
     "https://www.fantasyfootballhub.co.uk/premier-league-predicted-lineups",
     "https://www.fantasyfootballhub.co.uk/team-reveals/fpl_heisenberg",
+    "https://www.fantasyfootballhub.co.uk/team-reveals/fplheisenberg",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
     "https://www.fantasyfootballscout.co.uk/2026/07/25/get-your-fpl-2026-27-team-rated-and-transfer-tips",
     "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide",
@@ -304,10 +313,12 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-white-injury-le-bris-on-le-fee-pen-miss-raya-haul",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/man-utd-v-man-city-team-news-enzo-cherki-foden-start-oreilly-a-sub",
+    "https://www.fantasyfootballscout.co.uk/2026/09/14/which-premier-league-teams-are-in-midweek-action-ahead-of-gameweek-5",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/fpl-gameweek-4-tips-best-players-predicted-line-ups-team-news-more-4",
+    "https://www.fantasyfootballscout.co.uk/fpl-gameweek-5-tips-best-players-predicted-line-ups-team-news-more-4",
     "https://www.fantasyfootballscout.co.uk/fpl/draft",
     "https://www.fantasyfootballscout.co.uk/fpl/fixtures",
     "https://www.fantasyfootballscout.co.uk/fpl/live-gameweek",
