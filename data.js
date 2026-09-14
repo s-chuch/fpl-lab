@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 20:02 UTC",
+  "generated_at": "2026-09-14 21:06 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 786132,
+    "overall_rank": 791287,
     "bank": 0.3,
     "value": 100.7
   },
@@ -679,13 +679,13 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 304,
+            "pts": 305,
             "me": false
           },
           {
             "rank": 2,
             "team": "Borde to be wild",
-            "pts": 303,
+            "pts": 302,
             "me": false
           },
           {
@@ -696,62 +696,62 @@ window.FPL_DATA = {
           },
           {
             "rank": 4,
-            "team": "Bacalhau",
-            "pts": 285,
+            "team": "xG Capital",
+            "pts": 286,
             "me": false
           },
           {
-            "rank": 4,
-            "team": "xG Capital",
+            "rank": 5,
+            "team": "Bacalhau",
             "pts": 285,
             "me": false
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 269,
+            "pts": 270,
+            "me": false
+          },
+          {
+            "rank": 7,
+            "team": "Blasters United",
+            "pts": 267,
             "me": false
           },
           {
             "rank": 7,
             "team": "HanSoloDolo",
-            "pts": 268,
-            "me": false
-          },
-          {
-            "rank": 8,
-            "team": "Blasters United",
-            "pts": 266,
+            "pts": 267,
             "me": false
           },
           {
             "rank": 9,
-            "team": "Top Bin FC",
-            "pts": 253,
+            "team": "Kroos Kontrol",
+            "pts": 264,
             "me": false
           },
           {
             "rank": 10,
             "team": "Must win one",
-            "pts": 253,
+            "pts": 254,
             "me": false
           },
           {
             "rank": 11,
-            "team": "Kroos Kontrol",
-            "pts": 250,
+            "team": "Top Bin FC",
+            "pts": 253,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 243,
+            "pts": 242,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 200,
+            "pts": 202,
             "me": false
           }
         ],
@@ -834,7 +834,7 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "Old iphone",
-            "pts": 314,
+            "pts": 315,
             "me": false
           },
           {
@@ -852,7 +852,7 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "Seen TPS",
-            "pts": 289,
+            "pts": 288,
             "me": false
           }
         ],
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 786132,
+        "rank": 791287,
         "last_rank": 1516623
       }
     ],
@@ -903,7 +903,7 @@ window.FPL_DATA = {
       {
         "name": "B.Fernandes",
         "club": "MUN",
-        "own": 42.1
+        "own": 42.0
       },
       {
         "name": "Cherki",

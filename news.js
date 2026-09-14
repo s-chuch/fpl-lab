@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-14 20:02 UTC",
+  "generated_at": "2026-09-14 21:06 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -148,14 +148,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Leeds v Newcastle team news: Dedic fit, Fernandez-Pardo starts",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/leeds-v-newcastle-team-news-dedic-fit-fernandez-pardo-starts"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2021/07/bonus-points-explained-fpl-guide/",
     "https://allaboutfpl.com/2021/07/fpl-price-changes-explained-fpl-guide/",
