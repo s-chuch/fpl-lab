@@ -147,7 +147,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 21:13 UTC",
+  "generated_at": "2026-09-14 23:01 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -213,13 +213,13 @@ window.FPL_DATA = {
     },
     {
       "gw": 4,
-      "points": 72,
+      "points": 74,
       "bench": 1,
       "transfers": 2,
       "hits": 0,
-      "rank": 1346705,
-      "field_avg": 63,
-      "delta": 9,
+      "rank": 1533399,
+      "field_avg": 67,
+      "delta": 7,
       "chip": null
     }
   ],
@@ -227,7 +227,7 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 63
+    "4": 67
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -706,12 +706,12 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 37.0
+        "own": 37.1
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.7
+        "own": 28.6
       },
       {
         "name": "Palmer",
@@ -728,7 +728,7 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 4.9
+        "own": 5.0
       },
       {
         "name": "Kusi-Asare",
@@ -738,7 +738,7 @@ window.FPL_DATA = {
       {
         "name": "Mitchell",
         "club": "CRY",
-        "own": 6.5
+        "own": 6.4
       },
       {
         "name": "Hughes",

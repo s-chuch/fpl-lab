@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 21:13 UTC",
+  "generated_at": "2026-09-14 23:01 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 791287,
+    "overall_rank": 791286,
     "bank": 0.3,
     "value": 100.7
   },
@@ -394,13 +394,13 @@ window.FPL_DATA = {
     },
     {
       "gw": 4,
-      "points": 89,
+      "points": 90,
       "bench": 9,
       "transfers": 0,
       "hits": 0,
-      "rank": 613337,
-      "field_avg": 63,
-      "delta": 26,
+      "rank": 791286,
+      "field_avg": 67,
+      "delta": 23,
       "chip": "freehit"
     }
   ],
@@ -408,7 +408,7 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 63
+    "4": 67
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 791287,
+        "rank": 791286,
         "last_rank": 1516623
       }
     ],
@@ -908,7 +908,7 @@ window.FPL_DATA = {
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.7
+        "own": 28.6
       }
     ],
     "overall_diffs": [
