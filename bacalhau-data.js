@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 14:51 UTC",
+  "generated_at": "2026-09-14 20:02 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1295220,
+    "overall_rank": 1520879,
     "bank": 4.9,
     "value": 100.5
   },
@@ -498,19 +498,19 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 303,
+            "pts": 304,
             "me": false
           },
           {
             "rank": 2,
-            "team": "Shaaland",
-            "pts": 298,
+            "team": "Borde to be wild",
+            "pts": 303,
             "me": false
           },
           {
             "rank": 3,
-            "team": "Borde to be wild",
-            "pts": 292,
+            "team": "Shaaland",
+            "pts": 298,
             "me": false
           },
           {
@@ -520,27 +520,27 @@ window.FPL_DATA = {
             "me": true
           },
           {
-            "rank": 5,
+            "rank": 4,
             "team": "xG Capital",
-            "pts": 284,
+            "pts": 285,
             "me": false
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 268,
+            "pts": 269,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
-            "pts": 265,
+            "team": "HanSoloDolo",
+            "pts": 268,
             "me": false
           },
           {
             "rank": 8,
-            "team": "HanSoloDolo",
-            "pts": 257,
+            "team": "Blasters United",
+            "pts": 266,
             "me": false
           },
           {
@@ -558,19 +558,19 @@ window.FPL_DATA = {
           {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 249,
+            "pts": 250,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 232,
+            "pts": 243,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 199,
+            "pts": 200,
             "me": false
           }
         ],
@@ -653,7 +653,7 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 303,
+            "pts": 304,
             "me": false
           },
           {
@@ -693,7 +693,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1295220,
+        "rank": 1520879,
         "last_rank": 1240844
       }
     ],
@@ -701,17 +701,17 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 74.8
+        "own": 74.9
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 36.7
+        "own": 36.8
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.8
+        "own": 28.7
       },
       {
         "name": "Palmer",

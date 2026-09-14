@@ -193,8 +193,8 @@ window.FPL_DATA = {
       "gw": 4,
       "out": "Calvert-Lewin",
       "inn": "Isak",
-      "net": "+2",
-      "verdict": "Good that GW"
+      "net": "-8",
+      "verdict": "Lost that GW"
     }
   ],
   "bench_audit": {
@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 14:51 UTC",
+  "generated_at": "2026-09-14 20:02 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 618425,
+    "overall_rank": 786132,
     "bank": 0.3,
     "value": 100.7
   },
@@ -672,27 +672,27 @@ window.FPL_DATA = {
       {
         "id": 125784,
         "name": "European Super League",
-        "rank": 2,
+        "rank": 3,
         "last_rank": 4,
         "size": 13,
         "table": [
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 303,
+            "pts": 304,
             "me": false
           },
           {
             "rank": 2,
-            "team": "Shaaland",
-            "pts": 298,
-            "me": true
+            "team": "Borde to be wild",
+            "pts": 303,
+            "me": false
           },
           {
             "rank": 3,
-            "team": "Borde to be wild",
-            "pts": 292,
-            "me": false
+            "team": "Shaaland",
+            "pts": 298,
+            "me": true
           },
           {
             "rank": 4,
@@ -701,27 +701,27 @@ window.FPL_DATA = {
             "me": false
           },
           {
-            "rank": 5,
+            "rank": 4,
             "team": "xG Capital",
-            "pts": 284,
+            "pts": 285,
             "me": false
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 268,
+            "pts": 269,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
-            "pts": 265,
+            "team": "HanSoloDolo",
+            "pts": 268,
             "me": false
           },
           {
             "rank": 8,
-            "team": "HanSoloDolo",
-            "pts": 257,
+            "team": "Blasters United",
+            "pts": 266,
             "me": false
           },
           {
@@ -739,19 +739,19 @@ window.FPL_DATA = {
           {
             "rank": 11,
             "team": "Kroos Kontrol",
-            "pts": 249,
+            "pts": 250,
             "me": false
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 232,
+            "pts": 243,
             "me": false
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 199,
+            "pts": 200,
             "me": false
           }
         ],
@@ -834,7 +834,7 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "Old iphone",
-            "pts": 313,
+            "pts": 314,
             "me": false
           },
           {
@@ -852,7 +852,7 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "Seen TPS",
-            "pts": 278,
+            "pts": 289,
             "me": false
           }
         ],
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 618425,
+        "rank": 786132,
         "last_rank": 1516623
       }
     ],
@@ -903,12 +903,12 @@ window.FPL_DATA = {
       {
         "name": "B.Fernandes",
         "club": "MUN",
-        "own": 42.2
+        "own": 42.1
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.8
+        "own": 28.7
       }
     ],
     "overall_diffs": [

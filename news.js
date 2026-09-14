@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-14 14:51 UTC",
+  "generated_at": "2026-09-14 20:02 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -81,8 +81,7 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Scout",
-        "AAFPL",
-        "FPL Page"
+        "AAFPL"
       ]
     },
     {
@@ -91,7 +90,6 @@ window.FPL_NEWS = {
         "Fix",
         "Scout",
         "AAFPL",
-        "FPL Page",
         "Ingenuity"
       ]
     },
@@ -109,7 +107,6 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Hub",
-        "Scout",
         "AAFPL",
         "FPL Page"
       ]
@@ -153,24 +150,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Hub",
-      "title": "FPL Heisenberg team reveals | Fantasy Football Hub",
-      "url": "https://www.fantasyfootballhub.co.uk/team-reveals/fplheisenberg"
-    },
-    {
       "source": "Scout",
-      "title": "FPL Gameweek 5 tips: Best players, predicted line-ups, team news + more",
-      "url": "https://www.fantasyfootballscout.co.uk/fpl-gameweek-5-tips-best-players-predicted-line-ups-team-news-more-4"
-    },
-    {
-      "source": "Scout",
-      "title": "Careful with early moves! 15 Premier League teams play before Gameweek 5",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/which-premier-league-teams-are-in-midweek-action-ahead-of-gameweek-5"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW5 Players To Buy | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw5-best-players-to-buy-2627"
+      "title": "Leeds v Newcastle team news: Dedic fit, Fernandez-Pardo starts",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/leeds-v-newcastle-team-news-dedic-fit-fernandez-pardo-starts"
     }
   ],
   "no_new": false,
@@ -313,6 +295,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-white-injury-le-bris-on-le-fee-pen-miss-raya-haul",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/man-utd-v-man-city-team-news-enzo-cherki-foden-start-oreilly-a-sub",
+    "https://www.fantasyfootballscout.co.uk/2026/09/14/leeds-v-newcastle-team-news-dedic-fit-fernandez-pardo-starts",
     "https://www.fantasyfootballscout.co.uk/2026/09/14/which-premier-league-teams-are-in-midweek-action-ahead-of-gameweek-5",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
