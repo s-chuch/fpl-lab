@@ -1,12 +1,48 @@
 window.FPL_FH = {
   "gw": 4,
   "deadline": "Sat 12 Sep 08:30 EDT",
-  "officially_used": false,
-  "active_in_app": true,
+  "officially_used": true,
+  "active_in_app": false,
   "captain": "Palmer",
   "vice": "Haaland",
+  "audit": {
+    "fh_points": 90,
+    "original_points": 102,
+    "net": -12,
+    "verdict": "Wrong chip on points",
+    "why": "Original team + Hume→Davis autosub + Haaland (C) scores 102. FH scored 90.",
+    "autosubs": "Hume → Davis",
+    "original_cap": "Haaland",
+    "fh_cap": "Palmer",
+    "original_xi": [
+      {"name": "Verbruggen", "got": 8},
+      {"name": "De Cuyper", "got": 11},
+      {"name": "Calafiori", "got": 6},
+      {"name": "Davis", "got": 14},
+      {"name": "B.Fernandes", "got": 2},
+      {"name": "Cherki", "got": 1},
+      {"name": "Szoboszlai", "got": 3},
+      {"name": "Groß", "got": 17},
+      {"name": "Haaland", "got": 18, "mult": 2},
+      {"name": "Calvert-Lewin", "got": 10},
+      {"name": "João Pedro", "got": 12}
+    ],
+    "fh_xi": [
+      {"name": "Raya", "got": 14},
+      {"name": "De Cuyper", "got": 11},
+      {"name": "Calafiori", "got": 6},
+      {"name": "Van Hecke", "got": 8},
+      {"name": "Khalaili", "got": 7},
+      {"name": "Szoboszlai", "got": 3},
+      {"name": "Palmer", "got": 10, "cap": true},
+      {"name": "Rogers", "got": 8},
+      {"name": "Isak", "got": 2},
+      {"name": "Haaland", "got": 9},
+      {"name": "João Pedro", "got": 12}
+    ]
+  },
   "xi": [
-    {"pos": "GKP", "name": "Verbruggen", "fix": "COV (A)"},
+    {"pos": "GKP", "name": "Raya", "fix": "SUN (A)"},
     {"pos": "DEF", "name": "De Cuyper", "fix": "COV (A)"},
     {"pos": "DEF", "name": "Calafiori", "fix": "SUN (A)"},
     {"pos": "DEF", "name": "Van Hecke", "fix": "EVE (H)"},
@@ -16,20 +52,18 @@ window.FPL_FH = {
     {"pos": "MID", "name": "Rogers", "fix": "HUL (H)"},
     {"pos": "FWD", "name": "Isak", "fix": "FUL (H)"},
     {"pos": "FWD", "name": "Haaland", "fix": "MUN (A)", "tag": "V"},
-    {"pos": "FWD", "name": "Jo\u00e3o Pedro", "fix": "HUL (H)"}
+    {"pos": "FWD", "name": "João Pedro", "fix": "HUL (H)"}
   ],
   "bench": [
     {"pos": "GKP", "name": "Dubravka", "fix": "EVE (H)"},
-    {"pos": "MID", "name": "Gro\u00df", "fix": "COV (A)"},
+    {"pos": "DEF", "name": "Konsa", "fix": "SUN (A)"},
     {"pos": "MID", "name": "Slater", "fix": "CHE (A)"},
-    {"pos": "DEF", "name": "Mendy", "fix": "CHE (A)"}
+    {"pos": "MID", "name": "Hughes", "fix": "IPS (H)"}
   ],
   "recs": [
-    {"verdict": "Keep", "text": "Palmer (C) vs Hull. News and X both load Chelsea attack. Haaland as vice covers the derby."},
-    {"verdict": "Good", "text": "Isak + Szoboszlai vs Fulham replaces the flagged Gakpo draft. News still lists both Liverpool and Isak as agreed."},
-    {"verdict": "Good", "text": "Rogers + Jo\u00e3o Pedro + Palmer is the Chelsea triple the sources wanted."},
-    {"verdict": "Keep", "text": "De Cuyper stays. Van Hecke (EVE H) and Khalaili (IPS H) are the extra defensive slots instead of Thomas."},
-    {"verdict": "Sit", "text": "Bench order is fine: Dubravka, Gro\u00df, Slater, Mendy. Slater and Mendy both play Chelsea away — they should not start."},
-    {"verdict": "Note", "text": "Gakpo is out of this draft. If you still want the Liverpool mid, Gro\u00df is the Coventry-away bench piece, not a starter."}
+    {"verdict": "Outcome", "text": "FH scored 90. The original GW3 squad would have scored 102 in GW4 after Hume → Davis and Haaland (C). Net −12."},
+    {"verdict": "Process", "text": "Fair chip to play: you wanted off Fernandes / Cherki / Hume / DCL and onto Palmer / Rogers / Isak / Raya without burning the real 15."},
+    {"verdict": "Variance", "text": "Groß 17, Davis 14 and DCL 10 stayed on the original. Palmer (C) returned 5 raw / 10 with the armband. Captain swing is −8 vs Haaland x2."},
+    {"verdict": "Call", "text": "Wrong chip on points, reasonable process. You paid a chip to lose 12 vs doing nothing. GW5 still gets the original squad back, so future weeks are intact."}
   ]
 };
