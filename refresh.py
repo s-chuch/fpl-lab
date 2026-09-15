@@ -112,11 +112,16 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     finished = [e for e in events if e.get("finished")]
     upcoming = [e for e in events if not e.get("finished")][:2]
     last_fin = finished[-1] if finished else None
-    picks, picks_gw = [], None
+    picks, picks_gw, skipped_fh = [], None, None
+    fh_gw = (chips_used or {}).get("freehit")
     for ev in reversed(events):
         if ev["id"] > (last_fin["id"] if last_fin else 0) + 1: continue
         try:
             payload = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{ev['id']}/picks/")
+            chip = payload.get("active_chip")
+            if chip == "freehit" or ev["id"] == fh_gw:
+                skipped_fh = ev["id"]
+                continue
             picks = payload.get("picks") or []
             if picks:
                 picks_gw = ev["id"]; break
@@ -166,7 +171,10 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
         bench_calls.append({"gw": ev["id"], "sit": xis[key]["bench"], "worst": top["player"] if top else None, "why": f"{top['player']} {top['fixture']} FDR {top['fdr']}" if top else "No sit"})
     who = "Shaaland" if team_id == 1360999 else "the original squad"
     action, move, reason = "ROLL", None, f"You have {ft} FT. " + (f"FH unused — roll so the FT returns with {who}." if not fh_used else "No forced move. Bank it.")
-    return {"note": f"GW{picks_gw} squad. Last finished {(last_fin or {}).get('id')}.", "last_finished": (last_fin or {}).get("id"), "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}}
+    note = f"GW{picks_gw} squad. Last finished {(last_fin or {}).get('id')}."
+    if skipped_fh:
+        note = f"GW{picks_gw} squad (GW{skipped_fh} was Free Hit; reverted). Last finished {(last_fin or {}).get('id')}."
+    return {"note": note, "last_finished": (last_fin or {}).get("id"), "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}}
 
 def captain_audit(boot, team_id):
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
@@ -334,7 +342,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data_file = Path(out_path) if out_path else ROOT / "data.js"
     existing = {}
     if data_file.exists():
-        raw = data_file.read_text(); s, e = raw.find("{{"), raw.rfind("}}")
+        raw = data_file.read_text(); s, e = raw.find("{{"), raw.rfind("}}" )
         if s != -1 and e != -1:
             existing = json.loads(raw[s:e+1])
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
