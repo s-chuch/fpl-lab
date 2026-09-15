@@ -9,8 +9,10 @@ window.FPL_FH = {
     "fh_points": 90,
     "original_points": 102,
     "net": -12,
-    "verdict": "Wrong chip on points",
-    "why": "Original team + Hume→Davis autosub + Haaland (C) scores 102. FH scored 90.",
+    "process": "ok",
+    "outcome": "lost",
+    "verdict": "Variance — process ok, points lost",
+    "why": "Original XI had Hume minutes risk plus Fernandes/Cherki in a derby. Chip was allowed. Outcome still −12 after Hume→Davis and Haaland (C).",
     "autosubs": "Hume → Davis",
     "original_cap": "Haaland",
     "fh_cap": "Palmer",
@@ -61,9 +63,9 @@ window.FPL_FH = {
     {"pos": "MID", "name": "Hughes", "fix": "IPS (H)"}
   ],
   "recs": [
-    {"verdict": "Outcome", "text": "FH scored 90. The original GW3 squad would have scored 102 in GW4 after Hume → Davis and Haaland (C). Net −12."},
-    {"verdict": "Process", "text": "Fair chip to play: you wanted off Fernandes / Cherki / Hume / DCL and onto Palmer / Rogers / Isak / Raya without burning the real 15."},
-    {"verdict": "Variance", "text": "Groß 17, Davis 14 and DCL 10 stayed on the original. Palmer (C) returned 5 raw / 10 with the armband. Captain swing is −8 vs Haaland x2."},
-    {"verdict": "Call", "text": "Wrong chip on points, reasonable process. You paid a chip to lose 12 vs doing nothing. GW5 still gets the original squad back, so future weeks are intact."}
+    {"verdict": "Process", "text": "OK. Original had Hume minutes risk and Fernandes/Cherki in a derby. FH was a legal reset."},
+    {"verdict": "Outcome", "text": "Lost. FH 90 vs original 102 after Hume → Davis and Haaland (C). Net −12."},
+    {"verdict": "Variance", "text": "Groß 17, Davis 14, DCL 10 stayed on the original. Palmer (C) 5 raw / 10 with the armband."},
+    {"verdict": "Call", "text": "Not a skill issue. One week, process held, dice bounced. GW5 is a new decision on the reverted 15."}
   ]
 };
