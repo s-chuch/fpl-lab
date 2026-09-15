@@ -145,15 +145,56 @@ window.FPL_DATA = {
           1
         ]
       ]
+    },
+    "gw4": {
+      "you": 74,
+      "process": 74,
+      "hindsight": 82,
+      "your_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          1
+        ]
+      ],
+      "better_bench": [
+        [
+          "Dubravka",
+          0
+        ],
+        [
+          "Walle Egeli",
+          0
+        ],
+        [
+          "Kusi-Asare",
+          0
+        ],
+        [
+          "Hughes",
+          1
+        ]
+      ]
     }
   },
-  "generated_at": "2026-09-15 13:18 UTC",
+  "generated_at": "2026-09-15 15:30 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590531,
+    "overall_rank": 1590530,
     "bank": 4.9,
     "value": 100.5
   },
@@ -230,17 +271,17 @@ window.FPL_DATA = {
     "4": 69
   },
   "plan": {
-    "note": "GW4 squad. Last finished 3.",
-    "last_finished": 3,
+    "note": "GW4 squad. Last finished 4.",
+    "last_finished": 4,
     "squad_from_gw": 4,
     "upcoming": [
       {
-        "gw": 4,
-        "deadline": "2026-09-12 12:30 UTC"
-      },
-      {
         "gw": 5,
         "deadline": "2026-09-18 17:30 UTC"
+      },
+      {
+        "gw": 6,
+        "deadline": "2026-10-10 10:00 UTC"
       }
     ],
     "rows": [
@@ -248,43 +289,43 @@ window.FPL_DATA = {
         "GKP",
         "Raya",
         "ARS",
-        "A SUN",
-        3,
-        "START",
         "A BHA",
         3,
+        "START",
+        "H LEE",
+        2,
         "START"
       ],
       [
         "GKP",
         "Dubravka",
         "TOT",
-        "H EVE",
-        3,
-        "SIT",
         "H AVL",
         3,
+        "SIT",
+        "A MUN",
+        4,
         "SIT"
       ],
       [
         "DEF",
         "Calafiori",
         "ARS",
-        "A SUN",
-        3,
-        "START",
         "A BHA",
         3,
+        "START",
+        "H LEE",
+        2,
         "START"
       ],
       [
         "DEF",
         "Mitchell",
         "CRY",
-        "H IPS",
-        2,
-        "START",
         "A LEE",
+        3,
+        "START",
+        "H NFO",
         3,
         "START"
       ],
@@ -292,10 +333,10 @@ window.FPL_DATA = {
         "DEF",
         "Tarkowski",
         "EVE",
-        "A TOT",
-        3,
-        "START",
         "H IPS",
+        2,
+        "START",
+        "A HUL",
         2,
         "START"
       ],
@@ -303,10 +344,10 @@ window.FPL_DATA = {
         "DEF",
         "Ajayi",
         "HUL",
-        "A CHE",
-        4,
-        "START",
         "A NEW",
+        3,
+        "START",
+        "H EVE",
         3,
         "START"
       ],
@@ -314,32 +355,32 @@ window.FPL_DATA = {
         "DEF",
         "N.Williams",
         "NFO",
-        "A AVL",
-        4,
-        "START",
         "H COV",
         2,
+        "START",
+        "A CRY",
+        3,
         "START"
       ],
       [
         "MID",
         "Gro\u00df",
         "BHA",
-        "A COV",
-        2,
-        "START",
         "H ARS",
         4,
+        "START",
+        "A SUN",
+        3,
         "START"
       ],
       [
         "MID",
         "Hughes",
         "CRY",
-        "H IPS",
-        2,
-        "SIT",
         "A LEE",
+        3,
+        "SIT",
+        "H NFO",
         3,
         "SIT"
       ],
@@ -347,10 +388,10 @@ window.FPL_DATA = {
         "MID",
         "Dewsbury-Hall",
         "EVE",
-        "A TOT",
-        3,
-        "START",
         "H IPS",
+        2,
+        "START",
+        "A HUL",
         2,
         "START"
       ],
@@ -358,21 +399,21 @@ window.FPL_DATA = {
         "MID",
         "Szoboszlai",
         "LIV",
-        "H FUL",
-        2,
-        "START",
         "A BOU",
         3,
+        "START",
+        "H MCI",
+        4,
         "START"
       ],
       [
         "MID",
         "B.Fernandes",
         "MUN",
-        "H MCI",
-        4,
-        "START",
         "A FUL",
+        3,
+        "START",
+        "H TOT",
         3,
         "START"
       ],
@@ -380,58 +421,37 @@ window.FPL_DATA = {
         "FWD",
         "Kusi-Asare",
         "FUL",
-        "A LIV",
-        4,
-        "SIT",
         "H MUN",
         4,
+        "SIT",
+        "A IPS",
+        2,
         "SIT"
       ],
       [
         "FWD",
         "Walle Egeli",
         "IPS",
-        "A CRY",
-        3,
-        "SIT",
         "A EVE",
         3,
+        "SIT",
+        "H FUL",
+        2,
         "SIT"
       ],
       [
         "FWD",
         "Haaland",
         "MCI",
-        "A MUN",
-        4,
-        "START",
         "H SUN",
         2,
+        "START",
+        "A LIV",
+        4,
         "START"
       ]
     ],
     "xis": {
-      "gw4": {
-        "xi": [
-          "Raya (VC)",
-          "Tarkowski",
-          "Calafiori",
-          "Ajayi",
-          "Gro\u00df",
-          "B.Fernandes",
-          "Haaland (C)",
-          "Szoboszlai",
-          "Mitchell",
-          "Dewsbury-Hall",
-          "N.Williams"
-        ],
-        "bench": [
-          "Dubravka",
-          "Hughes",
-          "Walle Egeli",
-          "Kusi-Asare"
-        ]
-      },
       "gw5": {
         "xi": [
           "Raya (VC)",
@@ -452,20 +472,30 @@ window.FPL_DATA = {
           "Walle Egeli",
           "Kusi-Asare"
         ]
-      }
-    },
-    "bench_calls": [
-      {
-        "gw": 4,
-        "sit": [
+      },
+      "gw6": {
+        "xi": [
+          "Raya (VC)",
+          "Tarkowski",
+          "Calafiori",
+          "Ajayi",
+          "Gro\u00df",
+          "B.Fernandes",
+          "Haaland (C)",
+          "Dewsbury-Hall",
+          "Mitchell",
+          "N.Williams",
+          "Szoboszlai"
+        ],
+        "bench": [
           "Dubravka",
           "Hughes",
           "Walle Egeli",
           "Kusi-Asare"
-        ],
-        "worst": "Kusi-Asare",
-        "why": "Kusi-Asare A LIV FDR 4"
-      },
+        ]
+      }
+    },
+    "bench_calls": [
       {
         "gw": 5,
         "sit": [
@@ -476,6 +506,17 @@ window.FPL_DATA = {
         ],
         "worst": "Kusi-Asare",
         "why": "Kusi-Asare H MUN FDR 4"
+      },
+      {
+        "gw": 6,
+        "sit": [
+          "Dubravka",
+          "Hughes",
+          "Walle Egeli",
+          "Kusi-Asare"
+        ],
+        "worst": "Dubravka",
+        "why": "Dubravka A MUN FDR 4"
       }
     ],
     "transfer": {
@@ -693,7 +734,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590531,
+        "rank": 1590530,
         "last_rank": 1240844
       }
     ],
@@ -701,12 +742,12 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 75.2
+        "own": 75.3
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 37.5
+        "own": 37.6
       },
       {
         "name": "Cherki",
@@ -792,6 +833,19 @@ window.FPL_DATA = {
       "best_raw": 9,
       "vs_vc": 18,
       "vs_best": 0
+    },
+    {
+      "gw": 4,
+      "chip": null,
+      "captain": "Haaland",
+      "captain_raw": 9,
+      "got": 18,
+      "vc": "Raya",
+      "vc_raw": 14,
+      "best": "Gro\u00df",
+      "best_raw": 17,
+      "vs_vc": -10,
+      "vs_best": -16
     }
   ]
 };
