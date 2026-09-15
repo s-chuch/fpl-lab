@@ -17,6 +17,11 @@
     {"name": "FPL Loc", "handle": "LovroBudisin"},
     {"name": "All About FPL", "handle": "allaboutfpl"},
     {"name": "FPLDuvall", "handle": "greekgodFpl"},
-    {"name": "FPL White", "handle": "FPL_White"}
+    {"name": "FPL White", "handle": "FPL_White"},
+    {"name": "StarkFF", "handle": "FPLStark"},
+    {"name": "Zubi", "handle": "ZubiFPL"},
+    {"name": "Peter Khan", "handle": "wakeuptodream"},
+    {"name": "Numan", "handle": "NumanFPL"},
+    {"name": "FPL Gremlin", "handle": "FPLGremlin"}
   ]
 }
