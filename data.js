@@ -322,13 +322,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 23:01 UTC",
+  "generated_at": "2026-09-15 13:17 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 791286,
+    "overall_rank": 820059,
     "bank": 0.3,
     "value": 100.7
   },
@@ -398,9 +398,9 @@ window.FPL_DATA = {
       "bench": 9,
       "transfers": 0,
       "hits": 0,
-      "rank": 791286,
-      "field_avg": 67,
-      "delta": 23,
+      "rank": 820064,
+      "field_avg": 69,
+      "delta": 21,
       "chip": "freehit"
     }
   ],
@@ -408,7 +408,7 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 67
+    "4": 69
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -709,7 +709,7 @@ window.FPL_DATA = {
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 270,
+            "pts": 275,
             "me": false
           },
           {
@@ -895,7 +895,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 791286,
+        "rank": 820059,
         "last_rank": 1516623
       }
     ],
@@ -903,12 +903,12 @@ window.FPL_DATA = {
       {
         "name": "B.Fernandes",
         "club": "MUN",
-        "own": 42.0
+        "own": 41.8
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.6
+        "own": 28.5
       }
     ],
     "overall_diffs": [
@@ -930,7 +930,7 @@ window.FPL_DATA = {
       {
         "name": "Hughes",
         "club": "CRY",
-        "own": 8.1
+        "own": 8.0
       }
     ],
     "picks_gw": 4

@@ -1,6 +1,6 @@
 window.FPL_NEWS = {
   "gw": 4,
-  "generated_at": "2026-09-14 23:01 UTC",
+  "generated_at": "2026-09-15 13:17 UTC",
   "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
   "agreed": [
     {
@@ -107,6 +107,7 @@ window.FPL_NEWS = {
       "sources": [
         "Fix",
         "Hub",
+        "Scout",
         "AAFPL",
         "FPL Page"
       ]
@@ -150,9 +151,19 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
+      "source": "Fix",
+      "title": "FPL Gameweek 5 Transfer Tips 2026/27: Who to Target",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw5-transfer-tips-2026-27/"
+    },
+    {
+      "source": "Fix",
+      "title": "FPL Price Changes: Hughes, Tielemans and Solanke Fall",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-15-sep/"
+    },
+    {
       "source": "Scout",
-      "title": "FPL Gameweek 5 early Scout Picks: Forest triple-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/fpl-gameweek-5-early-scout-picks-forest-triple-up"
+      "title": "FPL Gameweek 5 Wildcard best team + pros/cons of using",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/15/fpl-gameweek-5-wildcard-best-team-pros-cons-of-using"
     }
   ],
   "no_new": false,
@@ -229,11 +240,13 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-4-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-top-5-players-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw4-transfer-tips-2026-27/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-gw5-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-10-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-11-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-12-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-13-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-14-sep/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-15-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-5-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-6-sep/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-price-changes-7-sep/",
@@ -298,6 +311,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/14/fpl-gameweek-5-early-scout-picks-forest-triple-up",
     "https://www.fantasyfootballscout.co.uk/2026/09/14/leeds-v-newcastle-team-news-dedic-fit-fernandez-pardo-starts",
     "https://www.fantasyfootballscout.co.uk/2026/09/14/which-premier-league-teams-are-in-midweek-action-ahead-of-gameweek-5",
+    "https://www.fantasyfootballscout.co.uk/2026/09/15/fpl-gameweek-5-wildcard-best-team-pros-cons-of-using",
     "https://www.fantasyfootballscout.co.uk/category/team-selection/fpl-captains",
     "https://www.fantasyfootballscout.co.uk/category/transfers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",

@@ -147,13 +147,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-14 23:01 UTC",
+  "generated_at": "2026-09-15 13:18 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1533399,
+    "overall_rank": 1590531,
     "bank": 4.9,
     "value": 100.5
   },
@@ -217,9 +217,9 @@ window.FPL_DATA = {
       "bench": 1,
       "transfers": 2,
       "hits": 0,
-      "rank": 1533399,
-      "field_avg": 67,
-      "delta": 7,
+      "rank": 1590538,
+      "field_avg": 69,
+      "delta": 5,
       "chip": null
     }
   ],
@@ -227,7 +227,7 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 67
+    "4": 69
   },
   "plan": {
     "note": "GW4 squad. Last finished 3.",
@@ -528,7 +528,7 @@ window.FPL_DATA = {
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 270,
+            "pts": 275,
             "me": false
           },
           {
@@ -693,7 +693,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1533399,
+        "rank": 1590531,
         "last_rank": 1240844
       }
     ],
@@ -701,17 +701,17 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 75.0
+        "own": 75.2
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 37.1
+        "own": 37.5
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.6
+        "own": 28.5
       },
       {
         "name": "Palmer",
@@ -728,7 +728,7 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 5.0
+        "own": 5.1
       },
       {
         "name": "Kusi-Asare",
@@ -743,12 +743,12 @@ window.FPL_DATA = {
       {
         "name": "Hughes",
         "club": "CRY",
-        "own": 8.1
+        "own": 8.0
       },
       {
         "name": "N.Williams",
         "club": "NFO",
-        "own": 8.4
+        "own": 8.5
       }
     ],
     "picks_gw": 4
