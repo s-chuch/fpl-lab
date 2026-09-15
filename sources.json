@@ -16,6 +16,7 @@
     {"name": "FPL Focal", "handle": "FPLFocal"},
     {"name": "FPL Loc", "handle": "LovroBudisin"},
     {"name": "All About FPL", "handle": "allaboutfpl"},
-    {"name": "FPLDuvall", "handle": "greekgodFpl"}
+    {"name": "FPLDuvall", "handle": "greekgodFpl"},
+    {"name": "FPL White", "handle": "FPL_White"}
   ]
 }
