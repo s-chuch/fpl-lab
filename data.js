@@ -363,7 +363,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-15 22:13 UTC",
+  "generated_at": "2026-09-15 22:47 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -755,13 +755,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
@@ -930,7 +930,7 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 40.5
+        "own": 40.6
       },
       {
         "name": "Rogers",

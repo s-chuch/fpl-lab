@@ -1,7 +1,7 @@
 window.FPL_X = {
   "gw": 5,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-15 22:13 UTC",
+  "generated_at": "2026-09-15 22:47 UTC",
   "accounts": [
     {
       "name": "FPL Kayman",
@@ -64,49 +64,8 @@ window.FPL_X = {
       "handle": "FPLGremlin"
     }
   ],
-  "new_posts": [
-    {
-      "handle": "FPL_White",
-      "text": "WC5 is proving trickier than expected. Wants MGW, Palmer + Rogers and Saka; may drop a mid for Slater, Saka for Rogers, keep Palmer."
-    },
-    {
-      "handle": "greekgodFpl",
-      "text": "I'm big on Morgan Gibbs-White... 78.5% chance to return in GW5. And I would bring him in with a hit -4."
-    },
-    {
-      "handle": "greekgodFpl",
-      "text": "Erling Haaland is the ultimate talismanic player in FPL this season."
-    },
-    {
-      "handle": "BenjyFPL",
-      "text": "GW5 captaincy, possible Haaland entrance and potential MGW knee-jerk all discussed."
-    },
-    {
-      "handle": "allaboutfpl",
-      "text": "GW5 wildcard draft: good entry points for Gibbs-White, Barnes and Barry (promoted sides at home)."
-    },
-    {
-      "handle": "allaboutfpl",
-      "text": "GW5 Free Hit draft: starting XI mostly at home to promoted sides / Sunderland. Fade high-EO Palmer/Rogers."
-    },
-    {
-      "handle": "FPLFocal",
-      "text": "Players to buy | GW5 and GW5 transfer plans are live."
-    },
-    {
-      "handle": "FPLGOAT7",
-      "text": "Rogers."
-    },
-    {
-      "handle": "FPLMeerkat",
-      "text": "Muharemovi\u0107 is a better asset than Hall this week."
-    },
-    {
-      "handle": "Ghono_FF",
-      "text": "Price risers and fallers, 15 Sep."
-    }
-  ],
-  "no_new": false,
+  "new_posts": [],
+  "no_new": true,
   "agreed": [
     {
       "text": "Gibbs-White is a GW5 Forest mid target.",
