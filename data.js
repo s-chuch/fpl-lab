@@ -363,13 +363,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-15 16:24 UTC",
+  "generated_at": "2026-09-15 18:10 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 820058,
+    "overall_rank": 820057,
     "bank": 0.3,
     "value": 100.7
   },
@@ -755,13 +755,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
@@ -936,7 +936,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 820058,
+        "rank": 820057,
         "last_rank": 1516623
       }
     ],
@@ -949,7 +949,7 @@ window.FPL_DATA = {
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.5
+        "own": 28.4
       }
     ],
     "overall_diffs": [

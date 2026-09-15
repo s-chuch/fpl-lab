@@ -188,13 +188,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-15 16:24 UTC",
+  "generated_at": "2026-09-15 18:10 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590530,
+    "overall_rank": 1590528,
     "bank": 4.9,
     "value": 100.5
   },
@@ -574,13 +574,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
@@ -734,7 +734,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590530,
+        "rank": 1590528,
         "last_rank": 1240844
       }
     ],
@@ -747,12 +747,12 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 37.6
+        "own": 37.7
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.5
+        "own": 28.4
       },
       {
         "name": "Palmer",
