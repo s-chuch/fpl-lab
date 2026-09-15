@@ -69,13 +69,7 @@ def parse_pub_date(html, url):
             dt = parse_iso(m.group(1))
             if dt:
                 return dt
-    m = re.search(r"/(20\d{2})/(\d{2})/(\d{2})/", url or "")
-    if m:
-        try:
-            return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
-        except Exception:
-            pass
-    return None
+    return url_date(url)
 
 
 def after_cutoff(dt, cutoff):
@@ -108,6 +102,28 @@ def page_title(html, url):
 def is_junk(title, url):
     blob = f"{title} {url}".lower()
     return any(j in blob for j in JUNK)
+
+
+def older_gw_in(url, gw):
+    low = (url or "").lower()
+    for n in range(1, int(gw or 1)):
+        if f"gw{n}" in low or f"gameweek-{n}" in low or f"gameweek_{n}" in low or f"gameweek {n}" in low:
+            return True
+    return False
+
+
+def keep_seen(url, gw, cutoff):
+    if not url or is_junk("", url):
+        return False
+    host = urlparse(url).netloc.lower()
+    if "rotowire.com" in host:
+        return False
+    if older_gw_in(url, gw):
+        return False
+    dt = url_date(url)
+    if dt and cutoff and not after_cutoff(dt, cutoff):
+        return False
+    return True
 
 
 def extract_article_links(html, base, source, gw):
@@ -189,12 +205,7 @@ def url_date(url):
 def main():
     prev = load_news()
     gw, cutoff = event_window(prev)
-    seen_set = set()
-    for url in prev.get("seen") or []:
-        dt = url_date(url)
-        if dt and cutoff and not after_cutoff(dt, cutoff):
-            continue
-        seen_set.add(url)
+    seen_set = {u for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
     listings = site_listings(gw)
     blobs, links, discovered, used = {}, [], [], set()
     for source, url in listings:
@@ -206,26 +217,25 @@ def main():
     first_seed = len(seen_set) < 8
     new_articles = []
     for art in discovered:
-        url_dt = url_date(art["url"])
-        if url_dt and cutoff and not after_cutoff(url_dt, cutoff):
+        if not keep_seen(art["url"], gw, cutoff):
             continue
+        url_dt = url_date(art["url"])
         body = ""
         if art["url"] not in seen_set or first_seed:
             body = fetch_html(art["url"])
             if body:
                 art["title"] = page_title(body, art["url"]) or art["title"]
         if is_junk(art["title"], art["url"]):
-            seen_set.add(art["url"])
             continue
         pub = parse_pub_date(body, art["url"]) or url_dt
         if not after_cutoff(pub, cutoff):
-            seen_set.add(art["url"])
             continue
         if body:
             blobs[art["source"]] = blobs.get(art["source"], "") + " " + body.lower()
         if art["url"] not in seen_set:
             new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
         seen_set.add(art["url"])
+    seen_set = {u for u in seen_set if keep_seen(u, gw, cutoff)}
     agreed, split = [], []
     for th in themes_for(gw):
         sources = [n for n, blob in blobs.items() if any(k in blob for k in th["keys"])]
@@ -250,7 +260,7 @@ def main():
         "seen": sorted(seen_set)[-200:],
     }
     NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
-    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"])
+    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set))
 
 
 if __name__ == "__main__":
