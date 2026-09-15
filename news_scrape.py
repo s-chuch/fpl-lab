@@ -8,6 +8,7 @@ from urllib.parse import urljoin, urlparse
 
 ROOT = Path(__file__).resolve().parent
 NEWS_PATH = ROOT / "news.js"
+JUNK = ("log in", "login", "lost password", "sign in", "privacy", "cookie", "wp-login")
 
 
 def get(url):
@@ -25,18 +26,62 @@ def fetch_html(url):
         return ""
 
 
-def current_gw(prev=None):
+def event_window(prev=None):
+    gw, cutoff = (prev or {}).get("gw"), None
     try:
         boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
-        upcoming = [e for e in sorted(boot["events"], key=lambda e: e["id"]) if not e.get("finished")]
+        events = sorted(boot["events"], key=lambda e: e["id"])
+        upcoming = [e for e in events if not e.get("finished")]
+        finished = [e for e in events if e.get("finished")]
         if upcoming:
-            return upcoming[0]["id"]
-        current = next((e["id"] for e in boot["events"] if e.get("is_current") or e.get("is_next")), None)
-        if current:
-            return current
+            gw = upcoming[0]["id"]
+        elif any(e.get("is_current") or e.get("is_next") for e in events):
+            gw = next(e["id"] for e in events if e.get("is_current") or e.get("is_next"))
+        if finished:
+            raw = finished[-1].get("deadline_time") or ""
+            cutoff = parse_iso(raw)
     except Exception:
         pass
-    return (prev or {}).get("gw")
+    return gw, cutoff
+
+
+def parse_iso(raw):
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00")).astimezone(timezone.utc)
+    except Exception:
+        return None
+
+
+def parse_pub_date(html, url):
+    patterns = [
+        r'property=["\']article:published_time["\'][^>]*content=["\']([^"\']+)',
+        r'name=["\']article:published_time["\'][^>]*content=["\']([^"\']+)',
+        r'property=["\']og:updated_time["\'][^>]*content=["\']([^"\']+)',
+        r'<time[^>]+datetime=["\']([^"\']+)',
+        r'"datePublished"\s*:\s*"([^"]+)"',
+        r'"dateCreated"\s*:\s*"([^"]+)"',
+    ]
+    for pat in patterns:
+        m = re.search(pat, html or "", re.I)
+        if m:
+            dt = parse_iso(m.group(1))
+            if dt:
+                return dt
+    m = re.search(r"/(20\d{2})/(\d{2})/(\d{2})/", url or "")
+    if m:
+        try:
+            return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+        except Exception:
+            pass
+    return None
+
+
+def after_cutoff(dt, cutoff):
+    if not cutoff:
+        return bool(dt)
+    return bool(dt) and dt > cutoff
 
 
 def load_news():
@@ -60,6 +105,11 @@ def page_title(html, url):
     return re.sub(r"\s+", " ", unescape(m.group(1))).strip()[:160]
 
 
+def is_junk(title, url):
+    blob = f"{title} {url}".lower()
+    return any(j in blob for j in JUNK)
+
+
 def extract_article_links(html, base, source, gw):
     host = urlparse(base).netloc
     out, seen = [], set()
@@ -73,7 +123,7 @@ def extract_article_links(html, base, source, gw):
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
-        if len(text) < 12 or href in seen:
+        if len(text) < 12 or href in seen or is_junk(text, href):
             continue
         seen.add(href)
         out.append({"source": source, "url": href, "title": text[:160], "current": any(t in low for t in gw_tokens)})
@@ -126,32 +176,55 @@ def themes_for(gw):
     ]
 
 
+def url_date(url):
+    m = re.search(r"/(20\d{2})/(\d{2})/(\d{2})/", url or "")
+    if not m:
+        return None
+    try:
+        return datetime(int(m.group(1)), int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+    except Exception:
+        return None
+
+
 def main():
     prev = load_news()
-    seen_set = set(prev.get("seen") or [])
-    gw = current_gw(prev)
+    gw, cutoff = event_window(prev)
+    seen_set = set()
+    for url in prev.get("seen") or []:
+        dt = url_date(url)
+        if dt and cutoff and not after_cutoff(dt, cutoff):
+            continue
+        seen_set.add(url)
     listings = site_listings(gw)
     blobs, links, discovered, used = {}, [], [], set()
     for source, url in listings:
         html = fetch_html(url)
-        blobs[source] = blobs.get(source, "") + " " + html.lower()
         if source not in used:
             links.append({"name": source, "url": url})
             used.add(source)
         discovered.extend(extract_article_links(html, url, source, gw))
     first_seed = len(seen_set) < 8
     new_articles = []
-    if not first_seed:
-        for art in discovered:
-            if art["url"] in seen_set:
-                continue
+    for art in discovered:
+        url_dt = url_date(art["url"])
+        if url_dt and cutoff and not after_cutoff(url_dt, cutoff):
+            continue
+        body = ""
+        if art["url"] not in seen_set or first_seed:
             body = fetch_html(art["url"])
             if body:
-                blobs[art["source"]] = blobs.get(art["source"], "") + " " + body.lower()
                 art["title"] = page_title(body, art["url"]) or art["title"]
-            new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
+        if is_junk(art["title"], art["url"]):
             seen_set.add(art["url"])
-    for art in discovered:
+            continue
+        pub = parse_pub_date(body, art["url"]) or url_dt
+        if not after_cutoff(pub, cutoff):
+            seen_set.add(art["url"])
+            continue
+        if body:
+            blobs[art["source"]] = blobs.get(art["source"], "") + " " + body.lower()
+        if art["url"] not in seen_set:
+            new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
         seen_set.add(art["url"])
     agreed, split = [], []
     for th in themes_for(gw):
@@ -166,8 +239,9 @@ def main():
         split = prev.get("split") or []
     news = {
         "gw": gw,
+        "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
+        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites.",
         "agreed": agreed,
         "split": split,
         "links": links,
@@ -176,7 +250,7 @@ def main():
         "seen": sorted(seen_set)[-200:],
     }
     NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
-    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw)
+    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"])
 
 
 if __name__ == "__main__":
