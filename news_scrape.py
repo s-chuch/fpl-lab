@@ -27,19 +27,25 @@ def fetch_html(url):
 
 
 def event_window(prev=None):
+    """Return (current_gw, cutoff).
+
+    cutoff = the *current* gameweek's deadline_time. Once that deadline has
+    passed, everything published before it is purged from seen and from the
+    article list. New = published strictly after this cutoff.
+    """
     gw, cutoff = (prev or {}).get("gw"), None
     try:
         boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
         events = sorted(boot["events"], key=lambda e: e["id"])
         upcoming = [e for e in events if not e.get("finished")]
-        finished = [e for e in events if e.get("finished")]
         if upcoming:
-            gw = upcoming[0]["id"]
+            cur = upcoming[0]
+            gw = cur["id"]
+            cutoff = parse_iso(cur.get("deadline_time") or "")
         elif any(e.get("is_current") or e.get("is_next") for e in events):
-            gw = next(e["id"] for e in events if e.get("is_current") or e.get("is_next"))
-        if finished:
-            raw = finished[-1].get("deadline_time") or ""
-            cutoff = parse_iso(raw)
+            cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
+            gw = cur["id"]
+            cutoff = parse_iso(cur.get("deadline_time") or "")
     except Exception:
         pass
     return gw, cutoff
@@ -251,7 +257,7 @@ def main():
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites.",
+        "note": "Public pages only. New = published after current GW deadline. Agreed = 3+ sites.",
         "agreed": agreed,
         "split": split,
         "links": links,
