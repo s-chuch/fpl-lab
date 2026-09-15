@@ -1,7 +1,8 @@
 window.FPL_NEWS = {
   "gw": 5,
-  "generated_at": "2026-09-15 15:30 UTC",
-  "note": "Public pages only. Agreed = 3+ of the sites in sources.json.",
+  "cutoff": "2026-09-12 12:30 UTC",
+  "generated_at": "2026-09-15 16:08 UTC",
+  "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites.",
   "agreed": [
     {
       "text": "Gakpo is a priority GW5 transfer in.",
@@ -175,70 +176,36 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "Log in to Fix",
-      "url": "https://www.fantasyfootballfix.com/assistant_manager/"
-    },
-    {
-      "source": "Fix",
-      "title": "Fantasy Premier League future planner - Fantasy Football Fix",
-      "url": "https://www.fantasyfootballfix.com/planner/"
-    },
-    {
-      "source": "Scout",
-      "title": "Rogers, Gross, Schade, Tzolis: Buy, keep or sell in Gameweek 5?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/rogers-gross-schade-tzolis-buy-keep-or-sell-in-gameweek-5"
-    },
-    {
-      "source": "Scout",
-      "title": "Porro, Gomez, Tonali: FPL injury updates ahead of Gameweek 5",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/porro-gomez-fpl-injury-updates-ahead-of-gameweek-5"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Triple Newcastle injury blow + \u00a34.5m Bogle leads FPL",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/15/fpl-notes-triple-newcastle-injury-blow-4-5m-bogle-leads-fpl-standings"
-    },
-    {
-      "source": "Scout",
-      "title": "Lost Password \u2039 Fantasy Football Scout \u2014 WordPress",
-      "url": "https://www.fantasyfootballscout.co.uk/wp-login.php?action=lostpassword&redirect_to=https%3A%2F%2Fwww.fantasyfootballscout.co.uk%2F2026%2F09%2F15%2Ffpl-notes-triple-newcastle-injury-blow-4-5m-bogle-leads-fpl-standings"
-    },
-    {
-      "source": "AAFPL",
-      "title": "2026/27 FPL Chip Strategy Guide - First Half of the Season",
-      "url": "https://allaboutfpl.com/2026/08/2026-27-fpl-chip-strategy-guide-first-half-of-the-season/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "8 Simple FPL Tips For a Good FPL Overall Rank | FPL Paz",
-      "url": "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential picks, analysis and weekly updates. ",
-      "url": "https://allaboutfpl.com/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "All Time FPL Dream Team Since The First Season in 2002/03 | FPL History",
-      "url": "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Best FPL GW4 Captaincy Archives - ALLABOUTFPL: Your one stop place for all FPL tips, FPL captain picks, FPL news, FPL players, previews, reviews,differential pi",
-      "url": "https://allaboutfpl.com/tag/best-fpl-gw4-captaincy/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Best FPL Midfielders at Each Price Point for the 2026/27 Season",
-      "url": "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
+    "https://allaboutfpl.com/",
+    "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
+    "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
+    "https://allaboutfpl.com/2026/07/aks-fpl-first-draft-team-reveal-3x-top-5k-finishes/",
+    "https://allaboutfpl.com/2026/07/best-4-0-million-fpl-defenders-for-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/07/best-5-0-5-5-million-fpl-defenders-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/07/best-premium-fpl-defenders-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/2026-2027-fpl-team-structure-guide-with-drafts-ratings/",
+    "https://allaboutfpl.com/2026/08/2026-27-fpl-chip-strategy-guide-first-half-of-the-season/",
+    "https://allaboutfpl.com/2026/08/best-4-5-million-fpl-defenders-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/best-6m-forwards-comparison-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-budget-forwards-4-5-6-0-million-26-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-forwards-at-each-price-point-for-the-2026-27-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-gw1-drafts-for-the-26-27-fpl-season-with-pros-cons/",
+    "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-value-defenders-and-gks-for-the-2026-27-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-value-forwards-to-consider-for-the-2026-27-season/",
+    "https://allaboutfpl.com/2026/08/best-fpl-value-midfielders-to-consider-for-the-2026-27-season/",
+    "https://allaboutfpl.com/2026/08/best-mid-price-fpl-midfielders-for-the-26-27-season-6-5-to-7-5m/",
+    "https://allaboutfpl.com/2026/08/best-premium-fpl-midfielders-8-0-12-0-million-26-27-season/",
+    "https://allaboutfpl.com/category/game-week-preview/buy-hold-sell/",
+    "https://allaboutfpl.com/category/game-week-preview/captain-picks/",
+    "https://allaboutfpl.com/tag/best-fpl-gw4-captaincy/",
+    "https://allaboutfpl.com/tag/best-fpl-gw5-captain/",
+    "https://allaboutfpl.com/tag/best-fpl-gw5-defenders/",
+    "https://allaboutfpl.com/tag/best-fpl-scout-picks/",
     "https://allaboutfpl.com/tag/fpl-gameweek-4-transfer-plans/",
     "https://allaboutfpl.com/tag/fpl-gameweek-5-captain-picks/",
     "https://allaboutfpl.com/tag/fpl-gameweek-5-captaincy/",
@@ -341,44 +308,6 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/team-reveals/fpl_heisenberg",
     "https://www.fantasyfootballhub.co.uk/team-reveals/fplheisenberg",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
-    "https://www.fantasyfootballscout.co.uk/2019/09/09/manchester-city-options-expected-to-battle-for-gameweek-5-captaincy",
-    "https://www.fantasyfootballscout.co.uk/2019/09/11/best-man-city-players-for-a-wildcard-ahead-of-gameweek-5",
-    "https://www.fantasyfootballscout.co.uk/2019/09/12/how-to-handle-the-emerging-template-ahead-of-gameweek-5",
-    "https://www.fantasyfootballscout.co.uk/2019/09/12/the-scout-squad-picks-for-fpl-gameweek-5",
-    "https://www.fantasyfootballscout.co.uk/2019/09/13/sterling-and-aguero-tipped-for-big-scores-by-gameweek-5-scout-picks",
-    "https://www.fantasyfootballscout.co.uk/2019/09/13/the-fpl-gameweek-5-team-news-and-injury-updates",
-    "https://www.fantasyfootballscout.co.uk/2019/09/13/who-is-the-best-captain-for-gameweek-5",
-    "https://www.fantasyfootballscout.co.uk/2026/07/25/get-your-fpl-2026-27-team-rated-and-transfer-tips",
-    "https://www.fantasyfootballscout.co.uk/2026/08/04/fpl-2026-27-best-chip-strategy-guide",
-    "https://www.fantasyfootballscout.co.uk/2026/08/19/introducing-our-new-fpl-stats-centre",
-    "https://www.fantasyfootballscout.co.uk/2026/08/31/how-to-play-uefa-champions-league-fantasy-2026-27-rules-scoring-chips",
-    "https://www.fantasyfootballscout.co.uk/2026/09/01/how-the-great-and-the-good-did-in-fpl-gameweek-2",
-    "https://www.fantasyfootballscout.co.uk/2026/09/02/fantasy-efl-gameweek-4-scout-picks-3",
-    "https://www.fantasyfootballscout.co.uk/2026/09/03/ffs-mini-leagues-and-community-competitions-gameweek-2-3",
-    "https://www.fantasyfootballscout.co.uk/2026/09/03/ndiaye-enzo-to-man-city-how-does-it-affect-fpl",
-    "https://www.fantasyfootballscout.co.uk/2026/09/04/get-the-winning-edge-in-ucl-fantasy-with-our-new-toolkit",
-    "https://www.fantasyfootballscout.co.uk/2026/09/05/75-of-the-best-worst-funniest-ucl-fantasy-team-names",
-    "https://www.fantasyfootballscout.co.uk/2026/09/05/ucl-fantasy-2026-27-matchday-1-early-scout-picks",
-    "https://www.fantasyfootballscout.co.uk/2026/09/07/gakpo-szoboszlai-sangare-konsa-buy-keep-or-sell-in-gameweek-4",
-    "https://www.fantasyfootballscout.co.uk/2026/09/08/ffs-mini-leagues-and-community-competitions-gameweek-3-3",
-    "https://www.fantasyfootballscout.co.uk/2026/09/08/fpl-gameweek-4-wildcard-best-team-pros-cons-of-using",
-    "https://www.fantasyfootballscout.co.uk/2026/09/08/ucl-fantasy-2026-27-matchday-1-early-scout-picks",
-    "https://www.fantasyfootballscout.co.uk/2026/09/08/who-are-the-best-chelsea-players-to-buy-in-fpl-2",
-    "https://www.fantasyfootballscout.co.uk/2026/09/09/fpl-notes-dedic-injury-mendy-sub-explained-another-hall-assist",
-    "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4",
-    "https://www.fantasyfootballscout.co.uk/2026/09/09/goals-assists-imminent-who-is-due-in-fpl-gameweek-4/",
-    "https://www.fantasyfootballscout.co.uk/2026/09/09/how-fpl-harry-mark-sutherns-more-did-in-gameweek-3",
-    "https://www.fantasyfootballscout.co.uk/2026/09/10/fantasy-efl-gameweek-5-scout-picks-3",
-    "https://www.fantasyfootballscout.co.uk/2026/09/10/gakpo-v-rogers-v-mgw-top-everton-picks-buy-konsa-fpl-qa",
-    "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-differentials-3-low-owned-picks-to-consider",
-    "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-gameweek-4-scout-picks-three-triple-ups",
-    "https://www.fantasyfootballscout.co.uk/2026/09/11/fpl-generals-gameweek-4-team-reveal-triple-captain",
-    "https://www.fantasyfootballscout.co.uk/2026/09/11/who-is-the-best-captain-for-fpl-gameweek-4-5",
-    "https://www.fantasyfootballscout.co.uk/2026/09/12/3pm-team-news-pedro-palmer-rogers-start-as-expected",
-    "https://www.fantasyfootballscout.co.uk/2026/09/12/fpl-gameweek-4-saturdays-goals-assists-bonus-defcon-points-2",
-    "https://www.fantasyfootballscout.co.uk/2026/09/12/spurs-v-everton-team-news-porro-udogie-out-grealish-still-a-sub",
-    "https://www.fantasyfootballscout.co.uk/2026/09/12/sunderland-v-arsenal-team-news-no-changes-from-last-weekend",
-    "https://www.fantasyfootballscout.co.uk/2026/09/12/the-idiots-guide-to-gameweek-4-of-fpl-2026-27",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/coventry-v-brighton-team-news-both-sides-unchanged",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-gross-17-pointer-another-de-cuyper-assist-awoniyi-ban",
     "https://www.fantasyfootballscout.co.uk/2026/09/13/fpl-notes-iraola-on-fatigue-barcola-fitness-fulham-improve",
