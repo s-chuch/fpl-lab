@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 5,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-15 22:50 UTC",
+  "generated_at": "2026-09-15 23:02 UTC",
   "note": "Public pages only. New = published after current GW deadline. Agreed = 3+ sites.",
   "agreed": [
     {
