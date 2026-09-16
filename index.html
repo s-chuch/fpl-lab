@@ -50,6 +50,7 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 <script src="news.js"></script>
 <script src="x-posts.js"></script>
 <script src="fh.js"></script>
+<script src="plan-intel.js"></script>
 <script>
 const D=window.FPL_DATA;
 const TZ="America/Toronto";
@@ -112,7 +113,7 @@ function benchBlock(key,title){
     <p class="note">Your bench</p><div class="xi">${yours}</div>
     <p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
-document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss (you had the info). Yellow = variance (reasonable call, points went the other way).</p>`;
+document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
 function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
 function renderTransfers(){
   const rows=D.transfers||[];
@@ -124,7 +125,7 @@ function renderTransfers(){
   document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfer points</h2><p class="note">Season net <b class="${cls(total)}">${sign(total)}</b></p><div class="xi">${gwLines}</div></div><div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 renderTransfers();
-const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"]];
+const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
 function agreedPool(){
   const N=window.FPL_NEWS||{},X=window.FPL_X||{};
@@ -191,7 +192,17 @@ function renderPlan(){
   const started=((((P.xis||{})["gw"+gw0]||{}).xi)||[]).map(n=>n.split(" (")[0]);
   const vs=newsVsSquad(squad, started, clubs);
   const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${b.worst||"-"}</b> · ${b.why||""}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`).join("");
-  document.getElementById("plan").innerHTML=`<div class="card"><h2>Transfer · ${T.action||"ROLL"} · ${T.ft_available??"?"} FT</h2><p class="note"><b>${actionLine}</b></p><p class="note">${T.reason||""}</p></div>${newsCard("News + X vs this squad",vs)}${benches}<div class="card"><h2>Fixtures</h2><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const I=(window.planIntel&&window.planIntel(D))||{};
+  const chipLis=(I.chipRows||[]).map(r=>`<li><span class="who">GW${r.gw} · ${r.label}</span><span class="pill ${r.rec==="HOLD"||r.used?"used":"free"}">${r.rec}</span><div class="detail">${r.why}</div></li>`).join("");
+  const opt=(I.optional||[]).map(x=>`<li><span class="note">${x}</span></li>`).join("");
+  const intel=`<div class="card"><h2>Chips · next 2 GWs</h2><p class="note">Calls use News + X plus chips you have already played.</p><ul class="chiplist">${chipLis||"<li><span class=note>Waiting for news.js / x-posts.js.</span></li>"}</ul></div>
+    <div class="card"><h2>Transfers · ${I.action||T.action||"ROLL"} · ${I.ft??T.ft_available??"?"} FT · bank £${(I.bank||0).toFixed? (I.bank||0).toFixed(1):I.bank}</h2>
+      <p class="note"><b>${I.moveLine||actionLine}</b></p>
+      <p class="note">${I.reason||T.reason||""}</p>
+      ${I.targets&&I.targets.length?`<p class="note">Agreed and missing: ${I.targets.join(", ")}</p>`:""}
+      ${opt?`<ul class="chiplist">${opt}</ul>`:""}
+    </div>`;
+  document.getElementById("plan").innerHTML=`${intel}${newsCard("News + X vs this squad",vs)}${benches}<div class="card"><h2>Fixtures</h2><table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 renderPlan();
 function renderLeagues(){
@@ -209,7 +220,7 @@ function renderLeagues(){
   const ov=(L.public||[]).find(p=>p.id===314)||{rank:D.team&&D.team.overall_rank,last_rank:null};
   const ot=(L.overall_template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">You own the overall template (25%+).</p>`;
   const od=(L.overall_diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">No overall differentials under 12%.</p>`;
-  document.getElementById("leagues").innerHTML=`<div class="warn">Overall uses global selected %. Mini-leagues counted from GW${L.picks_gw||""} picks.</div><div class="card"><h2>Overall</h2><p class="note">Rank <b>${fmt(ov.rank)}</b>${ov.last_rank?" · was "+fmt(ov.last_rank):""} · ${D.team.overall_points} pts</p><p class="note">Template missing (25%+ owned, not in Shaaland)</p><div class="xi">${ot}</div><p class="note">Your differentials (≤12% owned)</p><div class="xi">${od}</div></div>${mini}`;
+  document.getElementById("leagues").innerHTML=`<div class="warn">Overall uses global selected %. Mini-leagues counted from GW${L.picks_gw||""} picks.</div><div class="card"><h2>Overall</h2><p class="note">Rank <b>${fmt(ov.rank)}</b>${ov.last_rank?" · was "+fmt(ov.last_rank):""} · ${D.team.overall_points} pts</p><p class="note">Template missing (25%+ owned)</p><div class="xi">${ot}</div><p class="note">Your differentials (≤12% owned)</p><div class="xi">${od}</div></div>${mini}`;
 }
 renderLeagues();
 const co=D.chips_official||{};
@@ -225,7 +236,7 @@ function renderNews(){
   const links=(N.links||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(" · ");
   const fresh=N.new_articles||[];
   const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles recently.</span></li>`;
-  document.getElementById("news").innerHTML=`<div class="warn">Public GW${N.gw||""} previews. Agreed = 3+ sites.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting for refresh."}</p></div>`;
+  document.getElementById("news").innerHTML=`<div class="warn">Split first. Agreed = 3+ sites.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting."}</p></div>`;
 }
 renderNews();
 function renderX(){
@@ -236,7 +247,7 @@ function renderX(){
   const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
   const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
   const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
-  document.getElementById("xtab").innerHTML=`<div class="warn">Public posts from the tracked X list. Agreed = 3+ accounts.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div>`;
+  document.getElementById("xtab").innerHTML=`<div class="warn">Split first. Agreed = 3+ accounts.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div>`;
 }
 renderX();
 function renderFh(){
@@ -245,27 +256,7 @@ function renderFh(){
   const xi=(F.xi||[]).map(p=>`<div class="chip ${p.tag==="C"?"ok":""}">${p.pos} · ${p.name}${p.tag?" ("+p.tag+")":""} · ${p.fix||""}</div>`).join("");
   const bench=(F.bench||[]).map(p=>`<div class="chip sit">${p.pos} · ${p.name} · ${p.fix||""}</div>`).join("");
   const recs=(F.recs||[]).map(r=>`<li><span class="who">${r.verdict}</span><div class="detail">${r.text}</div></li>`).join("");
-  const names=(F.xi||[]).map(p=>p.name).concat((F.bench||[]).map(p=>p.name));
-  const started=(F.xi||[]).map(p=>p.name);
-  const clubs={}; (F.xi||[]).concat(F.bench||[]).forEach(p=>clubs[p.name]=p.club||"");
-  const vs=names.length?newsVsSquad(names, started, clubs):null;
-  let audit="";
-  if(A.fh_points!=null){
-    const max=Math.max(A.fh_points||0,A.original_points||0,1);
-    const origXi=(A.original_xi||[]).map(p=>`<div class="chip">${p.name} · ${p.got}${p.mult>1?" (C)":""}</div>`).join("");
-    const fhXi=(A.fh_xi||[]).map(p=>`<div class="chip ${p.cap?"ok":""}">${p.name} · ${p.got}${p.cap?" (C)":""}</div>`).join("");
-    audit=`<div class="card"><h2>FH vs original · GW${A.gw||F.gw||""}</h2>
-      ${bar("FH",A.fh_points||0,max,A.net<0?"bad":"")}
-      ${bar("Original",A.original_points||0,max,A.net>0?"bad":"")}
-      <p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · ${A.verdict||""}</p>
-      <p class="note">${A.why||""} Autosub on original: ${A.autosubs||"none"}. Caps: original ${A.original_cap||"?"} vs FH ${A.fh_cap||"?"}.</p></div>
-      <div class="card"><h2>Original XI scored that week</h2><div class="xi">${origXi}</div></div>
-      <div class="card"><h2>Free Hit XI scored</h2><div class="xi">${fhXi}</div></div>`;
-  }
-  const warn=A.fh_points!=null
-    ?`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done. Original = pre-chip squad with official autosubs and a normal x2 captain.</div>`
-    :`<div class="warn">GW${F.gw||""} draft. Deadline ${toToronto(F.deadline)}.</div>`;
-  document.getElementById("fh").innerHTML=`${warn}${audit}<div class="card"><h2>Saved FH XI · ${F.captain||""} (C)</h2><div class="xi">${xi||""}</div></div><div class="card"><h2>Saved bench</h2><div class="xi">${bench||""}</div></div>${vs?newsCard("News + X vs this FH",vs):""}<div class="card"><h2>Notes</h2><ul class="chiplist">${recs||""}</ul></div>`;
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${A.process||"?"} · ${A.verdict||""}</p><p class="note">${A.why||""}</p></div><div class="card"><h2>Saved FH XI · ${F.captain||""} (C)</h2><div class="xi">${xi}</div></div><div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`;
 }
 renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
