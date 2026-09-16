@@ -188,13 +188,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-16 13:16 UTC",
+  "generated_at": "2026-09-16 22:48 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590522,
+    "overall_rank": 1590512,
     "bank": 4.9,
     "value": 100.5
   },
@@ -734,7 +734,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590522,
+        "rank": 1590512,
         "last_rank": 1240844
       }
     ],
@@ -742,17 +742,17 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 75.5
+        "own": 75.1
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 37.9
+        "own": 38.1
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.3
+        "own": 28.2
       },
       {
         "name": "Palmer",
@@ -769,12 +769,12 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 5.2
+        "own": 5.3
       },
       {
         "name": "Kusi-Asare",
         "club": "FUL",
-        "own": 5.9
+        "own": 5.8
       },
       {
         "name": "Mitchell",
@@ -789,7 +789,7 @@ window.FPL_DATA = {
       {
         "name": "N.Williams",
         "club": "NFO",
-        "own": 8.6
+        "own": 8.7
       }
     ],
     "picks_gw": 4
