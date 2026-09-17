@@ -188,7 +188,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 20:06 UTC",
+  "generated_at": "2026-09-17 20:11 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
