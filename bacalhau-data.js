@@ -188,7 +188,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 21:41 UTC",
+  "generated_at": "2026-09-17 22:46 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -1155,12 +1155,12 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 73.0
+        "own": 72.8
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 38.7
+        "own": 38.8
       },
       {
         "name": "Cherki",
@@ -1177,7 +1177,7 @@ window.FPL_DATA = {
       {
         "name": "Walle Egeli",
         "club": "IPS",
-        "own": 3.6
+        "own": 3.7
       },
       {
         "name": "Dewsbury-Hall",

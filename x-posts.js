@@ -1,7 +1,7 @@
 window.FPL_X = {
   "gw": 5,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-17 21:41 UTC",
+  "generated_at": "2026-09-17 22:46 UTC",
   "accounts": [
     {
       "name": "FPL Kayman",
