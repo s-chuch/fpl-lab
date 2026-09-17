@@ -1,1 +1,225 @@
-SEE_FILE
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Shaaland · FPL Lab</title>
+<style>
+:root{--bg:#070B10;--card:#101820;--ink:#F3F6F8;--muted:#8B95A1;--line:#1E2A36;--teal:#1B7F6E;--gold:#C9A227;--red:#E85D4C;--green:#3DDC97;--yellow:#E6C35C}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,sans-serif}
+body{padding:16px 14px 64px;max-width:980px;margin:0 auto}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
+h1{font-size:28px;margin:6px 0 4px}.sub{color:var(--muted);font-size:13px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
+@media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.kpi b{display:block;font-size:22px}.kpi span{font-size:11px;color:var(--muted);text-transform:uppercase}
+.tabs{display:flex;flex-direction:column;gap:8px;overflow:visible;padding:6px 0 14px;position:sticky;top:0;background:var(--bg);z-index:5}
+.tab-groups,.tab-pills{display:flex;flex-wrap:wrap;gap:6px}
+.tabs button{border:1px solid var(--line);background:#0C141C;color:var(--ink);border-radius:999px;padding:8px 12px;font-size:13px;white-space:nowrap}
+.tabs button.on{background:var(--teal);border-color:var(--teal);font-weight:700}
+.tabs button.group{border-radius:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:7px 10px}
+.tabs button.group.on{color:var(--gold);border-color:var(--gold);background:#16120a;font-weight:700}
+section{display:none}section.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 12px}
+.card h2{font-size:15px;margin:0 0 10px}table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase}
+.pos{color:var(--green);font-weight:700}.neg{color:var(--red);font-weight:700}
+.pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
+.pill.used{background:#3a1d1a;color:#ffb4a8}.pill.free{background:#16352e;color:#7dffc8}
+.xi{display:flex;flex-wrap:wrap;gap:6px}.chip{background:#0C141C;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
+.chip.sit{opacity:.55}.chip.ok{border-color:var(--green);color:var(--green)}
+.chip.process{border-color:var(--red);color:var(--red)}
+.chip.variance{border-color:var(--yellow);color:var(--yellow)}
+.note{font-size:13px;color:var(--muted);line-height:1.45}
+.warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
+footer{margin-top:22px;color:var(--muted);font-size:12px}
+.chiplist{list-style:none;margin:0;padding:0}
+.chiplist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+.chiplist li:last-child{border-bottom:0}
+.chiplist .who{font-weight:700}.chiplist .detail{width:100%;color:var(--muted);font-size:13px;margin-top:4px}
+</style></head><body>
+<header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
+<div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
+<section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
+<section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
+<footer id="foot"></footer>
+<script src="data.js"></script>
+<script src="bench-fix.js"></script>
+<script src="news.js"></script>
+<script src="x-posts.js"></script>
+<script src="fh.js"></script>
+<script src="plan-intel.js"></script>
+<script>
+const D=window.FPL_DATA;
+const TZ="America/Toronto";
+function toToronto(s){
+  if(s==null||s==="") return "-";
+  const raw=String(s).trim();
+  if(/\b(EDT|EST)\b/i.test(raw) && !/UTC/i.test(raw)) return raw.replace(/\bUTC\b/g,"").trim()+" (Toronto)";
+  let d=null;
+  const m=raw.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::(\d{2}))?\s*(UTC|Z)?$/i);
+  if(m) d=new Date(m[1]+"T"+m[2]+":"+(m[3]||"00")+"Z");
+  else { const ms=Date.parse(raw); if(!isNaN(ms)) d=new Date(ms); }
+  if(!d||isNaN(+d)) return raw;
+  return new Intl.DateTimeFormat("en-CA",{timeZone:TZ,weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true,timeZoneName:"short"}).format(d);
+}
+const fmt=n=>n==null?"-":Number(n).toLocaleString();
+const sign=n=>n==null?"-":(n>0?"+"+n:String(n));
+const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
+document.getElementById("teamName").textContent=D.team.name;
+document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
+document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+D.team.value.toFixed(1)+"m"],["Bank","£"+D.team.bank.toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+const TAB_GROUPS=[
+  {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
+  {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"]]},
+  {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"]]},
+  {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
+];
+let activeGroup="review", activeTab="season";
+function paintTabs(){
+  const g=TAB_GROUPS.find(x=>x.id===activeGroup)||TAB_GROUPS[0];
+  const groups=TAB_GROUPS.map(x=>`<button class="group ${x.id===activeGroup?"on":""}" data-group="${x.id}">${x.label}</button>`).join("");
+  const pills=g.tabs.map(([id,label])=>`<button class="${id===activeTab?"on":""}" data-id="${id}">${label}</button>`).join("");
+  document.getElementById("tabs").innerHTML=`<div class="tab-groups">${groups}</div><div class="tab-pills">${pills}</div>`;
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===activeTab));
+}
+document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.group){activeGroup=b.dataset.group; const first=(TAB_GROUPS.find(x=>x.id===activeGroup)||{}).tabs||[]; if(!first.some(t=>t[0]===activeTab)) activeTab=first[0][0];}
+  else if(b.dataset.id){activeTab=b.dataset.id; const owner=TAB_GROUPS.find(x=>x.tabs.some(t=>t[0]===activeTab)); if(owner) activeGroup=owner.id;}
+  paintTabs();};
+paintTabs();
+function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${g.chip}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
+document.getElementById("season").innerHTML=gwTable();
+const BENCH_TAG={gw2:{Verbruggen:"ok",Groß:"process","Gro\u00df":"process",Hume:"process",Davis:"variance"},gw3:{Kinsky:"variance",Tzolis:"variance",Shaw:"process",Davis:"ok"}};
+function chipClass(gw,name){const t=(BENCH_TAG[gw]||{})[name];return t?"chip "+t:"chip sit";}
+function bar(label,val,max,klass){return `<div class="barrow"><span>${label}</span><div class="track"><span class="${klass||""}" style="width:${Math.max(4,100*val/max)}%"></span></div><b>${val}</b></div>`;}
+function benchBlock(key,title){
+  const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
+  const max=Math.max(b.you,b.process,b.hindsight,1);
+  const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${x[0]} · ${x[1]}</div>`).join("");
+  const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${x[0]} · ${x[1]}</div>`).join("");
+  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max)}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
+}
+document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
+function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
+function renderTransfers(){
+  const rows=D.transfers||[];
+  const total=rows.reduce((s,t)=>s+trNet(t),0);
+  const by={}; for(const t of rows){const g=t.gw??"?"; by[g]=(by[g]||0)+trNet(t);}
+  const gwLines=Object.keys(by).sort((a,b)=>Number(a)-Number(b)).map(g=>`<div class="chip">GW${g} · <b class="${cls(by[g])}">${sign(by[g])}</b></div>`).join("");
+  const body=rows.map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${t.out} → ${t.inn}</td><td class="${cls(trNet(t))}">${t.net}</td><td>${t.verdict}</td></tr>`).join("");
+  document.getElementById("transfers").innerHTML=`<div class="card"><h2>Transfer points</h2><p class="note">Season net <b class="${cls(total)}">${sign(total)}</b></p><div class="xi">${gwLines}</div></div><div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+renderTransfers();
+const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
+function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News"})),(X.agreed||[]).map(x=>({text:x.text,from:"X"})));}
+function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
+function newsVsSquad(squadNames, startedNames, clubsByName){
+  const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
+  for(const it of agreedPool()){
+    const t=normTxt(it.text); const names=namesInText(it.text);
+    const isFade=/fade|sell into|sell /.test(t); const isCap=/captain/.test(t); const isIn=/transfer in|to target|popular forward|priority/.test(t);
+    if(isCap) caps.push(it.text);
+    if(isFade){ const startedUnited=(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"); const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
+    const mine=names.filter(n=>have.has(n)); const other=names.filter(n=>!have.has(n));
+    if(mine.length) owned.push(mine.join(", ")+" · "+it.text);
+    if(other.length && isIn) missing.push(other.join(", ")+" · "+it.text);
+  }
+  return {owned, missing, fade, caps};
+}
+function newsCard(title, vs){
+  const li=(arr,empty)=>arr.length?arr.map(x=>`<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`).join(""):`<li><span class="note">${empty}</span></li>`;
+  const cap=vs.caps[0]?`<p class="note">Captain check: ${vs.caps[0]}</p>`:"";
+  return `<div class="card"><h2>${title}</h2><p class="note">Own and agreed</p><ul class="chiplist">${li(vs.owned,"None of the agreed names are in this squad.")}</ul><p class="note">Missing and agreed</p><ul class="chiplist">${li(vs.missing,"You already own the agreed targets, or none were named.")}</ul><p class="note">Fade, but you still start them</p><ul class="chiplist">${li(vs.fade,"No fade conflict.")}</ul>${cap}</div>`;
+}
+function renderPlan(){
+  const P=D.plan||{},up=P.upcoming||[];
+  if(!up.length){document.getElementById("plan").innerHTML=`<div class="warn">Waiting for refresh.</div>`;return;}
+  const heads=up.map(u=>`<th>GW${u.gw}</th>`).join("");
+  const avail=P.availability||{};
+  const rows=(P.rows||[]).map(r=>{
+    const a=avail[r[1]]||null;
+    const badge=a&&a.label?` <span class="pill used">${a.label}</span>`:"";
+    let c=`<td>${r[0]}</td><td>${r[1]}${badge}</td>`;
+    for(let i=0;i<up.length;i++){
+      const xi=((P.xis||{})["gw"+up[i].gw]||{}).xi||[];
+      const started=new Set(xi.map(n=>n.split(" (")[0]));
+      let call=String(r[3+i*3])==="Blank"?"BLANK":(started.has(r[1])?"START":"SIT");
+      c+=`<td>${r[3+i*3]} <b class="${call==="START"?"pos":"neg"}">${call}</b></td>`;
+    }
+    return `<tr>${c}</tr>`;
+  }).join("");
+  const T=P.transfer||{}; const move=T.move;
+  const actionLine=T.action==="TRANSFER"&&move?`${move.out} → ${move.inn}`:"Roll the free transfer";
+  const squad=(P.rows||[]).map(r=>r[1]); const clubs={}; (P.rows||[]).forEach(r=>clubs[r[1]]=r[2]);
+  const gw0=up[0]&&up[0].gw; const started=((((P.xis||{})["gw"+gw0]||{}).xi)||[]).map(n=>n.split(" (")[0]);
+  const vs=newsVsSquad(squad, started, clubs);
+  const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${b.worst||"-"}</b> · ${b.why||""}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${x}</div>`).join("")}</div></div>`).join("");
+  const I=(window.planIntel&&window.planIntel(D))||{};
+  const chipLis=(I.chipRows||[]).map(r=>`<li><span class="who">GW${r.gw} · ${r.label}</span><span class="pill ${r.rec==="HOLD"||r.used?"used":"free"}">${r.rec}</span><div class="detail">${r.why}</div></li>`).join("");
+  const opt=(I.optional||[]).map(x=>`<li><span class="note">${x}</span></li>`).join("");
+  const intel=`<div class="card"><h2>Chips · next 2 GWs</h2><p class="note">Calls use News + X plus chips you have already played.</p><ul class="chiplist">${chipLis||"<li><span class=note>Waiting for news.js.</span></li>"}</ul></div><div class="card"><h2>Transfers · ${I.action||T.action||"ROLL"} · ${I.ft??T.ft_available??"?"} FT · bank £${(I.bank||0).toFixed?(I.bank||0).toFixed(1):I.bank}</h2><p class="note"><b>${I.moveLine||actionLine}</b></p><p class="note">${I.reason||T.reason||""}</p>${I.targets&&I.targets.length?`<p class="note">Agreed and missing: ${I.targets.join(", ")}</p>`:""}${opt?`<ul class="chiplist">${opt}</ul>`:""}</div>`;
+  const Ltac=I.league||{};
+  const vsLead=`<div class="card"><h2>Vs 1st & 2nd${Ltac.league?" · "+Ltac.league:""}</h2><p class="note"><b>${Ltac.cap||"Captain Haaland if the room owns him."}</b></p><p class="note">${Ltac.transfer||""}</p>${(Ltac.start||[]).length?`<p class="note">Start these league diffs</p><div class="xi">${Ltac.start.map(x=>`<div class="chip ok">${x}</div>`).join("")}</div>`:""}${(Ltac.bench||[]).length?`<p class="note">Owned diffs that are sits — not tactics</p><div class="xi">${Ltac.bench.map(x=>`<div class="chip sit">${x}</div>`).join("")}</div>`:""}${(Ltac.wc||[]).length?`<p class="note">WC names this league barely owns</p><div class="xi">${Ltac.wc.map(x=>`<div class="chip">${x}</div>`).join("")}</div>`:""}</div>`;
+  const injuryNote=Object.keys(avail).length?`<p class="note">Availability from FPL: ${Object.entries(avail).map(([n,a])=>n+" "+(a.label||a.kind)).join(" · ")}</p>`:"";
+  document.getElementById("plan").innerHTML=`${intel}${vsLead}${newsCard("News + X vs this squad",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+renderPlan();
+function renderLeagues(){
+  const L=D.leagues||{};
+  const want=new Set([125784,494594]);
+  const names=new Set(["european super league","decision league"]);
+  const list=(L.mini||[]).filter(lg=>want.has(lg.id)||names.has(String(lg.name||"").toLowerCase()));
+  let mini="";
+  for(const lg of list){
+    const table=(lg.table||[]).map(r=>`<tr class="${r.me?"pos":""}"><td>${r.rank}</td><td>${r.team}${r.me?" · you":""}</td><td>${r.pts}</td></tr>`).join("");
+    const templ=(lg.template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">You own the league template.</p>`;
+    const diffs=(lg.diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">No low-owned picks here.</p>`;
+    const T=lg.tactics||{};
+    const startDiffs=(T.you_unique||[]).map(x=>`<div class="chip ok">${x.name} · ${x.count}/${x.n}${x.vs_first?" vs 1st":""}${x.vs_second?" vs 2nd":""}</div>`).join("")||`<p class="note">No unique diffs vs 1st/2nd yet. Wait for refresh.py.</p>`;
+    const copy=(T.they_share||[]).map(x=>`<div class="chip sit">${x.name} · ${x.count}/${x.n}</div>`).join("")||`<p class="note">1st and 2nd do not share a name you lack.</p>`;
+    const caps=(T.cap_last||[]).map(x=>x.name+" "+x.count).join(" · ")||"—";
+    const gap=T.gap_to_first==null?"":` · ${T.gap_to_first>0?"-"+T.gap_to_first:"+"+(-T.gap_to_first)} vs 1st`;
+    mini+=`<div class="card"><h2>Vs 1st & 2nd · ${(T.first&&T.first.name)||"?"} ${(T.first&&T.first.pts)||""} / ${(T.second&&T.second.name)||"?"} ${(T.second&&T.second.pts)||""}${gap}</h2><p class="note">Start these diffs</p><div class="xi">${startDiffs}</div><p class="note">Do not copy — both ahead own these</p><div class="xi">${copy}</div><p class="note">Last captains: ${caps}</p></div>`;
+    mini+=`<div class="card"><h2>${lg.name} · ${lg.size} teams · you P${lg.rank}</h2><table><thead><tr><th>#</th><th>Team</th><th>Pts</th></tr></thead><tbody>${table}</tbody></table><p class="note">Template missing (40%+)</p><div class="xi">${templ}</div><p class="note">Your differentials (≤25%)</p><div class="xi">${diffs}</div></div>`;
+  }
+  const ov=(L.public||[]).find(p=>p.id===314)||{rank:D.team&&D.team.overall_rank};
+  const ot=(L.overall_template||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">You own the overall template (25%+).</p>`;
+  const od=(L.overall_diffs||[]).map(x=>`<div class="chip">${x.name} · ${x.club} · ${x.own}%</div>`).join("")||`<p class="note">No overall differentials under 12%.</p>`;
+  document.getElementById("leagues").innerHTML=`<div class="warn">Mini-league tactics use 1st and 2nd, not Overall %.</div><div class="card"><h2>Overall</h2><p class="note">Rank <b>${fmt(ov.rank)}</b> · ${D.team.overall_points} pts</p><p class="note">Template missing (25%+)</p><div class="xi">${ot}</div><p class="note">Differentials (≤12%)</p><div class="xi">${od}</div></div>${mini}`;
+}
+renderLeagues();
+const co=D.chips_official||{};
+const FHNET=(D.fh_audit||(window.FPL_FH&&window.FPL_FH.audit)||null);
+const CHIP_NET={bboost:{net:12,note:"Kinsky 2 + Groß 2 + Davis 2 + Rodon 6"},"3xc":{net:9,note:"Haaland 9 raw. Triple gave 27 instead of 18."},freehit:FHNET?{net:FHNET.net,note:FHNET.why}:null};
+function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${label}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b>`:`<span class="note">—</span>`}</span><div class="detail">${used?(note||"Net vs no chip."):"Still available."}</div></li>`;}
+document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
+function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${s}</span>`).join(" ");}
+function renderNews(){
+  const N=window.FPL_NEWS||D.news||{};
+  const agreed=(N.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No 3-site overlap yet.</span></li>`;
+  const split=(N.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
+  const links=(N.links||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(" · ");
+  const fresh=N.new_articles||[];
+  const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles recently.</span></li>`;
+  document.getElementById("news").innerHTML=`<div class="warn">Split first. Agreed = 3+ sites.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting."}</p></div>`;
+}
+renderNews();
+function renderX(){
+  const X=window.FPL_X||{};
+  const acc=(X.accounts||[]).map(a=>`<div class="chip">@${a.handle||a}</div>`).join("")||`<p class="note">No X accounts yet.</p>`;
+  const fresh=X.new_posts||[];
+  const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
+  const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
+  const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
+  document.getElementById("xtab").innerHTML=`<div class="warn">Split first. Agreed = 3+ accounts.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div>`;
+}
+renderX();
+function renderFh(){
+  const F=window.FPL_FH||{}; const A=Object.assign({}, F.audit||{}, (D.fh_audit||{}));
+  const xi=(F.xi||[]).map(p=>`<div class="chip ${p.tag==="C"?"ok":""}">${p.pos} · ${p.name}${p.tag?" ("+p.tag+")":""}</div>`).join("");
+  const recs=(F.recs||[]).map(r=>`<li><span class="who">${r.verdict}</span><div class="detail">${r.text}</div></li>`).join("");
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${A.process||"?"}</p><p class="note">${A.why||""}</p></div><div class="card"><h2>Saved FH XI</h2><div class="xi">${xi}</div></div><div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`;
+}
+renderFh();
+document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
+</script></body></html>
