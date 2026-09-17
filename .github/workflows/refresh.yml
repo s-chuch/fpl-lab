@@ -19,7 +19,7 @@ on:
 
 concurrency:
   group: refresh-main
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -57,6 +57,7 @@ jobs:
             echo "No data change"
           else
             git commit -m "Refresh FPL data $(date -u +%Y-%m-%dT%H:%MZ)"
-            git pull --rebase origin main
+            # If another refresh landed first, keep THIS run's generated data files.
+            git pull --rebase -X theirs origin main
             git push origin main
           fi
