@@ -35,18 +35,23 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 .chiplist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
 .chiplist li:last-child{border-bottom:0}
 .chiplist .who{font-weight:700}.chiplist .detail{width:100%;color:var(--muted);font-size:13px;margin-top:4px}
+
+.barrow{display:grid;grid-template-columns:92px 1fr 36px;gap:8px;align-items:center;margin:6px 0;font-size:12px;color:var(--muted)}
+.track{height:8px;background:#0C141C;border-radius:99px;overflow:hidden}
+.track span{display:block;height:100%;background:var(--teal)}
+.track span.bad{background:var(--red)}.track span.mid{background:var(--yellow)}
 </style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="data.js?v=20260917e"></script>
-<script src="bench-fix.js?v=20260917e"></script>
-<script src="news.js?v=20260917e"></script>
-<script src="x-posts.js?v=20260917e"></script>
-<script src="fh.js?v=20260917e"></script>
-<script src="plan-intel.js?v=20260917e"></script>
+<script src="data.js?v=20260917f"></script>
+<script src="bench-fix.js?v=20260917f"></script>
+<script src="news.js?v=20260917f"></script>
+<script src="x-posts.js?v=20260917f"></script>
+<script src="fh.js?v=20260917f"></script>
+<script src="plan-intel.js?v=20260917f"></script>
 <script>
 const D=window.FPL_DATA;
 const TZ="America/Toronto";
