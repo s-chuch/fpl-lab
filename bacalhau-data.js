@@ -188,7 +188,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 19:50 UTC",
+  "generated_at": "2026-09-17 20:06 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -519,6 +519,7 @@ window.FPL_DATA = {
         "why": "Dubravka A MUN FDR 4"
       }
     ],
+    "availability": {},
     "transfer": {
       "ft_available": 1,
       "action": "ROLL",
@@ -574,13 +575,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
@@ -742,12 +743,12 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 73.3
+        "own": 73.2
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 38.6
+        "own": 38.7
       },
       {
         "name": "Cherki",
@@ -769,7 +770,7 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 5.5
+        "own": 5.6
       },
       {
         "name": "Kusi-Asare",

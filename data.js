@@ -363,7 +363,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 19:50 UTC",
+  "generated_at": "2026-09-17 20:06 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
@@ -527,10 +527,10 @@ window.FPL_DATA = {
         "MUN",
         "A FUL",
         3,
-        "SIT",
+        "DOUBT",
         "H TOT",
         3,
-        "SIT"
+        "DOUBT"
       ],
       [
         "DEF",
@@ -541,7 +541,7 @@ window.FPL_DATA = {
         "SIT",
         "H BHA",
         2,
-        "SIT"
+        "START"
       ],
       [
         "MID",
@@ -593,7 +593,7 @@ window.FPL_DATA = {
         "ARS",
         "A BHA",
         3,
-        "SIT",
+        "START",
         "H LEE",
         2,
         "START"
@@ -604,10 +604,10 @@ window.FPL_DATA = {
         "CHE",
         "A BRE",
         3,
-        "START",
+        "DOUBT",
         "H BOU",
         3,
-        "START"
+        "DOUBT"
       ],
       [
         "FWD",
@@ -642,16 +642,16 @@ window.FPL_DATA = {
           "B.Fernandes",
           "Cherki",
           "Haaland (C)",
-          "Jo\u00e3o Pedro",
           "Gro\u00df",
           "Calvert-Lewin",
-          "Szoboszlai"
+          "Szoboszlai",
+          "Tzolis"
         ],
         "bench": [
           "Verbruggen",
-          "Tzolis",
-          "Shaw",
-          "Hume"
+          "Jo\u00e3o Pedro",
+          "Hume",
+          "Shaw"
         ]
       },
       "gw6": {
@@ -662,16 +662,16 @@ window.FPL_DATA = {
           "Davis",
           "Gro\u00df",
           "B.Fernandes",
-          "Jo\u00e3o Pedro (C)",
-          "Haaland",
+          "Haaland (C)",
           "Cherki",
           "Tzolis",
-          "Szoboszlai"
+          "Szoboszlai",
+          "Hume"
         ],
         "bench": [
           "Kinsky",
-          "Hume",
           "Calvert-Lewin",
+          "Jo\u00e3o Pedro",
           "Shaw"
         ]
       }
@@ -681,25 +681,41 @@ window.FPL_DATA = {
         "gw": 5,
         "sit": [
           "Verbruggen",
-          "Tzolis",
-          "Shaw",
-          "Hume"
+          "Jo\u00e3o Pedro",
+          "Hume",
+          "Shaw"
         ],
-        "worst": "Hume",
-        "why": "Hume A MCI FDR 5"
+        "worst": "Shaw",
+        "why": "Shaw DOUBT \u00b7 Unspecified injury - 75% chance of playing"
       },
       {
         "gw": 6,
         "sit": [
           "Kinsky",
-          "Hume",
           "Calvert-Lewin",
+          "Jo\u00e3o Pedro",
           "Shaw"
         ],
-        "worst": "Calvert-Lewin",
-        "why": "Calvert-Lewin A ARS FDR 5"
+        "worst": "Shaw",
+        "why": "Shaw DOUBT \u00b7 Unspecified injury - 75% chance of playing"
       }
     ],
+    "availability": {
+      "Shaw": {
+        "status": "d",
+        "chance": 75,
+        "news": "Unspecified injury - 75% chance of playing",
+        "kind": "doubt",
+        "label": "DOUBT 75%"
+      },
+      "Jo\u00e3o Pedro": {
+        "status": "d",
+        "chance": 75,
+        "news": "Unspecified injury - 75% chance of playing",
+        "kind": "doubt",
+        "label": "DOUBT 75%"
+      }
+    },
     "transfer": {
       "ft_available": 2,
       "action": "ROLL",
@@ -755,13 +771,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
@@ -935,7 +951,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 38.6
+        "own": 38.7
       },
       {
         "name": "Palmer",
