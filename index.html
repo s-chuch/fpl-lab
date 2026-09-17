@@ -36,22 +36,23 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 .chiplist li:last-child{border-bottom:0}
 .chiplist .who{font-weight:700}.chiplist .detail{width:100%;color:var(--muted);font-size:13px;margin-top:4px}
 
-.barrow{display:grid;grid-template-columns:92px 1fr 36px;gap:8px;align-items:center;margin:6px 0;font-size:12px;color:var(--muted)}
-.track{height:8px;background:#0C141C;border-radius:99px;overflow:hidden}
-.track span{display:block;height:100%;background:var(--teal)}
-.track span.bad{background:var(--red)}.track span.mid{background:var(--yellow)}
+
+.barrow{display:grid;grid-template-columns:88px 1fr 40px;gap:10px;align-items:center;margin:8px 0;font-size:12px;color:var(--muted);width:100%}
+.track{height:10px;background:#0C141C;border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.track i{display:block;height:10px;border-radius:99px;background:var(--teal);min-width:4px}
+.track i.mid{background:var(--yellow)}.track i.bad{background:var(--red)}
 </style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="data.js?v=20260917f"></script>
-<script src="bench-fix.js?v=20260917f"></script>
-<script src="news.js?v=20260917f"></script>
-<script src="x-posts.js?v=20260917f"></script>
-<script src="fh.js?v=20260917f"></script>
-<script src="plan-intel.js?v=20260917f"></script>
+<script src="data.js?v=20260917g"></script>
+<script src="bench-fix.js?v=20260917g"></script>
+<script src="news.js?v=20260917g"></script>
+<script src="x-posts.js?v=20260917g"></script>
+<script src="fh.js?v=20260917g"></script>
+<script src="plan-intel.js?v=20260917g"></script>
 <script>
 const D=window.FPL_DATA;
 const TZ="America/Toronto";
@@ -95,7 +96,7 @@ function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span clas
 document.getElementById("season").innerHTML=gwTable();
 const BENCH_TAG={gw2:{Verbruggen:"ok",Groß:"process","Gro\u00df":"process",Hume:"process",Davis:"variance"},gw3:{Kinsky:"variance",Tzolis:"variance",Shaw:"process",Davis:"ok"}};
 function chipClass(gw,name){const t=(BENCH_TAG[gw]||{})[name];return t?"chip "+t:"chip sit";}
-function bar(label,val,max,klass){return `<div class="barrow"><span>${label}</span><div class="track"><span class="${klass||""}" style="width:${Math.max(4,100*val/max)}%"></span></div><b>${val}</b></div>`;}
+function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
 function benchBlock(key,title){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
   const max=Math.max(b.you,b.process,b.hindsight,1);
