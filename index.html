@@ -182,15 +182,11 @@ function renderPlan(){
     for(let i=0;i<up.length;i++){
       const xi=((P.xis||{})["gw"+up[i].gw]||{}).xi||[];
       const started=new Set(xi.map(n=>n.split(" (")[0]));
-      const stored=String(r[5+i*3]||"");
+      // GW columns stay START/SIT/BLANK; injury status lives on the name badge.
       let call;
       if(String(r[3+i*3])==="Blank") call="BLANK";
-      else if(stored==="OUT"||stored==="DOUBT") call=stored;
-      else if(a&&a.kind==="out") call="OUT";
-      else if(a&&a.kind==="doubt"&&!started.has(r[1])) call="DOUBT";
       else call=started.has(r[1])?"START":"SIT";
-      const cls=call==="START"?"pos":(call==="OUT"||call==="DOUBT"?"warn":"neg");
-      c+=`<td>${r[3+i*3]} <b class="${cls}">${call}</b></td>`;
+      c+=`<td>${r[3+i*3]} <b class="${call==="START"?"pos":"neg"}">${call}</b></td>`;
     }
     return `<tr>${c}</tr>`;
   }).join("");
