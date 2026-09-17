@@ -64,7 +64,7 @@ function benchBlock(key,title){
   const max=Math.max(b.you,b.process,b.hindsight,1);
   const yours=(b.your_bench||[]).map(x=>`<div class="chip sit">${x[0]} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${x[0]} · ${x[1]}</div>`).join("");
-  return `<div class="card"><h2>${title}</h2>${bar("They",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max)}
+  return `<div class="card"><h2>${title}</h2>${bar("They",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max,"bad")}
     <p class="note">Their bench</p><div class="xi">${yours}</div>
     <p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }

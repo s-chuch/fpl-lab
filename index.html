@@ -47,12 +47,12 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="data.js?v=20260917g"></script>
-<script src="bench-fix.js?v=20260917g"></script>
-<script src="news.js?v=20260917g"></script>
-<script src="x-posts.js?v=20260917g"></script>
-<script src="fh.js?v=20260917g"></script>
-<script src="plan-intel.js?v=20260917g"></script>
+<script src="data.js?v=20260917h"></script>
+<script src="bench-fix.js?v=20260917h"></script>
+<script src="news.js?v=20260917h"></script>
+<script src="x-posts.js?v=20260917h"></script>
+<script src="fh.js?v=20260917h"></script>
+<script src="plan-intel.js?v=20260917h"></script>
 <script>
 const D=window.FPL_DATA;
 const TZ="America/Toronto";
@@ -102,7 +102,7 @@ function benchBlock(key,title){
   const max=Math.max(b.you,b.process,b.hindsight,1);
   const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${x[0]} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${x[0]} · ${x[1]}</div>`).join("");
-  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max)}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
+  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max,"bad")}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
 document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
 function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
