@@ -20,8 +20,6 @@ window.planIntel = function(D){
     if(!/target|transfer in|priority|popular|attacker to target/.test(t)) continue;
     for(const [k,n] of names){ if(t.includes(k) && !have.has(n) && !targets.includes(n)) targets.push(n); }
   }
-  const ownedHits=[];
-  for(const n of ["De Cuyper","João Pedro","Szoboszlai","Haaland","Groß","Groß"]) if(have.has(n)||have.has("Groß")||have.has("Gross")) ownedHits.push(n);
   function chipState(key, label, gw, rec, why){
     const used=chips[key]!=null;
     return {key,label,gw,used,rec: used?"USED":rec, why: used?("Already played GW"+chips[key]+"."):why};
@@ -37,24 +35,63 @@ window.planIntel = function(D){
       wantsHaalandCap?"Haaland is the agreed captain vs a soft home fixture. Armband only — chip already used.":"No triple-captain case."));
     chipRows.push(chipState("bboost","Bench Boost",gwA,"HOLD","Bench is Shaw (75%) + Hume (City away). Do not boost." ));
   }
-  if(gwB){
-    chipRows.push(chipState("wildcard","Wildcard",gwB,"CONSIDER",
-      wantsWC?"This is the window News actually wants: after GW"+gwA+" and the international break, once minutes settle.":"Revisit after the break. Not automatic."));
+  const mini=(D.leagues&&D.leagues.mini)||[];
+  const esl=mini.find(x=>x.id===125784)||mini[0]||{};
+  const Tac=esl.tactics||{};
+  const started=new Set((((((P.xis||{})["gw"+gwA]||{}).xi)||[]).map(n=>String(n).split(" (")[0])));
+  const start=[], bench=[];
+  for(const u of (Tac.you_unique||[])){
+    if(started.has(u.name)) start.push(u.name+" · "+u.count+"/"+u.n);
+    else bench.push(u.name+" · sit · "+u.count+"/"+u.n);
   }
-  const mustMove=[];
-  if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) mustMove.push("News/X fade United. Shaw is already a sit. Fernandes vs Fulham is still startable — do not fire him this week just to match the fade.");
-  const blocked=targets.filter(n=>!have.has(n));
+  const wc=[];
+  const ownByName={};
+  for(const u of [].concat(Tac.template||[], Tac.you_unique||[], Tac.they_share||[])) ownByName[u.name]=u.count;
+  for(const n of targets){
+    const c=ownByName[n];
+    if(c==null || c<=3) wc.push(n+(c!=null?" · "+c+"/"+(Tac.n||"?"):" · 0 in room"));
+  }
+  const haalandOwn=(Tac.template||[]).find(x=>x.name==="Haaland");
+  const haalandFdr=((((P.rows||[]).find(r=>r[1]==="Haaland")||[])[4]));
+  let cap="Captain Haaland. He is the league default.";
+  if(haalandFdr!=null && Number(haalandFdr)>=4 && wc.length){
+    cap="Haaland FDR "+haalandFdr+". Cap-diff only if the alt is owned by 3 or fewer here: "+wc.join(", ")+".";
+  } else if(wantsHaalandCap){
+    cap="Captain Haaland. News/X and this league both default to him.";
+  }
   let action="ROLL", moveLine="Roll. Keep both free transfers.", reason="";
-  if(blocked.length && bank<1){
-    reason="News/X want "+blocked.join(", ")+". Bank is £"+bank.toFixed(1)+"m. Those names do not fit without selling a core mid/fwd. Fielding 11 is fine, so rolling is the process play.";
+  const blocked=targets.filter(n=>!have.has(n));
+  const cheapHit=blocked.find(n=>wc.some(w=>w.indexOf(n)===0));
+  if(cheapHit && bank>=1){
+    reason="A News/X name this room barely owns could fit. Still only move if the sell is a sit both weeks.";
+  } else if(blocked.length && bank<1){
+    reason="News/X want "+blocked.join(", ")+". Bank is £"+bank.toFixed(1)+"m. Those names wait for the Wildcard. Rolling is the process play.";
   } else if(!blocked.length){
-    reason="You already own the agreed core (Haaland, João Pedro, De Cuyper, Szoboszlai). Nothing required.";
+    reason="You already own the agreed core. Nothing required.";
   } else {
     reason="Targets are "+blocked.join(", ")+". Only move if the sell is already a sit for both upcoming GWs.";
   }
+  if(gwB){
+    const wcNow=chips.wildcard==null && wc.length>=2 && wantsWC;
+    chipRows.push(chipState("wildcard","Wildcard",gwB, wcNow?"CONSIDER":"HOLD",
+      wcNow?("This room barely owns "+wc.join(", ")+". After the break that is the WC case."):"Revisit after the break. Need two scarce agreed names to force the chip."));
+  }
   const optional=[];
   if(have.has("Cherki") && blocked.includes("Rogers")) optional.push("Only if you refuse to roll: Cherki → Rogers. Prices line up. Cherki vs Sunderland at home is a reason not to.");
-  if(have.has("Calvert-Lewin") && blocked.includes("Wissa")) optional.push("DCL → Wissa is the cheap forward version of the same idea. DCL vs Palace at home is startable this week.");
-  if(have.has("Tzolis") && blocked.includes("Gakpo")) optional.push("Tzolis → Gakpo needs another £0.5m you do not have. Sit Tzolis instead.");
-  return {chipRows, action, moveLine, reason, optional, mustMove, targets:blocked, wantsWC, ft, bank, gwA, gwB};
+  if(have.has("Calvert-Lewin") && blocked.includes("Wissa")) optional.push("DCL → Wissa is the cheap forward version. DCL vs Palace at home is startable.");
+  if(have.has("Tzolis") && blocked.includes("Gakpo")) optional.push("Tzolis → Gakpo needs another £0.5m. Sit Tzolis instead.");
+  if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) optional.push("News/X fade United. Shaw is already a sit. Do not fire Fernandes this week to match a fade.");
+  const they=(Tac.they_share||[]).map(x=>x.name);
+  if(they.length) optional.push("Do not buy "+they.join(", ")+" this week. 1st and 2nd already own them — that is insurance, not a differential.");
+  return {
+    chipRows, action, moveLine, reason, optional, targets:blocked, wantsWC, ft, bank, gwA, gwB,
+    league: {
+      league: esl.name||"",
+      cap, transfer: reason,
+      start, bench, wc,
+      gap: Tac.gap_to_first,
+      first: Tac.first&&Tac.first.name,
+      second: Tac.second&&Tac.second.name
+    }
+  };
 };
