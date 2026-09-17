@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse, json, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from league_tactics import build_tactics
 
 TEAM_ID = 1360999
 TRACKED_BY_TEAM = {
@@ -385,7 +386,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
         except Exception:
             continue
         table = [{"rank": r.get("rank"), "team": r.get("entry_name"), "pts": r.get("total"), "me": r.get("entry") == team_id} for r in rows[:15]]
-        counts, n = {}, 0
+        counts, n, owned_by, cap_by = {}, 0, {}, {}
         if len(rows) >= 2:
             for r in rows:
                 try:
@@ -393,8 +394,16 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                 except Exception:
                     continue
                 n += 1
+                eid = r.get("entry")
+                owned = set()
                 for p in pk.get("picks") or []:
-                    counts[p["element"]] = counts.get(p["element"], 0) + 1
+                    pid = p["element"]
+                    counts[pid] = counts.get(pid, 0) + 1
+                    owned.add(pid)
+                    if p.get("is_captain"):
+                        cap_by[pid] = cap_by.get(pid, 0) + 1
+                if eid is not None:
+                    owned_by[eid] = owned
         template, diffs = [], []
         if n:
             for pid, c in sorted(counts.items(), key=lambda x: -x[1]):
@@ -404,7 +413,8 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                 item = {"name": el["web_name"], "club": teams[el["team"]]["short_name"], "own": pct, "count": c, "n": n}
                 if pct >= 40 and pid not in my_picks: template.append(item)
                 if pid in my_picks and pct <= 25: diffs.append(item)
-        leagues.append({"id": L["id"], "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank"), "size": len(rows), "table": table, "template": template[:8], "diffs": diffs[:8], "picks_gw": picks_gw})
+        tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams)
+        leagues.append({"id": L["id"], "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank"), "size": len(rows), "table": table, "template": template[:8], "diffs": diffs[:8], "tactics": tactics, "picks_gw": picks_gw})
     overall_template, overall_diffs = [], []
     for el in boot["elements"]:
         sel = float(el.get("selected_by_percent") or 0)

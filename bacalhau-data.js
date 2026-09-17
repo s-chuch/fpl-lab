@@ -188,13 +188,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 20:11 UTC",
+  "generated_at": "2026-09-17 21:37 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590499,
+    "overall_rank": 1590498,
     "bank": 4.9,
     "value": 100.5
   },
@@ -683,6 +683,225 @@ window.FPL_DATA = {
             "n": 13
           }
         ],
+        "tactics": {
+          "n": 13,
+          "you_rank": 5,
+          "you_pts": 285,
+          "gap_to_first": 20,
+          "gap_to_second": 17,
+          "first": {
+            "name": "I'z Amad Man",
+            "pts": 305
+          },
+          "second": {
+            "name": "Borde to be wild",
+            "pts": 302
+          },
+          "template": [
+            {
+              "name": "Jo\u00e3o Pedro",
+              "club": "CHE",
+              "pos": "FWD",
+              "count": 12,
+              "n": 13,
+              "own": 92
+            },
+            {
+              "name": "Haaland",
+              "club": "MCI",
+              "pos": "FWD",
+              "count": 11,
+              "n": 13,
+              "own": 85
+            },
+            {
+              "name": "B.Fernandes",
+              "club": "MUN",
+              "pos": "MID",
+              "count": 9,
+              "n": 13,
+              "own": 69
+            },
+            {
+              "name": "Calafiori",
+              "club": "ARS",
+              "pos": "DEF",
+              "count": 7,
+              "n": 13,
+              "own": 54
+            },
+            {
+              "name": "Gro\u00df",
+              "club": "BHA",
+              "pos": "MID",
+              "count": 7,
+              "n": 13,
+              "own": 54
+            }
+          ],
+          "you_unique": [
+            {
+              "name": "Dubravka",
+              "club": "TOT",
+              "pos": "GKP",
+              "count": 4,
+              "n": 13,
+              "own": 31,
+              "vs_first": false,
+              "vs_second": true
+            },
+            {
+              "name": "Hughes",
+              "club": "CRY",
+              "pos": "MID",
+              "count": 4,
+              "n": 13,
+              "own": 31,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Szoboszlai",
+              "club": "LIV",
+              "pos": "MID",
+              "count": 3,
+              "n": 13,
+              "own": 23,
+              "vs_first": true,
+              "vs_second": false
+            },
+            {
+              "name": "Ajayi",
+              "club": "HUL",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "N.Williams",
+              "club": "NFO",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Mitchell",
+              "club": "CRY",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Tarkowski",
+              "club": "EVE",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Dewsbury-Hall",
+              "club": "EVE",
+              "pos": "MID",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Walle Egeli",
+              "club": "IPS",
+              "pos": "FWD",
+              "count": 1,
+              "n": 13,
+              "own": 8,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Kusi-Asare",
+              "club": "FUL",
+              "pos": "FWD",
+              "count": 1,
+              "n": 13,
+              "own": 8,
+              "vs_first": true,
+              "vs_second": true
+            }
+          ],
+          "they_share": [
+            {
+              "name": "Jo\u00e3o Pedro",
+              "club": "CHE",
+              "pos": "FWD",
+              "count": 12,
+              "n": 13,
+              "own": 92
+            },
+            {
+              "name": "Mbeumo",
+              "club": "MUN",
+              "pos": "MID",
+              "count": 4,
+              "n": 13,
+              "own": 31
+            },
+            {
+              "name": "M.Sangar\u00e9",
+              "club": "BRE",
+              "pos": "MID",
+              "count": 3,
+              "n": 13,
+              "own": 23
+            },
+            {
+              "name": "van Ewijk",
+              "club": "COV",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15
+            }
+          ],
+          "cap_last": [
+            {
+              "name": "Haaland",
+              "count": 5
+            },
+            {
+              "name": "Jo\u00e3o Pedro",
+              "count": 3
+            },
+            {
+              "name": "Isak",
+              "count": 2
+            },
+            {
+              "name": "Palmer",
+              "count": 1
+            },
+            {
+              "name": "\u00d8degaard",
+              "count": 1
+            },
+            {
+              "name": "Rice",
+              "count": 1
+            }
+          ]
+        },
         "picks_gw": 4
       },
       {
@@ -728,6 +947,199 @@ window.FPL_DATA = {
           }
         ],
         "diffs": [],
+        "tactics": {
+          "n": 3,
+          "you_rank": 3,
+          "you_pts": 285,
+          "gap_to_first": 20,
+          "gap_to_second": 13,
+          "first": {
+            "name": "I'z Amad Man",
+            "pts": 305
+          },
+          "second": {
+            "name": "Shaaland",
+            "pts": 298
+          },
+          "template": [
+            {
+              "name": "Raya",
+              "club": "ARS",
+              "pos": "GKP",
+              "count": 3,
+              "n": 3,
+              "own": 100
+            },
+            {
+              "name": "Calafiori",
+              "club": "ARS",
+              "pos": "DEF",
+              "count": 3,
+              "n": 3,
+              "own": 100
+            },
+            {
+              "name": "Haaland",
+              "club": "MCI",
+              "pos": "FWD",
+              "count": 3,
+              "n": 3,
+              "own": 100
+            },
+            {
+              "name": "Dubravka",
+              "club": "TOT",
+              "pos": "GKP",
+              "count": 3,
+              "n": 3,
+              "own": 100
+            }
+          ],
+          "you_unique": [
+            {
+              "name": "B.Fernandes",
+              "club": "MUN",
+              "pos": "MID",
+              "count": 2,
+              "n": 3,
+              "own": 67,
+              "vs_first": false,
+              "vs_second": true
+            },
+            {
+              "name": "Gro\u00df",
+              "club": "BHA",
+              "pos": "MID",
+              "count": 2,
+              "n": 3,
+              "own": 67,
+              "vs_first": false,
+              "vs_second": true
+            },
+            {
+              "name": "Szoboszlai",
+              "club": "LIV",
+              "pos": "MID",
+              "count": 2,
+              "n": 3,
+              "own": 67,
+              "vs_first": true,
+              "vs_second": false
+            },
+            {
+              "name": "Hughes",
+              "club": "CRY",
+              "pos": "MID",
+              "count": 2,
+              "n": 3,
+              "own": 67,
+              "vs_first": true,
+              "vs_second": false
+            },
+            {
+              "name": "N.Williams",
+              "club": "NFO",
+              "pos": "DEF",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Mitchell",
+              "club": "CRY",
+              "pos": "DEF",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Ajayi",
+              "club": "HUL",
+              "pos": "DEF",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Tarkowski",
+              "club": "EVE",
+              "pos": "DEF",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Dewsbury-Hall",
+              "club": "EVE",
+              "pos": "MID",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Walle Egeli",
+              "club": "IPS",
+              "pos": "FWD",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Kusi-Asare",
+              "club": "FUL",
+              "pos": "FWD",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            }
+          ],
+          "they_share": [
+            {
+              "name": "Konsa",
+              "club": "ARS",
+              "pos": "DEF",
+              "count": 2,
+              "n": 3,
+              "own": 67
+            },
+            {
+              "name": "Jo\u00e3o Pedro",
+              "club": "CHE",
+              "pos": "FWD",
+              "count": 2,
+              "n": 3,
+              "own": 67
+            }
+          ],
+          "cap_last": [
+            {
+              "name": "Jo\u00e3o Pedro",
+              "count": 1
+            },
+            {
+              "name": "Palmer",
+              "count": 1
+            },
+            {
+              "name": "Haaland",
+              "count": 1
+            }
+          ]
+        },
         "picks_gw": 4
       }
     ],
@@ -735,7 +1147,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590499,
+        "rank": 1590498,
         "last_rank": 1240844
       }
     ],
@@ -743,7 +1155,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 73.2
+        "own": 73.0
       },
       {
         "name": "Rogers",
