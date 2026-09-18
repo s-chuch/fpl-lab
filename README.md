@@ -49,12 +49,27 @@ After that it runs twice a day on its own. GitHub pauses scheduled jobs if the r
 
 ## Data refresh ownership
 
-- **FPL scores / rank / chips / GW log** (`data.js`, `bacalhau-data.js`) and **news** (`news.js`): GitHub Actions workflow `Refresh FPL data` (`news_scrape.py` + `refresh.py`).
-- **X posts** (`x-posts.js`): **not** updated by Actions. Live ingest is the Grok Bot daily ~10am ET routine via the connected user-X MCP plugin (`mode: "live"`). `x_scrape.py` is a local stub that preserves an existing live file and only writes a manual stub if the file is missing or already manual.
+Everything refreshes autonomously via the GitHub Actions workflow `Refresh FPL data` — no manual step or AI assistant is needed for the pipeline to keep running:
+
+- **FPL scores / rank / chips / GW log** (`data.js`, `bacalhau-data.js`): `refresh.py`.
+- **News** (`news.js`): `news_scrape.py` — see below.
+- **X posts** (`x-posts.js`): `x_scrape.py`, via the official X API. Requires a repo secret (see next section); without one it writes a manual/seeded stub instead of failing.
+
+### X live ingest setup
+
+`x_scrape.py` reads a bearer token from the `X_BEARER_TOKEN` environment variable, which the workflow passes in from a GitHub Actions secret:
+
+1. Get a bearer token from the [X Developer Portal](https://developer.x.com/) for an app with read access to user timelines. Note: meaningful read volume (the `/2/users/:id/tweets` endpoint used here, across the accounts in `sources.json`) needs at least the Basic paid API tier — the free tier's read access is too limited for this to be useful.
+2. Repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret** → name it `X_BEARER_TOKEN`, paste the token.
+3. Re-run the workflow (**Actions** → **Refresh FPL data** → **Run workflow**). `x-posts.js` will switch from `mode: "manual"` to `mode: "live"`.
+
+Without the secret configured, `x_scrape.py` keeps writing the same manual/seeded stub it always has — the rest of the pipeline (scores, news, plan) is unaffected either way.
 
 ### News sources (`sources.json`)
 
-For each site in `"sites"`, `news_scrape.py` tries its RSS/Atom feed first (autodiscovered from the homepage's `<link rel="alternate">`, then common paths like `/feed/`) since a feed gives real publish dates and full clean article content instead of scraped-page guesswork. If no feed is found it falls back to scraping links off the page directly, same as before. If a site's real feed lives somewhere non-standard, add it explicitly: `{"name": "Fix", "url": "...", "feed": "https://.../actual-feed-url"}`.
+For each site in `"sites"`, `news_scrape.py` tries its RSS/Atom feed first (autodiscovered from the homepage's `<link rel="alternate">`, then common paths like `/feed/`) since a feed gives real publish dates and full clean article content instead of scraped-page guesswork. If no feed is found it falls back to scraping links off the page directly. If a site's real feed lives somewhere non-standard, add it explicitly: `{"name": "Fix", "url": "...", "feed": "https://.../actual-feed-url"}`.
+
+Both `news_scrape.py` and `x_scrape.py` discover trending players by scanning scraped text against the live FPL player list (`fpl_common.py`), rather than checking a fixed, hand-maintained watchlist — so a new breakout player shows up on their own merit, without anyone needing to edit code.
 
 ## Local
 
@@ -63,4 +78,4 @@ python3 refresh.py
 python3 -m http.server 8000
 ```
 
-Bench / transfer write-ups and the GW4–5 plan stay in `data.js` until you edit them or ask Grok to rebuild that section. The Action only refreshes scores, rank, chips and the GW log.
+The Action refreshes scores, rank, chips, the GW log, news and (with `X_BEARER_TOKEN` set) X posts — all of it autonomously, on the existing twice-daily schedule.

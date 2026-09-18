@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, unicodedata, urllib.request
+import json, re, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -8,7 +8,7 @@ from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, parse_qs
 
-from fpl_common import get, parse_iso, event_window, load_js_object
+from fpl_common import get, parse_iso, event_window, load_js_object, load_player_index, build_themes, ARTICLE_SEP
 
 ROOT = Path(__file__).resolve().parent
 NEWS_PATH = ROOT / "news.js"
@@ -306,116 +306,6 @@ def site_listings(gw):
         seen.add(key)
         out.append((name, url))
     return out
-
-
-def _norm_keep_case(s):
-    """Strip accents (Groß->Gross, João->Joao) but keep case, for name matching."""
-    s = (s or "").replace("ß", "ss")
-    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
-
-
-def load_player_index():
-    """Every current FPL player, keyed for matching against raw (case-preserved)
-    article text — this is what lets the scraper discover whichever names are
-    actually trending, instead of only checking a hand-maintained watchlist.
-    Single-word names under 5 letters are skipped: matched case-sensitively
-    against scraped text they're rarely a problem, but short surnames (Cash,
-    King, Cole...) can coincide with ordinary capitalized words often enough
-    to not be worth the noise.
-    """
-    boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
-    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
-    idx, seen = [], set()
-    for el in boot["elements"]:
-        name = (el.get("web_name") or "").strip()
-        if not name or (" " not in name and "-" not in name and len(name) < 5):
-            continue
-        match = _norm_keep_case(name)
-        if match.lower() in seen:
-            continue
-        seen.add(match.lower())
-        idx.append({"web_name": name, "club": teams.get(el["team"], ""), "match": match})
-    return idx
-
-
-QUALIFIER_PATTERNS = [
-    ("captain talk", r"captain"),
-    ("transfer target", r"transfer in|bring (?:him|her)? ?in|priority (?:buy|pick)|target for"),
-    ("injury/doubt", r"\b(?:doubt|injury|injured|knock|fitness|illness)\b"),
-    ("differential", r"differential|under[- ]?owned|low[- ]?owned"),
-    ("fade/sell", r"\bfade\b|sell (?:him|her)?\b"),
-]
-
-
-ARTICLE_SEP = "\x00"  # joins separate articles in a source's blob; never occurs in real text
-
-
-def qualifiers_near(text, key, window=90):
-    """Tags describing HOW a name is being talked about, from the words actually
-    surrounding each mention (not a per-player hand-written script). The window is
-    clipped at ARTICLE_SEP so a mention in one article can't pick up a qualifier
-    from an unrelated sentence in the next article concatenated after it."""
-    tags = set()
-    for m in re.finditer(rf"\b{re.escape(key)}\b", text):
-        left = text.rfind(ARTICLE_SEP, 0, m.start())
-        left = 0 if left == -1 else left + 1
-        right = text.find(ARTICLE_SEP, m.end())
-        right = len(text) if right == -1 else right
-        ctx = text[max(left, m.start() - window):min(right, m.end() + window)].lower()
-        for tag, pat in QUALIFIER_PATTERNS:
-            if re.search(pat, ctx):
-                tags.add(tag)
-    return tags
-
-
-# Chip names are a fixed, closed vocabulary (FPL has exactly four chips), unlike
-# player names — so hardcoding these specific words isn't the same problem as a
-# hardcoded player watchlist. Kept separate from player-mention discovery below.
-CONCEPT_PATTERNS = [
-    ("wildcard", r"\bwildcard\b"),
-    ("free hit", r"\bfree hit\b"),
-]
-
-
-def concept_themes(raw_blobs, gw):
-    total = len(raw_blobs)
-    agreed, split = [], []
-    for concept, pat in CONCEPT_PATTERNS:
-        sources = sorted(s for s, text in raw_blobs.items() if re.search(pat, text, re.I))
-        if not sources:
-            continue
-        item = {
-            "text": f"GW{gw} coverage is talking about a {concept} window — mentioned by {len(sources)}/{total} sites.",
-            "sources": sources,
-        }
-        (agreed if len(sources) >= 3 else split).append(item)
-    return agreed, split
-
-
-def build_themes(raw_blobs, gw, player_index):
-    """Discover which players are actually mentioned across the scraped sites this
-    run, instead of checking a fixed list of names someone hand-picked in advance.
-    3+ sites = agreed (matches the "Agreed = 3+ sites" note shown in the UI)."""
-    total = len(raw_blobs)
-    mentions = {}
-    for source, raw_text in raw_blobs.items():
-        text = _norm_keep_case(raw_text)  # match accent-stripped key against accent-stripped text
-        for p in player_index:
-            if not re.search(rf"\b{re.escape(p['match'])}\b", text):
-                continue
-            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set()})
-            rec["sources"].add(source)
-            rec["tags"] |= qualifiers_near(text, p["match"])
-    agreed, split = [], []
-    for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):
-        n = len(rec["sources"])
-        club = f" ({rec['club']})" if rec["club"] else ""
-        tag_str = f" Tags: {', '.join(sorted(rec['tags']))}." if rec["tags"] else ""
-        text = f"{name}{club} is heavily featured in GW{gw} coverage — mentioned by {n}/{total} sites.{tag_str}"
-        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"])}
-        (agreed if n >= 3 else split).append(item)
-    concept_agreed, concept_split = concept_themes(raw_blobs, gw)
-    return (agreed + concept_agreed)[:15], (split + concept_split)[:20]
 
 
 def url_date(url):
