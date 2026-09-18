@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:16 UTC",
-  "generated_at_et": "2026-09-18 6:16 PM ET",
+  "generated_at": "2026-09-18 22:25 UTC",
+  "generated_at_et": "2026-09-18 6:25 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -511,7 +511,7 @@ window.FPL_DATA = {
       "bench": 0,
       "transfers": 0,
       "hits": 0,
-      "rank": 954058,
+      "rank": 954063,
       "field_avg": 3,
       "delta": -3,
       "chip": null
