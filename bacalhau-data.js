@@ -1,11 +1,29 @@
 window.FPL_DATA = {
   "transfers": [
     {
+      "gw": 1,
+      "out": "\u2014",
+      "inn": "ROLL",
+      "net": "0",
+      "verdict": "Rolled",
+      "process": "ok",
+      "outcome": "n/a"
+    },
+    {
       "gw": 2,
       "out": "Shaw",
       "inn": "Kayode",
       "net": "0",
       "verdict": "Even that GW"
+    },
+    {
+      "gw": 3,
+      "out": "\u2014",
+      "inn": "ROLL",
+      "net": "0",
+      "verdict": "Rolled",
+      "process": "ok",
+      "outcome": "n/a"
     },
     {
       "gw": 4,
@@ -195,8 +213,8 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 20:44 UTC",
-  "generated_at_et": "2026-09-18 4:44 PM ET",
+  "generated_at": "2026-09-18 21:07 UTC",
+  "generated_at_et": "2026-09-18 5:07 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -211,7 +229,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1772359,
+    "overall_rank": 1782574,
     "bank": 4.4,
     "value": 100.9
   },
@@ -582,14 +600,14 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
             "team": "Borde to be wild",
-            "pts": 303,
+            "pts": 302,
             "me": false,
             "entry": 7464835
           },
@@ -603,7 +621,7 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "xG Capital",
-            "pts": 289,
+            "pts": 288,
             "me": false,
             "entry": 641039
           },
@@ -645,7 +663,7 @@ window.FPL_DATA = {
           {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 260,
+            "pts": 259,
             "me": false,
             "entry": 8869141
           },
@@ -749,15 +767,15 @@ window.FPL_DATA = {
           "n": 13,
           "you_rank": 5,
           "you_pts": 285,
-          "gap_to_first": 21,
-          "gap_to_second": 18,
+          "gap_to_first": 20,
+          "gap_to_second": 17,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 306
+            "pts": 305
           },
           "second": {
             "name": "Borde to be wild",
-            "pts": 303
+            "pts": 302
           },
           "template": [
             {
@@ -1070,7 +1088,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "chip": null
           },
@@ -1192,7 +1210,7 @@ window.FPL_DATA = {
             "team": "Borde to be wild",
             "manager": "Dominic Borde",
             "rank": 2,
-            "pts": 303,
+            "pts": 302,
             "me": false,
             "chip": null
           },
@@ -1436,7 +1454,7 @@ window.FPL_DATA = {
             "team": "xG Capital",
             "manager": "Andrew Govia",
             "rank": 4,
-            "pts": 289,
+            "pts": 288,
             "me": false,
             "chip": null
           },
@@ -2168,7 +2186,7 @@ window.FPL_DATA = {
             "team": "Top Bin FC",
             "manager": "Cuzo Ace",
             "rank": 10,
-            "pts": 260,
+            "pts": 259,
             "me": false,
             "chip": null
           },
@@ -2550,7 +2568,7 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "entry": 715496
           },
@@ -2590,11 +2608,11 @@ window.FPL_DATA = {
           "n": 3,
           "you_rank": 3,
           "you_pts": 285,
-          "gap_to_first": 21,
+          "gap_to_first": 20,
           "gap_to_second": 13,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 306
+            "pts": 305
           },
           "second": {
             "name": "Shaaland",
@@ -2893,7 +2911,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "chip": null
           },
@@ -3148,7 +3166,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1772359,
+        "rank": 1782574,
         "last_rank": 1590538
       }
     ],
@@ -3156,7 +3174,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 68.8
+        "own": 68.7
       },
       {
         "name": "Rogers",
@@ -3213,7 +3231,7 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 6.1
+        "own": 6.2
       },
       {
         "name": "N.Williams",

@@ -1,6 +1,24 @@
 window.FPL_DATA = {
   "transfers": [
     {
+      "gw": 1,
+      "out": "\u2014",
+      "inn": "ROLL",
+      "net": "0",
+      "verdict": "Rolled",
+      "process": "ok",
+      "outcome": "n/a"
+    },
+    {
+      "gw": 2,
+      "out": "\u2014",
+      "inn": "ROLL",
+      "net": "0",
+      "verdict": "Rolled",
+      "process": "ok",
+      "outcome": "n/a"
+    },
+    {
       "gw": 3,
       "out": "Mbeumo",
       "inn": "Cherki",
@@ -195,6 +213,15 @@ window.FPL_DATA = {
       "inn": "Isak",
       "net": "-8",
       "verdict": "Lost that GW"
+    },
+    {
+      "gw": 5,
+      "out": "\u2014",
+      "inn": "ROLL",
+      "net": "0",
+      "verdict": "Rolled",
+      "process": "ok",
+      "outcome": "n/a"
     }
   ],
   "bench_audit": {
@@ -363,8 +390,8 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 20:44 UTC",
-  "generated_at_et": "2026-09-18 4:44 PM ET",
+  "generated_at": "2026-09-18 21:07 UTC",
+  "generated_at_et": "2026-09-18 5:07 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -379,7 +406,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 943810,
+    "overall_rank": 954063,
     "bank": 0.3,
     "value": 101.1
   },
@@ -771,14 +798,14 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
             "team": "Borde to be wild",
-            "pts": 303,
+            "pts": 302,
             "me": false,
             "entry": 7464835
           },
@@ -792,7 +819,7 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "xG Capital",
-            "pts": 289,
+            "pts": 288,
             "me": false,
             "entry": 641039
           },
@@ -834,7 +861,7 @@ window.FPL_DATA = {
           {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 260,
+            "pts": 259,
             "me": false,
             "entry": 8869141
           },
@@ -910,15 +937,15 @@ window.FPL_DATA = {
           "n": 13,
           "you_rank": 3,
           "you_pts": 298,
-          "gap_to_first": 8,
-          "gap_to_second": 5,
+          "gap_to_first": 7,
+          "gap_to_second": 4,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 306
+            "pts": 305
           },
           "second": {
             "name": "Borde to be wild",
-            "pts": 303
+            "pts": 302
           },
           "template": [
             {
@@ -1201,7 +1228,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 306,
+            "pts": 305,
             "me": false,
             "chip": null
           },
@@ -1323,7 +1350,7 @@ window.FPL_DATA = {
             "team": "Borde to be wild",
             "manager": "Dominic Borde",
             "rank": 2,
-            "pts": 303,
+            "pts": 302,
             "me": false,
             "chip": null
           },
@@ -1567,7 +1594,7 @@ window.FPL_DATA = {
             "team": "xG Capital",
             "manager": "Andrew Govia",
             "rank": 4,
-            "pts": 289,
+            "pts": 288,
             "me": false,
             "chip": null
           },
@@ -2299,7 +2326,7 @@ window.FPL_DATA = {
             "team": "Top Bin FC",
             "manager": "Cuzo Ace",
             "rank": 10,
-            "pts": 260,
+            "pts": 259,
             "me": false,
             "chip": null
           },
@@ -3561,7 +3588,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 943810,
+        "rank": 954063,
         "last_rank": 820064
       }
     ],
