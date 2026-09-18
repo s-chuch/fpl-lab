@@ -264,7 +264,13 @@ window.FPL_DATA = {
           "Kinsky",
           2
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Kinsky": "variance",
+        "Gro\u00df": "process",
+        "Davis": "process",
+        "Rodon": "process"
+      }
     },
     "gw2": {
       "you": 96,
@@ -305,7 +311,13 @@ window.FPL_DATA = {
           "Verbruggen",
           0
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Verbruggen": "variance",
+        "Gro\u00df": "process",
+        "Hume": "process",
+        "Davis": "process"
+      }
     },
     "gw3": {
       "you": 48,
@@ -346,7 +358,13 @@ window.FPL_DATA = {
           "Jo\u00e3o Pedro",
           1
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Kinsky": "ok",
+        "Tzolis": "process",
+        "Shaw": "process",
+        "Davis": "process"
+      }
     },
     "gw4": {
       "you": 90,
@@ -387,11 +405,17 @@ window.FPL_DATA = {
           "Hughes",
           1
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Dubravka": "variance",
+        "Konsa": "ok",
+        "Slater": "variance",
+        "Hughes": "variance"
+      }
     }
   },
-  "generated_at": "2026-09-18 21:57 UTC",
-  "generated_at_et": "2026-09-18 5:57 PM ET",
+  "generated_at": "2026-09-18 22:06 UTC",
+  "generated_at_et": "2026-09-18 6:06 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -487,7 +511,7 @@ window.FPL_DATA = {
       "bench": 0,
       "transfers": 0,
       "hits": 0,
-      "rank": 820064,
+      "rank": 954058,
       "field_avg": 3,
       "delta": -3,
       "chip": null
@@ -3630,7 +3654,7 @@ window.FPL_DATA = {
       {
         "name": "Shaw",
         "club": "MUN",
-        "own": 8.4
+        "own": 8.3
       }
     ],
     "picks_gw": 5,
@@ -3809,5 +3833,120 @@ window.FPL_DATA = {
       "vs_vc": -8,
       "vs_best": -18
     }
-  ]
+  ],
+  "chip_net": {
+    "bboost": {
+      "net": 12,
+      "note": "Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
+    },
+    "3xc": {
+      "net": 9,
+      "note": "Haaland 9 raw. Triple gave 27 instead of 18."
+    }
+  },
+  "fh_audit": {
+    "gw": 4,
+    "fh_points": 90,
+    "original_points": 97,
+    "net": -7,
+    "process": "ok",
+    "outcome": "lost",
+    "original_cap": "Haaland",
+    "fh_cap": "Palmer",
+    "original_xi": [
+      {
+        "name": "Verbruggen",
+        "got": 8
+      },
+      {
+        "name": "De Cuyper",
+        "got": 11
+      },
+      {
+        "name": "Calafiori",
+        "got": 6
+      },
+      {
+        "name": "Hume",
+        "got": 0
+      },
+      {
+        "name": "B.Fernandes",
+        "got": 2
+      },
+      {
+        "name": "Cherki",
+        "got": 1
+      },
+      {
+        "name": "Szoboszlai",
+        "got": 3
+      },
+      {
+        "name": "Gro\u00df",
+        "got": 17
+      },
+      {
+        "name": "Haaland",
+        "got": 27,
+        "mult": 3
+      },
+      {
+        "name": "Calvert-Lewin",
+        "got": 10
+      },
+      {
+        "name": "Jo\u00e3o Pedro",
+        "got": 12
+      }
+    ],
+    "fh_xi": [
+      {
+        "name": "Raya",
+        "got": 14
+      },
+      {
+        "name": "De Cuyper",
+        "got": 11
+      },
+      {
+        "name": "Calafiori",
+        "got": 6
+      },
+      {
+        "name": "Van Hecke",
+        "got": 8
+      },
+      {
+        "name": "Khalaili",
+        "got": 7
+      },
+      {
+        "name": "Szoboszlai",
+        "got": 3
+      },
+      {
+        "name": "Palmer",
+        "got": 10,
+        "mult": 2
+      },
+      {
+        "name": "Rogers",
+        "got": 8
+      },
+      {
+        "name": "Isak",
+        "got": 2
+      },
+      {
+        "name": "Haaland",
+        "got": 9
+      },
+      {
+        "name": "Jo\u00e3o Pedro",
+        "got": 12
+      }
+    ],
+    "why": "FH scored 90 vs 97 for the reverted squad \u2014 net -7."
+  }
 };

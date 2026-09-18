@@ -87,7 +87,13 @@ window.FPL_DATA = {
           "Hughes",
           0
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Dubravka": "variance",
+        "Walle Egeli": "variance",
+        "Kusi-Asare": "variance",
+        "Hughes": "variance"
+      }
     },
     "gw2": {
       "you": 102,
@@ -128,7 +134,13 @@ window.FPL_DATA = {
           "Hughes",
           0
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Dubravka": "variance",
+        "Walle Egeli": "variance",
+        "Kusi-Asare": "variance",
+        "Hughes": "variance"
+      }
     },
     "gw3": {
       "you": 53,
@@ -169,7 +181,13 @@ window.FPL_DATA = {
           "Hughes",
           1
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Dubravka": "variance",
+        "Walle Egeli": "variance",
+        "Kusi-Asare": "variance",
+        "Hughes": "variance"
+      }
     },
     "gw4": {
       "you": 74,
@@ -210,11 +228,17 @@ window.FPL_DATA = {
           "Hughes",
           1
         ]
-      ]
+      ],
+      "bench_tags": {
+        "Dubravka": "variance",
+        "Walle Egeli": "variance",
+        "Kusi-Asare": "variance",
+        "Hughes": "variance"
+      }
     }
   },
-  "generated_at": "2026-09-18 21:57 UTC",
-  "generated_at_et": "2026-09-18 5:57 PM ET",
+  "generated_at": "2026-09-18 22:06 UTC",
+  "generated_at_et": "2026-09-18 6:06 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -304,7 +328,7 @@ window.FPL_DATA = {
       "bench": 0,
       "transfers": 1,
       "hits": 0,
-      "rank": 1590538,
+      "rank": 1782563,
       "field_avg": 3,
       "delta": -3,
       "chip": null
@@ -3218,7 +3242,7 @@ window.FPL_DATA = {
       {
         "name": "Belloumi",
         "club": "HUL",
-        "own": 4.3
+        "own": 4.4
       },
       {
         "name": "Kusi-Asare",
@@ -3417,5 +3441,12 @@ window.FPL_DATA = {
       "vs_vc": -10,
       "vs_best": -16
     }
-  ]
+  ],
+  "chip_net": {
+    "3xc": {
+      "net": 9,
+      "note": "Haaland 9 raw. Triple gave 27 instead of 18."
+    }
+  },
+  "fh_audit": null
 };
