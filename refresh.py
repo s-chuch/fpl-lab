@@ -616,9 +616,11 @@ def build_fh_audit(boot, team_id, chips_used):
                 continue  # bench / not started (incl. FPL's own autosubs already applied)
             raw = pts.get(p["element"], 0)
             total += raw * mult
-            item = {"name": el["web_name"], "got": raw * mult}
+            item = {"name": el["web_name"], "pos": POS[el["element_type"]], "got": raw * mult}
             if mult != 1:
                 item["mult"] = mult
+            if p.get("is_captain"):
+                item["captain"] = True
             xi.append(item)
         return total, xi
 

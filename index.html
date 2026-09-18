@@ -212,9 +212,15 @@ function renderX(){
 renderX();
 function renderFh(){
   const F=window.FPL_FH||{}; const A=Object.assign({}, F.audit||{}, (D.fh_audit||{}));
-  const xi=(F.xi||[]).map(p=>`<div class="chip ${p.tag==="C"?"ok":""}">${esc(p.pos)} · ${esc(p.name)}${p.tag?" ("+esc(p.tag)+")":""}</div>`).join("");
-  const recs=(F.recs||[]).map(r=>`<li><span class="who">${esc(r.verdict)}</span><div class="detail">${esc(r.text)}</div></li>`).join("");
-  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p></div><div class="card"><h2>Saved FH XI</h2><div class="xi">${xi}</div></div><div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`;
+  // Once refresh.py auto-computes fh_audit for this GW, its own fh_xi is the
+  // consistent source — fh.js's static xi/recs are one-off hand-written text
+  // that can (and did) end up contradicting a corrected number, so don't mix
+  // stale prose in under a fresh number once real data exists for this GW.
+  const hasAuto = !!(D.fh_audit && D.fh_audit.gw === A.gw);
+  const xiList = hasAuto ? (D.fh_audit.fh_xi||[]) : (F.xi||[]);
+  const xi=xiList.map(p=>`<div class="chip ${(p.captain||p.tag==="C")?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.mult>1?" (C)":(p.tag?" ("+esc(p.tag)+")":"")}</div>`).join("");
+  const recs=hasAuto?"":(F.recs||[]).map(r=>`<li><span class="who">${esc(r.verdict)}</span><div class="detail">${esc(r.text)}</div></li>`).join("");
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p></div><div class="card"><h2>Saved FH XI</h2><div class="xi">${xi}</div></div>${recs?`<div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`:""}`;
 }
 renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
