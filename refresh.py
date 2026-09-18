@@ -594,12 +594,25 @@ def build_fh_audit(boot, team_id, chips_used):
         return None
     pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
 
-    def score_squad(pk):
+    def score_squad(pk, trust_multiplier):
+        """trust_multiplier=True for the FH squad itself (its own picks' multiplier
+        field is correct for that gameweek). False for the "original" squad, which
+        is reconstructed from a DIFFERENT gameweek's picks — that gameweek may have
+        had its own chip active (e.g. 3xc), and reusing its multiplier here would
+        credit a chip bonus that was never actually available in fh_gw. Standard
+        captaincy (2x/1x/0x by position, ignoring that other gameweek's chip) is
+        the correct comparison, though it doesn't re-simulate autosubs for fh_gw."""
         total, xi = 0, []
         for p in pk.get("picks") or []:
             el = elements.get(p["element"])
-            mult = p.get("multiplier") or 0
-            if not el or not mult:
+            if not el:
+                continue
+            started = (p.get("position") or 99) <= 11
+            if trust_multiplier:
+                mult = p.get("multiplier") or 0
+            else:
+                mult = (2 if p.get("is_captain") else 1) if started else 0
+            if not mult:
                 continue  # bench / not started (incl. FPL's own autosubs already applied)
             raw = pts.get(p["element"], 0)
             total += raw * mult
@@ -613,8 +626,8 @@ def build_fh_audit(boot, team_id, chips_used):
         cap = next((p for p in (pk.get("picks") or []) if p.get("is_captain")), None)
         return elements.get((cap or {}).get("element"), {}).get("web_name")
 
-    fh_points, fh_xi = score_squad(fh_pk)
-    orig_points, orig_xi = score_squad(orig_pk)
+    fh_points, fh_xi = score_squad(fh_pk, trust_multiplier=True)
+    orig_points, orig_xi = score_squad(orig_pk, trust_multiplier=False)
     net = fh_points - orig_points
     return {
         "gw": fh_gw,
