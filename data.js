@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:12 UTC",
-  "generated_at_et": "2026-09-18 6:12 PM ET",
+  "generated_at": "2026-09-18 22:16 UTC",
+  "generated_at_et": "2026-09-18 6:16 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -430,7 +430,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 954063,
+    "overall_rank": 954064,
     "bank": 0.3,
     "value": 101.1
   },
@@ -3614,7 +3614,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 954063,
+        "rank": 954064,
         "last_rank": 820064
       }
     ],
@@ -3856,94 +3856,118 @@ window.FPL_DATA = {
     "original_xi": [
       {
         "name": "Verbruggen",
+        "pos": "GKP",
         "got": 8
       },
       {
         "name": "De Cuyper",
+        "pos": "DEF",
         "got": 11
       },
       {
         "name": "Calafiori",
+        "pos": "DEF",
         "got": 6
       },
       {
         "name": "Hume",
+        "pos": "DEF",
         "got": 0
       },
       {
         "name": "B.Fernandes",
+        "pos": "MID",
         "got": 2
       },
       {
         "name": "Cherki",
+        "pos": "MID",
         "got": 1
       },
       {
         "name": "Szoboszlai",
+        "pos": "MID",
         "got": 3
       },
       {
         "name": "Gro\u00df",
+        "pos": "MID",
         "got": 17
       },
       {
         "name": "Haaland",
+        "pos": "FWD",
         "got": 18,
-        "mult": 2
+        "mult": 2,
+        "captain": true
       },
       {
         "name": "Calvert-Lewin",
+        "pos": "FWD",
         "got": 10
       },
       {
         "name": "Jo\u00e3o Pedro",
+        "pos": "FWD",
         "got": 12
       }
     ],
     "fh_xi": [
       {
         "name": "Raya",
+        "pos": "GKP",
         "got": 14
       },
       {
         "name": "De Cuyper",
+        "pos": "DEF",
         "got": 11
       },
       {
         "name": "Calafiori",
+        "pos": "DEF",
         "got": 6
       },
       {
         "name": "Van Hecke",
+        "pos": "DEF",
         "got": 8
       },
       {
         "name": "Khalaili",
+        "pos": "DEF",
         "got": 7
       },
       {
         "name": "Szoboszlai",
+        "pos": "MID",
         "got": 3
       },
       {
         "name": "Palmer",
+        "pos": "MID",
         "got": 10,
-        "mult": 2
+        "mult": 2,
+        "captain": true
       },
       {
         "name": "Rogers",
+        "pos": "MID",
         "got": 8
       },
       {
         "name": "Isak",
+        "pos": "FWD",
         "got": 2
       },
       {
         "name": "Haaland",
+        "pos": "FWD",
         "got": 9
       },
       {
         "name": "Jo\u00e3o Pedro",
+        "pos": "FWD",
         "got": 12
       }
     ],

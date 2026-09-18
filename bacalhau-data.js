@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:12 UTC",
-  "generated_at_et": "2026-09-18 6:12 PM ET",
+  "generated_at": "2026-09-18 22:17 UTC",
+  "generated_at_et": "2026-09-18 6:17 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -253,7 +253,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1782571,
+    "overall_rank": 1782572,
     "bank": 4.4,
     "value": 100.9
   },
@@ -3192,7 +3192,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1782571,
+        "rank": 1782572,
         "last_rank": 1590538
       }
     ],
