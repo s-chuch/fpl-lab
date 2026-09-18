@@ -363,13 +363,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 12:48 UTC",
+  "generated_at": "2026-09-18 15:34 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 820041,
+    "overall_rank": 820043,
     "bank": 0.3,
     "value": 100.7
   },
@@ -686,7 +686,7 @@ window.FPL_DATA = {
           "Shaw"
         ],
         "worst": "Shaw",
-        "why": "Shaw DOUBT \u00b7 Unspecified injury - 75% chance of playing"
+        "why": "Shaw DOUBT \u00b7 Unspecified injury - 50% chance of playing"
       },
       {
         "gw": 6,
@@ -697,16 +697,16 @@ window.FPL_DATA = {
           "Shaw"
         ],
         "worst": "Shaw",
-        "why": "Shaw DOUBT \u00b7 Unspecified injury - 75% chance of playing"
+        "why": "Shaw DOUBT \u00b7 Unspecified injury - 50% chance of playing"
       }
     ],
     "availability": {
       "Shaw": {
         "status": "d",
-        "chance": 75,
-        "news": "Unspecified injury - 75% chance of playing",
+        "chance": 50,
+        "news": "Unspecified injury - 50% chance of playing",
         "kind": "doubt",
-        "label": "DOUBT 75%"
+        "label": "DOUBT 50%"
       },
       "Jo\u00e3o Pedro": {
         "status": "d",
@@ -1279,7 +1279,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 820041,
+        "rank": 820043,
         "last_rank": 1516623
       }
     ],
@@ -1287,12 +1287,12 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 41.1
+        "own": 41.2
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 39.4
+        "own": 39.7
       },
       {
         "name": "Palmer",
@@ -1302,24 +1302,24 @@ window.FPL_DATA = {
       {
         "name": "Gvardiol",
         "club": "MCI",
-        "own": 25.4
+        "own": 25.9
       }
     ],
     "overall_diffs": [
       {
         "name": "Hume",
         "club": "SUN",
-        "own": 3.2
+        "own": 3.1
       },
       {
         "name": "Davis",
         "club": "IPS",
-        "own": 6.7
+        "own": 6.8
       },
       {
         "name": "Shaw",
         "club": "MUN",
-        "own": 9.0
+        "own": 8.7
       }
     ],
     "picks_gw": 3

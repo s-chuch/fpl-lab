@@ -1,25 +1,71 @@
 window.FPL_NEWS = {
   "gw": 5,
   "cutoff": "2026-09-12 12:30 UTC",
-  "generated_at": "2026-09-18 12:48 UTC",
+  "generated_at": "2026-09-18 15:34 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes from title+article text.",
-  "agreed": [],
+  "agreed": [
+    {
+      "text": "Haaland remains the default GW5 captain.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "Jo\u00e3o Pedro stays in the template forward line.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "Gibbs-White is a GW5 Forest mid target.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "Gvardiol is a popular GW5 defender move.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "Chelsea attack is a GW5 stack to consider.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "Liverpool attackers stay in the GW5 conversation.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    },
+    {
+      "text": "GW5 is a live wildcard window for some elite sides.",
+      "sources": [
+        "Fix",
+        "Scout",
+        "AAFPL"
+      ]
+    }
+  ],
   "split": [
-    {
-      "text": "Gakpo is a priority GW5 transfer in.",
-      "sources": [
-        "Scout"
-      ]
-    },
-    {
-      "text": "Isak is a GW5 transfer conversation.",
-      "sources": [
-        "Scout"
-      ]
-    },
     {
       "text": "Rogers is a Chelsea attacker to target for GW5.",
       "sources": [
+        "Fix",
         "Scout"
       ]
     },
@@ -32,32 +78,11 @@ window.FPL_NEWS = {
     {
       "text": "Palmer is in the GW5 captain conversation.",
       "sources": [
-        "Fix",
-        "Scout"
-      ]
-    },
-    {
-      "text": "Haaland remains the default GW5 captain.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ]
-    },
-    {
-      "text": "Jo\u00e3o Pedro stays in the template forward line.",
-      "sources": [
-        "Fix",
         "Scout"
       ]
     },
     {
       "text": "Szoboszlai is listed as a Liverpool mid option.",
-      "sources": [
-        "Scout"
-      ]
-    },
-    {
-      "text": "Gibbs-White is a GW5 Forest mid target.",
       "sources": [
         "Fix",
         "Scout"
@@ -66,38 +91,8 @@ window.FPL_NEWS = {
     {
       "text": "Saka is in the GW5 premium mid conversation.",
       "sources": [
-        "Fix"
-      ]
-    },
-    {
-      "text": "Chelsea attack is a GW5 stack to consider.",
-      "sources": [
-        "Scout"
-      ]
-    },
-    {
-      "text": "Liverpool attackers stay in the GW5 conversation.",
-      "sources": [
-        "Scout"
-      ]
-    },
-    {
-      "text": "Wissa is a popular forward move.",
-      "sources": [
-        "Fix"
-      ]
-    },
-    {
-      "text": "GW5 is a live wildcard window for some elite sides.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ]
-    },
-    {
-      "text": "United assets are a fade / sell conversation.",
-      "sources": [
-        "Scout"
+        "Scout",
+        "AAFPL"
       ]
     }
   ],
@@ -130,53 +125,23 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Fix",
-      "title": "FPL Gameweek 5 Wildcard: Elite Manager Drafts",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-wildcard-elite-manager-drafts/"
-    },
-    {
-      "source": "Fix",
-      "title": "Best FPL Captain for Gameweek 5: Top 3 Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-captaincy-2026/"
+      "title": "FPL Gameweek 5 Tips: Transfers, Captain & Team News",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-tips/"
     },
     {
       "source": "Scout",
-      "title": "FPL Gameweek 5 team news: Friday\u2019s live injury updates",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-gameweek-5-team-news-fridays-live-injury-updates-3"
+      "title": "FPL General\u2019s Gameweek 5 Wildcard team reveal",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-generals-gameweek-5-wildcard-team-reveal"
     },
     {
       "source": "Scout",
-      "title": "Who is the best captain for FPL Gameweek 5?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/who-is-the-best-captain-for-fpl-gameweek-5-5"
+      "title": "The FPL Watchlist: Ranking the best players in each position",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/the-fpl-watchlist-ranking-the-best-players-in-each-position-3"
     },
     {
-      "source": "Scout",
-      "title": "FPL Gameweek 5 Scout Picks: Forest triple-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-gameweek-5-scout-picks-forest-triple-up"
-    },
-    {
-      "source": "Scout",
-      "title": "Tattico Fantasy Serie A Gameweek 5: Expert team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/tattico-fantasy-serie-a-gameweek-5-expert-team-reveals"
-    },
-    {
-      "source": "Scout",
-      "title": "Dan Wright\u2019s FPL Gameweek 5 team reveal: 10x top 50k finishes",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/hall-of-famer-dan-wrights-fpl-gameweek-5-team-reveal"
-    },
-    {
-      "source": "Scout",
-      "title": "What should FPL managers do with Szoboszlai?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/what-should-fpl-managers-do-with-szoboszlai"
-    },
-    {
-      "source": "Scout",
-      "title": "Fantasy Bundesliga Matchday 4 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/fantasy-bundesliga-matchday-4-team-reveals"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Rate My Team surgery with five-time top 1k finisher Tom Freeman - Best FPL Tips, Advice, Team News, Picks, and Statistics from Fantasy Football Scout",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-rate-my-team-surgery-with-five-time-top-1k-finisher-tom-freeman-98"
+      "source": "AAFPL",
+      "title": "FPL GW5 Team Selection - Wildcard and Free Hit Drafts, Notes",
+      "url": "https://allaboutfpl.com/2026/09/fpl-gw5-team-selection-wildcard-and-free-hit-drafts-notes/"
     }
   ],
   "no_new": false,
@@ -204,6 +169,7 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/2026/09/fpl-gameweek-5-transfer-tips-players-to-buy-avoid-sell-hold/",
     "https://allaboutfpl.com/2026/09/fpl-gw5-fixtures-and-players-to-target-for-gameweek-5/",
     "https://allaboutfpl.com/2026/09/fpl-gw5-scout-picks-based-on-stats-analysis-and-matchups/",
+    "https://allaboutfpl.com/2026/09/fpl-gw5-team-selection-wildcard-and-free-hit-drafts-notes/",
     "https://allaboutfpl.com/2026/09/fpl-gw5-ultimate-guide-tips-captaincy-differentials-more/",
     "https://allaboutfpl.com/2026/09/top-fpl-gameweek-5-captain-picks-based-on-analysis-metrics/",
     "https://allaboutfpl.com/2026/09/top-fpl-gw5-differential-picks-to-target-ahead-of-gw5-deadline/",
@@ -214,6 +180,7 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/fpl-player-rankings/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-captaincy-2026/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-differentials/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-tips/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-wildcard-elite-manager-drafts/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw5-top-5-players-2026-27/",
@@ -246,9 +213,11 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/18/fantasy-bundesliga-matchday-4-team-reveals",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-gameweek-5-scout-picks-forest-triple-up",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-gameweek-5-team-news-fridays-live-injury-updates-3",
+    "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-generals-gameweek-5-wildcard-team-reveal",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/fpl-rate-my-team-surgery-with-five-time-top-1k-finisher-tom-freeman-98",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/hall-of-famer-dan-wrights-fpl-gameweek-5-team-reveal",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/tattico-fantasy-serie-a-gameweek-5-expert-team-reveals",
+    "https://www.fantasyfootballscout.co.uk/2026/09/18/the-fpl-watchlist-ranking-the-best-players-in-each-position-3",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/the-scout-squad-our-top-picks-for-fpl-gameweek-5-3",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/what-should-fpl-managers-do-with-szoboszlai",
     "https://www.fantasyfootballscout.co.uk/2026/09/18/who-is-the-best-captain-for-fpl-gameweek-5-5",

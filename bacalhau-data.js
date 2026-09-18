@@ -188,13 +188,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 12:48 UTC",
+  "generated_at": "2026-09-18 15:34 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590496,
+    "overall_rank": 1590497,
     "bank": 4.9,
     "value": 100.5
   },
@@ -1147,7 +1147,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590496,
+        "rank": 1590497,
         "last_rank": 1240844
       }
     ],
@@ -1155,17 +1155,17 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 70.7
+        "own": 69.4
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 39.4
+        "own": 39.7
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.1
+        "own": 28.0
       },
       {
         "name": "Palmer",
@@ -1175,12 +1175,12 @@ window.FPL_DATA = {
       {
         "name": "Gvardiol",
         "club": "MCI",
-        "own": 25.4
+        "own": 25.9
       },
       {
         "name": "Calvert-Lewin",
         "club": "LEE",
-        "own": 25.1
+        "own": 25.7
       }
     ],
     "overall_diffs": [
@@ -1197,12 +1197,12 @@ window.FPL_DATA = {
       {
         "name": "Mitchell",
         "club": "CRY",
-        "own": 6.1
+        "own": 6.0
       },
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 6.1
+        "own": 6.3
       },
       {
         "name": "Hughes",
@@ -1212,7 +1212,7 @@ window.FPL_DATA = {
       {
         "name": "N.Williams",
         "club": "NFO",
-        "own": 9.2
+        "own": 9.4
       }
     ],
     "picks_gw": 4
