@@ -363,13 +363,13 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 03:05 UTC",
+  "generated_at": "2026-09-18 12:48 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 820042,
+    "overall_rank": 820041,
     "bank": 0.3,
     "value": 100.7
   },
@@ -1279,7 +1279,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 820042,
+        "rank": 820041,
         "last_rank": 1516623
       }
     ],
@@ -1287,34 +1287,39 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 41.0
+        "own": 41.1
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 38.8
+        "own": 39.4
       },
       {
         "name": "Palmer",
         "club": "CHE",
-        "own": 26.8
+        "own": 26.9
+      },
+      {
+        "name": "Gvardiol",
+        "club": "MCI",
+        "own": 25.4
       }
     ],
     "overall_diffs": [
       {
         "name": "Hume",
         "club": "SUN",
-        "own": 3.3
+        "own": 3.2
       },
       {
         "name": "Davis",
         "club": "IPS",
-        "own": 6.5
+        "own": 6.7
       },
       {
         "name": "Shaw",
         "club": "MUN",
-        "own": 9.5
+        "own": 9.0
       }
     ],
     "picks_gw": 3
