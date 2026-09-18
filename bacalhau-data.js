@@ -188,7 +188,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 01:35 UTC",
+  "generated_at": "2026-09-18 01:44 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -575,13 +575,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
