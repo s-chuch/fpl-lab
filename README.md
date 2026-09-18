@@ -46,6 +46,12 @@ Public site (after you finish step 4):
 
 After that it runs twice a day on its own. GitHub pauses scheduled jobs if the repo sits untouched for 60 days — open the repo once a month during the season.
 
+
+## Data refresh ownership
+
+- **FPL scores / rank / chips / GW log** (`data.js`, `bacalhau-data.js`) and **news** (`news.js`): GitHub Actions workflow `Refresh FPL data` (`news_scrape.py` + `refresh.py`).
+- **X posts** (`x-posts.js`): **not** updated by Actions. Live ingest is the Grok Bot daily ~10am ET routine via the connected user-X MCP plugin (`mode: "live"`). `x_scrape.py` is a local stub that preserves an existing live file and only writes a manual stub if the file is missing or already manual.
+
 ## Local
 
 ```bash
