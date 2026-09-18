@@ -363,7 +363,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 01:16 UTC",
+  "generated_at": "2026-09-18 01:35 UTC",
   "team": {
     "id": 1360999,
     "name": "Shaaland",
