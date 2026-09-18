@@ -49,11 +49,20 @@ window.planIntel = function(D){
   const blob=pool.map(x=>String(x.text||"")).join(" | ").toLowerCase();
   const wantsWC=/wildcard/.test(blob);
   const wantsFH=/free hit/.test(blob);
-  const wantsHaalandCap=/haaland/.test(blob) && /captain/.test(blob);
-  const fadeUnited=/united assets are a fade|fade/.test(blob);
+  // Prefer the structured player/tags news_scrape.py's discovery emits; fall back
+  // to loose blob text for X items (curated/live-ingested free text, no player field).
+  const wantsHaalandCap=pool.some(it=>it.player==="Haaland" && (it.tags||[]).includes("captain talk")) || (/haaland/.test(blob) && /captain/.test(blob));
+  const fadeUnited=pool.some(it=>it.club==="MUN" && (it.tags||[]).includes("fade/sell")) || /united assets are a fade/.test(blob);
   const targets=[];
+  // Legacy free-text fallback for X items, which are curated/live-ingested and
+  // don't carry a structured player field the way news_scrape.py's discovered
+  // themes do.
   const names=[["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"],["wissa","Wissa"],["palmer","Palmer"]];
   for(const it of [].concat(N.agreed||[], X.agreed||[])){
+    if(it.player){
+      if(!have.has(it.player) && !targets.includes(it.player)) targets.push(it.player);
+      continue;
+    }
     const t=String(it.text||"").toLowerCase();
     if(!/target|transfer in|priority|popular|attacker to target/.test(t)) continue;
     for(const [k,n] of names){ if(t.includes(k) && !have.has(n) && !targets.includes(n)) targets.push(n); }

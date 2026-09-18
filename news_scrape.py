@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, urllib.request
+import json, re, unicodedata, urllib.request
 from datetime import datetime, timezone
 from html import unescape
 from pathlib import Path
@@ -70,7 +70,7 @@ def page_title(html, url):
     return re.sub(r"\s+", " ", unescape(m.group(1))).strip()[:160]
 
 
-def article_text(html):
+def article_text(html, lower=True):
     """Title + main body text only — strip scripts/styles/nav noise for theme match."""
     if not html:
         return ""
@@ -92,7 +92,8 @@ def article_text(html):
             break
     text = unescape(re.sub(r"<[^>]+>", " ", body))
     text = re.sub(r"\s+", " ", text).strip()
-    return (title + " " + text).lower()[:12000]
+    result = title + " " + text
+    return (result.lower() if lower else result)[:12000]
 
 
 def is_junk_url(url):
@@ -213,25 +214,114 @@ def site_listings(gw):
     return out
 
 
-def themes_for(gw):
-    return [
-        {"keys": ["gakpo"], "text": f"Gakpo is a priority GW{gw} transfer in."},
-        {"keys": ["isak"], "text": f"Isak is a GW{gw} transfer conversation."},
-        {"keys": ["rogers"], "text": f"Rogers is a Chelsea attacker to target for GW{gw}."},
-        {"keys": ["de cuyper", "decuyper"], "text": "De Cuyper is the standout cheap / OOP defender."},
-        {"keys": ["palmer"], "text": f"Palmer is in the GW{gw} captain conversation."},
-        {"keys": ["haaland"], "text": f"Haaland remains the default GW{gw} captain."},
-        {"keys": ["joao pedro", "joão pedro"], "text": "João Pedro stays in the template forward line."},
-        {"keys": ["szoboszlai", "szobos"], "text": "Szoboszlai is listed as a Liverpool mid option."},
-        {"keys": ["gibbs-white", "gibbs white"], "text": f"Gibbs-White is a GW{gw} Forest mid target."},
-        {"keys": ["gvardiol"], "text": f"Gvardiol is a popular GW{gw} defender move."},
-        {"keys": ["saka"], "text": f"Saka is in the GW{gw} premium mid conversation."},
-        {"keys": ["chelsea"], "text": f"Chelsea attack is a GW{gw} stack to consider."},
-        {"keys": ["liverpool"], "text": f"Liverpool attackers stay in the GW{gw} conversation."},
-        {"keys": ["wissa"], "text": "Wissa is a popular forward move."},
-        {"keys": ["wildcard"], "text": f"GW{gw} is a live wildcard window for some elite sides."},
-        {"keys": ["manchester united", "man utd", "man united"], "text": "United assets are a fade / sell conversation."},
-    ]
+def _norm_keep_case(s):
+    """Strip accents (Groß->Gross, João->Joao) but keep case, for name matching."""
+    s = (s or "").replace("ß", "ss")
+    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
+
+
+def load_player_index():
+    """Every current FPL player, keyed for matching against raw (case-preserved)
+    article text — this is what lets the scraper discover whichever names are
+    actually trending, instead of only checking a hand-maintained watchlist.
+    Single-word names under 5 letters are skipped: matched case-sensitively
+    against scraped text they're rarely a problem, but short surnames (Cash,
+    King, Cole...) can coincide with ordinary capitalized words often enough
+    to not be worth the noise.
+    """
+    boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    idx, seen = [], set()
+    for el in boot["elements"]:
+        name = (el.get("web_name") or "").strip()
+        if not name or (" " not in name and "-" not in name and len(name) < 5):
+            continue
+        match = _norm_keep_case(name)
+        if match.lower() in seen:
+            continue
+        seen.add(match.lower())
+        idx.append({"web_name": name, "club": teams.get(el["team"], ""), "match": match})
+    return idx
+
+
+QUALIFIER_PATTERNS = [
+    ("captain talk", r"captain"),
+    ("transfer target", r"transfer in|bring (?:him|her)? ?in|priority (?:buy|pick)|target for"),
+    ("injury/doubt", r"\b(?:doubt|injury|injured|knock|fitness|illness)\b"),
+    ("differential", r"differential|under[- ]?owned|low[- ]?owned"),
+    ("fade/sell", r"\bfade\b|sell (?:him|her)?\b"),
+]
+
+
+ARTICLE_SEP = "\x00"  # joins separate articles in a source's blob; never occurs in real text
+
+
+def qualifiers_near(text, key, window=90):
+    """Tags describing HOW a name is being talked about, from the words actually
+    surrounding each mention (not a per-player hand-written script). The window is
+    clipped at ARTICLE_SEP so a mention in one article can't pick up a qualifier
+    from an unrelated sentence in the next article concatenated after it."""
+    tags = set()
+    for m in re.finditer(rf"\b{re.escape(key)}\b", text):
+        left = text.rfind(ARTICLE_SEP, 0, m.start())
+        left = 0 if left == -1 else left + 1
+        right = text.find(ARTICLE_SEP, m.end())
+        right = len(text) if right == -1 else right
+        ctx = text[max(left, m.start() - window):min(right, m.end() + window)].lower()
+        for tag, pat in QUALIFIER_PATTERNS:
+            if re.search(pat, ctx):
+                tags.add(tag)
+    return tags
+
+
+# Chip names are a fixed, closed vocabulary (FPL has exactly four chips), unlike
+# player names — so hardcoding these specific words isn't the same problem as a
+# hardcoded player watchlist. Kept separate from player-mention discovery below.
+CONCEPT_PATTERNS = [
+    ("wildcard", r"\bwildcard\b"),
+    ("free hit", r"\bfree hit\b"),
+]
+
+
+def concept_themes(raw_blobs, gw):
+    total = len(raw_blobs)
+    agreed, split = [], []
+    for concept, pat in CONCEPT_PATTERNS:
+        sources = sorted(s for s, text in raw_blobs.items() if re.search(pat, text, re.I))
+        if not sources:
+            continue
+        item = {
+            "text": f"GW{gw} coverage is talking about a {concept} window — mentioned by {len(sources)}/{total} sites.",
+            "sources": sources,
+        }
+        (agreed if len(sources) >= 3 else split).append(item)
+    return agreed, split
+
+
+def build_themes(raw_blobs, gw, player_index):
+    """Discover which players are actually mentioned across the scraped sites this
+    run, instead of checking a fixed list of names someone hand-picked in advance.
+    3+ sites = agreed (matches the "Agreed = 3+ sites" note shown in the UI)."""
+    total = len(raw_blobs)
+    mentions = {}
+    for source, raw_text in raw_blobs.items():
+        text = _norm_keep_case(raw_text)  # match accent-stripped key against accent-stripped text
+        for p in player_index:
+            if not re.search(rf"\b{re.escape(p['match'])}\b", text):
+                continue
+            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set()})
+            rec["sources"].add(source)
+            rec["tags"] |= qualifiers_near(text, p["match"])
+    agreed, split = [], []
+    for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):
+        n = len(rec["sources"])
+        club = f" ({rec['club']})" if rec["club"] else ""
+        tag_str = f" Tags: {', '.join(sorted(rec['tags']))}." if rec["tags"] else ""
+        text = f"{name}{club} is heavily featured in GW{gw} coverage — mentioned by {n}/{total} sites.{tag_str}"
+        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"])}
+        (agreed if n >= 3 else split).append(item)
+    concept_agreed, concept_split = concept_themes(raw_blobs, gw)
+    return (agreed + concept_agreed)[:15], (split + concept_split)[:20]
 
 
 def url_date(url):
@@ -249,7 +339,9 @@ def main():
     gw, cutoff = event_window(prev)
     seen_set = {u for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
     listings = site_listings(gw)
-    # source_blobs: title + article body text only (not full page HTML)
+    # Per-source blobs (title + article body only, not full page HTML), case
+    # preserved for player-mention discovery. Articles are joined with ARTICLE_SEP
+    # rather than a bare space so qualifier detection can't bleed across articles.
     blobs, links, discovered, used = {}, [], [], set()
     title_blobs = {}  # titles of new articles weighted heavily
     for source, url in listings:
@@ -282,31 +374,28 @@ def main():
         pub = parse_pub_date(body_html, art["url"]) or url_dt
         if not after_cutoff(pub, cutoff):
             continue
-        text_blob = article_text(body_html) if body_html else ""
-        # Always weight the title; prefer title+body over full HTML
-        title_l = (art.get("title") or "").lower()
-        match_blob = (title_l + " " + text_blob).strip()
+        title = art.get("title") or ""
+        text_blob = article_text(body_html, lower=False) if body_html else ""
+        match_blob = (title + " " + text_blob).strip()
         if not match_blob and body_html:
             # last resort: still avoid raw HTML tags by stripping
-            match_blob = re.sub(r"<[^>]+>", " ", body_html).lower()[:8000]
+            match_blob = re.sub(r"<[^>]+>", " ", body_html)[:8000]
         if match_blob:
-            blobs[art["source"]] = blobs.get(art["source"], "") + " " + match_blob
+            blobs[art["source"]] = blobs.get(art["source"], "") + ARTICLE_SEP + match_blob
         if art["url"] not in seen_set:
             new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
-            title_blobs[art["source"]] = title_blobs.get(art["source"], "") + " " + title_l
+            title_blobs[art["source"]] = title_blobs.get(art["source"], "") + ARTICLE_SEP + title
         seen_set.add(art["url"])
     seen_set = {u for u in seen_set if keep_seen(u, gw, cutoff)}
-    # Theme match: title+body blobs; boost new_articles titles (already in blobs via title_l)
+    # Weight new-article titles heavily by repeating them into the blob
     for src, tb in title_blobs.items():
-        blobs[src] = blobs.get(src, "") + " " + tb + " " + tb  # weight titles heavily
-    agreed, split = [], []
-    for th in themes_for(gw):
-        sources = [n for n, blob in blobs.items() if any(k in blob for k in th["keys"])]
-        item = {"text": th["text"], "sources": sources}
-        if len(sources) >= 3:
-            agreed.append(item)
-        elif sources:
-            split.append(item)
+        blobs[src] = blobs.get(src, "") + ARTICLE_SEP + tb + ARTICLE_SEP + tb
+    try:
+        player_index = load_player_index()
+    except Exception as e:
+        print(f"news_scrape.py: could not load player index for theme discovery: {e}")
+        player_index = []
+    agreed, split = build_themes(blobs, gw, player_index) if player_index else ([], [])
     def filter_themes_for_gw(items, gw_id):
         """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6)."""
         out = []
@@ -328,7 +417,7 @@ def main():
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes from title+article text.",
+        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
         "agreed": agreed,
         "split": split,
         "links": links,

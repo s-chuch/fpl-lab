@@ -59,19 +59,6 @@ function renderTransfers(){
     :`<div class="card"><h2>Transfers</h2><p class="note">No transfer-by-transfer list yet.</p></div>`;
 }
 renderTransfers();
-function newsVsSquad(squadNames, startedNames, clubsByName){
-  const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
-  for(const it of agreedPool()){
-    const t=normTxt(it.text); const names=namesInText(it.text);
-    const isFade=/fade|sell into|sell /.test(t); const isCap=/captain/.test(t); const isIn=/transfer in|to target|popular forward|priority/.test(t);
-    if(isCap) caps.push(it.text);
-    if(isFade){ const startedUnited=(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"); const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
-    const mine=names.filter(n=>have.has(n)); const other=names.filter(n=>!have.has(n));
-    if(mine.length) owned.push(mine.join(", ")+" · "+it.text);
-    if(other.length && isIn) missing.push(other.join(", ")+" · "+it.text);
-  }
-  return {owned, missing, fade, caps};
-}
 function newsCard(title, vs){
   const li=(arr,empty)=>arr.length?arr.map(raw=>{const x=esc(raw);return `<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`;}).join(""):`<li><span class="note">${empty}</span></li>`;
   const cap=vs.caps[0]?`<p class="note">Captain check: ${esc(vs.caps[0])}</p>`:"";
