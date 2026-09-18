@@ -1,10 +1,7 @@
 (function(){
   const D=window.FPL_DATA; if(!D) return;
-  const b=D.bench_audit;
-  if(b){
-    if(b.gw2 && b.gw2.process===b.gw2.you){ b.gw2.process=114; b.gw2.hindsight=128; }
-    if(b.gw3 && b.gw3.process===b.gw3.you){ b.gw3.process=51; b.gw3.hindsight=58; }
-  }
+  // bench_audit.process is now computed server-side in refresh.py (minutes-based,
+  // not a copy of "you") — no client-side patch needed here any more.
   const fh=(D.chips_official||{}).freehit;
   if(fh==null||!D.transfers) return;
   function netOf(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}

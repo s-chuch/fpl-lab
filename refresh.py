@@ -443,6 +443,40 @@ def _best_xi(squad):
         picked.append(p); counts[p["pos"]] += 1
     return picked
 
+def _process_xi(squad):
+    """Best legal XI judged only by minutes played, not final points: a bench player
+    only displaces a starter here if they played strictly more minutes — a call you
+    could make without knowing the final scoreline. The real captain is pinned first
+    so the multiplier isn't re-litigated by this heuristic."""
+    cap_name = next((p["name"] for p in squad if p.get("captain")), None)
+    by = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for p in squad:
+        by[p["pos"]].append(p)
+    for pos in by:
+        by[pos].sort(key=lambda x: (x["name"] != cap_name, -x["mins"], not x["started"]))
+    picked, counts = [], {k: 0 for k in MINN}
+    if by["GKP"]:
+        picked.append(by["GKP"][0]); counts["GKP"] = 1
+    have = lambda: {p["name"] for p in picked}
+    for pos, n in MINN.items():
+        if pos == "GKP":
+            continue
+        for p in by[pos]:
+            if counts[pos] >= n:
+                break
+            if p["name"] in have():
+                continue
+            picked.append(p); counts[pos] += 1
+    pool = [p for pos in ("DEF", "MID", "FWD") for p in by[pos] if p["name"] not in have()]
+    pool.sort(key=lambda x: (x["name"] != cap_name, -x["mins"], not x["started"]))
+    for p in pool:
+        if len(picked) >= 11:
+            break
+        if counts[p["pos"]] >= MAXX[p["pos"]]:
+            continue
+        picked.append(p); counts[p["pos"]] += 1
+    return picked
+
 def build_bench_audit(boot, team_id):
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
     pmap = {e["id"]: POS[e["element_type"]] for e in boot["elements"]}
@@ -457,9 +491,19 @@ def build_bench_audit(boot, team_id):
         except Exception:
             continue
         pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
+        mins = {el["id"]: el["stats"].get("minutes", 0) for el in live.get("elements", [])}
+        cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
+        mult = (cap or {}).get("multiplier") or 2
         squad, bench = [], []
         for p in pk.get("picks", []):
-            item = {"name": names.get(p["element"], "?"), "pos": pmap.get(p["element"], "MID"), "pts": pts.get(p["element"], 0)}
+            item = {
+                "name": names.get(p["element"], "?"),
+                "pos": pmap.get(p["element"], "MID"),
+                "pts": pts.get(p["element"], 0),
+                "mins": mins.get(p["element"], 0),
+                "started": p["position"] <= 11,
+                "captain": bool(p.get("is_captain")),
+            }
             squad.append(item)
             if p["position"] > 11:
                 bench.append([item["name"], item["pts"]])
@@ -469,10 +513,11 @@ def build_bench_audit(boot, team_id):
         you = (pk.get("entry_history") or {}).get("points")
         raw = sum(p["pts"] for p in best)
         top = max((p["pts"] for p in best), default=0)
-        cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
-        mult = (cap or {}).get("multiplier") or 2
         hindsight = raw + top * (mult - 1)
-        out[f"gw{gw}"] = {"you": you, "process": you, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4]}
+        proc_xi = _process_xi(squad)
+        proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
+        process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
+        out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4]}
     return out
 
 def build_transfers(boot, team_id):
@@ -619,9 +664,12 @@ def main(team_id=TEAM_ID, out_path=None):
     data_file = Path(out_path) if out_path else ROOT / "data.js"
     existing = {}
     if data_file.exists():
-        raw = data_file.read_text(); s, e = raw.find("{{"), raw.rfind("}}" )
+        raw = data_file.read_text(); s, e = raw.find("{"), raw.rfind("}")
         if s != -1 and e != -1:
-            existing = json.loads(raw[s:e+1])
+            try:
+                existing = json.loads(raw[s:e+1])
+            except Exception:
+                existing = {}
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
     entry = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/")
     hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
@@ -641,10 +689,11 @@ def main(team_id=TEAM_ID, out_path=None):
     leagues = analyze_leagues(boot, entry, team_id, league_picks_gw, deadline_passed=bool(ds["deadline_passed"]))
     caps = captain_audit(boot, team_id)
     data = existing or {}
-    if team_id != 1360999 or not data.get("transfers"):
-        data["transfers"] = build_transfers(boot, team_id)
-    if team_id != 1360999 or not data.get("bench_audit"):
-        data["bench_audit"] = build_bench_audit(boot, team_id)
+    # Recomputed every run rather than cached off `existing`: both only cover finished
+    # GWs (whose points never change), so recomputing is cheap and safe, whereas a
+    # "skip if already present" cache would silently freeze once a new GW finishes.
+    data["transfers"] = build_transfers(boot, team_id)
+    data["bench_audit"] = build_bench_audit(boot, team_id)
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
