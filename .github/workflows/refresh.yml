@@ -38,7 +38,7 @@ jobs:
 
       - name: Syntax check
         run: |
-          python -m py_compile news_scrape.py refresh.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py
 
       - name: Pull live FPL data
         run: |

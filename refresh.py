@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, urllib.request
+import argparse, json, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from league_tactics import build_tactics
+from lab_audit import add_roll_rows
+import fpl_common
+
+
+def _warn(msg):
+    """Surface a skipped-item failure in the Action log instead of swallowing it."""
+    print(f"[refresh.py] WARNING: {msg}", file=sys.stderr)
 
 ET = ZoneInfo("America/Toronto")
 
@@ -20,9 +27,7 @@ MINN = {"GKP": 1, "DEF": 3, "MID": 2, "FWD": 1}
 MAXX = {"GKP": 1, "DEF": 5, "MID": 5, "FWD": 3}
 
 def get(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "ShaalandFPLLab/1.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode())
+    return fpl_common.get(url, timeout=30)
 
 
 def parse_deadline(raw):
@@ -254,7 +259,8 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
             picks = payload.get("picks") or []
             if picks:
                 picks_gw = ev["id"]; break
-        except Exception:
+        except Exception as e:
+            _warn(f"build_plan: could not load GW{ev['id']} picks: {e}")
             continue
     if not picks:
         return {"note": "Could not load squad picks.", "upcoming": [], "rows": []}
@@ -396,7 +402,8 @@ def captain_audit(boot, team_id):
         try:
             pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
             live = get(f"https://fantasy.premierleague.com/api/event/{gw}/live/")
-        except Exception:
+        except Exception as e:
+            _warn(f"captain_audit: could not load GW{gw} picks/live: {e}")
             continue
         pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
         cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
@@ -488,7 +495,8 @@ def build_bench_audit(boot, team_id):
         try:
             pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
             live = get(f"https://fantasy.premierleague.com/api/event/{gw}/live/")
-        except Exception:
+        except Exception as e:
+            _warn(f"build_bench_audit: could not load GW{gw} picks/live: {e}")
             continue
         pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
         mins = {el["id"]: el["stats"].get("minutes", 0) for el in live.get("elements", [])}
@@ -524,7 +532,8 @@ def build_transfers(boot, team_id):
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
     try:
         rows = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/")
-    except Exception:
+    except Exception as e:
+        _warn(f"build_transfers: could not load transfers list: {e}")
         return []
     live_cache, out = {}, []
     for t in rows:
@@ -532,7 +541,8 @@ def build_transfers(boot, team_id):
         if gw not in live_cache:
             try:
                 live_cache[gw] = {el["id"]: el["stats"]["total_points"] for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
-            except Exception:
+            except Exception as e:
+                _warn(f"build_transfers: could not load GW{gw} live data: {e}")
                 live_cache[gw] = {}
         inn, outp = names.get(t["element_in"], "?"), names.get(t["element_out"], "?")
         pin, pout = live_cache[gw].get(t["element_in"], 0), live_cache[gw].get(t["element_out"], 0)
@@ -555,15 +565,16 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
         if deadline_passed and my_pk.get("picks"):
             my_squad = format_pick_squad(my_pk.get("picks"), elements, teams)
             my_squad["chip"] = my_pk.get("active_chip")
-    except Exception:
-        pass
+    except Exception as e:
+        _warn(f"analyze_leagues: could not load own GW{picks_gw} picks: {e}")
     leagues = []
     tracked = [x for x in classic if x.get("id") in tracked_ids]
     tracked.sort(key=lambda x: 0 if x.get("id") == 125784 else 1)
     for L in tracked:
         try:
             rows = (get(f"https://fantasy.premierleague.com/api/leagues-classic/{L['id']}/standings/?page_standings=1").get("standings") or {}).get("results") or []
-        except Exception:
+        except Exception as e:
+            _warn(f"analyze_leagues: could not load standings for league {L['id']}: {e}")
             continue
         table = [{"rank": r.get("rank"), "team": r.get("entry_name"), "pts": r.get("total"), "me": r.get("entry") == team_id, "entry": r.get("entry")} for r in rows[:15]]
         counts, n, owned_by, cap_by = {}, 0, {}, {}
@@ -573,7 +584,8 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
             for r in rows:
                 try:
                     pk = get(f"https://fantasy.premierleague.com/api/entry/{r['entry']}/event/{picks_gw}/picks/")
-                except Exception:
+                except Exception as e:
+                    _warn(f"analyze_leagues: could not load picks for entry {r.get('entry')}: {e}")
                     continue
                 picks = pk.get("picks") or []
                 if not picks:
@@ -692,7 +704,7 @@ def main(team_id=TEAM_ID, out_path=None):
     # Recomputed every run rather than cached off `existing`: both only cover finished
     # GWs (whose points never change), so recomputing is cheap and safe, whereas a
     # "skip if already present" cache would silently freeze once a new GW finishes.
-    data["transfers"] = build_transfers(boot, team_id)
+    data["transfers"] = add_roll_rows(build_transfers(boot, team_id), hist, chips_used)
     data["bench_audit"] = build_bench_audit(boot, team_id)
     now = datetime.now(timezone.utc)
     data.update({

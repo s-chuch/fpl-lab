@@ -1,76 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Bacalhau · FPL Lab</title>
-<style>
-:root{--bg:#070B10;--card:#101820;--ink:#F3F6F8;--muted:#8B95A1;--line:#1E2A36;--teal:#1B7F6E;--gold:#C9A227;--red:#E85D4C;--green:#3DDC97;--yellow:#E6C35C}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,sans-serif}
-body{padding:16px 14px 64px;max-width:980px;margin:0 auto}
-.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700}
-h1{font-size:28px;margin:6px 0 4px}.sub{color:var(--muted);font-size:13px}
-.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-@media(min-width:720px){.kpis{grid-template-columns:repeat(4,1fr)}}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
-.kpi b{display:block;font-size:22px}.kpi span{font-size:11px;color:var(--muted);text-transform:uppercase}
-.tabs{display:flex;flex-direction:column;gap:8px;overflow:visible;padding:6px 0 14px;position:sticky;top:0;background:var(--bg);z-index:5}
-.tab-groups,.tab-pills{display:flex;flex-wrap:wrap;gap:6px}
-.tabs button{border:1px solid var(--line);background:#0C141C;color:var(--ink);border-radius:999px;padding:8px 12px;font-size:13px;white-space:nowrap}
-.tabs button.on{background:var(--teal);border-color:var(--teal);font-weight:700}
-.tabs button.group{border-radius:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:7px 10px}
-.tabs button.group.on{color:var(--gold);border-color:var(--gold);background:#16120a;font-weight:700}
-section{display:none}section.on{display:block}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 0 12px}
-.card h2{font-size:15px;margin:0 0 10px}table{width:100%;border-collapse:collapse;font-size:13px}
-th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase}
-.pos{color:var(--green);font-weight:700}.neg{color:var(--red);font-weight:700}
-.pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
-.pill.used{background:#3a1d1a;color:#ffb4a8}.pill.free{background:#16352e;color:#7dffc8}
-.xi{display:flex;flex-wrap:wrap;gap:6px}.chip{background:#0C141C;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
-.chip.sit{opacity:.55}.chip.ok{border-color:var(--green);color:var(--green)}
-.chip.process{border-color:var(--red);color:var(--red)}
-.chip.variance{border-color:var(--yellow);color:var(--yellow)}
-.note{font-size:13px;color:var(--muted);line-height:1.45}
-.warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
-footer{margin-top:22px;color:var(--muted);font-size:12px}footer a{color:var(--gold)}
-.chiplist{list-style:none;margin:0;padding:0}
-.chiplist li{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
-.chiplist li:last-child{border-bottom:0}
-.chiplist .who{font-weight:700}.chiplist .detail{width:100%;color:var(--muted);font-size:13px;margin-top:4px}
-
-
-.barrow{display:grid;grid-template-columns:88px 1fr 40px;gap:10px;align-items:center;margin:8px 0;font-size:12px;color:var(--muted);width:100%}
-.track{height:10px;background:#0C141C;border:1px solid var(--line);border-radius:99px;overflow:hidden}
-.track i{display:block;height:10px;border-radius:99px;background:var(--teal);min-width:4px}
-.track i.mid{background:var(--yellow)}.track i.bad{background:var(--red)}
-</style></head><body>
+<link rel="stylesheet" href="dashboard.css?v=20260918f">
+<style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
+<script src="dashboard-common.js?v=20260918f"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
 <script src="news.js?v=20260917i"></script>
 <script src="x-posts.js?v=20260917i"></script>
 <script>
 const D=window.FPL_DATA;
-const TZ="America/Toronto";
-function toToronto(s){
-  if(s==null||s==="") return "-";
-  const raw=String(s).trim();
-  if(/\b(EDT|EST)\b/i.test(raw) && !/UTC/i.test(raw)) return raw.replace(/\bUTC\b/g,"").trim()+" (Toronto)";
-  let d=null;
-  const m=raw.match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})(?::(\d{2}))?\s*(UTC|Z)?$/i);
-  if(m) d=new Date(m[1]+"T"+m[2]+":"+(m[3]||"00")+"Z");
-  else { const ms=Date.parse(raw); if(!isNaN(ms)) d=new Date(ms); }
-  if(!d||isNaN(+d)) return raw;
-  return new Intl.DateTimeFormat("en-CA",{timeZone:TZ,weekday:"short",month:"short",day:"numeric",hour:"numeric",minute:"2-digit",hour12:true,timeZoneName:"short"}).format(d);
-}
-const fmt=n=>n==null?"-":Number(n).toLocaleString();
-const sign=n=>n==null?"-":(n>0?"+"+n:String(n));
-const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
-// Escape untrusted text (scraped article titles, X posts, other managers' FPL
-// team/league names) before it goes into innerHTML — none of it is ours to trust.
-function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function safeHref(u){try{const p=new URL(String(u||""),location.href);if(p.protocol==="http:"||p.protocol==="https:")return p.href;}catch(e){}return "#";}
 document.getElementById("teamName").textContent=D.team.name;
 document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
 document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+Number(D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
@@ -105,7 +48,6 @@ function benchBlock(key,title){
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
 document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Teal = They. Yellow = Process. Red = Hindsight.</p>`;
-function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);
@@ -117,10 +59,6 @@ function renderTransfers(){
     :`<div class="card"><h2>Transfers</h2><p class="note">No transfer-by-transfer list yet.</p></div>`;
 }
 renderTransfers();
-const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
-function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
-function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News"})),(X.agreed||[]).map(x=>({text:x.text,from:"X"})));}
-function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
 function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
   for(const it of agreedPool()){
