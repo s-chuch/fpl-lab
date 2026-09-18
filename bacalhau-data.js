@@ -20,6 +20,13 @@ window.FPL_DATA = {
       "inn": "Mitchell",
       "net": "0",
       "verdict": "Even that GW"
+    },
+    {
+      "gw": 5,
+      "out": "Hughes",
+      "inn": "Belloumi",
+      "net": "0",
+      "verdict": "Even that GW"
     }
   ],
   "bench_audit": {
@@ -188,15 +195,15 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 15:34 UTC",
+  "generated_at": "2026-09-18 18:26 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1590497,
-    "bank": 4.9,
-    "value": 100.5
+    "overall_rank": 1559596,
+    "bank": 4.4,
+    "value": 100.9
   },
   "history": [
     {
@@ -262,6 +269,17 @@ window.FPL_DATA = {
       "field_avg": 69,
       "delta": 5,
       "chip": null
+    },
+    {
+      "gw": 5,
+      "points": 0,
+      "bench": 0,
+      "transfers": 1,
+      "hits": 0,
+      "rank": 1590538,
+      "field_avg": 0,
+      "delta": null,
+      "chip": null
     }
   ],
   "field_avg_known": {
@@ -271,9 +289,9 @@ window.FPL_DATA = {
     "4": 69
   },
   "plan": {
-    "note": "GW4 squad. Last finished 4.",
+    "note": "GW5 squad. Last finished 4.",
     "last_finished": 4,
-    "squad_from_gw": 4,
+    "squad_from_gw": 5,
     "upcoming": [
       {
         "gw": 5,
@@ -324,7 +342,7 @@ window.FPL_DATA = {
         "CRY",
         "A LEE",
         3,
-        "START",
+        "SIT",
         "H NFO",
         3,
         "START"
@@ -375,17 +393,6 @@ window.FPL_DATA = {
       ],
       [
         "MID",
-        "Hughes",
-        "CRY",
-        "A LEE",
-        3,
-        "SIT",
-        "H NFO",
-        3,
-        "SIT"
-      ],
-      [
-        "MID",
         "Dewsbury-Hall",
         "EVE",
         "H IPS",
@@ -397,6 +404,17 @@ window.FPL_DATA = {
       ],
       [
         "MID",
+        "Belloumi",
+        "HUL",
+        "A NEW",
+        3,
+        "START",
+        "H EVE",
+        3,
+        "START"
+      ],
+      [
+        "MID",
         "Szoboszlai",
         "LIV",
         "A BOU",
@@ -404,7 +422,7 @@ window.FPL_DATA = {
         "START",
         "H MCI",
         4,
-        "START"
+        "SIT"
       ],
       [
         "MID",
@@ -461,14 +479,14 @@ window.FPL_DATA = {
           "B.Fernandes",
           "Gro\u00df",
           "Haaland (C)",
+          "Belloumi",
           "N.Williams",
           "Dewsbury-Hall",
-          "Szoboszlai",
-          "Mitchell"
+          "Szoboszlai"
         ],
         "bench": [
           "Dubravka",
-          "Hughes",
+          "Mitchell",
           "Walle Egeli",
           "Kusi-Asare"
         ]
@@ -482,14 +500,14 @@ window.FPL_DATA = {
           "Gro\u00df",
           "B.Fernandes",
           "Haaland (C)",
+          "Belloumi",
           "Dewsbury-Hall",
           "Mitchell",
-          "N.Williams",
-          "Szoboszlai"
+          "N.Williams"
         ],
         "bench": [
           "Dubravka",
-          "Hughes",
+          "Szoboszlai",
           "Walle Egeli",
           "Kusi-Asare"
         ]
@@ -500,7 +518,7 @@ window.FPL_DATA = {
         "gw": 5,
         "sit": [
           "Dubravka",
-          "Hughes",
+          "Mitchell",
           "Walle Egeli",
           "Kusi-Asare"
         ],
@@ -511,7 +529,7 @@ window.FPL_DATA = {
         "gw": 6,
         "sit": [
           "Dubravka",
-          "Hughes",
+          "Szoboszlai",
           "Walle Egeli",
           "Kusi-Asare"
         ],
@@ -588,7 +606,7 @@ window.FPL_DATA = {
           {
             "rank": 9,
             "team": "Kroos Kontrol",
-            "pts": 264,
+            "pts": 260,
             "me": false
           },
           {
@@ -612,7 +630,7 @@ window.FPL_DATA = {
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 202,
+            "pts": 190,
             "me": false
           }
         ],
@@ -623,33 +641,26 @@ window.FPL_DATA = {
             "own": 92,
             "count": 12,
             "n": 13
+          },
+          {
+            "name": "Cherki",
+            "club": "MCI",
+            "own": 46,
+            "count": 6,
+            "n": 13
           }
         ],
         "diffs": [
           {
-            "name": "Szoboszlai",
-            "club": "LIV",
+            "name": "Dubravka",
+            "club": "TOT",
             "own": 23,
             "count": 3,
             "n": 13
           },
           {
-            "name": "Ajayi",
-            "club": "HUL",
-            "own": 15,
-            "count": 2,
-            "n": 13
-          },
-          {
             "name": "N.Williams",
             "club": "NFO",
-            "own": 15,
-            "count": 2,
-            "n": 13
-          },
-          {
-            "name": "Mitchell",
-            "club": "CRY",
             "own": 15,
             "count": 2,
             "n": 13
@@ -662,6 +673,13 @@ window.FPL_DATA = {
             "n": 13
           },
           {
+            "name": "Belloumi",
+            "club": "HUL",
+            "own": 15,
+            "count": 2,
+            "n": 13
+          },
+          {
             "name": "Dewsbury-Hall",
             "club": "EVE",
             "own": 15,
@@ -669,15 +687,22 @@ window.FPL_DATA = {
             "n": 13
           },
           {
-            "name": "Walle Egeli",
-            "club": "IPS",
-            "own": 8,
-            "count": 1,
+            "name": "Mitchell",
+            "club": "CRY",
+            "own": 15,
+            "count": 2,
             "n": 13
           },
           {
             "name": "Kusi-Asare",
             "club": "FUL",
+            "own": 8,
+            "count": 1,
+            "n": 13
+          },
+          {
+            "name": "Walle Egeli",
+            "club": "IPS",
             "own": 8,
             "count": 1,
             "n": 13
@@ -718,9 +743,17 @@ window.FPL_DATA = {
               "name": "B.Fernandes",
               "club": "MUN",
               "pos": "MID",
-              "count": 9,
+              "count": 10,
               "n": 13,
-              "own": 69
+              "own": 77
+            },
+            {
+              "name": "Gro\u00df",
+              "club": "BHA",
+              "pos": "MID",
+              "count": 8,
+              "n": 13,
+              "own": 62
             },
             {
               "name": "Calafiori",
@@ -729,70 +762,42 @@ window.FPL_DATA = {
               "count": 7,
               "n": 13,
               "own": 54
-            },
-            {
-              "name": "Gro\u00df",
-              "club": "BHA",
-              "pos": "MID",
-              "count": 7,
-              "n": 13,
-              "own": 54
             }
           ],
           "you_unique": [
             {
-              "name": "Dubravka",
-              "club": "TOT",
-              "pos": "GKP",
-              "count": 4,
-              "n": 13,
-              "own": 31,
-              "vs_first": false,
-              "vs_second": true
-            },
-            {
-              "name": "Hughes",
-              "club": "CRY",
-              "pos": "MID",
+              "name": "Ajayi",
+              "club": "HUL",
+              "pos": "DEF",
               "count": 4,
               "n": 13,
               "own": 31,
               "vs_first": true,
-              "vs_second": true
+              "vs_second": false
             },
             {
               "name": "Szoboszlai",
               "club": "LIV",
               "pos": "MID",
-              "count": 3,
+              "count": 4,
               "n": 13,
-              "own": 23,
+              "own": 31,
               "vs_first": true,
               "vs_second": false
             },
             {
-              "name": "Ajayi",
-              "club": "HUL",
-              "pos": "DEF",
-              "count": 2,
+              "name": "Dubravka",
+              "club": "TOT",
+              "pos": "GKP",
+              "count": 3,
               "n": 13,
-              "own": 15,
-              "vs_first": true,
+              "own": 23,
+              "vs_first": false,
               "vs_second": true
             },
             {
               "name": "N.Williams",
               "club": "NFO",
-              "pos": "DEF",
-              "count": 2,
-              "n": 13,
-              "own": 15,
-              "vs_first": true,
-              "vs_second": true
-            },
-            {
-              "name": "Mitchell",
-              "club": "CRY",
               "pos": "DEF",
               "count": 2,
               "n": 13,
@@ -811,6 +816,16 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
+              "name": "Belloumi",
+              "club": "HUL",
+              "pos": "MID",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
               "name": "Dewsbury-Hall",
               "club": "EVE",
               "pos": "MID",
@@ -821,8 +836,18 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
-              "name": "Walle Egeli",
-              "club": "IPS",
+              "name": "Mitchell",
+              "club": "CRY",
+              "pos": "DEF",
+              "count": 2,
+              "n": 13,
+              "own": 15,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
+              "name": "Kusi-Asare",
+              "club": "FUL",
               "pos": "FWD",
               "count": 1,
               "n": 13,
@@ -831,8 +856,8 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
-              "name": "Kusi-Asare",
-              "club": "FUL",
+              "name": "Walle Egeli",
+              "club": "IPS",
               "pos": "FWD",
               "count": 1,
               "n": 13,
@@ -878,31 +903,15 @@ window.FPL_DATA = {
           "cap_last": [
             {
               "name": "Haaland",
-              "count": 5
+              "count": 11
             },
             {
-              "name": "Jo\u00e3o Pedro",
-              "count": 3
-            },
-            {
-              "name": "Isak",
+              "name": "B.Fernandes",
               "count": 2
-            },
-            {
-              "name": "Palmer",
-              "count": 1
-            },
-            {
-              "name": "\u00d8degaard",
-              "count": 1
-            },
-            {
-              "name": "Rice",
-              "count": 1
             }
           ]
         },
-        "picks_gw": 4
+        "picks_gw": 5
       },
       {
         "id": 494595,
@@ -932,8 +941,8 @@ window.FPL_DATA = {
         ],
         "template": [
           {
-            "name": "Konsa",
-            "club": "ARS",
+            "name": "Cherki",
+            "club": "MCI",
             "own": 67,
             "count": 2,
             "n": 3
@@ -963,17 +972,25 @@ window.FPL_DATA = {
           },
           "template": [
             {
-              "name": "Raya",
+              "name": "Calafiori",
               "club": "ARS",
-              "pos": "GKP",
+              "pos": "DEF",
               "count": 3,
               "n": 3,
               "own": 100
             },
             {
-              "name": "Calafiori",
-              "club": "ARS",
-              "pos": "DEF",
+              "name": "B.Fernandes",
+              "club": "MUN",
+              "pos": "MID",
+              "count": 3,
+              "n": 3,
+              "own": 100
+            },
+            {
+              "name": "Gro\u00df",
+              "club": "BHA",
+              "pos": "MID",
               "count": 3,
               "n": 3,
               "own": 100
@@ -985,21 +1002,13 @@ window.FPL_DATA = {
               "count": 3,
               "n": 3,
               "own": 100
-            },
-            {
-              "name": "Dubravka",
-              "club": "TOT",
-              "pos": "GKP",
-              "count": 3,
-              "n": 3,
-              "own": 100
             }
           ],
           "you_unique": [
             {
-              "name": "B.Fernandes",
-              "club": "MUN",
-              "pos": "MID",
+              "name": "Raya",
+              "club": "ARS",
+              "pos": "GKP",
               "count": 2,
               "n": 3,
               "own": 67,
@@ -1007,9 +1016,9 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
-              "name": "Gro\u00df",
-              "club": "BHA",
-              "pos": "MID",
+              "name": "Dubravka",
+              "club": "TOT",
+              "pos": "GKP",
               "count": 2,
               "n": 3,
               "own": 67,
@@ -1027,28 +1036,8 @@ window.FPL_DATA = {
               "vs_second": false
             },
             {
-              "name": "Hughes",
-              "club": "CRY",
-              "pos": "MID",
-              "count": 2,
-              "n": 3,
-              "own": 67,
-              "vs_first": true,
-              "vs_second": false
-            },
-            {
               "name": "N.Williams",
               "club": "NFO",
-              "pos": "DEF",
-              "count": 1,
-              "n": 3,
-              "own": 33,
-              "vs_first": true,
-              "vs_second": true
-            },
-            {
-              "name": "Mitchell",
-              "club": "CRY",
               "pos": "DEF",
               "count": 1,
               "n": 3,
@@ -1077,6 +1066,16 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
+              "name": "Belloumi",
+              "club": "HUL",
+              "pos": "MID",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
+            },
+            {
               "name": "Dewsbury-Hall",
               "club": "EVE",
               "pos": "MID",
@@ -1087,9 +1086,9 @@ window.FPL_DATA = {
               "vs_second": true
             },
             {
-              "name": "Walle Egeli",
-              "club": "IPS",
-              "pos": "FWD",
+              "name": "Mitchell",
+              "club": "CRY",
+              "pos": "DEF",
               "count": 1,
               "n": 3,
               "own": 33,
@@ -1105,13 +1104,23 @@ window.FPL_DATA = {
               "own": 33,
               "vs_first": true,
               "vs_second": true
+            },
+            {
+              "name": "Walle Egeli",
+              "club": "IPS",
+              "pos": "FWD",
+              "count": 1,
+              "n": 3,
+              "own": 33,
+              "vs_first": true,
+              "vs_second": true
             }
           ],
           "they_share": [
             {
-              "name": "Konsa",
-              "club": "ARS",
-              "pos": "DEF",
+              "name": "Cherki",
+              "club": "MCI",
+              "pos": "MID",
               "count": 2,
               "n": 3,
               "own": 67
@@ -1127,27 +1136,19 @@ window.FPL_DATA = {
           ],
           "cap_last": [
             {
-              "name": "Jo\u00e3o Pedro",
-              "count": 1
-            },
-            {
-              "name": "Palmer",
-              "count": 1
-            },
-            {
               "name": "Haaland",
-              "count": 1
+              "count": 3
             }
           ]
         },
-        "picks_gw": 4
+        "picks_gw": 5
       }
     ],
     "public": [
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1590497,
+        "rank": 1559596,
         "last_rank": 1240844
       }
     ],
@@ -1155,12 +1156,12 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 69.4
+        "own": 67.2
       },
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 39.7
+        "own": 40.3
       },
       {
         "name": "Cherki",
@@ -1170,17 +1171,17 @@ window.FPL_DATA = {
       {
         "name": "Palmer",
         "club": "CHE",
-        "own": 26.9
-      },
-      {
-        "name": "Gvardiol",
-        "club": "MCI",
-        "own": 25.9
+        "own": 27.0
       },
       {
         "name": "Calvert-Lewin",
         "club": "LEE",
-        "own": 25.7
+        "own": 26.6
+      },
+      {
+        "name": "Gvardiol",
+        "club": "MCI",
+        "own": 26.6
       }
     ],
     "overall_diffs": [
@@ -1190,9 +1191,14 @@ window.FPL_DATA = {
         "own": 3.7
       },
       {
+        "name": "Belloumi",
+        "club": "HUL",
+        "own": 4.6
+      },
+      {
         "name": "Kusi-Asare",
         "club": "FUL",
-        "own": 5.7
+        "own": 5.6
       },
       {
         "name": "Mitchell",
@@ -1202,20 +1208,15 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 6.3
-      },
-      {
-        "name": "Hughes",
-        "club": "CRY",
-        "own": 7.8
+        "own": 6.7
       },
       {
         "name": "N.Williams",
         "club": "NFO",
-        "own": 9.4
+        "own": 9.8
       }
     ],
-    "picks_gw": 4
+    "picks_gw": 5
   },
   "captain_audit": [
     {
