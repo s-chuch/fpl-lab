@@ -41,11 +41,8 @@ jobs:
           python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py
 
       - name: Pull live FPL data
-        env:
-          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
           python news_scrape.py
-          python x_scrape.py
           python refresh.py
           python refresh.py --team 1360920 --out bacalhau-data.js
 
@@ -53,7 +50,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.js bacalhau-data.js news.js x-posts.js
+          # X live ingest is Grok Bot / user-X MCP — never commit x-posts.js from Actions
+          git add data.js bacalhau-data.js news.js
           if git diff --staged --quiet; then
             echo "No data change"
           else
