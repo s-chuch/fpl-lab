@@ -523,10 +523,113 @@ def build_bench_audit(boot, team_id):
         top = max((p["pts"] for p in best), default=0)
         hindsight = raw + top * (mult - 1)
         proc_xi = _process_xi(squad)
+        proc_started = {p["name"] for p in proc_xi}
         proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
         process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
-        out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4]}
+        # Per-bench-player verdict, auto-derived instead of hand-typed per GW:
+        # "process" = minutes said they should've started (a real misread),
+        # "variance" = only hindsight's final score says so (bad luck, not a
+        # mistake), "ok" = correctly left out either way.
+        better_names = {n for n, _ in better}
+        bench_tags = {}
+        for name, _pts in bench:
+            if name in proc_started:
+                bench_tags[name] = "process"
+            elif name in better_names:
+                bench_tags[name] = "variance"
+            else:
+                bench_tags[name] = "ok"
+        out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4], "bench_tags": bench_tags}
     return out
+
+def build_chip_net(chips_used, caps, bench_audit):
+    """Auto-compute each played chip's net points vs not using it, from data
+    already gathered for captain_audit/bench_audit — no per-chip hand-typed
+    numbers to keep updating. Wildcard has no well-defined "net vs no chip"
+    (it changes your whole squad), so it's intentionally left out."""
+    out = {}
+    bboost_gw = chips_used.get("bboost")
+    if bboost_gw:
+        bench = (bench_audit.get(f"gw{bboost_gw}") or {}).get("your_bench") or []
+        out["bboost"] = {
+            "net": sum(pts for _name, pts in bench),
+            "note": " + ".join(f"{name} {pts}" for name, pts in bench) or None,
+        }
+    xc_gw = chips_used.get("3xc")
+    if xc_gw:
+        row = next((c for c in caps if c.get("gw") == xc_gw), None)
+        if row:
+            extra = row.get("captain_raw") or 0  # 3xc's only gain over a normal (C) is the 3rd multiple
+            out["3xc"] = {
+                "net": extra,
+                "note": f"{row.get('captain')} {extra} raw. Triple gave {extra * 3} instead of {extra * 2}.",
+            }
+    return out
+
+
+def build_fh_audit(boot, team_id, chips_used):
+    """Auto-compute the Free Hit process/outcome audit: FH XI vs the squad you'd
+    have had if you'd rolled instead (FPL guarantees the squad reverts exactly,
+    so the prior gameweek's picks are that "original" squad). Replaces the
+    one-off hand-written fh.js, which only ever covers whichever GW someone
+    last wrote it for."""
+    fh_gw = chips_used.get("freehit")
+    if not fh_gw:
+        return None
+    elements = {e["id"]: e for e in boot["elements"]}
+    try:
+        fh_pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{fh_gw}/picks/")
+        live = get(f"https://fantasy.premierleague.com/api/event/{fh_gw}/live/")
+    except Exception as e:
+        _warn(f"build_fh_audit: could not load GW{fh_gw} FH picks/live: {e}")
+        return None
+    orig_gw = fh_gw - 1
+    orig_pk = {}
+    if orig_gw >= 1:
+        try:
+            orig_pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{orig_gw}/picks/")
+        except Exception as e:
+            _warn(f"build_fh_audit: could not load GW{orig_gw} original picks: {e}")
+    if not orig_pk.get("picks"):
+        return None
+    pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
+
+    def score_squad(pk):
+        total, xi = 0, []
+        for p in pk.get("picks") or []:
+            el = elements.get(p["element"])
+            mult = p.get("multiplier") or 0
+            if not el or not mult:
+                continue  # bench / not started (incl. FPL's own autosubs already applied)
+            raw = pts.get(p["element"], 0)
+            total += raw * mult
+            item = {"name": el["web_name"], "got": raw * mult}
+            if mult != 1:
+                item["mult"] = mult
+            xi.append(item)
+        return total, xi
+
+    def captain_of(pk):
+        cap = next((p for p in (pk.get("picks") or []) if p.get("is_captain")), None)
+        return elements.get((cap or {}).get("element"), {}).get("web_name")
+
+    fh_points, fh_xi = score_squad(fh_pk)
+    orig_points, orig_xi = score_squad(orig_pk)
+    net = fh_points - orig_points
+    return {
+        "gw": fh_gw,
+        "fh_points": fh_points,
+        "original_points": orig_points,
+        "net": net,
+        "process": "ok",  # a played Free Hit is always a legal, deliberate reset — not a process error by definition
+        "outcome": "won" if net > 0 else ("lost" if net < 0 else "even"),
+        "original_cap": captain_of(orig_pk),
+        "fh_cap": captain_of(fh_pk),
+        "original_xi": orig_xi,
+        "fh_xi": fh_xi,
+        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad — net {'+' if net >= 0 else ''}{net}.",
+    }
+
 
 def build_transfers(boot, team_id):
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
@@ -706,6 +809,8 @@ def main(team_id=TEAM_ID, out_path=None):
     # "skip if already present" cache would silently freeze once a new GW finishes.
     data["transfers"] = add_roll_rows(build_transfers(boot, team_id), hist, chips_used)
     data["bench_audit"] = build_bench_audit(boot, team_id)
+    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
+    data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

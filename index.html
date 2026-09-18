@@ -40,8 +40,7 @@ document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); 
 paintTabs();
 function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
 document.getElementById("season").innerHTML=gwTable();
-const BENCH_TAG={gw2:{Verbruggen:"ok",Groß:"process","Gro\u00df":"process",Hume:"process",Davis:"variance"},gw3:{Kinsky:"variance",Tzolis:"variance",Shaw:"process",Davis:"ok"}};
-function chipClass(gw,name){const t=(BENCH_TAG[gw]||{})[name];return t?"chip "+t:"chip sit";}
+function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
 function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
 function benchBlock(key,title){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
@@ -160,7 +159,8 @@ function renderLeagues(){
 renderLeagues();
 const co=D.chips_official||{};
 const FHNET=(D.fh_audit||(window.FPL_FH&&window.FPL_FH.audit)||null);
-const CHIP_NET={bboost:{net:12,note:"Kinsky 2 + Groß 2 + Davis 2 + Rodon 6"},"3xc":{net:9,note:"Haaland 9 raw. Triple gave 27 instead of 18."},freehit:FHNET?{net:FHNET.net,note:FHNET.why}:null};
+const CN=D.chip_net||{};
+const CHIP_NET={bboost:CN.bboost||null,"3xc":CN["3xc"]||null,freehit:FHNET?{net:FHNET.net,note:FHNET.why}:null};
 function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${esc(label)}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b>`:`<span class="note">—</span>`}</span><div class="detail">${esc(used?(note||"Net vs no chip."):"Still available.")}</div></li>`;}
 document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
 function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${esc(s)}</span>`).join(" ");}
