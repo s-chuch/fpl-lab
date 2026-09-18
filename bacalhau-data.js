@@ -188,7 +188,7 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-17 22:46 UTC",
+  "generated_at": "2026-09-18 01:16 UTC",
   "team": {
     "id": 1360920,
     "name": "Bacalhau",
@@ -575,13 +575,13 @@ window.FPL_DATA = {
           },
           {
             "rank": 7,
-            "team": "Blasters United",
+            "team": "HanSoloDolo",
             "pts": 267,
             "me": false
           },
           {
             "rank": 7,
-            "team": "HanSoloDolo",
+            "team": "Blasters United",
             "pts": 267,
             "me": false
           },
@@ -1155,7 +1155,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 72.8
+        "own": 72.6
       },
       {
         "name": "Rogers",
@@ -1182,7 +1182,7 @@ window.FPL_DATA = {
       {
         "name": "Dewsbury-Hall",
         "club": "EVE",
-        "own": 5.6
+        "own": 5.7
       },
       {
         "name": "Kusi-Asare",
@@ -1202,7 +1202,7 @@ window.FPL_DATA = {
       {
         "name": "N.Williams",
         "club": "NFO",
-        "own": 8.9
+        "own": 9.0
       }
     ],
     "picks_gw": 4

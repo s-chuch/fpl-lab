@@ -1,7 +1,7 @@
 window.FPL_X = {
   "gw": 5,
   "cutoff": "2026-09-12 12:30 UTC",
-  "generated_at": "2026-09-18 01:14 UTC",
+  "generated_at": "2026-09-18 01:16 UTC",
   "mode": "manual",
   "accounts": [
     {

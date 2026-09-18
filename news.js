@@ -1,131 +1,50 @@
 window.FPL_NEWS = {
   "gw": 5,
   "cutoff": "2026-09-12 12:30 UTC",
-  "generated_at": "2026-09-18 01:15 UTC",
+  "generated_at": "2026-09-18 01:16 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes from title+article text.",
-  "agreed": [
+  "agreed": [],
+  "split": [
     {
       "text": "Rogers is a Chelsea attacker to target for GW5.",
       "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     },
     {
       "text": "De Cuyper is the standout cheap / OOP defender.",
       "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     },
     {
       "text": "Haaland remains the default GW5 captain.",
       "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     },
     {
       "text": "Jo\u00e3o Pedro stays in the template forward line.",
       "sources": [
-        "Scout",
-        "AAFPL",
-        "FPL Page"
-      ]
-    },
-    {
-      "text": "Szoboszlai is listed as a Liverpool mid option.",
-      "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     },
     {
       "text": "Gibbs-White is a GW5 Forest mid target.",
       "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
-      ]
-    },
-    {
-      "text": "Gvardiol is a popular GW5 defender move.",
-      "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     },
     {
       "text": "Chelsea attack is a GW5 stack to consider.",
       "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL",
-        "FPL Page"
-      ]
-    },
-    {
-      "text": "Liverpool attackers stay in the GW5 conversation.",
-      "sources": [
-        "Scout",
-        "AAFPL",
-        "FPL Page"
-      ]
-    },
-    {
-      "text": "United assets are a fade / sell conversation.",
-      "sources": [
-        "Fix",
-        "Scout",
-        "AAFPL"
-      ]
-    }
-  ],
-  "split": [
-    {
-      "text": "Gakpo is a priority GW5 transfer in.",
-      "sources": [
         "Scout"
-      ]
-    },
-    {
-      "text": "Isak is a GW5 transfer conversation.",
-      "sources": [
-        "Scout",
-        "AAFPL"
-      ]
-    },
-    {
-      "text": "Palmer is in the GW5 captain conversation.",
-      "sources": [
-        "Scout",
-        "AAFPL"
-      ]
-    },
-    {
-      "text": "Saka is in the GW5 premium mid conversation.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ]
-    },
-    {
-      "text": "Wissa is a popular forward move.",
-      "sources": [
-        "Scout",
-        "AAFPL"
       ]
     },
     {
       "text": "GW5 is a live wildcard window for some elite sides.",
       "sources": [
-        "Scout",
-        "AAFPL"
+        "Scout"
       ]
     }
   ],
@@ -155,69 +74,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 5 Differentials: 5 Low-Owned Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-differentials/"
-    },
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 5 Transfers: Best Buys & Popular Moves",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-5-transfer-tips-2026-27/"
-    },
-    {
-      "source": "Fix",
-      "title": "Best FPL Players for Gameweek 5: Top Five Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw5-top-5-players-2026-27/"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 5 Wildcard best team, pros/cons + Pedro inclusion",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/15/fpl-gameweek-5-wildcard-best-team-pros-cons-of-using"
-    },
-    {
-      "source": "Scout",
-      "title": "Rogers, Gross, Schade, Tzolis: Buy, keep or sell in Gameweek 5?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/rogers-gross-schade-tzolis-buy-keep-or-sell-in-gameweek-5"
-    },
-    {
-      "source": "Scout",
-      "title": "The Scout Squad: Our top picks for FPL Gameweek 5",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/18/the-scout-squad-our-top-picks-for-fpl-gameweek-5-3"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 5: Best clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/17/fpl-gameweek-5-best-clean-sheet-odds"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 5: Which teams are projected to score the most goals?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/17/fpl-gameweek-5-which-teams-are-projected-to-score-the-most-goals"
-    },
-    {
-      "source": "Scout",
-      "title": "Gameweek 5 Wildcard, is Gibbs-White worth \u00a38.0m + keep Pedro?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/17/gameweek-5-wildcard-is-gibbs-white-worth-8-0m-fpl-qa"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 5 early Scout Picks: Forest triple-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/14/fpl-gameweek-5-early-scout-picks-forest-triple-up"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 5 team news: Thurs' live injury updates + Pedro latest",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/17/fpl-gameweek-5-team-news-thurs-live-injury-updates-pedro-latest"
-    },
-    {
-      "source": "Scout",
-      "title": "Calvert-Lewin awarded goal - does he get the extra FPL points?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/17/calvert-lewin-awarded-goal-does-he-get-the-extra-fpl-points"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
