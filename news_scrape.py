@@ -40,31 +40,49 @@ def fetch_html(url):
 
 
 def event_window(prev=None):
-    """Return (current_gw, cutoff).
+    """Return (planning_gw, cutoff).
 
-    current_gw = first unfinished event (the week we're planning for).
-    cutoff = last *finished* GW deadline (or previous event deadline).
-    Articles published after that cutoff are in-window for the current week.
+    planning_gw = first event whose deadline has *not* passed (next open GW).
+    After GW N locks, themes target GW N+1 even if GW N matches are still unfinished.
+    cutoff = deadline of the latest locked GW (or last finished), so in-window articles
+    are those published after the previous GW locked.
     """
     gw = (prev or {}).get("gw")
     cutoff = None
     try:
         boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
         events = sorted(boot["events"], key=lambda e: e["id"])
-        finished = [e for e in events if e.get("finished")]
-        upcoming = [e for e in events if not e.get("finished")]
-        if upcoming:
-            gw = upcoming[0]["id"]
-        elif any(e.get("is_current") or e.get("is_next") for e in events):
-            cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
-            gw = cur["id"]
-        # Cutoff = last finished event deadline; else previous event before current gw
-        if finished:
-            cutoff = parse_iso(finished[-1].get("deadline_time") or "")
-        elif gw:
-            prev_ev = [e for e in events if e["id"] < int(gw)]
-            if prev_ev:
-                cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
+        now = datetime.now(timezone.utc)
+        locked = []
+        open_ev = []
+        for e in events:
+            dl = parse_iso(e.get("deadline_time") or "")
+            if dl and now >= dl:
+                locked.append(e)
+            elif dl and now < dl:
+                open_ev.append(e)
+            elif not dl and not e.get("finished"):
+                open_ev.append(e)
+        if open_ev:
+            gw = open_ev[0]["id"]
+        else:
+            unfinished = [e for e in events if not e.get("finished")]
+            if unfinished:
+                gw = unfinished[0]["id"]
+            elif any(e.get("is_current") or e.get("is_next") for e in events):
+                cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
+                gw = cur["id"]
+        # Cutoff = most recently locked GW deadline (picks public); else last finished
+        if locked:
+            cutoff = parse_iso(locked[-1].get("deadline_time") or "")
+        else:
+            finished = [e for e in events if e.get("finished")]
+            if finished:
+                cutoff = parse_iso(finished[-1].get("deadline_time") or "")
+            elif gw:
+                prev_ev = [e for e in events if e["id"] < int(gw)]
+                if prev_ev:
+                    cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
     except Exception:
         pass
     return gw, cutoff
@@ -360,9 +378,23 @@ def main():
             agreed.append(item)
         elif sources:
             split.append(item)
+    def filter_themes_for_gw(items, gw_id):
+        """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6)."""
+        out = []
+        for it in items or []:
+            t = str(it.get("text") or "")
+            mentioned = [int(m) for m in re.findall(r"GW(\d+)", t, flags=re.I)]
+            if mentioned and any(m != int(gw_id) for m in mentioned):
+                continue
+            out.append(it)
+        return out
+
     if not agreed and not split:
-        agreed = prev.get("agreed") or []
-        split = prev.get("split") or []
+        # Only reuse prior themes within the same planning GW, and only if text
+        # does not still name an older locked GW.
+        if prev.get("gw") == gw:
+            agreed = filter_themes_for_gw(prev.get("agreed") or [], gw)
+            split = filter_themes_for_gw(prev.get("split") or [], gw)
     news = {
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,

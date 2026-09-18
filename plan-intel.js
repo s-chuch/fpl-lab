@@ -1,6 +1,44 @@
 window.planIntel = function(D){
-  const N=window.FPL_NEWS||{}, X=window.FPL_X||{};
+  const N0=window.FPL_NEWS||{}, X0=window.FPL_X||{};
   const P=D.plan||{}, up=P.upcoming||[];
+  const deadline=D.deadline||{};
+  const intelGw=P.intel_gw||deadline.intel_gw||deadline.next_gw||(up.find(u=>!u.deadline_passed)||up[0]||{}).gw;
+  const lockedGw=P.locked_gw||deadline.locked_gw;
+  function fresh(obj){
+    if(!obj||intelGw==null) return obj||{};
+    if(obj.gw==null) return {};
+    return Number(obj.gw) >= Number(intelGw) ? obj : {};
+  }
+  const N=fresh(N0), X=fresh(X0);
+  const scrapeGws=[N0.gw, X0.gw].filter(g=>g!=null).map(Number);
+  const bestScrape=scrapeGws.length?Math.max.apply(null, scrapeGws):0;
+  const themePool=[].concat(N.agreed||[], N.split||[], X.agreed||[], X.split||[]);
+  const hasFreshThemes=themePool.length>0;
+  const namesLocked=lockedGw!=null && themePool.some(it=>new RegExp("GW"+lockedGw+"\\b","i").test(String(it.text||"")));
+  // After GW N locks, intel_gw becomes N+1. Clear until scrapes are labeled for that GW
+  // with themes that do not still name the locked GW.
+  const clear=!!(intelGw!=null && (bestScrape < Number(intelGw) || !hasFreshThemes || namesLocked));
+  if(clear){
+    const wait=intelGw||((lockedGw||0)+1);
+    return {
+      cleared:true,
+      waiting:true,
+      intelGw:wait,
+      lockedGw:lockedGw,
+      chipRows:[],
+      action:"WAIT",
+      moveLine:"Waiting for GW"+wait+" intel.",
+      reason:P.intel_note||("GW"+(lockedGw||"?")+" is locked. News/X themes for the locked GW are not current Plan advice."),
+      optional:[],
+      targets:[],
+      wantsWC:false,
+      ft:(P.transfer||{}).ft_available,
+      bank:Number((D.team||{}).bank||0),
+      gwA:wait,
+      gwB:null,
+      league:{league:"",cap:"",transfer:"",start:[],bench:[],wc:[]}
+    };
+  }
   const squad=(P.rows||[]).map(r=>r[1]);
   const clubs={}; (P.rows||[]).forEach(r=>clubs[r[1]]=r[2]);
   const have=new Set(squad);
@@ -24,7 +62,9 @@ window.planIntel = function(D){
     const used=chips[key]!=null;
     return {key,label,gw,used,rec: used?"USED":rec, why: used?("Already played GW"+chips[key]+"."):why};
   }
-  const gwA=up[0]&&up[0].gw, gwB=up[1]&&up[1].gw;
+  const openUp=up.filter(u=>!u.deadline_passed);
+  const gwA=(openUp[0]&&openUp[0].gw)||intelGw||(up[0]&&up[0].gw);
+  const gwB=(openUp[1]&&openUp[1].gw)||(up[1]&&!up[1].deadline_passed&&up[1].gw)||(up[1]&&up[1].gw);
   const chipRows=[];
   if(gwA){
     chipRows.push(chipState("wildcard","Wildcard",gwA,"HOLD",
@@ -71,7 +111,6 @@ window.planIntel = function(D){
   }
   const sitSells=squad.filter(n=>doubleSit(n) && n!=="Haaland");
 
-  // Known affordable/paired moves when News/X agree the buy and we own the sell
   const pairs=[
     {sell:"Cherki", buy:"Rogers", needBank:0, note:"Prices line up on Cherki → Rogers."},
     {sell:"Calvert-Lewin", buy:"Wissa", needBank:0, note:"DCL → Wissa is the cheap forward version."},
@@ -83,7 +122,6 @@ window.planIntel = function(D){
   for(const p of pairs){
     if(!have.has(p.sell) || !blocked.includes(p.buy)) continue;
     if(bank + 1e-9 < p.needBank) continue;
-    // Strong evidence: sell is double-sit/doubt both weeks, OR clearly cheap hit with bank
     const strongSit=doubleSit(p.sell);
     const strongHit=!!cheapHit && cheapHit===p.buy && bank>=1;
     if(strongSit || strongHit){ chosen=p; break; }
@@ -119,6 +157,9 @@ window.planIntel = function(D){
   const they=(Tac.they_share||[]).map(x=>x.name);
   if(they.length) optional.push("Do not buy "+they.join(", ")+" this week. 1st and 2nd already own them — that is insurance, not a differential.");
   return {
+    cleared:false,
+    waiting:false,
+    intelGw, lockedGw,
     chipRows, action, moveLine, reason, optional, targets:blocked, wantsWC, ft, bank, gwA, gwB,
     league: {
       league: esl.name||"",

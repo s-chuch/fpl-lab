@@ -38,25 +38,41 @@ def parse_iso(raw):
 
 
 def event_window(prev=None):
-    """current_gw = first unfinished; cutoff = last finished GW deadline."""
+    """planning_gw = first event whose deadline has not passed; cutoff = last locked deadline."""
     gw = (prev or {}).get("gw")
     cutoff = None
     try:
         boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
         events = sorted(boot["events"], key=lambda e: e["id"])
-        finished = [e for e in events if e.get("finished")]
-        upcoming = [e for e in events if not e.get("finished")]
-        if upcoming:
-            gw = upcoming[0]["id"]
-        elif any(e.get("is_current") or e.get("is_next") for e in events):
-            cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
-            gw = cur["id"]
-        if finished:
-            cutoff = parse_iso(finished[-1].get("deadline_time") or "")
-        elif gw:
-            prev_ev = [e for e in events if e["id"] < int(gw)]
-            if prev_ev:
-                cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
+        now = datetime.now(timezone.utc)
+        locked, open_ev = [], []
+        for e in events:
+            dl = parse_iso(e.get("deadline_time") or "")
+            if dl and now >= dl:
+                locked.append(e)
+            elif dl and now < dl:
+                open_ev.append(e)
+            elif not dl and not e.get("finished"):
+                open_ev.append(e)
+        if open_ev:
+            gw = open_ev[0]["id"]
+        else:
+            unfinished = [e for e in events if not e.get("finished")]
+            if unfinished:
+                gw = unfinished[0]["id"]
+            elif any(e.get("is_current") or e.get("is_next") for e in events):
+                cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
+                gw = cur["id"]
+        if locked:
+            cutoff = parse_iso(locked[-1].get("deadline_time") or "")
+        else:
+            finished = [e for e in events if e.get("finished")]
+            if finished:
+                cutoff = parse_iso(finished[-1].get("deadline_time") or "")
+            elif gw:
+                prev_ev = [e for e in events if e["id"] < int(gw)]
+                if prev_ev:
+                    cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
     except Exception:
         pass
     return gw, cutoff

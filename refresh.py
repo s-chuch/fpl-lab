@@ -3,7 +3,10 @@ from __future__ import annotations
 import argparse, json, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from league_tactics import build_tactics
+
+ET = ZoneInfo("America/Toronto")
 
 TEAM_ID = 1360999
 TRACKED_BY_TEAM = {
@@ -20,6 +23,101 @@ def get(url):
     req = urllib.request.Request(url, headers={"User-Agent": "ShaalandFPLLab/1.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode())
+
+
+def parse_deadline(raw):
+    """Parse FPL deadline_time (UTC ISO) to aware datetime, or None."""
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(str(raw).replace("Z", "+00:00")).astimezone(timezone.utc)
+    except Exception:
+        return None
+
+def fmt_deadline_et(raw):
+    """User-facing deadline string in America/Toronto (labeled ET)."""
+    dt = parse_deadline(raw)
+    if not dt:
+        return ""
+    local = dt.astimezone(ET)
+    # e.g. 2026-09-18 1:30 PM ET
+    return local.strftime("%Y-%m-%d %-I:%M %p ET").replace("AM", "AM").replace("PM", "PM")
+
+def fmt_generated_et(dt=None):
+    dt = dt or datetime.now(timezone.utc)
+    local = dt.astimezone(ET)
+    return local.strftime("%Y-%m-%d %-I:%M %p ET")
+
+def deadline_state(boot, now=None):
+    """Compute locked vs next GW from FPL deadline_time (UTC).
+
+    - locked_gw: highest event whose deadline has passed (picks public)
+    - next_gw: first event whose deadline has not passed (intel / planning target)
+    - current_gw: FPL is_current, else locked_gw if mid-GW, else next_gw
+    - deadline_passed: True when the FPL current event's deadline has passed
+      (or when locked_gw >= current unfinished matchweek)
+    """
+    now = now or datetime.now(timezone.utc)
+    events = sorted(boot.get("events") or [], key=lambda e: e["id"])
+    locked_gw = None
+    next_gw = None
+    by_id = {}
+    for e in events:
+        by_id[e["id"]] = e
+        dl = parse_deadline(e.get("deadline_time"))
+        if dl and now >= dl:
+            locked_gw = e["id"]
+        elif next_gw is None and dl and now < dl:
+            next_gw = e["id"]
+        elif next_gw is None and not dl:
+            next_gw = e["id"]
+    cur = next((e for e in events if e.get("is_current")), None)
+    nxt = next((e for e in events if e.get("is_next")), None)
+    unfinished = [e for e in events if not e.get("finished")]
+    current_gw = (cur or (unfinished[0] if unfinished else None) or {}).get("id")
+    if current_gw is None:
+        current_gw = locked_gw or next_gw
+    # Planning / intel target: next deadline that has not passed
+    intel_gw = next_gw or (nxt or {}).get("id") or ((current_gw or 0) + 1)
+    cur_dl = parse_deadline((by_id.get(current_gw) or {}).get("deadline_time"))
+    deadline_passed = bool(cur_dl and now >= cur_dl)
+    # Picks unlock for the locked GW (usually = current after deadline, else last finished)
+    picks_gw = locked_gw or (unfinished[0]["id"] if unfinished else current_gw)
+    return {
+        "now_utc": now.isoformat(),
+        "locked_gw": locked_gw,
+        "next_gw": next_gw,
+        "intel_gw": intel_gw,
+        "current_gw": current_gw,
+        "deadline_passed": deadline_passed,
+        "picks_unlocked": bool(deadline_passed and locked_gw),
+        "picks_gw": picks_gw if deadline_passed else None,
+    }
+
+def format_pick_squad(picks, elements, teams):
+    """XI + bench + captain from an entry event picks payload."""
+    xi, bench = [], []
+    captain = vice = None
+    chip = None
+    for p in sorted(picks or [], key=lambda x: x.get("position") or 99):
+        el = elements.get(p["element"])
+        if not el:
+            continue
+        name = el["web_name"]
+        pos = POS[el["element_type"]]
+        club = teams[el["team"]]["short_name"]
+        item = {"id": p["element"], "name": name, "pos": pos, "club": club, "mult": p.get("multiplier") or 0}
+        if p.get("is_captain"):
+            captain = name
+            item["captain"] = True
+        if p.get("is_vice_captain"):
+            vice = name
+            item["vice"] = True
+        if (p.get("position") or 99) <= 11:
+            xi.append(item)
+        else:
+            bench.append(item)
+    return {"xi": xi, "bench": bench, "captain": captain, "vice": vice}
 
 def fixture_map(event_id, teams):
     fx = get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
@@ -161,10 +259,17 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     if not picks:
         return {"note": "Could not load squad picks.", "upcoming": [], "rows": []}
     maps, headers = {}, []
+    now = datetime.now(timezone.utc)
     for ev in upcoming:
         maps[ev["id"]] = fixture_map(ev["id"], teams)
         dl = ev.get("deadline_time") or ""
-        headers.append({"gw": ev["id"], "deadline": dl.replace("T", " ")[:16] + " UTC" if dl else ""})
+        dl_dt = parse_deadline(dl)
+        headers.append({
+            "gw": ev["id"],
+            "deadline": fmt_deadline_et(dl) if dl else "",
+            "deadline_utc": dl,
+            "deadline_passed": bool(dl_dt and now >= dl_dt),
+        })
     players, rows, availability = [], [], {}
     for pick in sorted(picks, key=lambda p: (elements[p["element"]]["element_type"], p["element"])):
         el = elements[pick["element"]]
@@ -255,7 +360,32 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     note = f"GW{picks_gw} squad. Last finished {(last_fin or {}).get('id')}."
     if skipped_fh:
         note = f"GW{picks_gw} squad (GW{skipped_fh} was Free Hit; reverted). Last finished {(last_fin or {}).get('id')}."
-    return {"note": note, "last_finished": (last_fin or {}).get("id"), "squad_from_gw": picks_gw, "upcoming": headers, "rows": rows, "xis": xis, "bench_calls": bench_calls, "availability": availability, "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used}}
+    # Intel targets the next GW whose deadline has not passed (not stale locked GW themes)
+    ds = deadline_state(boot, now)
+    intel_gw = ds["intel_gw"]
+    # Clear signal for UI: after GW N deadline, do not treat GW N news/X as current Plan advice
+    return {
+        "note": note,
+        "last_finished": (last_fin or {}).get("id"),
+        "squad_from_gw": picks_gw,
+        "upcoming": headers,
+        "rows": rows,
+        "xis": xis,
+        "bench_calls": bench_calls,
+        "availability": availability,
+        "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used},
+        "deadline_passed": ds["deadline_passed"],
+        "locked_gw": ds["locked_gw"],
+        "next_gw": ds["next_gw"],
+        "intel_gw": intel_gw,
+        # UI clears Plan themes when news/x gw < intel_gw (locked-GW consensus is stale)
+        "intel_clear": False,
+        "intel_note": (
+            f"Waiting for GW{intel_gw} intel — GW{ds['locked_gw']} deadline has passed."
+            if ds["deadline_passed"] and ds["locked_gw"]
+            else None
+        ),
+    }
 
 def captain_audit(boot, team_id):
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
@@ -367,14 +497,19 @@ def build_transfers(boot, team_id):
     out.sort(key=lambda x: x["gw"] or 0)
     return out
 
-def analyze_leagues(boot, entry, team_id, picks_gw):
+def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     classic = entry.get("leagues", {}).get("classic") or []
     tracked_ids = TRACKED_BY_TEAM.get(team_id, TRACKED_LEAGUES)
     my_picks = set()
+    my_squad = None
     try:
-        my_picks = {p["element"] for p in get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/").get("picks") or []}
+        my_pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+        my_picks = {p["element"] for p in my_pk.get("picks") or []}
+        if deadline_passed and my_pk.get("picks"):
+            my_squad = format_pick_squad(my_pk.get("picks"), elements, teams)
+            my_squad["chip"] = my_pk.get("active_chip")
     except Exception:
         pass
     leagues = []
@@ -385,18 +520,24 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
             rows = (get(f"https://fantasy.premierleague.com/api/leagues-classic/{L['id']}/standings/?page_standings=1").get("standings") or {}).get("results") or []
         except Exception:
             continue
-        table = [{"rank": r.get("rank"), "team": r.get("entry_name"), "pts": r.get("total"), "me": r.get("entry") == team_id} for r in rows[:15]]
+        table = [{"rank": r.get("rank"), "team": r.get("entry_name"), "pts": r.get("total"), "me": r.get("entry") == team_id, "entry": r.get("entry")} for r in rows[:15]]
         counts, n, owned_by, cap_by = {}, 0, {}, {}
+        member_squads = []
+        picks_available = 0
         if len(rows) >= 2:
             for r in rows:
                 try:
                     pk = get(f"https://fantasy.premierleague.com/api/entry/{r['entry']}/event/{picks_gw}/picks/")
                 except Exception:
                     continue
+                picks = pk.get("picks") or []
+                if not picks:
+                    continue
+                picks_available += 1
                 n += 1
                 eid = r.get("entry")
                 owned = set()
-                for p in pk.get("picks") or []:
+                for p in picks:
                     pid = p["element"]
                     counts[pid] = counts.get(pid, 0) + 1
                     owned.add(pid)
@@ -404,6 +545,18 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                         cap_by[pid] = cap_by.get(pid, 0) + 1
                 if eid is not None:
                     owned_by[eid] = owned
+                if deadline_passed:
+                    squad = format_pick_squad(picks, elements, teams)
+                    squad.update({
+                        "entry": eid,
+                        "team": r.get("entry_name"),
+                        "manager": r.get("player_name"),
+                        "rank": r.get("rank"),
+                        "pts": r.get("total"),
+                        "me": eid == team_id,
+                        "chip": pk.get("active_chip"),
+                    })
+                    member_squads.append(squad)
         template, diffs = [], []
         if n:
             for pid, c in sorted(counts.items(), key=lambda x: -x[1]):
@@ -414,7 +567,29 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
                 if pct >= 40 and pid not in my_picks: template.append(item)
                 if pid in my_picks and pct <= 25: diffs.append(item)
         tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams)
-        leagues.append({"id": L["id"], "name": L.get("name"), "rank": L.get("entry_rank"), "last_rank": L.get("entry_last_rank"), "size": len(rows), "table": table, "template": template[:8], "diffs": diffs[:8], "tactics": tactics, "picks_gw": picks_gw})
+        league_obj = {
+            "id": L["id"],
+            "name": L.get("name"),
+            "rank": L.get("entry_rank"),
+            "last_rank": L.get("entry_last_rank"),
+            "size": len(rows),
+            "table": table,
+            "template": template[:8],
+            "diffs": diffs[:8],
+            "tactics": tactics,
+            "picks_gw": picks_gw,
+            "deadline_passed": bool(deadline_passed),
+            "picks_unlocked": bool(deadline_passed and picks_available > 0),
+        }
+        if deadline_passed:
+            # Prefer rank order for display
+            member_squads.sort(key=lambda s: (s.get("rank") is None, s.get("rank") or 999))
+            league_obj["member_squads"] = member_squads
+            if picks_available == 0:
+                league_obj["picks_note"] = "Picks unlock after deadline (API empty)."
+        else:
+            league_obj["picks_note"] = "Picks unlock after deadline."
+        leagues.append(league_obj)
     overall_template, overall_diffs = [], []
     for el in boot["elements"]:
         sel = float(el.get("selected_by_percent") or 0)
@@ -426,7 +601,19 @@ def analyze_leagues(boot, entry, team_id, picks_gw):
     overall_diffs.sort(key=lambda x: x["own"])
     overall = next((L for L in classic if L.get("id") == 314), None)
     public = [{"id": 314, "name": "Overall", "rank": overall.get("entry_rank"), "last_rank": overall.get("entry_last_rank")}] if overall else []
-    return {"mini": leagues, "public": public, "overall_template": overall_template[:8], "overall_diffs": overall_diffs[:8], "picks_gw": picks_gw}
+    out = {
+        "mini": leagues,
+        "public": public,
+        "overall_template": overall_template[:8],
+        "overall_diffs": overall_diffs[:8],
+        "picks_gw": picks_gw,
+        "deadline_passed": bool(deadline_passed),
+        "picks_unlocked": bool(deadline_passed),
+    }
+    if my_squad and deadline_passed:
+        out["my_squad"] = {**my_squad, "entry": team_id, "me": True, "picks_gw": picks_gw}
+    return out
+
 
 def main(team_id=TEAM_ID, out_path=None):
     data_file = Path(out_path) if out_path else ROOT / "data.js"
@@ -447,15 +634,39 @@ def main(team_id=TEAM_ID, out_path=None):
         if fa: field_avg[gw] = fa
         gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
     plan = build_plan(boot, team_id, hist, chips_used)
+    ds = deadline_state(boot)
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
-    leagues = analyze_leagues(boot, entry, team_id, plan.get("squad_from_gw") or last_fin)
+    # After deadline: league picks for the locked GW. Before: ownership from provisional/latest squad GW.
+    league_picks_gw = ds["locked_gw"] if ds["deadline_passed"] and ds["locked_gw"] else (plan.get("squad_from_gw") or last_fin)
+    leagues = analyze_leagues(boot, entry, team_id, league_picks_gw, deadline_passed=bool(ds["deadline_passed"]))
     caps = captain_audit(boot, team_id)
     data = existing or {}
     if team_id != 1360999 or not data.get("transfers"):
         data["transfers"] = build_transfers(boot, team_id)
     if team_id != 1360999 or not data.get("bench_audit"):
         data["bench_audit"] = build_bench_audit(boot, team_id)
-    data.update({"generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"), "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10}, "history": hist.get("past", []), "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")}, "gameweeks": gws, "field_avg_known": field_avg, "plan": plan, "leagues": leagues, "captain_audit": caps})
+    now = datetime.now(timezone.utc)
+    data.update({
+        "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
+        "generated_at_et": fmt_generated_et(now),
+        "timezone": "America/Toronto",
+        "deadline": {
+            "passed": ds["deadline_passed"],
+            "locked_gw": ds["locked_gw"],
+            "next_gw": ds["next_gw"],
+            "intel_gw": ds["intel_gw"],
+            "current_gw": ds["current_gw"],
+            "picks_unlocked": ds["picks_unlocked"],
+        },
+        "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10},
+        "history": hist.get("past", []),
+        "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")},
+        "gameweeks": gws,
+        "field_avg_known": field_avg,
+        "plan": plan,
+        "leagues": leagues,
+        "captain_audit": caps,
+    })
     data_file.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
     print("Updated", data_file.name, entry.get("name"), [u["gw"] for u in plan.get("upcoming", [])])
 
