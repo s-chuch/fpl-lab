@@ -195,8 +195,8 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 20:04 UTC",
-  "generated_at_et": "2026-09-18 4:04 PM ET",
+  "generated_at": "2026-09-18 20:44 UTC",
+  "generated_at_et": "2026-09-18 4:44 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -211,7 +211,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1635275,
+    "overall_rank": 1772359,
     "bank": 4.4,
     "value": 100.9
   },
@@ -293,6 +293,10 @@ window.FPL_DATA = {
     }
   ],
   "field_avg_known": {
+    "1": 50,
+    "2": 81,
+    "3": 51,
+    "4": 69,
     "1": 50,
     "2": 81,
     "3": 51,
@@ -578,14 +582,14 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 305,
+            "pts": 306,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
             "team": "Borde to be wild",
-            "pts": 302,
+            "pts": 303,
             "me": false,
             "entry": 7464835
           },
@@ -599,7 +603,7 @@ window.FPL_DATA = {
           {
             "rank": 4,
             "team": "xG Capital",
-            "pts": 287,
+            "pts": 289,
             "me": false,
             "entry": 641039
           },
@@ -613,14 +617,14 @@ window.FPL_DATA = {
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 276,
+            "pts": 277,
             "me": false,
             "entry": 5321568
           },
           {
             "rank": 7,
             "team": "Blasters United",
-            "pts": 268,
+            "pts": 269,
             "me": false,
             "entry": 7445649
           },
@@ -634,14 +638,14 @@ window.FPL_DATA = {
           {
             "rank": 9,
             "team": "Kroos Kontrol",
-            "pts": 262,
+            "pts": 264,
             "me": false,
             "entry": 3768058
           },
           {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 254,
+            "pts": 260,
             "me": false,
             "entry": 8869141
           },
@@ -662,7 +666,7 @@ window.FPL_DATA = {
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 192,
+            "pts": 199,
             "me": false,
             "entry": 6453738
           }
@@ -745,15 +749,15 @@ window.FPL_DATA = {
           "n": 13,
           "you_rank": 5,
           "you_pts": 285,
-          "gap_to_first": 20,
-          "gap_to_second": 17,
+          "gap_to_first": 21,
+          "gap_to_second": 18,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 305
+            "pts": 306
           },
           "second": {
             "name": "Borde to be wild",
-            "pts": 302
+            "pts": 303
           },
           "template": [
             {
@@ -1066,7 +1070,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 305,
+            "pts": 306,
             "me": false,
             "chip": null
           },
@@ -1188,7 +1192,7 @@ window.FPL_DATA = {
             "team": "Borde to be wild",
             "manager": "Dominic Borde",
             "rank": 2,
-            "pts": 302,
+            "pts": 303,
             "me": false,
             "chip": null
           },
@@ -1432,7 +1436,7 @@ window.FPL_DATA = {
             "team": "xG Capital",
             "manager": "Andrew Govia",
             "rank": 4,
-            "pts": 287,
+            "pts": 289,
             "me": false,
             "chip": null
           },
@@ -1676,7 +1680,7 @@ window.FPL_DATA = {
             "team": "Haaland Leeds Norway",
             "manager": "Benjamin Ollivierre",
             "rank": 6,
-            "pts": 276,
+            "pts": 277,
             "me": false,
             "chip": null
           },
@@ -1798,7 +1802,7 @@ window.FPL_DATA = {
             "team": "Blasters United",
             "manager": "Daniel Voisin",
             "rank": 7,
-            "pts": 268,
+            "pts": 269,
             "me": false,
             "chip": null
           },
@@ -2042,7 +2046,7 @@ window.FPL_DATA = {
             "team": "Kroos Kontrol",
             "manager": "Adam Hive",
             "rank": 9,
-            "pts": 262,
+            "pts": 264,
             "me": false,
             "chip": null
           },
@@ -2164,7 +2168,7 @@ window.FPL_DATA = {
             "team": "Top Bin FC",
             "manager": "Cuzo Ace",
             "rank": 10,
-            "pts": 254,
+            "pts": 260,
             "me": false,
             "chip": null
           },
@@ -2530,7 +2534,7 @@ window.FPL_DATA = {
             "team": "Chubs United",
             "manager": "David Brash",
             "rank": 13,
-            "pts": 192,
+            "pts": 199,
             "me": false,
             "chip": null
           }
@@ -2546,7 +2550,7 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 305,
+            "pts": 306,
             "me": false,
             "entry": 715496
           },
@@ -2586,11 +2590,11 @@ window.FPL_DATA = {
           "n": 3,
           "you_rank": 3,
           "you_pts": 285,
-          "gap_to_first": 20,
+          "gap_to_first": 21,
           "gap_to_second": 13,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 305
+            "pts": 306
           },
           "second": {
             "name": "Shaaland",
@@ -2889,7 +2893,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 305,
+            "pts": 306,
             "me": false,
             "chip": null
           },
@@ -3144,7 +3148,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1635275,
+        "rank": 1772359,
         "last_rank": 1590538
       }
     ],
@@ -3157,7 +3161,7 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 39.9
+        "own": 40.0
       },
       {
         "name": "Cherki",
