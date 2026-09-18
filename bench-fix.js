@@ -25,5 +25,12 @@
   }
   const perm=D.transfers.filter(t=>t.gw!==fh);
   const cleaned=collapse(D.transfers.filter(t=>t.gw===fh));
-  D.transfers=perm.concat(cleaned);
+  // perm+cleaned puts the FH gw's (collapsed) rows at the end regardless of where
+  // that GW actually falls — re-sort by GW (ROLL rows last within a tied GW) so a
+  // later real GW doesn't render above the FH gw.
+  D.transfers=perm.concat(cleaned).sort((a,b)=>{
+    const ga=a.gw||0, gb=b.gw||0;
+    if(ga!==gb) return ga-gb;
+    return (a.inn==="ROLL"?1:0)-(b.inn==="ROLL"?1:0);
+  });
 })();
