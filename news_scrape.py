@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import json, re, unicodedata, urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, parse_qs
@@ -180,6 +182,98 @@ def extract_article_links(html, base, source, gw):
     return out[:25]
 
 
+ATOM_NS = "http://www.w3.org/2005/Atom"
+CONTENT_ENCODED = "{http://purl.org/rss/1.0/modules/content/}encoded"
+
+
+def _feed_pub_date(raw):
+    if not raw:
+        return None
+    try:
+        dt = parsedate_to_datetime(raw)  # RSS pubDate is RFC 822 (email-style)
+        return dt.astimezone(timezone.utc) if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    except Exception:
+        return parse_iso(raw)  # Atom's dates are ISO 8601
+
+
+def parse_feed_items(xml_text):
+    """Parse an RSS 2.0 or Atom feed into {title, link, pub_date, html}. RSS's
+    <content:encoded> (standard for WordPress, which all these sites run on) is
+    the full article HTML — objectively cleaner and more reliable to work from
+    than scraping the rendered page, since it comes straight from the site's own
+    publishing pipeline with no nav/ads/cookie-banner noise to filter out."""
+    try:
+        root = ET.fromstring(xml_text)
+    except ET.ParseError:
+        return []
+    items = []
+    for it in root.findall(".//item"):
+        items.append({
+            "title": (it.findtext("title") or "").strip(),
+            "link": (it.findtext("link") or "").strip(),
+            "pub_date": _feed_pub_date(it.findtext("pubDate")),
+            "html": it.findtext(CONTENT_ENCODED) or it.findtext("description") or "",
+        })
+    if items:
+        return items
+    ns = {"a": ATOM_NS}
+    for e in root.findall(".//a:entry", ns):
+        link_el = e.find("a:link", ns)
+        pub_raw = e.findtext("a:published", default="", namespaces=ns) or e.findtext("a:updated", default="", namespaces=ns)
+        items.append({
+            "title": (e.findtext("a:title", default="", namespaces=ns) or "").strip(),
+            "link": (link_el.get("href") if link_el is not None else "") or "",
+            "pub_date": _feed_pub_date(pub_raw),
+            "html": e.findtext("a:content", default="", namespaces=ns) or e.findtext("a:summary", default="", namespaces=ns) or "",
+        })
+    return items
+
+
+FEED_PATH_CANDIDATES = ("feed/", "feed", "rss/", "rss.xml", "?feed=rss2")
+
+
+def discover_feed_url(base_url, homepage_html=None):
+    """Try <link rel=alternate> autodiscovery from the homepage first (authoritative
+    when present), then common WordPress/Atom feed paths. Returns (feed_url, items)
+    for the first candidate that parses with at least one item, else (None, [])."""
+    root = base_url if base_url.endswith("/") else base_url + "/"
+    candidates = []
+    if homepage_html:
+        for m in re.finditer(
+            r'<link[^>]+type=["\']application/(?:rss|atom)\+xml["\'][^>]*href=["\']([^"\']+)["\']',
+            homepage_html, re.I,
+        ):
+            candidates.append(urljoin(base_url, m.group(1)))
+    candidates.extend(urljoin(root, suffix) for suffix in FEED_PATH_CANDIDATES)
+    seen = set()
+    for cand in candidates:
+        if cand in seen:
+            continue
+        seen.add(cand)
+        xml_text = fetch_html(cand)
+        if not xml_text or ("<rss" not in xml_text[:2000].lower() and "<feed" not in xml_text[:2000].lower()):
+            continue
+        items = parse_feed_items(xml_text)
+        if items:
+            return cand, items
+    return None, []
+
+
+def load_feed_overrides():
+    """Optional {"feed": "https://.../real-feed-url"} per entry in sources.json,
+    for a site whose feed isn't at a path discover_feed_url() would find."""
+    path = ROOT / "sources.json"
+    out = {}
+    if path.exists():
+        try:
+            for s in json.loads(path.read_text()).get("sites") or []:
+                if s.get("feed"):
+                    out[s.get("name") or "Site"] = s["feed"]
+        except Exception:
+            pass
+    return out
+
+
 def site_listings(gw):
     listings = []
     path = ROOT / "sources.json"
@@ -344,12 +438,40 @@ def main():
     # rather than a bare space so qualifier detection can't bleed across articles.
     blobs, links, discovered, used = {}, [], [], set()
     title_blobs = {}  # titles of new articles weighted heavily
+    feed_overrides = load_feed_overrides()
+    gw_tokens = (f"gw{gw}", f"gameweek-{gw}", f"gameweek {gw}", f"/gw{gw}")
+    by_source = {}
     for source, url in listings:
-        html = fetch_html(url)
+        by_source.setdefault(source, []).append(url)
         if source not in used:
             links.append({"name": source, "url": url})
             used.add(source)
-        discovered.extend(extract_article_links(html, url, source, gw))
+    for source, urls in by_source.items():
+        base = urls[0]
+        override = feed_overrides.get(source)
+        if override:
+            xml_text = fetch_html(override)
+            feed_url, feed_items = (override, parse_feed_items(xml_text)) if xml_text else (None, [])
+        else:
+            feed_url, feed_items = discover_feed_url(base, fetch_html(base))
+        if feed_items:
+            # Feed found: it covers this source's whole output, so use it once
+            # instead of also HTML-scraping each of this source's listing URLs.
+            for fi in feed_items:
+                link = urljoin(base, fi["link"] or "")
+                if is_junk_url(link):
+                    continue
+                title = (fi["title"] or "")[:160]
+                low = (link + " " + title).lower()
+                discovered.append({
+                    "source": source, "url": link, "title": title,
+                    "current": any(t in low for t in gw_tokens),
+                    "pub_date": fi["pub_date"], "body_html": fi["html"],
+                })
+        else:
+            for u in urls:
+                html = fetch_html(u)
+                discovered.extend(extract_article_links(html, u, source, gw))
     # Dedupe discovered by URL
     uniq, seen_u = [], set()
     for art in discovered:
@@ -364,14 +486,18 @@ def main():
         if not keep_seen(art["url"], gw, cutoff):
             continue
         url_dt = url_date(art["url"])
-        body_html = ""
-        if art["url"] not in seen_set or first_seed:
-            body_html = fetch_html(art["url"])
-            if body_html:
+        body_html = art.get("body_html") or ""
+        # A feed's <content:encoded> already gives the full article for free; only
+        # fall back to fetching the rendered page when the feed gave us nothing (or
+        # just a short <description> summary too thin for good mention detection).
+        if len(body_html) < 400 and (art["url"] not in seen_set or first_seed):
+            fetched = fetch_html(art["url"])
+            if fetched:
+                body_html = fetched
                 art["title"] = page_title(body_html, art["url"]) or art["title"]
         if is_junk(art["title"], art["url"]):
             continue
-        pub = parse_pub_date(body_html, art["url"]) or url_dt
+        pub = art.get("pub_date") or parse_pub_date(body_html, art["url"]) or url_dt
         if not after_cutoff(pub, cutoff):
             continue
         title = art.get("title") or ""

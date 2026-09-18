@@ -52,6 +52,10 @@ After that it runs twice a day on its own. GitHub pauses scheduled jobs if the r
 - **FPL scores / rank / chips / GW log** (`data.js`, `bacalhau-data.js`) and **news** (`news.js`): GitHub Actions workflow `Refresh FPL data` (`news_scrape.py` + `refresh.py`).
 - **X posts** (`x-posts.js`): **not** updated by Actions. Live ingest is the Grok Bot daily ~10am ET routine via the connected user-X MCP plugin (`mode: "live"`). `x_scrape.py` is a local stub that preserves an existing live file and only writes a manual stub if the file is missing or already manual.
 
+### News sources (`sources.json`)
+
+For each site in `"sites"`, `news_scrape.py` tries its RSS/Atom feed first (autodiscovered from the homepage's `<link rel="alternate">`, then common paths like `/feed/`) since a feed gives real publish dates and full clean article content instead of scraped-page guesswork. If no feed is found it falls back to scraping links off the page directly, same as before. If a site's real feed lives somewhere non-standard, add it explicitly: `{"name": "Fix", "url": "...", "feed": "https://.../actual-feed-url"}`.
+
 ## Local
 
 ```bash
