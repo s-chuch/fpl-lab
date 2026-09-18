@@ -390,8 +390,8 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 21:07 UTC",
-  "generated_at_et": "2026-09-18 5:07 PM ET",
+  "generated_at": "2026-09-18 21:37 UTC",
+  "generated_at_et": "2026-09-18 5:37 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3596,7 +3596,7 @@ window.FPL_DATA = {
       {
         "name": "Raya",
         "club": "ARS",
-        "own": 41.4
+        "own": 41.5
       },
       {
         "name": "Rogers",
