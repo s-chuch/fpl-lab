@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:08 UTC",
-  "generated_at_et": "2026-09-18 6:08 PM ET",
+  "generated_at": "2026-09-18 22:11 UTC",
+  "generated_at_et": "2026-09-18 6:11 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3847,10 +3847,10 @@ window.FPL_DATA = {
   "fh_audit": {
     "gw": 4,
     "fh_points": 90,
-    "original_points": 97,
-    "net": -7,
+    "original_points": 88,
+    "net": 2,
     "process": "ok",
-    "outcome": "lost",
+    "outcome": "won",
     "original_cap": "Haaland",
     "fh_cap": "Palmer",
     "original_xi": [
@@ -3888,8 +3888,8 @@ window.FPL_DATA = {
       },
       {
         "name": "Haaland",
-        "got": 27,
-        "mult": 3
+        "got": 18,
+        "mult": 2
       },
       {
         "name": "Calvert-Lewin",
@@ -3947,6 +3947,6 @@ window.FPL_DATA = {
         "got": 12
       }
     ],
-    "why": "FH scored 90 vs 97 for the reverted squad \u2014 net -7."
+    "why": "FH scored 90 vs 88 for the reverted squad \u2014 net +2."
   }
 };
