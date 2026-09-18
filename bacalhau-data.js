@@ -213,8 +213,8 @@ window.FPL_DATA = {
       ]
     }
   },
-  "generated_at": "2026-09-18 21:43 UTC",
-  "generated_at_et": "2026-09-18 5:43 PM ET",
+  "generated_at": "2026-09-18 21:54 UTC",
+  "generated_at_et": "2026-09-18 5:54 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -305,8 +305,8 @@ window.FPL_DATA = {
       "transfers": 1,
       "hits": 0,
       "rank": 1590538,
-      "field_avg": 0,
-      "delta": null,
+      "field_avg": 3,
+      "delta": -3,
       "chip": null
     }
   ],
@@ -318,7 +318,8 @@ window.FPL_DATA = {
     "1": 50,
     "2": 81,
     "3": 51,
-    "4": 69
+    "4": 69,
+    "5": 3
   },
   "plan": {
     "note": "GW5 squad. Last finished 4.",
@@ -3221,7 +3222,7 @@ window.FPL_DATA = {
       {
         "name": "Kusi-Asare",
         "club": "FUL",
-        "own": 5.7
+        "own": 5.6
       },
       {
         "name": "Mitchell",
