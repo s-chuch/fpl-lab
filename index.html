@@ -47,12 +47,12 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="data.js?v=20260917h"></script>
-<script src="bench-fix.js?v=20260917h"></script>
-<script src="news.js?v=20260917h"></script>
-<script src="x-posts.js?v=20260917h"></script>
-<script src="fh.js?v=20260917h"></script>
-<script src="plan-intel.js?v=20260917h"></script>
+<script src="data.js?v=20260918a"></script>
+<script src="bench-fix.js?v=20260918a"></script>
+<script src="news.js?v=20260918a"></script>
+<script src="x-posts.js?v=20260918a"></script>
+<script src="fh.js?v=20260918a"></script>
+<script src="plan-intel.js?v=20260918a"></script>
 <script>
 const D=window.FPL_DATA;
 const TZ="America/Toronto";
@@ -200,24 +200,39 @@ const CHIP_NET={bboost:{net:12,note:"Kinsky 2 + Groß 2 + Davis 2 + Rodon 6"},"3
 function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${label}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b>`:`<span class="note">—</span>`}</span><div class="detail">${used?(note||"Net vs no chip."):"Still available."}</div></li>`;}
 document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
 function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${s}</span>`).join(" ");}
+function freshnessMeta(obj, kind){
+  const gen=obj.generated_at?toToronto(obj.generated_at):"—";
+  const cut=obj.cutoff?String(obj.cutoff).replace(/:\d{2} UTC$/," UTC"):"—";
+  const bits=[`Scraped ${gen}`, `cutoff ${cut}`];
+  if(obj.mode) bits.push("mode "+obj.mode);
+  return `<p class="note">${bits.join(" · ")}</p>`;
+}
+function staleWarn(obj, kind){
+  const gw=obj.gw!=null?("GW"+obj.gw):"this GW";
+  if(kind==="news" && (obj.no_new || !(obj.new_articles||[]).length))
+    return `<div class="warn">No new articles this run for ${gw}. Themes may be stale — check generated time.</div>`;
+  if(kind==="x")
+    return `<div class="warn">X themes are manual/seeded until live ingest exists. Not a live scrape.</div>`;
+  return "";
+}
 function renderNews(){
   const N=window.FPL_NEWS||D.news||{};
   const agreed=(N.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No 3-site overlap yet.</span></li>`;
   const split=(N.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
   const links=(N.links||[]).map(x=>`<a href="${x.url}" target="_blank" rel="noopener">${x.name}</a>`).join(" · ");
   const fresh=N.new_articles||[];
-  const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles recently.</span></li>`;
-  document.getElementById("news").innerHTML=`<div class="warn">Split first. Agreed = 3+ sites.</div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting."}</p></div>`;
+  const newBlock=fresh.length?fresh.map(x=>`<li><span class="who">${x.title}</span><div class="detail"><span class="pill free">${x.source}</span> <a href="${x.url}" target="_blank" rel="noopener">open</a></div></li>`).join(""):`<li><span class="note">No new articles this scrape.</span></li>`;
+  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<p class="note">Split first. Agreed = 3+ sites. Themes from title + article text.</p></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting."}</p></div>`;
 }
 renderNews();
 function renderX(){
   const X=window.FPL_X||{};
+  const manual=(X.mode||"manual")==="manual" || !(X.new_posts||[]).length;
   const acc=(X.accounts||[]).map(a=>`<div class="chip">@${a.handle||a}</div>`).join("")||`<p class="note">No X accounts yet.</p>`;
-  const fresh=X.new_posts||[];
-  const newBlock=fresh.length?fresh.map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join(""):`<li><span class="note">No new posts recently.</span></li>`;
-  const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
-  const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No splits logged.</span></li>`;
-  document.getElementById("xtab").innerHTML=`<div class="warn">Split first. Agreed = 3+ accounts.</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>New since last scrape</h2><ul class="chiplist">${newBlock}</ul></div><div class="card"><h2>Split</h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div>`;
+  const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No seeded agreed themes yet.</span></li>`;
+  const split=(X.split||[]).map(x=>`<li><span class="who">${x.text}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No seeded splits yet.</span></li>`;
+  const liveBlock=(!manual && (X.new_posts||[]).length)?`<div class="card"><h2>New since last scrape</h2><ul class="chiplist">${(X.new_posts||[]).map(p=>`<li><span class="who">@${p.handle}</span><div class="detail">${p.text||""}</div></li>`).join("")}</ul></div>`:"";
+  document.getElementById("xtab").innerHTML=`${staleWarn(X,"x")}<div class="card"><h2>X · GW${X.gw||""}</h2>${freshnessMeta(X,"x")}<p class="note">${X.note||"Accounts to follow + seeded themes until live ingest exists."}</p></div><div class="card"><h2>Accounts to follow</h2><div class="xi">${acc}</div></div>${liveBlock}<div class="card"><h2>Seeded split <span class="pill free">manual</span></h2><ul class="chiplist">${split}</ul></div><div class="card"><h2>Seeded agreed for GW${X.gw||""} <span class="pill free">manual</span></h2><ul class="chiplist">${agreed}</ul></div>`;
 }
 renderX();
 function renderFh(){

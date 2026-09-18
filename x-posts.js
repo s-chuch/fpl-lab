@@ -1,7 +1,8 @@
 window.FPL_X = {
   "gw": 5,
-  "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-17 22:46 UTC",
+  "cutoff": "2026-09-12 12:30 UTC",
+  "generated_at": "2026-09-18 01:14 UTC",
+  "mode": "manual",
   "accounts": [
     {
       "name": "FPL Kayman",
@@ -124,20 +125,6 @@ window.FPL_X = {
       ]
     }
   ],
-  "seen": [
-    "2099199693154648440",
-    "2099455070400282872",
-    "2099461619562496228",
-    "2099632076442013880",
-    "2099662228538667233",
-    "2099788841070588374",
-    "2099853559399419919",
-    "2099910223871848856",
-    "2099913496058315121",
-    "2099916131427352635",
-    "2099955041171873973",
-    "2099958184215503047",
-    "2099958323084722450"
-  ],
-  "note": "Agreed = 3+ of the tracked X accounts. New = after current GW deadline. Public posts only."
+  "seen": [],
+  "note": "Manual/seeded themes until live X ingest exists. Accounts listed for follow \u2014 not a live scrape. Agreed/split are curated seeds, not fresh posts."
 };

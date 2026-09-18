@@ -8,7 +8,7 @@ window.planIntel = function(D){
   const bank=Number((D.team||{}).bank||0);
   const ft=(P.transfer||{}).ft_available;
   const pool=[].concat(N.agreed||[], X.agreed||[], X.split||[], N.split||[]);
-  const blob=pool.map(x=>String(x.text||"").toLowerCase()).join(" | ");
+  const blob=pool.map(x=>String(x.text||"")).join(" | ").toLowerCase();
   const wantsWC=/wildcard/.test(blob);
   const wantsFH=/free hit/.test(blob);
   const wantsHaalandCap=/haaland/.test(blob) && /captain/.test(blob);
@@ -59,10 +59,44 @@ window.planIntel = function(D){
   } else if(wantsHaalandCap){
     cap="Captain Haaland. News/X and this league both default to him.";
   }
-  let action="ROLL", moveLine="Roll. Keep both free transfers.", reason="";
   const blocked=targets.filter(n=>!have.has(n));
   const cheapHit=blocked.find(n=>wc.some(w=>w.indexOf(n)===0));
-  if(cheapHit && bank>=1){
+
+  function rowOf(name){ return (P.rows||[]).find(r=>r[1]===name); }
+  function isSitOrDoubt(s){ return /^(SIT|DOUBT)$/i.test(String(s||"")); }
+  function doubleSit(name){
+    const r=rowOf(name);
+    if(!r) return false;
+    return isSitOrDoubt(r[5]) && isSitOrDoubt(r[8]);
+  }
+  const sitSells=squad.filter(n=>doubleSit(n) && n!=="Haaland");
+
+  // Known affordable/paired moves when News/X agree the buy and we own the sell
+  const pairs=[
+    {sell:"Cherki", buy:"Rogers", needBank:0, note:"Prices line up on Cherki → Rogers."},
+    {sell:"Calvert-Lewin", buy:"Wissa", needBank:0, note:"DCL → Wissa is the cheap forward version."},
+    {sell:"Tzolis", buy:"Gakpo", needBank:0.5, note:"Tzolis → Gakpo needs a little bank."},
+  ];
+
+  let action="ROLL", moveLine="Roll. Keep both free transfers.", reason="";
+  let chosen=null;
+  for(const p of pairs){
+    if(!have.has(p.sell) || !blocked.includes(p.buy)) continue;
+    if(bank + 1e-9 < p.needBank) continue;
+    // Strong evidence: sell is double-sit/doubt both weeks, OR clearly cheap hit with bank
+    const strongSit=doubleSit(p.sell);
+    const strongHit=!!cheapHit && cheapHit===p.buy && bank>=1;
+    if(strongSit || strongHit){ chosen=p; break; }
+  }
+  if(!chosen && cheapHit && bank>=1 && sitSells.length){
+    chosen={sell:sitSells[0], buy:cheapHit, needBank:0, note:"Scarce agreed name vs a double-sit sell."};
+  }
+
+  if(chosen){
+    action="CONSIDER";
+    moveLine="Consider "+chosen.sell+" → "+chosen.buy+".";
+    reason=(chosen.note?chosen.note+" ":"")+"Agreed missing target with "+(doubleSit(chosen.sell)?"a double-sit/doubt sell":"bank/hit cover")+". Only pull the trigger if you still like the buy after team news.";
+  } else if(cheapHit && bank>=1){
     reason="A News/X name this room barely owns could fit. Still only move if the sell is a sit both weeks.";
   } else if(blocked.length && bank<1){
     reason="News/X want "+blocked.join(", ")+". Bank is £"+bank.toFixed(1)+"m. Those names wait for the Wildcard. Rolling is the process play.";
@@ -71,6 +105,7 @@ window.planIntel = function(D){
   } else {
     reason="Targets are "+blocked.join(", ")+". Only move if the sell is already a sit for both upcoming GWs.";
   }
+
   if(gwB){
     const wcNow=chips.wildcard==null && wc.length>=2 && wantsWC;
     chipRows.push(chipState("wildcard","Wildcard",gwB, wcNow?"CONSIDER":"HOLD",

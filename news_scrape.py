@@ -4,11 +4,24 @@ import json, re, urllib.request
 from datetime import datetime, timezone
 from html import unescape
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, parse_qs
 
 ROOT = Path(__file__).resolve().parent
 NEWS_PATH = ROOT / "news.js"
-JUNK = ("log in", "login", "lost password", "sign in", "privacy", "cookie", "wp-login")
+JUNK_TITLE = ("log in", "login", "lost password", "sign in", "privacy", "cookie", "wp-login")
+JUNK_PATH_PARTS = (
+    "/tag/", "/category/", "/categories/", "/wp-json", "/wp-login",
+    "/planner", "/transfer-planner", "/rate-my-team", "/my-team",
+    "/assistant_manager", "/premium/", "/oauth", "/auth/",
+    "/login", "/signin", "/sign-in", "/cart", "/checkout",
+)
+JUNK_HOST_TOOLS = (
+    "fpl-player-comparison-tool", "fpl-match-centre", "fixture-ticker",
+    "projected-points", "price-predictions", "price-changes",
+    "live-gameweek", "/fpl/draft", "/fpl/fixtures", "/fpl/stats",
+    "/fpl/ticker", "/bonus", "/experts",
+)
+QUERY_LISTING_KEYS = ("category", "tag", "page", "author", "s", "search")
 
 
 def get(url):
@@ -29,23 +42,29 @@ def fetch_html(url):
 def event_window(prev=None):
     """Return (current_gw, cutoff).
 
-    cutoff = the *current* gameweek's deadline_time. Once that deadline has
-    passed, everything published before it is purged from seen and from the
-    article list. New = published strictly after this cutoff.
+    current_gw = first unfinished event (the week we're planning for).
+    cutoff = last *finished* GW deadline (or previous event deadline).
+    Articles published after that cutoff are in-window for the current week.
     """
-    gw, cutoff = (prev or {}).get("gw"), None
+    gw = (prev or {}).get("gw")
+    cutoff = None
     try:
         boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
         events = sorted(boot["events"], key=lambda e: e["id"])
+        finished = [e for e in events if e.get("finished")]
         upcoming = [e for e in events if not e.get("finished")]
         if upcoming:
-            cur = upcoming[0]
-            gw = cur["id"]
-            cutoff = parse_iso(cur.get("deadline_time") or "")
+            gw = upcoming[0]["id"]
         elif any(e.get("is_current") or e.get("is_next") for e in events):
             cur = next(e for e in events if e.get("is_current") or e.get("is_next"))
             gw = cur["id"]
-            cutoff = parse_iso(cur.get("deadline_time") or "")
+        # Cutoff = last finished event deadline; else previous event before current gw
+        if finished:
+            cutoff = parse_iso(finished[-1].get("deadline_time") or "")
+        elif gw:
+            prev_ev = [e for e in events if e["id"] < int(gw)]
+            if prev_ev:
+                cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
     except Exception:
         pass
     return gw, cutoff
@@ -88,7 +107,6 @@ def load_news():
     if not NEWS_PATH.exists():
         return {}
     raw = NEWS_PATH.read_text()
-    s, e = raw.find("{{"), raw.rfind("}}" )
     s, e = raw.find("{"), raw.rfind("}")
     if s == -1 or e == -1:
         return {}
@@ -105,9 +123,68 @@ def page_title(html, url):
     return re.sub(r"\s+", " ", unescape(m.group(1))).strip()[:160]
 
 
+def article_text(html):
+    """Title + main body text only — strip scripts/styles/nav noise for theme match."""
+    if not html:
+        return ""
+    h = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", html)
+    h = re.sub(r"(?is)<(nav|footer|header|aside|form)[^>]*>.*?</\1>", " ", h)
+    title = ""
+    mt = re.search(r"<title[^>]*>(.*?)</title>", h, re.I | re.S)
+    if mt:
+        title = unescape(re.sub(r"<[^>]+>", " ", mt.group(1)))
+    body = h
+    for pat in (
+        r'(?is)<article[^>]*>(.*?)</article>',
+        r'(?is)<main[^>]*>(.*?)</main>',
+        r'(?is)<div[^>]+class=["\'][^"\']*(?:entry-content|post-content|article-content|article-body|content-body)[^"\']*["\'][^>]*>(.*?)</div>',
+    ):
+        m = re.search(pat, h)
+        if m:
+            body = m.group(1)
+            break
+    text = unescape(re.sub(r"<[^>]+>", " ", body))
+    text = re.sub(r"\s+", " ", text).strip()
+    return (title + " " + text).lower()[:12000]
+
+
+def is_junk_url(url):
+    if not url:
+        return True
+    try:
+        p = urlparse(url)
+    except Exception:
+        return True
+    path = (p.path or "").lower()
+    full = url.lower()
+    if any(j in full for j in JUNK_PATH_PARTS):
+        return True
+    if any(j in full for j in JUNK_HOST_TOOLS):
+        return True
+    # oauth / social auth redirects
+    if "redirect_to=" in full or "oauth" in full or "/auth/social/" in full:
+        return True
+    # query-only listing junk (blog-index?category=..., ?tag=...)
+    qs = parse_qs(p.query or "")
+    if qs and any(k.lower() in QUERY_LISTING_KEYS for k in qs):
+        # allow real articles that happen to have tracking params only if path looks like an article
+        if not re.search(r"/\d{4}/\d{2}/", path) and not re.search(r"/blog-index/[^?/]+", path):
+            if path.rstrip("/").endswith("blog-index") or path.count("/") <= 2:
+                return True
+            if any(k.lower() in ("category", "tag", "author", "s", "search") for k in qs):
+                return True
+    # bare section roots / tool shells
+    bare = path.rstrip("/")
+    if bare in ("", "/fpl", "/blog-index", "/transfers", "/reveal/captain"):
+        return True
+    return False
+
+
 def is_junk(title, url):
+    if is_junk_url(url):
+        return True
     blob = f"{title} {url}".lower()
-    return any(j in blob for j in JUNK)
+    return any(j in blob for j in JUNK_TITLE)
 
 
 def older_gw_in(url, gw):
@@ -141,6 +218,8 @@ def extract_article_links(html, base, source, gw):
         href = urljoin(base, href.split("#")[0])
         if urlparse(href).netloc != host:
             continue
+        if is_junk_url(href):
+            continue
         low = href.lower() + " " + unescape(re.sub(r"<[^>]+>", " ", inner)).lower()
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
             continue
@@ -169,12 +248,22 @@ def site_listings(gw):
             ("Scout", "https://www.fantasyfootballscout.co.uk/"),
             ("AAFPL", "https://allaboutfpl.com/"),
         ]
+    # Generic GW-pattern extras (no hardcoded Scout GW5-only URL)
     listings.extend([
         ("Fix", f"https://www.fantasyfootballfix.com/blog-index/fpl-gw{gw}-transfer-tips-2026-27/"),
-        ("Scout", "https://www.fantasyfootballscout.co.uk/the-complete-guide-to-gameweek-5/" if gw == 5 else "https://www.fantasyfootballscout.co.uk/"),
+        ("Scout", f"https://www.fantasyfootballscout.co.uk/the-complete-guide-to-gameweek-{gw}/"),
+        ("Scout", f"https://www.fantasyfootballscout.co.uk/fpl-gameweek-{gw}-tips-best-players-predicted-line-ups-team-news-more/"),
         ("AAFPL", f"https://allaboutfpl.com/category/fpl-gw{gw}-ultimate-guide-and-tips/"),
     ])
-    return listings
+    # Deduplicate while preserving order
+    seen, out = set(), []
+    for name, url in listings:
+        key = (name, url.rstrip("/"))
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append((name, url))
+    return out
 
 
 def themes_for(gw):
@@ -185,7 +274,7 @@ def themes_for(gw):
         {"keys": ["de cuyper", "decuyper"], "text": "De Cuyper is the standout cheap / OOP defender."},
         {"keys": ["palmer"], "text": f"Palmer is in the GW{gw} captain conversation."},
         {"keys": ["haaland"], "text": f"Haaland remains the default GW{gw} captain."},
-        {"keys": ["joao pedro", "jo\u00e3o pedro"], "text": "Jo\u00e3o Pedro stays in the template forward line."},
+        {"keys": ["joao pedro", "joão pedro"], "text": "João Pedro stays in the template forward line."},
         {"keys": ["szoboszlai", "szobos"], "text": "Szoboszlai is listed as a Liverpool mid option."},
         {"keys": ["gibbs-white", "gibbs white"], "text": f"Gibbs-White is a GW{gw} Forest mid target."},
         {"keys": ["gvardiol"], "text": f"Gvardiol is a popular GW{gw} defender move."},
@@ -213,35 +302,56 @@ def main():
     gw, cutoff = event_window(prev)
     seen_set = {u for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
     listings = site_listings(gw)
+    # source_blobs: title + article body text only (not full page HTML)
     blobs, links, discovered, used = {}, [], [], set()
+    title_blobs = {}  # titles of new articles weighted heavily
     for source, url in listings:
         html = fetch_html(url)
         if source not in used:
             links.append({"name": source, "url": url})
             used.add(source)
         discovered.extend(extract_article_links(html, url, source, gw))
+    # Dedupe discovered by URL
+    uniq, seen_u = [], set()
+    for art in discovered:
+        if art["url"] in seen_u:
+            continue
+        seen_u.add(art["url"])
+        uniq.append(art)
+    discovered = uniq
     first_seed = len(seen_set) < 8
     new_articles = []
     for art in discovered:
         if not keep_seen(art["url"], gw, cutoff):
             continue
         url_dt = url_date(art["url"])
-        body = ""
+        body_html = ""
         if art["url"] not in seen_set or first_seed:
-            body = fetch_html(art["url"])
-            if body:
-                art["title"] = page_title(body, art["url"]) or art["title"]
+            body_html = fetch_html(art["url"])
+            if body_html:
+                art["title"] = page_title(body_html, art["url"]) or art["title"]
         if is_junk(art["title"], art["url"]):
             continue
-        pub = parse_pub_date(body, art["url"]) or url_dt
+        pub = parse_pub_date(body_html, art["url"]) or url_dt
         if not after_cutoff(pub, cutoff):
             continue
-        if body:
-            blobs[art["source"]] = blobs.get(art["source"], "") + " " + body.lower()
+        text_blob = article_text(body_html) if body_html else ""
+        # Always weight the title; prefer title+body over full HTML
+        title_l = (art.get("title") or "").lower()
+        match_blob = (title_l + " " + text_blob).strip()
+        if not match_blob and body_html:
+            # last resort: still avoid raw HTML tags by stripping
+            match_blob = re.sub(r"<[^>]+>", " ", body_html).lower()[:8000]
+        if match_blob:
+            blobs[art["source"]] = blobs.get(art["source"], "") + " " + match_blob
         if art["url"] not in seen_set:
             new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
+            title_blobs[art["source"]] = title_blobs.get(art["source"], "") + " " + title_l
         seen_set.add(art["url"])
     seen_set = {u for u in seen_set if keep_seen(u, gw, cutoff)}
+    # Theme match: title+body blobs; boost new_articles titles (already in blobs via title_l)
+    for src, tb in title_blobs.items():
+        blobs[src] = blobs.get(src, "") + " " + tb + " " + tb  # weight titles heavily
     agreed, split = [], []
     for th in themes_for(gw):
         sources = [n for n, blob in blobs.items() if any(k in blob for k in th["keys"])]
@@ -257,7 +367,7 @@ def main():
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "note": "Public pages only. New = published after current GW deadline. Agreed = 3+ sites.",
+        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes from title+article text.",
         "agreed": agreed,
         "split": split,
         "links": links,
@@ -266,7 +376,7 @@ def main():
         "seen": sorted(seen_set)[-200:],
     }
     NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
-    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set))
+    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set), "agreed", len(agreed), "split", len(split))
 
 
 if __name__ == "__main__":
