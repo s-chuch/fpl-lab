@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 04:30 UTC",
-  "generated_at_et": "2026-09-19 12:30 AM ET",
+  "generated_at": "2026-09-19 05:53 UTC",
+  "generated_at_et": "2026-09-19 1:53 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -430,7 +430,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 954059,
+    "overall_rank": 954058,
     "bank": 0.3,
     "value": 101.1
   },
@@ -3752,7 +3752,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 954059,
+        "rank": 954058,
         "last_rank": 820064
       }
     ],
@@ -3985,10 +3985,10 @@ window.FPL_DATA = {
   "fh_audit": {
     "gw": 4,
     "fh_points": 90,
-    "original_points": 88,
-    "net": 2,
+    "original_points": 102,
+    "net": -12,
     "process": "ok",
-    "outcome": "won",
+    "outcome": "lost",
     "original_cap": "Haaland",
     "fh_cap": "Palmer",
     "original_xi": [
@@ -4008,9 +4008,9 @@ window.FPL_DATA = {
         "got": 6
       },
       {
-        "name": "Hume",
+        "name": "Davis",
         "pos": "DEF",
-        "got": 0
+        "got": 14
       },
       {
         "name": "B.Fernandes",
@@ -4109,6 +4109,6 @@ window.FPL_DATA = {
         "got": 12
       }
     ],
-    "why": "FH scored 90 vs 88 for the reverted squad \u2014 net +2."
+    "why": "FH scored 90 vs 102 for the reverted squad (autosubs replayed) \u2014 net -12."
   }
 };
