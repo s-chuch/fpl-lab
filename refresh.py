@@ -568,11 +568,13 @@ def build_chip_net(chips_used, caps, bench_audit):
 
 
 def build_fh_audit(boot, team_id, chips_used):
-    """Auto-compute the Free Hit process/outcome audit: FH XI vs the squad you'd
-    have had if you'd rolled instead (FPL guarantees the squad reverts exactly,
-    so the prior gameweek's picks are that "original" squad). Replaces the
-    one-off hand-written fh.js, which only ever covers whichever GW someone
-    last wrote it for."""
+    """Auto-compute the Free Hit process/outcome audit: the FH XI that was
+    actually played vs. the best process-based XI from the squad you'd have
+    had if you'd rolled instead (FPL guarantees the squad reverts exactly, so
+    the prior gameweek's picks are that "original" squad — see
+    score_original_squad for why it's re-optimized rather than replayed
+    as-started). Replaces the one-off hand-written fh.js, which only ever
+    covers whichever GW someone last wrote it for."""
     fh_gw = chips_used.get("freehit")
     if not fh_gw:
         return None
@@ -617,73 +619,38 @@ def build_fh_audit(boot, team_id, chips_used):
             xi.append(item)
         return total, xi
 
-    def autosub_xi(picks):
-        """Replay FPL's automatic-substitution rule by hand: a starter with 0
-        minutes is swapped for the highest-priority bench player who played and
-        whose introduction keeps the formation legal (1 GK, 3-5 DEF, 2-5 MID,
-        1-3 FWD). Needed because this teamsheet is being re-scored against a
-        DIFFERENT gameweek than the one it was actually played in (orig_gw's
-        picks, replayed against fh_gw's results) — the picks API's own
-        position/multiplier fields reflect orig_gw's own autosubs, not fh_gw's."""
-        def el_type(pid):
-            return elements.get(pid, {}).get("element_type")
-
-        def counts(lst):
-            c = {1: 0, 2: 0, 3: 0, 4: 0}
-            for p in lst:
-                c[el_type(p["element"])] = c.get(el_type(p["element"]), 0) + 1
-            return c
-
-        starters = [p for p in picks if (p.get("position") or 99) <= 11]
-        bench = sorted((p for p in picks if (p.get("position") or 99) > 11), key=lambda p: p.get("position") or 99)
-        xi = list(starters)
-
-        gk = next((p for p in xi if el_type(p["element"]) == 1), None)
-        if gk and mins.get(gk["element"], 0) == 0:
-            sub_gk = next((p for p in bench if el_type(p["element"]) == 1 and mins.get(p["element"], 0) > 0), None)
-            if sub_gk:
-                xi = [sub_gk if p is gk else p for p in xi]
-                bench = [p for p in bench if p is not sub_gk]
-
-        for sub in bench:
-            if el_type(sub["element"]) == 1 or mins.get(sub["element"], 0) == 0:
-                continue
-            blanked = [p for p in xi if el_type(p["element"]) != 1 and mins.get(p["element"], 0) == 0]
-            for out_p in blanked:
-                trial = [sub if p is out_p else p for p in xi]
-                c = counts(trial)
-                if c[1] == 1 and 3 <= c[2] <= 5 and 2 <= c[3] <= 5 and 1 <= c[4] <= 3:
-                    xi = trial
-                    break
-        return xi
-
     def score_original_squad(pk):
-        """Score a squad reconstructed from a different gameweek's picks against
-        fh_gw's results, with autosubs and captain/VC fallback replayed by hand
-        (see autosub_xi) since neither is available pre-computed for this
-        hypothetical gameweek."""
-        picks = pk.get("picks") or []
-        xi = autosub_xi(picks)
-        cap = next((p for p in picks if p.get("is_captain")), None)
-        vc = next((p for p in picks if p.get("is_vice_captain")), None)
-        cap_id = (cap or {}).get("element")
-        if cap_id is not None and mins.get(cap_id, 0) == 0 and vc and mins.get(vc["element"], 0) > 0:
-            cap_id = vc["element"]
-        total, out_xi = 0, []
-        for p in xi:
+        """Best process-based XI from the full 15-man squad you'd have carried
+        into fh_gw, scored against fh_gw's results — reusing _process_xi (same
+        "best legal XI by minutes played, captain pinned" rule the bench audit
+        uses) rather than just replaying whatever was literally started/benched
+        in orig_gw, since that start/bench split was made for a different
+        gameweek's team news and isn't the comparison worth making here."""
+        squad = []
+        for p in pk.get("picks") or []:
             el = elements.get(p["element"])
             if not el:
                 continue
-            mult = 2 if p["element"] == cap_id else 1
-            raw = pts.get(p["element"], 0)
-            total += raw * mult
-            item = {"name": el["web_name"], "pos": POS[el["element_type"]], "got": raw * mult}
+            squad.append({
+                "name": el["web_name"],
+                "pos": POS[el["element_type"]],
+                "pts": pts.get(p["element"], 0),
+                "mins": mins.get(p["element"], 0),
+                "started": (p.get("position") or 99) <= 11,
+                "captain": bool(p.get("is_captain")),
+            })
+        xi = _process_xi(squad)
+        cap_name = next((p["name"] for p in squad if p["captain"]), None)
+        total, out_xi = 0, []
+        for p in xi:
+            mult = 2 if p["name"] == cap_name else 1
+            total += p["pts"] * mult
+            item = {"name": p["name"], "pos": p["pos"], "got": p["pts"] * mult}
             if mult != 1:
                 item["mult"] = mult
-            if p["element"] == cap_id:
+            if p["name"] == cap_name:
                 item["captain"] = True
             out_xi.append(item)
-        cap_name = elements.get(cap_id, {}).get("web_name")
         return total, out_xi, cap_name
 
     fh_points, fh_xi = score_fh_squad(fh_pk)
@@ -702,7 +669,7 @@ def build_fh_audit(boot, team_id, chips_used):
         "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
-        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad (autosubs replayed) — net {'+' if net >= 0 else ''}{net}.",
+        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad's best process XI — net {'+' if net >= 0 else ''}{net}.",
     }
 
 
