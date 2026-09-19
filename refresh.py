@@ -985,6 +985,65 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8):
     falling = sorted((r for r in all_rows if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
     return {"squad": squad_rows, "rising": rising, "falling": falling}
 
+def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
+    """Scouting lists for the Plan tab: players you DON'T currently own with
+    strong underlying attacking numbers (xG+xA per 90) or a reliable
+    Defensive Contribution rate — the same underlying-stats signals already
+    used to audit your own squad (build_xg_signal / build_defcon), applied
+    league-wide and filtered to non-owned players, as concrete transfer
+    targets rather than just a read on your existing 15."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t for t in boot["teams"]}
+
+    def to_float(v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    squad_ids = set()
+    if picks_gw:
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+            squad_ids = {p["element"] for p in pk.get("picks") or [] if p.get("element") in elements}
+        except Exception as e:
+            _warn(f"build_transfer_targets: could not load GW{picks_gw} squad: {e}")
+
+    xg_rows, defcon_rows = [], []
+    for el in elements.values():
+        if el["id"] in squad_ids:
+            continue
+        mins = int(el.get("minutes") or 0)
+        if mins < min_minutes:
+            continue
+        pos = POS[el["element_type"]]
+        club = teams[el["team"]]["short_name"]
+        cost, owned = el["now_cost"] / 10, float(el.get("selected_by_percent") or 0)
+        p90 = mins / 90
+
+        if pos != "GKP":
+            xgi = to_float(el.get("expected_goal_involvements"))
+            if xgi is None:
+                xgi = (to_float(el.get("expected_goals")) or 0.0) + (to_float(el.get("expected_assists")) or 0.0)
+            xg_rows.append({
+                "name": el["web_name"], "pos": pos, "club": club, "cost": cost, "owned_pct": owned,
+                "goals": int(el.get("goals_scored") or 0), "assists": int(el.get("assists") or 0),
+                "xgi": round(xgi, 2), "xgi_p90": round(xgi / p90, 2) if p90 else 0.0,
+            })
+
+        if pos in DEFCON_THRESHOLD:
+            per90 = to_float(el.get("defensive_contribution_per_90"))
+            threshold = DEFCON_THRESHOLD[pos]
+            if per90 is not None and per90 >= threshold:
+                defcon_rows.append({
+                    "name": el["web_name"], "pos": pos, "club": club, "cost": cost, "owned_pct": owned,
+                    "per90": round(per90, 2), "threshold": threshold, "margin": round(per90 - threshold, 2),
+                })
+
+    xg_rows.sort(key=lambda r: -r["xgi_p90"])
+    defcon_rows.sort(key=lambda r: -r["margin"])
+    return {"min_minutes": min_minutes, "xg": xg_rows[:top_n], "defcon": defcon_rows[:top_n]}
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -1213,6 +1272,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
+    data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

@@ -112,7 +112,11 @@ function renderPlan(){
     newsBlock=newsCard("News + X vs this squad",vs);
   }
   const injuryNote=Object.keys(avail).length?`<p class="note">Availability from FPL: ${esc(Object.entries(avail).map(([n,a])=>n+" "+(a.label||a.kind)).join(" · "))}</p>`:"";
-  document.getElementById("plan").innerHTML=`${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const TT=D.transfer_targets||{};
+  const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
+  const ttDcRows=(TT.defcon||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.per90}/${r.threshold}</td></tr>`).join("")||`<tr><td colspan="6"><span class="note">No non-owned players reliably hitting the threshold yet.</span></td></tr>`;
+  const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><p class="note">Players you don't currently own (${TT.min_minutes??"?"}+ mins) with strong underlying numbers — the same signals used to audit your own squad, scouted league-wide instead.</p><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:26%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:15%">xGI/90</th><th style="width:15%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:28%">Player</th><th style="width:12%">Pos</th><th style="width:14%">Club</th><th style="width:12%">Cost</th><th style="width:12%">Own</th><th style="width:22%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
+  document.getElementById("plan").innerHTML=`${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
 function fmtSquadLine(sq){
