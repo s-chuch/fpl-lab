@@ -225,53 +225,6 @@ window.FPL_DATA = {
     }
   ],
   "bench_audit": {
-    "gw1": {
-      "you": 64,
-      "process": 45,
-      "hindsight": 67,
-      "your_bench": [
-        [
-          "Kinsky",
-          2
-        ],
-        [
-          "Gro\u00df",
-          2
-        ],
-        [
-          "Davis",
-          2
-        ],
-        [
-          "Rodon",
-          6
-        ]
-      ],
-      "better_bench": [
-        [
-          "Hume",
-          2
-        ],
-        [
-          "Calafiori",
-          9
-        ],
-        [
-          "Tzolis",
-          6
-        ],
-        [
-          "Kinsky",
-          2
-        ]
-      ],
-      "bench_tags": {
-        "Kinsky": "ok",
-        "Gro\u00df": "process",
-        "Davis": "process",
-        "Rodon": "process"
-      }
-    },
     "gw2": {
       "you": 96,
       "process": 118,
@@ -414,8 +367,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 18:33 UTC",
-  "generated_at_et": "2026-09-19 2:33 PM ET",
+  "generated_at": "2026-09-19 18:59 UTC",
+  "generated_at_et": "2026-09-19 2:59 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -430,7 +383,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 324,
-    "overall_rank": 652680,
+    "overall_rank": 652676,
     "bank": 0.3,
     "value": 101.1
   },
@@ -3734,7 +3687,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 652680,
+        "rank": 652676,
         "last_rank": 820064
       }
     ],
@@ -3774,7 +3727,7 @@ window.FPL_DATA = {
       {
         "name": "Shaw",
         "club": "MUN",
-        "own": 8.2
+        "own": 8.1
       }
     ],
     "picks_gw": 5,
@@ -3956,8 +3909,8 @@ window.FPL_DATA = {
   ],
   "chip_net": {
     "bboost": {
-      "net": 12,
-      "note": "Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
+      "net": 0,
+      "note": null
     },
     "3xc": {
       "net": 9,
@@ -4311,9 +4264,9 @@ window.FPL_DATA = {
         "diff": 1.95,
         "tag": "on_track",
         "goals_conceded": 11,
-        "xgc": 9.05,
-        "gc_diff": -1.95,
-        "gc_tag": "on_track"
+        "xgc": 8.98,
+        "gc_diff": -2.02,
+        "gc_tag": "unlucky"
       },
       {
         "name": "De Cuyper",
@@ -4538,6 +4491,24 @@ window.FPL_DATA = {
         "tag": "overperforming"
       },
       {
+        "name": "Davis",
+        "pos": "DEF",
+        "club": "IPS",
+        "minutes": 450,
+        "goals": 2,
+        "assists": 2,
+        "xg": 1.59,
+        "xa": 0.46,
+        "xgi": 2.05,
+        "gi": 4,
+        "diff": 1.95,
+        "tag": "on_track",
+        "goals_conceded": 11,
+        "xgc": 8.98,
+        "gc_diff": -2.02,
+        "gc_tag": "unlucky"
+      },
+      {
         "name": "De Cuyper",
         "pos": "DEF",
         "club": "BHA",
@@ -4748,9 +4719,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "cost": 5.7,
-        "owned_pct": 23.1,
-        "net_transfers_today": 198665,
-        "momentum": 7.9,
+        "owned_pct": 23.2,
+        "net_transfers_today": 208826,
+        "momentum": 8.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2
@@ -4760,9 +4731,9 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "MUN",
         "cost": 4.3,
-        "owned_pct": 8.2,
-        "net_transfers_today": -29584,
-        "momentum": -3.3,
+        "owned_pct": 8.1,
+        "net_transfers_today": -30261,
+        "momentum": -3.4,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2
@@ -4773,8 +4744,8 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 4.3,
         "owned_pct": 3.0,
-        "net_transfers_today": -9509,
-        "momentum": -2.9,
+        "net_transfers_today": -9733,
+        "momentum": -3.0,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2
@@ -4785,8 +4756,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.4,
         "owned_pct": 13.1,
-        "net_transfers_today": -39465,
-        "momentum": -2.8,
+        "net_transfers_today": -41380,
+        "momentum": -2.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4797,8 +4768,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.9,
         "owned_pct": 25.6,
-        "net_transfers_today": 57143,
-        "momentum": 2.0,
+        "net_transfers_today": 59496,
+        "momentum": 2.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.4
@@ -4809,7 +4780,7 @@ window.FPL_DATA = {
         "club": "IPS",
         "cost": 4.0,
         "owned_pct": 6.8,
-        "net_transfers_today": 9562,
+        "net_transfers_today": 9718,
         "momentum": 1.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4821,7 +4792,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 7.8,
         "owned_pct": 68.0,
-        "net_transfers_today": -81765,
+        "net_transfers_today": -83600,
         "momentum": -1.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4833,7 +4804,7 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 4.5,
         "owned_pct": 18.1,
-        "net_transfers_today": -21514,
+        "net_transfers_today": -22318,
         "momentum": -1.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4845,20 +4816,8 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 7.0,
         "owned_pct": 34.3,
-        "net_transfers_today": -34240,
+        "net_transfers_today": -35360,
         "momentum": -0.9,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0
-      },
-      {
-        "name": "B.Fernandes",
-        "pos": "MID",
-        "club": "MUN",
-        "cost": 12.0,
-        "owned_pct": 39.8,
-        "net_transfers_today": -25822,
-        "momentum": -0.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4869,11 +4828,23 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 7.8,
         "owned_pct": 27.8,
-        "net_transfers_today": -19442,
-        "momentum": -0.6,
+        "net_transfers_today": -20019,
+        "momentum": -0.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.3
+      },
+      {
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "club": "MUN",
+        "cost": 12.0,
+        "owned_pct": 39.8,
+        "net_transfers_today": -26267,
+        "momentum": -0.6,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.0
       },
       {
         "name": "Calafiori",
@@ -4881,7 +4852,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 5.8,
         "owned_pct": 50.7,
-        "net_transfers_today": 6316,
+        "net_transfers_today": 6306,
         "momentum": 0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4893,7 +4864,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.5,
         "owned_pct": 21.7,
-        "net_transfers_today": -1670,
+        "net_transfers_today": -1390,
         "momentum": -0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4905,7 +4876,7 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.0,
         "owned_pct": 25.7,
-        "net_transfers_today": 2281,
+        "net_transfers_today": 2377,
         "momentum": 0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4916,8 +4887,8 @@ window.FPL_DATA = {
         "pos": "FWD",
         "club": "MCI",
         "cost": 15.6,
-        "owned_pct": 73.3,
-        "net_transfers_today": 11385,
+        "owned_pct": 73.4,
+        "net_transfers_today": 11819,
         "momentum": 0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4931,23 +4902,11 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.2,
-        "net_transfers_today": 7615,
-        "momentum": 35.0,
+        "net_transfers_today": 7856,
+        "momentum": 36.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
-      },
-      {
-        "name": "Schuster",
-        "pos": "DEF",
-        "club": "BRE",
-        "cost": 4.5,
-        "owned_pct": 0.2,
-        "net_transfers_today": 6837,
-        "momentum": 31.4,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0
       },
       {
         "name": "Kostoulas",
@@ -4955,8 +4914,20 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.5,
         "owned_pct": 1.5,
-        "net_transfers_today": 50327,
-        "momentum": 30.8,
+        "net_transfers_today": 53239,
+        "momentum": 32.6,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.0
+      },
+      {
+        "name": "Schuster",
+        "pos": "DEF",
+        "club": "BRE",
+        "cost": 4.5,
+        "owned_pct": 0.2,
+        "net_transfers_today": 7033,
+        "momentum": 32.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4967,8 +4938,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 6.1,
         "owned_pct": 8.4,
-        "net_transfers_today": 82138,
-        "momentum": 9.0,
+        "net_transfers_today": 84715,
+        "momentum": 9.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
@@ -4979,8 +4950,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 4.7,
-        "net_transfers_today": 42188,
-        "momentum": 8.2,
+        "net_transfers_today": 43315,
+        "momentum": 8.5,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
@@ -4990,9 +4961,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "cost": 5.7,
-        "owned_pct": 23.1,
-        "net_transfers_today": 198665,
-        "momentum": 7.9,
+        "owned_pct": 23.2,
+        "net_transfers_today": 208826,
+        "momentum": 8.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2
@@ -5003,8 +4974,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 5.5,
         "owned_pct": 2.1,
-        "net_transfers_today": 15922,
-        "momentum": 7.0,
+        "net_transfers_today": 16310,
+        "momentum": 7.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -5015,8 +4986,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.5,
         "owned_pct": 0.3,
-        "net_transfers_today": 1848,
-        "momentum": 5.7,
+        "net_transfers_today": 1891,
+        "momentum": 5.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -5029,8 +5000,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 5.5,
-        "net_transfers_today": -61496,
-        "momentum": -10.3,
+        "net_transfers_today": -63116,
+        "momentum": -10.5,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
@@ -5041,8 +5012,8 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.2,
         "owned_pct": 1.9,
-        "net_transfers_today": -11813,
-        "momentum": -5.7,
+        "net_transfers_today": -12104,
+        "momentum": -5.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.3
@@ -5053,8 +5024,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 2.1,
-        "net_transfers_today": -12957,
-        "momentum": -5.7,
+        "net_transfers_today": -13319,
+        "momentum": -5.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -5065,23 +5036,11 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 5.6,
         "owned_pct": 10.8,
-        "net_transfers_today": -49494,
-        "momentum": -4.2,
+        "net_transfers_today": -50632,
+        "momentum": -4.3,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
-      },
-      {
-        "name": "N.Gonzalez",
-        "pos": "MID",
-        "club": "NEW",
-        "cost": 5.5,
-        "owned_pct": 0.2,
-        "net_transfers_today": -870,
-        "momentum": -4.0,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0
       },
       {
         "name": "J.Ramsey",
@@ -5089,11 +5048,23 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.9,
         "owned_pct": 0.3,
-        "net_transfers_today": -1313,
-        "momentum": -4.0,
+        "net_transfers_today": -1363,
+        "momentum": -4.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
+      },
+      {
+        "name": "N.Gonzalez",
+        "pos": "MID",
+        "club": "NEW",
+        "cost": 5.5,
+        "owned_pct": 0.2,
+        "net_transfers_today": -878,
+        "momentum": -4.0,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.0
       },
       {
         "name": "Foden",
@@ -5101,8 +5072,8 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 6.9,
         "owned_pct": 2.0,
-        "net_transfers_today": -8083,
-        "momentum": -3.7,
+        "net_transfers_today": -8297,
+        "momentum": -3.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -5113,7 +5084,7 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 4.3,
         "owned_pct": 0.8,
-        "net_transfers_today": -3042,
+        "net_transfers_today": -3090,
         "momentum": -3.5,
         "changed_today": true,
         "cost_change_today": -0.1,
