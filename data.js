@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 05:53 UTC",
-  "generated_at_et": "2026-09-19 1:53 AM ET",
+  "generated_at": "2026-09-19 05:56 UTC",
+  "generated_at_et": "2026-09-19 1:56 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3985,8 +3985,8 @@ window.FPL_DATA = {
   "fh_audit": {
     "gw": 4,
     "fh_points": 90,
-    "original_points": 102,
-    "net": -12,
+    "original_points": 104,
+    "net": -14,
     "process": "ok",
     "outcome": "lost",
     "original_cap": "Haaland",
@@ -4018,19 +4018,9 @@ window.FPL_DATA = {
         "got": 2
       },
       {
-        "name": "Cherki",
-        "pos": "MID",
-        "got": 1
-      },
-      {
         "name": "Szoboszlai",
         "pos": "MID",
         "got": 3
-      },
-      {
-        "name": "Gro\u00df",
-        "pos": "MID",
-        "got": 17
       },
       {
         "name": "Haaland",
@@ -4040,14 +4030,24 @@ window.FPL_DATA = {
         "captain": true
       },
       {
-        "name": "Calvert-Lewin",
-        "pos": "FWD",
-        "got": 10
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "got": 17
       },
       {
         "name": "Jo\u00e3o Pedro",
         "pos": "FWD",
         "got": 12
+      },
+      {
+        "name": "Tzolis",
+        "pos": "MID",
+        "got": 3
+      },
+      {
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "got": 10
       }
     ],
     "fh_xi": [
@@ -4109,6 +4109,6 @@ window.FPL_DATA = {
         "got": 12
       }
     ],
-    "why": "FH scored 90 vs 102 for the reverted squad (autosubs replayed) \u2014 net -12."
+    "why": "FH scored 90 vs 104 for the reverted squad's best process XI \u2014 net -14."
   }
 };
