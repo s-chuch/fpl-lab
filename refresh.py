@@ -941,18 +941,21 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8):
     fields: transfers_in_event/transfers_out_event (net transfers so far
     today) and cost_change_event/cost_change_start (price change already
     applied today / this season). FPL has never published its exact
-    price-change algorithm, so "momentum" here — net transfers today scaled
-    by how widely owned a player already is — is a relative signal (a swing
-    on a low-ownership player moves the needle far more than the same swing
-    on a template player), not a guaranteed prediction of tonight's change."""
+    price-change algorithm, so "momentum" here — net transfers today as a
+    % of the player's own current owner base (selected_by_percent% of
+    total_players) — is a relative signal (a swing on a low-ownership
+    player moves the needle far more than the same raw swing on a template
+    player), not a guaranteed prediction of tonight's change."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
+    total_players = boot.get("total_players") or 0
 
     def row_of(el):
         inn, out = int(el.get("transfers_in_event") or 0), int(el.get("transfers_out_event") or 0)
         net = inn - out
         owned = float(el.get("selected_by_percent") or 0)
-        momentum = round(net / max(owned, 0.5), 1)  # floor avoids a near-zero-owned player producing a meaningless spike
+        owners = owned / 100 * total_players
+        momentum = round(net / owners * 100, 1) if owners >= 1 else 0.0  # % of the player's own current owners, not a raw count
         return {
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
             "cost": el["now_cost"] / 10, "owned_pct": owned, "net_transfers_today": net, "momentum": momentum,
