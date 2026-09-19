@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 14:47 UTC",
-  "generated_at_et": "2026-09-19 10:47 AM ET",
+  "generated_at": "2026-09-19 15:12 UTC",
+  "generated_at_et": "2026-09-19 11:12 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -252,8 +252,8 @@ window.FPL_DATA = {
     "id": 1360920,
     "name": "Bacalhau",
     "manager": "Victor M",
-    "overall_points": 303,
-    "overall_rank": 1261003,
+    "overall_points": 300,
+    "overall_rank": 1317369,
     "bank": 4.4,
     "value": 100.9
   },
@@ -626,91 +626,91 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 317,
+            "pts": 312,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
-            "team": "Borde to be wild",
-            "pts": 313,
-            "me": false,
-            "entry": 7464835
-          },
-          {
-            "rank": 3,
             "team": "Shaaland",
-            "pts": 313,
+            "pts": 311,
             "me": false,
             "entry": 1360999
           },
           {
+            "rank": 3,
+            "team": "Borde to be wild",
+            "pts": 310,
+            "me": false,
+            "entry": 7464835
+          },
+          {
             "rank": 4,
             "team": "Bacalhau",
-            "pts": 303,
+            "pts": 300,
             "me": true,
             "entry": 1360920
           },
           {
             "rank": 5,
             "team": "xG Capital",
-            "pts": 300,
+            "pts": 296,
             "me": false,
             "entry": 641039
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 292,
+            "pts": 290,
             "me": false,
             "entry": 5321568
           },
           {
             "rank": 7,
             "team": "Blasters United",
-            "pts": 283,
+            "pts": 279,
             "me": false,
             "entry": 7445649
           },
           {
             "rank": 8,
-            "team": "HanSoloDolo",
-            "pts": 276,
-            "me": false,
-            "entry": 6934500
-          },
-          {
-            "rank": 9,
             "team": "Kroos Kontrol",
-            "pts": 274,
+            "pts": 276,
             "me": false,
             "entry": 3768058
           },
           {
+            "rank": 9,
+            "team": "HanSoloDolo",
+            "pts": 274,
+            "me": false,
+            "entry": 6934500
+          },
+          {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 263,
+            "pts": 262,
             "me": false,
             "entry": 8869141
           },
           {
             "rank": 11,
             "team": "Must win one",
-            "pts": 259,
+            "pts": 258,
             "me": false,
             "entry": 7332517
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 255,
+            "pts": 253,
             "me": false,
             "entry": 687308
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 200,
+            "pts": 199,
             "me": false,
             "entry": 6453738
           }
@@ -785,13 +785,13 @@ window.FPL_DATA = {
         "tactics": {
           "n": 13,
           "you_rank": 4,
-          "you_pts": 303,
-          "gap_to_first": 14,
-          "gap_to_second": 10,
+          "you_pts": 300,
+          "gap_to_first": 12,
+          "gap_to_second": 11,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 317,
-            "gap": 14,
+            "pts": 312,
+            "gap": 12,
             "chips_used": [
               "wildcard"
             ],
@@ -802,12 +802,17 @@ window.FPL_DATA = {
             }
           },
           "second": {
-            "name": "Borde to be wild",
-            "pts": 313,
-            "gap": 10,
-            "gap_trend": -3,
+            "name": "Shaaland",
+            "pts": 311,
+            "gap": 11,
+            "chips_used": [
+              "3xc",
+              "bboost",
+              "freehit"
+            ],
+            "gap_trend": -16,
             "fixture": {
-              "avg_fdr": 3.2,
+              "avg_fdr": 3.3,
               "label": "Mixed"
             }
           },
@@ -925,28 +930,12 @@ window.FPL_DATA = {
               "own": 92
             },
             {
-              "name": "Mbeumo",
-              "club": "MUN",
+              "name": "Cherki",
+              "club": "MCI",
               "pos": "MID",
-              "count": 4,
+              "count": 6,
               "n": 13,
-              "own": 31
-            },
-            {
-              "name": "M.Sangar\u00e9",
-              "club": "BRE",
-              "pos": "MID",
-              "count": 3,
-              "n": 13,
-              "own": 23
-            },
-            {
-              "name": "van Ewijk",
-              "club": "COV",
-              "pos": "DEF",
-              "count": 2,
-              "n": 13,
-              "own": 15
+              "own": 46
             }
           ],
           "cap_last": [
@@ -961,24 +950,19 @@ window.FPL_DATA = {
           ],
           "neighbors": {
             "above": {
-              "name": "Shaaland",
-              "pts": 313,
+              "name": "Borde to be wild",
+              "pts": 310,
               "gap": 10,
-              "chips_used": [
-                "3xc",
-                "bboost",
-                "freehit"
-              ],
-              "gap_trend": -16,
+              "gap_trend": -3,
               "fixture": {
-                "avg_fdr": 3.3,
+                "avg_fdr": 3.2,
                 "label": "Mixed"
               }
             },
             "below": {
               "name": "xG Capital",
-              "pts": 300,
-              "gap": -3,
+              "pts": 296,
+              "gap": -4,
               "gap_trend": -6,
               "fixture": {
                 "avg_fdr": 2.8,
@@ -1057,20 +1041,20 @@ window.FPL_DATA = {
                 "own": 92
               },
               {
-                "name": "Kinsky",
-                "club": "TOT",
-                "pos": "GKP",
-                "count": 5,
+                "name": "Thomas",
+                "club": "COV",
+                "pos": "DEF",
+                "count": 4,
                 "n": 13,
-                "own": 38
+                "own": 31
               },
               {
-                "name": "Verbruggen",
-                "club": "BHA",
-                "pos": "GKP",
-                "count": 5,
+                "name": "M.Sangar\u00e9",
+                "club": "BRE",
+                "pos": "MID",
+                "count": 3,
                 "n": 13,
-                "own": 38
+                "own": 23
               }
             ]
           }
@@ -1197,129 +1181,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 317,
-            "me": false,
-            "chip": null
-          },
-          {
-            "xi": [
-              {
-                "id": 1,
-                "name": "Raya",
-                "pos": "GKP",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 8,
-                "name": "Calafiori",
-                "pos": "DEF",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 279,
-                "name": "Ajayi",
-                "pos": "DEF",
-                "club": "HUL",
-                "mult": 1
-              },
-              {
-                "id": 173,
-                "name": "Thomas",
-                "pos": "DEF",
-                "club": "COV",
-                "mult": 1
-              },
-              {
-                "id": 426,
-                "name": "B.Fernandes",
-                "pos": "MID",
-                "club": "MUN",
-                "mult": 1
-              },
-              {
-                "id": 427,
-                "name": "Mbeumo",
-                "pos": "MID",
-                "club": "MUN",
-                "mult": 1,
-                "vice": true
-              },
-              {
-                "id": 368,
-                "name": "Szoboszlai",
-                "pos": "MID",
-                "club": "LIV",
-                "mult": 1
-              },
-              {
-                "id": 124,
-                "name": "Gro\u00df",
-                "pos": "MID",
-                "club": "BHA",
-                "mult": 1
-              },
-              {
-                "id": 565,
-                "name": "M.Sangar\u00e9",
-                "pos": "MID",
-                "club": "BRE",
-                "mult": 1
-              },
-              {
-                "id": 411,
-                "name": "Haaland",
-                "pos": "FWD",
-                "club": "MCI",
-                "mult": 2,
-                "captain": true
-              },
-              {
-                "id": 346,
-                "name": "Calvert-Lewin",
-                "pos": "FWD",
-                "club": "LEE",
-                "mult": 1
-              }
-            ],
-            "bench": [
-              {
-                "id": 57,
-                "name": "Petrovi\u0107",
-                "pos": "GKP",
-                "club": "BOU",
-                "mult": 0
-              },
-              {
-                "id": 165,
-                "name": "Jo\u00e3o Pedro",
-                "pos": "FWD",
-                "club": "CHE",
-                "mult": 0
-              },
-              {
-                "id": 87,
-                "name": "Ajer",
-                "pos": "DEF",
-                "club": "BRE",
-                "mult": 0
-              },
-              {
-                "id": 175,
-                "name": "van Ewijk",
-                "pos": "DEF",
-                "club": "COV",
-                "mult": 0
-              }
-            ],
-            "captain": "Haaland",
-            "vice": "Mbeumo",
-            "entry": 7464835,
-            "team": "Borde to be wild",
-            "manager": "Dominic Borde",
-            "rank": 2,
-            "pts": 313,
+            "pts": 312,
             "me": false,
             "chip": null
           },
@@ -1440,8 +1302,130 @@ window.FPL_DATA = {
             "entry": 1360999,
             "team": "Shaaland",
             "manager": "s cc",
+            "rank": 2,
+            "pts": 311,
+            "me": false,
+            "chip": null
+          },
+          {
+            "xi": [
+              {
+                "id": 1,
+                "name": "Raya",
+                "pos": "GKP",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 8,
+                "name": "Calafiori",
+                "pos": "DEF",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 279,
+                "name": "Ajayi",
+                "pos": "DEF",
+                "club": "HUL",
+                "mult": 1
+              },
+              {
+                "id": 173,
+                "name": "Thomas",
+                "pos": "DEF",
+                "club": "COV",
+                "mult": 1
+              },
+              {
+                "id": 426,
+                "name": "B.Fernandes",
+                "pos": "MID",
+                "club": "MUN",
+                "mult": 1
+              },
+              {
+                "id": 427,
+                "name": "Mbeumo",
+                "pos": "MID",
+                "club": "MUN",
+                "mult": 1,
+                "vice": true
+              },
+              {
+                "id": 368,
+                "name": "Szoboszlai",
+                "pos": "MID",
+                "club": "LIV",
+                "mult": 1
+              },
+              {
+                "id": 124,
+                "name": "Gro\u00df",
+                "pos": "MID",
+                "club": "BHA",
+                "mult": 1
+              },
+              {
+                "id": 565,
+                "name": "M.Sangar\u00e9",
+                "pos": "MID",
+                "club": "BRE",
+                "mult": 1
+              },
+              {
+                "id": 411,
+                "name": "Haaland",
+                "pos": "FWD",
+                "club": "MCI",
+                "mult": 2,
+                "captain": true
+              },
+              {
+                "id": 346,
+                "name": "Calvert-Lewin",
+                "pos": "FWD",
+                "club": "LEE",
+                "mult": 1
+              }
+            ],
+            "bench": [
+              {
+                "id": 57,
+                "name": "Petrovi\u0107",
+                "pos": "GKP",
+                "club": "BOU",
+                "mult": 0
+              },
+              {
+                "id": 165,
+                "name": "Jo\u00e3o Pedro",
+                "pos": "FWD",
+                "club": "CHE",
+                "mult": 0
+              },
+              {
+                "id": 87,
+                "name": "Ajer",
+                "pos": "DEF",
+                "club": "BRE",
+                "mult": 0
+              },
+              {
+                "id": 175,
+                "name": "van Ewijk",
+                "pos": "DEF",
+                "club": "COV",
+                "mult": 0
+              }
+            ],
+            "captain": "Haaland",
+            "vice": "Mbeumo",
+            "entry": 7464835,
+            "team": "Borde to be wild",
+            "manager": "Dominic Borde",
             "rank": 3,
-            "pts": 313,
+            "pts": 310,
             "me": false,
             "chip": null
           },
@@ -1563,7 +1547,7 @@ window.FPL_DATA = {
             "team": "Bacalhau",
             "manager": "Victor M",
             "rank": 4,
-            "pts": 303,
+            "pts": 300,
             "me": true,
             "chip": null
           },
@@ -1685,7 +1669,7 @@ window.FPL_DATA = {
             "team": "xG Capital",
             "manager": "Andrew Govia",
             "rank": 5,
-            "pts": 300,
+            "pts": 296,
             "me": false,
             "chip": null
           },
@@ -1807,7 +1791,7 @@ window.FPL_DATA = {
             "team": "Haaland Leeds Norway",
             "manager": "Benjamin Ollivierre",
             "rank": 6,
-            "pts": 292,
+            "pts": 290,
             "me": false,
             "chip": null
           },
@@ -1929,129 +1913,7 @@ window.FPL_DATA = {
             "team": "Blasters United",
             "manager": "Daniel Voisin",
             "rank": 7,
-            "pts": 283,
-            "me": false,
-            "chip": null
-          },
-          {
-            "xi": [
-              {
-                "id": 1,
-                "name": "Raya",
-                "pos": "GKP",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 8,
-                "name": "Calafiori",
-                "pos": "DEF",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 112,
-                "name": "Van Hecke",
-                "pos": "DEF",
-                "club": "TOT",
-                "mult": 1
-              },
-              {
-                "id": 469,
-                "name": "N.Williams",
-                "pos": "DEF",
-                "club": "NFO",
-                "mult": 1
-              },
-              {
-                "id": 426,
-                "name": "B.Fernandes",
-                "pos": "MID",
-                "club": "MUN",
-                "mult": 2,
-                "captain": true
-              },
-              {
-                "id": 427,
-                "name": "Mbeumo",
-                "pos": "MID",
-                "club": "MUN",
-                "mult": 1
-              },
-              {
-                "id": 399,
-                "name": "Cherki",
-                "pos": "MID",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 12,
-                "name": "Saka",
-                "pos": "MID",
-                "club": "ARS",
-                "mult": 1,
-                "vice": true
-              },
-              {
-                "id": 379,
-                "name": "Isak",
-                "pos": "FWD",
-                "club": "LIV",
-                "mult": 1
-              },
-              {
-                "id": 165,
-                "name": "Jo\u00e3o Pedro",
-                "pos": "FWD",
-                "club": "CHE",
-                "mult": 1
-              },
-              {
-                "id": 346,
-                "name": "Calvert-Lewin",
-                "pos": "FWD",
-                "club": "LEE",
-                "mult": 1
-              }
-            ],
-            "bench": [
-              {
-                "id": 58,
-                "name": "Forster",
-                "pos": "GKP",
-                "club": "BOU",
-                "mult": 0
-              },
-              {
-                "id": 124,
-                "name": "Gro\u00df",
-                "pos": "MID",
-                "club": "BHA",
-                "mult": 0
-              },
-              {
-                "id": 32,
-                "name": "Cash",
-                "pos": "DEF",
-                "club": "AVL",
-                "mult": 0
-              },
-              {
-                "id": 259,
-                "name": "Diop",
-                "pos": "DEF",
-                "club": "IPS",
-                "mult": 0
-              }
-            ],
-            "captain": "B.Fernandes",
-            "vice": "Saka",
-            "entry": 6934500,
-            "team": "HanSoloDolo",
-            "manager": "John Castagne",
-            "rank": 8,
-            "pts": 276,
+            "pts": 279,
             "me": false,
             "chip": null
           },
@@ -2172,6 +2034,128 @@ window.FPL_DATA = {
             "entry": 3768058,
             "team": "Kroos Kontrol",
             "manager": "Adam Hive",
+            "rank": 8,
+            "pts": 276,
+            "me": false,
+            "chip": null
+          },
+          {
+            "xi": [
+              {
+                "id": 1,
+                "name": "Raya",
+                "pos": "GKP",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 8,
+                "name": "Calafiori",
+                "pos": "DEF",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 112,
+                "name": "Van Hecke",
+                "pos": "DEF",
+                "club": "TOT",
+                "mult": 1
+              },
+              {
+                "id": 469,
+                "name": "N.Williams",
+                "pos": "DEF",
+                "club": "NFO",
+                "mult": 1
+              },
+              {
+                "id": 426,
+                "name": "B.Fernandes",
+                "pos": "MID",
+                "club": "MUN",
+                "mult": 2,
+                "captain": true
+              },
+              {
+                "id": 427,
+                "name": "Mbeumo",
+                "pos": "MID",
+                "club": "MUN",
+                "mult": 1
+              },
+              {
+                "id": 399,
+                "name": "Cherki",
+                "pos": "MID",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 12,
+                "name": "Saka",
+                "pos": "MID",
+                "club": "ARS",
+                "mult": 1,
+                "vice": true
+              },
+              {
+                "id": 379,
+                "name": "Isak",
+                "pos": "FWD",
+                "club": "LIV",
+                "mult": 1
+              },
+              {
+                "id": 165,
+                "name": "Jo\u00e3o Pedro",
+                "pos": "FWD",
+                "club": "CHE",
+                "mult": 1
+              },
+              {
+                "id": 346,
+                "name": "Calvert-Lewin",
+                "pos": "FWD",
+                "club": "LEE",
+                "mult": 1
+              }
+            ],
+            "bench": [
+              {
+                "id": 58,
+                "name": "Forster",
+                "pos": "GKP",
+                "club": "BOU",
+                "mult": 0
+              },
+              {
+                "id": 124,
+                "name": "Gro\u00df",
+                "pos": "MID",
+                "club": "BHA",
+                "mult": 0
+              },
+              {
+                "id": 32,
+                "name": "Cash",
+                "pos": "DEF",
+                "club": "AVL",
+                "mult": 0
+              },
+              {
+                "id": 259,
+                "name": "Diop",
+                "pos": "DEF",
+                "club": "IPS",
+                "mult": 0
+              }
+            ],
+            "captain": "B.Fernandes",
+            "vice": "Saka",
+            "entry": 6934500,
+            "team": "HanSoloDolo",
+            "manager": "John Castagne",
             "rank": 9,
             "pts": 274,
             "me": false,
@@ -2295,7 +2279,7 @@ window.FPL_DATA = {
             "team": "Top Bin FC",
             "manager": "Cuzo Ace",
             "rank": 10,
-            "pts": 263,
+            "pts": 262,
             "me": false,
             "chip": null
           },
@@ -2417,7 +2401,7 @@ window.FPL_DATA = {
             "team": "Must win one",
             "manager": "Kieran Marin",
             "rank": 11,
-            "pts": 259,
+            "pts": 258,
             "me": false,
             "chip": "wildcard"
           },
@@ -2539,7 +2523,7 @@ window.FPL_DATA = {
             "team": "Viking Robot",
             "manager": "Mike Brash",
             "rank": 12,
-            "pts": 255,
+            "pts": 253,
             "me": false,
             "chip": null
           },
@@ -2661,7 +2645,7 @@ window.FPL_DATA = {
             "team": "Chubs United",
             "manager": "David Brash",
             "rank": 13,
-            "pts": 200,
+            "pts": 199,
             "me": false,
             "chip": null
           }
@@ -2677,21 +2661,21 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 317,
+            "pts": 312,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 313,
+            "pts": 311,
             "me": false,
             "entry": 1360999
           },
           {
             "rank": 3,
             "team": "Bacalhau",
-            "pts": 303,
+            "pts": 300,
             "me": true,
             "entry": 1360920
           }
@@ -2758,13 +2742,13 @@ window.FPL_DATA = {
         "tactics": {
           "n": 3,
           "you_rank": 3,
-          "you_pts": 303,
-          "gap_to_first": 14,
-          "gap_to_second": 10,
+          "you_pts": 300,
+          "gap_to_first": 12,
+          "gap_to_second": 11,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 317,
-            "gap": 14,
+            "pts": 312,
+            "gap": 12,
             "chips_used": [
               "wildcard"
             ],
@@ -2776,8 +2760,8 @@ window.FPL_DATA = {
           },
           "second": {
             "name": "Shaaland",
-            "pts": 313,
-            "gap": 10,
+            "pts": 311,
+            "gap": 11,
             "chips_used": [
               "3xc",
               "bboost",
@@ -3033,7 +3017,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 317,
+            "pts": 312,
             "me": false,
             "chip": null
           },
@@ -3155,7 +3139,7 @@ window.FPL_DATA = {
             "team": "Shaaland",
             "manager": "s cc",
             "rank": 2,
-            "pts": 313,
+            "pts": 311,
             "me": false,
             "chip": null
           },
@@ -3277,7 +3261,7 @@ window.FPL_DATA = {
             "team": "Bacalhau",
             "manager": "Victor M",
             "rank": 3,
-            "pts": 303,
+            "pts": 300,
             "me": true,
             "chip": null
           }
@@ -3288,7 +3272,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1261003,
+        "rank": 1317369,
         "last_rank": 1590538
       }
     ],
@@ -3301,12 +3285,12 @@ window.FPL_DATA = {
       {
         "name": "Rogers",
         "club": "CHE",
-        "own": 40.0
+        "own": 40.1
       },
       {
         "name": "Cherki",
         "club": "MCI",
-        "own": 28.0
+        "own": 27.9
       },
       {
         "name": "Palmer",
@@ -3711,7 +3695,7 @@ window.FPL_DATA = {
         "name": "Gro\u00df",
         "pos": "MID",
         "club": "BHA",
-        "minutes": 402,
+        "minutes": 411,
         "goals": 3,
         "assists": 3,
         "xg": 1.69,
@@ -3725,21 +3709,21 @@ window.FPL_DATA = {
         "name": "Belloumi",
         "pos": "MID",
         "club": "HUL",
-        "minutes": 356,
+        "minutes": 361,
         "goals": 2,
         "assists": 1,
         "xg": 0.48,
-        "xa": 0.13,
-        "xgi": 0.61,
+        "xa": 0.14,
+        "xgi": 0.62,
         "gi": 3,
-        "diff": 2.39,
+        "diff": 2.38,
         "tag": "overperforming"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
         "club": "EVE",
-        "minutes": 403,
+        "minutes": 411,
         "goals": 1,
         "assists": 1,
         "xg": 0.18,
@@ -3749,8 +3733,8 @@ window.FPL_DATA = {
         "diff": 1.79,
         "tag": "on_track",
         "goals_conceded": 3,
-        "xgc": 6.27,
-        "gc_diff": 3.27,
+        "xgc": 6.39,
+        "gc_diff": 3.39,
         "gc_tag": "riding_luck"
       },
       {
@@ -3789,7 +3773,7 @@ window.FPL_DATA = {
         "name": "Calafiori",
         "pos": "DEF",
         "club": "ARS",
-        "minutes": 368,
+        "minutes": 377,
         "goals": 0,
         "assists": 2,
         "xg": 0.63,
@@ -3798,9 +3782,9 @@ window.FPL_DATA = {
         "gi": 2,
         "diff": 0.77,
         "tag": "on_track",
-        "goals_conceded": 2,
-        "xgc": 2.69,
-        "gc_diff": 0.69,
+        "goals_conceded": 3,
+        "xgc": 2.78,
+        "gc_diff": -0.22,
         "gc_tag": "on_track"
       },
       {
@@ -3821,7 +3805,7 @@ window.FPL_DATA = {
         "name": "Ajayi",
         "pos": "DEF",
         "club": "HUL",
-        "minutes": 377,
+        "minutes": 382,
         "goals": 1,
         "assists": 0,
         "xg": 0.65,
@@ -3831,9 +3815,9 @@ window.FPL_DATA = {
         "diff": 0.35,
         "tag": "on_track",
         "goals_conceded": 4,
-        "xgc": 5.38,
-        "gc_diff": 1.38,
-        "gc_tag": "on_track"
+        "xgc": 6.25,
+        "gc_diff": 2.25,
+        "gc_tag": "riding_luck"
       },
       {
         "name": "N.Williams",
@@ -3857,14 +3841,14 @@ window.FPL_DATA = {
         "name": "Dewsbury-Hall",
         "pos": "MID",
         "club": "EVE",
-        "minutes": 403,
+        "minutes": 411,
         "goals": 1,
         "assists": 0,
         "xg": 0.74,
-        "xa": 0.5,
-        "xgi": 1.24,
+        "xa": 0.51,
+        "xgi": 1.25,
         "gi": 1,
-        "diff": -0.24,
+        "diff": -0.25,
         "tag": "on_track"
       },
       {
@@ -3885,7 +3869,7 @@ window.FPL_DATA = {
         "name": "Raya",
         "pos": "GKP",
         "club": "ARS",
-        "minutes": 402,
+        "minutes": 411,
         "goals": 0,
         "assists": 0,
         "xg": 0.0,
@@ -3894,9 +3878,9 @@ window.FPL_DATA = {
         "gi": 0,
         "diff": -0.01,
         "tag": "on_track",
-        "goals_conceded": 2,
-        "xgc": 2.96,
-        "gc_diff": 0.96,
+        "goals_conceded": 3,
+        "xgc": 3.05,
+        "gc_diff": 0.05,
         "gc_tag": "on_track"
       }
     ],
@@ -3905,7 +3889,7 @@ window.FPL_DATA = {
         "name": "Gro\u00df",
         "pos": "MID",
         "club": "BHA",
-        "minutes": 402,
+        "minutes": 411,
         "goals": 3,
         "assists": 3,
         "xg": 1.69,
@@ -3919,21 +3903,21 @@ window.FPL_DATA = {
         "name": "Belloumi",
         "pos": "MID",
         "club": "HUL",
-        "minutes": 356,
+        "minutes": 361,
         "goals": 2,
         "assists": 1,
         "xg": 0.48,
-        "xa": 0.13,
-        "xgi": 0.61,
+        "xa": 0.14,
+        "xgi": 0.62,
         "gi": 3,
-        "diff": 2.39,
+        "diff": 2.38,
         "tag": "overperforming"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
         "club": "EVE",
-        "minutes": 403,
+        "minutes": 411,
         "goals": 1,
         "assists": 1,
         "xg": 0.18,
@@ -3943,8 +3927,8 @@ window.FPL_DATA = {
         "diff": 1.79,
         "tag": "on_track",
         "goals_conceded": 3,
-        "xgc": 6.27,
-        "gc_diff": 3.27,
+        "xgc": 6.39,
+        "gc_diff": 3.39,
         "gc_tag": "riding_luck"
       },
       {
@@ -3964,6 +3948,24 @@ window.FPL_DATA = {
         "xgc": 7.03,
         "gc_diff": -2.97,
         "gc_tag": "unlucky"
+      },
+      {
+        "name": "Ajayi",
+        "pos": "DEF",
+        "club": "HUL",
+        "minutes": 382,
+        "goals": 1,
+        "assists": 0,
+        "xg": 0.65,
+        "xa": 0.0,
+        "xgi": 0.65,
+        "gi": 1,
+        "diff": 0.35,
+        "tag": "on_track",
+        "goals_conceded": 4,
+        "xgc": 6.25,
+        "gc_diff": 2.25,
+        "gc_tag": "riding_luck"
       }
     ]
   },
@@ -3974,22 +3976,22 @@ window.FPL_DATA = {
         "name": "Tarkowski",
         "pos": "DEF",
         "club": "EVE",
-        "minutes": 403,
+        "minutes": 411,
         "threshold": 10,
-        "per90": 9.6,
-        "season_total": 43.0,
-        "margin": -0.4,
-        "tag": "borderline"
+        "per90": 10.07,
+        "season_total": 46.0,
+        "margin": 0.07,
+        "tag": "reliable"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
         "club": "HUL",
-        "minutes": 356,
+        "minutes": 361,
         "threshold": 12,
-        "per90": 9.35,
+        "per90": 9.22,
         "season_total": 37.0,
-        "margin": -2.65,
+        "margin": -2.78,
         "tag": "borderline"
       },
       {
@@ -4015,25 +4017,25 @@ window.FPL_DATA = {
         "tag": "unlikely"
       },
       {
-        "name": "Ajayi",
-        "pos": "DEF",
-        "club": "HUL",
-        "minutes": 377,
-        "threshold": 10,
-        "per90": 6.21,
-        "season_total": 26.0,
-        "margin": -3.79,
-        "tag": "unlikely"
-      },
-      {
         "name": "Dewsbury-Hall",
         "pos": "MID",
         "club": "EVE",
-        "minutes": 403,
+        "minutes": 411,
         "threshold": 12,
-        "per90": 8.04,
-        "season_total": 36.0,
-        "margin": -3.96,
+        "per90": 8.32,
+        "season_total": 38.0,
+        "margin": -3.68,
+        "tag": "unlikely"
+      },
+      {
+        "name": "Ajayi",
+        "pos": "DEF",
+        "club": "HUL",
+        "minutes": 382,
+        "threshold": 10,
+        "per90": 6.13,
+        "season_total": 26.0,
+        "margin": -3.87,
         "tag": "unlikely"
       },
       {
@@ -4051,11 +4053,11 @@ window.FPL_DATA = {
         "name": "Calafiori",
         "pos": "DEF",
         "club": "ARS",
-        "minutes": 368,
+        "minutes": 377,
         "threshold": 10,
-        "per90": 4.16,
+        "per90": 4.06,
         "season_total": 17.0,
-        "margin": -5.84,
+        "margin": -5.94,
         "tag": "unlikely"
       },
       {
@@ -4073,11 +4075,11 @@ window.FPL_DATA = {
         "name": "Gro\u00df",
         "pos": "MID",
         "club": "BHA",
-        "minutes": 402,
+        "minutes": 411,
         "threshold": 12,
-        "per90": 5.15,
-        "season_total": 23.0,
-        "margin": -6.85,
+        "per90": 5.26,
+        "season_total": 24.0,
+        "margin": -6.74,
         "tag": "unlikely"
       },
       {
@@ -4096,28 +4098,28 @@ window.FPL_DATA = {
   "price_radar": {
     "squad": [
       {
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "club": "BHA",
+        "cost": 5.7,
+        "owned_pct": 21.9,
+        "net_transfers_today": 77037,
+        "momentum": 3517.7,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.2
+      },
+      {
         "name": "Dewsbury-Hall",
         "pos": "MID",
         "club": "EVE",
         "cost": 6.6,
         "owned_pct": 6.2,
-        "net_transfers_today": 16340,
-        "momentum": 2635.5,
+        "net_transfers_today": 15591,
+        "momentum": 2514.7,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
-      },
-      {
-        "name": "Gro\u00df",
-        "pos": "MID",
-        "club": "BHA",
-        "cost": 5.7,
-        "owned_pct": 21.7,
-        "net_transfers_today": 51072,
-        "momentum": 2353.5,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.2
       },
       {
         "name": "Belloumi",
@@ -4125,8 +4127,8 @@ window.FPL_DATA = {
         "club": "HUL",
         "cost": 5.1,
         "owned_pct": 4.4,
-        "net_transfers_today": 5834,
-        "momentum": 1325.9,
+        "net_transfers_today": 5047,
+        "momentum": 1147.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
@@ -4136,9 +4138,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "LIV",
         "cost": 7.0,
-        "owned_pct": 34.5,
-        "net_transfers_today": -19293,
-        "momentum": -559.2,
+        "owned_pct": 34.4,
+        "net_transfers_today": -22001,
+        "momentum": -639.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4149,32 +4151,20 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.0,
         "owned_pct": 41.6,
-        "net_transfers_today": 20764,
-        "momentum": 499.1,
+        "net_transfers_today": 21919,
+        "momentum": 526.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
-      },
-      {
-        "name": "Ajayi",
-        "pos": "DEF",
-        "club": "HUL",
-        "cost": 4.2,
-        "owned_pct": 14.3,
-        "net_transfers_today": 6805,
-        "momentum": 475.9,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.2
       },
       {
         "name": "B.Fernandes",
         "pos": "MID",
         "club": "MUN",
         "cost": 12.0,
-        "owned_pct": 39.9,
-        "net_transfers_today": -18964,
-        "momentum": -475.3,
+        "owned_pct": 39.8,
+        "net_transfers_today": -20286,
+        "momentum": -509.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4185,11 +4175,23 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 6.1,
         "owned_pct": 14.1,
-        "net_transfers_today": 4800,
-        "momentum": 340.4,
+        "net_transfers_today": 6980,
+        "momentum": 495.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
+      },
+      {
+        "name": "Ajayi",
+        "pos": "DEF",
+        "club": "HUL",
+        "cost": 4.2,
+        "owned_pct": 14.3,
+        "net_transfers_today": 6423,
+        "momentum": 449.2,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.2
       },
       {
         "name": "Kusi-Asare",
@@ -4197,8 +4199,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 4.5,
         "owned_pct": 5.6,
-        "net_transfers_today": -1332,
-        "momentum": -237.9,
+        "net_transfers_today": -1846,
+        "momentum": -329.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4209,8 +4211,8 @@ window.FPL_DATA = {
         "club": "CRY",
         "cost": 4.5,
         "owned_pct": 6.1,
-        "net_transfers_today": -1359,
-        "momentum": -222.8,
+        "net_transfers_today": -1620,
+        "momentum": -265.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4221,8 +4223,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 5.8,
         "owned_pct": 50.8,
-        "net_transfers_today": 7376,
-        "momentum": 145.2,
+        "net_transfers_today": 7567,
+        "momentum": 149.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.3
@@ -4233,8 +4235,8 @@ window.FPL_DATA = {
         "club": "NFO",
         "cost": 5.0,
         "owned_pct": 9.1,
-        "net_transfers_today": -979,
-        "momentum": -107.6,
+        "net_transfers_today": -1189,
+        "momentum": -130.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4245,23 +4247,11 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 15.6,
         "owned_pct": 73.3,
-        "net_transfers_today": 6793,
-        "momentum": 92.7,
+        "net_transfers_today": 7547,
+        "momentum": 103.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
-      },
-      {
-        "name": "Walle Egeli",
-        "pos": "FWD",
-        "club": "IPS",
-        "cost": 4.5,
-        "owned_pct": 3.6,
-        "net_transfers_today": 172,
-        "momentum": 47.8,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0
       },
       {
         "name": "Dubravka",
@@ -4269,8 +4259,20 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 4.0,
         "owned_pct": 17.4,
-        "net_transfers_today": -717,
-        "momentum": -41.2,
+        "net_transfers_today": -955,
+        "momentum": -54.9,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.0
+      },
+      {
+        "name": "Walle Egeli",
+        "pos": "FWD",
+        "club": "IPS",
+        "cost": 4.5,
+        "owned_pct": 3.6,
+        "net_transfers_today": -87,
+        "momentum": -24.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4278,13 +4280,25 @@ window.FPL_DATA = {
     ],
     "rising": [
       {
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "club": "BHA",
+        "cost": 5.5,
+        "owned_pct": 1.1,
+        "net_transfers_today": 16033,
+        "momentum": 14575.5,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.0
+      },
+      {
         "name": "Manzambi",
         "pos": "MID",
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.2,
-        "net_transfers_today": 5049,
-        "momentum": 10098.0,
+        "net_transfers_today": 5512,
+        "momentum": 11024.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4295,8 +4309,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 4.5,
         "owned_pct": 0.2,
-        "net_transfers_today": 4586,
-        "momentum": 9172.0,
+        "net_transfers_today": 5006,
+        "momentum": 10012.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4307,8 +4321,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 6.1,
         "owned_pct": 8.1,
-        "net_transfers_today": 53335,
-        "momentum": 6584.6,
+        "net_transfers_today": 58221,
+        "momentum": 7187.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
@@ -4318,9 +4332,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "NEW",
         "cost": 6.1,
-        "owned_pct": 4.5,
-        "net_transfers_today": 28825,
-        "momentum": 6405.6,
+        "owned_pct": 4.6,
+        "net_transfers_today": 31663,
+        "momentum": 6883.3,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
@@ -4331,20 +4345,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 5.5,
         "owned_pct": 2.1,
-        "net_transfers_today": 12933,
-        "momentum": 6158.6,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0
-      },
-      {
-        "name": "Kostoulas",
-        "pos": "FWD",
-        "club": "BHA",
-        "cost": 5.5,
-        "owned_pct": 1.0,
-        "net_transfers_today": 5529,
-        "momentum": 5529.0,
+        "net_transfers_today": 13378,
+        "momentum": 6370.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4355,8 +4357,8 @@ window.FPL_DATA = {
         "club": "NFO",
         "cost": 5.6,
         "owned_pct": 2.9,
-        "net_transfers_today": 15453,
-        "momentum": 5328.6,
+        "net_transfers_today": 15312,
+        "momentum": 5280.0,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
@@ -4367,8 +4369,8 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 4.6,
         "owned_pct": 4.2,
-        "net_transfers_today": 19542,
-        "momentum": 4652.9,
+        "net_transfers_today": 19515,
+        "momentum": 4646.4,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
@@ -4380,9 +4382,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "NEW",
         "cost": 6.1,
-        "owned_pct": 5.8,
-        "net_transfers_today": -39077,
-        "momentum": -6737.4,
+        "owned_pct": 5.7,
+        "net_transfers_today": -43329,
+        "momentum": -7601.6,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
@@ -4393,8 +4395,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 2.1,
-        "net_transfers_today": -8629,
-        "momentum": -4109.0,
+        "net_transfers_today": -9409,
+        "momentum": -4480.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4405,23 +4407,11 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.2,
         "owned_pct": 2.0,
-        "net_transfers_today": -8150,
-        "momentum": -4075.0,
+        "net_transfers_today": -8837,
+        "momentum": -4418.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.3
-      },
-      {
-        "name": "Rodon",
-        "pos": "DEF",
-        "club": "LEE",
-        "cost": 4.3,
-        "owned_pct": 0.8,
-        "net_transfers_today": -2409,
-        "momentum": -3011.2,
-        "changed_today": true,
-        "cost_change_today": -0.1,
-        "season_change": -0.2
       },
       {
         "name": "M.Sangar\u00e9",
@@ -4429,11 +4419,23 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 5.6,
         "owned_pct": 10.9,
-        "net_transfers_today": -32458,
-        "momentum": -2977.8,
+        "net_transfers_today": -35576,
+        "momentum": -3263.9,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
+      },
+      {
+        "name": "Rodon",
+        "pos": "DEF",
+        "club": "LEE",
+        "cost": 4.3,
+        "owned_pct": 0.8,
+        "net_transfers_today": -2517,
+        "momentum": -3146.2,
+        "changed_today": true,
+        "cost_change_today": -0.1,
+        "season_change": -0.2
       },
       {
         "name": "Foden",
@@ -4441,8 +4443,8 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 6.9,
         "owned_pct": 2.0,
-        "net_transfers_today": -5871,
-        "momentum": -2935.5,
+        "net_transfers_today": -6245,
+        "momentum": -3122.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4453,8 +4455,8 @@ window.FPL_DATA = {
         "club": "MUN",
         "cost": 4.3,
         "owned_pct": 8.2,
-        "net_transfers_today": -20952,
-        "momentum": -2555.1,
+        "net_transfers_today": -22441,
+        "momentum": -2736.7,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2
@@ -4465,8 +4467,8 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 4.3,
         "owned_pct": 3.0,
-        "net_transfers_today": -7155,
-        "momentum": -2385.0,
+        "net_transfers_today": -7572,
+        "momentum": -2524.0,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2
