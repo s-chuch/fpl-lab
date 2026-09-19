@@ -511,6 +511,13 @@ def build_bench_audit(boot, team_id):
         except Exception as e:
             _warn(f"build_bench_audit: could not load GW{gw} picks/live: {e}")
             continue
+        if pk.get("active_chip") == "bboost":
+            # Bench Boost makes the whole audit meaningless: every one of the
+            # 15 counts toward "you" regardless of bench position, so there
+            # was no actual start/sit decision to grade that week — comparing
+            # that bench-boosted real score against an 11-man-only process/
+            # hindsight XI is an apples-to-oranges number, not a real miss.
+            continue
         pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
         mins = {el["id"]: el["stats"].get("minutes", 0) for el in live.get("elements", [])}
         cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
