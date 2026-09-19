@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 14:06 UTC",
-  "generated_at_et": "2026-09-19 10:06 AM ET",
+  "generated_at": "2026-09-19 14:11 UTC",
+  "generated_at_et": "2026-09-19 10:11 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -429,8 +429,8 @@ window.FPL_DATA = {
     "id": 1360999,
     "name": "Shaaland",
     "manager": "s cc",
-    "overall_points": 300,
-    "overall_rank": 941694,
+    "overall_points": 305,
+    "overall_rank": 867759,
     "bank": 0.3,
     "value": 101.1
   },
@@ -824,91 +824,91 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "I'z Amad Man",
-            "pts": 307,
+            "pts": 310,
             "me": false,
             "entry": 715496
           },
           {
             "rank": 2,
             "team": "Borde to be wild",
-            "pts": 303,
+            "pts": 306,
             "me": false,
             "entry": 7464835
           },
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 300,
+            "pts": 305,
             "me": true,
             "entry": 1360999
           },
           {
             "rank": 4,
             "team": "xG Capital",
-            "pts": 289,
+            "pts": 292,
             "me": false,
             "entry": 641039
           },
           {
             "rank": 5,
             "team": "Bacalhau",
-            "pts": 287,
+            "pts": 292,
             "me": false,
             "entry": 1360920
           },
           {
             "rank": 6,
             "team": "Haaland Leeds Norway",
-            "pts": 279,
+            "pts": 283,
             "me": false,
             "entry": 5321568
           },
           {
             "rank": 7,
             "team": "HanSoloDolo",
-            "pts": 273,
+            "pts": 276,
             "me": false,
             "entry": 6934500
           },
           {
             "rank": 8,
             "team": "Blasters United",
-            "pts": 272,
+            "pts": 275,
             "me": false,
             "entry": 7445649
           },
           {
             "rank": 9,
             "team": "Kroos Kontrol",
-            "pts": 266,
+            "pts": 268,
             "me": false,
             "entry": 3768058
           },
           {
             "rank": 10,
             "team": "Top Bin FC",
-            "pts": 259,
+            "pts": 263,
             "me": false,
             "entry": 8869141
           },
           {
             "rank": 11,
             "team": "Must win one",
-            "pts": 257,
+            "pts": 260,
             "me": false,
             "entry": 7332517
           },
           {
             "rank": 12,
             "team": "Viking Robot",
-            "pts": 243,
+            "pts": 247,
             "me": false,
             "entry": 687308
           },
           {
             "rank": 13,
             "team": "Chubs United",
-            "pts": 200,
+            "pts": 201,
             "me": false,
             "entry": 6453738
           }
@@ -954,13 +954,13 @@ window.FPL_DATA = {
         "tactics": {
           "n": 13,
           "you_rank": 3,
-          "you_pts": 300,
-          "gap_to_first": 7,
-          "gap_to_second": 3,
+          "you_pts": 305,
+          "gap_to_first": 5,
+          "gap_to_second": 1,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 307,
-            "gap": 7,
+            "pts": 310,
+            "gap": 5,
             "chips_used": [
               "wildcard"
             ],
@@ -972,8 +972,8 @@ window.FPL_DATA = {
           },
           "second": {
             "name": "Borde to be wild",
-            "pts": 303,
-            "gap": 3,
+            "pts": 306,
+            "gap": 1,
             "gap_trend": 13,
             "fixture": {
               "avg_fdr": 3.2,
@@ -1121,8 +1121,8 @@ window.FPL_DATA = {
           "neighbors": {
             "above": {
               "name": "Borde to be wild",
-              "pts": 303,
-              "gap": 3,
+              "pts": 306,
+              "gap": 1,
               "gap_trend": 13,
               "fixture": {
                 "avg_fdr": 3.2,
@@ -1131,8 +1131,8 @@ window.FPL_DATA = {
             },
             "below": {
               "name": "xG Capital",
-              "pts": 289,
-              "gap": -11,
+              "pts": 292,
+              "gap": -13,
               "gap_trend": 10,
               "fixture": {
                 "avg_fdr": 2.8,
@@ -1341,7 +1341,7 @@ window.FPL_DATA = {
             "team": "I'z Amad Man",
             "manager": "Stefan Scott",
             "rank": 1,
-            "pts": 307,
+            "pts": 310,
             "me": false,
             "chip": null
           },
@@ -1463,7 +1463,7 @@ window.FPL_DATA = {
             "team": "Borde to be wild",
             "manager": "Dominic Borde",
             "rank": 2,
-            "pts": 303,
+            "pts": 306,
             "me": false,
             "chip": null
           },
@@ -1585,7 +1585,7 @@ window.FPL_DATA = {
             "team": "Shaaland",
             "manager": "s cc",
             "rank": 3,
-            "pts": 300,
+            "pts": 305,
             "me": true,
             "chip": null
           },
@@ -1707,7 +1707,7 @@ window.FPL_DATA = {
             "team": "xG Capital",
             "manager": "Andrew Govia",
             "rank": 4,
-            "pts": 289,
+            "pts": 292,
             "me": false,
             "chip": null
           },
@@ -1829,7 +1829,7 @@ window.FPL_DATA = {
             "team": "Bacalhau",
             "manager": "Victor M",
             "rank": 5,
-            "pts": 287,
+            "pts": 292,
             "me": false,
             "chip": null
           },
@@ -1951,7 +1951,7 @@ window.FPL_DATA = {
             "team": "Haaland Leeds Norway",
             "manager": "Benjamin Ollivierre",
             "rank": 6,
-            "pts": 279,
+            "pts": 283,
             "me": false,
             "chip": null
           },
@@ -2073,7 +2073,7 @@ window.FPL_DATA = {
             "team": "HanSoloDolo",
             "manager": "John Castagne",
             "rank": 7,
-            "pts": 273,
+            "pts": 276,
             "me": false,
             "chip": null
           },
@@ -2195,7 +2195,7 @@ window.FPL_DATA = {
             "team": "Blasters United",
             "manager": "Daniel Voisin",
             "rank": 8,
-            "pts": 272,
+            "pts": 275,
             "me": false,
             "chip": null
           },
@@ -2317,7 +2317,7 @@ window.FPL_DATA = {
             "team": "Kroos Kontrol",
             "manager": "Adam Hive",
             "rank": 9,
-            "pts": 266,
+            "pts": 268,
             "me": false,
             "chip": null
           },
@@ -2439,7 +2439,7 @@ window.FPL_DATA = {
             "team": "Top Bin FC",
             "manager": "Cuzo Ace",
             "rank": 10,
-            "pts": 259,
+            "pts": 263,
             "me": false,
             "chip": null
           },
@@ -2561,7 +2561,7 @@ window.FPL_DATA = {
             "team": "Must win one",
             "manager": "Kieran Marin",
             "rank": 11,
-            "pts": 257,
+            "pts": 260,
             "me": false,
             "chip": "wildcard"
           },
@@ -2683,7 +2683,7 @@ window.FPL_DATA = {
             "team": "Viking Robot",
             "manager": "Mike Brash",
             "rank": 12,
-            "pts": 243,
+            "pts": 247,
             "me": false,
             "chip": null
           },
@@ -2805,7 +2805,7 @@ window.FPL_DATA = {
             "team": "Chubs United",
             "manager": "David Brash",
             "rank": 13,
-            "pts": 200,
+            "pts": 201,
             "me": false,
             "chip": null
           }
@@ -2821,28 +2821,28 @@ window.FPL_DATA = {
           {
             "rank": 1,
             "team": "Old iphone",
-            "pts": 318,
+            "pts": 326,
             "me": false,
             "entry": 2600231
           },
           {
             "rank": 2,
             "team": "Android phone",
-            "pts": 315,
+            "pts": 321,
             "me": false,
             "entry": 2162642
           },
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 300,
+            "pts": 305,
             "me": true,
             "entry": 1360999
           },
           {
             "rank": 4,
             "team": "Seen TPS",
-            "pts": 292,
+            "pts": 296,
             "me": false,
             "entry": 2237728
           }
@@ -2917,13 +2917,13 @@ window.FPL_DATA = {
         "tactics": {
           "n": 4,
           "you_rank": 3,
-          "you_pts": 300,
-          "gap_to_first": 18,
-          "gap_to_second": 15,
+          "you_pts": 305,
+          "gap_to_first": 21,
+          "gap_to_second": 16,
           "first": {
             "name": "Old iphone",
-            "pts": 318,
-            "gap": 18,
+            "pts": 326,
+            "gap": 21,
             "chips_used": [
               "bboost",
               "freehit",
@@ -2937,8 +2937,8 @@ window.FPL_DATA = {
           },
           "second": {
             "name": "Android phone",
-            "pts": 315,
-            "gap": 15,
+            "pts": 321,
+            "gap": 16,
             "chips_used": [
               "3xc",
               "bboost",
@@ -3118,8 +3118,8 @@ window.FPL_DATA = {
           "neighbors": {
             "above": {
               "name": "Android phone",
-              "pts": 315,
-              "gap": 15,
+              "pts": 321,
+              "gap": 16,
               "chips_used": [
                 "3xc",
                 "bboost",
@@ -3134,8 +3134,8 @@ window.FPL_DATA = {
             },
             "below": {
               "name": "Seen TPS",
-              "pts": 292,
-              "gap": -8,
+              "pts": 296,
+              "gap": -9,
               "chips_used": [
                 "bboost",
                 "freehit",
@@ -3375,7 +3375,7 @@ window.FPL_DATA = {
             "team": "Old iphone",
             "manager": "Jim Jam",
             "rank": 1,
-            "pts": 318,
+            "pts": 326,
             "me": false,
             "chip": null
           },
@@ -3497,7 +3497,7 @@ window.FPL_DATA = {
             "team": "Android phone",
             "manager": "shawn chuch",
             "rank": 2,
-            "pts": 315,
+            "pts": 321,
             "me": false,
             "chip": "wildcard"
           },
@@ -3619,7 +3619,7 @@ window.FPL_DATA = {
             "team": "Shaaland",
             "manager": "s cc",
             "rank": 3,
-            "pts": 300,
+            "pts": 305,
             "me": true,
             "chip": null
           },
@@ -3741,7 +3741,7 @@ window.FPL_DATA = {
             "team": "Seen TPS",
             "manager": "Shawn Cc",
             "rank": 4,
-            "pts": 292,
+            "pts": 296,
             "me": false,
             "chip": "wildcard"
           }
@@ -3752,7 +3752,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 941694,
+        "rank": 867759,
         "last_rank": 820064
       }
     ],
@@ -4125,7 +4125,7 @@ window.FPL_DATA = {
             "status": "used"
           },
           {
-            "number": 1,
+            "number": 2,
             "start": 20,
             "stop": 38,
             "used_gw": null,
@@ -4145,7 +4145,7 @@ window.FPL_DATA = {
             "status": "used"
           },
           {
-            "number": 1,
+            "number": 2,
             "start": 20,
             "stop": 38,
             "used_gw": null,
@@ -4165,7 +4165,7 @@ window.FPL_DATA = {
             "status": "used"
           },
           {
-            "number": 1,
+            "number": 2,
             "start": 20,
             "stop": 38,
             "used_gw": null,
@@ -4185,7 +4185,7 @@ window.FPL_DATA = {
             "status": "open"
           },
           {
-            "number": 1,
+            "number": 2,
             "start": 20,
             "stop": 38,
             "used_gw": null,
