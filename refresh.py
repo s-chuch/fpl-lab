@@ -593,27 +593,20 @@ def build_fh_audit(boot, team_id, chips_used):
     if not orig_pk.get("picks"):
         return None
     pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
+    mins = {el["id"]: el["stats"]["minutes"] for el in live.get("elements", [])}
 
-    def score_squad(pk, trust_multiplier):
-        """trust_multiplier=True for the FH squad itself (its own picks' multiplier
-        field is correct for that gameweek). False for the "original" squad, which
-        is reconstructed from a DIFFERENT gameweek's picks — that gameweek may have
-        had its own chip active (e.g. 3xc), and reusing its multiplier here would
-        credit a chip bonus that was never actually available in fh_gw. Standard
-        captaincy (2x/1x/0x by position, ignoring that other gameweek's chip) is
-        the correct comparison, though it doesn't re-simulate autosubs for fh_gw."""
+    def score_fh_squad(pk):
+        """The FH squad's own multiplier/position fields already reflect what
+        actually happened in fh_gw (FPL's picks API applies real autosubs and
+        captain/VC fallback to the returned multiplier) — safe to trust as-is."""
         total, xi = 0, []
         for p in pk.get("picks") or []:
             el = elements.get(p["element"])
             if not el:
                 continue
-            started = (p.get("position") or 99) <= 11
-            if trust_multiplier:
-                mult = p.get("multiplier") or 0
-            else:
-                mult = (2 if p.get("is_captain") else 1) if started else 0
+            mult = p.get("multiplier") or 0
             if not mult:
-                continue  # bench / not started (incl. FPL's own autosubs already applied)
+                continue  # bench, or subbed out
             raw = pts.get(p["element"], 0)
             total += raw * mult
             item = {"name": el["web_name"], "pos": POS[el["element_type"]], "got": raw * mult}
@@ -624,12 +617,79 @@ def build_fh_audit(boot, team_id, chips_used):
             xi.append(item)
         return total, xi
 
-    def captain_of(pk):
-        cap = next((p for p in (pk.get("picks") or []) if p.get("is_captain")), None)
-        return elements.get((cap or {}).get("element"), {}).get("web_name")
+    def autosub_xi(picks):
+        """Replay FPL's automatic-substitution rule by hand: a starter with 0
+        minutes is swapped for the highest-priority bench player who played and
+        whose introduction keeps the formation legal (1 GK, 3-5 DEF, 2-5 MID,
+        1-3 FWD). Needed because this teamsheet is being re-scored against a
+        DIFFERENT gameweek than the one it was actually played in (orig_gw's
+        picks, replayed against fh_gw's results) — the picks API's own
+        position/multiplier fields reflect orig_gw's own autosubs, not fh_gw's."""
+        def el_type(pid):
+            return elements.get(pid, {}).get("element_type")
 
-    fh_points, fh_xi = score_squad(fh_pk, trust_multiplier=True)
-    orig_points, orig_xi = score_squad(orig_pk, trust_multiplier=False)
+        def counts(lst):
+            c = {1: 0, 2: 0, 3: 0, 4: 0}
+            for p in lst:
+                c[el_type(p["element"])] = c.get(el_type(p["element"]), 0) + 1
+            return c
+
+        starters = [p for p in picks if (p.get("position") or 99) <= 11]
+        bench = sorted((p for p in picks if (p.get("position") or 99) > 11), key=lambda p: p.get("position") or 99)
+        xi = list(starters)
+
+        gk = next((p for p in xi if el_type(p["element"]) == 1), None)
+        if gk and mins.get(gk["element"], 0) == 0:
+            sub_gk = next((p for p in bench if el_type(p["element"]) == 1 and mins.get(p["element"], 0) > 0), None)
+            if sub_gk:
+                xi = [sub_gk if p is gk else p for p in xi]
+                bench = [p for p in bench if p is not sub_gk]
+
+        for sub in bench:
+            if el_type(sub["element"]) == 1 or mins.get(sub["element"], 0) == 0:
+                continue
+            blanked = [p for p in xi if el_type(p["element"]) != 1 and mins.get(p["element"], 0) == 0]
+            for out_p in blanked:
+                trial = [sub if p is out_p else p for p in xi]
+                c = counts(trial)
+                if c[1] == 1 and 3 <= c[2] <= 5 and 2 <= c[3] <= 5 and 1 <= c[4] <= 3:
+                    xi = trial
+                    break
+        return xi
+
+    def score_original_squad(pk):
+        """Score a squad reconstructed from a different gameweek's picks against
+        fh_gw's results, with autosubs and captain/VC fallback replayed by hand
+        (see autosub_xi) since neither is available pre-computed for this
+        hypothetical gameweek."""
+        picks = pk.get("picks") or []
+        xi = autosub_xi(picks)
+        cap = next((p for p in picks if p.get("is_captain")), None)
+        vc = next((p for p in picks if p.get("is_vice_captain")), None)
+        cap_id = (cap or {}).get("element")
+        if cap_id is not None and mins.get(cap_id, 0) == 0 and vc and mins.get(vc["element"], 0) > 0:
+            cap_id = vc["element"]
+        total, out_xi = 0, []
+        for p in xi:
+            el = elements.get(p["element"])
+            if not el:
+                continue
+            mult = 2 if p["element"] == cap_id else 1
+            raw = pts.get(p["element"], 0)
+            total += raw * mult
+            item = {"name": el["web_name"], "pos": POS[el["element_type"]], "got": raw * mult}
+            if mult != 1:
+                item["mult"] = mult
+            if p["element"] == cap_id:
+                item["captain"] = True
+            out_xi.append(item)
+        cap_name = elements.get(cap_id, {}).get("web_name")
+        return total, out_xi, cap_name
+
+    fh_points, fh_xi = score_fh_squad(fh_pk)
+    fh_cap_pick = next((p for p in (fh_pk.get("picks") or []) if p.get("is_captain")), None)
+    fh_cap = elements.get((fh_cap_pick or {}).get("element"), {}).get("web_name")
+    orig_points, orig_xi, orig_cap = score_original_squad(orig_pk)
     net = fh_points - orig_points
     return {
         "gw": fh_gw,
@@ -638,11 +698,11 @@ def build_fh_audit(boot, team_id, chips_used):
         "net": net,
         "process": "ok",  # a played Free Hit is always a legal, deliberate reset — not a process error by definition
         "outcome": "won" if net > 0 else ("lost" if net < 0 else "even"),
-        "original_cap": captain_of(orig_pk),
-        "fh_cap": captain_of(fh_pk),
+        "original_cap": orig_cap,
+        "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
-        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad — net {'+' if net >= 0 else ''}{net}.",
+        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad (autosubs replayed) — net {'+' if net >= 0 else ''}{net}.",
     }
 
 
