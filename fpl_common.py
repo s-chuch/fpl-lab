@@ -175,8 +175,8 @@ def concept_themes(blobs, gw, unit="sites"):
     agreed, split = [], []
     for concept, pat in CONCEPT_PATTERNS:
         sources = sorted(s for s, text in blobs.items() if re.search(pat, text, re.I))
-        if not sources:
-            continue
+        if len(sources) < 2:
+            continue  # a single mention is noise, not worth surfacing as an "emerging" theme
         item = {
             "text": f"GW{gw} coverage is talking about a {concept} window — mentioned by {len(sources)}/{total} {unit}.",
             "sources": sources,
@@ -204,10 +204,14 @@ def build_themes(blobs, gw, player_index, unit="sites"):
     agreed, split = [], []
     for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):
         n = len(rec["sources"])
+        if n < 2:
+            continue  # a single mention is noise, not worth surfacing as an "emerging" theme
         club = f" ({rec['club']})" if rec["club"] else ""
         tag_str = f" Tags: {', '.join(sorted(rec['tags']))}." if rec["tags"] else ""
-        text = f"{name}{club} is heavily featured in GW{gw} coverage — mentioned by {n}/{total} {unit}.{tag_str}"
+        is_agreed = n >= 3
+        verb = "is heavily featured in" if is_agreed else "is starting to come up in"
+        text = f"{name}{club} {verb} GW{gw} coverage — mentioned by {n}/{total} {unit}.{tag_str}"
         item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"])}
-        (agreed if n >= 3 else split).append(item)
+        (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)
-    return (agreed + concept_agreed)[:15], (split + concept_split)[:20]
+    return (agreed + concept_agreed)[:15], (split + concept_split)[:10]
