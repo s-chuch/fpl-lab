@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 03:36 UTC",
-  "generated_at_et": "2026-09-18 11:36 PM ET",
+  "generated_at": "2026-09-19 03:53 UTC",
+  "generated_at_et": "2026-09-18 11:53 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -722,13 +722,6 @@ window.FPL_DATA = {
             "own": 92,
             "count": 12,
             "n": 13
-          },
-          {
-            "name": "Cherki",
-            "club": "MCI",
-            "own": 46,
-            "count": 6,
-            "n": 13
           }
         ],
         "diffs": [
@@ -797,11 +790,26 @@ window.FPL_DATA = {
           "gap_to_second": 17,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 305
+            "pts": 305,
+            "gap": 20,
+            "chips_used": [
+              "wildcard"
+            ],
+            "gap_trend": 4,
+            "fixture": {
+              "avg_fdr": 2.9,
+              "label": "Mixed"
+            }
           },
           "second": {
             "name": "Borde to be wild",
-            "pts": 302
+            "pts": 302,
+            "gap": 17,
+            "gap_trend": -3,
+            "fixture": {
+              "avg_fdr": 3.2,
+              "label": "Mixed"
+            }
           },
           "template": [
             {
@@ -853,8 +861,8 @@ window.FPL_DATA = {
               "count": 4,
               "n": 13,
               "own": 31,
-              "vs_first": true,
-              "vs_second": false
+              "vs_a": true,
+              "vs_b": false
             },
             {
               "name": "Szoboszlai",
@@ -863,8 +871,8 @@ window.FPL_DATA = {
               "count": 4,
               "n": 13,
               "own": 31,
-              "vs_first": true,
-              "vs_second": false
+              "vs_a": true,
+              "vs_b": false
             },
             {
               "name": "Dubravka",
@@ -873,8 +881,8 @@ window.FPL_DATA = {
               "count": 3,
               "n": 13,
               "own": 23,
-              "vs_first": false,
-              "vs_second": true
+              "vs_a": false,
+              "vs_b": true
             },
             {
               "name": "N.Williams",
@@ -883,8 +891,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Tarkowski",
@@ -893,8 +901,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Belloumi",
@@ -903,8 +911,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Dewsbury-Hall",
@@ -913,8 +921,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Mitchell",
@@ -923,8 +931,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Kusi-Asare",
@@ -933,8 +941,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 13,
               "own": 8,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Walle Egeli",
@@ -943,8 +951,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 13,
               "own": 8,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             }
           ],
           "they_share": [
@@ -990,7 +998,165 @@ window.FPL_DATA = {
               "name": "B.Fernandes",
               "count": 2
             }
-          ]
+          ],
+          "neighbors": {
+            "above": {
+              "name": "xG Capital",
+              "pts": 288,
+              "gap": 3,
+              "gap_trend": -6,
+              "fixture": {
+                "avg_fdr": 2.8,
+                "label": "Mixed"
+              }
+            },
+            "below": {
+              "name": "Haaland Leeds Norway",
+              "pts": 277,
+              "gap": -8,
+              "gap_trend": 2,
+              "fixture": {
+                "avg_fdr": 2.9,
+                "label": "Mixed"
+              }
+            },
+            "you_unique": [
+              {
+                "name": "Ajayi",
+                "club": "HUL",
+                "pos": "DEF",
+                "count": 4,
+                "n": 13,
+                "own": 31,
+                "vs_a": false,
+                "vs_b": true
+              },
+              {
+                "name": "Szoboszlai",
+                "club": "LIV",
+                "pos": "MID",
+                "count": 4,
+                "n": 13,
+                "own": 31,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Dubravka",
+                "club": "TOT",
+                "pos": "GKP",
+                "count": 3,
+                "n": 13,
+                "own": 23,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "N.Williams",
+                "club": "NFO",
+                "pos": "DEF",
+                "count": 2,
+                "n": 13,
+                "own": 15,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Tarkowski",
+                "club": "EVE",
+                "pos": "DEF",
+                "count": 2,
+                "n": 13,
+                "own": 15,
+                "vs_a": true,
+                "vs_b": false
+              },
+              {
+                "name": "Belloumi",
+                "club": "HUL",
+                "pos": "MID",
+                "count": 2,
+                "n": 13,
+                "own": 15,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Dewsbury-Hall",
+                "club": "EVE",
+                "pos": "MID",
+                "count": 2,
+                "n": 13,
+                "own": 15,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Mitchell",
+                "club": "CRY",
+                "pos": "DEF",
+                "count": 2,
+                "n": 13,
+                "own": 15,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Kusi-Asare",
+                "club": "FUL",
+                "pos": "FWD",
+                "count": 1,
+                "n": 13,
+                "own": 8,
+                "vs_a": true,
+                "vs_b": true
+              },
+              {
+                "name": "Walle Egeli",
+                "club": "IPS",
+                "pos": "FWD",
+                "count": 1,
+                "n": 13,
+                "own": 8,
+                "vs_a": true,
+                "vs_b": true
+              }
+            ],
+            "they_share": [
+              {
+                "name": "Jo\u00e3o Pedro",
+                "club": "CHE",
+                "pos": "FWD",
+                "count": 12,
+                "n": 13,
+                "own": 92
+              },
+              {
+                "name": "Verbruggen",
+                "club": "BHA",
+                "pos": "GKP",
+                "count": 5,
+                "n": 13,
+                "own": 38
+              },
+              {
+                "name": "Wissa",
+                "club": "NEW",
+                "pos": "FWD",
+                "count": 4,
+                "n": 13,
+                "own": 31
+              },
+              {
+                "name": "Rogers",
+                "club": "CHE",
+                "pos": "MID",
+                "count": 4,
+                "n": 13,
+                "own": 31
+              }
+            ]
+          }
         },
         "picks_gw": 5,
         "deadline_passed": true,
@@ -2613,23 +2779,65 @@ window.FPL_DATA = {
             "entry": 1360920
           }
         ],
-        "template": [
+        "template": [],
+        "diffs": [
           {
-            "name": "Cherki",
-            "club": "MCI",
-            "own": 67,
-            "count": 2,
+            "name": "N.Williams",
+            "club": "NFO",
+            "own": 33,
+            "count": 1,
             "n": 3
           },
           {
-            "name": "Jo\u00e3o Pedro",
-            "club": "CHE",
-            "own": 67,
-            "count": 2,
+            "name": "Ajayi",
+            "club": "HUL",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Tarkowski",
+            "club": "EVE",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Belloumi",
+            "club": "HUL",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Dewsbury-Hall",
+            "club": "EVE",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Mitchell",
+            "club": "CRY",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Kusi-Asare",
+            "club": "FUL",
+            "own": 33,
+            "count": 1,
+            "n": 3
+          },
+          {
+            "name": "Walle Egeli",
+            "club": "IPS",
+            "own": 33,
+            "count": 1,
             "n": 3
           }
         ],
-        "diffs": [],
         "tactics": {
           "n": 3,
           "you_rank": 3,
@@ -2638,11 +2846,31 @@ window.FPL_DATA = {
           "gap_to_second": 13,
           "first": {
             "name": "I'z Amad Man",
-            "pts": 305
+            "pts": 305,
+            "gap": 20,
+            "chips_used": [
+              "wildcard"
+            ],
+            "gap_trend": 4,
+            "fixture": {
+              "avg_fdr": 2.9,
+              "label": "Mixed"
+            }
           },
           "second": {
             "name": "Shaaland",
-            "pts": 298
+            "pts": 298,
+            "gap": 13,
+            "chips_used": [
+              "3xc",
+              "bboost",
+              "freehit"
+            ],
+            "gap_trend": -16,
+            "fixture": {
+              "avg_fdr": 3.3,
+              "label": "Mixed"
+            }
           },
           "template": [
             {
@@ -2686,8 +2914,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 3,
               "own": 67,
-              "vs_first": false,
-              "vs_second": true
+              "vs_a": false,
+              "vs_b": true
             },
             {
               "name": "Dubravka",
@@ -2696,8 +2924,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 3,
               "own": 67,
-              "vs_first": false,
-              "vs_second": true
+              "vs_a": false,
+              "vs_b": true
             },
             {
               "name": "Szoboszlai",
@@ -2706,8 +2934,8 @@ window.FPL_DATA = {
               "count": 2,
               "n": 3,
               "own": 67,
-              "vs_first": true,
-              "vs_second": false
+              "vs_a": true,
+              "vs_b": false
             },
             {
               "name": "N.Williams",
@@ -2716,8 +2944,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Ajayi",
@@ -2726,8 +2954,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Tarkowski",
@@ -2736,8 +2964,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Belloumi",
@@ -2746,8 +2974,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Dewsbury-Hall",
@@ -2756,8 +2984,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Mitchell",
@@ -2766,8 +2994,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Kusi-Asare",
@@ -2776,8 +3004,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             },
             {
               "name": "Walle Egeli",
@@ -2786,8 +3014,8 @@ window.FPL_DATA = {
               "count": 1,
               "n": 3,
               "own": 33,
-              "vs_first": true,
-              "vs_second": true
+              "vs_a": true,
+              "vs_b": true
             }
           ],
           "they_share": [
@@ -2813,7 +3041,8 @@ window.FPL_DATA = {
               "name": "Haaland",
               "count": 3
             }
-          ]
+          ],
+          "neighbors": null
         },
         "picks_gw": 5,
         "deadline_passed": true,
