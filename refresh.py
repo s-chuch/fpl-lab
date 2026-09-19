@@ -728,16 +728,20 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     chip_history = hist.get("chips", [])  # every use this season (a list, unlike the "latest per name" dict used elsewhere)
-    _warn(f"DEBUG boot['chips'] raw: {json.dumps(boot.get('chips'))[:3000]}")
 
+    # boot['chips']'s own "number" field is always 1 on every entry (confirmed live —
+    # it's not a per-half indicator), so derive window order from start_event instead:
+    # each chip type's two entries sort into "window 1" (earlier half) and "window 2".
     windows_by_chip = {}
     for c in (boot.get("chips") or []):
         name = c.get("name")
         if not name:
             continue
-        windows_by_chip.setdefault(name, []).append({"number": c.get("number"), "start": c.get("start_event"), "stop": c.get("stop_event")})
+        windows_by_chip.setdefault(name, []).append({"start": c.get("start_event"), "stop": c.get("stop_event")})
     for ws in windows_by_chip.values():
-        ws.sort(key=lambda w: w["number"] or 0)
+        ws.sort(key=lambda w: w["start"] or 0)
+        for i, w in enumerate(ws, start=1):
+            w["number"] = i
 
     current_gw = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
     chip_status = []
