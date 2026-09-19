@@ -261,7 +261,18 @@ function renderStrategy(){
   const hardest=F.hardest?`<p class="note">Toughest stretch: <b>GW${F.hardest.gw}</b> (avg FDR ${F.hardest.avg_fdr}) — worth watching for a Free Hit.</p>`:"";
   const blankNote=F.first_blank?`<p class="note">Blank gameweek ahead: <b>GW${F.first_blank.gw}</b> — ${esc(F.first_blank.blanks.join(", "))} have no fixture.</p>`:`<p class="note">No blank gameweeks detected in this window.</p>`;
   const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. Bench Boost / Triple Captain candidate.</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
-  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table><thead><tr><th>GW</th><th>Avg FDR</th><th>Flags</th></tr></thead><tbody>${fRows}</tbody></table></div>`;
+  const XG=D.xg_signal||{};
+  const xgRows=(XG.notable||[]).map(r=>{
+    const bits=[];
+    if(r.tag==="overperforming") bits.push(`<b class="neg">Overperforming</b> — sell-high risk`);
+    if(r.tag==="underperforming") bits.push(`<b class="pos">Underperforming</b> — patience / buy-low`);
+    if(r.gc_tag==="riding_luck") bits.push(`<b class="neg">Defense riding luck</b>`);
+    if(r.gc_tag==="unlucky") bits.push(`<b class="pos">Defense unlucky</b> — could improve`);
+    const gcLine=r.xgc!=null?` · Conceded ${r.goals_conceded} vs xGC ${r.xgc}`:"";
+    return `<li><span class="who">${esc(r.name)} · ${esc(r.pos)} · ${esc(r.club)}</span><div class="detail">${bits.join(" · ")}<br>G+A ${r.gi} vs xGI ${r.xgi}${gcLine}</div></li>`;
+  }).join("")||`<li><span class="note">Nothing more than ${XG.threshold??2} goals/assists off its expected number right now.</span></li>`;
+  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><p class="note">Squad players (${XG.min_minutes??"?"}+ mins) whose actual goal involvements — or, for defenders/keepers, goals conceded — differ from FPL's own expected numbers by ${XG.threshold??2}+. A concrete "due for regression" or "still creating chances" signal, not a form gut-feel.</p><ul class="chiplist">${xgRows}</ul></div>`;
+  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table><thead><tr><th>GW</th><th>Avg FDR</th><th>Flags</th></tr></thead><tbody>${fRows}</tbody></table></div>${xgCard}`;
 }
 renderStrategy();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";

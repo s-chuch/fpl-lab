@@ -818,6 +818,64 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
         "fixtures": {"horizon": horizon, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
     }
 
+def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0):
+    """Flag your own squad's players as over/underperforming their underlying
+    numbers — a concrete "due for a dry patch" (sell-high) or "still getting
+    the chances, patience/buy-low" signal, using FPL's own expected-goals
+    data (already in bootstrap-static, no new scraping needed) instead of a
+    gut read on "good form". Defenders/keepers also get a goals-conceded vs
+    expected-goals-conceded check, since clean-sheet luck is the bigger swing
+    for that position than attacking returns."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t for t in boot["teams"]}
+    if not picks_gw:
+        return None
+    try:
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+    except Exception as e:
+        _warn(f"build_xg_signal: could not load GW{picks_gw} squad: {e}")
+        return None
+
+    def to_float(v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    rows = []
+    for p in pk.get("picks") or []:
+        el = elements.get(p["element"])
+        if not el:
+            continue
+        mins = int(el.get("minutes") or 0)
+        if mins < min_minutes:
+            continue  # too small a sample for xG/xA to mean anything
+        pos = POS[el["element_type"]]
+        goals, assists = int(el.get("goals_scored") or 0), int(el.get("assists") or 0)
+        xg, xa = to_float(el.get("expected_goals")) or 0.0, to_float(el.get("expected_assists")) or 0.0
+        xgi = to_float(el.get("expected_goal_involvements"))
+        if xgi is None:
+            xgi = xg + xa
+        gi = goals + assists
+        diff = round(gi - xgi, 2)
+        tag = "overperforming" if diff >= threshold else ("underperforming" if diff <= -threshold else "on_track")
+        row = {
+            "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
+            "goals": goals, "assists": assists, "xg": round(xg, 2), "xa": round(xa, 2),
+            "xgi": round(xgi, 2), "gi": gi, "diff": diff, "tag": tag,
+        }
+        if pos in ("DEF", "GKP"):
+            xgc = to_float(el.get("expected_goals_conceded"))
+            if xgc is not None:
+                gc = int(el.get("goals_conceded") or 0)
+                gc_diff = round(xgc - gc, 2)  # positive = conceding FEWER than expected (riding luck)
+                row.update({"goals_conceded": gc, "xgc": round(xgc, 2), "gc_diff": gc_diff,
+                            "gc_tag": "riding_luck" if gc_diff >= threshold else ("unlucky" if gc_diff <= -threshold else "on_track")})
+        rows.append(row)
+    rows.sort(key=lambda r: -abs(r["diff"]))
+    notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
+    return {"threshold": threshold, "min_minutes": min_minutes, "rows": rows, "notable": notable}
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -1043,6 +1101,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
+    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
