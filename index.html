@@ -53,7 +53,8 @@ function benchBlock(key,title){
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
   return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max,"bad")}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
-document.getElementById("bench").innerHTML=benchBlock("gw2","GW2")+benchBlock("gw3","GW3")+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
+const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
+document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);
