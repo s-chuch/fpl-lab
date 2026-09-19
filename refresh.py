@@ -541,14 +541,16 @@ def build_bench_audit(boot, team_id):
         process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
         # Per-bench-player verdict, auto-derived instead of hand-typed per GW:
         # "process" = minutes said they should've started (a real misread),
-        # "variance" = only hindsight's final score says so (bad luck, not a
-        # mistake), "ok" = correctly left out either way.
-        better_names = {n for n, _ in better}
+        # "variance" = not a nailed-minutes starter, but scored well enough
+        # that hindsight's best XI (`started`) still wanted them anyway (bad
+        # luck, not a mistake), "ok" = correctly left out either way — i.e. in
+        # `better`/`better_names`, hindsight's own worst scorers, which is
+        # what "correctly benched" actually looks like.
         bench_tags = {}
         for name, _pts in bench:
             if name in proc_started:
                 bench_tags[name] = "process"
-            elif name in better_names:
+            elif name in started:
                 bench_tags[name] = "variance"
             else:
                 bench_tags[name] = "ok"
