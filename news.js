@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-19 12:21 UTC",
+  "generated_at": "2026-09-19 14:03 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -34,8 +34,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Spurs v Aston Villa team news: Porro + Manzambi start",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/19/spurs-v-aston-villa-team-news-porro-manzambi-start"
+      "title": "3pm team news: Timber starts, no White, Ipswich \u2018keeper change",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/19/3pm-team-news-timber-starts-no-white-ipswich-keeper-change"
     }
   ],
   "no_new": false,
@@ -73,6 +73,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/team-reveals/fpl_heisenberg",
     "https://www.fantasyfootballhub.co.uk/team-reveals/fplheisenberg",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
+    "https://www.fantasyfootballscout.co.uk/2026/09/19/3pm-team-news-timber-starts-no-white-ipswich-keeper-change",
     "https://www.fantasyfootballscout.co.uk/2026/09/19/fpl-notes-pedro-injury-latest-why-sangare-was-benched",
     "https://www.fantasyfootballscout.co.uk/2026/09/19/spurs-v-aston-villa-team-news-porro-manzambi-start",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
