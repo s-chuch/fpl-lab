@@ -266,16 +266,17 @@ function renderStrategy(){
   const blankNote=F.first_blank?`<p class="note">Blank gameweek ahead: <b>GW${F.first_blank.gw}</b> — ${esc(F.first_blank.blanks.join(", "))} have no fixture.</p>`:`<p class="note">No blank gameweeks detected in this window.</p>`;
   const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. Bench Boost / Triple Captain candidate.</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
   const XG=D.xg_signal||{};
-  const xgRows=(XG.notable||[]).map(r=>{
+  const xgRows=(XG.rows||[]).map(r=>{
     const bits=[];
     if(r.tag==="overperforming") bits.push(`<b class="neg">Overperforming</b> — sell-high risk`);
     if(r.tag==="underperforming") bits.push(`<b class="pos">Underperforming</b> — patience / buy-low`);
     if(r.gc_tag==="riding_luck") bits.push(`<b class="neg">Defense riding luck</b>`);
     if(r.gc_tag==="unlucky") bits.push(`<b class="pos">Defense unlucky</b> — could improve`);
+    if(!bits.length) bits.push(`<span class="note">On track</span>`);
     const gcLine=r.xgc!=null?` · Conceded ${r.goals_conceded} vs xGC ${r.xgc}`:"";
     return `<li><span class="who">${esc(r.name)} · ${esc(r.pos)} · ${esc(r.club)}</span><div class="detail">${bits.join(" · ")}<br>G+A ${r.gi} vs xGI ${r.xgi}${gcLine}</div></li>`;
-  }).join("")||`<li><span class="note">Nothing more than ${XG.threshold??2} goals/assists off its expected number right now.</span></li>`;
-  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><p class="note">Squad players (${XG.min_minutes??"?"}+ mins) whose actual goal involvements — or, for defenders/keepers, goals conceded — differ from FPL's own expected numbers by ${XG.threshold??2}+. A concrete "due for regression" or "still creating chances" signal, not a form gut-feel.</p><ul class="chiplist">${xgRows}</ul></div>`;
+  }).join("")||`<li><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></li>`;
+  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><p class="note">All squad players with ${XG.min_minutes??"?"}+ mins — actual goal involvements, or for defenders/keepers goals conceded, vs FPL's own expected numbers. ${XG.threshold??2}+ difference is flagged "due for regression" or "still creating chances," not a form gut-feel.</p><ul class="chiplist">${xgRows}</ul></div>`;
   const DC=D.defcon||{};
   const dcRows=(DC.rows||[]).map(r=>{
     const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
