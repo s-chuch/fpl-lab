@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 03:53 UTC",
-  "generated_at_et": "2026-09-18 11:53 PM ET",
+  "generated_at": "2026-09-19 04:09 UTC",
+  "generated_at_et": "2026-09-19 12:09 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -855,33 +855,23 @@ window.FPL_DATA = {
           ],
           "you_unique": [
             {
-              "name": "Ajayi",
-              "club": "HUL",
-              "pos": "DEF",
-              "count": 4,
+              "name": "Kusi-Asare",
+              "club": "FUL",
+              "pos": "FWD",
+              "count": 1,
               "n": 13,
-              "own": 31,
+              "own": 8,
               "vs_a": true,
-              "vs_b": false
+              "vs_b": true
             },
             {
-              "name": "Szoboszlai",
-              "club": "LIV",
-              "pos": "MID",
-              "count": 4,
+              "name": "Walle Egeli",
+              "club": "IPS",
+              "pos": "FWD",
+              "count": 1,
               "n": 13,
-              "own": 31,
+              "own": 8,
               "vs_a": true,
-              "vs_b": false
-            },
-            {
-              "name": "Dubravka",
-              "club": "TOT",
-              "pos": "GKP",
-              "count": 3,
-              "n": 13,
-              "own": 23,
-              "vs_a": false,
               "vs_b": true
             },
             {
@@ -921,36 +911,6 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Mitchell",
-              "club": "CRY",
-              "pos": "DEF",
-              "count": 2,
-              "n": 13,
-              "own": 15,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Kusi-Asare",
-              "club": "FUL",
-              "pos": "FWD",
-              "count": 1,
-              "n": 13,
-              "own": 8,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Walle Egeli",
-              "club": "IPS",
-              "pos": "FWD",
-              "count": 1,
-              "n": 13,
-              "own": 8,
               "vs_a": true,
               "vs_b": true
             }
@@ -1022,32 +982,22 @@ window.FPL_DATA = {
             },
             "you_unique": [
               {
-                "name": "Ajayi",
-                "club": "HUL",
-                "pos": "DEF",
-                "count": 4,
+                "name": "Kusi-Asare",
+                "club": "FUL",
+                "pos": "FWD",
+                "count": 1,
                 "n": 13,
-                "own": 31,
-                "vs_a": false,
-                "vs_b": true
-              },
-              {
-                "name": "Szoboszlai",
-                "club": "LIV",
-                "pos": "MID",
-                "count": 4,
-                "n": 13,
-                "own": 31,
+                "own": 8,
                 "vs_a": true,
                 "vs_b": true
               },
               {
-                "name": "Dubravka",
-                "club": "TOT",
-                "pos": "GKP",
-                "count": 3,
+                "name": "Walle Egeli",
+                "club": "IPS",
+                "pos": "FWD",
+                "count": 1,
                 "n": 13,
-                "own": 23,
+                "own": 8,
                 "vs_a": true,
                 "vs_b": true
               },
@@ -1088,36 +1038,6 @@ window.FPL_DATA = {
                 "count": 2,
                 "n": 13,
                 "own": 15,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "Mitchell",
-                "club": "CRY",
-                "pos": "DEF",
-                "count": 2,
-                "n": 13,
-                "own": 15,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "Kusi-Asare",
-                "club": "FUL",
-                "pos": "FWD",
-                "count": 1,
-                "n": 13,
-                "own": 8,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "Walle Egeli",
-                "club": "IPS",
-                "pos": "FWD",
-                "count": 1,
-                "n": 13,
-                "own": 8,
                 "vs_a": true,
                 "vs_b": true
               }
@@ -2908,36 +2828,6 @@ window.FPL_DATA = {
           ],
           "you_unique": [
             {
-              "name": "Raya",
-              "club": "ARS",
-              "pos": "GKP",
-              "count": 2,
-              "n": 3,
-              "own": 67,
-              "vs_a": false,
-              "vs_b": true
-            },
-            {
-              "name": "Dubravka",
-              "club": "TOT",
-              "pos": "GKP",
-              "count": 2,
-              "n": 3,
-              "own": 67,
-              "vs_a": false,
-              "vs_b": true
-            },
-            {
-              "name": "Szoboszlai",
-              "club": "LIV",
-              "pos": "MID",
-              "count": 2,
-              "n": 3,
-              "own": 67,
-              "vs_a": true,
-              "vs_b": false
-            },
-            {
               "name": "N.Williams",
               "club": "NFO",
               "pos": "DEF",
@@ -2991,26 +2881,6 @@ window.FPL_DATA = {
               "name": "Mitchell",
               "club": "CRY",
               "pos": "DEF",
-              "count": 1,
-              "n": 3,
-              "own": 33,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Kusi-Asare",
-              "club": "FUL",
-              "pos": "FWD",
-              "count": 1,
-              "n": 3,
-              "own": 33,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Walle Egeli",
-              "club": "IPS",
-              "pos": "FWD",
               "count": 1,
               "n": 3,
               "own": 33,

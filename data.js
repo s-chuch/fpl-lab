@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 03:53 UTC",
-  "generated_at_et": "2026-09-18 11:53 PM ET",
+  "generated_at": "2026-09-19 04:09 UTC",
+  "generated_at_et": "2026-09-19 12:09 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -1024,24 +1024,14 @@ window.FPL_DATA = {
           ],
           "you_unique": [
             {
-              "name": "Szoboszlai",
-              "club": "LIV",
-              "pos": "MID",
-              "count": 4,
+              "name": "De Cuyper",
+              "club": "BHA",
+              "pos": "DEF",
+              "count": 1,
               "n": 13,
-              "own": 31,
+              "own": 8,
               "vs_a": true,
-              "vs_b": false
-            },
-            {
-              "name": "Calvert-Lewin",
-              "club": "LEE",
-              "pos": "FWD",
-              "count": 4,
-              "n": 13,
-              "own": 31,
-              "vs_a": true,
-              "vs_b": false
+              "vs_b": true
             },
             {
               "name": "Davis",
@@ -1080,16 +1070,6 @@ window.FPL_DATA = {
               "count": 2,
               "n": 13,
               "own": 15,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "De Cuyper",
-              "club": "BHA",
-              "pos": "DEF",
-              "count": 1,
-              "n": 13,
-              "own": 8,
               "vs_a": true,
               "vs_b": true
             }
@@ -1161,23 +1141,13 @@ window.FPL_DATA = {
             },
             "you_unique": [
               {
-                "name": "Szoboszlai",
-                "club": "LIV",
-                "pos": "MID",
-                "count": 4,
+                "name": "De Cuyper",
+                "club": "BHA",
+                "pos": "DEF",
+                "count": 1,
                 "n": 13,
-                "own": 31,
-                "vs_a": false,
-                "vs_b": true
-              },
-              {
-                "name": "Calvert-Lewin",
-                "club": "LEE",
-                "pos": "FWD",
-                "count": 4,
-                "n": 13,
-                "own": 31,
-                "vs_a": false,
+                "own": 8,
+                "vs_a": true,
                 "vs_b": true
               },
               {
@@ -1217,16 +1187,6 @@ window.FPL_DATA = {
                 "count": 2,
                 "n": 13,
                 "own": 15,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "De Cuyper",
-                "club": "BHA",
-                "pos": "DEF",
-                "count": 1,
-                "n": 13,
-                "own": 8,
                 "vs_a": true,
                 "vs_b": true
               }
@@ -3051,46 +3011,6 @@ window.FPL_DATA = {
           ],
           "you_unique": [
             {
-              "name": "Szoboszlai",
-              "club": "LIV",
-              "pos": "MID",
-              "count": 3,
-              "n": 4,
-              "own": 75,
-              "vs_a": false,
-              "vs_b": true
-            },
-            {
-              "name": "Kinsky",
-              "club": "TOT",
-              "pos": "GKP",
-              "count": 3,
-              "n": 4,
-              "own": 75,
-              "vs_a": true,
-              "vs_b": false
-            },
-            {
-              "name": "Verbruggen",
-              "club": "BHA",
-              "pos": "GKP",
-              "count": 3,
-              "n": 4,
-              "own": 75,
-              "vs_a": true,
-              "vs_b": false
-            },
-            {
-              "name": "Gro\u00df",
-              "club": "BHA",
-              "pos": "MID",
-              "count": 2,
-              "n": 4,
-              "own": 50,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
               "name": "De Cuyper",
               "club": "BHA",
               "pos": "DEF",
@@ -3144,26 +3064,6 @@ window.FPL_DATA = {
               "name": "Calvert-Lewin",
               "club": "LEE",
               "pos": "FWD",
-              "count": 1,
-              "n": 4,
-              "own": 25,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Hume",
-              "club": "SUN",
-              "pos": "DEF",
-              "count": 1,
-              "n": 4,
-              "own": 25,
-              "vs_a": true,
-              "vs_b": true
-            },
-            {
-              "name": "Shaw",
-              "club": "MUN",
-              "pos": "DEF",
               "count": 1,
               "n": 4,
               "own": 25,
@@ -3249,46 +3149,6 @@ window.FPL_DATA = {
             },
             "you_unique": [
               {
-                "name": "Calafiori",
-                "club": "ARS",
-                "pos": "DEF",
-                "count": 3,
-                "n": 4,
-                "own": 75,
-                "vs_a": false,
-                "vs_b": true
-              },
-              {
-                "name": "Szoboszlai",
-                "club": "LIV",
-                "pos": "MID",
-                "count": 3,
-                "n": 4,
-                "own": 75,
-                "vs_a": true,
-                "vs_b": false
-              },
-              {
-                "name": "Jo\u00e3o Pedro",
-                "club": "CHE",
-                "pos": "FWD",
-                "count": 3,
-                "n": 4,
-                "own": 75,
-                "vs_a": false,
-                "vs_b": true
-              },
-              {
-                "name": "Gro\u00df",
-                "club": "BHA",
-                "pos": "MID",
-                "count": 2,
-                "n": 4,
-                "own": 50,
-                "vs_a": true,
-                "vs_b": false
-              },
-              {
                 "name": "De Cuyper",
                 "club": "BHA",
                 "pos": "DEF",
@@ -3342,26 +3202,6 @@ window.FPL_DATA = {
                 "name": "Calvert-Lewin",
                 "club": "LEE",
                 "pos": "FWD",
-                "count": 1,
-                "n": 4,
-                "own": 25,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "Hume",
-                "club": "SUN",
-                "pos": "DEF",
-                "count": 1,
-                "n": 4,
-                "own": 25,
-                "vs_a": true,
-                "vs_b": true
-              },
-              {
-                "name": "Shaw",
-                "club": "MUN",
-                "pos": "DEF",
                 "count": 1,
                 "n": 4,
                 "own": 25,
