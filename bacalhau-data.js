@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-19 05:56 UTC",
-  "generated_at_et": "2026-09-19 1:56 AM ET",
+  "generated_at": "2026-09-19 12:21 UTC",
+  "generated_at_et": "2026-09-19 8:21 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -253,7 +253,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1782561,
+    "overall_rank": 1814175,
     "bank": 4.4,
     "value": 100.9
   },
@@ -640,7 +640,7 @@ window.FPL_DATA = {
           {
             "rank": 3,
             "team": "Shaaland",
-            "pts": 298,
+            "pts": 299,
             "me": false,
             "entry": 1360999
           },
@@ -668,14 +668,14 @@ window.FPL_DATA = {
           {
             "rank": 7,
             "team": "Blasters United",
-            "pts": 269,
+            "pts": 270,
             "me": false,
             "entry": 7445649
           },
           {
             "rank": 8,
             "team": "HanSoloDolo",
-            "pts": 267,
+            "pts": 268,
             "me": false,
             "entry": 6934500
           },
@@ -696,7 +696,7 @@ window.FPL_DATA = {
           {
             "rank": 11,
             "team": "Must win one",
-            "pts": 254,
+            "pts": 255,
             "me": false,
             "entry": 7332517
           },
@@ -1444,7 +1444,7 @@ window.FPL_DATA = {
             "team": "Shaaland",
             "manager": "s cc",
             "rank": 3,
-            "pts": 298,
+            "pts": 299,
             "me": false,
             "chip": null
           },
@@ -1932,7 +1932,7 @@ window.FPL_DATA = {
             "team": "Blasters United",
             "manager": "Daniel Voisin",
             "rank": 7,
-            "pts": 269,
+            "pts": 270,
             "me": false,
             "chip": null
           },
@@ -2054,7 +2054,7 @@ window.FPL_DATA = {
             "team": "HanSoloDolo",
             "manager": "John Castagne",
             "rank": 8,
-            "pts": 267,
+            "pts": 268,
             "me": false,
             "chip": null
           },
@@ -2420,7 +2420,7 @@ window.FPL_DATA = {
             "team": "Must win one",
             "manager": "Kieran Marin",
             "rank": 11,
-            "pts": 254,
+            "pts": 255,
             "me": false,
             "chip": "wildcard"
           },
@@ -2687,7 +2687,7 @@ window.FPL_DATA = {
           {
             "rank": 2,
             "team": "Shaaland",
-            "pts": 298,
+            "pts": 299,
             "me": false,
             "entry": 1360999
           },
@@ -2763,7 +2763,7 @@ window.FPL_DATA = {
           "you_rank": 3,
           "you_pts": 285,
           "gap_to_first": 20,
-          "gap_to_second": 13,
+          "gap_to_second": 14,
           "first": {
             "name": "I'z Amad Man",
             "pts": 305,
@@ -2779,8 +2779,8 @@ window.FPL_DATA = {
           },
           "second": {
             "name": "Shaaland",
-            "pts": 298,
-            "gap": 13,
+            "pts": 299,
+            "gap": 14,
             "chips_used": [
               "3xc",
               "bboost",
@@ -3158,7 +3158,7 @@ window.FPL_DATA = {
             "team": "Shaaland",
             "manager": "s cc",
             "rank": 2,
-            "pts": 298,
+            "pts": 299,
             "me": false,
             "chip": null
           },
@@ -3291,7 +3291,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1782561,
+        "rank": 1814175,
         "last_rank": 1590538
       }
     ],
@@ -3299,7 +3299,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 68.6
+        "own": 68.4
       },
       {
         "name": "Rogers",
@@ -3329,7 +3329,7 @@ window.FPL_DATA = {
       {
         "name": "De Cuyper",
         "club": "BHA",
-        "own": 25.1
+        "own": 25.2
       }
     ],
     "overall_diffs": [
