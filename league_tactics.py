@@ -20,20 +20,27 @@ def _vs_pair(a, b, my_set, counts, owned_by, elements, teams, n):
             "own": round(100 * counts.get(pid, 0) / n) if n else 0,
         }
 
+    # A "diff" is a pick that's actually rare in this league — scale the cutoff
+    # to league size (same max(1, n // 4) rule as the league-wide diffs in
+    # analyze_leagues) instead of a flat count that stops meaning anything once
+    # n gets small (max(4, n//3) let literally any owned player qualify in a
+    # 4-team league, e.g. a 75%-owned player showing up as a "differential").
+    diff_thresh = max(1, n // 4) if n else 0
     you_unique, they_share = [], []
     if n:
         for pid, c in sorted(counts.items(), key=lambda x: -x[1]):
             it = item_of(pid)
             if not it:
                 continue
-            if pid in my_set and (pid not in a_set or pid not in b_set) and c <= max(4, n // 3):
+            if pid in my_set and (pid not in a_set or pid not in b_set) and c <= diff_thresh:
                 row = dict(it)
                 row["vs_a"] = pid not in a_set
                 row["vs_b"] = pid not in b_set
                 you_unique.append(row)
             if a and b and pid in a_set and pid in b_set and pid not in my_set:
                 they_share.append(it)
-    return you_unique[:12], they_share[:10]
+    you_unique.sort(key=lambda x: x["count"])
+    return you_unique[:6], they_share[:10]
 
 
 def _rival_card(row, me_row, ctx_by_entry):
