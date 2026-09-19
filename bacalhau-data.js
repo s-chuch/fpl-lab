@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:25 UTC",
-  "generated_at_et": "2026-09-18 6:25 PM ET",
+  "generated_at": "2026-09-19 03:14 UTC",
+  "generated_at_et": "2026-09-18 11:14 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -253,7 +253,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 285,
-    "overall_rank": 1782571,
+    "overall_rank": 1782565,
     "bank": 4.4,
     "value": 100.9
   },
@@ -3192,7 +3192,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1782571,
+        "rank": 1782565,
         "last_rank": 1590538
       }
     ],
@@ -3200,7 +3200,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 68.7
+        "own": 68.6
       },
       {
         "name": "Rogers",
@@ -3220,7 +3220,7 @@ window.FPL_DATA = {
       {
         "name": "Gvardiol",
         "club": "MCI",
-        "own": 25.8
+        "own": 25.9
       },
       {
         "name": "Calvert-Lewin",

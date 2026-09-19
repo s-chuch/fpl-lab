@@ -414,8 +414,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-18 22:25 UTC",
-  "generated_at_et": "2026-09-18 6:25 PM ET",
+  "generated_at": "2026-09-19 03:14 UTC",
+  "generated_at_et": "2026-09-18 11:14 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -430,7 +430,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 298,
-    "overall_rank": 954064,
+    "overall_rank": 954061,
     "bank": 0.3,
     "value": 101.1
   },
@@ -3614,7 +3614,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 954064,
+        "rank": 954061,
         "last_rank": 820064
       }
     ],
@@ -3637,14 +3637,14 @@ window.FPL_DATA = {
       {
         "name": "Gvardiol",
         "club": "MCI",
-        "own": 25.8
+        "own": 25.9
       }
     ],
     "overall_diffs": [
       {
         "name": "Hume",
         "club": "SUN",
-        "own": 3.1
+        "own": 3.0
       },
       {
         "name": "Davis",
