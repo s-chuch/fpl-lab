@@ -133,6 +133,19 @@ def fixture_map(event_id, teams):
         out[a] = {"side": "A", "opp": teams[h]["short_name"], "fdr": f.get("team_a_difficulty")}
     return out
 
+def fixture_scan(event_id, teams):
+    """Like fixture_map, but keeps EVERY fixture per team instead of one —
+    fixture_map's dict overwrites a team's earlier entry on a double gameweek,
+    which is fine for the single-fixture Plan tab but hides blanks/doubles,
+    exactly the signal chip-timing strategy needs."""
+    fx = get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
+    out = {}
+    for f in fx:
+        h, a = f["team_h"], f["team_a"]
+        out.setdefault(h, []).append({"side": "H", "opp": teams[a]["short_name"], "fdr": f.get("team_h_difficulty")})
+        out.setdefault(a, []).append({"side": "A", "opp": teams[h]["short_name"], "fdr": f.get("team_a_difficulty")})
+    return out
+
 def fmt_fix(info):
     return "Blank" if not info else f"{info['side']} {info['opp']}"
 
@@ -697,6 +710,109 @@ def build_transfers(boot, team_id):
     out.sort(key=lambda x: x["gw"] or 0)
     return out
 
+CHIP_LABEL = {"wildcard": "Wildcard", "freehit": "Free Hit", "bboost": "Bench Boost", "3xc": "Triple Captain"}
+
+def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=8):
+    """Chip-timing and free-transfer strategy signals for the Strategy tab:
+    - chips remaining: each of the 4 chips is usable TWICE a season (once in
+      each half) since FPL's 2023-24+ rules — boot['chips'] gives the exact
+      GW window for each half, which beats hardcoding a cutoff GW that moves
+      year to year.
+    - a fixture-swing scan across the next `horizon` gameweeks for your
+      CURRENT squad's clubs, flagging blank/double gameweeks and the
+      easiest/hardest upcoming run — the standard real-world signal for when
+      to wildcard, free hit, bench boost, or triple captain.
+    - whether hits taken this season have actually paid for themselves, using
+      the same per-transfer net figures already shown on the Transfers tab.
+    """
+    teams = {t["id"]: t for t in boot["teams"]}
+    elements = {e["id"]: e for e in boot["elements"]}
+    chip_history = hist.get("chips", [])  # every use this season (a list, unlike the "latest per name" dict used elsewhere)
+
+    windows_by_chip = {}
+    for c in (boot.get("chips") or []):
+        name = c.get("name")
+        if not name:
+            continue
+        windows_by_chip.setdefault(name, []).append({"number": c.get("number"), "start": c.get("start_event"), "stop": c.get("stop_event")})
+    for ws in windows_by_chip.values():
+        ws.sort(key=lambda w: w["number"] or 0)
+
+    current_gw = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
+    chip_status = []
+    for name, windows in windows_by_chip.items():
+        entry = {"chip": name, "label": CHIP_LABEL.get(name, name), "windows": []}
+        for w in windows:
+            used = next((u for u in chip_history if u.get("name") == name and w["start"] <= (u.get("event") or 0) <= w["stop"]), None)
+            if used:
+                status = "used"
+            elif current_gw + 1 < w["start"]:
+                status = "upcoming"
+            elif current_gw >= w["stop"]:
+                status = "expired"
+            else:
+                status = "open"
+            entry["windows"].append({"number": w["number"], "start": w["start"], "stop": w["stop"], "used_gw": (used or {}).get("event"), "status": status})
+        chip_status.append(entry)
+    chip_status.sort(key=lambda e: e["chip"])
+
+    tr_by_gw = {}
+    for t in transfers or []:
+        tr_by_gw.setdefault(t.get("gw"), []).append(t)
+    hit_rows, total_hit_cost, total_moves_net = [], 0, 0
+    for g in gameweeks or []:
+        cost = g.get("hits") or 0
+        if not cost:
+            continue
+        moves = [t for t in tr_by_gw.get(g["gw"], []) if t.get("inn") != "ROLL"]
+        gw_net = sum(int(str(t.get("net", "0")).replace("+", "")) for t in moves)
+        total_hit_cost += cost
+        total_moves_net += gw_net
+        hit_rows.append({"gw": g["gw"], "cost": cost, "moves_net": gw_net, "paid_off": gw_net > cost})
+    hits_summary = {"total_cost": total_hit_cost, "total_moves_net": total_moves_net, "net_after_cost": total_moves_net - total_hit_cost, "rows": hit_rows}
+
+    squad_clubs = []
+    if picks_gw:
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+            squad_clubs = sorted({elements[p["element"]]["team"] for p in pk.get("picks", []) if p.get("element") in elements})
+        except Exception as e:
+            _warn(f"build_strategy: could not load GW{picks_gw} squad for fixture scan: {e}")
+
+    upcoming_events = sorted((e for e in boot["events"] if not e.get("finished")), key=lambda e: e["id"])[:horizon]
+    fixture_rows = []
+    for ev in upcoming_events:
+        try:
+            fx = fixture_scan(ev["id"], teams)
+        except Exception as e:
+            _warn(f"build_strategy: could not load GW{ev['id']} fixtures: {e}")
+            continue
+        fdrs, blanks, doubles = [], [], []
+        for cid in squad_clubs:
+            fixtures = fx.get(cid) or []
+            club = teams[cid]["short_name"]
+            if not fixtures:
+                blanks.append(club)
+            else:
+                if len(fixtures) > 1:
+                    doubles.append(club)
+                fdrs.extend(f["fdr"] for f in fixtures if f.get("fdr") is not None)
+        avg_fdr = round(sum(fdrs) / len(fdrs), 2) if fdrs else None
+        fixture_rows.append({"gw": ev["id"], "avg_fdr": avg_fdr, "blanks": blanks, "doubles": doubles})
+
+    rated = [r for r in fixture_rows if r["avg_fdr"] is not None]
+    easiest = min(rated, key=lambda r: r["avg_fdr"], default=None)
+    hardest = max(rated, key=lambda r: r["avg_fdr"], default=None)
+    first_blank = next((r for r in fixture_rows if r["blanks"]), None)
+    first_double = next((r for r in fixture_rows if r["doubles"]), None)
+
+    return {
+        "chips": chip_status,
+        "free_transfers": free_transfers_for_next(hist or {}),
+        "hits": hits_summary,
+        "fixtures": {"horizon": horizon, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
+    }
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -921,6 +1037,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["bench_audit"] = build_bench_audit(boot, team_id)
     data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
+    data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
