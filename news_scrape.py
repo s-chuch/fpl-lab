@@ -412,13 +412,19 @@ def main():
         print(f"news_scrape.py: could not load player index for theme discovery: {e}")
         player_index = []
     agreed, split = build_themes(blobs, gw, player_index) if player_index else ([], [])
-    def filter_themes_for_gw(items, gw_id):
-        """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6)."""
+    def filter_themes_for_gw(items, gw_id, min_sources=1):
+        """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6),
+        or that fall below the current source-count floor — e.g. stale 1-source items
+        carried forward from before build_themes()'s "Emerging" threshold was raised to
+        2+, which would otherwise linger here indefinitely since this path never
+        re-runs build_themes() on them."""
         out = []
         for it in items or []:
             t = str(it.get("text") or "")
             mentioned = [int(m) for m in re.findall(r"GW(\d+)", t, flags=re.I)]
             if mentioned and any(m != int(gw_id) for m in mentioned):
+                continue
+            if len(it.get("sources") or []) < min_sources:
                 continue
             out.append(it)
         return out
@@ -427,8 +433,8 @@ def main():
         # Only reuse prior themes within the same planning GW, and only if text
         # does not still name an older locked GW.
         if prev.get("gw") == gw:
-            agreed = filter_themes_for_gw(prev.get("agreed") or [], gw)
-            split = filter_themes_for_gw(prev.get("split") or [], gw)
+            agreed = filter_themes_for_gw(prev.get("agreed") or [], gw, min_sources=3)
+            split = filter_themes_for_gw(prev.get("split") or [], gw, min_sources=2)
     news = {
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
