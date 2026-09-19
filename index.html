@@ -30,8 +30,11 @@ let activeGroup="review", activeTab="season";
 function paintTabs(){
   const g=TAB_GROUPS.find(x=>x.id===activeGroup)||TAB_GROUPS[0];
   const groups=TAB_GROUPS.map(x=>`<button class="group ${x.id===activeGroup?"on":""}" data-group="${x.id}">${x.label}</button>`).join("");
-  const pills=g.tabs.map(([id,label])=>`<button class="${id===activeTab?"on":""}" data-id="${id}">${label}</button>`).join("");
-  document.getElementById("tabs").innerHTML=`<div class="tab-groups">${groups}</div><div class="tab-pills">${pills}</div>`;
+  // A group with only one tab has nothing to switch between, so the pill row
+  // is just a lone, oddly-small-looking button — skip it for single-tab
+  // groups (Strategy, Leagues) instead of rendering a selector with one option.
+  const pills=g.tabs.length>1?`<div class="tab-pills">${g.tabs.map(([id,label])=>`<button class="${id===activeTab?"on":""}" data-id="${id}">${label}</button>`).join("")}</div>`:"";
+  document.getElementById("tabs").innerHTML=`<div class="tab-groups">${groups}</div>${pills}`;
   document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===activeTab));
 }
 document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); if(!b) return;
