@@ -20,6 +20,24 @@ const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function safeHref(u){try{const p=new URL(String(u||""),location.href);if(p.protocol==="http:"||p.protocol==="https:")return p.href;}catch(e){}return "#";}
 function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
+// Rival gap-trend/chip/fixture note for the Leagues tab. pronoun="you" (index.html,
+// your own decisions) or "they" (bacalhau.html, auditing someone else's squad) —
+// same underlying refresh.py data (build_tactics' rival_ctx), just the wording.
+function trendNote(gt, pronoun){
+  const subj=pronoun==="they"?"they":"you", obj=pronoun==="they"?"them":"you";
+  if(gt==null) return null;
+  if(gt>0) return subj+" closed "+gt+" last GW";
+  if(gt<0) return "gained "+(-gt)+" on "+obj+" last GW";
+  return "even with "+obj+" last GW";
+}
+function rivalExtra(card, pronoun){
+  if(!card) return "";
+  const bits=[];
+  const tn=trendNote(card.gap_trend, pronoun); if(tn) bits.push(tn);
+  if(card.chips_used&&card.chips_used.length) bits.push("used "+card.chips_used.join(", "));
+  if(card.fixture) bits.push(card.fixture.label.toLowerCase()+" fixtures ("+card.fixture.avg_fdr+")");
+  return bits.length?` <span class="note">— ${esc(bits.join(", "))}</span>`:"";
+}
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
 function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags})),(X.agreed||[]).map(x=>({text:x.text,from:"X",player:x.player,club:x.club,tags:x.tags})));}

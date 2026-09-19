@@ -670,7 +670,64 @@ def build_transfers(boot, team_id):
     out.sort(key=lambda x: x["gw"] or 0)
     return out
 
-def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
+def target_rival_entries(rows, team_id, limit_top=2, spread=1):
+    """Entry ids for the small, bounded set of rivals the Leagues tab actually
+    compares against: the top of the table (limit_top) and whoever's within
+    `spread` ranks of you either side — a superset of whatever build_tactics()
+    ends up calling "first"/"second"/"neighbor_above"/"neighbor_below", so it
+    doesn't need to duplicate that exact tie-break logic here."""
+    sorted_rows = sorted(rows, key=lambda r: (r.get("rank") is None, r.get("rank") or 10**9))
+    me_idx = next((i for i, r in enumerate(sorted_rows) if r.get("entry") == team_id), None)
+    picked = list(sorted_rows[:limit_top])
+    if me_idx is not None:
+        lo, hi = max(0, me_idx - spread), min(len(sorted_rows), me_idx + spread + 1)
+        picked.extend(sorted_rows[lo:hi])
+    seen, out = set(), []
+    for r in picked:
+        eid = r.get("entry")
+        if eid is None or eid == team_id or eid in seen:
+            continue
+        seen.add(eid)
+        out.append(eid)
+    return out
+
+
+def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map):
+    """Small, targeted extra fetches (season history only, no per-GW picks) for a
+    bounded set of rivals: chips used this season, how much ground moved last GW,
+    and — once picks are public — their squad's average fixture difficulty for
+    the next GW. Only for the handful of rows the Leagues tab's comparisons
+    actually use, not the whole league."""
+    ctx = {}
+    for eid in entries:
+        try:
+            h = get(f"https://fantasy.premierleague.com/api/entry/{eid}/history/")
+        except Exception as e:
+            _warn(f"rival_context: could not load history for entry {eid}: {e}")
+            continue
+        chips = {c["name"]: c["event"] for c in h.get("chips", [])}
+        gap_trend = None
+        if my_last_gw_pts is not None and last_fin_gw is not None:
+            row = next((r for r in h.get("current", []) if r.get("event") == last_fin_gw), None)
+            if row and row.get("points") is not None:
+                gap_trend = my_last_gw_pts - row["points"]
+        fixture = None
+        squad = member_squads_by_entry.get(eid)
+        if squad and next_fixture_map:
+            fdrs = []
+            for p in squad.get("xi", []):
+                el = elements.get(p.get("id"))
+                info = next_fixture_map.get(el["team"]) if el else None
+                if info and info.get("fdr") is not None:
+                    fdrs.append(info["fdr"])
+            if fdrs:
+                avg = sum(fdrs) / len(fdrs)
+                fixture = {"avg_fdr": round(avg, 1), "label": "Tough" if avg >= 3.6 else ("Easy" if avg <= 2.4 else "Mixed")}
+        ctx[eid] = {"chips": chips, "gap_trend": gap_trend, "fixture": fixture}
+    return ctx
+
+
+def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_last_gw_pts=None, last_fin_gw=None, next_fixture_map=None):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     classic = entry.get("leagues", {}).get("classic") or []
@@ -732,6 +789,10 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
                         "chip": pk.get("active_chip"),
                     })
                     member_squads.append(squad)
+        # Adaptive, not a flat 40%/25%: in a 6-team league 40% is ~2 people, barely
+        # a signal. Same scaling build_tactics() already uses for its own template.
+        tmpl_thresh = max(3, (n + 1) // 2) if n else None
+        diff_thresh = max(1, n // 4) if n else None
         template, diffs = [], []
         if n:
             for pid, c in sorted(counts.items(), key=lambda x: -x[1]):
@@ -739,9 +800,12 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False):
                 if not el: continue
                 pct = round(100 * c / n)
                 item = {"name": el["web_name"], "club": teams[el["team"]]["short_name"], "own": pct, "count": c, "n": n}
-                if pct >= 40 and pid not in my_picks: template.append(item)
-                if pid in my_picks and pct <= 25: diffs.append(item)
-        tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams)
+                if c >= tmpl_thresh and pid not in my_picks: template.append(item)
+                if pid in my_picks and c <= diff_thresh: diffs.append(item)
+        member_squads_by_entry = {s["entry"]: s for s in member_squads}
+        target_entries = target_rival_entries(rows, team_id)
+        rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map) if target_entries else {}
+        tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams, rival_ctx=rival_ctx)
         league_obj = {
             "id": L["id"],
             "name": L.get("name"),
@@ -816,7 +880,11 @@ def main(team_id=TEAM_ID, out_path=None):
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
     # After deadline: league picks for the locked GW. Before: ownership from provisional/latest squad GW.
     league_picks_gw = ds["locked_gw"] if ds["deadline_passed"] and ds["locked_gw"] else (plan.get("squad_from_gw") or last_fin)
-    leagues = analyze_leagues(boot, entry, team_id, league_picks_gw, deadline_passed=bool(ds["deadline_passed"]))
+    my_last_gw_pts = next((r["points"] for r in hist.get("current", []) if r.get("event") == last_fin), None)
+    teams_by_id = {t["id"]: t for t in boot["teams"]}
+    next_fixture_map = fixture_map(ds["next_gw"], teams_by_id) if ds["next_gw"] else None
+    leagues = analyze_leagues(boot, entry, team_id, league_picks_gw, deadline_passed=bool(ds["deadline_passed"]),
+                               my_last_gw_pts=my_last_gw_pts, last_fin_gw=last_fin, next_fixture_map=next_fixture_map)
     caps = captain_audit(boot, team_id)
     data = existing or {}
     # Recomputed every run rather than cached off `existing`: both only cover finished
