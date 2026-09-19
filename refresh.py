@@ -876,6 +876,57 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0):
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
     return {"threshold": threshold, "min_minutes": min_minutes, "rows": rows, "notable": notable}
 
+DEFCON_THRESHOLD = {"DEF": 10, "MID": 12, "FWD": 12}
+
+def build_defcon(boot, team_id, picks_gw, min_minutes=180):
+    """FPL's 2025-26+ Defensive Contribution rule awards 2 pts in any match
+    where a player's combined defensive actions clear a position threshold:
+    10 (clearances+blocks+interceptions+tackles) for defenders, 12 (the same
+    four plus ball recoveries) for midfielders/forwards. bootstrap-static's
+    own defensive_contribution_per_90 field is already computed with the
+    correct position-specific combination (confirmed against FPL's own field
+    docs), so this reuses it directly instead of re-deriving it from the raw
+    per-stat counts and risking a wrong recombination. Goalkeepers don't have
+    a defensive contribution rule and are skipped."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t for t in boot["teams"]}
+    if not picks_gw:
+        return None
+    try:
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+    except Exception as e:
+        _warn(f"build_defcon: could not load GW{picks_gw} squad: {e}")
+        return None
+
+    def to_float(v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    rows = []
+    for p in pk.get("picks") or []:
+        el = elements.get(p["element"])
+        if not el:
+            continue
+        pos = POS[el["element_type"]]
+        if pos == "GKP":
+            continue
+        mins = int(el.get("minutes") or 0)
+        per90 = to_float(el.get("defensive_contribution_per_90"))
+        if mins < min_minutes or per90 is None:
+            continue
+        threshold = DEFCON_THRESHOLD[pos]
+        margin = round(per90 - threshold, 2)
+        tag = "reliable" if per90 >= threshold else ("borderline" if per90 >= threshold * 0.75 else "unlikely")
+        rows.append({
+            "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
+            "threshold": threshold, "per90": round(per90, 2), "season_total": to_float(el.get("defensive_contribution")),
+            "margin": margin, "tag": tag,
+        })
+    rows.sort(key=lambda r: -r["margin"])
+    return {"min_minutes": min_minutes, "rows": rows}
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -1102,6 +1153,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
+    data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
