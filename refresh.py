@@ -728,6 +728,7 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     chip_history = hist.get("chips", [])  # every use this season (a list, unlike the "latest per name" dict used elsewhere)
+    _warn(f"DEBUG boot['chips'] raw: {json.dumps(boot.get('chips'))[:3000]}")
 
     windows_by_chip = {}
     for c in (boot.get("chips") or []):
