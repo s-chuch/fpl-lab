@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-19 22:15 UTC",
+  "generated_at": "2026-09-19 23:54 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -34,8 +34,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Wissa pen miss + Newcastle the new DefCon kings?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/19/fpl-notes-wissa-pen-miss-newcastle-the-new-defcon-kings"
+      "title": "Sofascore\u2019s Nations League Fantasy is live \u2013 and we\u2019ll be covering it!",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/19/sofascores-nations-league-fantasy-is-live-and-well-be-covering-it"
     }
   ],
   "no_new": false,
@@ -77,6 +77,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/19/fpl-notes-pedro-injury-latest-why-sangare-was-benched",
     "https://www.fantasyfootballscout.co.uk/2026/09/19/fpl-notes-wissa-pen-miss-newcastle-the-new-defcon-kings",
     "https://www.fantasyfootballscout.co.uk/2026/09/19/nottm-forest-v-coventry-team-news-jair-in-three-sky-blues-changes",
+    "https://www.fantasyfootballscout.co.uk/2026/09/19/sofascores-nations-league-fantasy-is-live-and-well-be-covering-it",
     "https://www.fantasyfootballscout.co.uk/2026/09/19/spurs-v-aston-villa-team-news-porro-manzambi-start",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
