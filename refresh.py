@@ -530,7 +530,6 @@ def build_bench_audit(boot, team_id):
                 bench.append([item["name"], item["pts"]])
         best = _best_xi(squad)
         started = {p["name"] for p in best}
-        better = [[p["name"], p["pts"]] for p in squad if p["name"] not in started]
         you = (pk.get("entry_history") or {}).get("points")
         raw = sum(p["pts"] for p in best)
         top = max((p["pts"] for p in best), default=0)
@@ -539,6 +538,14 @@ def build_bench_audit(boot, team_id):
         proc_started = {p["name"] for p in proc_xi}
         proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
         process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
+        # "Should have benched" is judged by PROCESS (who was actually nailed
+        # on minutes), not pure outcome — a starter who was clearly playing
+        # but had a quiet points day (e.g. a nailed captain blanking) isn't a
+        # bench mistake, so flagging them via hindsight's points-only best XI
+        # was misleading. `better` now lists actual starters process XI
+        # wouldn't have started, i.e. it wanted a currently-benched player
+        # (by minutes) instead.
+        better = [[p["name"], p["pts"]] for p in squad if p["name"] not in proc_started]
         # Per-bench-player verdict, auto-derived instead of hand-typed per GW:
         # "process" = minutes said they should've started (a real misread),
         # "variance" = not a nailed-minutes starter, but scored well enough
