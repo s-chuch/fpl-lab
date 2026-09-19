@@ -927,6 +927,45 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180):
     rows.sort(key=lambda r: -r["margin"])
     return {"min_minutes": min_minutes, "rows": rows}
 
+def build_price_radar(boot, team_id, picks_gw, top_n=8):
+    """Approximate price-change momentum from FPL's own transfer-volume
+    fields: transfers_in_event/transfers_out_event (net transfers so far
+    today) and cost_change_event/cost_change_start (price change already
+    applied today / this season). FPL has never published its exact
+    price-change algorithm, so "momentum" here — net transfers today scaled
+    by how widely owned a player already is — is a relative signal (a swing
+    on a low-ownership player moves the needle far more than the same swing
+    on a template player), not a guaranteed prediction of tonight's change."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t for t in boot["teams"]}
+
+    def row_of(el):
+        inn, out = int(el.get("transfers_in_event") or 0), int(el.get("transfers_out_event") or 0)
+        net = inn - out
+        owned = float(el.get("selected_by_percent") or 0)
+        momentum = round(net / max(owned, 0.5), 1)  # floor avoids a near-zero-owned player producing a meaningless spike
+        return {
+            "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "cost": el["now_cost"] / 10, "owned_pct": owned, "net_transfers_today": net, "momentum": momentum,
+            "changed_today": (el.get("cost_change_event") or 0) != 0,
+            "cost_change_today": (el.get("cost_change_event") or 0) / 10,
+            "season_change": (el.get("cost_change_start") or 0) / 10,
+        }
+
+    squad_ids = set()
+    if picks_gw:
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+            squad_ids = {p["element"] for p in pk.get("picks") or [] if p.get("element") in elements}
+        except Exception as e:
+            _warn(f"build_price_radar: could not load GW{picks_gw} squad: {e}")
+
+    squad_rows = sorted((row_of(elements[eid]) for eid in squad_ids), key=lambda r: -abs(r["momentum"]))
+    all_rows = [row_of(el) for el in elements.values()]
+    rising = sorted((r for r in all_rows if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
+    falling = sorted((r for r in all_rows if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
+    return {"squad": squad_rows, "rising": rising, "falling": falling}
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -1154,6 +1193,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
+    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

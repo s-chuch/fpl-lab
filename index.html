@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20260919a"></head><body>
+<link rel="stylesheet" href="dashboard.css?v=20260919c"></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
@@ -279,7 +279,18 @@ function renderStrategy(){
     return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.per90} / ${r.threshold}</td><td>${r.season_total??"-"}</td><td><span class="chip ${kls}">${tagLabel}</span></td></tr>`;
   }).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
   const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><p class="note">Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold — 10 per 90 for defenders, 12 for midfielders/forwards (clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD). Green = reliably clears it most matches — a real differentiator most casual managers ignore.</p><table><thead><tr><th>Player</th><th>Pos</th><th>Club</th><th>Per90 / Threshold</th><th>Season total</th><th>Status</th></tr></thead><tbody>${dcRows}</tbody></table></div>`;
-  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table><thead><tr><th>GW</th><th>Avg FDR</th><th>Flags</th></tr></thead><tbody>${fRows}</tbody></table></div>${xgCard}${dcCard}`;
+  const PR=D.price_radar||{};
+  const priceRow=r=>{
+    const dir=r.net_transfers_today>0?"pos":r.net_transfers_today<0?"neg":"";
+    const changed=r.changed_today?`<span class="pill used">${r.cost_change_today>0?"+":""}${r.cost_change_today.toFixed(1)} today</span>`:"-";
+    return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}m</td><td>${r.owned_pct}%</td><td class="${dir}">${r.net_transfers_today>0?"+":""}${fmt(r.net_transfers_today)}</td><td>${changed}</td></tr>`;
+  };
+  const priceHead=`<thead><tr><th>Player</th><th>Pos</th><th>Club</th><th>Cost</th><th>Owned</th><th>Net transfers today</th><th>Change</th></tr></thead>`;
+  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No squad price data yet.</span></td></tr>`;
+  const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No rising candidates right now.</span></td></tr>`;
+  const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No falling candidates right now.</span></td></tr>`;
+  const priceCard=`<div class="card"><h2>Price-change radar</h2><p class="note">Approximated from today's net transfers scaled by ownership — FPL has never published its exact price-change algorithm, so treat this as relative momentum for ranking, not a guaranteed call. The "Change" column shows a rise/fall already applied today.</p><h3>Your squad</h3><table>${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table>${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table>${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
+  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table><thead><tr><th>GW</th><th>Avg FDR</th><th>Flags</th></tr></thead><tbody>${fRows}</tbody></table></div>${xgCard}${dcCard}${priceCard}`;
 }
 renderStrategy();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
