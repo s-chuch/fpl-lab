@@ -36,3 +36,8 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 .track{height:10px;background:#0C141C;border:1px solid var(--line);border-radius:99px;overflow:hidden}
 .track i{display:block;height:10px;border-radius:99px;background:var(--teal);min-width:4px}
 .track i.mid{background:var(--yellow)}.track i.bad{background:var(--red)}
+
+.compare2{display:grid;grid-template-columns:1fr;gap:14px;margin-top:10px}
+@media(min-width:640px){.compare2{grid-template-columns:1fr 1fr}}
+.compare2>div{border:1px solid var(--line);border-radius:12px;padding:10px}
+.compare2 h3{margin:0 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}

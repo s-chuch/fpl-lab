@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Bacalhau · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20260918f">
+<link rel="stylesheet" href="dashboard.css?v=20260919a">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
@@ -152,7 +152,12 @@ function renderFh(){
   const used=(D.chips_official||{}).freehit;
   const A=D.fh_audit||null;
   if(A){
-    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p></div>`;
+    const posOrder={GKP:0,DEF:1,MID:2,FWD:3};
+    const xiChips=list=>(list||[]).slice().sort((a,b)=>(posOrder[a.pos]??9)-(posOrder[b.pos]??9)).map(p=>{
+      const isCap=p.captain||p.mult>1;
+      return `<div class="chip ${isCap?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.got!=null?" · "+p.got:""}${isCap?" (C)":""}</div>`;
+    }).join("")||`<p class="note">No XI recorded.</p>`;
+    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p><div class="compare2"><div><h3>Original · best process XI · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${xiChips(A.original_xi)}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${xiChips(A.fh_xi)}</div></div></div></div>`;
     return;
   }
   if(used!=null){

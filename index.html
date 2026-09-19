@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20260918f"></head><body>
+<link rel="stylesheet" href="dashboard.css?v=20260919a"></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
@@ -220,15 +220,20 @@ function renderX(){
 renderX();
 function renderFh(){
   const F=window.FPL_FH||{}; const A=Object.assign({}, F.audit||{}, (D.fh_audit||{}));
-  // Once refresh.py auto-computes fh_audit for this GW, its own fh_xi is the
-  // consistent source — fh.js's static xi/recs are one-off hand-written text
+  // Once refresh.py auto-computes fh_audit for this GW, its own numbers/XIs are
+  // the consistent source — fh.js's static xi/recs are one-off hand-written text
   // that can (and did) end up contradicting a corrected number, so don't mix
   // stale prose in under a fresh number once real data exists for this GW.
   const hasAuto = !!(D.fh_audit && D.fh_audit.gw === A.gw);
-  const xiList = hasAuto ? (D.fh_audit.fh_xi||[]) : (F.xi||[]);
-  const xi=xiList.map(p=>`<div class="chip ${(p.captain||p.tag==="C")?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.mult>1?" (C)":(p.tag?" ("+esc(p.tag)+")":"")}</div>`).join("");
+  const posOrder={GKP:0,DEF:1,MID:2,FWD:3};
+  const xiChips=list=>(list||[]).slice().sort((a,b)=>(posOrder[a.pos]??9)-(posOrder[b.pos]??9)).map(p=>{
+    const isCap=p.captain||p.mult>1||p.tag==="C";
+    return `<div class="chip ${isCap?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.got!=null?" · "+p.got:""}${isCap?" (C)":""}</div>`;
+  }).join("")||`<p class="note">No XI recorded.</p>`;
+  const origXi=hasAuto?xiChips(D.fh_audit.original_xi):xiChips(A.original_xi);
+  const fhXi=hasAuto?xiChips(D.fh_audit.fh_xi):xiChips((F.xi||[]).length?F.xi:A.fh_xi);
   const recs=hasAuto?"":(F.recs||[]).map(r=>`<li><span class="who">${esc(r.verdict)}</span><div class="detail">${esc(r.text)}</div></li>`).join("");
-  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p></div><div class="card"><h2>Saved FH XI</h2><div class="xi">${xi}</div></div>${recs?`<div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`:""}`;
+  document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||F.gw||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p><div class="compare2"><div><h3>Original · best process XI · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${origXi}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${fhXi}</div></div></div></div>${recs?`<div class="card"><h2>Notes</h2><ul class="chiplist">${recs}</ul></div>`:""}`;
 }
 renderFh();
 document.getElementById("foot").textContent="Leagues: Overall + ESL + Decision.";
