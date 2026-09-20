@@ -1,7 +1,311 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": null,
+  "generated_at": "2026-09-20 17:26 UTC",
   "post_count": 51,
+  "new_since_last_run": 0,
+  "earliest": "2026-09-17 03:59 UTC",
+  "latest": "2026-09-20 13:38 UTC",
+  "player_mentions": [
+    {
+      "name": "João Pedro",
+      "club": "CHE",
+      "count": 7
+    },
+    {
+      "name": "Thiago",
+      "club": "BRE",
+      "count": 5
+    },
+    {
+      "name": "Haaland",
+      "club": "MCI",
+      "count": 5
+    },
+    {
+      "name": "White",
+      "club": "ARS",
+      "count": 3
+    },
+    {
+      "name": "Wissa",
+      "club": "NEW",
+      "count": 3
+    },
+    {
+      "name": "Fernandes",
+      "club": "TOT",
+      "count": 3
+    },
+    {
+      "name": "Lewis",
+      "club": "MCI",
+      "count": 3
+    },
+    {
+      "name": "Buendía",
+      "club": "AVL",
+      "count": 3
+    },
+    {
+      "name": "Gibbs-White",
+      "club": "NFO",
+      "count": 2
+    },
+    {
+      "name": "Palmer",
+      "club": "CHE",
+      "count": 2
+    },
+    {
+      "name": "Szoboszlai",
+      "club": "LIV",
+      "count": 2
+    },
+    {
+      "name": "Schade",
+      "club": "BRE",
+      "count": 2
+    },
+    {
+      "name": "Kevin",
+      "club": "FUL",
+      "count": 2
+    },
+    {
+      "name": "David",
+      "club": "BHA",
+      "count": 2
+    },
+    {
+      "name": "Tóth.A",
+      "club": "BOU",
+      "count": 1
+    },
+    {
+      "name": "De Cuyper",
+      "club": "BHA",
+      "count": 1
+    },
+    {
+      "name": "Barry",
+      "club": "EVE",
+      "count": 1
+    },
+    {
+      "name": "Ødegaard",
+      "club": "ARS",
+      "count": 1
+    },
+    {
+      "name": "Damsgaard",
+      "club": "BRE",
+      "count": 1
+    },
+    {
+      "name": "Rudoni",
+      "club": "COV",
+      "count": 1
+    }
+  ],
+  "club_mentions": [
+    {
+      "club": "BRE",
+      "count": 12
+    },
+    {
+      "club": "CHE",
+      "count": 11
+    },
+    {
+      "club": "ARS",
+      "count": 8
+    },
+    {
+      "club": "MCI",
+      "count": 8
+    },
+    {
+      "club": "BHA",
+      "count": 5
+    },
+    {
+      "club": "NEW",
+      "count": 4
+    },
+    {
+      "club": "TOT",
+      "count": 4
+    },
+    {
+      "club": "COV",
+      "count": 4
+    },
+    {
+      "club": "AVL",
+      "count": 4
+    },
+    {
+      "club": "EVE",
+      "count": 3
+    },
+    {
+      "club": "NFO",
+      "count": 3
+    },
+    {
+      "club": "LIV",
+      "count": 3
+    },
+    {
+      "club": "BOU",
+      "count": 2
+    },
+    {
+      "club": "FUL",
+      "count": 2
+    },
+    {
+      "club": "IPS",
+      "count": 2
+    }
+  ],
+  "calls": [
+    {
+      "id": "2101654735363137615",
+      "at": "2026-09-20 12:48 UTC",
+      "text": "The Gift of Wildcard in GW4... Lewis Hall.\n\nAnd he do haul.🔥👌🏼 https://t.co/dv2Js2jbSD",
+      "url": "https://x.com/greekgodFpl/status/2101654735363137615",
+      "tags": [
+        "chip"
+      ],
+      "players": [
+        "Lewis"
+      ]
+    },
+    {
+      "id": "2101613696531218491",
+      "at": "2026-09-20 10:05 UTC",
+      "text": "No player in the Premier League averages more key passes (3.0) or successful dribbles (4.3) per 90 than Sávio this season.🔋⚡️\n\nWhen Tottenham Hotspur fixtures turn GREEN, I will bring him in 1GW early to make a Differential King.\n\nDo you want to win FPL in 2026/27 season?\nIf",
+      "url": "https://x.com/greekgodFpl/status/2101613696531218491",
+      "tags": [
+        "transfer target"
+      ],
+      "players": [
+        "Sávio"
+      ]
+    },
+    {
+      "id": "2101304001362891107",
+      "at": "2026-09-19 13:34 UTC",
+      "text": "We called it here too. \n\nTOT 2-3 AVL\nEmiliano Buendía. ⚽️\n\n#FPL #AVL https://t.co/XRtQVV82d2",
+      "url": "https://x.com/greekgodFpl/status/2101304001362891107",
+      "tags": [
+        "called_it"
+      ],
+      "players": [
+        "Buendía"
+      ]
+    },
+    {
+      "id": "2101185558076596361",
+      "at": "2026-09-19 05:44 UTC",
+      "text": "Number of Penalty Takers in my FPL team so far...\n\nGameweek 1 = 8\nGameweek 2 = 8\nGameweek 3 = 8\nGameweek 4 = 6 (Wildcard)\nGameweek 5 = 6\n\nHow many Penalty Takers do you have in yours?\n\n#FPL \n#FPLCommunity https://t.co/uOAy9NiJIj",
+      "url": "https://x.com/greekgodFpl/status/2101185558076596361",
+      "tags": [
+        "chip"
+      ],
+      "players": []
+    },
+    {
+      "id": "2101058730515149308",
+      "at": "2026-09-18 21:20 UTC",
+      "text": "That's Why We Called For FPL Managers To Keep Their Brentford Forwards Or Strikers.\n\n- Igor Thiago\n- Kevin Schade\n- Jaidon Anthony\n\n#EPL #BRE #FPL https://t.co/GdVXDvgQt7",
+      "url": "https://x.com/greekgodFpl/status/2101058730515149308",
+      "tags": [
+        "called_it"
+      ],
+      "players": [
+        "Schade",
+        "Anthony",
+        "Thiago",
+        "Kevin"
+      ]
+    },
+    {
+      "id": "2101053627586789535",
+      "at": "2026-09-18 20:59 UTC",
+      "text": "We called it here first. No João Pedro CHE, No Goals for Chelsea.\n\nBrentford 3-0 Chelsea... FT\n\n#EPL #BRECHE https://t.co/lyNFWtVDCq",
+      "url": "https://x.com/greekgodFpl/status/2101053627586789535",
+      "tags": [
+        "called_it"
+      ],
+      "players": [
+        "João Pedro"
+      ]
+    },
+    {
+      "id": "2101053026358239405",
+      "at": "2026-09-18 20:57 UTC",
+      "text": "Igor Thiago BRE with a 74% chance to return in GW5.\nWe called it here.\n\nBrentford 3-0 Chelsea... FT\n\n#EPL #BRECHE https://t.co/S5shyIX9cX",
+      "url": "https://x.com/greekgodFpl/status/2101053026358239405",
+      "tags": [
+        "called_it"
+      ],
+      "players": [
+        "Thiago"
+      ]
+    },
+    {
+      "id": "2101004123709624410",
+      "at": "2026-09-18 17:43 UTC",
+      "text": "Transfer = Cole Palmer to Morgan Gibbs White \nCaptain = Erling Haaland \nChips = None \nHits = None.\n\n#FPL",
+      "url": "https://x.com/greekgodFpl/status/2101004123709624410",
+      "tags": [
+        "captain talk"
+      ],
+      "players": [
+        "White",
+        "Palmer",
+        "Haaland"
+      ]
+    },
+    {
+      "id": "2100672287678640375",
+      "at": "2026-09-17 19:44 UTC",
+      "text": "Erling Haaland is due for a BLANK while Bruno Fernandes is due for a Haul.\n\nIf I had Erling Haaland... I will bench him and play Dominik Szoboszlai and Captain Bruno. \n\n#FPL",
+      "url": "https://x.com/greekgodFpl/status/2100672287678640375",
+      "tags": [
+        "captain talk"
+      ],
+      "players": [
+        "Szoboszlai",
+        "Haaland",
+        "Fernandes"
+      ]
+    },
+    {
+      "id": "2100643843272036453",
+      "at": "2026-09-17 17:51 UTC",
+      "text": "It is confirmed now... João Pedro CHE is OUT.\n\n❌️❌️❌️💔\n\n#BRECHE #EPL",
+      "url": "https://x.com/greekgodFpl/status/2100643843272036453",
+      "tags": [
+        "called_it"
+      ],
+      "players": [
+        "João Pedro"
+      ]
+    },
+    {
+      "id": "2100530240850174070",
+      "at": "2026-09-17 10:20 UTC",
+      "text": "We Called It Here First.\n🔥👌🏼\n\nPenalty Goals. ⚽\n\n#Sunderland",
+      "url": "https://x.com/greekgodFpl/status/2100530240850174070",
+      "tags": [
+        "called_it"
+      ],
+      "players": []
+    }
+  ],
   "posts": [
     {
       "id": "2100434417600573916",
