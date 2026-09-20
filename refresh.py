@@ -943,6 +943,62 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180):
     rows.sort(key=lambda r: -r["margin"])
     return {"min_minutes": min_minutes, "rows": rows}
 
+def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
+    """Minutes trend over the last few finished GWs for each squad player —
+    catches a player sliding out of the XI (rested, dropped, injured-but-not-
+    flagged) while it's still happening, instead of only after the fact via
+    a bench-audit miss the week it costs you points. Uses real-world minutes
+    from each GW's live feed, independent of who owned the player in FPL
+    that week."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t for t in boot["teams"]}
+    if not picks_gw:
+        return None
+    finished = sorted(e["id"] for e in boot.get("events") or [] if e.get("finished"))
+    recent_gws = finished[-lookback:]
+    if len(recent_gws) < 2:
+        return None  # too early in the season for a trend to mean anything
+    try:
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+    except Exception as e:
+        _warn(f"build_rotation_risk: could not load GW{picks_gw} squad: {e}")
+        return None
+
+    minutes_by_gw = {}
+    for gw in recent_gws:
+        try:
+            minutes_by_gw[gw] = {el["id"]: int(el["stats"].get("minutes") or 0) for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
+        except Exception as e:
+            _warn(f"build_rotation_risk: could not load GW{gw} live data: {e}")
+            minutes_by_gw[gw] = {}
+
+    rows = []
+    for p in pk.get("picks") or []:
+        el = elements.get(p["element"])
+        if not el:
+            continue
+        mins = [minutes_by_gw[gw].get(el["id"], 0) for gw in recent_gws]
+        first, last = mins[0], mins[-1]
+        earlier_avg = sum(mins[:-1]) / len(mins[:-1])
+        if last < start_mins and earlier_avg >= start_mins:
+            tag, note = "falling", "was starting, now fringe/bench minutes"
+        elif last >= start_mins and first < start_mins:
+            tag, note = "rising", "breaking into the side"
+        elif all(m >= start_mins for m in mins):
+            tag = "declining" if (first - last) >= 20 and mins == sorted(mins, reverse=True) else "starter"
+            note = "starts getting shorter each week" if tag == "declining" else "nailed on across the window"
+        elif all(m < 20 for m in mins):
+            tag, note = "fringe", "fringe involvement across the window"
+        else:
+            tag, note = "mixed", "minutes bouncing around, no clear trend"
+        rows.append({
+            "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "minutes": mins, "trend": tag, "note": note,
+        })
+    rows.sort(key=lambda r: (r["trend"] not in ("falling", "declining"), r["minutes"][-1] - r["minutes"][0]))
+    notable = [r for r in rows if r["trend"] in ("falling", "declining", "rising")]
+    return {"gws": recent_gws, "start_mins": start_mins, "rows": rows, "notable": notable}
+
 def build_price_radar(boot, team_id, picks_gw, top_n=8):
     """Approximate price-change momentum from FPL's own transfer-volume
     fields: transfers_in_event/transfers_out_event (net transfers so far
@@ -1271,6 +1327,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
+    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
