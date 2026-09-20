@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Captain/bench recommendation for Bacalhau's manually-captured wildcard
-squad (bacalhau-wildcard.js). The squad itself is hand-updated from
-screenshots — FPL's API never exposes a rival's provisional picks before
-their own deadline — but the recommendation on top of it is computed
-fresh every refresh cycle from real bootstrap-static data, so captain/
-bench advice stays current as form, fixtures and injury status change
-between now and the GW6 deadline.
+"""Captain/bench recommendation for a manually-captured wildcard squad
+(e.g. bacalhau-wildcard.js, shaaland-wildcard.js). The squad itself is
+hand-updated from screenshots — FPL's API never exposes a provisional
+squad before ITS OWN deadline, not even your own team's, so there's no
+way to read an in-progress wildcard draft automatically — but the
+recommendation on top of it is computed fresh every refresh cycle from
+real bootstrap-static data, so captain/bench advice stays current as
+form, fixtures and injury status change before the deadline.
 
 Uses FPL's own ep_next field ("expected points next gameweek" — the
 platform's own form+fixture-blended prediction) rather than re-deriving
@@ -15,12 +16,13 @@ beats a starter in the same position group. Injury/doubt flags reuse
 refresh.py's player_availability so the same status rules apply
 everywhere in the app.
 
-Reads the squad (xi/bench) from bacalhau-wildcard.js as input and writes
+Reads the squad (xi/bench) from the given watch file as input and writes
 a "recommend" block back into the same file — hand-editing the squad
 there (a newer screenshot) and re-running this just recomputes advice
 against the new squad; nothing else in the file is touched.
 """
 from __future__ import annotations
+import argparse
 import json
 from pathlib import Path
 
@@ -28,7 +30,7 @@ from fpl_common import get, load_js_object
 from refresh import player_availability
 
 ROOT = Path(__file__).resolve().parent
-WATCH_PATH = ROOT / "bacalhau-wildcard.js"
+DEFAULT_WATCH_PATH = ROOT / "bacalhau-wildcard.js"
 
 
 def to_float(v):
@@ -38,10 +40,11 @@ def to_float(v):
         return None
 
 
-def main():
-    watch = load_js_object(WATCH_PATH)
+def main(watch_path=DEFAULT_WATCH_PATH):
+    watch_path = Path(watch_path)
+    watch = load_js_object(watch_path)
     if not watch:
-        print("bacalhau-wildcard.js not found or empty — nothing to recommend on")
+        print(f"{watch_path.name} not found or empty — nothing to recommend on")
         return
 
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
@@ -103,10 +106,13 @@ def main():
         "bench_ep": [{"name": p["name"], "pos": p["pos"], "ep_next": p["ep_next"], "status": p["status"]} for p in bench],
     }
 
-    WATCH_PATH.write_text("window.FPL_WILDCARD_WATCH = " + json.dumps(watch, indent=2, ensure_ascii=False) + ";\n")
+    watch_path.write_text("window.FPL_WILDCARD_WATCH = " + json.dumps(watch, indent=2, ensure_ascii=False) + ";\n")
     cap = watch["recommend"]["captain"]
-    print(f"wildcard_recommend: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s)")
+    print(f"wildcard_recommend {watch_path.name}: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s)")
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser()
+    ap.add_argument("path", nargs="?", default=str(DEFAULT_WATCH_PATH))
+    args = ap.parse_args()
+    main(args.path)

@@ -46,7 +46,8 @@ jobs:
           python refresh.py
           python refresh.py --team 1360920 --out bacalhau-data.js
           python greekgod_analyze.py
-          python wildcard_recommend.py
+          python wildcard_recommend.py bacalhau-wildcard.js
+          python wildcard_recommend.py shaaland-wildcard.js
 
       - name: Commit data files if they changed
         run: |
@@ -55,10 +56,11 @@ jobs:
           # X live ingest is Grok Bot / user-X MCP — never commit x-posts.js from Actions.
           # greekgod-archive.js is a derived accumulator (reads x-posts.js, doesn't
           # write it) and IS Actions' to commit, same as the other data files.
-          # bacalhau-wildcard.js's squad (xi/bench) is hand-captured from a
-          # screenshot, but its "recommend" block is fully computed here —
-          # Actions committing it just keeps that recommendation current.
-          git add data.js bacalhau-data.js news.js greekgod-archive.js bacalhau-wildcard.js
+          # bacalhau-wildcard.js/shaaland-wildcard.js's squads (xi/bench) are
+          # hand-captured from screenshots, but their "recommend" blocks are
+          # fully computed here — Actions committing them just keeps that
+          # recommendation current.
+          git add data.js bacalhau-data.js news.js greekgod-archive.js bacalhau-wildcard.js shaaland-wildcard.js
           if git diff --staged --quiet; then
             echo "No data change"
           else
