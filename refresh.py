@@ -945,11 +945,16 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180):
 
 def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
     """Minutes trend over the last few finished GWs for each squad player —
-    catches a player sliding out of the XI (rested, dropped, injured-but-not-
-    flagged) while it's still happening, instead of only after the fact via
-    a bench-audit miss the week it costs you points. Uses real-world minutes
-    from each GW's live feed, independent of who owned the player in FPL
-    that week."""
+    catches a player sliding out of the XI while it's still happening,
+    instead of only after the fact via a bench-audit miss the week it costs
+    you points. Uses real-world minutes from each GW's live feed,
+    independent of who owned the player in FPL that week.
+
+    Cross-referenced against FPL's own injury/suspension status
+    (player_availability) so a falling/declining trend is labelled either
+    "injury" (status explains the drop) or "rested" (fit per FPL, dropped by
+    the manager's own choice — the one that's easy to miss) — and a player
+    who's still nailed on by minutes but freshly flagged gets caught too."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
     if not picks_gw:
@@ -991,12 +996,22 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
             tag, note = "fringe", "fringe involvement across the window"
         else:
             tag, note = "mixed", "minutes bouncing around, no clear trend"
+        avail = player_availability(el)
+        reason = None
+        if tag in ("falling", "declining"):
+            reason = "injury" if avail["kind"] in ("out", "doubt") else "rested"
+        elif avail["kind"] in ("out", "doubt"):
+            reason = "injury"  # still nailed by recent minutes, but freshly flagged
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
             "minutes": mins, "trend": tag, "note": note,
+            "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"], "reason": reason,
         })
-    rows.sort(key=lambda r: (r["trend"] not in ("falling", "declining"), r["minutes"][-1] - r["minutes"][0]))
-    notable = [r for r in rows if r["trend"] in ("falling", "declining", "rising")]
+    def sort_key(r):
+        pri = 0 if r["reason"] is not None else (1 if r["trend"] == "rising" else 2)
+        return (pri, r["minutes"][-1] - r["minutes"][0])
+    rows.sort(key=sort_key)
+    notable = [r for r in rows if r["reason"] is not None or r["trend"] == "rising"]
     return {"gws": recent_gws, "start_mins": start_mins, "rows": rows, "notable": notable}
 
 def build_price_radar(boot, team_id, picks_gw, top_n=8):
