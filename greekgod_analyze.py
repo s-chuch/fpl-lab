@@ -48,6 +48,32 @@ CHIP_RE = re.compile(r"\bwildcard\b|\bbench boost\b|\btriple captain\b|\bfree hi
 CAPTAIN_GOOD, CAPTAIN_BAD = 8, 2
 TRANSFER_GOOD, TRANSFER_BAD = 6, 1
 
+# fpl_common.qualifiers_near uses a wide symmetric character window, which is
+# fine for "does this post touch on captaincy at all" (the loose post-level
+# "tags" shown as pills) but too loose to say WHICH player a call is about —
+# e.g. "...play Szoboszlai and Captain Bruno" puts "captain" within range of
+# Szoboszlai even though the sentence names Bruno, not him. Grading needs the
+# stricter question "is this in the same clause as the player's own mention,
+# with no and/or/sentence break in between" — "and"/"or"/a full stop reliably
+# mark a shift to a different subject; a comma usually doesn't (e.g. "Buytest,
+# priority pick for your squad" is still about Buytest), so it's not a break.
+CLAUSE_BREAK_RE = re.compile(r"\b(?:and|or)\b|[.\n]", re.I)
+CAPTAIN_KEYWORD_RE = re.compile(r"\bcaptain\b", re.I)
+TRANSFER_KEYWORD_RE = re.compile(r"transfer in|bring (?:him|her)? ?in|priority (?:buy|pick)|target for", re.I)
+
+
+def same_clause_as(text, key, keyword_re, radius=80):
+    """True if `keyword_re` occurs in the same clause as some mention of
+    `key` — on either side, but not past the nearest and/or/sentence break."""
+    for m in re.finditer(rf"\b{re.escape(key)}\b", text):
+        left = text[max(0, m.start() - radius):m.start()]
+        right = text[m.end():m.end() + radius]
+        left_clause = CLAUSE_BREAK_RE.split(left)[-1]
+        right_clause = CLAUSE_BREAK_RE.split(right)[0]
+        if keyword_re.search(left_clause) or keyword_re.search(right_clause):
+            return True
+    return False
+
 
 def classify_post(text):
     tags = set()
@@ -144,7 +170,15 @@ def main():
             # Grade this specific player's mention, not the whole post — a
             # post can name a captain pick and a separate transfer target in
             # the same breath, and each resolves against its own number.
-            kind = "captain" if "captain talk" in player_tags else ("transfer" if "transfer target" in player_tags else None)
+            # Uses the stricter same-clause check, not the post-level tags
+            # above: a wrong attribution here corrupts the automated verdict,
+            # whereas the loose tags are just "this post touches the topic".
+            if same_clause_as(text, pl["match"], CAPTAIN_KEYWORD_RE):
+                kind = "captain"
+            elif same_clause_as(text, pl["match"], TRANSFER_KEYWORD_RE):
+                kind = "transfer"
+            else:
+                kind = None
             if kind and target_event:
                 gw = target_event["id"]
                 if not target_event.get("finished"):
