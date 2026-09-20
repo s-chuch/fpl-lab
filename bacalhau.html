@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20260920b"></script>
+<script src="dashboard-common.js?v=20260920c"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
 <script src="news.js?v=20260917i"></script>
 <script src="x-posts.js?v=20260917i"></script>
@@ -217,7 +217,7 @@ function renderStrategy(){
   const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No squad price data yet.</span></td></tr>`;
   const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No rising candidates right now.</span></td></tr>`;
   const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No falling candidates right now.</span></td></tr>`;
-  const priceCard=`<div class="card"><h2>Price-change radar</h2><p class="note">Approximated from today's net transfers scaled by ownership — FPL has never published its exact price-change algorithm, so treat this as relative momentum for ranking, not a guaranteed call.</p><p class="legend">Own% = ownership share. NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players. Chg = price move already applied today.</p><h3>Bacalhau's squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
+  const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><p class="note">Approximated from today's net transfers scaled by ownership — FPL has never published its exact price-change algorithm, so treat this as relative momentum for ranking, not a guaranteed call.</p><p class="legend">Own% = ownership share. NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players. Chg = price move already applied today.</p><h3>Bacalhau's squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
   const VB=D.value_board||{};
   const valueHead=`<thead><tr><th style="width:26%">Player</th><th style="width:14%">Club</th><th style="width:14%">Cost</th><th style="width:14%">Pts</th><th style="width:14%">Own</th><th style="width:18%">Pts/£1m</th></tr></thead>`;
   const valueRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.points}</td><td>${r.owned_pct}%</td><td><b>${r.value_per_1m}</b></td></tr>`;
@@ -231,6 +231,7 @@ function renderStrategy(){
   document.getElementById("stratPlayers").innerHTML=`${xgCard}${dcCard}${rrCard}`;
   document.getElementById("stratValue").innerHTML=valueCard;
   document.getElementById("stratPrice").innerHTML=priceCard;
+  startPriceCountdown("priceCountdown");
 }
 renderStrategy();
 function renderLeagues(){

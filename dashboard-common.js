@@ -80,6 +80,32 @@ function startDeadlineBanner(D, elId){
   tick();
   timer=setInterval(tick,1000);
 }
+// FPL's own 2026/27 rule change: price changes now land at midnight UK time
+// (not the old 1:30am GMT/2:30am BST cutoff). Computed via Intl against
+// Europe/London rather than hardcoding a UTC offset, so it stays correct
+// across the GMT/BST switch: take "tomorrow" in London as a UTC midnight
+// guess, then correct by however many hours London actually is ahead of UTC
+// at that instant (0 in GMT, 1 in BST).
+function nextLondonMidnight(){
+  const now=new Date();
+  const ymd=new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/London",year:"numeric",month:"2-digit",day:"2-digit"}).format(now);
+  const [y,m,d]=ymd.split("-").map(Number);
+  let candidate=Date.UTC(y,m-1,d+1,0,0,0);
+  const londonHour=parseInt(new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",hour:"2-digit",hour12:false}).format(new Date(candidate)),10);
+  candidate-=(londonHour%24)*3600000;
+  return candidate;
+}
+function startPriceCountdown(elId){
+  const el=document.getElementById(elId); if(!el) return;
+  let nextTs=nextLondonMidnight();
+  const tick=()=>{
+    let ms=nextTs-Date.now();
+    if(ms<=0){ nextTs=nextLondonMidnight(); ms=nextTs-Date.now(); }
+    el.innerHTML=`<span>Next price change (midnight UK time)</span><b>${esc(fmtCountdown(ms))}</b>`;
+  };
+  tick();
+  setInterval(tick,1000);
+}
 // Flags a chip active for the live/just-locked GW or already queued for the
 // next one, so a chip play surfaces as soon as it's visible instead of only
 // on the Chips tab. chips_official only keeps the latest use of each chip
