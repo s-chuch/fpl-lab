@@ -246,11 +246,20 @@ def pick_lineup(players, gw_key):
     return picked[:11], (rest_gk + rest_of)[:4]
 
 def free_transfers_for_next(hist):
+    """Free transfers banked heading into the next deadline. FPL raised the
+    max bankable amount from 2 to 5 partway through 2023/24 — capping at 2
+    here undercounted anyone who'd rolled 3+ times. A Wildcard/Free Hit week
+    lets you make unlimited transfers for free, so its event_transfers must
+    NOT be subtracted from the bank (only genuine paid hits should reduce
+    it), which a normal week with a real transfer count can't be told apart
+    from without knowing which GWs were chip weeks."""
+    chip_gws = {c["event"] for c in hist.get("chips", []) if c.get("name") in ("wildcard", "freehit")}
     ft = 0
     for row in hist.get("current", []):
-        ft = min(2, ft + 1)
-        ft = max(0, ft - int(row.get("event_transfers") or 0))
-    return min(2, ft + 1)
+        ft = min(5, ft + 1)
+        if row.get("event") not in chip_gws:
+            ft = max(0, ft - int(row.get("event_transfers") or 0))
+    return min(5, ft + 1)
 
 def build_plan(boot, team_id, hist=None, chips_used=None):
     teams = {t["id"]: t for t in boot["teams"]}
