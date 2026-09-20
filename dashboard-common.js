@@ -93,6 +93,22 @@ function chipAlertBanner(D){
   const lines=hits.map(h=>`${team} played <b>${esc(h.label)}</b> in GW${h.gw}.`).join(" ");
   return `<div class="chip-alert">${lines}</div>`;
 }
+// One account's own post history over time, not cross-account consensus
+// like News/X — so unlike those tabs this has no pronoun/team framing and
+// renders identically on both dashboards.
+function renderGreekGodTab(){
+  const G=window.FPL_GREEKGOD||{};
+  const TAG_LABEL={called_it:"Called it","captain talk":"Captain","transfer target":"Transfer",chip:"Chip"};
+  const mentions=(G.player_mentions||[]).map(m=>`<div class="chip">${esc(m.name)}${m.club?" · "+esc(m.club):""} · ${m.count}</div>`).join("")||`<p class="note">No player mentions tracked yet.</p>`;
+  const clubs=(G.club_mentions||[]).map(c=>`<div class="chip">${esc(c.club)} · ${c.count}</div>`).join("")||`<p class="note">No club mentions tracked yet.</p>`;
+  const calls=(G.calls||[]).map(c=>{
+    const tags=(c.tags||[]).map(t=>`<span class="pill ${t==="called_it"?"free":"used"}">${esc(TAG_LABEL[t]||t)}</span>`).join(" ");
+    const link=c.url?`<p class="note"><a href="${safeHref(c.url)}" target="_blank" rel="noopener">View post</a></p>`:"";
+    return `<li><span class="who">${esc(toToronto(c.at))}</span> ${tags}<div class="detail">${esc(c.text||"")}</div>${link}</li>`;
+  }).join("")||`<li><span class="note">No captain/transfer/chip calls or predictions tagged yet.</span></li>`;
+  const range=(G.earliest&&G.latest)?`${toToronto(G.earliest)} → ${toToronto(G.latest)}`:"—";
+  document.getElementById("greekgod").innerHTML=`<div class="card"><h2>@${esc(G.handle||"greekgodFpl")}</h2><p class="note">${G.post_count??0} posts archived · ${range}</p><p class="note">Live X ingest only started partway through this season — coverage begins from when tracking started, not GW1. "Called it" flags self-referential prediction language for you to judge against what actually happened; it isn't an automated accuracy score.</p></div><div class="card"><h2>Most-mentioned players</h2><div class="xi">${mentions}</div></div><div class="card"><h2>Most-mentioned clubs</h2><div class="xi">${clubs}</div></div><div class="card"><h2>Captain / transfer / chip calls</h2><ul class="chiplist">${calls}</ul></div>`;
+}
 function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
   for(const it of agreedPool()){

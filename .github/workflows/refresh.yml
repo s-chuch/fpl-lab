@@ -38,20 +38,23 @@ jobs:
 
       - name: Syntax check
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py greekgod_analyze.py
 
       - name: Pull live FPL data
         run: |
           python news_scrape.py
           python refresh.py
           python refresh.py --team 1360920 --out bacalhau-data.js
+          python greekgod_analyze.py
 
       - name: Commit data files if they changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # X live ingest is Grok Bot / user-X MCP — never commit x-posts.js from Actions
-          git add data.js bacalhau-data.js news.js
+          # X live ingest is Grok Bot / user-X MCP — never commit x-posts.js from Actions.
+          # greekgod-archive.js is a derived accumulator (reads x-posts.js, doesn't
+          # write it) and IS Actions' to commit, same as the other data files.
+          git add data.js bacalhau-data.js news.js greekgod-archive.js
           if git diff --staged --quiet; then
             echo "No data change"
           else

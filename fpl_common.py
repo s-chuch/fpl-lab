@@ -102,7 +102,7 @@ def load_js_object(path):
 # (tweet text) so "who's being talked about" is discovered once, the same way,
 # from whatever source text each scraper hands it. ---
 
-def _norm_keep_case(s):
+def norm_keep_case(s):
     """Strip accents (Groß->Gross, João->Joao) but keep case, for name matching."""
     s = (s or "").replace("ß", "ss")
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
@@ -124,7 +124,7 @@ def load_player_index():
         name = (el.get("web_name") or "").strip()
         if not name or (" " not in name and "-" not in name and len(name) < 5):
             continue
-        match = _norm_keep_case(name)
+        match = norm_keep_case(name)
         if match.lower() in seen:
             continue
         seen.add(match.lower())
@@ -194,7 +194,7 @@ def build_themes(blobs, gw, player_index, unit="sites"):
     total = len(blobs)
     mentions = {}
     for source, raw_text in blobs.items():
-        text = _norm_keep_case(raw_text)  # match accent-stripped key against accent-stripped text
+        text = norm_keep_case(raw_text)  # match accent-stripped key against accent-stripped text
         for p in player_index:
             if not re.search(rf"\b{re.escape(p['match'])}\b", text):
                 continue
