@@ -177,19 +177,26 @@ function renderStrategy(){
   const blankNote=F.first_blank?`<p class="note">Blank gameweek ahead: <b>GW${F.first_blank.gw}</b> — ${esc(F.first_blank.blanks.join(", "))} have no fixture.</p>`:`<p class="note">No blank gameweeks detected in this window.</p>`;
   const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. Bench Boost / Triple Captain candidate.</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
   const XG=D.xg_signal||{};
-  const xgRows=(XG.rows||[]).map(r=>{
+  const xgTagText=r=>{
     const bits=[];
-    if(r.tag==="overperforming") bits.push(`<b class="neg">Overperforming</b> — sell-high risk`);
-    if(r.tag==="underperforming") bits.push(`<b class="pos">Underperforming</b> — patience / buy-low`);
-    if(r.gc_tag==="riding_luck") bits.push(`<b class="neg">Defense riding luck</b>`);
-    if(r.gc_tag==="unlucky") bits.push(`<b class="pos">Defense unlucky</b> — could improve`);
-    if(!bits.length) bits.push(`<span class="note">On track</span>`);
-    const gcLine=r.xgc!=null?` · Conceded ${r.goals_conceded} vs xGC ${r.xgc}`:"";
-    return `<li><span class="who">${esc(r.name)} · ${esc(r.pos)} · ${esc(r.club)}</span><div class="detail">${bits.join(" · ")}<br>G+A ${r.gi} vs xGI ${r.xgi}${gcLine}</div></li>`;
-  }).join("")||`<li><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></li>`;
+    if(r.tag==="overperforming") bits.push("Sell-high");
+    if(r.tag==="underperforming") bits.push("Buy-low");
+    if(r.gc_tag==="riding_luck") bits.push("D:luck");
+    if(r.gc_tag==="unlucky") bits.push("D:unlucky");
+    return bits.length?bits.join(" / "):"On track";
+  };
+  const xgTagCls=r=>{
+    if(r.tag==="overperforming"||r.gc_tag==="riding_luck") return "neg";
+    if(r.tag==="underperforming"||r.gc_tag==="unlucky") return "pos";
+    return "";
+  };
+  const xgDiffCls=r=>r.tag==="overperforming"?"neg":r.tag==="underperforming"?"pos":"";
+  const xgHead=`<thead><tr><th style="width:22%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:20%">G+A/xGI</th><th style="width:12%">Diff</th><th style="width:24%">Tag</th></tr></thead>`;
+  const xgRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
+  const xgRows=(XG.rows||[]).map(xgRow).join("")||`<tr><td colspan="6"><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></td></tr>`;
   const xgTopHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:16%">xGI/90</th><th style="width:16%">G+A</th></tr></thead>`;
   const xgTopRows=(XG.top||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying players yet.</span></td></tr>`;
-  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><ul class="note-list"><li>All squad players with ${XG.min_minutes??"?"}+ mins</li><li>Actual goal involvements (or goals conceded for DEF/GKP) vs FPL's own expected numbers</li><li>${XG.threshold??2}+ difference flagged "due for regression" or "still creating chances" — not a form gut-feel</li></ul><h3>Bacalhau's squad</h3><ul class="chiplist">${xgRows}</ul><h3>Top ${XG.top_n??"?"} xGI/90 · league-wide</h3><table class="table-compact">${xgTopHead}<tbody>${xgTopRows}</tbody></table></div>`;
+  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><ul class="note-list"><li>All squad players with ${XG.min_minutes??"?"}+ mins</li><li>Actual goal involvements (or goals conceded for DEF/GKP) vs FPL's own expected numbers</li><li>${XG.threshold??2}+ difference flagged "due for regression" or "still creating chances" — not a form gut-feel</li></ul><h3>Bacalhau's squad</h3><table class="table-compact">${xgHead}<tbody>${xgRows}</tbody></table><ul class="legend-list"><li>G+A/xGI = actual goal involvements vs FPL's own expected number</li><li>Diff = G+A minus xGI — red means overperforming (sell-high risk), green means underperforming (patience/buy-low)</li><li>Tag: Sell-high/Buy-low are the attacking signal; D:luck/D:unlucky (DEF/GKP only) flags goals conceded vs expected</li></ul><h3>Top ${XG.top_n??"?"} xGI/90 · league-wide</h3><table class="table-compact">${xgTopHead}<tbody>${xgTopRows}</tbody></table></div>`;
   const DC=D.defcon||{};
   const dcRow=r=>{
     const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
