@@ -6,7 +6,7 @@
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="strategy"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20260918h"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
@@ -20,6 +20,7 @@ document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_point
 const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"]]},
+  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Transfers"]]},
   {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
@@ -92,9 +93,70 @@ function renderPlan(){
   const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${esc(b.worst||"-")}</b> · ${esc(b.why||"")}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${esc(x)}</div>`).join("")}</div></div>`).join("");
   const transferCard=`<div class="card"><h2>Transfer · ${esc(T.action||"ROLL")} · ${T.ft_available??"?"} FT · bank £${Number(D.team.bank).toFixed(1)}</h2><p class="note"><b>${esc(actionLine)}</b></p><p class="note">${esc(T.reason||"")}</p></div>`;
   const injuryNote=Object.keys(avail).length?`<p class="note">Availability from FPL: ${esc(Object.entries(avail).map(([n,a])=>n+" "+(a.label||a.kind)).join(" · "))}</p>`:`<p class="note">No injury flags in current Bacalhau plan data.</p>`;
-  document.getElementById("plan").innerHTML=`${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const TT=D.transfer_targets||{};
+  const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
+  const ttDcRows=(TT.defcon||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.per90}/${r.threshold}</td></tr>`).join("")||`<tr><td colspan="6"><span class="note">No non-owned players reliably hitting the threshold yet.</span></td></tr>`;
+  const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><p class="note">Players Bacalhau doesn't currently own (${TT.min_minutes??"?"}+ mins) with strong underlying numbers — the same signals used to audit their squad, scouted league-wide instead.</p><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:26%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:15%">xGI/90</th><th style="width:15%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:28%">Player</th><th style="width:12%">Pos</th><th style="width:14%">Club</th><th style="width:12%">Cost</th><th style="width:12%">Own</th><th style="width:22%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
+  document.getElementById("plan").innerHTML=`${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
+function renderStrategy(){
+  const S=D.strategy||{};
+  const STATUS_LABEL={used:"Used",open:"Open now",upcoming:"Not open yet",expired:"Expired"};
+  const chips=(S.chips||[]).map(c=>{
+    const wins=(c.windows||[]).map(w=>{
+      const label=w.status==="used"?`Used GW${w.used_gw}`:w.status==="open"?`Open now (GW${w.start}-${w.stop})`:w.status==="upcoming"?`Opens GW${w.start}`:(STATUS_LABEL[w.status]||w.status);
+      const kls=w.status==="open"?"ok":w.status==="used"?"sit":"";
+      return `<div class="chip ${kls}">#${w.number} · ${esc(label)}</div>`;
+    }).join("");
+    return `<div class="card"><h2>${esc(c.label)}</h2><div class="xi">${wins}</div></div>`;
+  }).join("");
+  const H=S.hits||{};
+  const hitsBlock=(H.rows&&H.rows.length)
+    ?`<p class="note">Total hit cost <b class="neg">-${H.total_cost}</b> · Those moves netted <b class="${cls(H.total_moves_net)}">${sign(H.total_moves_net)}</b> · After cost <b class="${cls(H.net_after_cost)}">${sign(H.net_after_cost)}</b></p><ul class="chiplist">${H.rows.map(r=>`<li><span class="who">GW${r.gw}</span><div class="detail">Cost -${r.cost} · moves netted ${sign(r.moves_net)} · <b class="${r.paid_off?"pos":"neg"}">${r.paid_off?"Paid off":"Not worth it"}</b></div></li>`).join("")}</ul>`
+    :`<p class="note">No hits taken this season.</p>`;
+  const F=S.fixtures||{};
+  const fRows=(F.rows||[]).map(r=>{
+    const flags=[(r.blanks&&r.blanks.length)?`Blank: ${r.blanks.join(", ")}`:"",(r.doubles&&r.doubles.length)?`Dbl: ${r.doubles.join(", ")}`:""].filter(Boolean).join(" · ");
+    return `<tr><td>GW${r.gw}</td><td>${r.avg_fdr??"-"}</td><td>${esc(flags)||"–"}</td></tr>`;
+  }).join("");
+  const easiest=F.easiest?`<p class="note">Easiest run: <b>GW${F.easiest.gw}</b> (avg FDR ${F.easiest.avg_fdr}) — a good week to sit tight rather than chip.</p>`:"";
+  const hardest=F.hardest?`<p class="note">Toughest stretch: <b>GW${F.hardest.gw}</b> (avg FDR ${F.hardest.avg_fdr}) — worth watching for a Free Hit.</p>`:"";
+  const blankNote=F.first_blank?`<p class="note">Blank gameweek ahead: <b>GW${F.first_blank.gw}</b> — ${esc(F.first_blank.blanks.join(", "))} have no fixture.</p>`:`<p class="note">No blank gameweeks detected in this window.</p>`;
+  const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. Bench Boost / Triple Captain candidate.</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
+  const XG=D.xg_signal||{};
+  const xgRows=(XG.rows||[]).map(r=>{
+    const bits=[];
+    if(r.tag==="overperforming") bits.push(`<b class="neg">Overperforming</b> — sell-high risk`);
+    if(r.tag==="underperforming") bits.push(`<b class="pos">Underperforming</b> — patience / buy-low`);
+    if(r.gc_tag==="riding_luck") bits.push(`<b class="neg">Defense riding luck</b>`);
+    if(r.gc_tag==="unlucky") bits.push(`<b class="pos">Defense unlucky</b> — could improve`);
+    if(!bits.length) bits.push(`<span class="note">On track</span>`);
+    const gcLine=r.xgc!=null?` · Conceded ${r.goals_conceded} vs xGC ${r.xgc}`:"";
+    return `<li><span class="who">${esc(r.name)} · ${esc(r.pos)} · ${esc(r.club)}</span><div class="detail">${bits.join(" · ")}<br>G+A ${r.gi} vs xGI ${r.xgi}${gcLine}</div></li>`;
+  }).join("")||`<li><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></li>`;
+  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><p class="note">All squad players with ${XG.min_minutes??"?"}+ mins — actual goal involvements, or for defenders/keepers goals conceded, vs FPL's own expected numbers. ${XG.threshold??2}+ difference is flagged "due for regression" or "still creating chances," not a form gut-feel.</p><ul class="chiplist">${xgRows}</ul></div>`;
+  const DC=D.defcon||{};
+  const dcRows=(DC.rows||[]).map(r=>{
+    const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
+    const kls=r.tag==="reliable"?"pos":r.tag==="borderline"?"mid":"";
+    return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.per90}/${r.threshold}</td><td>${r.season_total??"-"}</td><td class="${kls}">${tagLabel}</td></tr>`;
+  }).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
+  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><p class="note">Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold. "Hits it" = Yes/Close/No, based on green = reliably clears it most matches — a real differentiator most casual managers ignore.</p><table class="table-compact"><thead><tr><th style="width:30%">Player</th><th style="width:11%">Pos</th><th style="width:13%">Club</th><th style="width:19%">P90/Thr</th><th style="width:11%">Tot</th><th style="width:16%">Hits it</th></tr></thead><tbody>${dcRows}</tbody></table><p class="legend">P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD). Tot = season total defensive actions.</p></div>`;
+  const PR=D.price_radar||{};
+  const priceRow=r=>{
+    const dir=r.momentum>0?"pos":r.momentum<0?"neg":"";
+    const chg=r.changed_today?`<span class="${r.cost_change_today>0?"pos":"neg"}">${r.cost_change_today>0?"+":""}${r.cost_change_today.toFixed(1)}</span>`:"–";
+    return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td class="${dir}">${r.momentum>0?"+":""}${r.momentum}%</td><td>${chg}</td></tr>`;
+  };
+  const priceHead=`<thead><tr><th style="width:23%">Player</th><th style="width:11%">Pos</th><th style="width:11%">Club</th><th style="width:11%">Cost</th><th style="width:13%">Own</th><th style="width:17%">NetTr</th><th style="width:14%">Chg</th></tr></thead>`;
+  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No squad price data yet.</span></td></tr>`;
+  const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No rising candidates right now.</span></td></tr>`;
+  const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No falling candidates right now.</span></td></tr>`;
+  const priceCard=`<div class="card"><h2>Price-change radar</h2><p class="note">Approximated from today's net transfers scaled by ownership — FPL has never published its exact price-change algorithm, so treat this as relative momentum for ranking, not a guaranteed call.</p><p class="legend">Own% = ownership share. NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players. Chg = price move already applied today.</p><h3>Bacalhau's squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
+  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">Bacalhau has <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table class="table-compact"><thead><tr><th style="width:15%">GW</th><th style="width:18%">FDR</th><th style="width:67%">Flags</th></tr></thead><tbody>${fRows}</tbody></table><p class="legend">FDR = fixture difficulty rating (1 easiest – 5 hardest), averaged across their squad's clubs playing that week.</p></div>${xgCard}${dcCard}${priceCard}`;
+}
+renderStrategy();
 function renderLeagues(){
   const L=D.leagues||{};
   const want=new Set([125784,494595]);
