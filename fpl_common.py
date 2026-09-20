@@ -141,6 +141,7 @@ QUALIFIER_PATTERNS = [
     ("injury/doubt", r"\b(?:doubt|injury|injured|knock|fitness|illness)\b"),
     ("differential", r"differential|under[- ]?owned|low[- ]?owned"),
     ("fade/sell", r"\bfade\b|sell (?:him|her)?\b"),
+    ("rotation risk", r"champions league|europa (?:league|conference)|conference league|uefa|carabao cup|efl cup|fa cup|rotat(?:e|ed|ion)|midweek (?:trip|clash|tie|game|fixture)|squad rotation|rested (?:him|her)?|managed minutes"),
 ]
 
 ARTICLE_SEP = "\x00"  # joins separate items in a source's blob; never occurs in real text

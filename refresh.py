@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, sys
+import argparse, json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -1059,6 +1059,34 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10):
     rows.sort(key=lambda r: -r["margin"])
     return {"min_minutes": min_minutes, "top_n": top_n, "rows": rows, "top": top}
 
+# FPL's own bootstrap-static/live feeds are Premier League only — no fixture
+# calendar for the Champions League, Europa/Conference League, or domestic
+# cups. Rather than fabricate one, a "rested" call is upgraded to "rotation"
+# only when it's actually backed by text this app already scrapes: FPL's own
+# editorial "news" blurb, or the shared "rotation risk" qualifier tag (see
+# fpl_common.QUALIFIER_PATTERNS) already applied to news/X coverage.
+OTHER_COMP_RE = re.compile(
+    r"champions league|europa (?:league|conference)|conference league|uefa|carabao cup|efl cup|fa cup|"
+    r"rotat(?:e|ed|ion)|midweek (?:trip|clash|tie|game|fixture)|squad rotation|managed minutes",
+    re.I,
+)
+
+
+def _rotation_flagged_players(root):
+    """Players already reported (news.js / x-posts.js themes) as rotated for
+    another competition — {web_name: explanatory text}. Both files carry the
+    same {agreed, split} shape from fpl_common.build_themes, each item tagged
+    via the shared qualifiers_near/QUALIFIER_PATTERNS used everywhere else in
+    this app for "what is this text actually saying about this player"."""
+    flagged = {}
+    for filename in ("news.js", "x-posts.js"):
+        data = fpl_common.load_js_object(root / filename)
+        for item in (data.get("agreed") or []) + (data.get("split") or []):
+            if item.get("player") and "rotation risk" in (item.get("tags") or []):
+                flagged.setdefault(item["player"], item.get("text"))
+    return flagged
+
+
 def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
     """Minutes trend over the last few finished GWs for each squad player —
     catches a player sliding out of the XI while it's still happening,
@@ -1068,9 +1096,12 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
 
     Cross-referenced against FPL's own injury/suspension status
     (player_availability) so a falling/declining trend is labelled either
-    "injury" (status explains the drop) or "rested" (fit per FPL, dropped by
-    the manager's own choice — the one that's easy to miss) — and a player
-    who's still nailed on by minutes but freshly flagged gets caught too."""
+    "injury" (status explains the drop), "rotation" (fit per FPL, but a
+    Champions League/Europa/domestic-cup tie or general rotation is already
+    reported in FPL's own news blurb or scraped news/X coverage), or plain
+    "rested" (fit, dropped, and no other-competition explanation found
+    anywhere — still worth watching) — and a player who's still nailed on by
+    minutes but freshly flagged gets caught too."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
     if not picks_gw:
@@ -1093,6 +1124,8 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
             _warn(f"build_rotation_risk: could not load GW{gw} live data: {e}")
             minutes_by_gw[gw] = {}
 
+    rotation_flagged = _rotation_flagged_players(ROOT)
+
     rows = []
     for p in pk.get("picks") or []:
         el = elements.get(p["element"])
@@ -1113,15 +1146,26 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
         else:
             tag, note = "mixed", "minutes bouncing around, no clear trend"
         avail = player_availability(el)
+        rotation_note = None
+        if OTHER_COMP_RE.search(avail["news"] or ""):
+            rotation_note = avail["news"]
+        elif el["web_name"] in rotation_flagged:
+            rotation_note = rotation_flagged[el["web_name"]]
         reason = None
         if tag in ("falling", "declining"):
-            reason = "injury" if avail["kind"] in ("out", "doubt") else "rested"
+            if avail["kind"] in ("out", "doubt"):
+                reason = "injury"
+            elif rotation_note:
+                reason = "rotation"
+            else:
+                reason = "rested"
         elif avail["kind"] in ("out", "doubt"):
             reason = "injury"  # still nailed by recent minutes, but freshly flagged
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
             "minutes": mins, "trend": tag, "note": note,
-            "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"], "reason": reason,
+            "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"],
+            "reason": reason, "rotation_note": rotation_note,
         })
     def sort_key(r):
         pri = 0 if r["reason"] is not None else (1 if r["trend"] == "rising" else 2)

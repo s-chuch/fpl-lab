@@ -137,7 +137,7 @@ function chipAlertBanner(D){
 // renders identically on both dashboards.
 function renderGreekGodTab(){
   const G=window.FPL_GREEKGOD||{};
-  const TAG_LABEL={called_it:"Called it","captain talk":"Captain","transfer target":"Transfer",chip:"Chip"};
+  const TAG_LABEL={called_it:"Called it","captain talk":"Captain","transfer target":"Transfer",chip:"Chip","rotation risk":"Rotation"};
   const VERDICT_CLASS={good:"free",bad:"used",mixed:"mid"};
   const mentions=(G.player_mentions||[]).map(m=>`<div class="chip">${esc(m.name)}${m.club?" · "+esc(m.club):""} · ${m.count}</div>`).join("")||`<p class="note">No player mentions tracked yet.</p>`;
   const clubs=(G.club_mentions||[]).map(c=>`<div class="chip">${esc(c.club)} · ${c.count}</div>`).join("")||`<p class="note">No club mentions tracked yet.</p>`;
