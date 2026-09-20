@@ -1,6 +1,6 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": "2026-09-20 19:58 UTC",
+  "generated_at": "2026-09-20 22:04 UTC",
   "post_count": 51,
   "new_since_last_run": 0,
   "earliest": "2026-09-17 03:59 UTC",
@@ -169,6 +169,16 @@ window.FPL_GREEKGOD = {
       "count": 2
     }
   ],
+  "call_grades": {
+    "graded": 0,
+    "pending": 6,
+    "good": 0,
+    "mixed": 0,
+    "bad": 0,
+    "good_pct": null,
+    "mixed_pct": null,
+    "bad_pct": null
+  },
   "calls": [
     {
       "id": "2101654735363137615",
@@ -180,7 +190,8 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "Lewis"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2101613696531218491",
@@ -192,6 +203,15 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "Sávio"
+      ],
+      "graded": [
+        {
+          "player": "Sávio",
+          "kind": "transfer",
+          "gw": 6,
+          "pts": null,
+          "verdict": "pending"
+        }
       ]
     },
     {
@@ -204,7 +224,8 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "Buendía"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2101185558076596361",
@@ -214,7 +235,8 @@ window.FPL_GREEKGOD = {
       "tags": [
         "chip"
       ],
-      "players": []
+      "players": [],
+      "graded": []
     },
     {
       "id": "2101058730515149308",
@@ -229,7 +251,8 @@ window.FPL_GREEKGOD = {
         "Anthony",
         "Thiago",
         "Kevin"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2101053627586789535",
@@ -241,7 +264,8 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "João Pedro"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2101053026358239405",
@@ -253,7 +277,8 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "Thiago"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2101004123709624410",
@@ -267,6 +292,29 @@ window.FPL_GREEKGOD = {
         "White",
         "Palmer",
         "Haaland"
+      ],
+      "graded": [
+        {
+          "player": "White",
+          "kind": "captain",
+          "gw": 6,
+          "pts": null,
+          "verdict": "pending"
+        },
+        {
+          "player": "Palmer",
+          "kind": "captain",
+          "gw": 6,
+          "pts": null,
+          "verdict": "pending"
+        },
+        {
+          "player": "Haaland",
+          "kind": "captain",
+          "gw": 6,
+          "pts": null,
+          "verdict": "pending"
+        }
       ]
     },
     {
@@ -281,6 +329,22 @@ window.FPL_GREEKGOD = {
         "Szoboszlai",
         "Haaland",
         "Fernandes"
+      ],
+      "graded": [
+        {
+          "player": "Szoboszlai",
+          "kind": "captain",
+          "gw": 5,
+          "pts": null,
+          "verdict": "pending"
+        },
+        {
+          "player": "Haaland",
+          "kind": "captain",
+          "gw": 5,
+          "pts": null,
+          "verdict": "pending"
+        }
       ]
     },
     {
@@ -293,7 +357,8 @@ window.FPL_GREEKGOD = {
       ],
       "players": [
         "João Pedro"
-      ]
+      ],
+      "graded": []
     },
     {
       "id": "2100530240850174070",
@@ -303,7 +368,8 @@ window.FPL_GREEKGOD = {
       "tags": [
         "called_it"
       ],
-      "players": []
+      "players": [],
+      "graded": []
     }
   ],
   "posts": [
