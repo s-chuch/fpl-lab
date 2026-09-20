@@ -944,28 +944,18 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0):
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
     return {"threshold": threshold, "min_minutes": min_minutes, "rows": rows, "notable": notable}
 
-def build_form_fdr(boot, team_id, picks_gw, next_fixture_map, min_minutes=90):
-    """Squad players' recent form (FPL's own rolling average points over
-    their last 30 days) against how hard their very next fixture is — one
-    number that separates "in form AND an easy game" from "in form but
-    walking into a tough one", instead of reading the two signals apart.
+def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
+    """Every qualifying player's recent form (FPL's own rolling average
+    points over their last 30 days) against how hard their very next
+    fixture is — one number that separates "in form AND an easy game" from
+    "in form but walking into a tough one", instead of reading the two
+    signals apart. League-wide (like build_value_board), not squad-scoped,
+    so it doubles as a scouting list rather than just auditing your own 15.
     Blank-gameweek players (no next_fixture_map entry) get no ratio, since
     dividing by a missing fixture isn't meaningful."""
-    elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
-    if not picks_gw:
-        return None
-    try:
-        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
-    except Exception as e:
-        _warn(f"build_form_fdr: could not load GW{picks_gw} squad: {e}")
-        return None
-
     rows = []
-    for p in pk.get("picks") or []:
-        el = elements.get(p["element"])
-        if not el:
-            continue
+    for el in boot["elements"]:
         mins = int(el.get("minutes") or 0)
         if mins < min_minutes:
             continue  # too little game time for "form" to mean anything yet
@@ -979,10 +969,15 @@ def build_form_fdr(boot, team_id, picks_gw, next_fixture_map, min_minutes=90):
         ratio = round(form / fdr, 2) if fdr else None
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "cost": el["now_cost"] / 10, "owned_pct": float(el.get("selected_by_percent") or 0),
             "form": form, "fdr": fdr, "fixture": fixture, "ratio": ratio,
         })
     rows.sort(key=lambda r: (r["ratio"] is None, -(r["ratio"] or 0)))
-    return {"min_minutes": min_minutes, "rows": rows}
+    by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for r in rows:
+        if len(by_pos[r["pos"]]) < top_n:
+            by_pos[r["pos"]].append(r)
+    return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
 
 
 DEFCON_THRESHOLD = {"DEF": 10, "MID": 12, "FWD": 12}
@@ -1475,7 +1470,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
-    data["form_fdr"] = build_form_fdr(boot, team_id, plan.get("squad_from_gw"), next_fixture_map)
+    data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
     data["value_board"] = build_value_board(boot)
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))

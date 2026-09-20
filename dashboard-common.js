@@ -109,7 +109,12 @@ function startPriceCountdown(elId){
     // switchover dates don't line up, so a hardcoded clock time would be
     // wrong for a week or two each spring/fall.
     const local=new Intl.DateTimeFormat("en-US",{timeZone:TZ,hour:"numeric",minute:"2-digit",hour12:true,timeZoneName:"short"}).format(new Date(nextTs));
-    el.innerHTML=`<span>Next price change (${esc(local)})</span><b>${esc(fmtCountdown(ms))}</b>`;
+    // "Today"/"Tomorrow" per the viewer's own calendar date, not the UTC one
+    // — near midnight Toronto time, the raw UTC date can already have
+    // rolled over while it's still "today" locally (or vice versa).
+    const dayFmt=d=>new Intl.DateTimeFormat("en-CA",{timeZone:TZ}).format(d);
+    const day=dayFmt(new Date(nextTs))===dayFmt(new Date())?"Today":"Tomorrow";
+    el.innerHTML=`<span>Next price change (${day} ${esc(local)})</span><b>${esc(fmtCountdown(ms))}</b>`;
   };
   tick();
   setInterval(tick,1000);
