@@ -47,10 +47,11 @@ paintTabs();
 function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
 document.getElementById("season").innerHTML=gwTable();
 function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
+function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
 function benchBlock(key,title){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
   const max=Math.max(b.you,b.process,b.hindsight,1);
-  const yours=(b.your_bench||[]).map(x=>`<div class="chip sit">${esc(x[0])} · ${x[1]}</div>`).join("");
+  const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${esc(x[0])} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
   // "They" is the only bar that's a judgment: green if they matched/beat the
   // process benchmark (the best XI knowable pre-deadline), red if they fell
@@ -61,7 +62,7 @@ function benchBlock(key,title){
   return `<div class="card"><h2>${title}</h2>${bar("They",b.you,max,theyKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Their bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
-document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Green They = matched or beat the process benchmark, red They = fell short of it. Process/Hindsight are reference lines, not verdicts.</p>`;
+document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Bars: green They = matched or beat the process benchmark, red They = fell short of it. Process/Hindsight are reference lines, not verdicts. Chips: green = correct sit. Red = process miss. Yellow = variance.</p>`;
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);
