@@ -56,10 +56,16 @@ function benchBlock(key,title){
   const max=Math.max(b.you,b.process,b.hindsight,1);
   const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${esc(x[0])} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
-  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max,"bad")}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
+  // "You" is the only bar that's a judgment: green if you matched/beat the
+  // process benchmark (the best XI knowable pre-deadline), red if you fell
+  // short of it. Process/Hindsight are reference lines, not verdicts — in
+  // particular Hindsight is pure outcome (unknowable in advance), so coloring
+  // it "bad" would imply you should have hit an unhittable target.
+  const youKls=b.you>=b.process?"good":"bad";
+  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max,youKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
-document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Green = correct sit. Red = process miss. Yellow = variance.</p>`;
+document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Bars: green You = matched or beat the process benchmark, red You = fell short of it. Process/Hindsight are reference lines, not verdicts. Chips: green = correct sit. Red = process miss. Yellow = variance.</p>`;
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);

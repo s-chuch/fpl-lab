@@ -52,10 +52,16 @@ function benchBlock(key,title){
   const max=Math.max(b.you,b.process,b.hindsight,1);
   const yours=(b.your_bench||[]).map(x=>`<div class="chip sit">${esc(x[0])} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
-  return `<div class="card"><h2>${title}</h2>${bar("They",b.you,max)}${bar("Process",b.process,max,"mid")}${bar("Hindsight",b.hindsight,max,"bad")}<p class="note">Their bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
+  // "They" is the only bar that's a judgment: green if they matched/beat the
+  // process benchmark (the best XI knowable pre-deadline), red if they fell
+  // short of it. Process/Hindsight are reference lines, not verdicts — in
+  // particular Hindsight is pure outcome (unknowable in advance), so coloring
+  // it "bad" would imply they should have hit an unhittable target.
+  const theyKls=b.you>=b.process?"good":"bad";
+  return `<div class="card"><h2>${title}</h2>${bar("They",b.you,max,theyKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Their bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
-document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Teal = They. Yellow = Process. Red = Hindsight.</p>`;
+document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<p class="note">Green They = matched or beat the process benchmark, red They = fell short of it. Process/Hindsight are reference lines, not verdicts.</p>`;
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);
