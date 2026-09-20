@@ -1033,6 +1033,7 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10):
         tag = "reliable" if per90 >= threshold else ("borderline" if per90 >= threshold * 0.75 else "unlikely")
         return {
             "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
+            "cost": el["now_cost"] / 10, "owned_pct": to_float(el.get("selected_by_percent")) or 0.0,
             "threshold": threshold, "per90": round(per90, 2), "season_total": to_float(el.get("defensive_contribution")),
             "margin": margin, "tag": tag,
         }

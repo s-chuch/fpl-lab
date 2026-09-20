@@ -141,13 +141,13 @@ function renderWildcardWatch(){
   const epByName={};
   if(R){(R.xi_ep||[]).concat(R.bench_ep||[]).forEach(p=>epByName[p.name]=p);}
   const statusKls={out:"neg",doubt:"mid"};
-  const head=`<thead><tr><th style="width:11%">Pos</th><th style="width:29%">Player</th><th style="width:12%">Club</th><th style="width:26%">Fixture</th><th style="width:22%">EP</th></tr></thead>`;
+  const head=`<thead><tr><th style="width:29%">Player</th><th style="width:11%">Pos</th><th style="width:12%">Club</th><th style="width:26%">Fixture</th><th style="width:22%">EP</th></tr></thead>`;
   const row=p=>{
     const rp=epByName[p.name];
     const epVal=rp&&rp.ep_next!=null?rp.ep_next:"–";
     const kls=rp?(statusKls[rp.status]||""):"";
     const tag=p.captain?` <span class="pill used">C</span>`:p.vice?` <span class="pill free">VC</span>`:"";
-    return `<tr><td>${esc(p.pos)}</td><td>${esc(p.name)}${tag}</td><td>${esc(p.club)}</td><td>${esc(p.fixture||"")}</td><td class="${kls}">${epVal}</td></tr>`;
+    return `<tr><td>${esc(p.name)}${tag}</td><td>${esc(p.pos)}</td><td>${esc(p.club)}</td><td>${esc(p.fixture||"")}</td><td class="${kls}">${epVal}</td></tr>`;
   };
   const xiRows=(W.xi||[]).map(row).join("")||`<tr><td colspan="5"><span class="note">No XI captured.</span></td></tr>`;
   const benchRows=(W.bench||[]).map(row).join("")||`<tr><td colspan="5"><span class="note">No bench captured.</span></td></tr>`;
@@ -344,15 +344,15 @@ function renderStrategy(){
   const xgTopRows=(XG.top||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying players yet.</span></td></tr>`;
   const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><ul class="note-list"><li>All squad players with ${XG.min_minutes??"?"}+ mins</li><li>Actual goal involvements (or goals conceded for DEF/GKP) vs FPL's own expected numbers</li><li>${XG.threshold??2}+ difference flagged "due for regression" or "still creating chances" — not a form gut-feel</li></ul><h3>Your squad</h3><table class="table-compact">${xgHead}<tbody>${xgRows}</tbody></table><ul class="legend-list"><li>G+A/xGI = actual goal involvements vs FPL's own expected number</li><li>Diff = G+A minus xGI — red means overperforming (sell-high risk), green means underperforming (patience/buy-low)</li><li>Tag: Sell-high/Buy-low are the attacking signal; D:luck/D:unlucky (DEF/GKP only) flags goals conceded vs expected</li></ul><h3>Top ${XG.top_n??"?"} xGI/90 · league-wide</h3><table class="table-compact">${xgTopHead}<tbody>${xgTopRows}</tbody></table></div>`;
   const DC=D.defcon||{};
-  const dcRow=r=>{
-    const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
-    const kls=r.tag==="reliable"?"pos":r.tag==="borderline"?"mid":"";
-    return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.per90}/${r.threshold}</td><td>${r.season_total??"-"}</td><td class="${kls}">${tagLabel}</td></tr>`;
-  };
+  const dcTagLabel=r=>r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
+  const dcTagCls=r=>r.tag==="reliable"?"pos":r.tag==="borderline"?"mid":"";
   const dcHead=`<thead><tr><th style="width:30%">Player</th><th style="width:11%">Pos</th><th style="width:13%">Club</th><th style="width:19%">P90/Thr</th><th style="width:11%">Tot</th><th style="width:16%">Hits it</th></tr></thead>`;
+  const dcRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.per90}/${r.threshold}</td><td>${r.season_total??"-"}</td><td class="${dcTagCls(r)}">${dcTagLabel(r)}</td></tr>`;
   const dcRows=(DC.rows||[]).map(dcRow).join("")||`<tr><td colspan="6"><span class="note">No qualifying squad players yet.</span></td></tr>`;
-  const dcTopRows=(DC.top||[]).map(dcRow).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
-  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><ul class="note-list"><li>Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold</li><li>"Hits it" = Yes/Close/No — green reliably clears it most matches</li><li>A real differentiator most casual managers ignore</li></ul><h3>Your squad</h3><table class="table-compact">${dcHead}<tbody>${dcRows}</tbody></table><h3>Top ${DC.top_n??"?"} · league-wide</h3><table class="table-compact">${dcHead}<tbody>${dcTopRows}</tbody></table><ul class="legend-list"><li>P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD)</li><li>Tot = season total defensive actions</li></ul></div>`;
+  const dcTopHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:16%">P90/Thr</th><th style="width:16%">Hits it</th></tr></thead>`;
+  const dcTopRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.per90}/${r.threshold}</td><td class="${dcTagCls(r)}">${dcTagLabel(r)}</td></tr>`;
+  const dcTopRows=(DC.top||[]).map(dcTopRow).join("")||`<tr><td colspan="7"><span class="note">No qualifying players yet.</span></td></tr>`;
+  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><ul class="note-list"><li>Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold</li><li>"Hits it" = Yes/Close/No — green reliably clears it most matches</li><li>A real differentiator most casual managers ignore</li></ul><h3>Your squad</h3><table class="table-compact">${dcHead}<tbody>${dcRows}</tbody></table><h3>Top ${DC.top_n??"?"} · league-wide</h3><table class="table-compact">${dcTopHead}<tbody>${dcTopRows}</tbody></table><ul class="legend-list"><li>P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD)</li><li>Tot = season total defensive actions</li></ul></div>`;
   const RR=D.rotation_risk||{};
   const rrGws=RR.gws||[];
   const rrTagLabel={falling:"Falling",declining:"Declining",rising:"Rising",starter:"Starter",fringe:"Fringe",mixed:"Mixed"};
@@ -377,18 +377,18 @@ function renderStrategy(){
   const ffCard=`<div class="card"><h2>Form / FDR ratio</h2><ul class="note-list"><li>Top ${FF.top_n??"?"} per position, league-wide (${FF.min_minutes??"?"}+ mins)</li><li>Recent form ÷ next fixture's difficulty (1 easiest – 5 hardest)</li><li>A hot player facing a hard game and a cold player with a soft one won't read the same as two separate numbers</li></ul>${ffTables}<ul class="legend-list"><li>Form = FPL's own average points over the last 30 days</li><li>Ratio = Form ÷ next fixture's FDR — green ≥2.5 (in form, easy game), red ≤0.8 (cold and/or tough)</li><li>Blank fixture = no ratio</li></ul></div>`;
   const PR=D.price_radar||{};
   const priceRow=r=>{
-    const todayMark=r.changed_today?`<span class="${cls(r.cost_change_today)}">${r.cost_change_today>0?"▲":"▼"}</span> `:"";
-    const deltaCell=`${todayMark}<span class="${cls(r.season_change)}">${sign(r.season_change)}</span>→<span class="${cls(r.expected_season_change)}">${sign(r.expected_season_change)}</span>`;
-    return `<tr><td>${esc(r.name)} <span style="color:var(--muted)">(${esc(r.club)})</span></td><td>£${r.cost.toFixed(1)}</td><td class="${cls(r.momentum)}">${sign(r.momentum)}%</td><td>${deltaCell}</td></tr>`;
+    const todayMark=r.changed_today?`<span class="${cls(r.cost_change_today)}">${r.cost_change_today>0?"▲":"▼"}</span>`:"";
+    const deltaCell=`<span class="${cls(r.season_change)}">${sign(r.season_change)}</span>→<span class="${cls(r.expected_season_change)}">${sign(r.expected_season_change)}</span>`;
+    return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}${todayMark}</td><td>${r.owned_pct}%</td><td class="${cls(r.momentum)}">${sign(r.momentum)}%</td><td>${deltaCell}</td></tr>`;
   };
-  const priceHead=`<thead><tr><th style="width:38%">Player</th><th style="width:14%">Cost</th><th style="width:20%">NetTr</th><th style="width:28%">Price Δ</th></tr></thead>`;
-  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="4"><span class="note">No squad price data yet.</span></td></tr>`;
-  const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="4"><span class="note">No rising candidates right now.</span></td></tr>`;
-  const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="4"><span class="note">No falling candidates right now.</span></td></tr>`;
+  const priceHead=`<thead><tr><th style="width:22%">Player</th><th style="width:9%">Pos</th><th style="width:11%">Club</th><th style="width:11%">Cost</th><th style="width:10%">Own</th><th style="width:14%">NetTr</th><th style="width:23%">Price Δ</th></tr></thead>`;
+  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No squad price data yet.</span></td></tr>`;
+  const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No rising candidates right now.</span></td></tr>`;
+  const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No falling candidates right now.</span></td></tr>`;
   const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><ul class="note-list"><li>Approximated from today's net transfers scaled by ownership</li><li>FPL has never published its exact price-change algorithm</li><li>Treat this as relative momentum for ranking, not a guaranteed call</li></ul><ul class="legend-list"><li>NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players</li><li>Price Δ = total change since the start of the season → projected total if tonight's change follows today's momentum</li><li>▲/▼ = already moved today</li><li>FPL only ever moves a price by £0.1m at a time — the projection is a direction call, not a probability</li></ul><h3>Your squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
   const VB=D.value_board||{};
-  const valueHead=`<thead><tr><th style="width:26%">Player</th><th style="width:14%">Club</th><th style="width:14%">Cost</th><th style="width:14%">Pts</th><th style="width:14%">Own</th><th style="width:18%">Pts/£1m</th></tr></thead>`;
-  const valueRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.points}</td><td>${r.owned_pct}%</td><td><b>${r.value_per_1m}</b></td></tr>`;
+  const valueHead=`<thead><tr><th style="width:26%">Player</th><th style="width:14%">Club</th><th style="width:14%">Cost</th><th style="width:14%">Own</th><th style="width:14%">Pts</th><th style="width:18%">Pts/£1m</th></tr></thead>`;
+  const valueRow=r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.points}</td><td><b>${r.value_per_1m}</b></td></tr>`;
   const valueTables=["GKP","DEF","MID","FWD"].map(pos=>{
     const posRows=((VB.by_pos||{})[pos]||[]).map(valueRow).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
     return `<h3>${pos}</h3><table class="table-compact">${valueHead}<tbody>${posRows}</tbody></table>`;
