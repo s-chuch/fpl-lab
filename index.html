@@ -333,7 +333,9 @@ function renderStrategy(){
     const gcLine=r.xgc!=null?` · Conceded ${r.goals_conceded} vs xGC ${r.xgc}`:"";
     return `<li><span class="who">${esc(r.name)} · ${esc(r.pos)} · ${esc(r.club)}</span><div class="detail">${bits.join(" · ")}<br>G+A ${r.gi} vs xGI ${r.xgi}${gcLine}</div></li>`;
   }).join("")||`<li><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></li>`;
-  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><ul class="note-list"><li>All squad players with ${XG.min_minutes??"?"}+ mins</li><li>Actual goal involvements (or goals conceded for DEF/GKP) vs FPL's own expected numbers</li><li>${XG.threshold??2}+ difference flagged "due for regression" or "still creating chances" — not a form gut-feel</li></ul><ul class="chiplist">${xgRows}</ul></div>`;
+  const xgTopHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:16%">xGI/90</th><th style="width:16%">G+A</th></tr></thead>`;
+  const xgTopRows=(XG.top||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying players yet.</span></td></tr>`;
+  const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><ul class="note-list"><li>All squad players with ${XG.min_minutes??"?"}+ mins</li><li>Actual goal involvements (or goals conceded for DEF/GKP) vs FPL's own expected numbers</li><li>${XG.threshold??2}+ difference flagged "due for regression" or "still creating chances" — not a form gut-feel</li></ul><h3>Your squad</h3><ul class="chiplist">${xgRows}</ul><h3>Top ${XG.top_n??"?"} xGI/90 · league-wide</h3><table class="table-compact">${xgTopHead}<tbody>${xgTopRows}</tbody></table></div>`;
   const DC=D.defcon||{};
   const dcRow=r=>{
     const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
