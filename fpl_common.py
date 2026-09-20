@@ -108,7 +108,7 @@ def norm_keep_case(s):
     return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn")
 
 
-def load_player_index():
+def load_player_index(boot=None):
     """Every current FPL player, keyed for matching against raw (case-preserved)
     source text — this is what lets a scraper discover whichever names are
     actually trending, instead of only checking a hand-maintained watchlist.
@@ -116,8 +116,11 @@ def load_player_index():
     against scraped text they're rarely a problem, but short surnames (Cash,
     King, Cole...) can coincide with ordinary capitalized words often enough
     to not be worth the noise.
+
+    Pass an already-fetched `boot` (bootstrap-static response) to avoid a
+    second network round-trip when the caller also needs events/elements.
     """
-    boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
+    boot = boot or get("https://fantasy.premierleague.com/api/bootstrap-static/")
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     idx, seen = [], set()
     for el in boot["elements"]:
@@ -128,7 +131,7 @@ def load_player_index():
         if match.lower() in seen:
             continue
         seen.add(match.lower())
-        idx.append({"web_name": name, "club": teams.get(el["team"], ""), "match": match})
+        idx.append({"id": el["id"], "web_name": name, "club": teams.get(el["team"], ""), "match": match})
     return idx
 
 

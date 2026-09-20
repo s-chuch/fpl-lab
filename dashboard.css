@@ -26,7 +26,7 @@ section{display:none}section.on{display:block}
 th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase}
 .pos{color:var(--green);font-weight:700}.neg{color:var(--red);font-weight:700}.mid{color:var(--yellow);font-weight:700}
 .pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
-.pill.used{background:#3a1d1a;color:#ffb4a8}.pill.free{background:#16352e;color:#7dffc8}
+.pill.used{background:#3a1d1a;color:#ffb4a8}.pill.free{background:#16352e;color:#7dffc8}.pill.mid{background:#332a10;color:#f3d7a1}
 .xi{display:flex;flex-wrap:wrap;gap:6px}.chip{background:#0C141C;border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:13px}
 .chip.sit{opacity:.55}.chip.ok{border-color:var(--green);color:var(--green)}
 .chip.process{border-color:var(--red);color:var(--red)}

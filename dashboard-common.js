@@ -130,15 +130,22 @@ function chipAlertBanner(D){
 function renderGreekGodTab(){
   const G=window.FPL_GREEKGOD||{};
   const TAG_LABEL={called_it:"Called it","captain talk":"Captain","transfer target":"Transfer",chip:"Chip"};
+  const VERDICT_CLASS={good:"free",bad:"used",mixed:"mid"};
   const mentions=(G.player_mentions||[]).map(m=>`<div class="chip">${esc(m.name)}${m.club?" · "+esc(m.club):""} · ${m.count}</div>`).join("")||`<p class="note">No player mentions tracked yet.</p>`;
   const clubs=(G.club_mentions||[]).map(c=>`<div class="chip">${esc(c.club)} · ${c.count}</div>`).join("")||`<p class="note">No club mentions tracked yet.</p>`;
   const calls=(G.calls||[]).map(c=>{
     const tags=(c.tags||[]).map(t=>`<span class="pill ${t==="called_it"?"free":"used"}">${esc(TAG_LABEL[t]||t)}</span>`).join(" ");
+    const graded=(c.graded||[]).map(g=>{
+      if(g.verdict==="pending") return `<span class="note">${esc(g.player)}: GW${g.gw} not played yet</span>`;
+      return `<span class="pill ${VERDICT_CLASS[g.verdict]||""}">${esc(g.player)} GW${g.gw} · ${g.pts}pt${g.pts===1?"":"s"} (${esc(g.verdict)})</span>`;
+    }).join(" ");
     const link=c.url?`<p class="note"><a href="${safeHref(c.url)}" target="_blank" rel="noopener">View post</a></p>`:"";
-    return `<li><span class="who">${esc(toToronto(c.at))}</span> ${tags}<div class="detail">${esc(c.text||"")}</div>${link}</li>`;
+    return `<li><span class="who">${esc(toToronto(c.at))}</span> ${tags}<div class="detail">${esc(c.text||"")}</div>${graded?`<div class="detail">${graded}</div>`:""}${link}</li>`;
   }).join("")||`<li><span class="note">No captain/transfer/chip calls or predictions tagged yet.</span></li>`;
   const range=(G.earliest&&G.latest)?`${toToronto(G.earliest)} → ${toToronto(G.latest)}`:"—";
-  document.getElementById("greekgod").innerHTML=`<div class="card"><h2>@${esc(G.handle||"greekgodFpl")}</h2><p class="note">${G.post_count??0} posts archived · ${range}</p><p class="note">Live X ingest only started partway through this season — coverage begins from when tracking started, not GW1. "Called it" flags self-referential prediction language for you to judge against what actually happened; it isn't an automated accuracy score.</p></div><div class="card"><h2>Most-mentioned players</h2><div class="xi">${mentions}</div></div><div class="card"><h2>Most-mentioned clubs</h2><div class="xi">${clubs}</div></div><div class="card"><h2>Captain / transfer / chip calls</h2><ul class="chiplist">${calls}</ul></div>`;
+  const cg=G.call_grades||{};
+  const record=cg.graded?`<div class="card"><h2>Captain/transfer call record</h2><p class="note">${cg.good_pct}% good · ${cg.mixed_pct}% mixed · ${cg.bad_pct}% bad — ${cg.graded} graded call${cg.graded===1?"":"s"}${cg.pending?`, ${cg.pending} pending (GW not played yet)`:""}.</p><p class="note">Auto-graded from actual points: a captain call is "good" at 8+ points, "bad" at 2 or fewer; a transfer target is "good" at 6+, "bad" at 1 or fewer. Everything in between is "mixed". This is a blunt heuristic on whichever single GW the call was made for, not a judgment of the underlying reasoning.</p></div>`:"";
+  document.getElementById("greekgod").innerHTML=`<div class="card"><h2>@${esc(G.handle||"greekgodFpl")}</h2><p class="note">${G.post_count??0} posts archived · ${range}</p><p class="note">Live X ingest only started partway through this season — coverage begins from when tracking started, not GW1. "Called it" flags self-referential prediction language for you to judge against what actually happened — that part still isn't automated.</p></div>${record}<div class="card"><h2>Most-mentioned players</h2><div class="xi">${mentions}</div></div><div class="card"><h2>Most-mentioned clubs</h2><div class="xi">${clubs}</div></div><div class="card"><h2>Captain / transfer / chip calls</h2><ul class="chiplist">${calls}</ul></div>`;
 }
 function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
