@@ -463,17 +463,24 @@ def _best_xi(squad):
         picked.append(p); counts[p["pos"]] += 1
     return picked
 
-def _process_xi(squad):
-    """Best legal XI judged only by minutes played, not final points: a bench player
-    only displaces a starter here if they played strictly more minutes — a call you
-    could make without knowing the final scoreline. The real captain is pinned first
-    so the multiplier isn't re-litigated by this heuristic."""
+def _process_xi(squad, mins_key="mins"):
+    """Best legal XI judged only by minutes, not final points: a bench player only
+    displaces a starter here if they played strictly more minutes by `mins_key` — a
+    call you could make without knowing the final scoreline. The real captain is
+    pinned first so the multiplier isn't re-litigated by this heuristic.
+
+    `mins_key` selects WHICH minutes decide who was "nailed on": the default,
+    "mins", is that gameweek's own actual minutes (used by the Free Hit audit,
+    which asks "how would this exact squad's real GW have gone"). bench_audit
+    instead passes "trail_mins" — minutes from the GWs BEFORE the one being
+    judged — since a genuine process call has to be based on what was knowable
+    heading into the deadline, not on minutes that only exist after kickoff."""
     cap_name = next((p["name"] for p in squad if p.get("captain")), None)
     by = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
     for p in squad:
         by[p["pos"]].append(p)
     for pos in by:
-        by[pos].sort(key=lambda x: (x["name"] != cap_name, -x["mins"], not x["started"]))
+        by[pos].sort(key=lambda x: (x["name"] != cap_name, -x[mins_key], not x["started"]))
     picked, counts = [], {k: 0 for k in MINN}
     if by["GKP"]:
         picked.append(by["GKP"][0]); counts["GKP"] = 1
@@ -488,7 +495,7 @@ def _process_xi(squad):
                 continue
             picked.append(p); counts[pos] += 1
     pool = [p for pos in ("DEF", "MID", "FWD") for p in by[pos] if p["name"] not in have()]
-    pool.sort(key=lambda x: (x["name"] != cap_name, -x["mins"], not x["started"]))
+    pool.sort(key=lambda x: (x["name"] != cap_name, -x[mins_key], not x["started"]))
     for p in pool:
         if len(picked) >= 11:
             break
@@ -497,19 +504,36 @@ def _process_xi(squad):
         picked.append(p); counts[p["pos"]] += 1
     return picked
 
-def build_bench_audit(boot, team_id):
+def build_bench_audit(boot, team_id, lookback=3):
+    """`process` grades your bench call against what was knowable BEFORE the
+    deadline, not against what happened in the gameweek itself: a player's
+    "process" minutes are their trailing minutes from the `lookback` finished
+    GWs before the one being judged (a true pre-deadline signal — reusing the
+    gameweek's OWN actual minutes would grade the decision on its outcome,
+    which is exactly the outcome-bias process-vs-outcome is meant to avoid).
+    Early gameweeks with no/short history fall back to fewer prior GWs, and
+    with zero history _process_xi's minutes-tie falls through to whichever
+    player you actually started — the only defensible "process" call when
+    there's no track record yet."""
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
     pmap = {e["id"]: POS[e["element_type"]] for e in boot["elements"]}
+    finished_gws = sorted(e["id"] for e in boot["events"] if e.get("finished"))
+    live_cache = {}
+    def live_for(g):
+        if g not in live_cache:
+            try:
+                live_cache[g] = get(f"https://fantasy.premierleague.com/api/event/{g}/live/").get("elements", [])
+            except Exception as e:
+                _warn(f"build_bench_audit: could not load GW{g} live data: {e}")
+                live_cache[g] = []
+        return live_cache[g]
+
     out = {}
-    for ev in boot["events"]:
-        if not ev.get("finished"):
-            continue
-        gw = ev["id"]
+    for gw in finished_gws:
         try:
             pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
-            live = get(f"https://fantasy.premierleague.com/api/event/{gw}/live/")
         except Exception as e:
-            _warn(f"build_bench_audit: could not load GW{gw} picks/live: {e}")
+            _warn(f"build_bench_audit: could not load GW{gw} picks: {e}")
             continue
         if pk.get("active_chip") == "bboost":
             # Bench Boost makes the whole audit meaningless: every one of the
@@ -518,8 +542,14 @@ def build_bench_audit(boot, team_id):
             # that bench-boosted real score against an 11-man-only process/
             # hindsight XI is an apples-to-oranges number, not a real miss.
             continue
-        pts = {el["id"]: el["stats"]["total_points"] for el in live.get("elements", [])}
-        mins = {el["id"]: el["stats"].get("minutes", 0) for el in live.get("elements", [])}
+        live_elems = live_for(gw)
+        pts = {el["id"]: el["stats"]["total_points"] for el in live_elems}
+        mins = {el["id"]: el["stats"].get("minutes", 0) for el in live_elems}
+        prior_gws = [g for g in finished_gws if g < gw][-lookback:]
+        trail_mins = {}
+        for g in prior_gws:
+            for el in live_for(g):
+                trail_mins[el["id"]] = trail_mins.get(el["id"], 0) + int(el["stats"].get("minutes") or 0)
         cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
         mult = (cap or {}).get("multiplier") or 2
         squad, bench = [], []
@@ -529,6 +559,7 @@ def build_bench_audit(boot, team_id):
                 "pos": pmap.get(p["element"], "MID"),
                 "pts": pts.get(p["element"], 0),
                 "mins": mins.get(p["element"], 0),
+                "trail_mins": trail_mins.get(p["element"], 0),
                 "started": p["position"] <= 11,
                 "captain": bool(p.get("is_captain")),
             }
@@ -541,17 +572,17 @@ def build_bench_audit(boot, team_id):
         raw = sum(p["pts"] for p in best)
         top = max((p["pts"] for p in best), default=0)
         hindsight = raw + top * (mult - 1)
-        proc_xi = _process_xi(squad)
+        proc_xi = _process_xi(squad, mins_key="trail_mins")
         proc_started = {p["name"] for p in proc_xi}
         proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
         process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
-        # "Should have benched" is judged by PROCESS (who was actually nailed
-        # on minutes), not pure outcome — a starter who was clearly playing
-        # but had a quiet points day (e.g. a nailed captain blanking) isn't a
-        # bench mistake, so flagging them via hindsight's points-only best XI
-        # was misleading. `better` now lists actual starters process XI
-        # wouldn't have started, i.e. it wanted a currently-benched player
-        # (by minutes) instead.
+        # "Should have benched" is judged by PROCESS (who was nailed on
+        # trailing minutes heading into this GW), not pure outcome — a
+        # starter who was clearly a fixture but had a quiet points day (e.g.
+        # a nailed captain blanking) isn't a bench mistake, so flagging them
+        # via hindsight's points-only best XI was misleading. `better` now
+        # lists actual starters process XI wouldn't have started, i.e. it
+        # wanted a currently-benched player (by trailing minutes) instead.
         better = [[p["name"], p["pts"]] for p in squad if p["name"] not in proc_started]
         # Per-bench-player verdict, auto-derived instead of hand-typed per GW:
         # "process" = minutes said they should've started (a real misread),
