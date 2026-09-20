@@ -8,13 +8,14 @@
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
 <nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratPrice"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratPrice"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20260920b"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
 <script src="news.js?v=20260917i"></script>
 <script src="x-posts.js?v=20260917i"></script>
 <script src="greekgod-archive.js?v=20260920a"></script>
+<script src="bacalhau-wildcard.js?v=20260920a"></script>
 <script>
 const D=window.FPL_DATA;
 document.getElementById("teamName").textContent=D.team.name;
@@ -24,7 +25,7 @@ startDeadlineBanner(D,"deadlineBanner");
 document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
-  {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"]]},
+  {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
   {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","Player signals"],["stratPrice","Price radar"]]},
   {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"],["greekgod","GreekGod"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
@@ -109,9 +110,20 @@ function renderPlan(){
   const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="7"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
   const ttDcRows=(TT.defcon||[]).map(r=>`<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td>${r.per90}/${r.threshold}</td></tr>`).join("")||`<tr><td colspan="6"><span class="note">No non-owned players reliably hitting the threshold yet.</span></td></tr>`;
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><p class="note">Players Bacalhau doesn't currently own (${TT.min_minutes??"?"}+ mins) with strong underlying numbers — the same signals used to audit their squad, scouted league-wide instead.</p><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:26%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Club</th><th style="width:11%">Cost</th><th style="width:11%">Own</th><th style="width:15%">xGI/90</th><th style="width:15%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:28%">Player</th><th style="width:12%">Pos</th><th style="width:14%">Club</th><th style="width:12%">Cost</th><th style="width:12%">Own</th><th style="width:22%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
-  document.getElementById("plan").innerHTML=`${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
+  const W=window.FPL_WILDCARD_WATCH;
+  const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">Bacalhau has Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad.</div>`:"";
+  document.getElementById("plan").innerHTML=`${wildcardNote}${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Pos</th><th>Player</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
+function renderWildcardWatch(){
+  const W=window.FPL_WILDCARD_WATCH;
+  if(!W){document.getElementById("wildcard").innerHTML=`<div class="card"><h2>Wildcard watch</h2><p class="note">No wildcard squad captured yet.</p></div>`;return;}
+  const row=p=>`<tr><td>${esc(p.pos)}</td><td>${esc(p.name)}${p.captain?` <span class="pill used">C</span>`:p.vice?` <span class="pill free">VC</span>`:""}</td><td>${esc(p.club)}</td><td>${esc(p.fixture||"")}</td></tr>`;
+  const xiRows=(W.xi||[]).map(row).join("")||`<tr><td colspan="4"><span class="note">No XI captured.</span></td></tr>`;
+  const benchRows=(W.bench||[]).map(row).join("")||`<tr><td colspan="4"><span class="note">No bench captured.</span></td></tr>`;
+  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table><thead><tr><th>Pos</th><th>Player</th><th>Club</th><th>Fixture</th></tr></thead><tbody>${xiRows}</tbody></table><p class="note">Bench</p><table><thead><tr><th>Pos</th><th>Player</th><th>Club</th><th>Fixture</th></tr></thead><tbody>${benchRows}</tbody></table></div>`;
+}
+renderWildcardWatch();
 function renderStrategy(){
   const S=D.strategy||{};
   const STATUS_LABEL={used:"Used",open:"Open now",upcoming:"Not open yet",expired:"Expired"};
