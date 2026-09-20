@@ -1080,11 +1080,11 @@ def build_value_board(boot, min_minutes=180, top_n=10):
         row = {
             "name": el["web_name"], "club": teams.get(el["team"], "?"), "cost": cost,
             "points": pts, "minutes": mins, "owned_pct": float(el.get("selected_by_percent") or 0),
-            "value_per_0_1m": round(pts / cost * 0.1, 2),
+            "value_per_1m": round(pts / cost, 2),
         }
         by_pos[POS[el["element_type"]]].append(row)
     for pos in by_pos:
-        by_pos[pos].sort(key=lambda r: -r["value_per_0_1m"])
+        by_pos[pos].sort(key=lambda r: -r["value_per_1m"])
         by_pos[pos] = by_pos[pos][:top_n]
     return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
 
