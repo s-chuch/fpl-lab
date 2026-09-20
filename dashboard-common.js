@@ -101,7 +101,12 @@ function startPriceCountdown(elId){
   const tick=()=>{
     let ms=nextTs-Date.now();
     if(ms<=0){ nextTs=nextLondonMidnight(); ms=nextTs-Date.now(); }
-    el.innerHTML=`<span>Next price change (midnight UK time)</span><b>${esc(fmtCountdown(ms))}</b>`;
+    // Instant is fixed by FPL's rule (midnight UK time); label it in the
+    // viewer's own timezone rather than UK time, since London/Toronto DST
+    // switchover dates don't line up, so a hardcoded clock time would be
+    // wrong for a week or two each spring/fall.
+    const local=new Intl.DateTimeFormat("en-US",{timeZone:TZ,hour:"numeric",minute:"2-digit",hour12:true,timeZoneName:"short"}).format(new Date(nextTs));
+    el.innerHTML=`<span>Next price change (${esc(local)})</span><b>${esc(fmtCountdown(ms))}</b>`;
   };
   tick();
   setInterval(tick,1000);
