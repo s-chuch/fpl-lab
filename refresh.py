@@ -435,11 +435,20 @@ def captain_audit(boot, team_id):
     return out
 
 def _best_xi(squad):
+    """Best legal XI by final points, with the actual captain pinned first —
+    same rule _process_xi uses. Bench-audit's "hindsight" is meant to isolate
+    the LINEUP decision (who started vs. who was benched), not captaincy,
+    which is a separate call graded elsewhere (captain_audit). Without
+    pinning, this would silently re-captain to whoever scored highest in the
+    chosen XI, so a blank captain week showed up as a "bench miss" here even
+    when the actual bench/lineup was fine — bench points have nothing to do
+    with captain points."""
+    cap_name = next((p["name"] for p in squad if p.get("captain")), None)
     by = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
     for p in squad:
         by[p["pos"]].append(p)
     for pos in by:
-        by[pos].sort(key=lambda x: -x["pts"])
+        by[pos].sort(key=lambda x: (x["name"] != cap_name, -x["pts"]))
     picked, counts = [], {k: 0 for k in MINN}
     if by["GKP"]:
         picked.append(by["GKP"][0]); counts["GKP"] = 1
@@ -454,7 +463,7 @@ def _best_xi(squad):
                 continue
             picked.append(p); counts[pos] += 1
     pool = [p for pos in ("DEF", "MID", "FWD") for p in by[pos] if p["name"] not in have()]
-    pool.sort(key=lambda x: -x["pts"])
+    pool.sort(key=lambda x: (x["name"] != cap_name, -x["pts"]))
     for p in pool:
         if len(picked) >= 11:
             break
@@ -570,8 +579,11 @@ def build_bench_audit(boot, team_id, lookback=3):
         started = {p["name"] for p in best}
         you = (pk.get("entry_history") or {}).get("points")
         raw = sum(p["pts"] for p in best)
-        top = max((p["pts"] for p in best), default=0)
-        hindsight = raw + top * (mult - 1)
+        # Actual captain's own points, not a virtual re-captain to whoever
+        # scored highest — hindsight is meant to grade the lineup only, and
+        # _best_xi already guarantees the real captain is in `best`.
+        best_cap_pts = next((p["pts"] for p in best if p["captain"]), 0)
+        hindsight = raw + best_cap_pts * (mult - 1)
         proc_xi = _process_xi(squad, mins_key="trail_mins")
         proc_started = {p["name"] for p in proc_xi}
         proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
