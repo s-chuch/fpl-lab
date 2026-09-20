@@ -367,8 +367,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 19:48 UTC",
-  "generated_at_et": "2026-09-20 3:48 PM ET",
+  "generated_at": "2026-09-20 19:57 UTC",
+  "generated_at_et": "2026-09-20 3:57 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -475,7 +475,7 @@ window.FPL_DATA = {
     "2": 81,
     "3": 51,
     "4": 69,
-    "5": 18,
+    "5": 44,
     "1": 50,
     "2": 81,
     "3": 51,
@@ -4268,8 +4268,8 @@ window.FPL_DATA = {
         "diff": 0.39,
         "tag": "on_track",
         "goals_conceded": 5,
-        "xgc": 4.58,
-        "gc_diff": -0.42,
+        "xgc": 4.63,
+        "gc_diff": -0.37,
         "gc_tag": "on_track"
       },
       {
@@ -4298,10 +4298,10 @@ window.FPL_DATA = {
         "goals": 3,
         "assists": 1,
         "xg": 2.56,
-        "xa": 1.3,
-        "xgi": 3.86,
+        "xa": 1.32,
+        "xgi": 3.88,
         "gi": 4,
-        "diff": 0.14,
+        "diff": 0.12,
         "tag": "on_track"
       },
       {
@@ -4623,8 +4623,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "cost": 5.8,
-        "owned_pct": 25.6,
-        "net_transfers_today": 460196,
+        "owned_pct": 25.7,
+        "net_transfers_today": 463208,
         "momentum": 16.5,
         "changed_today": true,
         "cost_change_today": 0.1,
@@ -4636,7 +4636,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.3,
         "owned_pct": 12.7,
-        "net_transfers_today": -81158,
+        "net_transfers_today": -81685,
         "momentum": -5.9,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -4648,7 +4648,7 @@ window.FPL_DATA = {
         "club": "MUN",
         "cost": 4.3,
         "owned_pct": 7.9,
-        "net_transfers_today": -49777,
+        "net_transfers_today": -49983,
         "momentum": -5.8,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -4660,7 +4660,7 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 4.3,
         "owned_pct": 2.9,
-        "net_transfers_today": -16049,
+        "net_transfers_today": -16184,
         "momentum": -5.1,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -4672,7 +4672,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.9,
         "owned_pct": 26.4,
-        "net_transfers_today": 135519,
+        "net_transfers_today": 136798,
         "momentum": 4.7,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4683,8 +4683,8 @@ window.FPL_DATA = {
         "pos": "FWD",
         "club": "CHE",
         "cost": 7.8,
-        "owned_pct": 67.0,
-        "net_transfers_today": -180023,
+        "owned_pct": 66.9,
+        "net_transfers_today": -181385,
         "momentum": -2.5,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4696,8 +4696,8 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 4.5,
         "owned_pct": 17.8,
-        "net_transfers_today": -47127,
-        "momentum": -2.4,
+        "net_transfers_today": -47768,
+        "momentum": -2.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4708,7 +4708,7 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 7.0,
         "owned_pct": 33.8,
-        "net_transfers_today": -87573,
+        "net_transfers_today": -88669,
         "momentum": -2.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4720,7 +4720,7 @@ window.FPL_DATA = {
         "club": "IPS",
         "cost": 4.0,
         "owned_pct": 6.9,
-        "net_transfers_today": 15138,
+        "net_transfers_today": 15194,
         "momentum": 2.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4732,7 +4732,7 @@ window.FPL_DATA = {
         "club": "MUN",
         "cost": 12.0,
         "owned_pct": 39.4,
-        "net_transfers_today": -67111,
+        "net_transfers_today": -68481,
         "momentum": -1.6,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4744,8 +4744,8 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.0,
         "owned_pct": 25.4,
-        "net_transfers_today": -22276,
-        "momentum": -0.8,
+        "net_transfers_today": -23609,
+        "momentum": -0.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4756,7 +4756,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 7.8,
         "owned_pct": 28.0,
-        "net_transfers_today": -8412,
+        "net_transfers_today": -8098,
         "momentum": -0.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4768,7 +4768,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 15.6,
         "owned_pct": 73.5,
-        "net_transfers_today": 25455,
+        "net_transfers_today": 25709,
         "momentum": 0.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4780,7 +4780,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 5.8,
         "owned_pct": 50.6,
-        "net_transfers_today": 5774,
+        "net_transfers_today": 5804,
         "momentum": 0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4792,7 +4792,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.5,
         "owned_pct": 21.7,
-        "net_transfers_today": 1001,
+        "net_transfers_today": 830,
         "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -4806,8 +4806,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.5,
         "owned_pct": 2.6,
-        "net_transfers_today": 157140,
-        "momentum": 55.3,
+        "net_transfers_today": 159677,
+        "momentum": 56.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4818,8 +4818,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.3,
-        "net_transfers_today": 15780,
-        "momentum": 48.2,
+        "net_transfers_today": 15886,
+        "momentum": 48.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4830,8 +4830,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 4.5,
         "owned_pct": 0.2,
-        "net_transfers_today": 9258,
-        "momentum": 42.4,
+        "net_transfers_today": 9291,
+        "momentum": 42.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4841,9 +4841,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BRE",
         "cost": 6.1,
-        "owned_pct": 9.4,
-        "net_transfers_today": 181506,
-        "momentum": 17.7,
+        "owned_pct": 9.5,
+        "net_transfers_today": 185312,
+        "momentum": 17.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1
@@ -4853,8 +4853,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "cost": 5.8,
-        "owned_pct": 25.6,
-        "net_transfers_today": 460196,
+        "owned_pct": 25.7,
+        "net_transfers_today": 463208,
         "momentum": 16.5,
         "changed_today": true,
         "cost_change_today": 0.1,
@@ -4866,8 +4866,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 5.0,
-        "net_transfers_today": 76870,
-        "momentum": 14.1,
+        "net_transfers_today": 77633,
+        "momentum": 14.2,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1
@@ -4878,8 +4878,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 5.5,
         "owned_pct": 2.2,
-        "net_transfers_today": 29718,
-        "momentum": 12.4,
+        "net_transfers_today": 30052,
+        "momentum": 12.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4890,8 +4890,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.5,
         "owned_pct": 0.3,
-        "net_transfers_today": 3826,
-        "momentum": 11.7,
+        "net_transfers_today": 3868,
+        "momentum": 11.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4904,8 +4904,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 5.1,
-        "net_transfers_today": -110093,
-        "momentum": -19.8,
+        "net_transfers_today": -110670,
+        "momentum": -19.9,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
@@ -4916,8 +4916,8 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.2,
         "owned_pct": 1.8,
-        "net_transfers_today": -22835,
-        "momentum": -11.6,
+        "net_transfers_today": -23005,
+        "momentum": -11.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.3
@@ -4928,8 +4928,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 2.0,
-        "net_transfers_today": -22987,
-        "momentum": -10.5,
+        "net_transfers_today": -23120,
+        "momentum": -10.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0
@@ -4940,8 +4940,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.9,
         "owned_pct": 0.3,
-        "net_transfers_today": -2698,
-        "momentum": -8.2,
+        "net_transfers_today": -2709,
+        "momentum": -8.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4952,8 +4952,8 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 6.9,
         "owned_pct": 1.9,
-        "net_transfers_today": -15818,
-        "momentum": -7.6,
+        "net_transfers_today": -16016,
+        "momentum": -7.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1
@@ -4964,23 +4964,11 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 5.6,
         "owned_pct": 10.4,
-        "net_transfers_today": -82684,
+        "net_transfers_today": -83170,
         "momentum": -7.3,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.1
-      },
-      {
-        "name": "James",
-        "pos": "DEF",
-        "club": "CHE",
-        "cost": 5.4,
-        "owned_pct": 6.2,
-        "net_transfers_today": -42365,
-        "momentum": -6.3,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": -0.1
       },
       {
         "name": "Awoniyi",
@@ -4988,10 +4976,22 @@ window.FPL_DATA = {
         "club": "COV",
         "cost": 5.4,
         "owned_pct": 0.4,
-        "net_transfers_today": -2767,
-        "momentum": -6.3,
+        "net_transfers_today": -2784,
+        "momentum": -6.4,
         "changed_today": true,
         "cost_change_today": -0.1,
+        "season_change": -0.1
+      },
+      {
+        "name": "James",
+        "pos": "DEF",
+        "club": "CHE",
+        "cost": 5.4,
+        "owned_pct": 6.2,
+        "net_transfers_today": -42706,
+        "momentum": -6.3,
+        "changed_today": false,
+        "cost_change_today": 0.0,
         "season_change": -0.1
       }
     ]
@@ -5499,7 +5499,7 @@ window.FPL_DATA = {
           "points": 34,
           "minutes": 450,
           "owned_pct": 12.0,
-          "value_per_0_1m": 0.74
+          "value_per_1m": 7.39
         },
         {
           "name": "Trafford",
@@ -5508,7 +5508,7 @@ window.FPL_DATA = {
           "points": 28,
           "minutes": 450,
           "owned_pct": 5.4,
-          "value_per_0_1m": 0.56
+          "value_per_1m": 5.6
         },
         {
           "name": "Verbruggen",
@@ -5517,7 +5517,7 @@ window.FPL_DATA = {
           "points": 23,
           "minutes": 450,
           "owned_pct": 21.7,
-          "value_per_0_1m": 0.51
+          "value_per_1m": 5.11
         },
         {
           "name": "Raya",
@@ -5526,7 +5526,7 @@ window.FPL_DATA = {
           "points": 30,
           "minutes": 450,
           "owned_pct": 41.9,
-          "value_per_0_1m": 0.5
+          "value_per_1m": 5.0
         },
         {
           "name": "A.Becker",
@@ -5535,7 +5535,7 @@ window.FPL_DATA = {
           "points": 27,
           "minutes": 450,
           "owned_pct": 3.9,
-          "value_per_0_1m": 0.49
+          "value_per_1m": 4.91
         },
         {
           "name": "Pickford",
@@ -5544,7 +5544,7 @@ window.FPL_DATA = {
           "points": 25,
           "minutes": 450,
           "owned_pct": 9.1,
-          "value_per_0_1m": 0.45
+          "value_per_1m": 4.55
         },
         {
           "name": "Kelleher",
@@ -5553,7 +5553,7 @@ window.FPL_DATA = {
           "points": 20,
           "minutes": 450,
           "owned_pct": 6.1,
-          "value_per_0_1m": 0.4
+          "value_per_1m": 4.0
         },
         {
           "name": "Leno",
@@ -5562,7 +5562,7 @@ window.FPL_DATA = {
           "points": 18,
           "minutes": 450,
           "owned_pct": 3.2,
-          "value_per_0_1m": 0.4
+          "value_per_1m": 4.0
         },
         {
           "name": "Kinsky",
@@ -5571,7 +5571,7 @@ window.FPL_DATA = {
           "points": 18,
           "minutes": 450,
           "owned_pct": 17.8,
-          "value_per_0_1m": 0.4
+          "value_per_1m": 4.0
         },
         {
           "name": "Rushworth",
@@ -5580,7 +5580,7 @@ window.FPL_DATA = {
           "points": 16,
           "minutes": 450,
           "owned_pct": 0.8,
-          "value_per_0_1m": 0.36
+          "value_per_1m": 3.56
         }
       ],
       "DEF": [
@@ -5591,7 +5591,7 @@ window.FPL_DATA = {
           "points": 42,
           "minutes": 365,
           "owned_pct": 6.4,
-          "value_per_0_1m": 0.91
+          "value_per_1m": 9.13
         },
         {
           "name": "De Cuyper",
@@ -5600,7 +5600,7 @@ window.FPL_DATA = {
           "points": 38,
           "minutes": 423,
           "owned_pct": 26.4,
-          "value_per_0_1m": 0.78
+          "value_per_1m": 7.76
         },
         {
           "name": "Tarkowski",
@@ -5609,7 +5609,7 @@ window.FPL_DATA = {
           "points": 43,
           "minutes": 450,
           "owned_pct": 15.1,
-          "value_per_0_1m": 0.7
+          "value_per_1m": 7.05
         },
         {
           "name": "Gvardiol",
@@ -5618,16 +5618,7 @@ window.FPL_DATA = {
           "points": 37,
           "minutes": 434,
           "owned_pct": 26.3,
-          "value_per_0_1m": 0.65
-        },
-        {
-          "name": "Vuskovic",
-          "club": "BHA",
-          "cost": 5.0,
-          "points": 32,
-          "minutes": 437,
-          "owned_pct": 3.4,
-          "value_per_0_1m": 0.64
+          "value_per_1m": 6.49
         },
         {
           "name": "Ajayi",
@@ -5636,7 +5627,16 @@ window.FPL_DATA = {
           "points": 27,
           "minutes": 423,
           "owned_pct": 14.2,
-          "value_per_0_1m": 0.64
+          "value_per_1m": 6.43
+        },
+        {
+          "name": "Vuskovic",
+          "club": "BHA",
+          "cost": 5.0,
+          "points": 32,
+          "minutes": 437,
+          "owned_pct": 3.4,
+          "value_per_1m": 6.4
         },
         {
           "name": "Egan",
@@ -5645,7 +5645,7 @@ window.FPL_DATA = {
           "points": 26,
           "minutes": 437,
           "owned_pct": 7.1,
-          "value_per_0_1m": 0.63
+          "value_per_1m": 6.34
         },
         {
           "name": "Davis",
@@ -5654,7 +5654,7 @@ window.FPL_DATA = {
           "points": 25,
           "minutes": 450,
           "owned_pct": 6.9,
-          "value_per_0_1m": 0.62
+          "value_per_1m": 6.25
         },
         {
           "name": "Mendy",
@@ -5663,7 +5663,7 @@ window.FPL_DATA = {
           "points": 25,
           "minutes": 249,
           "owned_pct": 6.4,
-          "value_per_0_1m": 0.61
+          "value_per_1m": 6.1
         },
         {
           "name": "Thomas",
@@ -5672,7 +5672,7 @@ window.FPL_DATA = {
           "points": 24,
           "minutes": 437,
           "owned_pct": 8.6,
-          "value_per_0_1m": 0.6
+          "value_per_1m": 6.0
         }
       ],
       "MID": [
@@ -5682,8 +5682,8 @@ window.FPL_DATA = {
           "cost": 5.8,
           "points": 47,
           "minutes": 450,
-          "owned_pct": 25.6,
-          "value_per_0_1m": 0.81
+          "owned_pct": 25.7,
+          "value_per_1m": 8.1
         },
         {
           "name": "Schade",
@@ -5691,8 +5691,8 @@ window.FPL_DATA = {
           "cost": 6.1,
           "points": 39,
           "minutes": 447,
-          "owned_pct": 9.4,
-          "value_per_0_1m": 0.64
+          "owned_pct": 9.5,
+          "value_per_1m": 6.39
         },
         {
           "name": "Belloumi",
@@ -5701,7 +5701,7 @@ window.FPL_DATA = {
           "points": 31,
           "minutes": 394,
           "owned_pct": 4.6,
-          "value_per_0_1m": 0.61
+          "value_per_1m": 6.08
         },
         {
           "name": "Janelt",
@@ -5710,7 +5710,7 @@ window.FPL_DATA = {
           "points": 28,
           "minutes": 450,
           "owned_pct": 2.5,
-          "value_per_0_1m": 0.56
+          "value_per_1m": 5.6
         },
         {
           "name": "Tavernier",
@@ -5719,7 +5719,7 @@ window.FPL_DATA = {
           "points": 31,
           "minutes": 424,
           "owned_pct": 6.6,
-          "value_per_0_1m": 0.51
+          "value_per_1m": 5.08
         },
         {
           "name": "Scott",
@@ -5728,7 +5728,7 @@ window.FPL_DATA = {
           "points": 30,
           "minutes": 446,
           "owned_pct": 5.7,
-          "value_per_0_1m": 0.49
+          "value_per_1m": 4.92
         },
         {
           "name": "Gomez",
@@ -5737,7 +5737,7 @@ window.FPL_DATA = {
           "points": 24,
           "minutes": 433,
           "owned_pct": 4.1,
-          "value_per_0_1m": 0.48
+          "value_per_1m": 4.8
         },
         {
           "name": "Barnes",
@@ -5746,7 +5746,7 @@ window.FPL_DATA = {
           "points": 28,
           "minutes": 450,
           "owned_pct": 5.0,
-          "value_per_0_1m": 0.46
+          "value_per_1m": 4.59
         },
         {
           "name": "Stach",
@@ -5755,7 +5755,7 @@ window.FPL_DATA = {
           "points": 27,
           "minutes": 447,
           "owned_pct": 2.6,
-          "value_per_0_1m": 0.45
+          "value_per_1m": 4.5
         },
         {
           "name": "Yalcouy\u00e9",
@@ -5764,7 +5764,7 @@ window.FPL_DATA = {
           "points": 20,
           "minutes": 236,
           "owned_pct": 4.0,
-          "value_per_0_1m": 0.44
+          "value_per_1m": 4.44
         }
       ],
       "FWD": [
@@ -5775,7 +5775,7 @@ window.FPL_DATA = {
           "points": 28,
           "minutes": 353,
           "owned_pct": 2.6,
-          "value_per_0_1m": 0.51
+          "value_per_1m": 5.09
         },
         {
           "name": "Emersonn",
@@ -5784,7 +5784,7 @@ window.FPL_DATA = {
           "points": 26,
           "minutes": 317,
           "owned_pct": 3.4,
-          "value_per_0_1m": 0.47
+          "value_per_1m": 4.73
         },
         {
           "name": "Jo\u00e3o Pedro",
@@ -5792,8 +5792,8 @@ window.FPL_DATA = {
           "cost": 7.8,
           "points": 33,
           "minutes": 360,
-          "owned_pct": 67.0,
-          "value_per_0_1m": 0.42
+          "owned_pct": 66.9,
+          "value_per_1m": 4.23
         },
         {
           "name": "Brobbey",
@@ -5802,7 +5802,7 @@ window.FPL_DATA = {
           "points": 24,
           "minutes": 399,
           "owned_pct": 6.1,
-          "value_per_0_1m": 0.42
+          "value_per_1m": 4.21
         },
         {
           "name": "Calvert-Lewin",
@@ -5811,16 +5811,7 @@ window.FPL_DATA = {
           "points": 22,
           "minutes": 419,
           "owned_pct": 25.4,
-          "value_per_0_1m": 0.37
-        },
-        {
-          "name": "Barry",
-          "club": "EVE",
-          "cost": 5.6,
-          "points": 20,
-          "minutes": 417,
-          "owned_pct": 8.1,
-          "value_per_0_1m": 0.36
+          "value_per_1m": 3.67
         },
         {
           "name": "Isak",
@@ -5829,7 +5820,16 @@ window.FPL_DATA = {
           "points": 33,
           "minutes": 413,
           "owned_pct": 22.0,
-          "value_per_0_1m": 0.36
+          "value_per_1m": 3.63
+        },
+        {
+          "name": "Barry",
+          "club": "EVE",
+          "cost": 5.6,
+          "points": 20,
+          "minutes": 417,
+          "owned_pct": 8.1,
+          "value_per_1m": 3.57
         },
         {
           "name": "Evanilson",
@@ -5838,7 +5838,7 @@ window.FPL_DATA = {
           "points": 18,
           "minutes": 424,
           "owned_pct": 3.2,
-          "value_per_0_1m": 0.3
+          "value_per_1m": 3.0
         },
         {
           "name": "Havertz",
@@ -5847,7 +5847,7 @@ window.FPL_DATA = {
           "points": 19,
           "minutes": 437,
           "owned_pct": 8.5,
-          "value_per_0_1m": 0.25
+          "value_per_1m": 2.5
         },
         {
           "name": "Haaland",
@@ -5856,7 +5856,7 @@ window.FPL_DATA = {
           "points": 39,
           "minutes": 450,
           "owned_pct": 73.5,
-          "value_per_0_1m": 0.25
+          "value_per_1m": 2.5
         }
       ]
     }
