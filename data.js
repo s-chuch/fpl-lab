@@ -367,8 +367,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 22:51 UTC",
-  "generated_at_et": "2026-09-20 6:51 PM ET",
+  "generated_at": "2026-09-20 22:58 UTC",
+  "generated_at_et": "2026-09-20 6:58 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -745,9 +745,9 @@ window.FPL_DATA = {
       }
     },
     "transfer": {
-      "ft_available": 2,
+      "ft_available": 4,
       "action": "ROLL",
-      "reason": "You have 2 FT. No forced move. Bank it.",
+      "reason": "You have 4 FT. No forced move. Bank it.",
       "move": null,
       "fh_unused": false
     },
@@ -4033,7 +4033,7 @@ window.FPL_DATA = {
         ]
       }
     ],
-    "free_transfers": 2,
+    "free_transfers": 4,
     "hits": {
       "total_cost": 0,
       "total_moves_net": 0,

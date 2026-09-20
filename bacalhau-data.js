@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 22:51 UTC",
-  "generated_at_et": "2026-09-20 6:51 PM ET",
+  "generated_at": "2026-09-20 22:58 UTC",
+  "generated_at_et": "2026-09-20 6:58 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -601,9 +601,9 @@ window.FPL_DATA = {
     ],
     "availability": {},
     "transfer": {
-      "ft_available": 1,
+      "ft_available": 2,
       "action": "ROLL",
-      "reason": "You have 1 FT. FH unused \u2014 roll so the FT returns with the original squad.",
+      "reason": "You have 2 FT. FH unused \u2014 roll so the FT returns with the original squad.",
       "move": null,
       "fh_unused": true
     },
@@ -3620,7 +3620,7 @@ window.FPL_DATA = {
         ]
       }
     ],
-    "free_transfers": 1,
+    "free_transfers": 2,
     "hits": {
       "total_cost": 0,
       "total_moves_net": 0,
