@@ -8,7 +8,7 @@
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
 <nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="strategy"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratPrice"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20260920a"></script>
 <script src="data.js?v=20260918e"></script>
@@ -27,7 +27,7 @@ document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"]]},
-  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Transfers"]]},
+  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","Player signals"],["stratPrice","Price radar"]]},
   {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
@@ -316,7 +316,10 @@ function renderStrategy(){
   const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No rising candidates right now.</span></td></tr>`;
   const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="7"><span class="note">No falling candidates right now.</span></td></tr>`;
   const priceCard=`<div class="card"><h2>Price-change radar</h2><p class="note">Approximated from today's net transfers scaled by ownership — FPL has never published its exact price-change algorithm, so treat this as relative momentum for ranking, not a guaranteed call.</p><p class="legend">Own% = ownership share. NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players. Chg = price move already applied today.</p><h3>Your squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table></div>`;
-  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div><div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table class="table-compact"><thead><tr><th style="width:15%">GW</th><th style="width:18%">FDR</th><th style="width:67%">Flags</th></tr></thead><tbody>${fRows}</tbody></table><p class="legend">FDR = fixture difficulty rating (1 easiest – 5 hardest), averaged across your squad's clubs playing that week.</p></div>${xgCard}${dcCard}${rrCard}${priceCard}`;
+  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div>`;
+  document.getElementById("stratFixtures").innerHTML=`<div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table class="table-compact"><thead><tr><th style="width:15%">GW</th><th style="width:18%">FDR</th><th style="width:67%">Flags</th></tr></thead><tbody>${fRows}</tbody></table><p class="legend">FDR = fixture difficulty rating (1 easiest – 5 hardest), averaged across your squad's clubs playing that week.</p></div>`;
+  document.getElementById("stratPlayers").innerHTML=`${xgCard}${dcCard}${rrCard}`;
+  document.getElementById("stratPrice").innerHTML=priceCard;
 }
 renderStrategy();
 document.getElementById("foot").innerHTML=`<a href="bacalhau.html">Bacalhau</a> · Leagues: Overall + ESL + Decision.`;
