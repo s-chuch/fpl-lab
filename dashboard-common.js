@@ -52,7 +52,10 @@ function fmtCountdown(ms){
   if(ms<=0) return "Locked";
   const s=Math.floor(ms/1000);
   const d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
-  if(d>0) return d+"d "+h+"h "+m+"m";
+  // Always includes seconds, even at day-scale — without them, a tick every
+  // 1000ms is invisible for minutes at a time and reads as frozen rather
+  // than live (this was reported as "not counting down" for a far-off GW).
+  if(d>0) return d+"d "+h+"h "+m+"m "+sec+"s";
   if(h>0) return h+"h "+m+"m "+sec+"s";
   return m+"m "+sec+"s";
 }
