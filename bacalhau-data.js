@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 22:58 UTC",
-  "generated_at_et": "2026-09-20 6:58 PM ET",
+  "generated_at": "2026-09-20 23:02 UTC",
+  "generated_at_et": "2026-09-20 7:02 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -4189,15 +4189,15 @@ window.FPL_DATA = {
         "name": "Raya",
         "pos": "GKP",
         "club": "ARS",
-        "cost": 6.0,
+        "cost": 6.1,
         "owned_pct": 42.0,
         "net_transfers_today": 57990,
         "momentum": 1.3,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0,
+        "changed_today": true,
+        "cost_change_today": 0.1,
+        "season_change": 0.1,
         "expected_change": 0.1,
-        "expected_season_change": 0.1
+        "expected_season_change": 0.2
       },
       {
         "name": "Walle Egeli",
@@ -4303,15 +4303,15 @@ window.FPL_DATA = {
         "name": "Kostoulas",
         "pos": "FWD",
         "club": "BHA",
-        "cost": 5.5,
+        "cost": 5.6,
         "owned_pct": 2.8,
         "net_transfers_today": 177732,
         "momentum": 58.1,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": 0.0,
+        "changed_today": true,
+        "cost_change_today": 0.1,
+        "season_change": 0.1,
         "expected_change": 0.1,
-        "expected_season_change": 0.1
+        "expected_season_change": 0.2
       },
       {
         "name": "Manzambi",
@@ -5005,11 +5005,11 @@ window.FPL_DATA = {
         {
           "name": "Raya",
           "club": "ARS",
-          "cost": 6.0,
+          "cost": 6.1,
           "points": 30,
           "minutes": 450,
           "owned_pct": 42.0,
-          "value_per_1m": 5.0
+          "value_per_1m": 4.92
         },
         {
           "name": "A.Becker",
@@ -5254,11 +5254,11 @@ window.FPL_DATA = {
         {
           "name": "Kostoulas",
           "club": "BHA",
-          "cost": 5.5,
+          "cost": 5.6,
           "points": 28,
           "minutes": 353,
           "owned_pct": 2.8,
-          "value_per_1m": 5.09
+          "value_per_1m": 5.0
         },
         {
           "name": "Emersonn",
@@ -5346,115 +5346,456 @@ window.FPL_DATA = {
   },
   "form_fdr": {
     "min_minutes": 90,
-    "rows": [
-      {
-        "name": "Tarkowski",
-        "pos": "DEF",
-        "club": "EVE",
-        "form": 8.6,
-        "fdr": 2,
-        "fixture": "HUL (A)",
-        "ratio": 4.3
-      },
-      {
-        "name": "Gro\u00df",
-        "pos": "MID",
-        "club": "BHA",
-        "form": 9.4,
-        "fdr": 3,
-        "fixture": "SUN (A)",
-        "ratio": 3.13
-      },
-      {
-        "name": "Raya",
-        "pos": "GKP",
-        "club": "ARS",
-        "form": 6.0,
-        "fdr": 2,
-        "fixture": "LEE (H)",
-        "ratio": 3.0
-      },
-      {
-        "name": "Calafiori",
-        "pos": "DEF",
-        "club": "ARS",
-        "form": 5.0,
-        "fdr": 2,
-        "fixture": "LEE (H)",
-        "ratio": 2.5
-      },
-      {
-        "name": "Belloumi",
-        "pos": "MID",
-        "club": "HUL",
-        "form": 6.2,
-        "fdr": 3,
-        "fixture": "EVE (H)",
-        "ratio": 2.07
-      },
-      {
-        "name": "B.Fernandes",
-        "pos": "MID",
-        "club": "MUN",
-        "form": 6.2,
-        "fdr": 3,
-        "fixture": "TOT (H)",
-        "ratio": 2.07
-      },
-      {
-        "name": "Dewsbury-Hall",
-        "pos": "MID",
-        "club": "EVE",
-        "form": 4.0,
-        "fdr": 2,
-        "fixture": "HUL (A)",
-        "ratio": 2.0
-      },
-      {
-        "name": "Haaland",
-        "pos": "FWD",
-        "club": "MCI",
-        "form": 7.8,
-        "fdr": 4,
-        "fixture": "LIV (A)",
-        "ratio": 1.95
-      },
-      {
-        "name": "Ajayi",
-        "pos": "DEF",
-        "club": "HUL",
-        "form": 5.4,
-        "fdr": 3,
-        "fixture": "EVE (H)",
-        "ratio": 1.8
-      },
-      {
-        "name": "Mitchell",
-        "pos": "DEF",
-        "club": "CRY",
-        "form": 4.8,
-        "fdr": 3,
-        "fixture": "NFO (H)",
-        "ratio": 1.6
-      },
-      {
-        "name": "N.Williams",
-        "pos": "DEF",
-        "club": "NFO",
-        "form": 3.8,
-        "fdr": 3,
-        "fixture": "CRY (A)",
-        "ratio": 1.27
-      },
-      {
-        "name": "Szoboszlai",
-        "pos": "MID",
-        "club": "LIV",
-        "form": 4.0,
-        "fdr": 4,
-        "fixture": "MCI (H)",
-        "ratio": 1.0
-      }
-    ]
+    "top_n": 10,
+    "by_pos": {
+      "GKP": [
+        {
+          "name": "Raya",
+          "pos": "GKP",
+          "club": "ARS",
+          "cost": 6.1,
+          "owned_pct": 42.0,
+          "form": 6.0,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 3.0
+        },
+        {
+          "name": "Pickford",
+          "pos": "GKP",
+          "club": "EVE",
+          "cost": 5.5,
+          "owned_pct": 9.1,
+          "form": 5.0,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 2.5
+        },
+        {
+          "name": "Tzolakis",
+          "pos": "GKP",
+          "club": "HUL",
+          "cost": 4.6,
+          "owned_pct": 12.0,
+          "form": 6.8,
+          "fdr": 3,
+          "fixture": "EVE (H)",
+          "ratio": 2.27
+        },
+        {
+          "name": "Rushworth",
+          "pos": "GKP",
+          "club": "COV",
+          "cost": 4.5,
+          "owned_pct": 0.8,
+          "form": 3.8,
+          "fdr": 2,
+          "fixture": "NEW (H)",
+          "ratio": 1.9
+        },
+        {
+          "name": "Leno",
+          "pos": "GKP",
+          "club": "FUL",
+          "cost": 4.5,
+          "owned_pct": 3.2,
+          "form": 3.6,
+          "fdr": 2,
+          "fixture": "IPS (A)",
+          "ratio": 1.8
+        },
+        {
+          "name": "Verbruggen",
+          "pos": "GKP",
+          "club": "BHA",
+          "cost": 4.5,
+          "owned_pct": 21.7,
+          "form": 4.6,
+          "fdr": 3,
+          "fixture": "SUN (A)",
+          "ratio": 1.53
+        },
+        {
+          "name": "Horn\u00ed\u010dek",
+          "pos": "GKP",
+          "club": "NEW",
+          "cost": 5.0,
+          "owned_pct": 1.5,
+          "form": 2.8,
+          "fdr": 2,
+          "fixture": "COV (A)",
+          "ratio": 1.4
+        },
+        {
+          "name": "A.Becker",
+          "pos": "GKP",
+          "club": "LIV",
+          "cost": 5.5,
+          "owned_pct": 3.9,
+          "form": 5.4,
+          "fdr": 4,
+          "fixture": "MCI (H)",
+          "ratio": 1.35
+        },
+        {
+          "name": "Trafford",
+          "pos": "GKP",
+          "club": "LEE",
+          "cost": 5.0,
+          "owned_pct": 5.4,
+          "form": 5.6,
+          "fdr": 5,
+          "fixture": "ARS (A)",
+          "ratio": 1.12
+        },
+        {
+          "name": "Roefs",
+          "pos": "GKP",
+          "club": "SUN",
+          "cost": 4.9,
+          "owned_pct": 2.5,
+          "form": 2.2,
+          "fdr": 2,
+          "fixture": "BHA (H)",
+          "ratio": 1.1
+        }
+      ],
+      "DEF": [
+        {
+          "name": "Tarkowski",
+          "pos": "DEF",
+          "club": "EVE",
+          "cost": 6.1,
+          "owned_pct": 15.2,
+          "form": 8.6,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 4.3
+        },
+        {
+          "name": "Maitland-Niles",
+          "pos": "DEF",
+          "club": "EVE",
+          "cost": 4.5,
+          "owned_pct": 1.2,
+          "form": 7.0,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 3.5
+        },
+        {
+          "name": "Hall",
+          "pos": "DEF",
+          "club": "NEW",
+          "cost": 5.2,
+          "owned_pct": 16.0,
+          "form": 6.2,
+          "fdr": 2,
+          "fixture": "COV (A)",
+          "ratio": 3.1
+        },
+        {
+          "name": "Branthwaite",
+          "pos": "DEF",
+          "club": "EVE",
+          "cost": 5.5,
+          "owned_pct": 2.3,
+          "form": 5.4,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 2.7
+        },
+        {
+          "name": "Mykolenko",
+          "pos": "DEF",
+          "club": "EVE",
+          "cost": 4.6,
+          "owned_pct": 4.2,
+          "form": 5.4,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 2.7
+        },
+        {
+          "name": "Thomas",
+          "pos": "DEF",
+          "club": "COV",
+          "cost": 4.0,
+          "owned_pct": 8.6,
+          "form": 5.2,
+          "fdr": 2,
+          "fixture": "NEW (H)",
+          "ratio": 2.6
+        },
+        {
+          "name": "De Cuyper",
+          "pos": "DEF",
+          "club": "BHA",
+          "cost": 4.9,
+          "owned_pct": 26.5,
+          "form": 7.6,
+          "fdr": 3,
+          "fixture": "SUN (A)",
+          "ratio": 2.53
+        },
+        {
+          "name": "Gabriel",
+          "pos": "DEF",
+          "club": "ARS",
+          "cost": 8.0,
+          "owned_pct": 22.9,
+          "form": 5.0,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 2.5
+        },
+        {
+          "name": "Calafiori",
+          "pos": "DEF",
+          "club": "ARS",
+          "cost": 5.8,
+          "owned_pct": 50.6,
+          "form": 5.0,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 2.5
+        },
+        {
+          "name": "Davis",
+          "pos": "DEF",
+          "club": "IPS",
+          "cost": 4.0,
+          "owned_pct": 6.9,
+          "form": 5.0,
+          "fdr": 2,
+          "fixture": "FUL (H)",
+          "ratio": 2.5
+        }
+      ],
+      "MID": [
+        {
+          "name": "Gro\u00df",
+          "pos": "MID",
+          "club": "BHA",
+          "cost": 5.8,
+          "owned_pct": 25.9,
+          "form": 9.4,
+          "fdr": 3,
+          "fixture": "SUN (A)",
+          "ratio": 3.13
+        },
+        {
+          "name": "Saka",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 9.5,
+          "owned_pct": 13.4,
+          "form": 5.8,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 2.9
+        },
+        {
+          "name": "Barnes",
+          "pos": "MID",
+          "club": "NEW",
+          "cost": 6.1,
+          "owned_pct": 5.1,
+          "form": 5.6,
+          "fdr": 2,
+          "fixture": "COV (A)",
+          "ratio": 2.8
+        },
+        {
+          "name": "King",
+          "pos": "MID",
+          "club": "FUL",
+          "cost": 5.5,
+          "owned_pct": 2.3,
+          "form": 4.8,
+          "fdr": 2,
+          "fixture": "IPS (A)",
+          "ratio": 2.4
+        },
+        {
+          "name": "\u00d8degaard",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 6.8,
+          "owned_pct": 19.9,
+          "form": 4.5,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 2.25
+        },
+        {
+          "name": "Willock",
+          "pos": "MID",
+          "club": "NEW",
+          "cost": 5.0,
+          "owned_pct": 0.5,
+          "form": 4.4,
+          "fdr": 2,
+          "fixture": "COV (A)",
+          "ratio": 2.2
+        },
+        {
+          "name": "Rice",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 7.4,
+          "owned_pct": 12.2,
+          "form": 4.2,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 2.1
+        },
+        {
+          "name": "Xhaka",
+          "pos": "MID",
+          "club": "SUN",
+          "cost": 5.5,
+          "owned_pct": 3.7,
+          "form": 4.2,
+          "fdr": 2,
+          "fixture": "BHA (H)",
+          "ratio": 2.1
+        },
+        {
+          "name": "Belloumi",
+          "pos": "MID",
+          "club": "HUL",
+          "cost": 5.1,
+          "owned_pct": 4.7,
+          "form": 6.2,
+          "fdr": 3,
+          "fixture": "EVE (H)",
+          "ratio": 2.07
+        },
+        {
+          "name": "B.Fernandes",
+          "pos": "MID",
+          "club": "MUN",
+          "cost": 12.0,
+          "owned_pct": 39.2,
+          "form": 6.2,
+          "fdr": 3,
+          "fixture": "TOT (H)",
+          "ratio": 2.07
+        }
+      ],
+      "FWD": [
+        {
+          "name": "Emersonn",
+          "pos": "FWD",
+          "club": "IPS",
+          "cost": 5.5,
+          "owned_pct": 3.4,
+          "form": 5.2,
+          "fdr": 2,
+          "fixture": "FUL (H)",
+          "ratio": 2.6
+        },
+        {
+          "name": "Brobbey",
+          "pos": "FWD",
+          "club": "SUN",
+          "cost": 5.7,
+          "owned_pct": 6.2,
+          "form": 4.8,
+          "fdr": 2,
+          "fixture": "BHA (H)",
+          "ratio": 2.4
+        },
+        {
+          "name": "Jo\u00e3o Pedro",
+          "pos": "FWD",
+          "club": "CHE",
+          "cost": 7.8,
+          "owned_pct": 66.8,
+          "form": 6.6,
+          "fdr": 3,
+          "fixture": "BOU (H)",
+          "ratio": 2.2
+        },
+        {
+          "name": "Barry",
+          "pos": "FWD",
+          "club": "EVE",
+          "cost": 5.6,
+          "owned_pct": 8.1,
+          "form": 4.0,
+          "fdr": 2,
+          "fixture": "HUL (A)",
+          "ratio": 2.0
+        },
+        {
+          "name": "Haaland",
+          "pos": "FWD",
+          "club": "MCI",
+          "cost": 15.6,
+          "owned_pct": 73.5,
+          "form": 7.8,
+          "fdr": 4,
+          "fixture": "LIV (A)",
+          "ratio": 1.95
+        },
+        {
+          "name": "Kostoulas",
+          "pos": "FWD",
+          "club": "BHA",
+          "cost": 5.6,
+          "owned_pct": 2.8,
+          "form": 5.6,
+          "fdr": 3,
+          "fixture": "SUN (A)",
+          "ratio": 1.87
+        },
+        {
+          "name": "Isak",
+          "pos": "FWD",
+          "club": "LIV",
+          "cost": 9.1,
+          "owned_pct": 22.1,
+          "form": 6.6,
+          "fdr": 4,
+          "fixture": "MCI (H)",
+          "ratio": 1.65
+        },
+        {
+          "name": "Havertz",
+          "pos": "FWD",
+          "club": "ARS",
+          "cost": 7.6,
+          "owned_pct": 8.5,
+          "form": 3.2,
+          "fdr": 2,
+          "fixture": "LEE (H)",
+          "ratio": 1.6
+        },
+        {
+          "name": "Wissa",
+          "pos": "FWD",
+          "club": "NEW",
+          "cost": 6.2,
+          "owned_pct": 18.9,
+          "form": 3.0,
+          "fdr": 2,
+          "fixture": "COV (A)",
+          "ratio": 1.5
+        },
+        {
+          "name": "Isidor",
+          "pos": "FWD",
+          "club": "SUN",
+          "cost": 5.5,
+          "owned_pct": 1.3,
+          "form": 3.0,
+          "fdr": 2,
+          "fixture": "BHA (H)",
+          "ratio": 1.5
+        }
+      ]
+    }
   }
 };
