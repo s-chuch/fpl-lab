@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Bacalhau · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20260919e">
+<link rel="stylesheet" href="dashboard.css?v=20260920a">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
-<div class="kpis" id="kpis"></div><nav class="tabs" id="tabs"></nav>
+<div class="kpis" id="kpis"></div>
+<div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
+<nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="strategy"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20260918h"></script>
+<script src="dashboard-common.js?v=20260920a"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
 <script src="news.js?v=20260917i"></script>
 <script src="x-posts.js?v=20260917i"></script>
@@ -17,6 +19,8 @@ const D=window.FPL_DATA;
 document.getElementById("teamName").textContent=D.team.name;
 document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
 document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+Number(D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+startDeadlineBanner(D,"deadlineBanner");
+document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"]]},

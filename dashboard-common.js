@@ -47,6 +47,52 @@ function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] 
 // re-derive a name from free text via the fixed NEWS_ALIAS list below. Prefer
 // that structured field; fall back to NEWS_ALIAS matching for X items (X live
 // ingest and manual seeds are curated free text and don't carry a player field).
+const CHIP_LABELS={bboost:"Bench Boost","3xc":"Triple Captain",freehit:"Free Hit",wildcard:"Wildcard"};
+function fmtCountdown(ms){
+  if(ms<=0) return "Locked";
+  const s=Math.floor(ms/1000);
+  const d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), sec=s%60;
+  if(d>0) return d+"d "+h+"h "+m+"m";
+  if(h>0) return h+"h "+m+"m "+sec+"s";
+  return m+"m "+sec+"s";
+}
+// The next not-yet-passed deadline, from plan.upcoming (already carries a raw
+// UTC timestamp per GW) — the countdown ticks off the real clock, so it stays
+// accurate between refreshes even though the rest of the page is a snapshot.
+function nextDeadline(D){
+  const up=(D.plan&&D.plan.upcoming)||[];
+  const next=up.find(u=>u.deadline_utc && !u.deadline_passed);
+  if(!next) return null;
+  const ts=Date.parse(next.deadline_utc);
+  if(isNaN(ts)) return null;
+  return {gw:next.gw, ts, label:next.deadline||""};
+}
+function startDeadlineBanner(D, elId){
+  const el=document.getElementById(elId); if(!el) return;
+  const nd=nextDeadline(D);
+  if(!nd){ el.style.display="none"; return; }
+  let timer=null;
+  const tick=()=>{
+    const ms=nd.ts-Date.now();
+    el.innerHTML=`<span>Next deadline · GW${nd.gw}${nd.label?" ("+esc(nd.label)+")":""}</span><b>${esc(fmtCountdown(ms))}</b>`;
+    if(ms<=0 && timer) clearInterval(timer);
+  };
+  tick();
+  timer=setInterval(tick,1000);
+}
+// Flags a chip active for the live/just-locked GW or already queued for the
+// next one, so a chip play surfaces as soon as it's visible instead of only
+// on the Chips tab. chips_official only keeps the latest use of each chip
+// name, which is exactly the one worth alerting on.
+function chipAlertBanner(D){
+  const co=D.chips_official||{}, dl=D.deadline||{};
+  const targets=new Set([dl.current_gw, dl.next_gw, dl.locked_gw].filter(x=>x!=null));
+  const hits=Object.keys(CHIP_LABELS).filter(k=>co[k]!=null && targets.has(co[k])).map(k=>({gw:co[k],label:CHIP_LABELS[k]}));
+  if(!hits.length) return "";
+  const team=esc((D.team&&D.team.name)||"Team");
+  const lines=hits.map(h=>`${team} played <b>${esc(h.label)}</b> in GW${h.gw}.`).join(" ");
+  return `<div class="chip-alert">${lines}</div>`;
+}
 function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
   for(const it of agreedPool()){
