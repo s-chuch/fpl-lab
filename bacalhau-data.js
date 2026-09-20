@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 23:21 UTC",
-  "generated_at_et": "2026-09-20 7:21 PM ET",
+  "generated_at": "2026-09-20 23:30 UTC",
+  "generated_at_et": "2026-09-20 7:30 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -695,17 +695,17 @@ window.FPL_DATA = {
           },
           {
             "rank": 11,
-            "team": "Must win one",
-            "pts": 289,
-            "me": false,
-            "entry": 7332517
-          },
-          {
-            "rank": 11,
             "team": "Viking Robot",
             "pts": 289,
             "me": false,
             "entry": 687308
+          },
+          {
+            "rank": 11,
+            "team": "Must win one",
+            "pts": 289,
+            "me": false,
+            "entry": 7332517
           },
           {
             "rank": 13,
@@ -2294,128 +2294,6 @@ window.FPL_DATA = {
           {
             "xi": [
               {
-                "id": 496,
-                "name": "Kinsky",
-                "pos": "GKP",
-                "club": "TOT",
-                "mult": 1
-              },
-              {
-                "id": 4,
-                "name": "Gabriel",
-                "pos": "DEF",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 391,
-                "name": "Gvardiol",
-                "pos": "DEF",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 330,
-                "name": "Bogle",
-                "pos": "DEF",
-                "club": "LEE",
-                "mult": 1
-              },
-              {
-                "id": 426,
-                "name": "B.Fernandes",
-                "pos": "MID",
-                "club": "MUN",
-                "mult": 1,
-                "vice": true
-              },
-              {
-                "id": 13,
-                "name": "Rice",
-                "pos": "MID",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 286,
-                "name": "Belloumi",
-                "pos": "MID",
-                "club": "HUL",
-                "mult": 1
-              },
-              {
-                "id": 368,
-                "name": "Szoboszlai",
-                "pos": "MID",
-                "club": "LIV",
-                "mult": 1
-              },
-              {
-                "id": 411,
-                "name": "Haaland",
-                "pos": "FWD",
-                "club": "MCI",
-                "mult": 2,
-                "captain": true
-              },
-              {
-                "id": 165,
-                "name": "Jo\u00e3o Pedro",
-                "pos": "FWD",
-                "club": "CHE",
-                "mult": 1
-              },
-              {
-                "id": 316,
-                "name": "Emersonn",
-                "pos": "FWD",
-                "club": "IPS",
-                "mult": 1
-              }
-            ],
-            "bench": [
-              {
-                "id": 497,
-                "name": "Dubravka",
-                "pos": "GKP",
-                "club": "TOT",
-                "mult": 0
-              },
-              {
-                "id": 282,
-                "name": "Giles",
-                "pos": "DEF",
-                "club": "HUL",
-                "mult": 0
-              },
-              {
-                "id": 488,
-                "name": "I.Sangar\u00e9",
-                "pos": "MID",
-                "club": "NFO",
-                "mult": 0
-              },
-              {
-                "id": 305,
-                "name": "Davis",
-                "pos": "DEF",
-                "club": "IPS",
-                "mult": 0
-              }
-            ],
-            "captain": "Haaland",
-            "vice": "B.Fernandes",
-            "entry": 7332517,
-            "team": "Must win one",
-            "manager": "Kieran Marin",
-            "rank": 11,
-            "pts": 289,
-            "me": false,
-            "chip": "wildcard"
-          },
-          {
-            "xi": [
-              {
                 "id": 1,
                 "name": "Raya",
                 "pos": "GKP",
@@ -2534,6 +2412,128 @@ window.FPL_DATA = {
             "pts": 289,
             "me": false,
             "chip": null
+          },
+          {
+            "xi": [
+              {
+                "id": 496,
+                "name": "Kinsky",
+                "pos": "GKP",
+                "club": "TOT",
+                "mult": 1
+              },
+              {
+                "id": 4,
+                "name": "Gabriel",
+                "pos": "DEF",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 391,
+                "name": "Gvardiol",
+                "pos": "DEF",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 330,
+                "name": "Bogle",
+                "pos": "DEF",
+                "club": "LEE",
+                "mult": 1
+              },
+              {
+                "id": 426,
+                "name": "B.Fernandes",
+                "pos": "MID",
+                "club": "MUN",
+                "mult": 1,
+                "vice": true
+              },
+              {
+                "id": 13,
+                "name": "Rice",
+                "pos": "MID",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 286,
+                "name": "Belloumi",
+                "pos": "MID",
+                "club": "HUL",
+                "mult": 1
+              },
+              {
+                "id": 368,
+                "name": "Szoboszlai",
+                "pos": "MID",
+                "club": "LIV",
+                "mult": 1
+              },
+              {
+                "id": 411,
+                "name": "Haaland",
+                "pos": "FWD",
+                "club": "MCI",
+                "mult": 2,
+                "captain": true
+              },
+              {
+                "id": 165,
+                "name": "Jo\u00e3o Pedro",
+                "pos": "FWD",
+                "club": "CHE",
+                "mult": 1
+              },
+              {
+                "id": 316,
+                "name": "Emersonn",
+                "pos": "FWD",
+                "club": "IPS",
+                "mult": 1
+              }
+            ],
+            "bench": [
+              {
+                "id": 497,
+                "name": "Dubravka",
+                "pos": "GKP",
+                "club": "TOT",
+                "mult": 0
+              },
+              {
+                "id": 282,
+                "name": "Giles",
+                "pos": "DEF",
+                "club": "HUL",
+                "mult": 0
+              },
+              {
+                "id": 488,
+                "name": "I.Sangar\u00e9",
+                "pos": "MID",
+                "club": "NFO",
+                "mult": 0
+              },
+              {
+                "id": 305,
+                "name": "Davis",
+                "pos": "DEF",
+                "club": "IPS",
+                "mult": 0
+              }
+            ],
+            "captain": "Haaland",
+            "vice": "B.Fernandes",
+            "entry": 7332517,
+            "team": "Must win one",
+            "manager": "Kieran Marin",
+            "rank": 11,
+            "pts": 289,
+            "me": false,
+            "chip": "wildcard"
           },
           {
             "xi": [
@@ -5058,7 +5058,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": "rested"
+        "reason": "rested",
+        "rotation_note": null
       },
       {
         "name": "Mitchell",
@@ -5074,7 +5075,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Raya",
@@ -5090,7 +5092,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "N.Williams",
@@ -5106,7 +5109,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Ajayi",
@@ -5122,7 +5126,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Tarkowski",
@@ -5138,7 +5143,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Calafiori",
@@ -5154,7 +5160,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Szoboszlai",
@@ -5170,7 +5177,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Dewsbury-Hall",
@@ -5186,7 +5194,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Gro\u00df",
@@ -5202,7 +5211,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "B.Fernandes",
@@ -5218,7 +5228,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Haaland",
@@ -5234,7 +5245,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Dubravka",
@@ -5250,7 +5262,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Kusi-Asare",
@@ -5266,7 +5279,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       },
       {
         "name": "Walle Egeli",
@@ -5282,7 +5296,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": null
+        "reason": null,
+        "rotation_note": null
       }
     ],
     "notable": [
@@ -5300,7 +5315,8 @@ window.FPL_DATA = {
         "avail_kind": "ok",
         "avail_label": null,
         "news": "",
-        "reason": "rested"
+        "reason": "rested",
+        "rotation_note": null
       }
     ]
   },
