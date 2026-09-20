@@ -1108,12 +1108,20 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8):
         owned = float(el.get("selected_by_percent") or 0)
         owners = owned / 100 * total_players
         momentum = round(net / owners * 100, 1) if owners >= 1 else 0.0  # % of the player's own current owners, not a raw count
+        season_change = (el.get("cost_change_start") or 0) / 10
+        # FPL only ever moves a price by exactly £0.1m in a single change, so
+        # "expected" is a direction call off today's momentum sign, not a
+        # probability — the size of the move (if one happens) is fixed by
+        # the rule itself, not something this needs to estimate.
+        expected_change = 0.1 if net > 0 else (-0.1 if net < 0 else 0.0)
         return {
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
             "cost": el["now_cost"] / 10, "owned_pct": owned, "net_transfers_today": net, "momentum": momentum,
             "changed_today": (el.get("cost_change_event") or 0) != 0,
             "cost_change_today": (el.get("cost_change_event") or 0) / 10,
-            "season_change": (el.get("cost_change_start") or 0) / 10,
+            "season_change": season_change,
+            "expected_change": expected_change,
+            "expected_season_change": round(season_change + expected_change, 1),
         }
 
     squad_ids = set()
