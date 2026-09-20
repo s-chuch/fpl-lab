@@ -367,8 +367,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 13:58 UTC",
-  "generated_at_et": "2026-09-20 9:58 AM ET",
+  "generated_at": "2026-09-20 14:03 UTC",
+  "generated_at_et": "2026-09-20 10:03 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -383,7 +383,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 336,
-    "overall_rank": 481126,
+    "overall_rank": 481113,
     "bank": 0.3,
     "value": 101.1
   },
@@ -3462,7 +3462,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 481126,
+        "rank": 481113,
         "last_rank": 820064
       }
     ],
@@ -4019,10 +4019,10 @@ window.FPL_DATA = {
         "goals": 3,
         "assists": 2,
         "xg": 0.67,
-        "xa": 1.48,
-        "xgi": 2.15,
+        "xa": 1.53,
+        "xgi": 2.2,
         "gi": 5,
-        "diff": 2.85,
+        "diff": 2.8,
         "tag": "overperforming"
       },
       {
@@ -4259,10 +4259,10 @@ window.FPL_DATA = {
         "goals": 3,
         "assists": 2,
         "xg": 0.67,
-        "xa": 1.48,
-        "xgi": 2.15,
+        "xa": 1.53,
+        "xgi": 2.2,
         "gi": 5,
-        "diff": 2.85,
+        "diff": 2.8,
         "tag": "overperforming"
       },
       {
@@ -5060,7 +5060,11 @@ window.FPL_DATA = {
           0
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "doubt",
+        "avail_label": "DOUBT 50%",
+        "news": "Unspecified injury - 50% chance of playing",
+        "reason": "injury"
       },
       {
         "name": "Cherki",
@@ -5072,139 +5076,11 @@ window.FPL_DATA = {
           45
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
-      },
-      {
-        "name": "Hume",
-        "pos": "DEF",
-        "club": "SUN",
-        "minutes": [
-          90,
-          26,
-          0
-        ],
-        "trend": "mixed",
-        "note": "minutes bouncing around, no clear trend"
-      },
-      {
-        "name": "Calvert-Lewin",
-        "pos": "FWD",
-        "club": "LEE",
-        "minutes": [
-          90,
-          72,
-          77
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Kinsky",
-        "pos": "GKP",
-        "club": "TOT",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "De Cuyper",
-        "pos": "DEF",
-        "club": "BHA",
-        "minutes": [
-          90,
-          76,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Calafiori",
-        "pos": "DEF",
-        "club": "ARS",
-        "minutes": [
-          90,
-          66,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Davis",
-        "pos": "DEF",
-        "club": "IPS",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "B.Fernandes",
-        "pos": "MID",
-        "club": "MUN",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Szoboszlai",
-        "pos": "MID",
-        "club": "LIV",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Gro\u00df",
-        "pos": "MID",
-        "club": "BHA",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Haaland",
-        "pos": "FWD",
-        "club": "MCI",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
-      },
-      {
-        "name": "Verbruggen",
-        "pos": "GKP",
-        "club": "BHA",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "rested"
       },
       {
         "name": "Jo\u00e3o Pedro",
@@ -5216,7 +5092,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "doubt",
+        "avail_label": "DOUBT 75%",
+        "news": "Knee injury - 75% chance of playing",
+        "reason": "injury"
       },
       {
         "name": "Tzolis",
@@ -5228,7 +5108,187 @@ window.FPL_DATA = {
           80
         ],
         "trend": "rising",
-        "note": "breaking into the side"
+        "note": "breaking into the side",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Hume",
+        "pos": "DEF",
+        "club": "SUN",
+        "minutes": [
+          90,
+          26,
+          0
+        ],
+        "trend": "mixed",
+        "note": "minutes bouncing around, no clear trend",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "club": "LEE",
+        "minutes": [
+          90,
+          72,
+          77
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Kinsky",
+        "pos": "GKP",
+        "club": "TOT",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "club": "BHA",
+        "minutes": [
+          90,
+          76,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Calafiori",
+        "pos": "DEF",
+        "club": "ARS",
+        "minutes": [
+          90,
+          66,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Davis",
+        "pos": "DEF",
+        "club": "IPS",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "club": "MUN",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Szoboszlai",
+        "pos": "MID",
+        "club": "LIV",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "club": "BHA",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "club": "MCI",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
+      },
+      {
+        "name": "Verbruggen",
+        "pos": "GKP",
+        "club": "BHA",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       }
     ],
     "notable": [
@@ -5242,7 +5302,11 @@ window.FPL_DATA = {
           0
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "doubt",
+        "avail_label": "DOUBT 50%",
+        "news": "Unspecified injury - 50% chance of playing",
+        "reason": "injury"
       },
       {
         "name": "Cherki",
@@ -5254,7 +5318,27 @@ window.FPL_DATA = {
           45
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "rested"
+      },
+      {
+        "name": "Jo\u00e3o Pedro",
+        "pos": "FWD",
+        "club": "CHE",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "doubt",
+        "avail_label": "DOUBT 75%",
+        "news": "Knee injury - 75% chance of playing",
+        "reason": "injury"
       },
       {
         "name": "Tzolis",
@@ -5266,7 +5350,11 @@ window.FPL_DATA = {
           80
         ],
         "trend": "rising",
-        "note": "breaking into the side"
+        "note": "breaking into the side",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       }
     ]
   }

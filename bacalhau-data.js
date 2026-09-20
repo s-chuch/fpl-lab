@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 13:58 UTC",
-  "generated_at_et": "2026-09-20 9:58 AM ET",
+  "generated_at": "2026-09-20 14:04 UTC",
+  "generated_at_et": "2026-09-20 10:04 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -253,7 +253,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 328,
-    "overall_rank": 788891,
+    "overall_rank": 788872,
     "bank": 4.4,
     "value": 100.9
   },
@@ -3280,7 +3280,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 788891,
+        "rank": 788872,
         "last_rank": 1590538
       }
     ],
@@ -4538,8 +4538,8 @@ window.FPL_DATA = {
         "owned_pct": 27.8,
         "goals": 3,
         "assists": 2,
-        "xgi": 2.15,
-        "xgi_p90": 0.74
+        "xgi": 2.2,
+        "xgi_p90": 0.75
       },
       {
         "name": "Yalcouy\u00e9",
@@ -4676,7 +4676,11 @@ window.FPL_DATA = {
           59
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "rested"
       },
       {
         "name": "Mitchell",
@@ -4688,7 +4692,11 @@ window.FPL_DATA = {
           76
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Raya",
@@ -4700,7 +4708,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "N.Williams",
@@ -4712,7 +4724,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Ajayi",
@@ -4724,7 +4740,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Tarkowski",
@@ -4736,7 +4756,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Calafiori",
@@ -4748,7 +4772,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Szoboszlai",
@@ -4760,7 +4788,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Dewsbury-Hall",
@@ -4772,7 +4804,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Gro\u00df",
@@ -4784,7 +4820,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "B.Fernandes",
@@ -4796,7 +4836,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Haaland",
@@ -4808,7 +4852,11 @@ window.FPL_DATA = {
           90
         ],
         "trend": "starter",
-        "note": "nailed on across the window"
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Dubravka",
@@ -4820,7 +4868,11 @@ window.FPL_DATA = {
           0
         ],
         "trend": "fringe",
-        "note": "fringe involvement across the window"
+        "note": "fringe involvement across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Kusi-Asare",
@@ -4832,7 +4884,11 @@ window.FPL_DATA = {
           0
         ],
         "trend": "fringe",
-        "note": "fringe involvement across the window"
+        "note": "fringe involvement across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       },
       {
         "name": "Walle Egeli",
@@ -4844,7 +4900,11 @@ window.FPL_DATA = {
           0
         ],
         "trend": "fringe",
-        "note": "fringe involvement across the window"
+        "note": "fringe involvement across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": null
       }
     ],
     "notable": [
@@ -4858,7 +4918,11 @@ window.FPL_DATA = {
           59
         ],
         "trend": "falling",
-        "note": "was starting, now fringe/bench minutes"
+        "note": "was starting, now fringe/bench minutes",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "rested"
       }
     ]
   }
