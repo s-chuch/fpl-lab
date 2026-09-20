@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-20 23:02 UTC",
+  "generated_at": "2026-09-20 23:10 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -31,8 +31,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "How to play Sofascore\u2019s Nations League Fantasy",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/20/how-to-play-sofascores-nations-league-fantasy"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -77,6 +83,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/20/fpl-notes-gross-5-5m-forward-haul-again-arsenal-implode",
     "https://www.fantasyfootballscout.co.uk/2026/09/20/fpl-notes-isak-again-szoboszlai-set-for-further-sales-kluivert-injury-latest",
     "https://www.fantasyfootballscout.co.uk/2026/09/20/fulham-v-man-utd-team-news-shaw-starts-no-sesko",
+    "https://www.fantasyfootballscout.co.uk/2026/09/20/how-to-play-sofascores-nations-league-fantasy",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
