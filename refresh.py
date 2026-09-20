@@ -1057,6 +1057,37 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
     notable = [r for r in rows if r["reason"] is not None or r["trend"] == "rising"]
     return {"gws": recent_gws, "start_mins": start_mins, "rows": rows, "notable": notable}
 
+def build_value_board(boot, min_minutes=180, top_n=10):
+    """Best points-per-money across the WHOLE player pool, split by position
+    (comparing a £4m defender against a £15m forward on raw value isn't a
+    fair scouting comparison) — league-wide, not scoped to your squad or
+    ownership, since this is a "who's efficient right now" reference, not a
+    transfer-target list. Recomputed from current total_points/now_cost on
+    every refresh, so it moves with real returns and price changes rather
+    than being a one-time snapshot — a player's price rise or a big haul
+    shows up here on the next run, same as everywhere else in this app.
+    min_minutes filters out small-sample flukes (e.g. a nailed-on cheap
+    player who returned big off a single start)."""
+    elements = boot["elements"]
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for el in elements:
+        mins = int(el.get("minutes") or 0)
+        cost = el["now_cost"] / 10
+        if mins < min_minutes or cost <= 0:
+            continue
+        pts = int(el.get("total_points") or 0)
+        row = {
+            "name": el["web_name"], "club": teams.get(el["team"], "?"), "cost": cost,
+            "points": pts, "minutes": mins, "owned_pct": float(el.get("selected_by_percent") or 0),
+            "value_per_0_1m": round(pts / cost * 0.1, 2),
+        }
+        by_pos[POS[el["element_type"]]].append(row)
+    for pos in by_pos:
+        by_pos[pos].sort(key=lambda r: -r["value_per_0_1m"])
+        by_pos[pos] = by_pos[pos][:top_n]
+    return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
+
 def build_price_radar(boot, team_id, picks_gw, top_n=8):
     """Approximate price-change momentum from FPL's own transfer-volume
     fields: transfers_in_event/transfers_out_event (net transfers so far
@@ -1387,6 +1418,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
+    data["value_board"] = build_value_board(boot)
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     now = datetime.now(timezone.utc)
     data.update({
