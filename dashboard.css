@@ -32,6 +32,10 @@ th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{col
 .chip.process{border-color:var(--red);color:var(--red)}
 .chip.variance{border-color:var(--yellow);color:var(--yellow)}
 .note{font-size:13px;color:var(--muted);line-height:1.45}
+.note-list{font-size:13px;color:var(--muted);line-height:1.4;margin:0;padding-left:18px}
+.note-list li{margin:3px 0}
+.legend-list{font-size:11px;color:var(--muted);line-height:1.45;margin:8px 0 0;padding-left:16px}
+.legend-list li{margin:2px 0}
 .warn{background:#2a2010;border:1px solid #5a4520;color:#f3d7a1;border-radius:12px;padding:12px;font-size:13px;margin:0 0 12px}
 footer{margin-top:22px;color:var(--muted);font-size:12px}
 .chiplist{list-style:none;margin:0;padding:0}
