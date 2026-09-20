@@ -118,10 +118,38 @@ renderPlan();
 function renderWildcardWatch(){
   const W=window.FPL_WILDCARD_WATCH;
   if(!W){document.getElementById("wildcard").innerHTML=`<div class="card"><h2>Wildcard watch</h2><p class="note">No wildcard squad captured yet.</p></div>`;return;}
-  const row=p=>`<tr><td>${esc(p.pos)}</td><td>${esc(p.name)}${p.captain?` <span class="pill used">C</span>`:p.vice?` <span class="pill free">VC</span>`:""}</td><td>${esc(p.club)}</td><td>${esc(p.fixture||"")}</td></tr>`;
-  const xiRows=(W.xi||[]).map(row).join("")||`<tr><td colspan="4"><span class="note">No XI captured.</span></td></tr>`;
-  const benchRows=(W.bench||[]).map(row).join("")||`<tr><td colspan="4"><span class="note">No bench captured.</span></td></tr>`;
-  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table><thead><tr><th>Pos</th><th>Player</th><th>Club</th><th>Fixture</th></tr></thead><tbody>${xiRows}</tbody></table><p class="note">Bench</p><table><thead><tr><th>Pos</th><th>Player</th><th>Club</th><th>Fixture</th></tr></thead><tbody>${benchRows}</tbody></table></div>`;
+  const R=W.recommend||null;
+  const epByName={};
+  if(R){(R.xi_ep||[]).concat(R.bench_ep||[]).forEach(p=>epByName[p.name]=p);}
+  const statusKls={out:"neg",doubt:"mid"};
+  const head=`<thead><tr><th style="width:11%">Pos</th><th style="width:29%">Player</th><th style="width:12%">Club</th><th style="width:26%">Fixture</th><th style="width:22%">EP</th></tr></thead>`;
+  const row=p=>{
+    const rp=epByName[p.name];
+    const epVal=rp&&rp.ep_next!=null?rp.ep_next:"–";
+    const kls=rp?(statusKls[rp.status]||""):"";
+    const tag=p.captain?` <span class="pill used">C</span>`:p.vice?` <span class="pill free">VC</span>`:"";
+    return `<tr><td>${esc(p.pos)}</td><td>${esc(p.name)}${tag}</td><td>${esc(p.club)}</td><td>${esc(p.fixture||"")}</td><td class="${kls}">${epVal}</td></tr>`;
+  };
+  const xiRows=(W.xi||[]).map(row).join("")||`<tr><td colspan="5"><span class="note">No XI captured.</span></td></tr>`;
+  const benchRows=(W.bench||[]).map(row).join("")||`<tr><td colspan="5"><span class="note">No bench captured.</span></td></tr>`;
+
+  let recCard;
+  if(R){
+    const theirCap=(W.xi||[]).find(p=>p.captain);
+    const theirCapEp=theirCap&&epByName[theirCap.name]?epByName[theirCap.name].ep_next:null;
+    const capDiffers=theirCap&&R.captain&&theirCap.name!==R.captain;
+    const capLine=capDiffers
+      ?`<p class="note">Bacalhau captained <b>${esc(theirCap.name)}</b>${theirCapEp!=null?` (${theirCapEp} EP)`:""} — <b>${esc(R.captain)}</b> projects higher at <b>${R.captain_ep??"?"}</b> EP.</p>`
+      :`<p class="note">Recommended captain matches Bacalhau's pick: <b>${esc(R.captain||"?")}</b> (${R.captain_ep??"?"} EP).</p>`;
+    const viceLine=`<p class="note">Recommended vice: <b>${esc(R.vice||"?")}</b> (${R.vice_ep??"?"} EP).</p>`;
+    const swapRows=(R.bench_swaps||[]).map(s=>`<li><span class="who">${esc(s.bench)} (${s.bench_ep}) over ${esc(s.starter)} (${s.starter_ep})</span><div class="detail">This bench player projects higher than a starter in the same position — worth reconsidering before the deadline.</div></li>`).join("")||`<li><span class="note">No bench player currently out-projects a starter in their position.</span></li>`;
+    const flagRows=(R.availability_flags||[]).map(f=>`<li><span class="who">${esc(f.name)}</span> <span class="pill used">${esc(f.label||"Flagged")}</span></li>`).join("")||`<li><span class="note">No injury/doubt flags on this squad right now.</span></li>`;
+    recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><p class="note">Based on FPL's own ep_next (its form + fixture blended prediction for the next GW), recomputed every refresh — a pre-deadline read, not a locked call.</p>${capLine}${viceLine}<p class="note">Bench-swap watch</p><ul class="chiplist">${swapRows}</ul><p class="note">Availability flags</p><ul class="chiplist">${flagRows}</ul></div>`;
+  } else {
+    recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
+  }
+
+  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}`;
 }
 renderWildcardWatch();
 function renderStrategy(){
