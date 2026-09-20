@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 23:39 UTC",
-  "generated_at_et": "2026-09-20 7:39 PM ET",
+  "generated_at": "2026-09-20 23:46 UTC",
+  "generated_at_et": "2026-09-20 7:46 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -695,17 +695,17 @@ window.FPL_DATA = {
           },
           {
             "rank": 11,
-            "team": "Viking Robot",
-            "pts": 289,
-            "me": false,
-            "entry": 687308
-          },
-          {
-            "rank": 11,
             "team": "Must win one",
             "pts": 289,
             "me": false,
             "entry": 7332517
+          },
+          {
+            "rank": 11,
+            "team": "Viking Robot",
+            "pts": 289,
+            "me": false,
+            "entry": 687308
           },
           {
             "rank": 13,
@@ -2294,128 +2294,6 @@ window.FPL_DATA = {
           {
             "xi": [
               {
-                "id": 1,
-                "name": "Raya",
-                "pos": "GKP",
-                "club": "ARS",
-                "mult": 1,
-                "vice": true
-              },
-              {
-                "id": 60,
-                "name": "Hill",
-                "pos": "DEF",
-                "club": "BOU",
-                "mult": 1
-              },
-              {
-                "id": 449,
-                "name": "Hall",
-                "pos": "DEF",
-                "club": "NEW",
-                "mult": 1
-              },
-              {
-                "id": 387,
-                "name": "O'Reilly",
-                "pos": "DEF",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 4,
-                "name": "Gabriel",
-                "pos": "DEF",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 399,
-                "name": "Cherki",
-                "pos": "MID",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 15,
-                "name": "\u00d8degaard",
-                "pos": "MID",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 236,
-                "name": "Dewsbury-Hall",
-                "pos": "MID",
-                "club": "EVE",
-                "mult": 1
-              },
-              {
-                "id": 411,
-                "name": "Haaland",
-                "pos": "FWD",
-                "club": "MCI",
-                "mult": 2,
-                "captain": true
-              },
-              {
-                "id": 346,
-                "name": "Calvert-Lewin",
-                "pos": "FWD",
-                "club": "LEE",
-                "mult": 1
-              },
-              {
-                "id": 165,
-                "name": "Jo\u00e3o Pedro",
-                "pos": "FWD",
-                "club": "CHE",
-                "mult": 1
-              }
-            ],
-            "bench": [
-              {
-                "id": 496,
-                "name": "Kinsky",
-                "pos": "GKP",
-                "club": "TOT",
-                "mult": 0
-              },
-              {
-                "id": 212,
-                "name": "Hughes",
-                "pos": "MID",
-                "club": "CRY",
-                "mult": 0
-              },
-              {
-                "id": 534,
-                "name": "Hume",
-                "pos": "DEF",
-                "club": "SUN",
-                "mult": 0
-              },
-              {
-                "id": 102,
-                "name": "Yarmoliuk",
-                "pos": "MID",
-                "club": "BRE",
-                "mult": 0
-              }
-            ],
-            "captain": "Haaland",
-            "vice": "Raya",
-            "entry": 687308,
-            "team": "Viking Robot",
-            "manager": "Mike Brash",
-            "rank": 11,
-            "pts": 289,
-            "me": false,
-            "chip": null
-          },
-          {
-            "xi": [
-              {
                 "id": 496,
                 "name": "Kinsky",
                 "pos": "GKP",
@@ -2534,6 +2412,128 @@ window.FPL_DATA = {
             "pts": 289,
             "me": false,
             "chip": "wildcard"
+          },
+          {
+            "xi": [
+              {
+                "id": 1,
+                "name": "Raya",
+                "pos": "GKP",
+                "club": "ARS",
+                "mult": 1,
+                "vice": true
+              },
+              {
+                "id": 60,
+                "name": "Hill",
+                "pos": "DEF",
+                "club": "BOU",
+                "mult": 1
+              },
+              {
+                "id": 449,
+                "name": "Hall",
+                "pos": "DEF",
+                "club": "NEW",
+                "mult": 1
+              },
+              {
+                "id": 387,
+                "name": "O'Reilly",
+                "pos": "DEF",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 4,
+                "name": "Gabriel",
+                "pos": "DEF",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 399,
+                "name": "Cherki",
+                "pos": "MID",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 15,
+                "name": "\u00d8degaard",
+                "pos": "MID",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 236,
+                "name": "Dewsbury-Hall",
+                "pos": "MID",
+                "club": "EVE",
+                "mult": 1
+              },
+              {
+                "id": 411,
+                "name": "Haaland",
+                "pos": "FWD",
+                "club": "MCI",
+                "mult": 2,
+                "captain": true
+              },
+              {
+                "id": 346,
+                "name": "Calvert-Lewin",
+                "pos": "FWD",
+                "club": "LEE",
+                "mult": 1
+              },
+              {
+                "id": 165,
+                "name": "Jo\u00e3o Pedro",
+                "pos": "FWD",
+                "club": "CHE",
+                "mult": 1
+              }
+            ],
+            "bench": [
+              {
+                "id": 496,
+                "name": "Kinsky",
+                "pos": "GKP",
+                "club": "TOT",
+                "mult": 0
+              },
+              {
+                "id": 212,
+                "name": "Hughes",
+                "pos": "MID",
+                "club": "CRY",
+                "mult": 0
+              },
+              {
+                "id": 534,
+                "name": "Hume",
+                "pos": "DEF",
+                "club": "SUN",
+                "mult": 0
+              },
+              {
+                "id": 102,
+                "name": "Yarmoliuk",
+                "pos": "MID",
+                "club": "BRE",
+                "mult": 0
+              }
+            ],
+            "captain": "Haaland",
+            "vice": "Raya",
+            "entry": 687308,
+            "team": "Viking Robot",
+            "manager": "Mike Brash",
+            "rank": 11,
+            "pts": 289,
+            "me": false,
+            "chip": null
           },
           {
             "xi": [
@@ -4189,6 +4189,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "EVE",
         "minutes": 450,
+        "cost": 6.1,
+        "owned_pct": 15.2,
         "threshold": 10,
         "per90": 10.2,
         "season_total": 51.0,
@@ -4200,6 +4202,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "HUL",
         "minutes": 394,
+        "cost": 5.1,
+        "owned_pct": 4.7,
         "threshold": 12,
         "per90": 10.05,
         "season_total": 44.0,
@@ -4211,6 +4215,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "EVE",
         "minutes": 450,
+        "cost": 6.6,
+        "owned_pct": 6.1,
         "threshold": 12,
         "per90": 8.4,
         "season_total": 42.0,
@@ -4222,6 +4228,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "LIV",
         "minutes": 440,
+        "cost": 7.0,
+        "owned_pct": 33.6,
         "threshold": 12,
         "per90": 8.39,
         "season_total": 41.0,
@@ -4233,6 +4241,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "NFO",
         "minutes": 450,
+        "cost": 5.0,
+        "owned_pct": 9.0,
         "threshold": 10,
         "per90": 5.8,
         "season_total": 29.0,
@@ -4244,6 +4254,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "HUL",
         "minutes": 423,
+        "cost": 4.2,
+        "owned_pct": 14.2,
         "threshold": 10,
         "per90": 5.74,
         "season_total": 27.0,
@@ -4255,6 +4267,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "CRY",
         "minutes": 419,
+        "cost": 4.5,
+        "owned_pct": 6.0,
         "threshold": 10,
         "per90": 5.37,
         "season_total": 25.0,
@@ -4266,6 +4280,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "ARS",
         "minutes": 416,
+        "cost": 5.8,
+        "owned_pct": 50.6,
         "threshold": 10,
         "per90": 3.89,
         "season_total": 18.0,
@@ -4277,6 +4293,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "MUN",
         "minutes": 450,
+        "cost": 12.0,
+        "owned_pct": 39.2,
         "threshold": 12,
         "per90": 5.8,
         "season_total": 29.0,
@@ -4288,6 +4306,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "minutes": 450,
+        "cost": 5.8,
+        "owned_pct": 26.0,
         "threshold": 12,
         "per90": 5.2,
         "season_total": 26.0,
@@ -4299,6 +4319,8 @@ window.FPL_DATA = {
         "pos": "FWD",
         "club": "MCI",
         "minutes": 450,
+        "cost": 15.6,
+        "owned_pct": 73.5,
         "threshold": 12,
         "per90": 4.0,
         "season_total": 20.0,
@@ -4312,6 +4334,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "HUL",
         "minutes": 249,
+        "cost": 4.1,
+        "owned_pct": 6.4,
         "threshold": 10,
         "per90": 14.1,
         "season_total": 39.0,
@@ -4323,6 +4347,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "COV",
         "minutes": 282,
+        "cost": 4.5,
+        "owned_pct": 0.1,
         "threshold": 10,
         "per90": 14.04,
         "season_total": 44.0,
@@ -4334,6 +4360,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "CHE",
         "minutes": 312,
+        "cost": 5.0,
+        "owned_pct": 0.2,
         "threshold": 10,
         "per90": 13.56,
         "season_total": 47.0,
@@ -4345,6 +4373,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "BRE",
         "minutes": 253,
+        "cost": 4.5,
+        "owned_pct": 0.2,
         "threshold": 10,
         "per90": 13.52,
         "season_total": 38.0,
@@ -4356,6 +4386,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "TOT",
         "minutes": 370,
+        "cost": 5.5,
+        "owned_pct": 0.2,
         "threshold": 12,
         "per90": 14.59,
         "season_total": 60.0,
@@ -4367,6 +4399,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "IPS",
         "minutes": 275,
+        "cost": 5.0,
+        "owned_pct": 0.1,
         "threshold": 12,
         "per90": 14.4,
         "season_total": 44.0,
@@ -4378,6 +4412,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "MUN",
         "minutes": 354,
+        "cost": 5.5,
+        "owned_pct": 1.6,
         "threshold": 12,
         "per90": 14.24,
         "season_total": 56.0,
@@ -4389,6 +4425,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "HUL",
         "minutes": 437,
+        "cost": 4.1,
+        "owned_pct": 7.1,
         "threshold": 10,
         "per90": 12.15,
         "season_total": 59.0,
@@ -4400,6 +4438,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "SUN",
         "minutes": 360,
+        "cost": 5.4,
+        "owned_pct": 1.9,
         "threshold": 10,
         "per90": 12.0,
         "season_total": 48.0,
@@ -4411,6 +4451,8 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "NEW",
         "minutes": 450,
+        "cost": 5.0,
+        "owned_pct": 0.7,
         "threshold": 10,
         "per90": 11.8,
         "season_total": 59.0,
