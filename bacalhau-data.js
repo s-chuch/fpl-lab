@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 22:40 UTC",
-  "generated_at_et": "2026-09-20 6:40 PM ET",
+  "generated_at": "2026-09-20 22:45 UTC",
+  "generated_at_et": "2026-09-20 6:45 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5343,5 +5343,118 @@ window.FPL_DATA = {
         }
       ]
     }
+  },
+  "form_fdr": {
+    "min_minutes": 90,
+    "rows": [
+      {
+        "name": "Tarkowski",
+        "pos": "DEF",
+        "club": "EVE",
+        "form": 8.6,
+        "fdr": 2,
+        "fixture": "HUL (A)",
+        "ratio": 4.3
+      },
+      {
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "club": "BHA",
+        "form": 9.4,
+        "fdr": 3,
+        "fixture": "SUN (A)",
+        "ratio": 3.13
+      },
+      {
+        "name": "Raya",
+        "pos": "GKP",
+        "club": "ARS",
+        "form": 6.0,
+        "fdr": 2,
+        "fixture": "LEE (H)",
+        "ratio": 3.0
+      },
+      {
+        "name": "Calafiori",
+        "pos": "DEF",
+        "club": "ARS",
+        "form": 5.0,
+        "fdr": 2,
+        "fixture": "LEE (H)",
+        "ratio": 2.5
+      },
+      {
+        "name": "Belloumi",
+        "pos": "MID",
+        "club": "HUL",
+        "form": 6.2,
+        "fdr": 3,
+        "fixture": "EVE (H)",
+        "ratio": 2.07
+      },
+      {
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "club": "MUN",
+        "form": 6.2,
+        "fdr": 3,
+        "fixture": "TOT (H)",
+        "ratio": 2.07
+      },
+      {
+        "name": "Dewsbury-Hall",
+        "pos": "MID",
+        "club": "EVE",
+        "form": 4.0,
+        "fdr": 2,
+        "fixture": "HUL (A)",
+        "ratio": 2.0
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "club": "MCI",
+        "form": 7.8,
+        "fdr": 4,
+        "fixture": "LIV (A)",
+        "ratio": 1.95
+      },
+      {
+        "name": "Ajayi",
+        "pos": "DEF",
+        "club": "HUL",
+        "form": 5.4,
+        "fdr": 3,
+        "fixture": "EVE (H)",
+        "ratio": 1.8
+      },
+      {
+        "name": "Mitchell",
+        "pos": "DEF",
+        "club": "CRY",
+        "form": 4.8,
+        "fdr": 3,
+        "fixture": "NFO (H)",
+        "ratio": 1.6
+      },
+      {
+        "name": "N.Williams",
+        "pos": "DEF",
+        "club": "NFO",
+        "form": 3.8,
+        "fdr": 3,
+        "fixture": "CRY (A)",
+        "ratio": 1.27
+      },
+      {
+        "name": "Szoboszlai",
+        "pos": "MID",
+        "club": "LIV",
+        "form": 4.0,
+        "fdr": 4,
+        "fixture": "MCI (H)",
+        "ratio": 1.0
+      }
+    ]
   }
 };

@@ -367,8 +367,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-20 22:39 UTC",
-  "generated_at_et": "2026-09-20 6:39 PM ET",
+  "generated_at": "2026-09-20 22:45 UTC",
+  "generated_at_et": "2026-09-20 6:45 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5922,5 +5922,145 @@ window.FPL_DATA = {
         }
       ]
     }
+  },
+  "form_fdr": {
+    "min_minutes": 90,
+    "rows": [
+      {
+        "name": "Gro\u00df",
+        "pos": "MID",
+        "club": "BHA",
+        "form": 9.4,
+        "fdr": 3,
+        "fixture": "SUN (A)",
+        "ratio": 3.13
+      },
+      {
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "club": "BHA",
+        "form": 7.6,
+        "fdr": 3,
+        "fixture": "SUN (A)",
+        "ratio": 2.53
+      },
+      {
+        "name": "Calafiori",
+        "pos": "DEF",
+        "club": "ARS",
+        "form": 5.0,
+        "fdr": 2,
+        "fixture": "LEE (H)",
+        "ratio": 2.5
+      },
+      {
+        "name": "Davis",
+        "pos": "DEF",
+        "club": "IPS",
+        "form": 5.0,
+        "fdr": 2,
+        "fixture": "FUL (H)",
+        "ratio": 2.5
+      },
+      {
+        "name": "Jo\u00e3o Pedro",
+        "pos": "FWD",
+        "club": "CHE",
+        "form": 6.6,
+        "fdr": 3,
+        "fixture": "BOU (H)",
+        "ratio": 2.2
+      },
+      {
+        "name": "B.Fernandes",
+        "pos": "MID",
+        "club": "MUN",
+        "form": 6.2,
+        "fdr": 3,
+        "fixture": "TOT (H)",
+        "ratio": 2.07
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "club": "MCI",
+        "form": 7.8,
+        "fdr": 4,
+        "fixture": "LIV (A)",
+        "ratio": 1.95
+      },
+      {
+        "name": "Cherki",
+        "pos": "MID",
+        "club": "MCI",
+        "form": 6.8,
+        "fdr": 4,
+        "fixture": "LIV (A)",
+        "ratio": 1.7
+      },
+      {
+        "name": "Verbruggen",
+        "pos": "GKP",
+        "club": "BHA",
+        "form": 4.6,
+        "fdr": 3,
+        "fixture": "SUN (A)",
+        "ratio": 1.53
+      },
+      {
+        "name": "Tzolis",
+        "pos": "MID",
+        "club": "ARS",
+        "form": 2.5,
+        "fdr": 2,
+        "fixture": "LEE (H)",
+        "ratio": 1.25
+      },
+      {
+        "name": "Szoboszlai",
+        "pos": "MID",
+        "club": "LIV",
+        "form": 4.0,
+        "fdr": 4,
+        "fixture": "MCI (H)",
+        "ratio": 1.0
+      },
+      {
+        "name": "Hume",
+        "pos": "DEF",
+        "club": "SUN",
+        "form": 2.0,
+        "fdr": 2,
+        "fixture": "BHA (H)",
+        "ratio": 1.0
+      },
+      {
+        "name": "Kinsky",
+        "pos": "GKP",
+        "club": "TOT",
+        "form": 3.6,
+        "fdr": 4,
+        "fixture": "MUN (A)",
+        "ratio": 0.9
+      },
+      {
+        "name": "Calvert-Lewin",
+        "pos": "FWD",
+        "club": "LEE",
+        "form": 4.4,
+        "fdr": 5,
+        "fixture": "ARS (A)",
+        "ratio": 0.88
+      },
+      {
+        "name": "Shaw",
+        "pos": "DEF",
+        "club": "MUN",
+        "form": 1.8,
+        "fdr": 3,
+        "fixture": "TOT (H)",
+        "ratio": 0.6
+      }
+    ]
   }
 };
