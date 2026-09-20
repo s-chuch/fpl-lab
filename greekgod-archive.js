@@ -1,6 +1,6 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": "2026-09-20 22:04 UTC",
+  "generated_at": "2026-09-20 22:18 UTC",
   "post_count": 51,
   "new_since_last_run": 0,
   "earliest": "2026-09-17 03:59 UTC",
@@ -171,7 +171,7 @@ window.FPL_GREEKGOD = {
   ],
   "call_grades": {
     "graded": 0,
-    "pending": 6,
+    "pending": 1,
     "good": 0,
     "mixed": 0,
     "bad": 0,
@@ -204,15 +204,7 @@ window.FPL_GREEKGOD = {
       "players": [
         "Sávio"
       ],
-      "graded": [
-        {
-          "player": "Sávio",
-          "kind": "transfer",
-          "gw": 6,
-          "pts": null,
-          "verdict": "pending"
-        }
-      ]
+      "graded": []
     },
     {
       "id": "2101304001362891107",
@@ -295,20 +287,6 @@ window.FPL_GREEKGOD = {
       ],
       "graded": [
         {
-          "player": "White",
-          "kind": "captain",
-          "gw": 6,
-          "pts": null,
-          "verdict": "pending"
-        },
-        {
-          "player": "Palmer",
-          "kind": "captain",
-          "gw": 6,
-          "pts": null,
-          "verdict": "pending"
-        },
-        {
           "player": "Haaland",
           "kind": "captain",
           "gw": 6,
@@ -330,22 +308,7 @@ window.FPL_GREEKGOD = {
         "Haaland",
         "Fernandes"
       ],
-      "graded": [
-        {
-          "player": "Szoboszlai",
-          "kind": "captain",
-          "gw": 5,
-          "pts": null,
-          "verdict": "pending"
-        },
-        {
-          "player": "Haaland",
-          "kind": "captain",
-          "gw": 5,
-          "pts": null,
-          "verdict": "pending"
-        }
-      ]
+      "graded": []
     },
     {
       "id": "2100643843272036453",
