@@ -189,12 +189,15 @@ function renderStrategy(){
   }).join("")||`<li><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></li>`;
   const xgCard=`<div class="card"><h2>Underlying numbers (xG/xA)</h2><p class="note">All squad players with ${XG.min_minutes??"?"}+ mins — actual goal involvements, or for defenders/keepers goals conceded, vs FPL's own expected numbers. ${XG.threshold??2}+ difference is flagged "due for regression" or "still creating chances," not a form gut-feel.</p><ul class="chiplist">${xgRows}</ul></div>`;
   const DC=D.defcon||{};
-  const dcRows=(DC.rows||[]).map(r=>{
+  const dcRow=r=>{
     const tagLabel=r.tag==="reliable"?"Yes":r.tag==="borderline"?"Close":"No";
     const kls=r.tag==="reliable"?"pos":r.tag==="borderline"?"mid":"";
     return `<tr><td>${esc(r.name)}</td><td>${esc(r.pos)}</td><td>${esc(r.club)}</td><td>${r.per90}/${r.threshold}</td><td>${r.season_total??"-"}</td><td class="${kls}">${tagLabel}</td></tr>`;
-  }).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
-  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><p class="note">Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold. "Hits it" = Yes/Close/No, based on green = reliably clears it most matches — a real differentiator most casual managers ignore.</p><table class="table-compact"><thead><tr><th style="width:30%">Player</th><th style="width:11%">Pos</th><th style="width:13%">Club</th><th style="width:19%">P90/Thr</th><th style="width:11%">Tot</th><th style="width:16%">Hits it</th></tr></thead><tbody>${dcRows}</tbody></table><p class="legend">P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD). Tot = season total defensive actions.</p></div>`;
+  };
+  const dcHead=`<thead><tr><th style="width:30%">Player</th><th style="width:11%">Pos</th><th style="width:13%">Club</th><th style="width:19%">P90/Thr</th><th style="width:11%">Tot</th><th style="width:16%">Hits it</th></tr></thead>`;
+  const dcRows=(DC.rows||[]).map(dcRow).join("")||`<tr><td colspan="6"><span class="note">No qualifying squad players yet.</span></td></tr>`;
+  const dcTopRows=(DC.top||[]).map(dcRow).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
+  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><p class="note">Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold. "Hits it" = Yes/Close/No, based on green = reliably clears it most matches — a real differentiator most casual managers ignore.</p><h3>Bacalhau's squad</h3><table class="table-compact">${dcHead}<tbody>${dcRows}</tbody></table><h3>Top ${DC.top_n??"?"} · league-wide</h3><table class="table-compact">${dcHead}<tbody>${dcTopRows}</tbody></table><p class="legend">P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD). Tot = season total defensive actions.</p></div>`;
   const RR=D.rotation_risk||{};
   const rrGws=RR.gws||[];
   const rrTagLabel={falling:"Falling",declining:"Declining",rising:"Rising",starter:"Starter",fringe:"Fringe",mixed:"Mixed"};

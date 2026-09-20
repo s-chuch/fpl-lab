@@ -982,7 +982,7 @@ def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
 
 DEFCON_THRESHOLD = {"DEF": 10, "MID": 12, "FWD": 12}
 
-def build_defcon(boot, team_id, picks_gw, min_minutes=180):
+def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10):
     """FPL's 2025-26+ Defensive Contribution rule awards 2 pts in any match
     where a player's combined defensive actions clear a position threshold:
     10 (clearances+blocks+interceptions+tackles) for defenders, 12 (the same
@@ -991,16 +991,13 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180):
     correct position-specific combination (confirmed against FPL's own field
     docs), so this reuses it directly instead of re-deriving it from the raw
     per-stat counts and risking a wrong recombination. Goalkeepers don't have
-    a defensive contribution rule and are skipped."""
+    a defensive contribution rule and are skipped.
+
+    Returns both your squad's own rows (`rows`) and a league-wide top_n
+    leaderboard (`top`, regardless of ownership) — the squad view audits your
+    own 15, the leaderboard is who's actually hitting it hardest league-wide."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
-    if not picks_gw:
-        return None
-    try:
-        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
-    except Exception as e:
-        _warn(f"build_defcon: could not load GW{picks_gw} squad: {e}")
-        return None
 
     def to_float(v):
         try:
@@ -1008,28 +1005,44 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180):
         except (TypeError, ValueError):
             return None
 
-    rows = []
-    for p in pk.get("picks") or []:
-        el = elements.get(p["element"])
-        if not el:
-            continue
+    def row_of(el):
         pos = POS[el["element_type"]]
-        if pos == "GKP":
-            continue
+        if pos not in DEFCON_THRESHOLD:
+            return None
         mins = int(el.get("minutes") or 0)
         per90 = to_float(el.get("defensive_contribution_per_90"))
         if mins < min_minutes or per90 is None:
-            continue
+            return None
         threshold = DEFCON_THRESHOLD[pos]
         margin = round(per90 - threshold, 2)
         tag = "reliable" if per90 >= threshold else ("borderline" if per90 >= threshold * 0.75 else "unlikely")
-        rows.append({
+        return {
             "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
             "threshold": threshold, "per90": round(per90, 2), "season_total": to_float(el.get("defensive_contribution")),
             "margin": margin, "tag": tag,
-        })
+        }
+
+    top = []
+    for el in elements.values():
+        r = row_of(el)
+        if r:
+            top.append(r)
+    top.sort(key=lambda r: -r["margin"])
+    top = top[:top_n]
+
+    rows = []
+    if picks_gw:
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+            for p in pk.get("picks") or []:
+                el = elements.get(p["element"])
+                r = row_of(el) if el else None
+                if r:
+                    rows.append(r)
+        except Exception as e:
+            _warn(f"build_defcon: could not load GW{picks_gw} squad: {e}")
     rows.sort(key=lambda r: -r["margin"])
-    return {"min_minutes": min_minutes, "rows": rows}
+    return {"min_minutes": min_minutes, "top_n": top_n, "rows": rows, "top": top}
 
 def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
     """Minutes trend over the last few finished GWs for each squad player —
