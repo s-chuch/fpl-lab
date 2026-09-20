@@ -214,7 +214,10 @@ function renderLeagues(){
 }
 renderLeagues();
 const co=D.chips_official||{};
-function chipRow(label,key){const gw=co[key];const used=gw!=null;return `<li><span class="who">${esc(label)}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} <span class="note">—</span></span><div class="detail">${used?"Played that GW.":"Still available."}</div></li>`;}
+const FHNET=(D.fh_audit||(window.FPL_FH&&window.FPL_FH.audit)||null);
+const CN=D.chip_net||{};
+const CHIP_NET={bboost:CN.bboost||null,"3xc":CN["3xc"]||null,freehit:FHNET?{net:FHNET.net,note:FHNET.why}:null};
+function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${esc(label)}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b>`:`<span class="note">—</span>`}</span><div class="detail">${esc(used?(note||"Net vs no chip."):"Still available.")}</div></li>`;}
 document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
 function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${esc(s)}</span>`).join(" ");}
 function renderNews(){
