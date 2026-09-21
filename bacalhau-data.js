@@ -237,8 +237,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-21 01:13 UTC",
-  "generated_at_et": "2026-09-20 9:13 PM ET",
+  "generated_at": "2026-09-21 01:19 UTC",
+  "generated_at_et": "2026-09-20 9:19 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -695,17 +695,17 @@ window.FPL_DATA = {
           },
           {
             "rank": 11,
-            "team": "Viking Robot",
-            "pts": 289,
-            "me": false,
-            "entry": 687308
-          },
-          {
-            "rank": 11,
             "team": "Must win one",
             "pts": 289,
             "me": false,
             "entry": 7332517
+          },
+          {
+            "rank": 11,
+            "team": "Viking Robot",
+            "pts": 289,
+            "me": false,
+            "entry": 687308
           },
           {
             "rank": 13,
@@ -2294,128 +2294,6 @@ window.FPL_DATA = {
           {
             "xi": [
               {
-                "id": 1,
-                "name": "Raya",
-                "pos": "GKP",
-                "club": "ARS",
-                "mult": 1,
-                "vice": true
-              },
-              {
-                "id": 60,
-                "name": "Hill",
-                "pos": "DEF",
-                "club": "BOU",
-                "mult": 1
-              },
-              {
-                "id": 449,
-                "name": "Hall",
-                "pos": "DEF",
-                "club": "NEW",
-                "mult": 1
-              },
-              {
-                "id": 387,
-                "name": "O'Reilly",
-                "pos": "DEF",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 4,
-                "name": "Gabriel",
-                "pos": "DEF",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 399,
-                "name": "Cherki",
-                "pos": "MID",
-                "club": "MCI",
-                "mult": 1
-              },
-              {
-                "id": 15,
-                "name": "\u00d8degaard",
-                "pos": "MID",
-                "club": "ARS",
-                "mult": 1
-              },
-              {
-                "id": 236,
-                "name": "Dewsbury-Hall",
-                "pos": "MID",
-                "club": "EVE",
-                "mult": 1
-              },
-              {
-                "id": 411,
-                "name": "Haaland",
-                "pos": "FWD",
-                "club": "MCI",
-                "mult": 2,
-                "captain": true
-              },
-              {
-                "id": 346,
-                "name": "Calvert-Lewin",
-                "pos": "FWD",
-                "club": "LEE",
-                "mult": 1
-              },
-              {
-                "id": 165,
-                "name": "Jo\u00e3o Pedro",
-                "pos": "FWD",
-                "club": "CHE",
-                "mult": 1
-              }
-            ],
-            "bench": [
-              {
-                "id": 496,
-                "name": "Kinsky",
-                "pos": "GKP",
-                "club": "TOT",
-                "mult": 0
-              },
-              {
-                "id": 212,
-                "name": "Hughes",
-                "pos": "MID",
-                "club": "CRY",
-                "mult": 0
-              },
-              {
-                "id": 534,
-                "name": "Hume",
-                "pos": "DEF",
-                "club": "SUN",
-                "mult": 0
-              },
-              {
-                "id": 102,
-                "name": "Yarmoliuk",
-                "pos": "MID",
-                "club": "BRE",
-                "mult": 0
-              }
-            ],
-            "captain": "Haaland",
-            "vice": "Raya",
-            "entry": 687308,
-            "team": "Viking Robot",
-            "manager": "Mike Brash",
-            "rank": 11,
-            "pts": 289,
-            "me": false,
-            "chip": null
-          },
-          {
-            "xi": [
-              {
                 "id": 496,
                 "name": "Kinsky",
                 "pos": "GKP",
@@ -2534,6 +2412,128 @@ window.FPL_DATA = {
             "pts": 289,
             "me": false,
             "chip": "wildcard"
+          },
+          {
+            "xi": [
+              {
+                "id": 1,
+                "name": "Raya",
+                "pos": "GKP",
+                "club": "ARS",
+                "mult": 1,
+                "vice": true
+              },
+              {
+                "id": 60,
+                "name": "Hill",
+                "pos": "DEF",
+                "club": "BOU",
+                "mult": 1
+              },
+              {
+                "id": 449,
+                "name": "Hall",
+                "pos": "DEF",
+                "club": "NEW",
+                "mult": 1
+              },
+              {
+                "id": 387,
+                "name": "O'Reilly",
+                "pos": "DEF",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 4,
+                "name": "Gabriel",
+                "pos": "DEF",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 399,
+                "name": "Cherki",
+                "pos": "MID",
+                "club": "MCI",
+                "mult": 1
+              },
+              {
+                "id": 15,
+                "name": "\u00d8degaard",
+                "pos": "MID",
+                "club": "ARS",
+                "mult": 1
+              },
+              {
+                "id": 236,
+                "name": "Dewsbury-Hall",
+                "pos": "MID",
+                "club": "EVE",
+                "mult": 1
+              },
+              {
+                "id": 411,
+                "name": "Haaland",
+                "pos": "FWD",
+                "club": "MCI",
+                "mult": 2,
+                "captain": true
+              },
+              {
+                "id": 346,
+                "name": "Calvert-Lewin",
+                "pos": "FWD",
+                "club": "LEE",
+                "mult": 1
+              },
+              {
+                "id": 165,
+                "name": "Jo\u00e3o Pedro",
+                "pos": "FWD",
+                "club": "CHE",
+                "mult": 1
+              }
+            ],
+            "bench": [
+              {
+                "id": 496,
+                "name": "Kinsky",
+                "pos": "GKP",
+                "club": "TOT",
+                "mult": 0
+              },
+              {
+                "id": 212,
+                "name": "Hughes",
+                "pos": "MID",
+                "club": "CRY",
+                "mult": 0
+              },
+              {
+                "id": 534,
+                "name": "Hume",
+                "pos": "DEF",
+                "club": "SUN",
+                "mult": 0
+              },
+              {
+                "id": 102,
+                "name": "Yarmoliuk",
+                "pos": "MID",
+                "club": "BRE",
+                "mult": 0
+              }
+            ],
+            "captain": "Haaland",
+            "vice": "Raya",
+            "entry": 687308,
+            "team": "Viking Robot",
+            "manager": "Mike Brash",
+            "rank": 11,
+            "pts": 289,
+            "me": false,
+            "chip": null
           },
           {
             "xi": [
@@ -6410,23 +6410,6 @@ window.FPL_DATA = {
         "horizon": 1,
         "top": [
           {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.0,
-            "form": 6.8,
-            "xgi_p90": 0.67,
-            "fdr": 2.0,
-            "score": 6,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Kind run"
-            ]
-          },
-          {
             "name": "Haaland",
             "pos": "FWD",
             "club": "MCI",
@@ -6439,6 +6422,24 @@ window.FPL_DATA = {
             "why": [
               "In form",
               "Strong xGI",
+              "Kind run"
+            ]
+          },
+          {
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
+            "cost": 7.8,
+            "owned_pct": 28.0,
+            "form": 6.8,
+            "xgi_p90": 0.67,
+            "fdr": 2.0,
+            "score": 5,
+            "why": [
+              "In form",
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk",
               "Kind run"
             ]
           },
@@ -6466,22 +6467,6 @@ window.FPL_DATA = {
             "owned_pct": 6.6,
             "form": 6.2,
             "xgi_p90": 0.56,
-            "fdr": 4.0,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value"
-            ]
-          },
-          {
-            "name": "Gro\u00df",
-            "pos": "MID",
-            "club": "BHA",
-            "cost": 5.8,
-            "owned_pct": 26.0,
-            "form": 9.4,
-            "xgi_p90": 0.53,
             "fdr": 4.0,
             "score": 5,
             "why": [
@@ -6554,37 +6539,20 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
-            "cost": 7.8,
-            "owned_pct": 66.8,
-            "form": 6.6,
-            "xgi_p90": 0.59,
-            "fdr": 3.0,
+            "name": "Gro\u00df",
+            "pos": "MID",
+            "club": "BHA",
+            "cost": 5.8,
+            "owned_pct": 26.0,
+            "form": 9.4,
+            "xgi_p90": 0.53,
+            "fdr": 4.0,
             "score": 4,
             "why": [
               "In form",
               "Strong xGI",
               "Great value",
-              "Fade signal",
-              "Doubt"
-            ]
-          },
-          {
-            "name": "Semenyo",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 8.4,
-            "owned_pct": 15.0,
-            "form": 6.6,
-            "xgi_p90": 0.3,
-            "fdr": 2.0,
-            "score": 4,
-            "why": [
-              "In form",
-              "Great value",
-              "Kind run"
+              "Sell-high risk"
             ]
           },
           {
@@ -6636,19 +6604,48 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Gvardiol",
-            "pos": "DEF",
-            "club": "MCI",
-            "cost": 5.7,
-            "owned_pct": 26.3,
-            "form": 7.4,
-            "xgi_p90": 0.2,
+            "name": "Barry",
+            "pos": "FWD",
+            "club": "EVE",
+            "cost": 5.6,
+            "owned_pct": 8.1,
+            "form": 4.0,
+            "xgi_p90": 0.79,
             "fdr": 2.0,
-            "score": 4,
+            "score": 3,
             "why": [
-              "In form",
-              "Great value",
+              "Strong xGI",
               "Kind run"
+            ]
+          },
+          {
+            "name": "Yalcouy\u00e9",
+            "pos": "MID",
+            "club": "BHA",
+            "cost": 4.5,
+            "owned_pct": 4.0,
+            "form": 4.0,
+            "xgi_p90": 0.73,
+            "fdr": 4.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Great value"
+            ]
+          },
+          {
+            "name": "Brobbey",
+            "pos": "FWD",
+            "club": "SUN",
+            "cost": 5.7,
+            "owned_pct": 6.2,
+            "form": 4.8,
+            "xgi_p90": 0.69,
+            "fdr": 5.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Great value"
             ]
           }
         ]
@@ -6656,22 +6653,6 @@ window.FPL_DATA = {
       "3": {
         "horizon": 3,
         "top": [
-          {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.0,
-            "form": 6.8,
-            "xgi_p90": 0.67,
-            "fdr": 2.67,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value"
-            ]
-          },
           {
             "name": "Gakpo",
             "pos": "MID",
@@ -6696,22 +6677,6 @@ window.FPL_DATA = {
             "owned_pct": 6.6,
             "form": 6.2,
             "xgi_p90": 0.56,
-            "fdr": 3.33,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value"
-            ]
-          },
-          {
-            "name": "Gro\u00df",
-            "pos": "MID",
-            "club": "BHA",
-            "cost": 5.8,
-            "owned_pct": 26.0,
-            "form": 9.4,
-            "xgi_p90": 0.53,
             "fdr": 3.33,
             "score": 5,
             "why": [
@@ -6766,21 +6731,37 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
             "cost": 7.8,
-            "owned_pct": 66.8,
-            "form": 6.6,
-            "xgi_p90": 0.59,
-            "fdr": 3.0,
+            "owned_pct": 28.0,
+            "form": 6.8,
+            "xgi_p90": 0.67,
+            "fdr": 2.67,
             "score": 4,
             "why": [
               "In form",
               "Strong xGI",
               "Great value",
-              "Fade signal",
-              "Doubt"
+              "Sell-high risk"
+            ]
+          },
+          {
+            "name": "Gro\u00df",
+            "pos": "MID",
+            "club": "BHA",
+            "cost": 5.8,
+            "owned_pct": 26.0,
+            "form": 9.4,
+            "xgi_p90": 0.53,
+            "fdr": 3.33,
+            "score": 4,
+            "why": [
+              "In form",
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk"
             ]
           },
           {
@@ -6862,6 +6843,21 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Thiago",
+            "pos": "FWD",
+            "club": "BRE",
+            "cost": 7.8,
+            "owned_pct": 9.0,
+            "form": 2.0,
+            "xgi_p90": 0.67,
+            "fdr": 4.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Due a return"
+            ]
+          },
+          {
             "name": "Calvert-Lewin",
             "pos": "FWD",
             "club": "LEE",
@@ -6877,18 +6873,18 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Rogers",
+            "name": "Rudoni",
             "pos": "MID",
-            "club": "CHE",
-            "cost": 7.7,
-            "owned_pct": 40.2,
-            "form": 5.8,
-            "xgi_p90": 0.61,
-            "fdr": 3.0,
+            "club": "COV",
+            "cost": 4.9,
+            "owned_pct": 0.1,
+            "form": 3.0,
+            "xgi_p90": 0.62,
+            "fdr": 2.67,
             "score": 3,
             "why": [
               "Strong xGI",
-              "Great value"
+              "Due a return"
             ]
           }
         ]
@@ -6896,22 +6892,6 @@ window.FPL_DATA = {
       "6": {
         "horizon": 6,
         "top": [
-          {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.0,
-            "form": 6.8,
-            "xgi_p90": 0.67,
-            "fdr": 2.83,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value"
-            ]
-          },
           {
             "name": "Gakpo",
             "pos": "MID",
@@ -6937,22 +6917,6 @@ window.FPL_DATA = {
             "form": 6.2,
             "xgi_p90": 0.56,
             "fdr": 3.0,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value"
-            ]
-          },
-          {
-            "name": "Gro\u00df",
-            "pos": "MID",
-            "club": "BHA",
-            "cost": 5.8,
-            "owned_pct": 26.0,
-            "form": 9.4,
-            "xgi_p90": 0.53,
-            "fdr": 3.67,
             "score": 5,
             "why": [
               "In form",
@@ -7006,21 +6970,53 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
             "cost": 7.8,
-            "owned_pct": 66.8,
-            "form": 6.6,
-            "xgi_p90": 0.59,
-            "fdr": 3.17,
+            "owned_pct": 28.0,
+            "form": 6.8,
+            "xgi_p90": 0.67,
+            "fdr": 2.83,
             "score": 4,
             "why": [
               "In form",
               "Strong xGI",
               "Great value",
-              "Fade signal",
-              "Doubt"
+              "Sell-high risk"
+            ]
+          },
+          {
+            "name": "Rudoni",
+            "pos": "MID",
+            "club": "COV",
+            "cost": 4.9,
+            "owned_pct": 0.1,
+            "form": 3.0,
+            "xgi_p90": 0.62,
+            "fdr": 2.5,
+            "score": 4,
+            "why": [
+              "Strong xGI",
+              "Due a return",
+              "Kind run"
+            ]
+          },
+          {
+            "name": "Gro\u00df",
+            "pos": "MID",
+            "club": "BHA",
+            "cost": 5.8,
+            "owned_pct": 26.0,
+            "form": 9.4,
+            "xgi_p90": 0.53,
+            "fdr": 3.67,
+            "score": 4,
+            "why": [
+              "In form",
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk"
             ]
           },
           {
@@ -7086,6 +7082,21 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Thiago",
+            "pos": "FWD",
+            "club": "BRE",
+            "cost": 7.8,
+            "owned_pct": 9.0,
+            "form": 2.0,
+            "xgi_p90": 0.67,
+            "fdr": 3.33,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Due a return"
+            ]
+          },
+          {
             "name": "Calvert-Lewin",
             "pos": "FWD",
             "club": "LEE",
@@ -7098,21 +7109,6 @@ window.FPL_DATA = {
             "why": [
               "Strong xGI",
               "Great value"
-            ]
-          },
-          {
-            "name": "Rudoni",
-            "pos": "MID",
-            "club": "COV",
-            "cost": 4.9,
-            "owned_pct": 0.1,
-            "form": 3.0,
-            "xgi_p90": 0.62,
-            "fdr": 2.5,
-            "score": 3,
-            "why": [
-              "Strong xGI",
-              "Kind run"
             ]
           },
           {
