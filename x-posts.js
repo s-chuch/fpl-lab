@@ -63,6 +63,10 @@ window.FPL_X = {
     {
       "name": "FPL Bareback",
       "handle": "fplbareback"
+    },
+    {
+      "name": "FFScout Tom",
+      "handle": "ffscout_tom"
     }
   ],
   "posts": [
