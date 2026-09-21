@@ -31,7 +31,7 @@ const TAB_GROUPS=[
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
   {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"]]},
   {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
-  {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"],["greekgod","GreekGod"]]},
+  {id:"intel",label:"Intel",tabs:[["news","News"],["greekgod","GreekGod"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
 let activeGroup="review", activeTab="season";
@@ -318,7 +318,10 @@ function renderX(){
   const blurb=esc(X.note||(live?"Live X ingest. Emerging = 2 accounts so far. Agreed = 3+ accounts (consensus).":"Accounts to follow + seeded themes until live ingest exists."));
   document.getElementById("xtab").innerHTML=`${staleWarn(X,"x")}<div class="card"><h2>X · GW${X.gw||""}</h2>${freshnessMeta(X,"x")}<p class="note">${blurb}</p></div><div class="card"><h2>Accounts to follow</h2><div class="xi">${acc}</div></div><div class="card"><h2>${agreedH}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>${splitH}</h2><ul class="chiplist">${split}</ul></div>${liveBlock}`;
 }
-renderX();
+// X tab discontinued (live ingest cancelled — paid API/Grok Bot) — renderX()
+// kept intact below for whenever ingest comes back; just add ["xtab","X"]
+// back into the Intel tab group and uncomment this call to restore it.
+// renderX();
 renderGreekGodTab();
 function renderFh(){
   const F=window.FPL_FH||{}; const A=Object.assign({}, F.audit||{}, (D.fh_audit||{}));

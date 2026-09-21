@@ -28,7 +28,7 @@ const TAB_GROUPS=[
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
   {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"]]},
   {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
-  {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"],["greekgod","GreekGod"]]},
+  {id:"intel",label:"Intel",tabs:[["news","News"],["greekgod","GreekGod"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
 let activeGroup="review", activeTab="season";
@@ -380,7 +380,10 @@ function renderX(){
   const split=(X.split||[]).map(x=>`<li><span class="who">${esc(x.text)}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">Nothing below the agreed threshold right now.</span></li>`;
   document.getElementById("xtab").innerHTML=`<div class="warn">Emerging = 2 accounts so far. Agreed = 3+ accounts (consensus).</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Raw posts just fetched this run — not analyzed yet, this is what feeds the consensus above.</p><ul class="chiplist">${newBlock}</ul></details></div>`;
 }
-renderX();
+// X tab discontinued (live ingest cancelled — paid API/Grok Bot) — renderX()
+// kept intact below for whenever ingest comes back; just add ["xtab","X"]
+// back into the Intel tab group and uncomment this call to restore it.
+// renderX();
 renderGreekGodTab();
 function renderFh(){
   const used=(D.chips_official||{}).freehit;
