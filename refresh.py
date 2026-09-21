@@ -1322,6 +1322,155 @@ def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
     defcon_rows.sort(key=lambda r: -r["margin"])
     return {"min_minutes": min_minutes, "xg": xg_rows[:top_n], "defcon": defcon_rows[:top_n]}
 
+
+def _intel_tags_by_player(root):
+    """Every player's News/X qualifier tags (fpl_common.QUALIFIER_PATTERNS),
+    merged across both sources' agreed+split themes — reused by build_targets
+    as a light "what's the internet already saying about this player" signal
+    on top of the app's own underlying-stats signals. Same {agreed, split}
+    shape and reuse pattern as _rotation_flagged_players above, just keyed on
+    every tag instead of filtering to one."""
+    tags = {}
+    for filename in ("news.js", "x-posts.js"):
+        data = fpl_common.load_js_object(root / filename)
+        for item in (data.get("agreed") or []) + (data.get("split") or []):
+            if item.get("player"):
+                tags.setdefault(item["player"], set()).update(item.get("tags") or [])
+    return tags
+
+
+TARGET_HORIZONS = (1, 3, 6)
+
+def build_targets(boot, min_minutes=180, top_n=15):
+    """League-wide "who to target" shortlists for the Target tab, at three
+    look-ahead horizons (next 1/3/6 GWs) — combining the same underlying
+    signals already shown on the Strategy tab (form, xGI/90, DEFCON
+    reliability, points-per-£1m value) with the Intel tab's News/X
+    "transfer target"/"fade" consensus, so the two tabs' signals feed one
+    shortlist instead of the user mentally combining six tabs themselves.
+
+    Only the fixture-ease component changes across horizons (a club's
+    average FDR over its next N fixtures); every other signal reflects
+    current underlying quality and is computed once, then reused for all
+    three lists. Scoring is a plain, documented point count rather than a
+    hidden weighted formula — each signal contributes at most 1-2 points
+    when a player clears a fixed threshold, and every point is shown back
+    to the user as a "Why" tag rather than only a bare score. A player FPL
+    itself flags as out is excluded outright; a doubt is kept but never
+    scored positively.
+    """
+    teams = {t["id"]: t for t in boot["teams"]}
+
+    def to_float(v):
+        try:
+            return float(v)
+        except (TypeError, ValueError):
+            return None
+
+    intel = _intel_tags_by_player(ROOT)
+
+    upcoming = sorted((e for e in boot["events"] if not e.get("finished")), key=lambda e: e["id"])[:max(TARGET_HORIZONS)]
+    fdr_samples = {n: {} for n in TARGET_HORIZONS}  # horizon -> team_id -> [fdr,...]
+    for i, ev in enumerate(upcoming, start=1):
+        try:
+            fx = fixture_scan(ev["id"], teams)
+        except Exception as e:
+            _warn(f"build_targets: could not load GW{ev['id']} fixtures: {e}")
+            continue
+        for tid, fixtures in fx.items():
+            for n in TARGET_HORIZONS:
+                if i <= n:
+                    fdr_samples[n].setdefault(tid, []).extend(f["fdr"] for f in fixtures if f.get("fdr") is not None)
+    avg_fdr = {n: {tid: round(sum(v) / len(v), 2) for tid, v in fdr_samples[n].items() if v} for n in TARGET_HORIZONS}
+
+    # Points-per-£1m value is only meaningful relative to a position's own
+    # pool (a £4.5m defender and a £15m forward aren't comparable in raw
+    # value), so rank each position's qualifying players and flag the top
+    # quartile — same idea as build_value_board, computed inline here since
+    # that function only returns its own top_n cut, not the full pool.
+    value_by_pos = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for el in boot["elements"]:
+        if int(el.get("minutes") or 0) < min_minutes:
+            continue
+        cost = el["now_cost"] / 10
+        if cost > 0:
+            value_by_pos[POS[el["element_type"]]].append((el["id"], el.get("total_points", 0) / cost))
+    good_value_ids = set()
+    for pos_rows in value_by_pos.values():
+        pos_rows.sort(key=lambda r: -r[1])
+        good_value_ids.update(eid for eid, _ in pos_rows[:max(1, len(pos_rows) // 4)])
+
+    rows = []
+    for el in boot["elements"]:
+        if int(el.get("minutes") or 0) < min_minutes:
+            continue
+        avail = player_availability(el)
+        if avail["kind"] == "out":
+            continue  # never recommend a player FPL itself says can't play
+
+        pos = POS[el["element_type"]]
+        name = el["web_name"]
+        try:
+            form = float(el.get("form") or 0)
+        except (TypeError, ValueError):
+            form = 0.0
+        xgi = to_float(el.get("expected_goal_involvements"))
+        if xgi is None:
+            xgi = (to_float(el.get("expected_goals")) or 0.0) + (to_float(el.get("expected_assists")) or 0.0)
+        mins = int(el.get("minutes") or 0)
+        p90 = mins / 90
+        xgi_p90 = round(xgi / p90, 2) if p90 else 0.0
+
+        defcon_ok = False
+        if pos in DEFCON_THRESHOLD:
+            per90 = to_float(el.get("defensive_contribution_per_90"))
+            defcon_ok = per90 is not None and per90 >= DEFCON_THRESHOLD[pos]
+
+        tags_here = intel.get(name) or set()
+        rows.append({
+            "id": el["id"], "team_id": el["team"], "name": name, "pos": pos, "club": teams[el["team"]]["short_name"],
+            "cost": el["now_cost"] / 10, "owned_pct": to_float(el.get("selected_by_percent")) or 0.0,
+            "form": form, "xgi_p90": xgi_p90, "defcon_ok": defcon_ok,
+            "good_value": el["id"] in good_value_ids,
+            "intel_target": "transfer target" in tags_here,
+            "intel_fade": bool(tags_here & {"fade/sell", "injury/doubt"}),
+            "doubt": avail["kind"] == "doubt",
+        })
+
+    out = {}
+    for n in TARGET_HORIZONS:
+        scored = []
+        for r in rows:
+            fdr = avg_fdr[n].get(r["team_id"])
+            kind_run = fdr is not None and fdr <= 2.6
+            why = []
+            score = 0
+            if r["form"] >= 6.0:
+                why.append("In form"); score += 2
+            if r["pos"] != "GKP" and r["xgi_p90"] >= 0.5:
+                why.append("Strong xGI"); score += 2
+            if r["defcon_ok"]:
+                why.append("Reliable DEFCON"); score += 1
+            if r["good_value"]:
+                why.append("Great value"); score += 1
+            if kind_run:
+                why.append("Kind run"); score += 1
+            if r["intel_target"]:
+                why.append("News/X backed"); score += 1
+            if r["intel_fade"]:
+                why.append("Fade signal"); score -= 1
+            if r["doubt"]:
+                why.append("Doubt")
+            scored.append({
+                "name": r["name"], "pos": r["pos"], "club": r["club"], "cost": r["cost"], "owned_pct": r["owned_pct"],
+                "form": r["form"], "xgi_p90": r["xgi_p90"], "fdr": fdr, "score": score, "why": why,
+            })
+        scored.sort(key=lambda s: (-s["score"], -s["xgi_p90"], -s["form"]))
+        out[str(n)] = {"horizon": n, "top": scored[:top_n]}
+
+    return {"min_minutes": min_minutes, "top_n": top_n, "horizons": out}
+
+
 def target_rival_entries(rows, team_id, limit_top=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
     compares against: the top of the table (limit_top) and whoever's within
@@ -1554,6 +1703,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
     data["value_board"] = build_value_board(boot)
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
+    data["targets"] = build_targets(boot)
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

@@ -8,7 +8,7 @@
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
 <nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20260920h"></script>
 <script src="data.js?v=20260918e"></script>
@@ -30,6 +30,7 @@ const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
   {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"]]},
+  {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
   {id:"intel",label:"Intel",tabs:[["news","News"],["xtab","X"],["greekgod","GreekGod"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
@@ -436,5 +437,21 @@ function renderStrategy(){
   startPriceCountdown("priceCountdown");
 }
 renderStrategy();
+function renderTargets(){
+  const T=D.targets||{};
+  const H=T.horizons||{};
+  const scoreCls=s=>s>=5?"pos":s<0?"neg":"";
+  const tgtHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Cost</th><th style="width:15%">Score</th><th style="width:39%">Why</th></tr></thead>`;
+  const buildCard=key=>{
+    const h=H[key]||{};
+    const n=h.horizon??Number(key);
+    const rows=(h.top||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td class="${scoreCls(r.score)}"><b>${r.score}</b></td><td style="white-space:normal">${esc((r.why||[]).join(" · ")||"–")}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying players yet.</span></td></tr>`;
+    return `<div class="card"><h2>Target · next ${n} GW${n===1?"":"s"}</h2><ul class="note-list"><li>League-wide shortlist combining Strategy tab signals (form, xGI/90, DEFCON, value) with Intel tab's News/X consensus</li><li>Score is a plain point count, not a hidden formula — see the Why column and legend below</li><li>Excludes anyone FPL itself flags as unavailable (${T.min_minutes??"?"}+ mins played to qualify)</li></ul><table class="table-compact">${tgtHead}<tbody>${rows}</tbody></table><ul class="legend-list"><li>In form = FPL form ≥6.0 (+2)</li><li>Strong xGI = xG+xA per 90 ≥0.5, non-GKP (+2)</li><li>Reliable DEFCON = clears the defensive-actions threshold for their position (+1)</li><li>Great value = top 25% points-per-£1m for their position (+1)</li><li>Kind run = average fixture difficulty ≤2.6 over this horizon (+1)</li><li>News/X backed = tagged a transfer target in Intel coverage (+1) · Fade signal = tagged fade/sell or injury/doubt (-1)</li><li>Doubt = FPL flags a fitness doubt — shown, never scored</li></ul></div>`;
+  };
+  document.getElementById("target1").innerHTML=buildCard("1");
+  document.getElementById("target3").innerHTML=buildCard("3");
+  document.getElementById("target6").innerHTML=buildCard("6");
+}
+renderTargets();
 document.getElementById("foot").innerHTML=`<a href="bacalhau.html">Bacalhau</a> · Leagues: Overall + ESL + Decision.`;
 </script></body></html>
