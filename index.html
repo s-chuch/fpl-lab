@@ -123,9 +123,14 @@ function renderPlan(){
     const opt=(I.optional||[]).map(x=>`<li><span class="note">${esc(x)}</span></li>`).join("");
     intel=`<div class="card"><h2>Chips · next 2 GWs</h2><p class="note">Calls use News + X plus chips you have already played.</p><ul class="chiplist">${chipLis||"<li><span class=note>Waiting for news.js.</span></li>"}</ul></div><div class="card"><h2>Transfers · ${esc(I.action||T.action||"ROLL")} · ${I.ft??T.ft_available??"?"} FT · bank £${(I.bank||0).toFixed?(I.bank||0).toFixed(1):I.bank}</h2><p class="note"><b>${esc(I.moveLine||actionLine)}</b></p><p class="note">${esc(I.reason||T.reason||"")}</p>${I.targets&&I.targets.length?`<p class="note">Agreed and missing: ${esc(I.targets.join(", "))}</p>`:""}${opt?`<ul class="chiplist">${opt}</ul>`:""}</div>`;
     const Ltac=I.league||{};
-    const isDefend=Ltac.mode==="defend";
-    const heading=isDefend?"Defend the lead":"Vs 1st & 2nd";
-    const threatBlock=isDefend&&(Ltac.threat||[]).length?`<ul class="note-list">${Ltac.threat.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><p class="note">They can still use their remaining chips — you can't match a Free Hit, Bench Boost, or Triple Captain again this half.</p>`:"";
+    const HEADING_BY_MODE={defend:"Defend the lead",climb:"Climb the table",chase:"Vs 1st & 2nd"};
+    const heading=HEADING_BY_MODE[Ltac.mode]||"Vs 1st & 2nd";
+    let threatBlock="";
+    if(Ltac.mode==="defend"&&(Ltac.threat||[]).length){
+      threatBlock=`<ul class="note-list">${Ltac.threat.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><p class="note">They can still use their remaining chips — you can't match a Free Hit, Bench Boost, or Triple Captain again this half.</p>`;
+    } else if(Ltac.mode==="climb"&&(Ltac.threat||[]).length){
+      threatBlock=`<ul class="note-list">${Ltac.threat.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><p class="note">1st and 2nd aren't this week's problem — closing the gap to the team right above you is.</p>`;
+    }
     vsLead=`<div class="card"><h2>${esc(heading)}${Ltac.league?" · "+esc(Ltac.league):""}</h2>${threatBlock}<p class="note"><b>${esc(Ltac.cap||"Captain Haaland if the room owns him.")}</b></p><p class="note">${esc(Ltac.transfer||"")}</p>${(Ltac.start||[]).length?`<p class="note">Start these league diffs</p><div class="xi">${Ltac.start.map(x=>`<div class="chip ok">${esc(x)}</div>`).join("")}</div>`:""}${(Ltac.bench||[]).length?`<p class="note">Owned diffs that are sits — not tactics</p><div class="xi">${Ltac.bench.map(x=>`<div class="chip sit">${esc(x)}</div>`).join("")}</div>`:""}${(Ltac.wc||[]).length?`<p class="note">WC names this league barely owns</p><div class="xi">${Ltac.wc.map(x=>`<div class="chip">${esc(x)}</div>`).join("")}</div>`:""}</div>`;
     newsBlock=newsCard("News + X vs this squad",vs);
   }
@@ -238,7 +243,7 @@ function renderLeagues(){
     const copy=(T.they_share||[]).map(x=>`<div class="chip sit">${esc(x.name)} · ${x.count}/${x.n}</div>`).join("")||`<p class="note">1st and 2nd do not share a name you lack.</p>`;
     const caps=esc((T.cap_last||[]).map(x=>x.name+" "+x.count).join(" · ")||"—");
     const gap=T.gap_to_first==null?"":` · ${T.gap_to_first>0?"-"+T.gap_to_first:"+"+(-T.gap_to_first)} vs 1st`;
-    const tacHeading=T.you_rank===1?"Defend the lead":"Vs 1st & 2nd";
+    const tacHeading=T.you_rank===1?"Defend the lead":(T.you_rank!=null&&T.you_rank>3?"Climb the table":"Vs 1st & 2nd");
     mini+=`<div class="card"><h2>${esc(tacHeading)}${gap}</h2><p class="note">1st: <b>${esc((T.first&&T.first.name)||"?")}</b> ${(T.first&&T.first.pts)??""}${rivalExtra(T.first)}</p><p class="note">2nd: <b>${esc((T.second&&T.second.name)||"?")}</b> ${(T.second&&T.second.pts)??""}${rivalExtra(T.second)}</p><p class="note">Green = your rare picks that 1st or 2nd don't own — real differentials, low league ownership</p><div class="xi">${startDiffs}</div><p class="note">Do not copy — both ahead own these</p><div class="xi">${copy}</div><p class="note">Last captains: ${caps}</p></div>`;
     if(T.neighbors){
       const Nb=T.neighbors;

@@ -133,11 +133,19 @@ window.planIntel = function(D){
   }
   const sitSells=squad.filter(n=>doubleSit(n) && n!=="Haaland");
 
-  // Defend mode: once you're top of this mini-league, the room's own template
-  // and news/X consensus matter less than the two teams actually chasing you.
-  // Tac.first/Tac.second are already "closest rivals by rank" (see
-  // league_tactics.py) — when you're rank 1 that's literally P2/P3.
-  const isDefend=Tac.you_rank===1 || (Tac.gap_to_first!=null && Tac.gap_to_first<=0);
+  // Strategy tier reads off your actual rank in this league, not just
+  // "leader or not": rank 1 defends against the two teams chasing you
+  // (Tac.first/second are already "closest rivals by rank" — see
+  // league_tactics.py — so at rank 1 that's literally P2/P3); rank 2-3 is
+  // still realistically chasing the top and uses the same first/second
+  // comparison; anything further back shifts the target from 1st/2nd (too
+  // far away to be this week's problem) to whoever's directly above you
+  // (Tac.neighbors), which is the actual next rival to catch.
+  const rank=Tac.you_rank;
+  let mode="chase";
+  if(rank===1 || (Tac.gap_to_first!=null && Tac.gap_to_first<=0)) mode="defend";
+  else if(rank!=null && rank<=3) mode="chase";
+  else if(rank!=null) mode="climb";
   function describeRival(card){
     if(!card) return null;
     const gap=card.gap;
@@ -145,7 +153,10 @@ window.planIntel = function(D){
     const chipsTxt=(card.chips_used&&card.chips_used.length)?(" · used "+card.chips_used.join(", ")):"";
     return (card.name||"?")+" · "+(card.pts??"?")+" pts"+gapTxt+chipsTxt;
   }
-  const threat=isDefend?[describeRival(Tac.first),describeRival(Tac.second)].filter(Boolean):[];
+  const nb=Tac.neighbors||null;
+  let threat=[];
+  if(mode==="defend") threat=[describeRival(Tac.first),describeRival(Tac.second)].filter(Boolean);
+  else if(mode==="climb" && nb) threat=[describeRival(nb.above)].filter(Boolean);
   const defendTransfer=(cheapHit && bank>=1 && sitSells.length)
     ?("Consider "+sitSells[0]+" → "+cheapHit+". Funds a name this room barely owns while you defend the lead.")
     :"Roll. Keep transfers banked while you defend the lead.";
@@ -202,8 +213,8 @@ window.planIntel = function(D){
     chipRows, action, moveLine, reason, optional, targets:blocked, wantsWC, ft, bank, gwA, gwB,
     league: {
       league: esl.name||"",
-      mode: isDefend?"defend":"chase",
-      cap, transfer: isDefend?defendTransfer:reason,
+      mode,
+      cap, transfer: mode==="defend"?defendTransfer:reason,
       start, bench, wc, threat,
       gap: Tac.gap_to_first,
       first: Tac.first&&Tac.first.name,
