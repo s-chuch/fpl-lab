@@ -71,9 +71,10 @@ function renderTransfers(){
   const total=rows.reduce((s,t)=>s+trNet(t),0);
   const by={}; for(const t of rows){const g=t.gw??"?"; by[g]=(by[g]||0)+trNet(t);}
   const gwLines=Object.keys(by).sort((a,b)=>Number(a)-Number(b)).map(g=>`<div class="chip">GW${g} · <b class="${cls(by[g])}">${sign(by[g])}</b></div>`).join("");
-  const body=rows.map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${esc(t.out)} → ${esc(t.inn)}</td><td class="${cls(trNet(t))}">${esc(t.net)}</td><td>${esc(t.verdict||"")}</td></tr>`).join("");
+  const priceCell=t=>t.inn==="ROLL"?"–":`£${(t.out_price??0).toFixed(1)} → £${(t.in_price??0).toFixed(1)}`;
+  const body=rows.map(t=>`<tr><td>GW${t.gw??"-"}</td><td>${esc(t.out)} → ${esc(t.inn)}</td><td>${priceCell(t)}</td><td class="${cls(trNet(t))}">${esc(t.net)}</td><td>${esc(t.verdict||"")}</td></tr>`).join("");
   document.getElementById("transfers").innerHTML=rows.length
-    ?`<div class="card"><h2>Transfer points</h2><p class="note">Season net <b class="${cls(total)}">${sign(total)}</b></p><div class="xi">${gwLines}</div></div><div class="card"><h2>Transfers</h2><table><thead><tr><th>GW</th><th>Move</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${body}</tbody></table></div>`
+    ?`<div class="card"><h2>Transfer points</h2><p class="note">Season net <b class="${cls(total)}">${sign(total)}</b></p><div class="xi">${gwLines}</div></div><div class="card"><h2>Transfers</h2><ul class="note-list"><li>Price = what Bacalhau sold the outgoing player for → what they paid for the incoming player, per FPL's own transfer record</li></ul><table><thead><tr><th>GW</th><th>Move</th><th>Price</th><th>Net</th><th>Verdict</th></tr></thead><tbody>${body}</tbody></table></div>`
     :`<div class="card"><h2>Transfers</h2><p class="note">No transfer-by-transfer list yet.</p></div>`;
 }
 renderTransfers();
@@ -171,7 +172,7 @@ function renderWildcardWatch(){
       return "";
     };
     const logRows=(WT.log||[]).slice().reverse().map(logLi).join("")||`<li><span class="note">No changes logged yet.</span></li>`;
-    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><ul class="note-list"><li>Cost to assemble this exact target squad, first captured ${esc(WT.baseline.date)}</li><li>Updated every refresh until the GW${W.gw} deadline</li></ul><p class="note">Cost to assemble now: <b>£${WT.current.total_cost.toFixed(1)}m</b> · vs first captured: <b class="${wtDeltaCls(WT.total_delta)}">${sign(WT.total_delta)}</b></p><table class="table-compact">${wtHead}<tbody>${wtRows}</tbody></table><h3>Change log</h3><ul class="chiplist">${logRows}</ul><ul class="legend-list"><li>Then/Now = price when first captured vs current price</li><li>Δ = price change since first captured — green means the plan got cheaper to assemble, red means more expensive</li></ul></div>`;
+    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><ul class="note-list"><li>Market cost to rebuild this exact target squad from scratch at today's prices, first captured ${esc(WT.baseline.date)}</li><li>Not the same as Bacalhau's actual overall squad value below — that one nets in the sell-price they'd actually get for players already owned, built up from every transfer since GW1; this one is a flat "buy every one of these 15 today" total</li><li>Updated every refresh until the GW${W.gw} deadline</li></ul><p class="note">Market cost to rebuild now: <b>£${WT.current.total_cost.toFixed(1)}m</b> · vs first captured: <b class="${wtDeltaCls(WT.total_delta)}">${sign(WT.total_delta)}</b></p><p class="note">Bacalhau's actual overall squad value (FPL's own figure, GW1-to-now): <b>£${Number(D.team.value).toFixed(1)}m</b></p><table class="table-compact">${wtHead}<tbody>${wtRows}</tbody></table><h3>Change log</h3><ul class="chiplist">${logRows}</ul><ul class="legend-list"><li>Then/Now = price when first captured vs current price</li><li>Δ = price change since first captured — green means the plan got cheaper to assemble, red means more expensive</li></ul></div>`;
   } else {
     worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
   }

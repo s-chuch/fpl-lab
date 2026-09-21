@@ -755,6 +755,14 @@ def build_fh_audit(boot, team_id, chips_used):
 
 
 def build_transfers(boot, team_id):
+    """Every transfer made this season, with the points swing (existing) and
+    the actual price paid/received (element_in_cost/element_out_cost — the
+    FPL transfers endpoint's own record of the deal, not today's price) so
+    the season's real buy/sell history is visible, not just this GW's points
+    verdict. This is the authoritative source for "what did I actually pay
+    and get" from GW1 to now — FPL's own last_deadline_value (the Squad
+    value KPI) already nets these out correctly; this just makes each deal
+    visible instead of only the aggregate."""
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
     try:
         rows = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/")
@@ -774,7 +782,10 @@ def build_transfers(boot, team_id):
         pin, pout = live_cache[gw].get(t["element_in"], 0), live_cache[gw].get(t["element_out"], 0)
         net = pin - pout
         verdict = "Good that GW" if net > 1 else ("Lost that GW" if net < -1 else "Even that GW")
-        out.append({"gw": gw, "out": outp, "inn": inn, "net": ("+" if net > 0 else "") + str(net), "verdict": verdict})
+        out.append({
+            "gw": gw, "out": outp, "inn": inn, "net": ("+" if net > 0 else "") + str(net), "verdict": verdict,
+            "out_price": (t.get("element_out_cost") or 0) / 10, "in_price": (t.get("element_in_cost") or 0) / 10,
+        })
     out.sort(key=lambda x: x["gw"] or 0)
     return out
 
