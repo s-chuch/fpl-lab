@@ -74,15 +74,28 @@ window.planIntel = function(D){
   const openUp=up.filter(u=>!u.deadline_passed);
   const gwA=(openUp[0]&&openUp[0].gw)||intelGw||(up[0]&&up[0].gw);
   const gwB=(openUp[1]&&openUp[1].gw)||(up[1]&&!up[1].deadline_passed&&up[1].gw)||(up[1]&&up[1].gw);
+  // Bench Boost reads the actual bench for the open GW off the existing call
+  // column (P.rows), rather than naming specific players/fixtures that go
+  // stale the moment the gameweek changes.
+  const idxA=up.findIndex(u=>u.gw===gwA);
+  const benchA=(((P.xis||{})["gw"+gwA]||{}).bench)||[];
+  function callAt(name, idx){
+    if(idx<0) return null;
+    const r=(P.rows||[]).find(row=>row[1]===name);
+    return r ? r[5+idx*3] : null;
+  }
+  const benchAllStart=benchA.length>0 && benchA.every(n=>callAt(n, idxA)==="START");
   const chipRows=[];
   if(gwA){
     chipRows.push(chipState("wildcard","Wildcard",gwA,"HOLD",
-      wantsWC?"News/X flag a wildcard window, but GW"+gwA+" is the week before the long international break. Wait for GW"+(gwB||gwA+1)+".":"No wildcard consensus for this week."));
+      wantsWC?"News/X flag a wildcard window, but there is no case yet this week.":"No wildcard consensus for this week."));
     chipRows.push(chipState("freehit","Free Hit",gwA,"HOLD",
-      wantsFH?"FH drafts are being talked about. You already spent one. Do not burn another on a full-fixture GW.":"No reason to Free Hit a full slate."));
+      wantsFH?"FH drafts are being talked about, but there is no blank/double case to force it.":"No reason to Free Hit a full slate."));
     chipRows.push(chipState("3xc","Triple Captain",gwA,"HOLD",
-      wantsHaalandCap?"Haaland is the agreed captain vs a soft home fixture. Armband only — chip already used.":"No triple-captain case."));
-    chipRows.push(chipState("bboost","Bench Boost",gwA,"HOLD","Bench is Shaw (75%) + Hume (City away). Do not boost." ));
+      wantsHaalandCap?"Haaland is the agreed captain. Armband only.":"No triple-captain case."));
+    chipRows.push(chipState("bboost","Bench Boost",gwA,
+      benchAllStart?"CONSIDER":"HOLD",
+      benchA.length?("Bench is "+benchA.join(", ")+(benchAllStart?" — all read START-quality.":" — not all START-quality.")):"No bench captured for this GW yet."));
   }
   const mini=(D.leagues&&D.leagues.mini)||[];
   const esl=mini.find(x=>x.id===125784)||mini[0]||{};
@@ -120,6 +133,23 @@ window.planIntel = function(D){
   }
   const sitSells=squad.filter(n=>doubleSit(n) && n!=="Haaland");
 
+  // Defend mode: once you're top of this mini-league, the room's own template
+  // and news/X consensus matter less than the two teams actually chasing you.
+  // Tac.first/Tac.second are already "closest rivals by rank" (see
+  // league_tactics.py) — when you're rank 1 that's literally P2/P3.
+  const isDefend=Tac.you_rank===1 || (Tac.gap_to_first!=null && Tac.gap_to_first<=0);
+  function describeRival(card){
+    if(!card) return null;
+    const gap=card.gap;
+    const gapTxt=gap==null?"":(gap<0?(" · "+Math.abs(gap)+" back"):(gap>0?(" · "+gap+" ahead"):" · level"));
+    const chipsTxt=(card.chips_used&&card.chips_used.length)?(" · used "+card.chips_used.join(", ")):"";
+    return (card.name||"?")+" · "+(card.pts??"?")+" pts"+gapTxt+chipsTxt;
+  }
+  const threat=isDefend?[describeRival(Tac.first),describeRival(Tac.second)].filter(Boolean):[];
+  const defendTransfer=(cheapHit && bank>=1 && sitSells.length)
+    ?("Consider "+sitSells[0]+" → "+cheapHit+". Funds a name this room barely owns while you defend the lead.")
+    :"Roll. Keep transfers banked while you defend the lead.";
+
   const pairs=[
     {sell:"Cherki", buy:"Rogers", needBank:0, note:"Prices line up on Cherki → Rogers."},
     {sell:"Calvert-Lewin", buy:"Wissa", needBank:0, note:"DCL → Wissa is the cheap forward version."},
@@ -154,13 +184,13 @@ window.planIntel = function(D){
   }
 
   if(gwB){
-    const wcNow=chips.wildcard==null && wc.length>=2 && wantsWC;
+    const wcNow=chips.wildcard==null && wc.length>=2;
     chipRows.push(chipState("wildcard","Wildcard",gwB, wcNow?"CONSIDER":"HOLD",
-      wcNow?("This room barely owns "+wc.join(", ")+". After the break that is the WC case."):"Revisit after the break. Need two scarce agreed names to force the chip."));
+      wcNow?("This room barely owns "+wc.join(", ")+". That is the wildcard case."):"No wildcard case yet. Need two scarce agreed names to force the chip."));
   }
   const optional=[];
-  if(have.has("Cherki") && blocked.includes("Rogers")) optional.push("Only if you refuse to roll: Cherki → Rogers. Prices line up. Cherki vs Sunderland at home is a reason not to.");
-  if(have.has("Calvert-Lewin") && blocked.includes("Wissa")) optional.push("DCL → Wissa is the cheap forward version. DCL vs Palace at home is startable.");
+  if(have.has("Cherki") && blocked.includes("Rogers")) optional.push("Only if you refuse to roll: Cherki → Rogers. Prices line up.");
+  if(have.has("Calvert-Lewin") && blocked.includes("Wissa")) optional.push("DCL → Wissa is the cheap forward version.");
   if(have.has("Tzolis") && blocked.includes("Gakpo")) optional.push("Tzolis → Gakpo needs another £0.5m. Sit Tzolis instead.");
   if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) optional.push("News/X fade United. Shaw is already a sit. Do not fire Fernandes this week to match a fade.");
   const they=(Tac.they_share||[]).map(x=>x.name);
@@ -172,8 +202,9 @@ window.planIntel = function(D){
     chipRows, action, moveLine, reason, optional, targets:blocked, wantsWC, ft, bank, gwA, gwB,
     league: {
       league: esl.name||"",
-      cap, transfer: reason,
-      start, bench, wc,
+      mode: isDefend?"defend":"chase",
+      cap, transfer: isDefend?defendTransfer:reason,
+      start, bench, wc, threat,
       gap: Tac.gap_to_first,
       first: Tac.first&&Tac.first.name,
       second: Tac.second&&Tac.second.name
