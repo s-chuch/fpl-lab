@@ -1341,13 +1341,14 @@ def _intel_tags_by_player(root):
 
 TARGET_HORIZONS = (1, 3, 6)
 
-def build_targets(boot, min_minutes=180, top_n=15):
+def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
     """League-wide "who to target" shortlists for the Target tab, at three
     look-ahead horizons (next 1/3/6 GWs) — combining the same underlying
     signals already shown on the Strategy tab (form, xGI/90, DEFCON
-    reliability, points-per-£1m value) with the Intel tab's News/X
-    "transfer target"/"fade" consensus, so the two tabs' signals feed one
-    shortlist instead of the user mentally combining six tabs themselves.
+    reliability, points-per-£1m value, xG/xA over/underperformance) with
+    the Intel tab's News/X "transfer target"/"fade" consensus, so the two
+    tabs' signals feed one shortlist instead of the user mentally combining
+    six tabs themselves.
 
     Only the fixture-ease component changes across horizons (a club's
     average FDR over its next N fixtures); every other signal reflects
@@ -1420,6 +1421,8 @@ def build_targets(boot, min_minutes=180, top_n=15):
         mins = int(el.get("minutes") or 0)
         p90 = mins / 90
         xgi_p90 = round(xgi / p90, 2) if p90 else 0.0
+        gi = int(el.get("goals_scored") or 0) + int(el.get("assists") or 0)
+        gi_diff = gi - xgi  # same over/underperformance signal as build_xg_signal's Diff column
 
         defcon_ok = False
         if pos in DEFCON_THRESHOLD:
@@ -1431,6 +1434,8 @@ def build_targets(boot, min_minutes=180, top_n=15):
             "id": el["id"], "team_id": el["team"], "name": name, "pos": pos, "club": teams[el["team"]]["short_name"],
             "cost": el["now_cost"] / 10, "owned_pct": to_float(el.get("selected_by_percent")) or 0.0,
             "form": form, "xgi_p90": xgi_p90, "defcon_ok": defcon_ok,
+            "due_return": pos != "GKP" and gi_diff <= -threshold,
+            "overperforming": pos != "GKP" and gi_diff >= threshold,
             "good_value": el["id"] in good_value_ids,
             "intel_target": "transfer target" in tags_here,
             "intel_fade": bool(tags_here & {"fade/sell", "injury/doubt"}),
@@ -1453,6 +1458,10 @@ def build_targets(boot, min_minutes=180, top_n=15):
                 why.append("Reliable DEFCON"); score += 1
             if r["good_value"]:
                 why.append("Great value"); score += 1
+            if r["due_return"]:
+                why.append("Due a return"); score += 1
+            if r["overperforming"]:
+                why.append("Sell-high risk"); score -= 1
             if kind_run:
                 why.append("Kind run"); score += 1
             if r["intel_target"]:
