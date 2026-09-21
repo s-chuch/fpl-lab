@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Groß",
     "captain_ep": 9.4,
     "vice": "Tarkowski",
-    "vice_ep": 8.6,
+    "vice_ep": 9.2,
     "bench_swaps": [
       {
         "bench": "Raya",
@@ -155,7 +155,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.6,
+        "ep_next": 9.2,
         "status": "ok"
       },
       {
@@ -245,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-20",
+      "date": "2026-09-21",
       "total_cost": 98.8,
       "prices": {
         "Kinsky": 4.5,

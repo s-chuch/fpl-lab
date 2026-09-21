@@ -1,11 +1,16 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": "2026-09-21 03:18 UTC",
-  "post_count": 51,
+  "generated_at": "2026-09-21 15:41 UTC",
+  "post_count": 66,
   "new_since_last_run": 0,
   "earliest": "2026-09-17 03:59 UTC",
-  "latest": "2026-09-20 13:38 UTC",
+  "latest": "2026-09-21 14:11 UTC",
   "player_mentions": [
+    {
+      "name": "Haaland",
+      "club": "MCI",
+      "count": 8
+    },
     {
       "name": "João Pedro",
       "club": "CHE",
@@ -17,14 +22,14 @@ window.FPL_GREEKGOD = {
       "count": 5
     },
     {
-      "name": "Haaland",
-      "club": "MCI",
-      "count": 5
-    },
-    {
       "name": "White",
       "club": "ARS",
-      "count": 3
+      "count": 4
+    },
+    {
+      "name": "Fernandes",
+      "club": "TOT",
+      "count": 4
     },
     {
       "name": "Wissa",
@@ -32,8 +37,8 @@ window.FPL_GREEKGOD = {
       "count": 3
     },
     {
-      "name": "Fernandes",
-      "club": "TOT",
+      "name": "Gibbs-White",
+      "club": "NFO",
       "count": 3
     },
     {
@@ -45,11 +50,6 @@ window.FPL_GREEKGOD = {
       "name": "Buendía",
       "club": "AVL",
       "count": 3
-    },
-    {
-      "name": "Gibbs-White",
-      "club": "NFO",
-      "count": 2
     },
     {
       "name": "Palmer",
@@ -77,6 +77,21 @@ window.FPL_GREEKGOD = {
       "count": 2
     },
     {
+      "name": "James",
+      "club": "CHE",
+      "count": 2
+    },
+    {
+      "name": "Tarkowski",
+      "club": "EVE",
+      "count": 2
+    },
+    {
+      "name": "Tzolakis",
+      "club": "HUL",
+      "count": 2
+    },
+    {
       "name": "Tóth.A",
       "club": "BOU",
       "count": 1
@@ -90,42 +105,39 @@ window.FPL_GREEKGOD = {
       "name": "Barry",
       "club": "EVE",
       "count": 1
-    },
-    {
-      "name": "Ødegaard",
-      "club": "ARS",
-      "count": 1
-    },
-    {
-      "name": "Damsgaard",
-      "club": "BRE",
-      "count": 1
-    },
-    {
-      "name": "Rudoni",
-      "club": "COV",
-      "count": 1
     }
   ],
   "club_mentions": [
+    {
+      "club": "CHE",
+      "count": 14
+    },
+    {
+      "club": "MCI",
+      "count": 13
+    },
     {
       "club": "BRE",
       "count": 12
     },
     {
-      "club": "CHE",
-      "count": 11
-    },
-    {
       "club": "ARS",
-      "count": 8
+      "count": 10
     },
     {
-      "club": "MCI",
-      "count": 8
+      "club": "EVE",
+      "count": 7
     },
     {
       "club": "BHA",
+      "count": 6
+    },
+    {
+      "club": "TOT",
+      "count": 5
+    },
+    {
+      "club": "COV",
       "count": 5
     },
     {
@@ -133,11 +145,11 @@ window.FPL_GREEKGOD = {
       "count": 4
     },
     {
-      "club": "TOT",
+      "club": "NFO",
       "count": 4
     },
     {
-      "club": "COV",
+      "club": "LIV",
       "count": 4
     },
     {
@@ -145,24 +157,12 @@ window.FPL_GREEKGOD = {
       "count": 4
     },
     {
-      "club": "EVE",
-      "count": 3
-    },
-    {
-      "club": "NFO",
-      "count": 3
-    },
-    {
-      "club": "LIV",
-      "count": 3
-    },
-    {
       "club": "BOU",
-      "count": 2
+      "count": 3
     },
     {
       "club": "FUL",
-      "count": 2
+      "count": 3
     },
     {
       "club": "IPS",
@@ -171,7 +171,7 @@ window.FPL_GREEKGOD = {
   ],
   "call_grades": {
     "graded": 0,
-    "pending": 1,
+    "pending": 2,
     "good": 0,
     "mixed": 0,
     "bad": 0,
@@ -180,6 +180,65 @@ window.FPL_GREEKGOD = {
     "bad_pct": null
   },
   "calls": [
+    {
+      "id": "2101938121998811485",
+      "at": "2026-09-21 07:34 UTC",
+      "text": "Ideally and Optimally, these four(4) players should make any Free Hit or Wildcard team from Gameweek 6 onwards.\n\nThe highest-scoring player in each position so far this season:\n\nGK -  Konstantinos Tzolakis\nDEF -  James Tarkowski \nMID -  Pascal Gross\nFWD - Erling Haaland.\n\nRight? https://t.co/gbjzGN0ppV",
+      "url": "https://x.com/greekgodFpl/status/2101938121998811485",
+      "tags": [
+        "chip"
+      ],
+      "players": [
+        "James",
+        "Tarkowski",
+        "Tzolakis",
+        "Haaland"
+      ],
+      "graded": []
+    },
+    {
+      "id": "2101930669353886020",
+      "at": "2026-09-21 07:04 UTC",
+      "text": "We called it first here... Crystal Palace to get a result in GW5.\n\n#FPL #LEECRY https://t.co/Tk4ntWjMtl",
+      "url": "https://x.com/greekgodFpl/status/2101930669353886020",
+      "tags": [
+        "called_it"
+      ],
+      "players": [],
+      "graded": []
+    },
+    {
+      "id": "2101930066645078355",
+      "at": "2026-09-21 07:02 UTC",
+      "text": "We called it first here... Crystal Palace to get a result in GW5.\n\n#FPL https://t.co/Tk4ntWjMtl",
+      "url": "https://x.com/greekgodFpl/status/2101930066645078355",
+      "tags": [
+        "called_it"
+      ],
+      "players": [],
+      "graded": []
+    },
+    {
+      "id": "2101929149614968879",
+      "at": "2026-09-21 06:58 UTC",
+      "text": "You wanted to have a laugh about Captain Bruno Fernandes MUN in GW5... Just immediately after he blanks in GW5.\n\nIt takes a lot of experience and years of understanding the Game to know when to go against the highest premium Player in the Game.\n\nIt is boring. https://t.co/kTT6NHi74R",
+      "url": "https://x.com/greekgodFpl/status/2101929149614968879",
+      "tags": [
+        "captain talk"
+      ],
+      "players": [
+        "Fernandes"
+      ],
+      "graded": [
+        {
+          "player": "Fernandes",
+          "kind": "captain",
+          "gw": 6,
+          "pts": null,
+          "verdict": "pending"
+        }
+      ]
+    },
     {
       "id": "2101654735363137615",
       "at": "2026-09-20 12:48 UTC",
@@ -641,6 +700,96 @@ window.FPL_GREEKGOD = {
       "at": "2026-09-20 13:38 UTC",
       "text": "Whenever high Effective Ownership FPL players are going against themselves, stronger teams or dicey games... Then the probability for a Low scoring game is high.\n\nGW5 for Engaged FPL Managers, they had 2/3 Arsenal players VS 2/3 Brighton players... The obvious two(2) best EPL https://t.co/Ga8NPvzdRh",
       "url": "https://x.com/greekgodFpl/status/2101667431953428911"
+    },
+    {
+      "id": "2101734178853204042",
+      "at": "2026-09-20 18:04 UTC",
+      "text": "Gameweek 5:\n\nGW5 Points = 70\nTotal Points = 380\n\nOverall Rank = 77,737.\n\n#FPL https://t.co/iMjHTbqi38",
+      "url": "https://x.com/greekgodFpl/status/2101734178853204042"
+    },
+    {
+      "id": "2101777841062867433",
+      "at": "2026-09-20 20:57 UTC",
+      "text": "A Must Have Soon In FPL When Liverpool Fixtures Turn Green.\n\nJérémy Jacquet. \n\nThat's The Move There. https://t.co/A71jIxEp2z",
+      "url": "https://x.com/greekgodFpl/status/2101777841062867433"
+    },
+    {
+      "id": "2101793899752694096",
+      "at": "2026-09-20 22:01 UTC",
+      "text": "🔵 Man City 5-3 Sunderland 🔴\n\nGoals: Enzo Fernandez 9', \nBrobbey 12', \nCherki 29', Brobbey 33', \nSemenyo 43', Semenyo 57', Brobbey 59', Haaland 81'! 🔥\n\n#FPL  https://t.co/2mwO7XcQqq",
+      "url": "https://x.com/greekgodFpl/status/2101793899752694096"
+    },
+    {
+      "id": "2101894793001369844",
+      "at": "2026-09-21 04:42 UTC",
+      "text": "FPL Daily Price Changes (20/09/2026) \n\n📈 Risers (2):\n⬆️ Raya #ARS £6.1m\n⬆️ Kostoulas #BHA £5.6m\n\n📉 Fallers (11):\n⬇️ Hincapie #ARS £5.2m\n⬇️ Diakité #BOU £4.9m\n⬇️ Gittens #CHE £5.8m\n⬇️ Yirenkyi #COV £4.8m\n⬇️ O'Brien #EVE £4.8m\n⬇️ Hackney #EVE £5.4m\n⬇️ Sessegnon #FUL £4.3m\n⬇️",
+      "url": "https://x.com/greekgodFpl/status/2101894793001369844"
+    },
+    {
+      "id": "2101914908669382972",
+      "at": "2026-09-21 06:02 UTC",
+      "text": "What's delaying auto-sub?? https://t.co/lLSJ7kM6HW",
+      "url": "https://x.com/greekgodFpl/status/2101914908669382972"
+    },
+    {
+      "id": "2101929159156986224",
+      "at": "2026-09-21 06:58 UTC",
+      "text": "I will have this last laugh.",
+      "url": "https://x.com/greekgodFpl/status/2101929159156986224"
+    },
+    {
+      "id": "2101929149614968879",
+      "at": "2026-09-21 06:58 UTC",
+      "text": "You wanted to have a laugh about Captain Bruno Fernandes MUN in GW5... Just immediately after he blanks in GW5.\n\nIt takes a lot of experience and years of understanding the Game to know when to go against the highest premium Player in the Game.\n\nIt is boring. https://t.co/kTT6NHi74R",
+      "url": "https://x.com/greekgodFpl/status/2101929149614968879"
+    },
+    {
+      "id": "2101930066645078355",
+      "at": "2026-09-21 07:02 UTC",
+      "text": "We called it first here... Crystal Palace to get a result in GW5.\n\n#FPL https://t.co/Tk4ntWjMtl",
+      "url": "https://x.com/greekgodFpl/status/2101930066645078355"
+    },
+    {
+      "id": "2101930669353886020",
+      "at": "2026-09-21 07:04 UTC",
+      "text": "We called it first here... Crystal Palace to get a result in GW5.\n\n#FPL #LEECRY https://t.co/Tk4ntWjMtl",
+      "url": "https://x.com/greekgodFpl/status/2101930669353886020"
+    },
+    {
+      "id": "2101934313407160701",
+      "at": "2026-09-21 07:19 UTC",
+      "text": "UPDATE FPL DATA:\n\nClean Sheets So Far:\nGW1 = 6 clean sheets\nGW2 = 4 clean sheets\nGW3 = 6 clean sheets\nGW4 = 7 clean sheets\nGW5 = 7 clean sheets\n\nThat's 30 clean sheets in 5 Gameweeks.\n\nWhich translates to 6 clean sheets per Gameweek.\n\n#FPL \n#FPLCommunity https://t.co/73JgDZTVLT",
+      "url": "https://x.com/greekgodFpl/status/2101934313407160701"
+    },
+    {
+      "id": "2101935629579723258",
+      "at": "2026-09-21 07:24 UTC",
+      "text": "Old data from last Gameweek 4... We shall be looking at 5ATB soon.\n\nIt is looking like a slightly different EPL season than last year.\n\nWe are having more goals scored by few forwards while we are also having high numbers of clean sheets.\n5-3-2 and 5-4-1 are the two(2) optimal https://t.co/lbkAzc4BR7",
+      "url": "https://x.com/greekgodFpl/status/2101935629579723258"
+    },
+    {
+      "id": "2101938140424351937",
+      "at": "2026-09-21 07:34 UTC",
+      "text": "How many of them do you have in your FPL team? \n\nThe highest-scoring player in each position:\n\nGK -  Konstantinos Tzolakis\nDEF -  James Tarkowski \nMID -  Pascal Gross\nFWD - Erling Haaland",
+      "url": "https://x.com/greekgodFpl/status/2101938140424351937"
+    },
+    {
+      "id": "2101938121998811485",
+      "at": "2026-09-21 07:34 UTC",
+      "text": "Ideally and Optimally, these four(4) players should make any Free Hit or Wildcard team from Gameweek 6 onwards.\n\nThe highest-scoring player in each position so far this season:\n\nGK -  Konstantinos Tzolakis\nDEF -  James Tarkowski \nMID -  Pascal Gross\nFWD - Erling Haaland.\n\nRight? https://t.co/gbjzGN0ppV",
+      "url": "https://x.com/greekgodFpl/status/2101938121998811485"
+    },
+    {
+      "id": "2101947664430424225",
+      "at": "2026-09-21 08:12 UTC",
+      "text": "Next Return Probability for Morgan Gibbs-White has dropped this morning 21st September 2026.\n\nLooks like the FPL Algorithm doesn't like Morgan Gibbs-White NFO no more.\n\nIt is pointing towards another... I will run the numbers again closer to deadline to see what's next.",
+      "url": "https://x.com/greekgodFpl/status/2101947664430424225"
+    },
+    {
+      "id": "2102038063048278209",
+      "at": "2026-09-21 14:11 UTC",
+      "text": "Lazy Manchester United... 🤧🤧\n\n#MUFC #MUN https://t.co/RnEf19fy5f",
+      "url": "https://x.com/greekgodFpl/status/2102038063048278209"
     }
   ]
 };

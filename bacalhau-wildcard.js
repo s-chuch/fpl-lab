@@ -111,19 +111,13 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Groß",
     "captain_ep": 9.4,
     "vice": "Tarkowski",
-    "vice_ep": 8.6,
+    "vice_ep": 9.2,
     "bench_swaps": [
       {
         "bench": "Tavernier",
         "bench_ep": 6.2,
         "starter": "Dewsbury-Hall",
-        "starter_ep": 4.0
-      },
-      {
-        "bench": "Tzolakis",
-        "bench_ep": 6.8,
-        "starter": "Raya",
-        "starter_ep": 6.0
+        "starter_ep": 2.2
       }
     ],
     "availability_flags": [],
@@ -149,13 +143,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.6,
+        "ep_next": 9.2,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 8.4,
+        "ep_next": 9.0,
         "status": "ok"
       },
       {
@@ -167,13 +161,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 6.2,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.0,
+        "ep_next": 2.2,
         "status": "ok"
       },
       {
@@ -199,7 +193,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 6.8,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
@@ -217,7 +211,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.2,
+        "ep_next": 0.0,
         "status": "ok"
       }
     ]
@@ -245,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-20",
+      "date": "2026-09-21",
       "total_cost": 92.6,
       "prices": {
         "Raya": 6.1,
