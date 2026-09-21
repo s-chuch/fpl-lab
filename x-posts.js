@@ -29,14 +29,6 @@ window.FPL_X = {
       "handle": "FPLFocal"
     },
     {
-      "name": "FPL Loc",
-      "handle": "LovroBudisin"
-    },
-    {
-      "name": "All About FPL",
-      "handle": "allaboutfpl"
-    },
-    {
       "name": "FPLDuvall",
       "handle": "greekgodFpl"
     },
