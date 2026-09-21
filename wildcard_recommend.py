@@ -24,10 +24,11 @@ against the new squad; nothing else in the file is touched.
 from __future__ import annotations
 import argparse
 import json
+from datetime import datetime
 from pathlib import Path
 
 from fpl_common import get, load_js_object
-from refresh import player_availability
+from refresh import ET, player_availability
 
 ROOT = Path(__file__).resolve().parent
 DEFAULT_WATCH_PATH = ROOT / "bacalhau-wildcard.js"
@@ -38,6 +39,67 @@ def to_float(v):
         return float(v)
     except (TypeError, ValueError):
         return None
+
+
+def build_worth_tracker(watch, squad, today):
+    """Track the wildcard target squad's total cost and per-player price
+    moves across refreshes, so a profit-maximizing wildcard plan has a
+    running log instead of only ever showing today's snapshot. FPL exposes
+    no per-player price history, so this is built up incrementally, refresh
+    over refresh, by diffing against what this function itself wrote back
+    into the watch file last time.
+
+    `baseline` is set once, the first time a squad is captured, and never
+    moves — it's "what it would have cost to assemble this plan when you
+    first drafted it." `current` is last run's snapshot, used only to spot
+    what changed since then. total_delta compares current cost to assemble
+    the (possibly edited) plan against that original baseline cost — the
+    plan's net drift, whether from price moves on held names or swaps to
+    different-priced targets.
+    """
+    prev = watch.get("worth_tracker") or {}
+    current_prices = {p["name"]: p["cost"] for p in squad if p.get("cost") is not None}
+    current_names = set(current_prices)
+    current_total = round(sum(current_prices.values()), 1)
+
+    baseline = prev.get("baseline") or {"date": today, "total_cost": current_total, "prices": dict(current_prices)}
+
+    last = prev.get("current") or baseline
+    last_prices = last.get("prices", {})
+    last_names = set(last_prices)
+
+    log = list(prev.get("log") or [])
+    if not prev:
+        log.append({"date": today, "event": "captured", "detail": f"Initial target squad captured — {len(current_names)} players, £{current_total}m."})
+
+    for name in sorted(current_names & last_names):
+        old, new = last_prices[name], current_prices[name]
+        if abs(new - old) >= 0.05:
+            log.append({"date": today, "event": "price_change", "player": name, "from": old, "to": new, "delta": round(new - old, 1)})
+    for name in sorted(last_names - current_names):
+        log.append({"date": today, "event": "removed", "player": name, "price_at_change": last_prices[name]})
+    for name in sorted(current_names - last_names):
+        log.append({"date": today, "event": "added", "player": name, "price_at_change": current_prices[name]})
+    log = log[-40:]  # bound file growth across a long season
+
+    players = []
+    for name in sorted(current_names | set(baseline["prices"])):
+        b, c = baseline["prices"].get(name), current_prices.get(name)
+        status = "held" if (b is not None and c is not None) else ("removed" if c is None else "added")
+        players.append({
+            "name": name, "baseline_cost": b, "current_cost": c,
+            "delta": round(c - b, 1) if (b is not None and c is not None) else None,
+            "status": status,
+        })
+    players.sort(key=lambda p: (p["status"] != "held", -(p["delta"] or 0)))
+
+    return {
+        "baseline": baseline,
+        "current": {"date": today, "total_cost": current_total, "prices": current_prices},
+        "total_delta": round(current_total - baseline["total_cost"], 1),
+        "players": players,
+        "log": log,
+    }
 
 
 def main(watch_path=DEFAULT_WATCH_PATH):
@@ -59,9 +121,9 @@ def main(watch_path=DEFAULT_WATCH_PATH):
     def enrich(p):
         el = by_name_club.get((p["name"], p.get("club"))) or by_name.get(p["name"])
         if not el:
-            return {**p, "ep_next": None, "status": "unmatched", "chance": None, "unmatched": True}
+            return {**p, "ep_next": None, "status": "unmatched", "chance": None, "unmatched": True, "cost": None}
         avail = player_availability(el)
-        return {**p, "ep_next": to_float(el.get("ep_next")), "status": avail["kind"], "avail_label": avail["label"], "chance": avail["chance"]}
+        return {**p, "ep_next": to_float(el.get("ep_next")), "status": avail["kind"], "avail_label": avail["label"], "chance": avail["chance"], "cost": el["now_cost"] / 10}
 
     xi = [enrich(p) for p in watch.get("xi", [])]
     bench = [enrich(p) for p in watch.get("bench", [])]
@@ -106,9 +168,17 @@ def main(watch_path=DEFAULT_WATCH_PATH):
         "bench_ep": [{"name": p["name"], "pos": p["pos"], "ep_next": p["ep_next"], "status": p["status"]} for p in bench],
     }
 
+    today = datetime.now(ET).strftime("%Y-%m-%d")
+    watch["worth_tracker"] = build_worth_tracker(watch, xi + bench, today)
+
     watch_path.write_text("window.FPL_WILDCARD_WATCH = " + json.dumps(watch, indent=2, ensure_ascii=False) + ";\n")
     cap = watch["recommend"]["captain"]
-    print(f"wildcard_recommend {watch_path.name}: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s)")
+    wt = watch["worth_tracker"]
+    print(f"wildcard_recommend {watch_path.name}: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s), worth £{wt['current']['total_cost']}m ({sign_str(wt['total_delta'])})")
+
+
+def sign_str(n):
+    return f"+{n}" if n > 0 else str(n)
 
 
 if __name__ == "__main__":

@@ -149,7 +149,33 @@ function renderWildcardWatch(){
     recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
   }
 
-  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}`;
+  const WT=W.worth_tracker||null;
+  const wtDeltaCls=d=>d==null?"":d>0?"neg":d<0?"pos":"";
+  let worthCard;
+  if(WT){
+    const wtHead=`<thead><tr><th style="width:40%">Player</th><th style="width:20%">Then</th><th style="width:20%">Now</th><th style="width:20%">Δ</th></tr></thead>`;
+    const wtRow=p=>{
+      const statusTag=p.status==="removed"?` <span class="pill used">Dropped</span>`:p.status==="added"?` <span class="pill free">Added</span>`:"";
+      const thenCell=p.baseline_cost!=null?`£${p.baseline_cost.toFixed(1)}`:"–";
+      const nowCell=p.current_cost!=null?`£${p.current_cost.toFixed(1)}`:"–";
+      const deltaCell=p.delta!=null?`<span class="${wtDeltaCls(p.delta)}">${sign(p.delta)}</span>`:"–";
+      return `<tr><td>${esc(p.name)}${statusTag}</td><td>${thenCell}</td><td>${nowCell}</td><td>${deltaCell}</td></tr>`;
+    };
+    const wtRows=(WT.players||[]).map(wtRow).join("")||`<tr><td colspan="4"><span class="note">No target squad captured yet.</span></td></tr>`;
+    const logLi=e=>{
+      if(e.event==="captured") return `<li><span class="who">${esc(e.date)}</span><div class="detail">${esc(e.detail)}</div></li>`;
+      if(e.event==="price_change") return `<li><span class="who">${esc(e.date)} · ${esc(e.player)}</span><div class="detail">£${e.from.toFixed(1)} → £${e.to.toFixed(1)} (<span class="${wtDeltaCls(e.delta)}">${sign(e.delta)}</span>)</div></li>`;
+      if(e.event==="removed") return `<li><span class="who">${esc(e.date)} · ${esc(e.player)}</span><div class="detail">Dropped from target squad at £${e.price_at_change.toFixed(1)}</div></li>`;
+      if(e.event==="added") return `<li><span class="who">${esc(e.date)} · ${esc(e.player)}</span><div class="detail">Added to target squad at £${e.price_at_change.toFixed(1)}</div></li>`;
+      return "";
+    };
+    const logRows=(WT.log||[]).slice().reverse().map(logLi).join("")||`<li><span class="note">No changes logged yet.</span></li>`;
+    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><ul class="note-list"><li>Cost to assemble this exact target squad, first captured ${esc(WT.baseline.date)}</li><li>Updated every refresh until the GW${W.gw} deadline</li></ul><p class="note">Cost to assemble now: <b>£${WT.current.total_cost.toFixed(1)}m</b> · vs first captured: <b class="${wtDeltaCls(WT.total_delta)}">${sign(WT.total_delta)}</b></p><table class="table-compact">${wtHead}<tbody>${wtRows}</tbody></table><h3>Change log</h3><ul class="chiplist">${logRows}</ul><ul class="legend-list"><li>Then/Now = price when first captured vs current price</li><li>Δ = price change since first captured — green means the plan got cheaper to assemble, red means more expensive</li></ul></div>`;
+  } else {
+    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
+  }
+
+  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}`;
 }
 renderWildcardWatch();
 function renderStrategy(){
