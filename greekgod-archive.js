@@ -1,6 +1,6 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": "2026-09-21 14:56 UTC",
+  "generated_at": "2026-09-21 14:57 UTC",
   "post_count": 66,
   "new_since_last_run": 15,
   "earliest": "2026-09-17 03:59 UTC",
