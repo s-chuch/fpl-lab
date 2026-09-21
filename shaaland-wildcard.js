@@ -221,5 +221,164 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       }
     ]
+  },
+  "worth_tracker": {
+    "baseline": {
+      "date": "2026-09-20",
+      "total_cost": 98.8,
+      "prices": {
+        "Kinsky": 4.5,
+        "De Cuyper": 4.9,
+        "Calafiori": 5.8,
+        "Hall": 5.2,
+        "Tarkowski": 6.1,
+        "Barnes": 6.1,
+        "King": 5.5,
+        "Groß": 5.8,
+        "Schade": 6.1,
+        "Haaland": 15.6,
+        "Isak": 9.1,
+        "Raya": 6.1,
+        "Konsa": 4.6,
+        "Cherki": 7.8,
+        "Kostoulas": 5.6
+      }
+    },
+    "current": {
+      "date": "2026-09-20",
+      "total_cost": 98.8,
+      "prices": {
+        "Kinsky": 4.5,
+        "De Cuyper": 4.9,
+        "Calafiori": 5.8,
+        "Hall": 5.2,
+        "Tarkowski": 6.1,
+        "Barnes": 6.1,
+        "King": 5.5,
+        "Groß": 5.8,
+        "Schade": 6.1,
+        "Haaland": 15.6,
+        "Isak": 9.1,
+        "Raya": 6.1,
+        "Konsa": 4.6,
+        "Cherki": 7.8,
+        "Kostoulas": 5.6
+      }
+    },
+    "total_delta": 0.0,
+    "players": [
+      {
+        "name": "Barnes",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Calafiori",
+        "baseline_cost": 5.8,
+        "current_cost": 5.8,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Cherki",
+        "baseline_cost": 7.8,
+        "current_cost": 7.8,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 4.9,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Groß",
+        "baseline_cost": 5.8,
+        "current_cost": 5.8,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": 5.2,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Isak",
+        "baseline_cost": 9.1,
+        "current_cost": 9.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "King",
+        "baseline_cost": 5.5,
+        "current_cost": 5.5,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Kinsky",
+        "baseline_cost": 4.5,
+        "current_cost": 4.5,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Konsa",
+        "baseline_cost": 4.6,
+        "current_cost": 4.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Tarkowski",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      }
+    ],
+    "log": [
+      {
+        "date": "2026-09-20",
+        "event": "captured",
+        "detail": "Initial target squad captured — 15 players, £98.8m."
+      }
+    ]
   }
 };
