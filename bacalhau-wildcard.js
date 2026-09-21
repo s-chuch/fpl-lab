@@ -221,5 +221,164 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       }
     ]
+  },
+  "worth_tracker": {
+    "baseline": {
+      "date": "2026-09-20",
+      "total_cost": 92.6,
+      "prices": {
+        "Raya": 6.1,
+        "Gvardiol": 5.7,
+        "Hall": 5.2,
+        "Tarkowski": 6.1,
+        "Bogle": 4.6,
+        "De Cuyper": 4.9,
+        "Belloumi": 5.1,
+        "Dewsbury-Hall": 6.6,
+        "Groß": 5.8,
+        "Schade": 6.1,
+        "Haaland": 15.6,
+        "Tzolakis": 4.6,
+        "Tavernier": 6.1,
+        "Kostoulas": 5.6,
+        "Walle Egeli": 4.5
+      }
+    },
+    "current": {
+      "date": "2026-09-20",
+      "total_cost": 92.6,
+      "prices": {
+        "Raya": 6.1,
+        "Gvardiol": 5.7,
+        "Hall": 5.2,
+        "Tarkowski": 6.1,
+        "Bogle": 4.6,
+        "De Cuyper": 4.9,
+        "Belloumi": 5.1,
+        "Dewsbury-Hall": 6.6,
+        "Groß": 5.8,
+        "Schade": 6.1,
+        "Haaland": 15.6,
+        "Tzolakis": 4.6,
+        "Tavernier": 6.1,
+        "Kostoulas": 5.6,
+        "Walle Egeli": 4.5
+      }
+    },
+    "total_delta": 0.0,
+    "players": [
+      {
+        "name": "Belloumi",
+        "baseline_cost": 5.1,
+        "current_cost": 5.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Bogle",
+        "baseline_cost": 4.6,
+        "current_cost": 4.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 4.9,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Dewsbury-Hall",
+        "baseline_cost": 6.6,
+        "current_cost": 6.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Groß",
+        "baseline_cost": 5.8,
+        "current_cost": 5.8,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Gvardiol",
+        "baseline_cost": 5.7,
+        "current_cost": 5.7,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": 5.2,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Tarkowski",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Tzolakis",
+        "baseline_cost": 4.6,
+        "current_cost": 4.6,
+        "delta": 0.0,
+        "status": "held"
+      },
+      {
+        "name": "Walle Egeli",
+        "baseline_cost": 4.5,
+        "current_cost": 4.5,
+        "delta": 0.0,
+        "status": "held"
+      }
+    ],
+    "log": [
+      {
+        "date": "2026-09-20",
+        "event": "captured",
+        "detail": "Initial target squad captured — 15 players, £92.6m."
+      }
+    ]
   }
 };
