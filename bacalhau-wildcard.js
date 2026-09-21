@@ -179,7 +179,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 7.8,
+        "ep_next": 9.0,
         "status": "ok"
       },
       {
