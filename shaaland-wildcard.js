@@ -246,17 +246,17 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-21",
-      "total_cost": 98.8,
+      "total_cost": 99.0,
       "prices": {
         "Kinsky": 4.5,
         "De Cuyper": 4.9,
         "Calafiori": 5.8,
-        "Hall": 5.2,
+        "Hall": 5.3,
         "Tarkowski": 6.1,
         "Barnes": 6.1,
         "King": 5.5,
         "Groß": 5.8,
-        "Schade": 6.1,
+        "Schade": 6.2,
         "Haaland": 15.6,
         "Isak": 9.1,
         "Raya": 6.1,
@@ -265,8 +265,22 @@ window.FPL_WILDCARD_WATCH = {
         "Kostoulas": 5.6
       }
     },
-    "total_delta": 0.0,
+    "total_delta": 0.2,
     "players": [
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": 5.3,
+        "delta": 0.1,
+        "status": "held"
+      },
+      {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Barnes",
         "baseline_cost": 6.1,
@@ -306,13 +320,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.6,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "Hall",
-        "baseline_cost": 5.2,
-        "current_cost": 5.2,
         "delta": 0.0,
         "status": "held"
       },
@@ -359,13 +366,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Schade",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
         "name": "Tarkowski",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
@@ -378,6 +378,22 @@ window.FPL_WILDCARD_WATCH = {
         "date": "2026-09-20",
         "event": "captured",
         "detail": "Initial target squad captured — 15 players, £98.8m."
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Hall",
+        "from": 5.2,
+        "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Schade",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
       }
     ]
   }

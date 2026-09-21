@@ -240,18 +240,18 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-21",
-      "total_cost": 92.6,
+      "total_cost": 92.8,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.7,
-        "Hall": 5.2,
+        "Hall": 5.3,
         "Tarkowski": 6.1,
         "Bogle": 4.6,
         "De Cuyper": 4.9,
         "Belloumi": 5.1,
         "Dewsbury-Hall": 6.6,
         "Groß": 5.8,
-        "Schade": 6.1,
+        "Schade": 6.2,
         "Haaland": 15.6,
         "Tzolakis": 4.6,
         "Tavernier": 6.1,
@@ -259,8 +259,22 @@ window.FPL_WILDCARD_WATCH = {
         "Walle Egeli": 4.5
       }
     },
-    "total_delta": 0.0,
+    "total_delta": 0.2,
     "players": [
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": 5.3,
+        "delta": 0.1,
+        "status": "held"
+      },
+      {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Belloumi",
         "baseline_cost": 5.1,
@@ -311,13 +325,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Hall",
-        "baseline_cost": 5.2,
-        "current_cost": 5.2,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
         "name": "Kostoulas",
         "baseline_cost": 5.6,
         "current_cost": 5.6,
@@ -326,13 +333,6 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "Schade",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
@@ -372,6 +372,22 @@ window.FPL_WILDCARD_WATCH = {
         "date": "2026-09-20",
         "event": "captured",
         "detail": "Initial target squad captured — 15 players, £92.6m."
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Hall",
+        "from": 5.2,
+        "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Schade",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
       }
     ]
   }
