@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Raya",
         "bench_ep": 6.0,
         "starter": "Kinsky",
-        "starter_ep": 3.6
+        "starter_ep": 4.0
       },
       {
         "bench": "Cherki",
@@ -131,7 +131,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kinsky",
         "pos": "GKP",
-        "ep_next": 3.6,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
@@ -179,7 +179,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 7.8,
+        "ep_next": 9.0,
         "status": "ok"
       },
       {

@@ -1,30 +1,18 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-21 15:41 UTC",
+  "generated_at": "2026-09-21 20:34 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "Szoboszlai (LIV) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
+      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
-        "Fix",
+        "Ingenuity",
         "Scout"
       ],
-      "player": "Szoboszlai",
-      "club": "LIV",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Wissa (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Wissa",
-      "club": "NEW",
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
       "tags": []
     }
   ],
@@ -57,8 +45,13 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Semenyo + Brobbey 17-pointers, City\u2019s suspect defence",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-semenyo-brobbey-17-pointers-citys-suspect-defence"
+      "title": "\u00adFPL notes: Muharemovic threat, Stach DefCon + defences on top",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-muharemovic-threat-stach-defcon-defences-on-top"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "The Best Defcon Defenders on Good Defences",
+      "url": "https://ingenuityfantasy.com/game-week-tips/best-defcon-good-defences/"
     }
   ],
   "no_new": false,
@@ -85,6 +78,7 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/fpl-bookies/",
     "https://ingenuityfantasy.com/fpl-guidebook/",
     "https://ingenuityfantasy.com/fpl-player-rankings/",
+    "https://ingenuityfantasy.com/game-week-tips/best-defcon-good-defences/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/fpl-team-analysis/",
     "https://www.fantasyfootballhub.co.uk/ben-crellins-fpl-transfer-planning-sheet",
@@ -110,6 +104,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/20/how-to-play-sofascores-nations-league-fantasy",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-another-bruno-blank-sesko-rashford-injury-latest",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-forests-home-woes-van-ewijk-update-a-gk-assist",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-muharemovic-threat-stach-defcon-defences-on-top",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-semenyo-brobbey-17-pointers-citys-suspect-defence",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/join-our-sofascore-nations-league-fantasy-league-win-prizes",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/palmer-set-to-withdraw-from-international-duty",
