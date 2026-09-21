@@ -895,9 +895,12 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     expected-goals-conceded check, since clean-sheet luck is the bigger swing
     for that position than attacking returns.
 
-    Also returns a league-wide top_n leaderboard (`top`, regardless of
-    ownership) ranked by xGI per 90 — raw underlying attacking output, a
-    scouting list rather than the squad view's regression signal."""
+    Also returns three league-wide top_n leaderboards (regardless of
+    ownership): `top` ranked by xGI per 90 (raw underlying attacking
+    output, a scouting list), and `top_over`/`top_under` — the same
+    over/underperforming regression signal as the squad view, applied
+    league-wide, so "who's about to regress" and "who's still due a
+    return" aren't only visible for players you already own."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
 
@@ -936,13 +939,14 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
                             "gc_tag": "riding_luck" if gc_diff >= threshold else ("unlucky" if gc_diff <= -threshold else "on_track")})
         return row
 
-    top = []
+    all_rows = []
     for el in elements.values():
         r = row_of(el)
         if r:
-            top.append(r)
-    top.sort(key=lambda r: -r["xgi_p90"])
-    top = top[:top_n]
+            all_rows.append(r)
+    top = sorted(all_rows, key=lambda r: -r["xgi_p90"])[:top_n]
+    top_over = sorted((r for r in all_rows if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
+    top_under = sorted((r for r in all_rows if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
 
     rows = []
     if picks_gw:
@@ -957,7 +961,10 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
             _warn(f"build_xg_signal: could not load GW{picks_gw} squad: {e}")
     rows.sort(key=lambda r: -abs(r["diff"]))
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
-    return {"threshold": threshold, "min_minutes": min_minutes, "top_n": top_n, "rows": rows, "notable": notable, "top": top}
+    return {
+        "threshold": threshold, "min_minutes": min_minutes, "top_n": top_n,
+        "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under,
+    }
 
 def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
     """Every qualifying player's recent form (FPL's own rolling average
