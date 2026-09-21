@@ -30,10 +30,18 @@ QUERY_LISTING_KEYS = ("category", "tag", "page", "author", "s", "search")
 
 def fetch_html(url):
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "ShaalandFPLLab/1.0"})
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+        })
         with urllib.request.urlopen(req, timeout=20) as r:
-            return r.read().decode("utf-8", "ignore")
-    except Exception:
+            status = r.getcode()
+            body = r.read().decode("utf-8", "ignore")
+            print(f"news_scrape.py: fetch {url} -> HTTP {status}, {len(body)} bytes")
+            return body
+    except Exception as e:
+        print(f"news_scrape.py: fetch FAILED for {url}: {type(e).__name__}: {e}")
         return ""
 
 
@@ -345,8 +353,10 @@ def main():
         else:
             feed_url, feed_items = discover_feed_url(base, fetch_html(base))
         if feed_items:
+            print(f"news_scrape.py: {source} feed OK ({feed_url}) — {len(feed_items)} items")
             # Feed found: it covers this source's whole output, so use it once
             # instead of also HTML-scraping each of this source's listing URLs.
+            site_discovered = 0
             for fi in feed_items:
                 link = urljoin(base, fi["link"] or "")
                 if is_junk_url(link):
@@ -358,10 +368,17 @@ def main():
                     "current": any(t in low for t in gw_tokens),
                     "pub_date": fi["pub_date"], "body_html": fi["html"],
                 })
+                site_discovered += 1
+            print(f"news_scrape.py: {source} {site_discovered} non-junk feed items kept")
         else:
+            print(f"news_scrape.py: {source} no feed found — falling back to HTML listing scrape of {len(urls)} URL(s)")
+            site_discovered = 0
             for u in urls:
                 html = fetch_html(u)
-                discovered.extend(extract_article_links(html, u, source, gw))
+                links_found = extract_article_links(html, u, source, gw)
+                site_discovered += len(links_found)
+                discovered.extend(links_found)
+            print(f"news_scrape.py: {source} HTML scrape found {site_discovered} candidate link(s)")
     # Dedupe discovered by URL
     uniq, seen_u = [], set()
     for art in discovered:
@@ -370,10 +387,13 @@ def main():
         seen_u.add(art["url"])
         uniq.append(art)
     discovered = uniq
+    print(f"news_scrape.py: {len(discovered)} unique candidate link(s) across all sources before filtering")
     first_seed = len(seen_set) < 8
     new_articles = []
+    drop_seen_stale, drop_junk, drop_cutoff = 0, 0, 0
     for art in discovered:
         if not keep_seen(art["url"], gw, cutoff):
+            drop_seen_stale += 1
             continue
         url_dt = url_date(art["url"])
         body_html = art.get("body_html") or ""
@@ -386,9 +406,11 @@ def main():
                 body_html = fetched
                 art["title"] = page_title(body_html, art["url"]) or art["title"]
         if is_junk(art["title"], art["url"]):
+            drop_junk += 1
             continue
         pub = art.get("pub_date") or parse_pub_date(body_html, art["url"]) or url_dt
         if not after_cutoff(pub, cutoff):
+            drop_cutoff += 1
             continue
         title = art.get("title") or ""
         text_blob = article_text(body_html, lower=False) if body_html else ""
@@ -402,6 +424,10 @@ def main():
             new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
             title_blobs[art["source"]] = title_blobs.get(art["source"], "") + ARTICLE_SEP + title
         seen_set.add(art["url"])
+    print(f"news_scrape.py: filter funnel — {len(discovered)} candidates, "
+          f"{drop_seen_stale} dropped (already seen / before cutoff by URL date), "
+          f"{drop_junk} dropped (junk title/url), {drop_cutoff} dropped (pub date not after cutoff), "
+          f"{len(new_articles)} new")
     seen_set = {u for u in seen_set if keep_seen(u, gw, cutoff)}
     # Weight new-article titles heavily by repeating them into the blob
     for src, tb in title_blobs.items():
