@@ -22,7 +22,6 @@ section{display:none}section.on{display:block}
 .table-compact{table-layout:fixed}
 .table-compact th{padding:6px 3px;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .table-compact td{padding:6px 3px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.legend{font-size:11px;color:var(--muted);line-height:1.5;margin:8px 0 0}
 th,td{padding:8px 6px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase}
 .pos{color:var(--green);font-weight:700}.neg{color:var(--red);font-weight:700}.mid{color:var(--yellow);font-weight:700}
 .pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:700}
