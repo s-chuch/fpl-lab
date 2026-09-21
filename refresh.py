@@ -1224,7 +1224,7 @@ def build_value_board(boot, min_minutes=180, top_n=10):
         by_pos[pos] = by_pos[pos][:top_n]
     return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
 
-def build_price_radar(boot, team_id, picks_gw, top_n=8):
+def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
     """Approximate price-change momentum from FPL's own transfer-volume
     fields: transfers_in_event/transfers_out_event (net transfers so far
     today) and cost_change_event/cost_change_start (price change already
@@ -1272,7 +1272,15 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8):
     all_rows = [row_of(el) for el in elements.values()]
     rising = sorted((r for r in all_rows if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
     falling = sorted((r for r in all_rows if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
-    return {"squad": squad_rows, "rising": rising, "falling": falling}
+    # `watch` is the actual decision set (wildcard-watch names + the wildcard
+    # tab's own top-3 target names) rather than the top-N market movers —
+    # every one of those names gets a row here even if its price hasn't
+    # moved today, since "not currently rising/falling" is itself useful to
+    # see for a player you're specifically weighing, not a reason to hide it.
+    squad_names = {r["name"] for r in squad_rows}
+    watch_names = {n for n in (extra_names or ()) if n not in squad_names}
+    watch = [r for r in all_rows if r["name"] in watch_names]
+    return {"squad": squad_rows, "rising": rising, "falling": falling, "watch": watch}
 
 def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
     """Scouting lists for the Plan tab: players you DON'T currently own with
@@ -1720,10 +1728,32 @@ def main(team_id=TEAM_ID, out_path=None):
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
-    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"))
     data["value_board"] = build_value_board(boot)
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     data["targets"] = build_targets(boot)
+
+    # Wildcard tab's "who the room barely owns" shortlist: top Target-6 names,
+    # excluding your current squad, preferring names this ESL league's table
+    # barely owns (<=3, same threshold plan-intel.js already uses) — computed
+    # once here so the Wildcard card and Price radar's decision-set filter
+    # both reference the identical 3 names, not two independently-drifting lists.
+    esl = next((lg for lg in (leagues.get("mini") or []) if lg.get("id") == 125784), None)
+    tac = (esl or {}).get("tactics") or {}
+    own_by_name = {}
+    for u in (tac.get("template") or []) + (tac.get("you_unique") or []) + (tac.get("they_share") or []):
+        own_by_name[u["name"]] = u["count"]
+    squad_names = {r[1] for r in (plan.get("rows") or [])}
+    h6_top = ((data["targets"].get("horizons") or {}).get("6") or {}).get("top") or []
+    wc_candidates = [r for r in h6_top if r["name"] not in squad_names]
+    wc_candidates.sort(key=lambda r: (0 if (own_by_name.get(r["name"]) is None or own_by_name.get(r["name"]) <= 3) else 1, -r["score"]))
+    wc_top3 = [{**r, "esl_own": own_by_name.get(r["name"]), "esl_n": tac.get("n")} for r in wc_candidates[:3]]
+    data["targets"]["wc_top3"] = wc_top3
+
+    watch_filename = "bacalhau-wildcard.js" if "bacalhau" in data_file.name else "shaaland-wildcard.js"
+    watch = fpl_common.load_js_object(ROOT / watch_filename)
+    watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
+    watch_names |= {r["name"] for r in wc_top3}
+    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names)
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

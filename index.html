@@ -199,7 +199,10 @@ function renderWildcardWatch(){
     worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
   }
 
-  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from your own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>Your Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}`;
+  const wc3=(D.targets&&D.targets.wc_top3)||[];
+  const wc3Card=wc3.length?`<div class="card"><h2>WC names the room barely owns</h2><ul class="chiplist">${wc3.map(r=>`<li><span class="who">${esc(r.name)} · £${r.cost.toFixed(1)}</span><div class="detail">${esc((r.why||[]).join(" · ")||"–")}${r.esl_own!=null?" · ESL own "+r.esl_own+"/"+(r.esl_n??"?"):""}</div></li>`).join("")}</ul></div>`:"";
+
+  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from your own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>Your Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}${wc3Card}`;
 }
 renderWildcardWatch();
 function fmtSquadLine(sq){
@@ -345,15 +348,30 @@ function renderStrategy(){
   const hitsBlock=(H.rows&&H.rows.length)
     ?`<p class="note">Total hit cost <b class="neg">-${H.total_cost}</b> · Those moves netted <b class="${cls(H.total_moves_net)}">${sign(H.total_moves_net)}</b> · After cost <b class="${cls(H.net_after_cost)}">${sign(H.net_after_cost)}</b></p><ul class="chiplist">${H.rows.map(r=>`<li><span class="who">GW${r.gw}</span><div class="detail">Cost -${r.cost} · moves netted ${sign(r.moves_net)} · <b class="${r.paid_off?"pos":"neg"}">${r.paid_off?"Paid off":"Not worth it"}</b></div></li>`).join("")}</ul>`
     :`<p class="note">No hits taken this season.</p>`;
+  const eslLg=((D.leagues&&D.leagues.mini)||[]).find(x=>x.id===125784);
+  const eslTac=(eslLg&&eslLg.tactics)||null;
+  const rivalStripLine=(label,card)=>{
+    if(!card) return "";
+    const chipsTxt=(card.chips_used&&card.chips_used.length)?(" · chips used: "+esc(card.chips_used.join(", "))):"";
+    return `<p class="note">${label} <b>${esc(card.name||"?")}</b> ${card.pts??"?"} (${card.gap!=null?sign(card.gap):"?"})${chipsTxt}</p>`;
+  };
+  const p2p3Card=eslTac?`<div class="card"><h2>P2 / P3 · ESL</h2>${rivalStripLine("P2",eslTac.first)}${rivalStripLine("P3",eslTac.second)}${eslTac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`:"";
   const F=S.fixtures||{};
   const fRows=(F.rows||[]).map(r=>{
     const flags=[(r.blanks&&r.blanks.length)?`Blank: ${r.blanks.join(", ")}`:"",(r.doubles&&r.doubles.length)?`Dbl: ${r.doubles.join(", ")}`:""].filter(Boolean).join(" · ");
     return `<tr><td>GW${r.gw}</td><td>${r.avg_fdr??"-"}</td><td>${esc(flags)||"–"}</td></tr>`;
   }).join("");
+  // A hard week or a double is only a chip hint if that chip actually has an
+  // open window for this team — a used/upcoming chip donates nothing to a
+  // leader, and naming it as live advice when it isn't is exactly the stale
+  // copy this app keeps tripping over.
+  const chipIsOpen=key=>{const c=(S.chips||[]).find(x=>x.chip===key);return !!(c && (c.windows||[]).some(w=>w.status==="open"));};
+  const fhOpen=chipIsOpen("freehit"), bbOpen=chipIsOpen("bboost"), tcOpen=chipIsOpen("3xc");
+  const NO_LIVE_CHIP="No live FH/BB/TC this half. Sit tight or Wildcard.";
   const easiest=F.easiest?`<p class="note">Easiest run: <b>GW${F.easiest.gw}</b> (avg FDR ${F.easiest.avg_fdr}) — a good week to sit tight rather than chip.</p>`:"";
-  const hardest=F.hardest?`<p class="note">Toughest stretch: <b>GW${F.hardest.gw}</b> (avg FDR ${F.hardest.avg_fdr}) — worth watching for a Free Hit.</p>`:"";
+  const hardest=F.hardest?`<p class="note">Toughest stretch: <b>GW${F.hardest.gw}</b> (avg FDR ${F.hardest.avg_fdr}) — ${fhOpen?"worth watching for a Free Hit.":NO_LIVE_CHIP}</p>`:"";
   const blankNote=F.first_blank?`<p class="note">Blank gameweek ahead: <b>GW${F.first_blank.gw}</b> — ${esc(F.first_blank.blanks.join(", "))} have no fixture.</p>`:`<p class="note">No blank gameweeks detected in this window.</p>`;
-  const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. Bench Boost / Triple Captain candidate.</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
+  const doubleNote=F.first_double?`<p class="note">Double gameweek ahead: <b>GW${F.first_double.gw}</b> — ${esc(F.first_double.doubles.join(", "))} play twice. ${(bbOpen||tcOpen)?"Bench Boost / Triple Captain candidate.":NO_LIVE_CHIP}</p>`:`<p class="note">No double gameweeks detected in this window.</p>`;
   const XG=D.xg_signal||{};
   const xgTagText=r=>{
     const bits=[];
@@ -420,9 +438,8 @@ function renderStrategy(){
   };
   const priceHead=`<thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">NetTr</th><th style="width:26%">Price Δ</th></tr></thead>`;
   const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No squad price data yet.</span></td></tr>`;
-  const risingRows=(PR.rising||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No rising candidates right now.</span></td></tr>`;
-  const fallingRows=(PR.falling||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No falling candidates right now.</span></td></tr>`;
-  const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><ul class="note-list"><li>Approximated from today's net transfers scaled by ownership</li><li>FPL has never published its exact price-change algorithm</li><li>Treat this as relative momentum for ranking, not a guaranteed call</li></ul><h3>Your squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Rising · league-wide</h3><table class="table-compact">${priceHead}<tbody>${risingRows}</tbody></table><h3>Falling · league-wide</h3><table class="table-compact">${priceHead}<tbody>${fallingRows}</tbody></table><ul class="legend-list"><li>NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players</li><li>Price Δ = total change since the start of the season → projected total if tonight's change follows today's momentum</li><li>▲/▼ = already moved today</li><li>FPL only ever moves a price by £0.1m at a time — the projection is a direction call, not a probability</li></ul></div>`;
+  const watchRows=(PR.watch||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No wildcard-watch or Target-6 names outside your squad right now.</span></td></tr>`;
+  const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><ul class="note-list"><li>Approximated from today's net transfers scaled by ownership</li><li>FPL has never published its exact price-change algorithm</li><li>Scoped to the decision set — your squad, wildcard-watch names, and the WC shortlist — not the whole market</li></ul><h3>Your squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Wildcard watch &amp; WC shortlist</h3><table class="table-compact">${priceHead}<tbody>${watchRows}</tbody></table><ul class="legend-list"><li>NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players</li><li>Price Δ = total change since the start of the season → projected total if tonight's change follows today's momentum</li><li>▲/▼ = already moved today</li><li>FPL only ever moves a price by £0.1m at a time — the projection is a direction call, not a probability</li></ul></div>`;
   const VB=D.value_board||{};
   const valueHead=`<thead><tr><th style="width:44%">Player</th><th style="width:18%">Cost</th><th style="width:16%">Pts</th><th style="width:22%">Pts/£1m</th></tr></thead>`;
   const valueRow=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.points}</td><td><b>${r.value_per_1m}</b></td></tr>`;
@@ -431,7 +448,7 @@ function renderStrategy(){
     return `<h3>${pos}</h3><table class="table-compact">${valueHead}<tbody>${posRows}</tbody></table>`;
   }).join("");
   const valueCard=`<div class="card"><h2>Best points per £1m</h2><ul class="note-list"><li>Top ${VB.top_n??"?"} value picks per position, league-wide (${VB.min_minutes??"?"}+ mins to filter out small-sample flukes)</li><li>Recomputed every refresh from current points and price</li><li>Moves as returns and prices change — not a fixed list</li></ul>${valueTables}</div>`;
-  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div>`;
+  document.getElementById("strategy").innerHTML=`<div class="card"><h2>Free transfers</h2><p class="note">You have <b>${S.free_transfers??"?"}</b> free transfer${S.free_transfers===1?"":"s"} banked for the next deadline.</p></div>${chips}${p2p3Card}<div class="card"><h2>Hits this season</h2>${hitsBlock}</div>`;
   document.getElementById("stratFixtures").innerHTML=`<div class="card"><h2>Fixture swing · next ${F.horizon||"?"} GWs</h2>${easiest}${hardest}${blankNote}${doubleNote}<table class="table-compact"><thead><tr><th style="width:15%">GW</th><th style="width:18%">FDR</th><th style="width:67%">Flags</th></tr></thead><tbody>${fRows}</tbody></table><ul class="legend-list"><li>FDR = fixture difficulty rating (1 easiest – 5 hardest), averaged across your squad's clubs playing that week</li></ul></div>`;
   document.getElementById("stratPlayers").innerHTML=xgCard;
   document.getElementById("stratDefcon").innerHTML=dcCard;
