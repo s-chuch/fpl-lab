@@ -23,6 +23,7 @@
     {"name": "FPL Gremlin", "handle": "FPLGremlin"},
     {"name": "FPL Vincenzo", "handle": "fplvincenzo"},
     {"name": "FPL Bareback", "handle": "fplbareback"},
-    {"name": "FFScout Tom", "handle": "ffscout_tom"}
+    {"name": "FFScout Tom", "handle": "ffscout_tom"},
+    {"name": "FPL Marcello", "handle": "fpl_marcello"}
   ]
 }
