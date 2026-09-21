@@ -19,9 +19,10 @@ const cls=n=>n==null?"":n>0?"pos":n<0?"neg":"";
 // team/league names) before it goes into innerHTML — none of it is ours to trust.
 function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function safeHref(u){try{const p=new URL(String(u||""),location.href);if(p.protocol==="http:"||p.protocol==="https:")return p.href;}catch(e){}return "#";}
-// Player name + club folded into one cell ("Groß (BHA)") — used by every
-// compact player table so Club doesn't need its own column everywhere.
-function nameCell(name,club){return `${esc(name)}${club?` <span style="color:var(--muted)">(${esc(club)})</span>`:""}`;}
+// Player name + club folded into one cell, club stacked on its own line
+// below the name ("Groß" / "(BHA)") — used by every compact player table
+// so Club doesn't need its own column everywhere.
+function nameCell(name,club){return `${esc(name)}${club?`<br><span style="color:var(--muted);font-size:10px">(${esc(club)})</span>`:""}`;}
 function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""));return Number.isFinite(n)?n:0;}
 // Rival gap-trend/chip/fixture note for the Leagues tab. pronoun="you" (index.html,
 // your own decisions) or "they" (bacalhau.html, auditing someone else's squad) —
