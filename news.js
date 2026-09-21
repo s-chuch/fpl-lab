@@ -1,10 +1,33 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-21 05:23 UTC",
+  "generated_at": "2026-09-21 14:56 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
-  "split": [],
+  "split": [
+    {
+      "text": "Szoboszlai (LIV) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Szoboszlai",
+      "club": "LIV",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Wissa (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Wissa",
+      "club": "NEW",
+      "tags": []
+    }
+  ],
   "links": [
     {
       "name": "Fix",
@@ -31,8 +54,39 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "FPL Gameweek 6 Transfer Tips 2026/27: Who to Target",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Forest\u2019s home woes, van Ewijk update + a GK assist",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-forests-home-woes-van-ewijk-update-a-gk-assist"
+    },
+    {
+      "source": "Scout",
+      "title": "Join our Sofascore Nations League Fantasy league + win prizes",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/join-our-sofascore-nations-league-fantasy-league-win-prizes"
+    },
+    {
+      "source": "Scout",
+      "title": "Palmer injury latest after England international withdrawal",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/palmer-set-to-withdraw-from-international-duty"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Another Bruno blank, Sesko + Rashford injury latest",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-another-bruno-blank-sesko-rashford-injury-latest"
+    },
+    {
+      "source": "Scout",
+      "title": "Why hasn\u2019t Pedro been auto-subbed out of my FPL team?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/why-hasnt-pedro-been-auto-subbed-out-in-my-fpl-team"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -56,6 +110,7 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/fpl-bookies/",
     "https://ingenuityfantasy.com/fpl-guidebook/",
     "https://ingenuityfantasy.com/fpl-player-rankings/",
+    "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/fpl-team-analysis/",
     "https://www.fantasyfootballhub.co.uk/ben-crellins-fpl-transfer-planning-sheet",
     "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
@@ -78,6 +133,11 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/20/fpl-notes-isak-again-szoboszlai-set-for-further-sales-kluivert-injury-latest",
     "https://www.fantasyfootballscout.co.uk/2026/09/20/fulham-v-man-utd-team-news-shaw-starts-no-sesko",
     "https://www.fantasyfootballscout.co.uk/2026/09/20/how-to-play-sofascores-nations-league-fantasy",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-another-bruno-blank-sesko-rashford-injury-latest",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-forests-home-woes-van-ewijk-update-a-gk-assist",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/join-our-sofascore-nations-league-fantasy-league-win-prizes",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/palmer-set-to-withdraw-from-international-duty",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/why-hasnt-pedro-been-auto-subbed-out-in-my-fpl-team",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]

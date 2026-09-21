@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Groß",
     "captain_ep": 9.4,
     "vice": "Tarkowski",
-    "vice_ep": 8.6,
+    "vice_ep": 9.2,
     "bench_swaps": [
       {
         "bench": "Raya",
@@ -155,7 +155,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.6,
+        "ep_next": 9.2,
         "status": "ok"
       },
       {
