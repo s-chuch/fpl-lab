@@ -245,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-20",
+      "date": "2026-09-21",
       "total_cost": 98.8,
       "prices": {
         "Kinsky": 4.5,
