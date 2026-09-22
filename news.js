@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-22 03:06 UTC",
+  "generated_at": "2026-09-22 13:13 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -45,13 +45,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Best goalkeepers",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-best-goalkeepers"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Manzambi haul, Porro injury + goals for Spurs",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-manzambi-haul-porro-injury-goals-for-spurs"
+      "title": "WUCL Fantasy Matchday 1: Team reveal + chip strategy",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/wucl-fantasy-matchday-1-team-reveal-chip-strategy"
     }
   ],
   "no_new": false,
@@ -112,6 +107,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/21/rice-dedic-sesko-livramento-the-latest-international-withdrawals",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/why-hasnt-pedro-been-auto-subbed-out-in-my-fpl-team",
     "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-best-goalkeepers",
+    "https://www.fantasyfootballscout.co.uk/2026/09/22/wucl-fantasy-matchday-1-team-reveal-chip-strategy",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]

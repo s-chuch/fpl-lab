@@ -109,13 +109,13 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Bacalhau's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00). Treat as a strong signal of intent, not a locked squad.",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 9.4,
+    "captain_ep": 11.2,
     "vice": "Tarkowski",
     "vice_ep": 9.2,
     "bench_swaps": [
       {
         "bench": "Tavernier",
-        "bench_ep": 6.2,
+        "bench_ep": 5.2,
         "starter": "Dewsbury-Hall",
         "starter_ep": 2.2
       }
@@ -131,7 +131,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 7.4,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
@@ -155,7 +155,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 7.6,
+        "ep_next": 5.2,
         "status": "ok"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 9.4,
+        "ep_next": 11.2,
         "status": "ok"
       },
       {
@@ -185,7 +185,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 7.8,
+        "ep_next": 9.2,
         "status": "ok"
       }
     ],
@@ -199,13 +199,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 6.2,
+        "ep_next": 5.2,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 5.6,
+        "ep_next": 6.8,
         "status": "ok"
       },
       {
@@ -239,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-21",
+      "date": "2026-09-22",
       "total_cost": 92.8,
       "prices": {
         "Raya": 6.1,
