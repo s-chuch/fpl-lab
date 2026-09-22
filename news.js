@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-21 23:05 UTC",
+  "generated_at": "2026-09-22 03:06 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -45,8 +45,13 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Rice, Dedic, Sesko + Livramento the latest international withdrawals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/rice-dedic-sesko-livramento-the-latest-international-withdrawals"
+      "title": "Sofascore Nations League Fantasy: Best goalkeepers",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-best-goalkeepers"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Manzambi haul, Porro injury + goals for Spurs",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-manzambi-haul-porro-injury-goals-for-spurs"
     }
   ],
   "no_new": false,
@@ -99,12 +104,14 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/20/how-to-play-sofascores-nations-league-fantasy",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-another-bruno-blank-sesko-rashford-injury-latest",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-forests-home-woes-van-ewijk-update-a-gk-assist",
+    "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-manzambi-haul-porro-injury-goals-for-spurs",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-muharemovic-threat-stach-defcon-defences-on-top",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/fpl-notes-semenyo-brobbey-17-pointers-citys-suspect-defence",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/join-our-sofascore-nations-league-fantasy-league-win-prizes",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/palmer-set-to-withdraw-from-international-duty",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/rice-dedic-sesko-livramento-the-latest-international-withdrawals",
     "https://www.fantasyfootballscout.co.uk/2026/09/21/why-hasnt-pedro-been-auto-subbed-out-in-my-fpl-team",
+    "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-best-goalkeepers",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
