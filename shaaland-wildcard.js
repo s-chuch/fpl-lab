@@ -124,12 +124,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 6.5,
         "starter": "King",
         "starter_ep": 4.8
-      },
-      {
-        "bench": "Kostoulas",
-        "bench_ep": 6.8,
-        "starter": "Isak",
-        "starter_ep": 6.6
       }
     ],
     "availability_flags": [],
@@ -155,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 6.2,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
@@ -167,7 +161,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 5.6,
+        "ep_next": 6.5,
         "status": "ok"
       },
       {
@@ -197,7 +191,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Isak",
         "pos": "FWD",
-        "ep_next": 6.6,
+        "ep_next": 7.8,
         "status": "ok"
       }
     ],
