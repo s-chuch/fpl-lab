@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 9.4,
+    "captain_ep": 11.2,
     "vice": "Tarkowski",
     "vice_ep": 9.2,
     "bench_swaps": [
@@ -121,9 +121,15 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "bench": "Cherki",
-        "bench_ep": 6.8,
+        "bench_ep": 6.5,
         "starter": "King",
         "starter_ep": 4.8
+      },
+      {
+        "bench": "Kostoulas",
+        "bench_ep": 6.8,
+        "starter": "Isak",
+        "starter_ep": 6.6
       }
     ],
     "availability_flags": [],
@@ -137,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 7.6,
+        "ep_next": 5.2,
         "status": "ok"
       },
       {
@@ -173,7 +179,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 9.4,
+        "ep_next": 11.2,
         "status": "ok"
       },
       {
@@ -185,7 +191,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 7.8,
+        "ep_next": 9.2,
         "status": "ok"
       },
       {
@@ -211,13 +217,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Cherki",
         "pos": "MID",
-        "ep_next": 6.8,
+        "ep_next": 6.5,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 5.6,
+        "ep_next": 6.8,
         "status": "ok"
       }
     ]
@@ -245,18 +251,18 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-21",
-      "total_cost": 98.8,
+      "date": "2026-09-22",
+      "total_cost": 99.0,
       "prices": {
         "Kinsky": 4.5,
         "De Cuyper": 4.9,
         "Calafiori": 5.8,
-        "Hall": 5.2,
+        "Hall": 5.3,
         "Tarkowski": 6.1,
         "Barnes": 6.1,
         "King": 5.5,
         "Groß": 5.8,
-        "Schade": 6.1,
+        "Schade": 6.2,
         "Haaland": 15.6,
         "Isak": 9.1,
         "Raya": 6.1,
@@ -265,8 +271,22 @@ window.FPL_WILDCARD_WATCH = {
         "Kostoulas": 5.6
       }
     },
-    "total_delta": 0.0,
+    "total_delta": 0.2,
     "players": [
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": 5.3,
+        "delta": 0.1,
+        "status": "held"
+      },
+      {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Barnes",
         "baseline_cost": 6.1,
@@ -306,13 +326,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.6,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "Hall",
-        "baseline_cost": 5.2,
-        "current_cost": 5.2,
         "delta": 0.0,
         "status": "held"
       },
@@ -359,13 +372,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Schade",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
         "name": "Tarkowski",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
@@ -378,6 +384,22 @@ window.FPL_WILDCARD_WATCH = {
         "date": "2026-09-20",
         "event": "captured",
         "detail": "Initial target squad captured — 15 players, £98.8m."
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Hall",
+        "from": 5.2,
+        "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-21",
+        "event": "price_change",
+        "player": "Schade",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
       }
     ]
   }
