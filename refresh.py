@@ -1499,15 +1499,18 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
     return {"min_minutes": min_minutes, "top_n": top_n, "horizons": out}
 
 
-def target_rival_entries(rows, team_id, limit_top=2, spread=1):
+def target_rival_entries(rows, team_id, limit_top=2, limit_bottom=2, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
-    compares against: the top of the table (limit_top) and whoever's within
-    `spread` ranks of you either side — a superset of whatever build_tactics()
-    ends up calling "first"/"second"/"neighbor_above"/"neighbor_below", so it
-    doesn't need to duplicate that exact tie-break logic here."""
+    compares against: the top of the table (limit_top), the bottom of the table
+    (limit_bottom — a team with chips still banked can leapfrog you in one week
+    even from last place, which the top/neighbor comparisons alone never catch),
+    and whoever's within `spread` ranks of you either side — a superset of
+    whatever build_tactics() ends up calling "first"/"second"/"last"/
+    "second_last"/"neighbor_above"/"neighbor_below", so it doesn't need to
+    duplicate that exact tie-break logic here."""
     sorted_rows = sorted(rows, key=lambda r: (r.get("rank") is None, r.get("rank") or 10**9))
     me_idx = next((i for i, r in enumerate(sorted_rows) if r.get("entry") == team_id), None)
-    picked = list(sorted_rows[:limit_top])
+    picked = list(sorted_rows[:limit_top]) + (list(sorted_rows[-limit_bottom:]) if limit_bottom else [])
     if me_idx is not None:
         lo, hi = max(0, me_idx - spread), min(len(sorted_rows), me_idx + spread + 1)
         picked.extend(sorted_rows[lo:hi])

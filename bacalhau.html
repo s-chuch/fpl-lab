@@ -205,7 +205,8 @@ function renderStrategy(){
     const chipsTxt=(card.chips_used&&card.chips_used.length)?(" · chips used: "+esc(card.chips_used.join(", "))):"";
     return `<p class="note">${label} <b>${esc(card.name||"?")}</b> ${card.pts??"?"} (${card.gap!=null?sign(card.gap):"?"})${chipsTxt}</p>`;
   };
-  const p2p3Card=eslTac?`<div class="card"><h2>P2 / P3 · ESL</h2>${rivalStripLine("P2",eslTac.first)}${rivalStripLine("P3",eslTac.second)}${eslTac.you_rank===1?`<p class="note">They can still chip a week Bacalhau cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`:"";
+  const bottomLabel=card=>card&&card.rank!=null?("P"+card.rank):"Bottom";
+  const p2p3Card=eslTac?`<div class="card"><h2>Rival chips · ESL</h2>${rivalStripLine("P2",eslTac.first)}${rivalStripLine("P3",eslTac.second)}${rivalStripLine(bottomLabel(eslTac.second_last),eslTac.second_last)}${rivalStripLine(bottomLabel(eslTac.last),eslTac.last)}${eslTac.you_rank===1?`<p class="note">They can still chip a week Bacalhau cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`:"";
   const F=S.fixtures||{};
   const fRows=(F.rows||[]).map(r=>{
     const flags=[(r.blanks&&r.blanks.length)?`Blank: ${r.blanks.join(", ")}`:"",(r.doubles&&r.doubles.length)?`Dbl: ${r.doubles.join(", ")}`:""].filter(Boolean).join(" · ");

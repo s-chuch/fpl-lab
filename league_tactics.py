@@ -44,12 +44,13 @@ def _vs_pair(a, b, my_set, counts, owned_by, elements, teams, n):
 
 
 def _rival_card(row, me_row, ctx_by_entry):
-    """{name, pts, gap} for one rival row, plus chip-used/gap-trend/fixture extras
-    when analyze_leagues fetched them for this specific rival (rival_ctx)."""
+    """{name, rank, pts, gap} for one rival row, plus chip-used/gap-trend/fixture
+    extras when analyze_leagues fetched them for this specific rival (rival_ctx)."""
     if not row:
         return None
     card = {
         "name": row.get("entry_name"),
+        "rank": row.get("rank"),
         "pts": row.get("total"),
         "gap": (row.get("total") - (me_row or {}).get("total")) if me_row and me_row.get("total") is not None and row.get("total") is not None else None,
     }
@@ -72,6 +73,17 @@ def build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, eleme
     rivals = [r for r in sorted_rows if r.get("entry") != team_id]
     first = rivals[0] if rivals else None
     second = rivals[1] if len(rivals) > 1 else None
+    # Bottom-of-table rivals: a team with chips still in the bank can leapfrog
+    # you in a single week even from last place, which "first"/"second" alone
+    # never surfaces. Guarded against a small league where the bottom overlaps
+    # with first/second (nothing left worth calling out separately then).
+    last = rivals[-1] if rivals else None
+    second_last = rivals[-2] if len(rivals) > 1 else None
+    _eid = lambda r: (r or {}).get("entry")
+    if last is not None and _eid(last) in (_eid(first), _eid(second)):
+        last = None
+    if second_last is not None and _eid(second_last) in (_eid(first), _eid(second), _eid(last)):
+        second_last = None
     neighbor_above = sorted_rows[me_idx - 1] if me_idx is not None and me_idx > 0 else None
     neighbor_below = sorted_rows[me_idx + 1] if me_idx is not None and me_idx < len(sorted_rows) - 1 else None
     my_set = owned_by.get(team_id) or my_picks or set()
@@ -113,6 +125,8 @@ def build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, eleme
         "gap_to_second": ((second or {}).get("total") - (me_row or {}).get("total")) if second and me_row and me_row.get("total") is not None else None,
         "first": _rival_card(first, me_row, rival_ctx),
         "second": _rival_card(second, me_row, rival_ctx),
+        "last": _rival_card(last, me_row, rival_ctx),
+        "second_last": _rival_card(second_last, me_row, rival_ctx),
         "template": league_template[:10],
         "you_unique": leader_unique,
         "they_share": leader_share,
