@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-22 20:52 UTC",
+  "generated_at": "2026-09-22 22:50 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -13,16 +13,6 @@ window.FPL_NEWS = {
       ],
       "player": "Muharemovi\u0107",
       "club": "LEE",
-      "tags": []
-    },
-    {
-      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Silva",
-      "club": "BOU",
       "tags": []
     }
   ],
@@ -52,19 +42,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "The ultimate FPL chip strategy guide \u2013 updated!",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/the-ultimate-fpl-chip-strategy-guide-updated"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy fixture ticker: All 54 nations",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-ticker-for-all-54-nations"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
