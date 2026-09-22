@@ -1,18 +1,112 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-22 13:13 UTC",
+  "generated_at": "2026-09-22 15:31 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [],
-  "split": [
+  "agreed": [
     {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Muharemovi\u0107 (LEE) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
       "sources": [
+        "Hub",
         "Ingenuity",
         "Scout"
       ],
       "player": "Muharemovi\u0107",
       "club": "LEE",
+      "tags": []
+    }
+  ],
+  "split": [
+    {
+      "text": "Branthwaite (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Branthwaite",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "James",
+      "club": "CHE",
+      "tags": []
+    },
+    {
+      "text": "Mainoo (MUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Mainoo",
+      "club": "MUN",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Murillo",
+      "club": "NFO",
+      "tags": []
+    },
+    {
+      "text": "Schuster (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Schuster",
+      "club": "BRE",
+      "tags": []
+    },
+    {
+      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Silva",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "Stach (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Stach",
+      "club": "LEE",
+      "tags": []
+    },
+    {
+      "text": "Tarkowski (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Tarkowski",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Virgil (LIV) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Virgil",
+      "club": "LIV",
       "tags": []
     }
   ],
@@ -44,9 +138,14 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Scout",
-      "title": "WUCL Fantasy Matchday 1: Team reveal + chip strategy",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/22/wucl-fantasy-matchday-1-team-reveal-chip-strategy"
+      "source": "Hub",
+      "title": "FPL defensive contributions: Who scored the most DefCon points in Gameweek 5?",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-defcon-points-watch"
+    },
+    {
+      "source": "Hub",
+      "title": "FPL yellow cards: Who's banned and who's close to a suspension?",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions"
     }
   ],
   "no_new": false,
@@ -76,6 +175,8 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/game-week-tips/best-defcon-good-defences/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/fpl-team-analysis/",
+    "https://www.fantasyfootballhub.co.uk/articles/fpl-defcon-points-watch",
+    "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
     "https://www.fantasyfootballhub.co.uk/ben-crellins-fpl-transfer-planning-sheet",
     "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
     "https://www.fantasyfootballhub.co.uk/fpl-blank-double-gameweek-guide",
