@@ -196,14 +196,21 @@ renderWildcardWatch();
 function renderStrategy(){
   const S=D.strategy||{};
   const STATUS_LABEL={used:"Used",open:"Open now",upcoming:"Not open yet",expired:"Expired"};
-  const chips=(S.chips||[]).map(c=>{
-    const wins=(c.windows||[]).map(w=>{
-      const label=w.status==="used"?`Used GW${w.used_gw}`:w.status==="open"?`Open now (GW${w.start}-${w.stop})`:w.status==="upcoming"?`Opens GW${w.start}`:(STATUS_LABEL[w.status]||w.status);
-      const kls=w.status==="open"?"ok":w.status==="used"?"sit":"";
-      return `<div class="chip ${kls}">#${w.number} · ${esc(label)}</div>`;
-    }).join("");
-    return `<div class="card"><h2>${esc(c.label)}</h2><div class="xi">${wins}</div></div>`;
+  // One row per chip instead of one full card per chip — 4 cards that each
+  // said little more than "#1: used GW3, #2: opens GW20" cost a lot of
+  // scroll for 8 short facts total.
+  const chipCellTxt=w=>{
+    if(!w) return "–";
+    if(w.status==="used") return `Used GW${w.used_gw}`;
+    if(w.status==="open") return `Open (GW${w.start}-${w.stop})`;
+    if(w.status==="upcoming") return `Opens GW${w.start}`;
+    return STATUS_LABEL[w.status]||w.status;
+  };
+  const chipRows=(S.chips||[]).map(c=>{
+    const w1=(c.windows||[])[0], w2=(c.windows||[])[1];
+    return `<tr><td>${esc(c.label)}</td><td class="${w1&&w1.status==="open"?"pos":""}">${chipCellTxt(w1)}</td><td class="${w2&&w2.status==="open"?"pos":""}">${chipCellTxt(w2)}</td></tr>`;
   }).join("");
+  const chips=`<div class="card"><h2>Chips</h2><table class="table-compact"><thead><tr><th style="width:34%">Chip</th><th style="width:33%">#1</th><th style="width:33%">#2</th></tr></thead><tbody>${chipRows}</tbody></table></div>`;
   const H=S.hits||{};
   const hitsBlock=(H.rows&&H.rows.length)
     ?`<p class="note">Total hit cost <b class="neg">-${H.total_cost}</b> · Those moves netted <b class="${cls(H.total_moves_net)}">${sign(H.total_moves_net)}</b> · After cost <b class="${cls(H.net_after_cost)}">${sign(H.net_after_cost)}</b></p><ul class="chiplist">${H.rows.map(r=>`<li><span class="who">GW${r.gw}</span><div class="detail">Cost -${r.cost} · moves netted ${sign(r.moves_net)} · <b class="${r.paid_off?"pos":"neg"}">${r.paid_off?"Paid off":"Not worth it"}</b></div></li>`).join("")}</ul>`
