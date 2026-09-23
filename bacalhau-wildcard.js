@@ -137,7 +137,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 6.2,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
@@ -239,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-22",
+      "date": "2026-09-23",
       "total_cost": 92.8,
       "prices": {
         "Raya": 6.1,
