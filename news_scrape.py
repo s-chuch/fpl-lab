@@ -171,7 +171,7 @@ def extract_article_links(html, base, source, gw):
     host = urlparse(base).netloc
     out, seen = [], set()
     gw_tokens = (f"gw{gw}", f"gameweek-{gw}", f"gameweek {gw}", f"/gw{gw}")
-    generic = ("gameweek", "/fpl", "fpl-", "transfer", "captain", "wildcard", "differential", "/2026/", "/blog", "lineup", "preview")
+    generic = ("gameweek", "/fpl", "fpl-", "transfer", "captain", "wildcard", "differential", "/2026/", "/blog", "lineup", "preview", "team-reveal")
     # Per-rejection-reason counts — a source silently under-scraping (few
     # candidates from what looks like a busy homepage) is otherwise
     # indistinguishable from a source that genuinely has little linkable
@@ -192,7 +192,8 @@ def extract_article_links(html, base, source, gw):
         low = href.lower() + " " + unescape(re.sub(r"<[^>]+>", " ", inner)).lower()
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
             reject_no_token += 1
-            no_token_samples.append(href)  # temporarily uncapped for a one-off investigation; recap once resolved
+            if len(no_token_samples) < 15:
+                no_token_samples.append(href)
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
         if href in seen:
