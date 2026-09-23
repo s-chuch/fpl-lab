@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "provisional",
-  "captured_at": "2026-09-20",
+  "captured_at": "2026-09-23",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -13,9 +13,9 @@ window.FPL_WILDCARD_WATCH = {
   "xi": [
     {
       "pos": "GKP",
-      "name": "Kinsky",
-      "club": "TOT",
-      "fixture": "MUN (A)"
+      "name": "Raya",
+      "club": "ARS",
+      "fixture": "LEE (H)"
     },
     {
       "pos": "DEF",
@@ -39,14 +39,14 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "HUL (A)"
+      "fixture": "HUL (A)",
+      "vice": true
     },
     {
       "pos": "MID",
       "name": "Barnes",
       "club": "NEW",
-      "fixture": "COV (A)",
-      "vice": true
+      "fixture": "COV (A)"
     },
     {
       "pos": "MID",
@@ -58,7 +58,8 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "SUN (A)"
+      "fixture": "SUN (A)",
+      "captain": true
     },
     {
       "pos": "MID",
@@ -70,22 +71,21 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "LIV (A)",
-      "captain": true
+      "fixture": "LIV (A)"
     },
     {
       "pos": "FWD",
-      "name": "Isak",
-      "club": "LIV",
-      "fixture": "MCI (H)"
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "SUN (A)"
     }
   ],
   "bench": [
     {
       "pos": "GKP",
-      "name": "Raya",
-      "club": "ARS",
-      "fixture": "LEE (H)"
+      "name": "Tzolakis",
+      "club": "HUL",
+      "fixture": "EVE (H)"
     },
     {
       "pos": "DEF",
@@ -101,9 +101,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "SUN (A)"
+      "name": "Isak",
+      "club": "LIV",
+      "fixture": "MCI (H)"
     }
   ],
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
