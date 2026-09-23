@@ -80,9 +80,19 @@ function renderTransfers(){
 }
 renderTransfers();
 function newsCard(title, vs){
-  const li=(arr,empty)=>arr.length?arr.map(raw=>{const x=esc(raw);return `<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`;}).join(""):`<li><span class="note">${empty}</span></li>`;
+  // Own/missing used to be one <li> per player with a full repeated sentence
+  // ("X is heavily featured in GW6 coverage — mentioned by N/16 accounts.") —
+  // readable for 1-2 names, but this squad-vs-consensus list routinely runs
+  // to 8-9 players and that read as a wall of near-identical paragraphs. The
+  // structured fields newsVsSquad already carries (mentions/tags) make a
+  // table the same information in a fraction of the height.
+  const tagTxt=tags=>(tags&&tags.length)?esc(tags.join(", ")):"–";
+  const rowHtml=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${r.mentions}</td><td>${tagTxt(r.tags)}</td></tr>`;
+  const tblHead=`<thead><tr><th style="width:46%">Player</th><th style="width:18%">Mentions</th><th style="width:36%">Tags</th></tr></thead>`;
+  const tbl=(rows,empty)=>rows.length?`<table class="table-compact">${tblHead}<tbody>${rows.map(rowHtml).join("")}</tbody></table>`:`<p class="note">${empty}</p>`;
+  const fadeLi=vs.fade.length?vs.fade.map(raw=>{const x=esc(raw);return `<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`;}).join(""):`<li><span class="note">No fade conflict.</span></li>`;
   const cap=vs.caps[0]?`<p class="note">Captain check: ${esc(vs.caps[0])}</p>`:"";
-  return `<div class="card"><h2>${title}</h2><p class="note">Own and agreed</p><ul class="chiplist">${li(vs.owned,"None of the agreed names are in this squad.")}</ul><p class="note">Missing and agreed</p><ul class="chiplist">${li(vs.missing,"You already own the agreed targets, or none were named.")}</ul><p class="note">Fade, but you still start them</p><ul class="chiplist">${li(vs.fade,"No fade conflict.")}</ul>${cap}</div>`;
+  return `<div class="card"><h2>${title}</h2><h3>Own and agreed</h3>${tbl(vs.owned,"None of the agreed names are in this squad.")}<h3>Missing and agreed</h3>${tbl(vs.missing,"You already own the agreed targets, or none were named.")}<h3>Fade, but you still start them</h3><ul class="chiplist">${fadeLi}</ul>${cap}</div>`;
 }
 function renderPlan(){
   const P=D.plan||{},up=P.upcoming||[];

@@ -44,7 +44,7 @@ function rivalExtra(card, pronoun){
 }
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags})),(X.agreed||[]).map(x=>({text:x.text,from:"X",player:x.player,club:x.club,tags:x.tags})));}
+function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources})),(X.agreed||[]).map(x=>({text:x.text,from:"X",player:x.player,club:x.club,tags:x.tags,sources:x.sources})));}
 function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
 // news_scrape.py now discovers trending players dynamically and tags each theme
 // with the exact player it found (it.player), rather than the page having to
@@ -166,9 +166,14 @@ function newsVsSquad(squadNames, startedNames, clubsByName){
     const isFade=/fade|sell into|sell /.test(t); const isCap=/captain/.test(t); const isIn=it.player?true:/transfer in|to target|popular forward|priority/.test(t);
     if(isCap) caps.push(it.text);
     if(isFade){ const startedUnited=(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"); const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
+    // Structured fields (it.sources/it.tags) let the Plan-tab card render a
+    // real table instead of one paragraph per player — club is only trusted
+    // when the item names exactly one player (it.club can't be right for a
+    // name pulled from NEWS_ALIAS fallback matching against a multi-name item).
     const mine=names.filter(n=>have.has(n)); const other=names.filter(n=>!have.has(n));
-    if(mine.length) owned.push(mine.join(", ")+" · "+it.text);
-    if(other.length && isIn) missing.push(other.join(", ")+" · "+it.text);
+    const club=names.length===1?it.club:null, mentions=(it.sources||[]).length, tags=it.tags||[];
+    mine.forEach(n=>owned.push({name:n, club, mentions, tags}));
+    if(isIn) other.forEach(n=>missing.push({name:n, club, mentions, tags}));
   }
   return {owned, missing, fade, caps};
 }
