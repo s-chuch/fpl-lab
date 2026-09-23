@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-23 03:09 UTC",
+  "generated_at": "2026-09-23 13:27 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -42,8 +42,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Sofascore Nations League Fantasy: Best midfielders",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-midfielders"
+    },
+    {
+      "source": "Scout",
+      "title": "Sofascore Nations League Fantasy: Best defenders",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-defenders"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -106,6 +117,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/22/sofascore-nations-league-fantasy-ticker-for-all-54-nations",
     "https://www.fantasyfootballscout.co.uk/2026/09/22/the-ultimate-fpl-chip-strategy-guide-updated",
     "https://www.fantasyfootballscout.co.uk/2026/09/22/wucl-fantasy-matchday-1-team-reveal-chip-strategy",
+    "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-defenders",
+    "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-midfielders",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
