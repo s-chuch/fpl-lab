@@ -172,20 +172,38 @@ def extract_article_links(html, base, source, gw):
     out, seen = [], set()
     gw_tokens = (f"gw{gw}", f"gameweek-{gw}", f"gameweek {gw}", f"/gw{gw}")
     generic = ("gameweek", "/fpl", "fpl-", "transfer", "captain", "wildcard", "differential", "/2026/", "/blog", "lineup", "preview")
+    # Per-rejection-reason counts — a source silently under-scraping (few
+    # candidates from what looks like a busy homepage) is otherwise
+    # indistinguishable from a source that genuinely has little linkable
+    # content; this makes it visible in the run log which reason dominates
+    # (e.g. "no-token" high => the generic/gw_tokens list is too narrow for
+    # that site's URL style, not that the page lacks articles).
+    total_a = reject_host = reject_junk_url = reject_no_token = reject_short_or_junk_title = reject_dup = 0
     for href, inner in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', html, re.I | re.S):
+        total_a += 1
         href = urljoin(base, href.split("#")[0])
         if urlparse(href).netloc != host:
+            reject_host += 1
             continue
         if is_junk_url(href):
+            reject_junk_url += 1
             continue
         low = href.lower() + " " + unescape(re.sub(r"<[^>]+>", " ", inner)).lower()
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
+            reject_no_token += 1
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
-        if len(text) < 12 or href in seen or is_junk(text, href):
+        if href in seen:
+            reject_dup += 1
+            continue
+        if len(text) < 12 or is_junk(text, href):
+            reject_short_or_junk_title += 1
             continue
         seen.add(href)
         out.append({"source": source, "url": href, "title": text[:160], "current": any(t in low for t in gw_tokens)})
+    print(f"news_scrape.py: {source} link scan of {base} — {total_a} <a> tags, "
+          f"{reject_host} other-host, {reject_junk_url} junk-url, {reject_no_token} no-gw/generic-token, "
+          f"{reject_short_or_junk_title} short/junk-title, {reject_dup} duplicate, {len(out)} kept")
     out.sort(key=lambda a: (not a["current"], a["title"]))
     return out[:25]
 
@@ -268,18 +286,27 @@ def discover_feed_url(base_url, homepage_html=None):
 
 
 def load_feed_overrides():
-    """Optional {"feed": "https://.../real-feed-url"} per entry in sources.json,
-    for a site whose feed isn't at a path discover_feed_url() would find."""
+    """Per entry in sources.json: `"feed": "https://.../real-feed-url"` for a
+    site whose feed isn't at a path discover_feed_url() would find, or
+    `"feed": false` for a site confirmed to have no feed at all — every run
+    otherwise re-probes /feed/, /feed, /rss/, /rss.xml and ?feed=rss2 for
+    that site (5 requests, all 404s) before falling back to HTML scraping
+    anyway, which only ever wastes time and adds noise to fetch failures
+    without ever finding anything, once a site's been confirmed feed-less.
+    Returns (overrides: {name: feed_url}, no_feed: {name, ...})."""
     path = ROOT / "sources.json"
-    out = {}
+    overrides, no_feed = {}, set()
     if path.exists():
         try:
             for s in json.loads(path.read_text()).get("sites") or []:
-                if s.get("feed"):
-                    out[s.get("name") or "Site"] = s["feed"]
+                name = s.get("name") or "Site"
+                if s.get("feed") is False:
+                    no_feed.add(name)
+                elif s.get("feed"):
+                    overrides[name] = s["feed"]
         except Exception:
             pass
-    return out
+    return overrides, no_feed
 
 
 def site_listings(gw):
@@ -336,7 +363,7 @@ def main():
     # rather than a bare space so qualifier detection can't bleed across articles.
     blobs, links, discovered, used = {}, [], [], set()
     title_blobs = {}  # titles of new articles weighted heavily
-    feed_overrides = load_feed_overrides()
+    feed_overrides, no_feed_sources = load_feed_overrides()
     gw_tokens = (f"gw{gw}", f"gameweek-{gw}", f"gameweek {gw}", f"/gw{gw}")
     by_source = {}
     for source, url in listings:
@@ -347,11 +374,14 @@ def main():
     for source, urls in by_source.items():
         base = urls[0]
         override = feed_overrides.get(source)
-        if override:
+        home_html = fetch_html(base)  # needed either way: <link> autodiscovery or the HTML-scrape fallback
+        if source in no_feed_sources:
+            feed_url, feed_items = None, []
+        elif override:
             xml_text = fetch_html(override)
             feed_url, feed_items = (override, parse_feed_items(xml_text)) if xml_text else (None, [])
         else:
-            feed_url, feed_items = discover_feed_url(base, fetch_html(base))
+            feed_url, feed_items = discover_feed_url(base, home_html)
         if feed_items:
             print(f"news_scrape.py: {source} feed OK ({feed_url}) — {len(feed_items)} items")
             # Feed found: it covers this source's whole output, so use it once
@@ -371,10 +401,11 @@ def main():
                 site_discovered += 1
             print(f"news_scrape.py: {source} {site_discovered} non-junk feed items kept")
         else:
-            print(f"news_scrape.py: {source} no feed found — falling back to HTML listing scrape of {len(urls)} URL(s)")
+            reason = "marked no-feed in sources.json" if source in no_feed_sources else "no feed found"
+            print(f"news_scrape.py: {source} {reason} — falling back to HTML listing scrape of {len(urls)} URL(s)")
             site_discovered = 0
             for u in urls:
-                html = fetch_html(u)
+                html = home_html if u == base else fetch_html(u)
                 links_found = extract_article_links(html, u, source, gw)
                 site_discovered += len(links_found)
                 discovered.extend(links_found)
