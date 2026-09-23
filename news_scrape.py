@@ -179,6 +179,7 @@ def extract_article_links(html, base, source, gw):
     # (e.g. "no-token" high => the generic/gw_tokens list is too narrow for
     # that site's URL style, not that the page lacks articles).
     total_a = reject_host = reject_junk_url = reject_no_token = reject_short_or_junk_title = reject_dup = 0
+    no_token_samples = []
     for href, inner in re.findall(r'<a[^>]+href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', html, re.I | re.S):
         total_a += 1
         href = urljoin(base, href.split("#")[0])
@@ -191,6 +192,8 @@ def extract_article_links(html, base, source, gw):
         low = href.lower() + " " + unescape(re.sub(r"<[^>]+>", " ", inner)).lower()
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
             reject_no_token += 1
+            if len(no_token_samples) < 8:
+                no_token_samples.append(href)
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
         if href in seen:
@@ -204,6 +207,13 @@ def extract_article_links(html, base, source, gw):
     print(f"news_scrape.py: {source} link scan of {base} — {total_a} <a> tags, "
           f"{reject_host} other-host, {reject_junk_url} junk-url, {reject_no_token} no-gw/generic-token, "
           f"{reject_short_or_junk_title} short/junk-title, {reject_dup} duplicate, {len(out)} kept")
+    # When the no-gw/generic-token bucket is the dominant rejection reason
+    # (e.g. Fix: 37/80 same-host links, more than junk-url or other-host),
+    # that's the token list being too narrow for this site's URL style, not
+    # the page lacking content — print a sample so it's fixable without
+    # having to reproduce the scrape by hand.
+    if reject_no_token > max(reject_host, reject_junk_url, 5):
+        print(f"news_scrape.py: {source} no-gw/generic-token sample rejects: {no_token_samples}")
     out.sort(key=lambda a: (not a["current"], a["title"]))
     return out[:25]
 
