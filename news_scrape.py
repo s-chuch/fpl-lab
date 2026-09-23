@@ -192,8 +192,7 @@ def extract_article_links(html, base, source, gw):
         low = href.lower() + " " + unescape(re.sub(r"<[^>]+>", " ", inner)).lower()
         if not any(t in low for t in gw_tokens) and not any(x in low for x in generic):
             reject_no_token += 1
-            if len(no_token_samples) < 8:
-                no_token_samples.append(href)
+            no_token_samples.append(href)  # temporarily uncapped for a one-off investigation; recap once resolved
             continue
         text = re.sub(r"\s+", " ", unescape(re.sub(r"<[^>]+>", "", inner))).strip()
         if href in seen:
