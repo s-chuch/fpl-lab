@@ -114,24 +114,24 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 9.2,
     "bench_swaps": [
       {
-        "bench": "Raya",
-        "bench_ep": 6.0,
-        "starter": "Kinsky",
-        "starter_ep": 4.0
-      },
-      {
         "bench": "Cherki",
         "bench_ep": 6.5,
         "starter": "King",
-        "starter_ep": 4.8
+        "starter_ep": 4.2
+      },
+      {
+        "bench": "Isak",
+        "bench_ep": 7.8,
+        "starter": "Kostoulas",
+        "starter_ep": 6.8
       }
     ],
     "availability_flags": [],
     "xi_ep": [
       {
-        "name": "Kinsky",
+        "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.0,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
@@ -167,7 +167,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 4.8,
+        "ep_next": 4.2,
         "status": "ok"
       },
       {
@@ -189,15 +189,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Isak",
+        "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 7.8,
+        "ep_next": 6.8,
         "status": "ok"
       }
     ],
     "bench_ep": [
       {
-        "name": "Raya",
+        "name": "Tzolakis",
         "pos": "GKP",
         "ep_next": 6.0,
         "status": "ok"
@@ -215,9 +215,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Kostoulas",
+        "name": "Isak",
         "pos": "FWD",
-        "ep_next": 6.8,
+        "ep_next": 7.8,
         "status": "ok"
       }
     ]
@@ -246,9 +246,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-23",
-      "total_cost": 99.0,
+      "total_cost": 99.1,
       "prices": {
-        "Kinsky": 4.5,
+        "Raya": 6.1,
         "De Cuyper": 4.9,
         "Calafiori": 5.8,
         "Hall": 5.3,
@@ -258,14 +258,14 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 5.8,
         "Schade": 6.2,
         "Haaland": 15.6,
-        "Isak": 9.1,
-        "Raya": 6.1,
+        "Kostoulas": 5.6,
+        "Tzolakis": 4.6,
         "Konsa": 4.6,
         "Cherki": 7.8,
-        "Kostoulas": 5.6
+        "Isak": 9.1
       }
     },
-    "total_delta": 0.2,
+    "total_delta": 0.3,
     "players": [
       {
         "name": "Hall",
@@ -338,13 +338,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kinsky",
-        "baseline_cost": 4.5,
-        "current_cost": 4.5,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
         "name": "Konsa",
         "baseline_cost": 4.6,
         "current_cost": 4.6,
@@ -371,6 +364,20 @@ window.FPL_WILDCARD_WATCH = {
         "current_cost": 6.1,
         "delta": 0.0,
         "status": "held"
+      },
+      {
+        "name": "Kinsky",
+        "baseline_cost": 4.5,
+        "current_cost": null,
+        "delta": null,
+        "status": "removed"
+      },
+      {
+        "name": "Tzolakis",
+        "baseline_cost": null,
+        "current_cost": 4.6,
+        "delta": null,
+        "status": "added"
       }
     ],
     "log": [
@@ -394,6 +401,18 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.1,
         "to": 6.2,
         "delta": 0.1
+      },
+      {
+        "date": "2026-09-23",
+        "event": "removed",
+        "player": "Kinsky",
+        "price_at_change": 4.5
+      },
+      {
+        "date": "2026-09-23",
+        "event": "added",
+        "player": "Tzolakis",
+        "price_at_change": 4.6
       }
     ]
   }
