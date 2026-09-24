@@ -1,10 +1,20 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-24 15:33 UTC",
+  "generated_at": "2026-09-24 23:07 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
+    {
+      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "James",
+      "club": "CHE",
+      "tags": []
+    },
     {
       "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
@@ -13,6 +23,46 @@ window.FPL_NEWS = {
       ],
       "player": "Muharemovi\u0107",
       "club": "LEE",
+      "tags": []
+    },
+    {
+      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Murillo",
+      "club": "NFO",
+      "tags": []
+    },
+    {
+      "text": "Schuster (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Schuster",
+      "club": "BRE",
+      "tags": []
+    },
+    {
+      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Silva",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "Tarkowski (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Tarkowski",
+      "club": "EVE",
       "tags": []
     }
   ],
@@ -42,8 +92,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL Gameweek 6 Wildcard best team + pros/cons of using",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/fpl-gameweek-6-wildcard-best-team-pros-cons-of-using"
+    },
+    {
+      "source": "Scout",
+      "title": "10 things we've learned from FPL Gameweeks 1-5",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/10-things-weve-learned-from-fpl-gameweeks-1-5"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -109,6 +170,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/23/every-fpl-player-on-international-duty-and-when-4",
     "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-defenders",
     "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-midfielders",
+    "https://www.fantasyfootballscout.co.uk/2026/09/24/10-things-weve-learned-from-fpl-gameweeks-1-5",
+    "https://www.fantasyfootballscout.co.uk/2026/09/24/fpl-gameweek-6-wildcard-best-team-pros-cons-of-using",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-best-forwards",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-round-1-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-round-1-team-reveals",

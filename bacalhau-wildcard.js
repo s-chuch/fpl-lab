@@ -240,7 +240,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-24",
-      "total_cost": 92.8,
+      "total_cost": 92.9,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.7,
@@ -253,13 +253,13 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 5.8,
         "Schade": 6.2,
         "Haaland": 15.6,
-        "Tzolakis": 4.6,
+        "Tzolakis": 4.7,
         "Tavernier": 6.1,
         "Kostoulas": 5.6,
         "Walle Egeli": 4.5
       }
     },
-    "total_delta": 0.2,
+    "total_delta": 0.3,
     "players": [
       {
         "name": "Hall",
@@ -272,6 +272,13 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Schade",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
+        "delta": 0.1,
+        "status": "held"
+      },
+      {
+        "name": "Tzolakis",
+        "baseline_cost": 4.6,
+        "current_cost": 4.7,
         "delta": 0.1,
         "status": "held"
       },
@@ -353,13 +360,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Tzolakis",
-        "baseline_cost": 4.6,
-        "current_cost": 4.6,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
         "name": "Walle Egeli",
         "baseline_cost": 4.5,
         "current_cost": 4.5,
@@ -387,6 +387,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Schade",
         "from": 6.1,
         "to": 6.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-24",
+        "event": "price_change",
+        "player": "Tzolakis",
+        "from": 4.6,
+        "to": 4.7,
         "delta": 0.1
       }
     ]
