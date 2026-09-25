@@ -240,14 +240,14 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-25",
-      "total_cost": 92.9,
+      "total_cost": 93.0,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.7,
         "Hall": 5.3,
         "Tarkowski": 6.1,
         "Bogle": 4.6,
-        "De Cuyper": 4.9,
+        "De Cuyper": 5.0,
         "Belloumi": 5.1,
         "Dewsbury-Hall": 6.6,
         "Groß": 5.8,
@@ -259,8 +259,15 @@ window.FPL_WILDCARD_WATCH = {
         "Walle Egeli": 4.5
       }
     },
-    "total_delta": 0.3,
+    "total_delta": 0.4,
     "players": [
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.0,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Hall",
         "baseline_cost": 5.2,
@@ -293,13 +300,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Bogle",
         "baseline_cost": 4.6,
         "current_cost": 4.6,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 4.9,
         "delta": 0.0,
         "status": "held"
       },
@@ -395,6 +395,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tzolakis",
         "from": 4.6,
         "to": 4.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-25",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 4.9,
+        "to": 5.0,
         "delta": 0.1
       }
     ]

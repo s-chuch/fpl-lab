@@ -1,85 +1,15 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-25 15:17 UTC",
+  "generated_at": "2026-09-25 23:11 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
-        "Hub",
+        "Ingenuity",
         "Scout"
-      ],
-      "player": "Brobbey",
-      "club": "SUN",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Havertz (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Havertz",
-      "club": "ARS",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Murillo",
-      "club": "NFO",
-      "tags": [
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Semenyo",
-      "club": "MCI",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
       ],
       "player": "Silva",
       "club": "BOU",
@@ -112,8 +42,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "How should FPL managers invest in Fulham?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/how-should-fpl-managers-invest-in-fulham"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -190,6 +126,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/24/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-4",
     "https://www.fantasyfootballscout.co.uk/2026/09/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/09/25/havertz-brobbey-semenyo-latest-after-international-injuries",
+    "https://www.fantasyfootballscout.co.uk/2026/09/25/how-should-fpl-managers-invest-in-fulham",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]

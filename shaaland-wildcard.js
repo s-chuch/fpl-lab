@@ -246,10 +246,10 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-25",
-      "total_cost": 99.2,
+      "total_cost": 99.3,
       "prices": {
         "Raya": 6.1,
-        "De Cuyper": 4.9,
+        "De Cuyper": 5.0,
         "Calafiori": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.1,
@@ -265,8 +265,15 @@ window.FPL_WILDCARD_WATCH = {
         "Isak": 9.1
       }
     },
-    "total_delta": 0.4,
+    "total_delta": 0.5,
     "players": [
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.0,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Hall",
         "baseline_cost": 5.2,
@@ -299,13 +306,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Cherki",
         "baseline_cost": 7.8,
         "current_cost": 7.8,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 4.9,
         "delta": 0.0,
         "status": "held"
       },
@@ -420,6 +420,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tzolakis",
         "from": 4.6,
         "to": 4.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-25",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 4.9,
+        "to": 5.0,
         "delta": 0.1
       }
     ]
