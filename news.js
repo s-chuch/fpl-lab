@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-25 13:24 UTC",
+  "generated_at": "2026-09-25 15:17 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -112,39 +112,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Hub",
-      "title": "FPL fixture runs: Five teams for your transfer radar | Fantasy Football Hub",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixture-runs-five-teams-for-your-transfer-radar"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL injury news: International break round-up",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-injuries-international-break-26-27-article"
-    },
-    {
-      "source": "Scout",
-      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 6?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-6"
-    },
-    {
-      "source": "Scout",
-      "title": "Havertz, Brobbey + Semenyo injury latest after withdrawals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/havertz-brobbey-semenyo-latest-after-international-injuries"
-    },
-    {
-      "source": "Scout",
-      "title": "Fantasy EFL Gameweek 7: Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/fantasy-efl-gameweek-7-scout-picks-2"
-    },
-    {
-      "source": "Scout",
-      "title": "WSL Fantasy 2026/27: Expert team reveal for Matchweek 4",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-4"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
