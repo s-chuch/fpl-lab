@@ -1,68 +1,88 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-25 03:12 UTC",
+  "generated_at": "2026-09-25 13:24 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
       "sources": [
-        "Ingenuity",
+        "Hub",
         "Scout"
+      ],
+      "player": "Brobbey",
+      "club": "SUN",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Havertz (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Havertz",
+      "club": "ARS",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity"
       ],
       "player": "James",
       "club": "CHE",
       "tags": []
     },
     {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "Hub",
+        "Ingenuity"
       ],
       "player": "Muharemovi\u0107",
       "club": "LEE",
-      "tags": []
+      "tags": [
+        "rotation risk"
+      ]
     },
     {
-      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "Hub",
+        "Ingenuity"
       ],
       "player": "Murillo",
       "club": "NFO",
-      "tags": []
+      "tags": [
+        "rotation risk"
+      ]
     },
     {
-      "text": "Schuster (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
       "sources": [
-        "Ingenuity",
+        "Hub",
         "Scout"
       ],
-      "player": "Schuster",
-      "club": "BRE",
-      "tags": []
+      "player": "Semenyo",
+      "club": "MCI",
+      "tags": [
+        "injury/doubt"
+      ]
     },
     {
-      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "Hub",
+        "Ingenuity"
       ],
       "player": "Silva",
       "club": "BOU",
-      "tags": []
-    },
-    {
-      "text": "Tarkowski (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Tarkowski",
-      "club": "EVE",
       "tags": []
     }
   ],
@@ -92,8 +112,39 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Hub",
+      "title": "FPL fixture runs: Five teams for your transfer radar | Fantasy Football Hub",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixture-runs-five-teams-for-your-transfer-radar"
+    },
+    {
+      "source": "Hub",
+      "title": "FPL injury news: International break round-up",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-injuries-international-break-26-27-article"
+    },
+    {
+      "source": "Scout",
+      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 6?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-6"
+    },
+    {
+      "source": "Scout",
+      "title": "Havertz, Brobbey + Semenyo injury latest after withdrawals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/havertz-brobbey-semenyo-latest-after-international-injuries"
+    },
+    {
+      "source": "Scout",
+      "title": "Fantasy EFL Gameweek 7: Scout Picks",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/fantasy-efl-gameweek-7-scout-picks-2"
+    },
+    {
+      "source": "Scout",
+      "title": "WSL Fantasy 2026/27: Expert team reveal for Matchweek 4",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/24/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-4"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -121,6 +172,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/",
     "https://www.fantasyfootballfix.com/fpl-team-analysis/",
     "https://www.fantasyfootballhub.co.uk/articles/fpl-defcon-points-watch",
+    "https://www.fantasyfootballhub.co.uk/articles/fpl-fixture-runs-five-teams-for-your-transfer-radar",
+    "https://www.fantasyfootballhub.co.uk/articles/fpl-injuries-international-break-26-27-article",
     "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
     "https://www.fantasyfootballhub.co.uk/ben-crellins-fpl-transfer-planning-sheet",
     "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
@@ -160,10 +213,14 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-defenders",
     "https://www.fantasyfootballscout.co.uk/2026/09/23/sofascore-nations-league-fantasy-best-midfielders",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/10-things-weve-learned-from-fpl-gameweeks-1-5",
+    "https://www.fantasyfootballscout.co.uk/2026/09/24/fantasy-efl-gameweek-7-scout-picks-2",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/fpl-gameweek-6-wildcard-best-team-pros-cons-of-using",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-best-forwards",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-round-1-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/09/24/sofascore-nations-league-fantasy-round-1-team-reveals",
+    "https://www.fantasyfootballscout.co.uk/2026/09/24/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-4",
+    "https://www.fantasyfootballscout.co.uk/2026/09/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-6",
+    "https://www.fantasyfootballscout.co.uk/2026/09/25/havertz-brobbey-semenyo-latest-after-international-injuries",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
