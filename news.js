@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-26 12:47 UTC",
+  "generated_at": "2026-09-26 15:17 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -52,19 +52,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 6 early Scout Picks: Three double-ups",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/26/fpl-gameweek-6-early-scout-picks-three-double-ups"
-    },
-    {
-      "source": "Scout",
-      "title": "Is Pascal Gross a must-have in FPL?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/26/is-pascal-gross-a-must-have-in-fpl"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
