@@ -1,18 +1,28 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-26 03:18 UTC",
+  "generated_at": "2026-09-26 12:47 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Silva",
-      "club": "BOU",
+      "player": "James",
+      "club": "CHE",
+      "tags": []
+    },
+    {
+      "text": "Tarkowski (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Tarkowski",
+      "club": "EVE",
       "tags": []
     }
   ],
@@ -42,8 +52,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL Gameweek 6 early Scout Picks: Three double-ups",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/26/fpl-gameweek-6-early-scout-picks-three-double-ups"
+    },
+    {
+      "source": "Scout",
+      "title": "Is Pascal Gross a must-have in FPL?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/26/is-pascal-gross-a-must-have-in-fpl"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -121,6 +142,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/09/25/havertz-brobbey-semenyo-latest-after-international-injuries",
     "https://www.fantasyfootballscout.co.uk/2026/09/25/how-should-fpl-managers-invest-in-fulham",
+    "https://www.fantasyfootballscout.co.uk/2026/09/26/fpl-gameweek-6-early-scout-picks-three-double-ups",
+    "https://www.fantasyfootballscout.co.uk/2026/09/26/is-pascal-gross-a-must-have-in-fpl",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
