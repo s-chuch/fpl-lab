@@ -239,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-26",
+      "date": "2026-09-27",
       "total_cost": 93.0,
       "prices": {
         "Raya": 6.1,
@@ -259,6 +259,7 @@ window.FPL_WILDCARD_WATCH = {
         "Walle Egeli": 4.5
       }
     },
+    "entry_prices": {},
     "total_delta": 0.4,
     "players": [
       {
@@ -266,6 +267,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.9,
         "current_cost": 5.0,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -273,6 +276,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.2,
         "current_cost": 5.3,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -280,6 +285,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.2,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -287,6 +294,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.6,
         "current_cost": 4.7,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -294,6 +303,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.1,
         "current_cost": 5.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -301,6 +312,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.6,
         "current_cost": 4.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -308,6 +321,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.6,
         "current_cost": 6.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -315,6 +330,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.8,
         "current_cost": 5.8,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -322,6 +339,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.7,
         "current_cost": 5.7,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -329,6 +348,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 15.6,
         "current_cost": 15.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -336,6 +357,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.6,
         "current_cost": 5.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -343,6 +366,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -350,6 +375,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -357,6 +384,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -364,6 +393,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.5,
         "current_cost": 4.5,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       }
     ],
