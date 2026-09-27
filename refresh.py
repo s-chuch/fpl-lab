@@ -794,9 +794,19 @@ def build_live_value(boot, team_id, picks_gw, hist, entry, locked_gw):
     (half the profit since purchase, rounded down to the nearest £0.1m; a
     loss is passed through in full) — entry['last_deadline_value']/
     ['last_deadline_bank'] are frozen as of the LAST DEADLINE and don't move
-    with price changes since, or with an in-progress wildcard draft's
-    provisional squad (picks_gw can be the not-yet-played gw when a chip's
-    active and moves have already been made for it)."""
+    with price changes since.
+
+    This reflects the last LOCKED, currently-scored squad — the team you'd
+    actually have if you never confirmed a wildcard/transfers before the next
+    deadline. It does NOT and structurally CANNOT reflect an in-progress,
+    not-yet-confirmed wildcard draft: FPL's public API never exposes a
+    provisional squad before its own deadline, not even your own team's
+    (same limitation wildcard_recommend.py's own docstring documents — that's
+    exactly why the wildcard-watch files are hand-curated from screenshots
+    instead of scraped). While Wildcard is active, FPL's own app shows the
+    DRAFT's value on its Transfers/Finance screen, which this field will not
+    match — that's `worth_tracker.current.total_cost` in the wildcard-watch
+    files instead, computed from the hand-entered draft squad."""
     elements = {e["id"]: e for e in boot["elements"]}
     picks = []
     if picks_gw:
@@ -839,9 +849,13 @@ def build_live_value(boot, team_id, picks_gw, hist, entry, locked_gw):
         total_sell_tenths += sell
 
     bank_tenths = entry.get("last_deadline_bank", 0)
+    # Defensive only: in practice `picks_gw` (from build_plan) never actually
+    # gets ahead of `locked_gw`, because FPL's public picks endpoint 404s for
+    # any not-yet-deadlined gameweek (confirmed live) — so this can't correct
+    # for an in-progress wildcard draft, which is invisible to this scraper
+    # regardless. Kept in case FPL's visibility rules differ in some case not
+    # yet observed; last_deadline_bank is used as-is the rest of the time.
     if locked_gw is not None and picks_gw is not None and picks_gw != locked_gw:
-        # picks_gw is the not-yet-played gw (e.g. an active wildcard draft) —
-        # last_deadline_bank doesn't include this gw's own transfers' cash effect yet.
         for t in ordered:
             if t.get("event") == picks_gw:
                 bank_tenths += (t.get("element_out_cost") or 0) - (t.get("element_in_cost") or 0)
