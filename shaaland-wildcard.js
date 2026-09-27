@@ -245,11 +245,11 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-23",
-      "total_cost": 99.1,
+      "date": "2026-09-26",
+      "total_cost": 99.3,
       "prices": {
         "Raya": 6.1,
-        "De Cuyper": 4.9,
+        "De Cuyper": 5.0,
         "Calafiori": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.1,
@@ -259,14 +259,21 @@ window.FPL_WILDCARD_WATCH = {
         "Schade": 6.2,
         "Haaland": 15.6,
         "Kostoulas": 5.6,
-        "Tzolakis": 4.6,
+        "Tzolakis": 4.7,
         "Konsa": 4.6,
         "Cherki": 7.8,
         "Isak": 9.1
       }
     },
-    "total_delta": 0.3,
+    "total_delta": 0.5,
     "players": [
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.0,
+        "delta": 0.1,
+        "status": "held"
+      },
       {
         "name": "Hall",
         "baseline_cost": 5.2,
@@ -299,13 +306,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Cherki",
         "baseline_cost": 7.8,
         "current_cost": 7.8,
-        "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 4.9,
         "delta": 0.0,
         "status": "held"
       },
@@ -375,7 +375,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "baseline_cost": null,
-        "current_cost": 4.6,
+        "current_cost": 4.7,
         "delta": null,
         "status": "added"
       }
@@ -413,6 +413,22 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Tzolakis",
         "price_at_change": 4.6
+      },
+      {
+        "date": "2026-09-24",
+        "event": "price_change",
+        "player": "Tzolakis",
+        "from": 4.6,
+        "to": 4.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-25",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 4.9,
+        "to": 5.0,
+        "delta": 0.1
       }
     ]
   }
