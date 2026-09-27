@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-27 13:32 UTC",
+  "generated_at": "2026-09-27 15:13 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -46,7 +46,7 @@ window.FPL_NEWS = {
     {
       "source": "Scout",
       "title": "The xG tables: Which FPL players and teams top the pile?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/25/the-xg-tables-which-fpl-players-and-teams-top-the-pile-2"
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/27/the-xg-tables-which-fpl-players-and-teams-top-the-pile-2"
     }
   ],
   "no_new": false,
@@ -132,6 +132,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/26/is-pascal-gross-a-must-have-in-fpl",
     "https://www.fantasyfootballscout.co.uk/2026/09/27/sofascore-nations-league-fantasy-round-2-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/09/27/sofascore-nations-league-fantasy-round-2-team-reveals",
+    "https://www.fantasyfootballscout.co.uk/2026/09/27/the-xg-tables-which-fpl-players-and-teams-top-the-pile-2",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
