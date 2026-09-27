@@ -760,9 +760,9 @@ def build_transfers(boot, team_id):
     FPL transfers endpoint's own record of the deal, not today's price) so
     the season's real buy/sell history is visible, not just this GW's points
     verdict. This is the authoritative source for "what did I actually pay
-    and get" from GW1 to now — FPL's own last_deadline_value (the Squad
-    value KPI) already nets these out correctly; this just makes each deal
-    visible instead of only the aggregate."""
+    and get" from GW1 to now — see build_live_value below, which reuses this
+    same raw transfers data to compute an actually-current squad value
+    (last_deadline_value is frozen at the last deadline, not live)."""
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
     try:
         rows = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/")
@@ -788,6 +788,65 @@ def build_transfers(boot, team_id):
         })
     out.sort(key=lambda x: x["gw"] or 0)
     return out
+
+def build_live_value(boot, team_id, picks_gw, hist, entry, locked_gw):
+    """Live squad value + bank via FPL's real profit-share sell-price rule
+    (half the profit since purchase, rounded down to the nearest £0.1m; a
+    loss is passed through in full) — entry['last_deadline_value']/
+    ['last_deadline_bank'] are frozen as of the LAST DEADLINE and don't move
+    with price changes since, or with an in-progress wildcard draft's
+    provisional squad (picks_gw can be the not-yet-played gw when a chip's
+    active and moves have already been made for it)."""
+    elements = {e["id"]: e for e in boot["elements"]}
+    picks = []
+    if picks_gw:
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
+            picks = pk.get("picks") or []
+        except Exception as e:
+            _warn(f"build_live_value: could not load GW{picks_gw} squad: {e}")
+    if not picks:
+        return None
+    try:
+        raw_transfers = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/")
+    except Exception as e:
+        _warn(f"build_live_value: could not load transfers list: {e}")
+        raw_transfers = []
+
+    # Free Hit gws excluded: a buy made only during a Free Hit reverts and
+    # isn't part of the permanently-held squad's cost basis; a genuine
+    # Wildcard buy is real and permanent, so it's NOT excluded.
+    fh_gws = {c["event"] for c in hist.get("chips", []) if c.get("name") == "freehit"}
+    ordered = sorted(
+        (t for t in raw_transfers if t.get("event") not in fh_gws),
+        key=lambda t: (t.get("event") or 0, t.get("time") or ""),
+    )
+    last_in_cost = {}
+    for t in ordered:
+        if t.get("element_in") is not None:
+            last_in_cost[t["element_in"]] = t.get("element_in_cost")
+
+    total_sell_tenths = 0
+    for p in picks:
+        el = elements.get(p.get("element"))
+        if not el:
+            continue
+        now_cost = el["now_cost"]
+        purchase_cost = last_in_cost.get(el["id"])
+        if purchase_cost is None:
+            purchase_cost = now_cost - (el.get("cost_change_start") or 0)  # held since GW1
+        sell = purchase_cost + (now_cost - purchase_cost) // 2 if now_cost > purchase_cost else now_cost
+        total_sell_tenths += sell
+
+    bank_tenths = entry.get("last_deadline_bank", 0)
+    if locked_gw is not None and picks_gw is not None and picks_gw != locked_gw:
+        # picks_gw is the not-yet-played gw (e.g. an active wildcard draft) —
+        # last_deadline_bank doesn't include this gw's own transfers' cash effect yet.
+        for t in ordered:
+            if t.get("event") == picks_gw:
+                bank_tenths += (t.get("element_out_cost") or 0) - (t.get("element_in_cost") or 0)
+
+    return {"squad_value": round(total_sell_tenths / 10, 1), "bank": round(bank_tenths / 10, 1)}
 
 CHIP_LABEL = {"wildcard": "Wildcard", "freehit": "Free Hit", "bboost": "Bench Boost", "3xc": "Triple Captain"}
 
@@ -1223,6 +1282,26 @@ def build_value_board(boot, min_minutes=180, top_n=10):
         by_pos[pos].sort(key=lambda r: -r["value_per_1m"])
         by_pos[pos] = by_pos[pos][:top_n]
     return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
+
+def build_injury_watch(boot, top_n=15):
+    """Highest-ownership players league-wide currently flagged out/doubtful
+    by FPL. Ownership %, not true Effective Ownership — FPL doesn't publish
+    global captaincy rates to weight it by. A widely-owned player's injury
+    matters to a lot more teams than a rarely-owned one's, regardless of
+    how good the player is."""
+    teams = {t["id"]: t for t in boot["teams"]}
+    rows = []
+    for el in boot["elements"]:
+        avail = player_availability(el)
+        if avail["kind"] == "ok":
+            continue
+        rows.append({
+            "name": el["web_name"], "club": teams[el["team"]]["short_name"], "pos": POS[el["element_type"]],
+            "cost": el["now_cost"] / 10, "owned_pct": float(el.get("selected_by_percent") or 0),
+            "status": avail["kind"], "label": avail["label"], "chance": avail["chance"],
+        })
+    rows.sort(key=lambda r: -r["owned_pct"])
+    return {"top_n": top_n, "rows": rows[:top_n]}
 
 def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
     """Approximate price-change momentum from FPL's own transfer-volume
@@ -1709,6 +1788,7 @@ def main(team_id=TEAM_ID, out_path=None):
         gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
     plan = build_plan(boot, team_id, hist, chips_used)
     ds = deadline_state(boot)
+    live = build_live_value(boot, team_id, plan.get("squad_from_gw"), hist, entry, ds.get("locked_gw"))
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
     # After deadline: league picks for the locked GW. Before: ownership from provisional/latest squad GW.
     league_picks_gw = ds["locked_gw"] if ds["deadline_passed"] and ds["locked_gw"] else (plan.get("squad_from_gw") or last_fin)
@@ -1732,6 +1812,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
+    data["injury_watch"] = build_injury_watch(boot)
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     data["targets"] = build_targets(boot)
 
@@ -1770,7 +1851,7 @@ def main(team_id=TEAM_ID, out_path=None):
             "current_gw": ds["current_gw"],
             "picks_unlocked": ds["picks_unlocked"],
         },
-        "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": entry.get("last_deadline_bank", 0) / 10, "value": entry.get("last_deadline_value", 0) / 10},
+        "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": (live["bank"] if live else entry.get("last_deadline_bank", 0) / 10), "value": entry.get("last_deadline_value", 0) / 10, "live_value": (live["squad_value"] if live else entry.get("last_deadline_value", 0) / 10)},
         "history": hist.get("past", []),
         "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")},
         "gameweeks": gws,

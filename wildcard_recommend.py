@@ -56,6 +56,16 @@ def build_worth_tracker(watch, squad, today):
     the (possibly edited) plan against that original baseline cost — the
     plan's net drift, whether from price moves on held names or swaps to
     different-priced targets.
+
+    `entry_prices` is a second, independent reference point: the price at
+    the moment each currently-held name MOST RECENTLY joined the squad. A
+    player added after the original baseline (e.g. swapped in later in the
+    draft) would otherwise show baseline_cost/delta as permanently null —
+    there'd be no way to see how that specific pick has moved since it was
+    actually added, which defeats the point of tracking price changes for a
+    profit-maximizing wildcard plan. Pruned the instant a name leaves the
+    squad (not just left stale) so a sold-then-rebought player re-arms at
+    the rebuy price rather than keeping a stale original entry.
     """
     prev = watch.get("worth_tracker") or {}
     current_prices = {p["name"]: p["cost"] for p in squad if p.get("cost") is not None}
@@ -67,6 +77,13 @@ def build_worth_tracker(watch, squad, today):
     last = prev.get("current") or baseline
     last_prices = last.get("prices", {})
     last_names = set(last_prices)
+
+    entry_prices = dict(prev.get("entry_prices") or {}) if prev else dict(current_prices)
+    for name in current_names - last_names:
+        entry_prices[name] = current_prices[name]
+    for name in list(entry_prices):
+        if name not in current_names:
+            del entry_prices[name]
 
     log = list(prev.get("log") or [])
     if not prev:
@@ -82,13 +99,24 @@ def build_worth_tracker(watch, squad, today):
         log.append({"date": today, "event": "added", "player": name, "price_at_change": current_prices[name]})
     log = log[-40:]  # bound file growth across a long season
 
+    # Baseline members are permanent fixtures here (their drift from the
+    # original plan matters for the life of the plan); a non-baseline player
+    # who's removed would otherwise vanish from this list the instant they
+    # leave (never having been in `baseline["prices"]`) even though the log
+    # just announced their removal — so also include `last_names` for one
+    # extra run, giving a visible "removed" row instead of a silent drop.
     players = []
-    for name in sorted(current_names | set(baseline["prices"])):
+    for name in sorted(current_names | set(baseline["prices"]) | last_names):
         b, c = baseline["prices"].get(name), current_prices.get(name)
+        e = entry_prices.get(name)
         status = "held" if (b is not None and c is not None) else ("removed" if c is None else "added")
+        delta = round(c - b, 1) if (b is not None and c is not None) else None
+        delta_since_added = round(c - e, 1) if (e is not None and c is not None) else None
+        redundant = e is not None and b is not None and e == b  # held-since-baseline: nothing new to show
         players.append({
-            "name": name, "baseline_cost": b, "current_cost": c,
-            "delta": round(c - b, 1) if (b is not None and c is not None) else None,
+            "name": name, "baseline_cost": b, "current_cost": c, "delta": delta,
+            "entry_cost": None if redundant else e,
+            "delta_since_added": None if redundant else delta_since_added,
             "status": status,
         })
     players.sort(key=lambda p: (p["status"] != "held", -(p["delta"] or 0)))
@@ -96,6 +124,7 @@ def build_worth_tracker(watch, squad, today):
     return {
         "baseline": baseline,
         "current": {"date": today, "total_cost": current_total, "prices": current_prices},
+        "entry_prices": entry_prices,
         "total_delta": round(current_total - baseline["total_cost"], 1),
         "players": players,
         "log": log,

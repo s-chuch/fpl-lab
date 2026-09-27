@@ -8,7 +8,7 @@
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
 <nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
-<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20260920h"></script>
 <script src="bacalhau-data.js?v=20260917i"></script>
@@ -20,13 +20,13 @@
 const D=window.FPL_DATA;
 document.getElementById("teamName").textContent=D.team.name;
 document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
-document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+Number(D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+Number(D.team.live_value??D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
 startDeadlineBanner(D,"deadlineBanner");
 document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
-  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"]]},
+  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"],["stratInjury","Injury"]]},
   {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
   {id:"intel",label:"Intel",tabs:[["news","News"],["greekgod","GreekGod"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
@@ -165,15 +165,16 @@ function renderWildcardWatch(){
   const wtDeltaCls=d=>d==null?"":d>0?"neg":d<0?"pos":"";
   let worthCard;
   if(WT){
-    const wtHead=`<thead><tr><th style="width:40%">Player</th><th style="width:20%">Then</th><th style="width:20%">Now</th><th style="width:20%">Δ</th></tr></thead>`;
+    const wtHead=`<thead><tr><th style="width:32%">Player</th><th style="width:16%">Then</th><th style="width:16%">Now</th><th style="width:18%">Δ</th><th style="width:18%">Since add</th></tr></thead>`;
     const wtRow=p=>{
       const statusTag=p.status==="removed"?` <span class="pill used">Dropped</span>`:p.status==="added"?` <span class="pill free">Added</span>`:"";
       const thenCell=p.baseline_cost!=null?`£${p.baseline_cost.toFixed(1)}`:"–";
       const nowCell=p.current_cost!=null?`£${p.current_cost.toFixed(1)}`:"–";
       const deltaCell=p.delta!=null?`<span class="${wtDeltaCls(p.delta)}">${sign(p.delta)}</span>`:"–";
-      return `<tr><td>${esc(p.name)}${statusTag}</td><td>${thenCell}</td><td>${nowCell}</td><td>${deltaCell}</td></tr>`;
+      const sinceCell=p.delta_since_added!=null?`<span class="${wtDeltaCls(p.delta_since_added)}" title="Added at £${p.entry_cost.toFixed(1)}">${sign(p.delta_since_added)}</span>`:"–";
+      return `<tr><td>${esc(p.name)}${statusTag}</td><td>${thenCell}</td><td>${nowCell}</td><td>${deltaCell}</td><td>${sinceCell}</td></tr>`;
     };
-    const wtRows=(WT.players||[]).map(wtRow).join("")||`<tr><td colspan="4"><span class="note">No target squad captured yet.</span></td></tr>`;
+    const wtRows=(WT.players||[]).map(wtRow).join("")||`<tr><td colspan="5"><span class="note">No target squad captured yet.</span></td></tr>`;
     const logLi=e=>{
       if(e.event==="captured") return `<li><span class="who">${esc(e.date)}</span><div class="detail">${esc(e.detail)}</div></li>`;
       if(e.event==="price_change") return `<li><span class="who">${esc(e.date)} · ${esc(e.player)}</span><div class="detail">£${e.from.toFixed(1)} → £${e.to.toFixed(1)} (<span class="${wtDeltaCls(e.delta)}">${sign(e.delta)}</span>)</div></li>`;
@@ -182,7 +183,7 @@ function renderWildcardWatch(){
       return "";
     };
     const logRows=(WT.log||[]).slice().reverse().map(logLi).join("")||`<li><span class="note">No changes logged yet.</span></li>`;
-    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><ul class="note-list"><li>Market cost to rebuild this exact target squad from scratch at today's prices, first captured ${esc(WT.baseline.date)}</li><li>Not the same as Bacalhau's actual overall squad value below — that one nets in the sell-price they'd actually get for players already owned, built up from every transfer since GW1; this one is a flat "buy every one of these 15 today" total</li><li>Updated every refresh until the GW${W.gw} deadline</li></ul><p class="note">Market cost to rebuild now: <b>£${WT.current.total_cost.toFixed(1)}m</b> · vs first captured: <b class="${wtDeltaCls(WT.total_delta)}">${sign(WT.total_delta)}</b></p><p class="note">Bacalhau's actual overall squad value (FPL's own figure, GW1-to-now): <b>£${Number(D.team.value).toFixed(1)}m</b></p><table class="table-compact">${wtHead}<tbody>${wtRows}</tbody></table><h3>Change log</h3><ul class="chiplist">${logRows}</ul><ul class="legend-list"><li>Then/Now = price when first captured vs current price</li><li>Δ = price change since first captured — green means the plan got cheaper to assemble, red means more expensive</li></ul></div>`;
+    worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><ul class="note-list"><li>Market cost to rebuild this exact target squad from scratch at today's prices, first captured ${esc(WT.baseline.date)}</li><li>Not the same as Bacalhau's live squad value below — that one nets in the sell-price they'd actually get for players already owned, via FPL's real profit-share rule; this one is a flat "buy every one of these 15 today" total</li><li>Updated every refresh until the GW${W.gw} deadline</li></ul><p class="note">Market cost to rebuild now: <b>£${WT.current.total_cost.toFixed(1)}m</b> · vs first captured: <b class="${wtDeltaCls(WT.total_delta)}">${sign(WT.total_delta)}</b></p><p class="note">Bacalhau's live squad value (today's sell prices, FPL's profit-share rule): <b>£${Number(D.team.live_value??D.team.value).toFixed(1)}m</b> · FPL's last-deadline snapshot: <b>£${Number(D.team.value).toFixed(1)}m</b></p><table class="table-compact">${wtHead}<tbody>${wtRows}</tbody></table><h3>Change log</h3><ul class="chiplist">${logRows}</ul><ul class="legend-list"><li>Then/Now = price when first captured vs current price</li><li>Δ = price change since first captured — green means the plan got cheaper to assemble, red means more expensive</li><li>Since add = price change since the specific pick was added — shown only when it differs from Δ (i.e. for names added after the original baseline capture)</li></ul></div>`;
   } else {
     worthCard=`<div class="card"><h2>Team worth &amp; price tracker</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
   }
@@ -321,6 +322,10 @@ function renderStrategy(){
   document.getElementById("stratValue").innerHTML=valueCard;
   document.getElementById("stratPrice").innerHTML=priceCard;
   startPriceCountdown("priceCountdown");
+  const IW=D.injury_watch||{};
+  const injRows=(IW.rows||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td class="${r.status==="out"?"neg":"mid"}">${esc(r.label||r.status)}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No high-ownership injury/doubt flags right now.</span></td></tr>`;
+  const injuryCard=`<div class="card"><h2>Injury watch · highest ownership</h2><ul class="note-list"><li>Top ${IW.top_n??"?"} most-owned players league-wide currently flagged out or doubtful by FPL</li><li>Ownership % — not true Effective Ownership, FPL doesn't publish global captaincy rates to weight it by</li><li>A widely-owned player's injury swings a lot of teams' gameweeks, possibly yours too</li></ul><table class="table-compact"><thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">Owned%</th><th style="width:26%">Status</th></tr></thead><tbody>${injRows}</tbody></table></div>`;
+  document.getElementById("stratInjury").innerHTML=injuryCard;
 }
 renderStrategy();
 function renderTargets(){
