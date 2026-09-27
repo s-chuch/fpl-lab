@@ -1297,13 +1297,15 @@ def build_value_board(boot, min_minutes=180, top_n=10):
         by_pos[pos] = by_pos[pos][:top_n]
     return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
 
-def build_injury_watch(boot, top_n=15):
+def build_injury_watch(boot, squad_names=None, top_n=15):
     """Highest-ownership players league-wide currently flagged out/doubtful
     by FPL. Ownership %, not true Effective Ownership — FPL doesn't publish
     global captaincy rates to weight it by. A widely-owned player's injury
     matters to a lot more teams than a rarely-owned one's, regardless of
-    how good the player is."""
+    how good the player is. `squad_names` (your own current squad, from
+    build_plan) tags rows that affect you directly, not just the room."""
     teams = {t["id"]: t for t in boot["teams"]}
+    squad_names = squad_names or set()
     rows = []
     for el in boot["elements"]:
         avail = player_availability(el)
@@ -1313,6 +1315,7 @@ def build_injury_watch(boot, top_n=15):
             "name": el["web_name"], "club": teams[el["team"]]["short_name"], "pos": POS[el["element_type"]],
             "cost": el["now_cost"] / 10, "owned_pct": float(el.get("selected_by_percent") or 0),
             "status": avail["kind"], "label": avail["label"], "chance": avail["chance"],
+            "yours": el["web_name"] in squad_names,
         })
     rows.sort(key=lambda r: -r["owned_pct"])
     # Not sliced to top_n here (unlike every other top-N builder in this
@@ -1745,7 +1748,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
         target_entries = target_rival_entries(rows, team_id)
         rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map) if target_entries else {}
         tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams, rival_ctx=rival_ctx)
-        counts_by_league[L["id"]] = {"counts": dict(counts), "n": n}
+        counts_by_league[L["id"]] = {"counts": dict(counts), "cap_by": dict(cap_by), "n": n}
         league_obj = {
             "id": L["id"],
             "name": L.get("name"),
@@ -1843,7 +1846,8 @@ def main(team_id=TEAM_ID, out_path=None):
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
-    data["injury_watch"] = build_injury_watch(boot)
+    squad_names = {r[1] for r in (plan.get("rows") or [])}
+    data["injury_watch"] = build_injury_watch(boot, squad_names=squad_names)
 
     # Injury tab's mini-league section: a niche differential 6 of your 13
     # ESL teams all specifically picked being suddenly doubtful is a much
@@ -1852,16 +1856,28 @@ def main(team_id=TEAM_ID, out_path=None):
     # entirely. Same hardcoded-ESL-id convention as wc_top3 below.
     esl_counts_info = counts_by_league.get(125784) or {}
     esl_counts, esl_n = esl_counts_info.get("counts") or {}, esl_counts_info.get("n")
+    esl_cap_by = esl_counts_info.get("cap_by") or {}
     id_to_name = {e["id"]: e["web_name"] for e in boot["elements"]}
-    name_to_esl_count = {}
+    name_to_esl_count, name_to_esl_cap = {}, {}
     for eid, c in esl_counts.items():
         name_to_esl_count[id_to_name.get(eid, "?")] = c
+    for eid, c in esl_cap_by.items():
+        name_to_esl_cap[id_to_name.get(eid, "?")] = c
     league_rows = []
     for r in data["injury_watch"]["rows"]:
         c = name_to_esl_count.get(r["name"])
         if c:  # only players at least 1 ESL team owns — 0-owned is noise here
-            league_rows.append({**r, "league_own": c})
-    league_rows.sort(key=lambda r: -r["league_own"])
+            cap = name_to_esl_cap.get(r["name"], 0)
+            # True Effective Ownership (ownership % + captaincy %, since a
+            # captained pick's points count double) — computable here, unlike
+            # the global section above, because analyze_leagues already
+            # fetches every ESL member's captain pick in the same loop that
+            # produces `counts`. Sorted by this, not the raw count, so a
+            # heavily-captained lower-owned player outranks a widely-owned
+            # never-captained one — that's the whole point of using EO.
+            eo = round(100 * c / esl_n + 100 * cap / esl_n, 1) if esl_n else None
+            league_rows.append({**r, "league_own": c, "league_eo": eo})
+    league_rows.sort(key=lambda r: -(r["league_eo"] or 0))
     esl_league_obj = next((lg for lg in (leagues.get("mini") or []) if lg.get("id") == 125784), None)
     data["injury_watch"]["league"] = {
         "id": 125784, "name": (esl_league_obj or {}).get("name"), "n": esl_n,
@@ -1881,7 +1897,6 @@ def main(team_id=TEAM_ID, out_path=None):
     own_by_name = {}
     for u in (tac.get("template") or []) + (tac.get("you_unique") or []) + (tac.get("they_share") or []):
         own_by_name[u["name"]] = u["count"]
-    squad_names = {r[1] for r in (plan.get("rows") or [])}
     h6_top = ((data["targets"].get("horizons") or {}).get("6") or {}).get("top") or []
     wc_candidates = [r for r in h6_top if r["name"] not in squad_names]
     wc_candidates.sort(key=lambda r: (0 if (own_by_name.get(r["name"]) is None or own_by_name.get(r["name"]) <= 3) else 1, -r["score"]))
