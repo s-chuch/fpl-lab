@@ -118,12 +118,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 6.5,
         "starter": "King",
         "starter_ep": 4.2
-      },
-      {
-        "bench": "Isak",
-        "bench_ep": 7.8,
-        "starter": "Kostoulas",
-        "starter_ep": 6.8
       }
     ],
     "availability_flags": [],
@@ -215,9 +209,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Isak",
+        "name": "Barry",
         "pos": "FWD",
-        "ep_next": 7.8,
+        "ep_next": 3.0,
         "status": "ok"
       }
     ]
@@ -245,8 +239,8 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-26",
-      "total_cost": 99.3,
+      "date": "2026-09-27",
+      "total_cost": 95.8,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -262,16 +256,21 @@ window.FPL_WILDCARD_WATCH = {
         "Tzolakis": 4.7,
         "Konsa": 4.6,
         "Cherki": 7.8,
-        "Isak": 9.1
+        "Barry": 5.6
       }
     },
-    "total_delta": 0.5,
+    "entry_prices": {
+      "Barry": 5.6
+    },
+    "total_delta": -3.0,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
         "current_cost": 5.0,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -279,6 +278,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.2,
         "current_cost": 5.3,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -286,6 +287,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.2,
         "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -293,6 +296,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -300,6 +305,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.8,
         "current_cost": 5.8,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -307,6 +314,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 7.8,
         "current_cost": 7.8,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -314,6 +323,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.8,
         "current_cost": 5.8,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -321,13 +332,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 15.6,
         "current_cost": 15.6,
         "delta": 0.0,
-        "status": "held"
-      },
-      {
-        "name": "Isak",
-        "baseline_cost": 9.1,
-        "current_cost": 9.1,
-        "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -335,6 +341,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.5,
         "current_cost": 5.5,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -342,6 +350,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.6,
         "current_cost": 4.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -349,6 +359,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.6,
         "current_cost": 5.6,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -356,6 +368,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
       },
       {
@@ -363,13 +377,35 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "held"
+      },
+      {
+        "name": "Barry",
+        "baseline_cost": null,
+        "current_cost": 5.6,
+        "delta": null,
+        "entry_cost": 5.6,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
+        "name": "Isak",
+        "baseline_cost": 9.1,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
       },
       {
         "name": "Kinsky",
         "baseline_cost": 4.5,
         "current_cost": null,
         "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "removed"
       },
       {
@@ -377,6 +413,8 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": null,
         "current_cost": 4.7,
         "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
         "status": "added"
       }
     ],
@@ -429,6 +467,18 @@ window.FPL_WILDCARD_WATCH = {
         "from": 4.9,
         "to": 5.0,
         "delta": 0.1
+      },
+      {
+        "date": "2026-09-27",
+        "event": "removed",
+        "player": "Isak",
+        "price_at_change": 9.1
+      },
+      {
+        "date": "2026-09-27",
+        "event": "added",
+        "player": "Barry",
+        "price_at_change": 5.6
       }
     ]
   }
