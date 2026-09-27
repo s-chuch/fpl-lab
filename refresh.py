@@ -1315,7 +1315,13 @@ def build_injury_watch(boot, top_n=15):
             "status": avail["kind"], "label": avail["label"], "chance": avail["chance"],
         })
     rows.sort(key=lambda r: -r["owned_pct"])
-    return {"top_n": top_n, "rows": rows[:top_n]}
+    # Not sliced to top_n here (unlike every other top-N builder in this
+    # file) — main() needs the FULL out/doubt list to cross-reference against
+    # mini-league ownership for the Injury tab's league section, since a
+    # player with low GLOBAL ownership can still be a big deal to a specific
+    # small league. top_n is passed through as a hint for the frontend to
+    # slice the global table itself.
+    return {"top_n": top_n, "rows": rows}
 
 def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
     """Approximate price-change momentum from FPL's own transfer-volume
@@ -1668,6 +1674,14 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
     except Exception as e:
         _warn(f"analyze_leagues: could not load own GW{picks_gw} picks: {e}")
     leagues = []
+    # Full per-league ownership counts, keyed by league id — a transient,
+    # not-serialized companion to `leagues` (below). build_tactics only ever
+    # emits truncated top-8/10 lists (template/you_unique/they_share/
+    # cap_last), so an arbitrary player not already in one of those has no
+    # way to look up their real mini-league ownership; this lets a caller in
+    # main() do that lookup for ANY player (e.g. the Injury tab's mini-league
+    # section) without re-fetching every member's picks.
+    counts_by_league = {}
     tracked = [x for x in classic if x.get("id") in tracked_ids]
     tracked.sort(key=lambda x: 0 if x.get("id") == 125784 else 1)
     for L in tracked:
@@ -1731,6 +1745,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
         target_entries = target_rival_entries(rows, team_id)
         rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map) if target_entries else {}
         tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams, rival_ctx=rival_ctx)
+        counts_by_league[L["id"]] = {"counts": dict(counts), "n": n}
         league_obj = {
             "id": L["id"],
             "name": L.get("name"),
@@ -1773,6 +1788,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
         "picks_gw": picks_gw,
         "deadline_passed": bool(deadline_passed),
         "picks_unlocked": bool(deadline_passed),
+        "_counts_by_league": counts_by_league,
     }
     if my_squad and deadline_passed:
         out["my_squad"] = {**my_squad, "entry": team_id, "me": True, "picks_gw": picks_gw}
@@ -1811,6 +1827,7 @@ def main(team_id=TEAM_ID, out_path=None):
     next_fixture_map = fixture_map(ds["next_gw"], teams_by_id) if ds["next_gw"] else None
     leagues = analyze_leagues(boot, entry, team_id, league_picks_gw, deadline_passed=bool(ds["deadline_passed"]),
                                my_last_gw_pts=my_last_gw_pts, last_fin_gw=last_fin, next_fixture_map=next_fixture_map)
+    counts_by_league = leagues.pop("_counts_by_league", {})  # transient, not serialized into data.js
     caps = captain_audit(boot, team_id)
     data = existing or {}
     # Recomputed every run rather than cached off `existing`: both only cover finished
@@ -1827,6 +1844,30 @@ def main(team_id=TEAM_ID, out_path=None):
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
     data["injury_watch"] = build_injury_watch(boot)
+
+    # Injury tab's mini-league section: a niche differential 6 of your 13
+    # ESL teams all specifically picked being suddenly doubtful is a much
+    # bigger deal to your actual competition than its low global ownership
+    # would suggest — the global top-N list above would likely miss it
+    # entirely. Same hardcoded-ESL-id convention as wc_top3 below.
+    esl_counts_info = counts_by_league.get(125784) or {}
+    esl_counts, esl_n = esl_counts_info.get("counts") or {}, esl_counts_info.get("n")
+    id_to_name = {e["id"]: e["web_name"] for e in boot["elements"]}
+    name_to_esl_count = {}
+    for eid, c in esl_counts.items():
+        name_to_esl_count[id_to_name.get(eid, "?")] = c
+    league_rows = []
+    for r in data["injury_watch"]["rows"]:
+        c = name_to_esl_count.get(r["name"])
+        if c:  # only players at least 1 ESL team owns — 0-owned is noise here
+            league_rows.append({**r, "league_own": c})
+    league_rows.sort(key=lambda r: -r["league_own"])
+    esl_league_obj = next((lg for lg in (leagues.get("mini") or []) if lg.get("id") == 125784), None)
+    data["injury_watch"]["league"] = {
+        "id": 125784, "name": (esl_league_obj or {}).get("name"), "n": esl_n,
+        "top_n": 10, "rows": league_rows[:10],
+    }
+
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
     data["targets"] = build_targets(boot)
 
