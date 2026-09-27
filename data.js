@@ -470,8 +470,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-27 15:13 UTC",
-  "generated_at_et": "2026-09-27 11:13 AM ET",
+  "generated_at": "2026-09-27 20:02 UTC",
+  "generated_at_et": "2026-09-27 4:02 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -486,7 +486,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 351,
-    "overall_rank": 686463,
+    "overall_rank": 686464,
     "bank": 0.3,
     "value": 101.1,
     "live_value": 99.6
@@ -781,9 +781,9 @@ window.FPL_DATA = {
           "Gro\u00df",
           "B.Fernandes",
           "Haaland (C)",
-          "Cherki",
           "Shaw",
           "Calvert-Lewin",
+          "Cherki",
           "Tzolis"
         ],
         "bench": [
@@ -800,9 +800,9 @@ window.FPL_DATA = {
           "Calafiori",
           "Davis",
           "Gro\u00df",
-          "Cherki",
-          "Haaland (C)",
           "B.Fernandes",
+          "Haaland (C)",
+          "Cherki",
           "Calvert-Lewin",
           "Szoboszlai",
           "Tzolis"
@@ -3747,7 +3747,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 686463,
+        "rank": 686464,
         "last_rank": 820064
       }
     ],
@@ -3765,7 +3765,7 @@ window.FPL_DATA = {
       {
         "name": "Gvardiol",
         "club": "MCI",
-        "own": 26.7
+        "own": 26.8
       },
       {
         "name": "Palmer",
@@ -4967,7 +4967,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "minutes": 434,
         "cost": 5.7,
-        "owned_pct": 26.7,
+        "owned_pct": 26.8,
         "goals": 1,
         "assists": 3,
         "xg": 0.22,
@@ -5403,8 +5403,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.8,
         "owned_pct": 28.6,
-        "net_transfers_today": 748769,
-        "momentum": 23.8,
+        "net_transfers_today": 750876,
+        "momentum": 23.9,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.3,
@@ -5417,8 +5417,22 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.3,
         "owned_pct": 12.2,
-        "net_transfers_today": -123058,
+        "net_transfers_today": -123318,
         "momentum": -9.2,
+        "changed_today": true,
+        "cost_change_today": -0.1,
+        "season_change": -0.2,
+        "expected_change": -0.1,
+        "expected_season_change": -0.3
+      },
+      {
+        "name": "Hume",
+        "pos": "DEF",
+        "club": "SUN",
+        "cost": 4.3,
+        "owned_pct": 2.8,
+        "net_transfers_today": -27249,
+        "momentum": -8.9,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2,
@@ -5431,7 +5445,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.0,
         "owned_pct": 27.7,
-        "net_transfers_today": 267386,
+        "net_transfers_today": 268163,
         "momentum": 8.8,
         "changed_today": true,
         "cost_change_today": 0.1,
@@ -5440,26 +5454,12 @@ window.FPL_DATA = {
         "expected_season_change": 0.6
       },
       {
-        "name": "Hume",
-        "pos": "DEF",
-        "club": "SUN",
-        "cost": 4.3,
-        "owned_pct": 2.8,
-        "net_transfers_today": -27164,
-        "momentum": -8.8,
-        "changed_today": true,
-        "cost_change_today": -0.1,
-        "season_change": -0.2,
-        "expected_change": -0.1,
-        "expected_season_change": -0.3
-      },
-      {
         "name": "Shaw",
         "pos": "DEF",
         "club": "MUN",
         "cost": 4.3,
         "owned_pct": 7.7,
-        "net_transfers_today": -70388,
+        "net_transfers_today": -70553,
         "momentum": -8.3,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -5473,7 +5473,7 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 4.5,
         "owned_pct": 17.3,
-        "net_transfers_today": -89559,
+        "net_transfers_today": -89828,
         "momentum": -4.7,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5487,8 +5487,8 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 7.0,
         "owned_pct": 32.9,
-        "net_transfers_today": -168087,
-        "momentum": -4.6,
+        "net_transfers_today": -168577,
+        "momentum": -4.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5501,7 +5501,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 7.7,
         "owned_pct": 65.3,
-        "net_transfers_today": -320280,
+        "net_transfers_today": -320906,
         "momentum": -4.5,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -5515,7 +5515,7 @@ window.FPL_DATA = {
         "club": "MUN",
         "cost": 11.9,
         "owned_pct": 38.5,
-        "net_transfers_today": -148847,
+        "net_transfers_today": -149136,
         "momentum": -3.5,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -5529,7 +5529,7 @@ window.FPL_DATA = {
         "club": "IPS",
         "cost": 4.0,
         "owned_pct": 6.9,
-        "net_transfers_today": 21748,
+        "net_transfers_today": 21796,
         "momentum": 2.9,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5543,7 +5543,7 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.0,
         "owned_pct": 24.8,
-        "net_transfers_today": -73749,
+        "net_transfers_today": -73767,
         "momentum": -2.7,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5557,8 +5557,8 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 7.8,
         "owned_pct": 28.4,
-        "net_transfers_today": 29431,
-        "momentum": 0.9,
+        "net_transfers_today": 29797,
+        "momentum": 1.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.3,
@@ -5571,7 +5571,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 15.6,
         "owned_pct": 73.8,
-        "net_transfers_today": 54064,
+        "net_transfers_today": 54489,
         "momentum": 0.7,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5585,7 +5585,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 5.8,
         "owned_pct": 50.5,
-        "net_transfers_today": 11241,
+        "net_transfers_today": 11356,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5599,7 +5599,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.5,
         "owned_pct": 21.6,
-        "net_transfers_today": 94,
+        "net_transfers_today": 147,
         "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5615,8 +5615,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 0.1,
-        "net_transfers_today": 7487,
-        "momentum": 68.1,
+        "net_transfers_today": 7537,
+        "momentum": 68.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5629,8 +5629,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.6,
         "owned_pct": 4.0,
-        "net_transfers_today": 277191,
-        "momentum": 63.1,
+        "net_transfers_today": 278443,
+        "momentum": 63.3,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1,
@@ -5643,8 +5643,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.4,
-        "net_transfers_today": 23843,
-        "momentum": 54.2,
+        "net_transfers_today": 23911,
+        "momentum": 54.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -5657,8 +5657,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 4.0,
         "owned_pct": 0.1,
-        "net_transfers_today": 5945,
-        "momentum": 54.1,
+        "net_transfers_today": 5969,
+        "momentum": 54.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5671,8 +5671,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 4.5,
         "owned_pct": 0.3,
-        "net_transfers_today": 12411,
-        "momentum": 37.6,
+        "net_transfers_today": 12433,
+        "momentum": 37.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5685,8 +5685,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 4.5,
         "owned_pct": 0.1,
-        "net_transfers_today": 3264,
-        "momentum": 29.7,
+        "net_transfers_today": 3350,
+        "momentum": 30.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5699,8 +5699,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 6.2,
         "owned_pct": 11.3,
-        "net_transfers_today": 348878,
-        "momentum": 28.1,
+        "net_transfers_today": 350134,
+        "momentum": 28.2,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.2,
@@ -5713,8 +5713,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.8,
         "owned_pct": 28.6,
-        "net_transfers_today": 748769,
-        "momentum": 23.8,
+        "net_transfers_today": 750876,
+        "momentum": 23.9,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.3,
@@ -5729,7 +5729,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 4.6,
-        "net_transfers_today": -160568,
+        "net_transfers_today": -160954,
         "momentum": -31.8,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -5743,7 +5743,7 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 6.2,
         "owned_pct": 1.7,
-        "net_transfers_today": -38273,
+        "net_transfers_today": -38392,
         "momentum": -20.5,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5757,8 +5757,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.9,
         "owned_pct": 0.2,
-        "net_transfers_today": -4456,
-        "momentum": -20.3,
+        "net_transfers_today": -4473,
+        "momentum": -20.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -5771,8 +5771,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 1.8,
-        "net_transfers_today": -35632,
-        "momentum": -18.0,
+        "net_transfers_today": -35716,
+        "momentum": -18.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5785,7 +5785,7 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 6.0,
         "owned_pct": 0.9,
-        "net_transfers_today": -14590,
+        "net_transfers_today": -14677,
         "momentum": -14.8,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5799,8 +5799,8 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 6.9,
         "owned_pct": 1.8,
-        "net_transfers_today": -26586,
-        "momentum": -13.4,
+        "net_transfers_today": -26695,
+        "momentum": -13.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -5813,7 +5813,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 5.4,
         "owned_pct": 5.8,
-        "net_transfers_today": -73711,
+        "net_transfers_today": -73981,
         "momentum": -11.6,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5827,7 +5827,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 5.6,
         "owned_pct": 10.0,
-        "net_transfers_today": -126386,
+        "net_transfers_today": -126659,
         "momentum": -11.5,
         "changed_today": true,
         "cost_change_today": -0.1,
@@ -5843,7 +5843,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.1,
         "owned_pct": 42.2,
-        "net_transfers_today": 75932,
+        "net_transfers_today": 76149,
         "momentum": 1.6,
         "changed_today": true,
         "cost_change_today": 0.1,
@@ -5857,8 +5857,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 4.6,
         "owned_pct": 19.4,
-        "net_transfers_today": 43651,
-        "momentum": 2.0,
+        "net_transfers_today": 43739,
+        "momentum": 2.1,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1,
@@ -5871,7 +5871,7 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 6.1,
         "owned_pct": 5.8,
-        "net_transfers_today": -14464,
+        "net_transfers_today": -14452,
         "momentum": -2.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5885,8 +5885,8 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 6.2,
         "owned_pct": 11.3,
-        "net_transfers_today": 348878,
-        "momentum": 28.1,
+        "net_transfers_today": 350134,
+        "momentum": 28.2,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.2,
@@ -5899,8 +5899,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.6,
         "owned_pct": 4.0,
-        "net_transfers_today": 277191,
-        "momentum": 63.1,
+        "net_transfers_today": 278443,
+        "momentum": 63.3,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1,
@@ -5927,7 +5927,7 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 6.1,
         "owned_pct": 16.3,
-        "net_transfers_today": 189372,
+        "net_transfers_today": 190585,
         "momentum": 10.6,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5941,8 +5941,8 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 5.6,
         "owned_pct": 8.3,
-        "net_transfers_today": 41295,
-        "momentum": 4.5,
+        "net_transfers_today": 42026,
+        "momentum": 4.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -5955,8 +5955,8 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 5.5,
         "owned_pct": 2.5,
-        "net_transfers_today": 62682,
-        "momentum": 22.8,
+        "net_transfers_today": 63029,
+        "momentum": 22.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5969,7 +5969,7 @@ window.FPL_DATA = {
         "club": "HUL",
         "cost": 4.7,
         "owned_pct": 12.7,
-        "net_transfers_today": 99873,
+        "net_transfers_today": 100123,
         "momentum": 7.2,
         "changed_today": true,
         "cost_change_today": 0.1,
@@ -5983,7 +5983,7 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 9.1,
         "owned_pct": 22.5,
-        "net_transfers_today": 45214,
+        "net_transfers_today": 43735,
         "momentum": 1.8,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5997,8 +5997,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 5.3,
         "owned_pct": 17.2,
-        "net_transfers_today": 216399,
-        "momentum": 11.4,
+        "net_transfers_today": 217054,
+        "momentum": 11.5,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.3,
@@ -6011,8 +6011,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 6.1,
         "owned_pct": 5.6,
-        "net_transfers_today": 133569,
-        "momentum": 21.7,
+        "net_transfers_today": 133999,
+        "momentum": 21.8,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.1,
@@ -6025,7 +6025,7 @@ window.FPL_DATA = {
         "club": "NFO",
         "cost": 8.0,
         "owned_pct": 15.7,
-        "net_transfers_today": -16880,
+        "net_transfers_today": -16821,
         "momentum": -1.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6624,7 +6624,7 @@ window.FPL_DATA = {
           "cost": 5.7,
           "points": 37,
           "minutes": 434,
-          "owned_pct": 26.7,
+          "owned_pct": 26.8,
           "value_per_1m": 6.49
         },
         {
@@ -6962,6 +6962,17 @@ window.FPL_DATA = {
           "ratio": 1.33
         },
         {
+          "name": "Donnarumma",
+          "pos": "GKP",
+          "club": "MCI",
+          "cost": 5.5,
+          "owned_pct": 7.6,
+          "form": 5.3,
+          "fdr": 4,
+          "fixture": "LIV (A)",
+          "ratio": 1.32
+        },
+        {
           "name": "Rushworth",
           "pos": "GKP",
           "club": "COV",
@@ -6971,17 +6982,6 @@ window.FPL_DATA = {
           "fdr": 3,
           "fixture": "NEW (H)",
           "ratio": 1.27
-        },
-        {
-          "name": "Lammens",
-          "pos": "GKP",
-          "club": "MUN",
-          "cost": 4.9,
-          "owned_pct": 9.9,
-          "form": 2.5,
-          "fdr": 2,
-          "fixture": "TOT (H)",
-          "ratio": 1.25
         }
       ],
       "DEF": [
@@ -7052,6 +7052,17 @@ window.FPL_DATA = {
           "ratio": 2.6
         },
         {
+          "name": "Mitchell",
+          "pos": "DEF",
+          "club": "CRY",
+          "cost": 4.5,
+          "owned_pct": 6.0,
+          "form": 7.7,
+          "fdr": 3,
+          "fixture": "NFO (H)",
+          "ratio": 2.57
+        },
+        {
           "name": "Vuskovic",
           "pos": "DEF",
           "club": "BHA",
@@ -7074,26 +7085,15 @@ window.FPL_DATA = {
           "ratio": 2.0
         },
         {
-          "name": "Mitchell",
+          "name": "Gvardiol",
           "pos": "DEF",
-          "club": "CRY",
-          "cost": 4.5,
-          "owned_pct": 6.0,
-          "form": 5.8,
-          "fdr": 3,
-          "fixture": "NFO (H)",
+          "club": "MCI",
+          "cost": 5.7,
+          "owned_pct": 26.8,
+          "form": 7.7,
+          "fdr": 4,
+          "fixture": "LIV (A)",
           "ratio": 1.93
-        },
-        {
-          "name": "Bassey",
-          "pos": "DEF",
-          "club": "FUL",
-          "cost": 4.5,
-          "owned_pct": 0.7,
-          "form": 3.8,
-          "fdr": 2,
-          "fixture": "IPS (A)",
-          "ratio": 1.9
         }
       ],
       "MID": [
@@ -7186,6 +7186,17 @@ window.FPL_DATA = {
           "ratio": 2.33
         },
         {
+          "name": "Semenyo",
+          "pos": "MID",
+          "club": "MCI",
+          "cost": 8.4,
+          "owned_pct": 15.4,
+          "form": 8.7,
+          "fdr": 4,
+          "fixture": "LIV (A)",
+          "ratio": 2.17
+        },
+        {
           "name": "Gibbs-White",
           "pos": "MID",
           "club": "NFO",
@@ -7195,31 +7206,9 @@ window.FPL_DATA = {
           "fdr": 3,
           "fixture": "CRY (A)",
           "ratio": 2.17
-        },
-        {
-          "name": "King",
-          "pos": "MID",
-          "club": "FUL",
-          "cost": 5.5,
-          "owned_pct": 2.5,
-          "form": 4.2,
-          "fdr": 2,
-          "fixture": "IPS (A)",
-          "ratio": 2.1
         }
       ],
       "FWD": [
-        {
-          "name": "Haaland",
-          "pos": "FWD",
-          "club": "MCI",
-          "cost": 15.6,
-          "owned_pct": 73.8,
-          "form": 9.2,
-          "fdr": 4,
-          "fixture": "LIV (A)",
-          "ratio": 2.3
-        },
         {
           "name": "Kostoulas",
           "pos": "FWD",
@@ -7241,6 +7230,17 @@ window.FPL_DATA = {
           "fdr": 2,
           "fixture": "FUL (H)",
           "ratio": 2.1
+        },
+        {
+          "name": "Haaland",
+          "pos": "FWD",
+          "club": "MCI",
+          "cost": 15.6,
+          "owned_pct": 73.8,
+          "form": 8.0,
+          "fdr": 4,
+          "fixture": "LIV (A)",
+          "ratio": 2.0
         },
         {
           "name": "Isak",
@@ -7298,6 +7298,17 @@ window.FPL_DATA = {
           "ratio": 1.4
         },
         {
+          "name": "Strand Larsen",
+          "pos": "FWD",
+          "club": "CRY",
+          "cost": 6.0,
+          "owned_pct": 0.6,
+          "form": 3.7,
+          "fdr": 3,
+          "fixture": "NFO (H)",
+          "ratio": 1.23
+        },
+        {
           "name": "Isidor",
           "pos": "FWD",
           "club": "SUN",
@@ -7307,17 +7318,6 @@ window.FPL_DATA = {
           "fdr": 3,
           "fixture": "BHA (H)",
           "ratio": 1.17
-        },
-        {
-          "name": "Havertz",
-          "pos": "FWD",
-          "club": "ARS",
-          "cost": 7.6,
-          "owned_pct": 8.4,
-          "form": 3.2,
-          "fdr": 3,
-          "fixture": "LEE (H)",
-          "ratio": 1.07
         }
       ]
     }
@@ -7343,24 +7343,6 @@ window.FPL_DATA = {
               "In form",
               "Strong xGI",
               "Kind run"
-            ]
-          },
-          {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.4,
-            "form": 6.5,
-            "xgi_p90": 0.67,
-            "fdr": 4.0,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "News/X backed"
             ]
           },
           {
@@ -7402,7 +7384,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 15.6,
             "owned_pct": 73.8,
-            "form": 9.2,
+            "form": 8.0,
             "xgi_p90": 0.99,
             "fdr": 4.0,
             "score": 4,
@@ -7538,6 +7520,23 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
+            "cost": 7.8,
+            "owned_pct": 28.4,
+            "form": 4.0,
+            "xgi_p90": 0.67,
+            "fdr": 4.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk",
+              "News/X backed"
+            ]
+          },
+          {
             "name": "Thiago",
             "pos": "FWD",
             "club": "BRE",
@@ -7573,24 +7572,6 @@ window.FPL_DATA = {
         "horizon": 3,
         "top": [
           {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.4,
-            "form": 6.5,
-            "xgi_p90": 0.67,
-            "fdr": 3.0,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "News/X backed"
-            ]
-          },
-          {
             "name": "Gibbs-White",
             "pos": "MID",
             "club": "NFO",
@@ -7612,7 +7593,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 15.6,
             "owned_pct": 73.8,
-            "form": 9.2,
+            "form": 8.0,
             "xgi_p90": 0.99,
             "fdr": 3.0,
             "score": 4,
@@ -7733,6 +7714,23 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
+            "cost": 7.8,
+            "owned_pct": 28.4,
+            "form": 4.0,
+            "xgi_p90": 0.67,
+            "fdr": 3.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk",
+              "News/X backed"
+            ]
+          },
+          {
             "name": "Thiago",
             "pos": "FWD",
             "club": "BRE",
@@ -7813,24 +7811,6 @@ window.FPL_DATA = {
         "horizon": 6,
         "top": [
           {
-            "name": "Cherki",
-            "pos": "MID",
-            "club": "MCI",
-            "cost": 7.8,
-            "owned_pct": 28.4,
-            "form": 6.5,
-            "xgi_p90": 0.67,
-            "fdr": 2.83,
-            "score": 5,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "News/X backed"
-            ]
-          },
-          {
             "name": "Gibbs-White",
             "pos": "MID",
             "club": "NFO",
@@ -7852,7 +7832,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 15.6,
             "owned_pct": 73.8,
-            "form": 9.2,
+            "form": 8.0,
             "xgi_p90": 0.99,
             "fdr": 2.83,
             "score": 4,
@@ -7973,6 +7953,23 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Cherki",
+            "pos": "MID",
+            "club": "MCI",
+            "cost": 7.8,
+            "owned_pct": 28.4,
+            "form": 4.0,
+            "xgi_p90": 0.67,
+            "fdr": 2.83,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Great value",
+              "Sell-high risk",
+              "News/X backed"
+            ]
+          },
+          {
             "name": "Thiago",
             "pos": "FWD",
             "club": "BRE",
@@ -8037,7 +8034,7 @@ window.FPL_DATA = {
             "pos": "MID",
             "club": "LIV",
             "cost": 7.2,
-            "owned_pct": 12.6,
+            "owned_pct": 12.5,
             "form": 5.0,
             "xgi_p90": 0.57,
             "fdr": 3.5,
@@ -8118,7 +8115,8 @@ window.FPL_DATA = {
         "owned_pct": 65.3,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": true
       },
       {
         "name": "Palmer",
@@ -8128,7 +8126,8 @@ window.FPL_DATA = {
         "owned_pct": 25.8,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Isak",
@@ -8138,7 +8137,8 @@ window.FPL_DATA = {
         "owned_pct": 22.5,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Semenyo",
@@ -8148,7 +8148,8 @@ window.FPL_DATA = {
         "owned_pct": 15.4,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Rice",
@@ -8158,7 +8159,8 @@ window.FPL_DATA = {
         "owned_pct": 11.7,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "van Ewijk",
@@ -8168,7 +8170,8 @@ window.FPL_DATA = {
         "owned_pct": 8.8,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Havertz",
@@ -8178,7 +8181,8 @@ window.FPL_DATA = {
         "owned_pct": 8.4,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Pedro Porro",
@@ -8188,7 +8192,8 @@ window.FPL_DATA = {
         "owned_pct": 7.6,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Brobbey",
@@ -8198,7 +8203,8 @@ window.FPL_DATA = {
         "owned_pct": 7.0,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "James",
@@ -8208,7 +8214,8 @@ window.FPL_DATA = {
         "owned_pct": 5.8,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "White",
@@ -8218,7 +8225,8 @@ window.FPL_DATA = {
         "owned_pct": 4.9,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Elanga",
@@ -8228,7 +8236,8 @@ window.FPL_DATA = {
         "owned_pct": 4.6,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Watkins",
@@ -8238,7 +8247,8 @@ window.FPL_DATA = {
         "owned_pct": 2.5,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ballard",
@@ -8248,7 +8258,8 @@ window.FPL_DATA = {
         "owned_pct": 2.5,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Foden",
@@ -8258,7 +8269,8 @@ window.FPL_DATA = {
         "owned_pct": 1.8,
         "status": "out",
         "label": "SUS",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Dedi\u0107",
@@ -8268,7 +8280,8 @@ window.FPL_DATA = {
         "owned_pct": 1.8,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Wilson",
@@ -8278,7 +8291,8 @@ window.FPL_DATA = {
         "owned_pct": 1.7,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Targett",
@@ -8288,7 +8302,8 @@ window.FPL_DATA = {
         "owned_pct": 1.6,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Mainoo",
@@ -8298,7 +8313,8 @@ window.FPL_DATA = {
         "owned_pct": 1.6,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "\u0160e\u0161ko",
@@ -8308,7 +8324,8 @@ window.FPL_DATA = {
         "owned_pct": 1.6,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Dunk",
@@ -8318,7 +8335,8 @@ window.FPL_DATA = {
         "owned_pct": 1.5,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Rashford",
@@ -8328,7 +8346,8 @@ window.FPL_DATA = {
         "owned_pct": 1.5,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Henderson",
@@ -8338,7 +8357,8 @@ window.FPL_DATA = {
         "owned_pct": 1.3,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mateta",
@@ -8348,7 +8368,8 @@ window.FPL_DATA = {
         "owned_pct": 1.3,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Scarlett",
@@ -8358,7 +8379,8 @@ window.FPL_DATA = {
         "owned_pct": 1.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Collins",
@@ -8368,7 +8390,8 @@ window.FPL_DATA = {
         "owned_pct": 1.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Caicedo",
@@ -8378,7 +8401,8 @@ window.FPL_DATA = {
         "owned_pct": 1.0,
         "status": "doubt",
         "label": "DOUBT 50%",
-        "chance": 50
+        "chance": 50,
+        "yours": false
       },
       {
         "name": "Dovin",
@@ -8388,7 +8412,8 @@ window.FPL_DATA = {
         "owned_pct": 1.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Milenkovi\u0107",
@@ -8398,7 +8423,8 @@ window.FPL_DATA = {
         "owned_pct": 1.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Kluivert",
@@ -8408,7 +8434,8 @@ window.FPL_DATA = {
         "owned_pct": 0.9,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Furo",
@@ -8418,7 +8445,8 @@ window.FPL_DATA = {
         "owned_pct": 0.9,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Obi",
@@ -8428,7 +8456,8 @@ window.FPL_DATA = {
         "owned_pct": 0.9,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Rodon",
@@ -8438,7 +8467,8 @@ window.FPL_DATA = {
         "owned_pct": 0.8,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "S\u00e1nchez",
@@ -8448,7 +8478,8 @@ window.FPL_DATA = {
         "owned_pct": 0.7,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Burn",
@@ -8458,7 +8489,8 @@ window.FPL_DATA = {
         "owned_pct": 0.7,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Hinshelwood",
@@ -8468,7 +8500,8 @@ window.FPL_DATA = {
         "owned_pct": 0.6,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Palestra",
@@ -8478,7 +8511,8 @@ window.FPL_DATA = {
         "owned_pct": 0.6,
         "status": "doubt",
         "label": "DOUBT 50%",
-        "chance": 50
+        "chance": 50,
+        "yours": false
       },
       {
         "name": "Amenda",
@@ -8488,7 +8522,8 @@ window.FPL_DATA = {
         "owned_pct": 0.6,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Beto",
@@ -8498,7 +8533,8 @@ window.FPL_DATA = {
         "owned_pct": 0.6,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Richarlison",
@@ -8508,7 +8544,8 @@ window.FPL_DATA = {
         "owned_pct": 0.6,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Maatsen",
@@ -8518,7 +8555,8 @@ window.FPL_DATA = {
         "owned_pct": 0.5,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Woltemade",
@@ -8528,7 +8566,8 @@ window.FPL_DATA = {
         "owned_pct": 0.5,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Neave",
@@ -8538,7 +8577,8 @@ window.FPL_DATA = {
         "owned_pct": 0.5,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Awoniyi",
@@ -8548,7 +8588,8 @@ window.FPL_DATA = {
         "owned_pct": 0.4,
         "status": "out",
         "label": "SUS",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Pau",
@@ -8558,7 +8599,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Kitching",
@@ -8568,7 +8610,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Andrews",
@@ -8578,7 +8621,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Tomiyasu",
@@ -8588,7 +8632,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Perri",
@@ -8598,7 +8643,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Amad",
@@ -8608,7 +8654,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Osula",
@@ -8618,7 +8665,8 @@ window.FPL_DATA = {
         "owned_pct": 0.3,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Saliba",
@@ -8628,7 +8676,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Madjo",
@@ -8638,7 +8687,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Kroupi.Jr",
@@ -8648,7 +8698,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Wieffer",
@@ -8658,7 +8709,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Struijk",
@@ -8668,7 +8720,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Marc Guiu",
@@ -8678,7 +8731,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Hughes",
@@ -8688,7 +8742,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Destan",
@@ -8698,7 +8753,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Norton-Cuffy",
@@ -8708,7 +8764,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Fatawu",
@@ -8718,7 +8775,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "SUS",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "J.Ramsey",
@@ -8728,7 +8786,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Shahar",
@@ -8738,7 +8797,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Spence",
@@ -8748,7 +8808,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Souza",
@@ -8758,7 +8819,8 @@ window.FPL_DATA = {
         "owned_pct": 0.2,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Martinelli",
@@ -8768,7 +8830,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "G.Jesus",
@@ -8778,7 +8841,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "M.Bizot",
@@ -8788,7 +8852,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Nedeljkovic",
@@ -8798,7 +8863,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bailey",
@@ -8808,7 +8874,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Lynch",
@@ -8818,7 +8885,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Dennis",
@@ -8828,7 +8896,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Van den Berg",
@@ -8838,7 +8907,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Jensen",
@@ -8848,7 +8918,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Chalobah",
@@ -8858,7 +8929,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "D.Essugo",
@@ -8868,7 +8940,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Emegha",
@@ -8878,7 +8951,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Woolfenden",
@@ -8888,7 +8962,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Borges Rodrigues",
@@ -8898,7 +8973,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Wright",
@@ -8908,7 +8984,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Disasi",
@@ -8918,7 +8995,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "SUS",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Aznou",
@@ -8928,7 +9006,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "McNally",
@@ -8938,7 +9017,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "De Fougerolles",
@@ -8948,7 +9028,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Butland",
@@ -8958,7 +9039,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Johnson",
@@ -8968,7 +9050,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Hirst",
@@ -8978,7 +9061,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Piroe",
@@ -8988,7 +9072,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mateo Joseph",
@@ -8998,7 +9083,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ramsay",
@@ -9008,7 +9094,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ekitik\u00e9",
@@ -9018,7 +9105,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mukasa",
@@ -9028,7 +9116,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Heaton",
@@ -9038,7 +9127,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Livramento",
@@ -9048,7 +9138,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "A.Murphy",
@@ -9058,7 +9149,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Abbott",
@@ -9068,7 +9160,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bindon",
@@ -9078,7 +9171,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Hutchinson",
@@ -9088,7 +9182,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Vicario",
@@ -9098,7 +9193,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Romero",
@@ -9108,7 +9204,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "P.M.Sarr",
@@ -9118,7 +9215,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Moore",
@@ -9128,7 +9226,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Patterson",
@@ -9138,7 +9237,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Masuaku",
@@ -9148,7 +9248,8 @@ window.FPL_DATA = {
         "owned_pct": 0.1,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Nwaneri",
@@ -9158,7 +9259,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "F\u00e1bio Vieira",
@@ -9168,7 +9270,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Nelson",
@@ -9178,7 +9281,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Digne",
@@ -9188,7 +9292,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Onana",
@@ -9198,7 +9303,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Iling Jr",
@@ -9208,7 +9314,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Alysson",
@@ -9218,7 +9325,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Goretzka",
@@ -9228,7 +9336,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Milosavljevi\u0107",
@@ -9238,7 +9347,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "J.Araujo",
@@ -9248,7 +9358,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Adli",
@@ -9258,7 +9369,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Enes \u00dcnal",
@@ -9268,7 +9380,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Milambo",
@@ -9278,7 +9391,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Dasilva",
@@ -9288,7 +9402,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Igor",
@@ -9298,7 +9413,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mitoma",
@@ -9308,7 +9424,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Minteh",
@@ -9318,7 +9435,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Buonanotte",
@@ -9328,7 +9446,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Howell",
@@ -9338,7 +9457,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Watson",
@@ -9348,7 +9468,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Yohanna",
@@ -9358,7 +9479,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Tzimas",
@@ -9368,7 +9490,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ferguson",
@@ -9378,7 +9501,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Cozier-Duberry",
@@ -9388,7 +9512,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Azeez",
@@ -9398,7 +9523,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "J\u00f6rgensen",
@@ -9408,7 +9534,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "B.Badiashile",
@@ -9418,7 +9545,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "M.Sarr",
@@ -9428,7 +9556,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Gittens",
@@ -9438,7 +9567,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Kesler-Hayden",
@@ -9448,7 +9578,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Brau",
@@ -9458,7 +9589,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Eccles",
@@ -9468,7 +9600,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Markelo",
@@ -9478,7 +9611,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bassette",
@@ -9488,7 +9622,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Sosa",
@@ -9498,7 +9633,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Chadi Riad",
@@ -9508,7 +9644,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Devenny",
@@ -9518,7 +9655,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Esse",
@@ -9528,7 +9666,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "M.Fran\u00e7a",
@@ -9538,7 +9677,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "J.Rak-Sakyi",
@@ -9548,7 +9688,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Cardines",
@@ -9558,7 +9699,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Uche",
@@ -9568,7 +9710,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "N\u00f8rgaard",
@@ -9578,7 +9721,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Patterson",
@@ -9588,7 +9732,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "R\u00f6hl",
@@ -9598,7 +9743,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Cairney",
@@ -9608,7 +9754,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Cartwright",
@@ -9618,7 +9765,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Lo-Tutala",
@@ -9628,7 +9776,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Drameh",
@@ -9638,7 +9787,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Jacob",
@@ -9648,7 +9798,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Millar",
@@ -9658,7 +9809,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Matazo",
@@ -9668,7 +9820,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Kamara",
@@ -9678,7 +9831,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Akintola",
@@ -9688,7 +9842,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Gyabi",
@@ -9698,7 +9853,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Burstow",
@@ -9708,7 +9864,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Morita",
@@ -9718,7 +9875,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ansah",
@@ -9728,7 +9886,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Burns",
@@ -9738,7 +9897,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Taylor",
@@ -9748,7 +9908,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ogbene",
@@ -9758,7 +9919,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Szmodics",
@@ -9768,7 +9930,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Al-Hamadi",
@@ -9778,7 +9941,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Van Oevelen",
@@ -9788,7 +9952,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Humphreys",
@@ -9798,7 +9963,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bornauw",
@@ -9808,7 +9974,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Gnonto",
@@ -9818,7 +9985,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Harrison",
@@ -9828,7 +9996,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Pecsi",
@@ -9838,7 +10007,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Jaros",
@@ -9848,7 +10018,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bradley",
@@ -9858,7 +10029,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Leoni",
@@ -9868,7 +10040,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Chiesa",
@@ -9878,7 +10051,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "C.Jones",
@@ -9888,7 +10062,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bajcetic",
@@ -9898,7 +10073,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Elliott",
@@ -9908,7 +10084,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Alleyne",
@@ -9918,7 +10095,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Rodrigo",
@@ -9928,7 +10106,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Reijnders",
@@ -9938,7 +10117,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Echeverri",
@@ -9948,7 +10128,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Phillips",
@@ -9958,7 +10139,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Monga",
@@ -9968,7 +10150,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Darlow",
@@ -9978,7 +10161,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "doubt",
         "label": "DOUBT 75%",
-        "chance": 75
+        "chance": 75,
+        "yours": false
       },
       {
         "name": "Bayindir",
@@ -9988,7 +10172,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "De Ligt",
@@ -9998,7 +10183,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Fredricson",
@@ -10008,7 +10194,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Ugarte",
@@ -10018,7 +10205,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Collyer",
@@ -10028,7 +10216,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Jaouen",
@@ -10038,7 +10227,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "doubt",
         "label": "DOUBT 50%",
-        "chance": 50
+        "chance": 50,
+        "yours": false
       },
       {
         "name": "Joelinton",
@@ -10048,7 +10238,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Morato",
@@ -10058,7 +10249,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Savona",
@@ -10068,7 +10260,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Bakwa",
@@ -10078,7 +10271,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Phillips",
@@ -10088,7 +10282,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Xavi",
@@ -10098,7 +10293,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Odobert",
@@ -10108,7 +10304,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Kulusevski",
@@ -10118,7 +10315,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mudryk",
@@ -10128,7 +10326,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Seelt",
@@ -10138,7 +10337,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Hjelde",
@@ -10148,7 +10348,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Diarra",
@@ -10158,7 +10359,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Adingra",
@@ -10168,7 +10370,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "OUT",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       },
       {
         "name": "Mundle",
@@ -10178,7 +10381,8 @@ window.FPL_DATA = {
         "owned_pct": 0.0,
         "status": "out",
         "label": "INJ",
-        "chance": 0
+        "chance": 0,
+        "yours": false
       }
     ],
     "league": {
@@ -10196,7 +10400,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 12
+          "yours": true,
+          "league_own": 12,
+          "league_eo": 92.3
         },
         {
           "name": "Isak",
@@ -10207,7 +10413,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 4
+          "yours": false,
+          "league_own": 4,
+          "league_eo": 30.8
         },
         {
           "name": "van Ewijk",
@@ -10218,7 +10426,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 2
+          "yours": false,
+          "league_own": 2,
+          "league_eo": 15.4
         },
         {
           "name": "Hughes",
@@ -10229,7 +10439,9 @@ window.FPL_DATA = {
           "status": "out",
           "label": "INJ",
           "chance": 0,
-          "league_own": 2
+          "yours": false,
+          "league_own": 2,
+          "league_eo": 15.4
         },
         {
           "name": "Palmer",
@@ -10240,7 +10452,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         },
         {
           "name": "Rice",
@@ -10251,7 +10465,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         },
         {
           "name": "James",
@@ -10262,7 +10478,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         },
         {
           "name": "Ballard",
@@ -10273,7 +10491,9 @@ window.FPL_DATA = {
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         },
         {
           "name": "Phillips",
@@ -10284,7 +10504,9 @@ window.FPL_DATA = {
           "status": "out",
           "label": "OUT",
           "chance": 0,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         },
         {
           "name": "Phillips",
@@ -10295,7 +10517,9 @@ window.FPL_DATA = {
           "status": "out",
           "label": "OUT",
           "chance": 0,
-          "league_own": 1
+          "yours": false,
+          "league_own": 1,
+          "league_eo": 7.7
         }
       ]
     }

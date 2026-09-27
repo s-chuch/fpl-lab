@@ -112,14 +112,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain_ep": 11.2,
     "vice": "Tarkowski",
     "vice_ep": 9.2,
-    "bench_swaps": [
-      {
-        "bench": "Cherki",
-        "bench_ep": 6.5,
-        "starter": "King",
-        "starter_ep": 4.2
-      }
-    ],
+    "bench_swaps": [],
     "availability_flags": [],
     "xi_ep": [
       {
@@ -179,7 +172,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 9.2,
+        "ep_next": 8.0,
         "status": "ok"
       },
       {
@@ -205,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Cherki",
         "pos": "MID",
-        "ep_next": 6.5,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
