@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "provisional",
-  "captured_at": "2026-09-23",
+  "captured_at": "2026-09-27",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -101,9 +101,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
-      "name": "Isak",
-      "club": "LIV",
-      "fixture": "MCI (H)"
+      "name": "Barry",
+      "club": "EVE",
+      "fixture": "HUL (A)"
     }
   ],
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
