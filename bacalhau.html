@@ -296,15 +296,28 @@ function renderStrategy(){
   }).join("");
   const ffCard=`<div class="card"><h2>Form / FDR ratio</h2><ul class="note-list"><li>Top ${FF.top_n??"?"} per position, league-wide (${FF.min_minutes??"?"}+ mins)</li><li>Recent form ÷ next fixture's difficulty (1 easiest – 5 hardest)</li><li>A hot player facing a hard game and a cold player with a soft one won't read the same as two separate numbers</li></ul>${ffTables}<ul class="legend-list"><li>Form = FPL's own average points over the last 30 days</li><li>Ratio = Form ÷ next fixture's FDR — green ≥2.5 (in form, easy game), red ≤0.8 (cold and/or tough)</li><li>Blank fixture = no ratio</li></ul></div>`;
   const PR=D.price_radar||{};
+  const PT=D.price_trend||{};
+  const etaLabel=r=>{
+    if(r.changed_today) return "Today";
+    const t=PT[r.name], streak=(t&&t.streak_days)||0;
+    if(streak>=3) return "Soon";
+    if(streak>=1) return `Trend ${streak}d`;
+    return "Flat";
+  };
+  const etaCls=r=>{
+    if(r.changed_today) return cls(r.cost_change_today);
+    const t=PT[r.name];
+    return (t&&t.streak_days>=1)?cls(r.momentum):"";
+  };
   const priceRow=r=>{
     const todayMark=r.changed_today?`<span class="${cls(r.cost_change_today)}">${r.cost_change_today>0?"▲":"▼"}</span>`:"";
     const deltaCell=`<span class="${cls(r.season_change)}">${sign(r.season_change)}</span>→<span class="${cls(r.expected_season_change)}">${sign(r.expected_season_change)}</span>`;
-    return `<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}${todayMark}</td><td class="${cls(r.momentum)}">${sign(r.momentum)}%</td><td>${deltaCell}</td></tr>`;
+    return `<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}${todayMark}</td><td class="${cls(r.momentum)}">${sign(r.momentum)}%</td><td>${deltaCell}</td><td class="${etaCls(r)}">${etaLabel(r)}</td></tr>`;
   };
-  const priceHead=`<thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">NetTr</th><th style="width:26%">Price Δ</th></tr></thead>`;
-  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No squad price data yet.</span></td></tr>`;
-  const watchRows=(PR.watch||[]).map(priceRow).join("")||`<tr><td colspan="5"><span class="note">No wildcard-watch or Target-6 names outside the squad right now.</span></td></tr>`;
-  const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><ul class="note-list"><li>Approximated from today's net transfers scaled by ownership</li><li>FPL has never published its exact price-change algorithm</li><li>Scoped to the decision set — the squad, wildcard-watch names, and the WC shortlist — not the whole market</li></ul><h3>Bacalhau's squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Wildcard watch &amp; WC shortlist</h3><table class="table-compact">${priceHead}<tbody>${watchRows}</tbody></table><ul class="legend-list"><li>NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players</li><li>Price Δ = total change since the start of the season → projected total if tonight's change follows today's momentum</li><li>▲/▼ = already moved today</li><li>FPL only ever moves a price by £0.1m at a time — the projection is a direction call, not a probability</li></ul></div>`;
+  const priceHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:16%">NetTr</th><th style="width:20%">Price Δ</th><th style="width:16%">ETA</th></tr></thead>`;
+  const squadRows=(PR.squad||[]).map(priceRow).join("")||`<tr><td colspan="6"><span class="note">No squad price data yet.</span></td></tr>`;
+  const watchRows=(PR.watch||[]).map(priceRow).join("")||`<tr><td colspan="6"><span class="note">No wildcard-watch or Target-6 names outside the squad right now.</span></td></tr>`;
+  const priceCard=`<div class="deadline-bar" id="priceCountdown"></div><div class="card"><h2>Price-change radar</h2><ul class="note-list"><li>Approximated from today's net transfers scaled by ownership</li><li>FPL has never published its exact price-change algorithm</li><li>Scoped to the decision set — the squad, wildcard-watch names, and the WC shortlist — not the whole market</li></ul><h3>Bacalhau's squad</h3><table class="table-compact">${priceHead}<tbody>${squadRows}</tbody></table><h3>Wildcard watch &amp; WC shortlist</h3><table class="table-compact">${priceHead}<tbody>${watchRows}</tbody></table><ul class="legend-list"><li>NetTr = today's net transfers (in minus out) as a % of the player's own current owners — comparable across low- and high-ownership players</li><li>Price Δ = total change since the start of the season → projected total if tonight's change follows today's momentum</li><li>▲/▼ = already moved today</li><li>ETA = how many consecutive days this player's momentum has leaned the same way, tracked ourselves refresh over refresh (FPL never published its real threshold, so this can't be exact) — "Soon" after 3+ same-direction days, "Trend Nd" earlier in a trend, "Flat" if it's noise-level or just flipped direction. Gets more reliable as more days of history build up</li><li>FPL only ever moves a price by £0.1m at a time — the projection is a direction call, not a probability</li></ul></div>`;
   const VB=D.value_board||{};
   const valueHead=`<thead><tr><th style="width:44%">Player</th><th style="width:18%">Cost</th><th style="width:16%">Pts</th><th style="width:22%">Pts/£1m</th></tr></thead>`;
   const valueRow=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.points}</td><td><b>${r.value_per_1m}</b></td></tr>`;

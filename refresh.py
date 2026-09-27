@@ -1384,6 +1384,39 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
     watch = [r for r in all_rows if r["name"] in watch_names]
     return {"squad": squad_rows, "rising": rising, "falling": falling, "watch": watch}
 
+def build_price_trend(prev_trend, rows, today, max_days=7):
+    """Rough 'how close to a price change' estimate for the decision-set
+    players (squad + wildcard-watch) — built from OUR OWN observed momentum
+    history across refreshes, not FPL's undisclosed threshold algorithm
+    (which was never published, so it can't be modelled directly). The same
+    momentum reading is a weaker signal on day one than after several
+    consecutive days trending the same way, so this tracks a day-by-day
+    history per player (one entry per calendar day — a day with several
+    refreshes just overwrites that day's entry, it doesn't inflate the
+    streak) and reports how many consecutive most-recent days have leaned
+    the same direction with a non-trivial (>=5) momentum reading. Bounded
+    to `max_days` per player so this can't grow unbounded over a season."""
+    trend = {}
+    for r in rows:
+        name = r["name"]
+        prev = prev_trend.get(name) or {}
+        history = list(prev.get("history") or [])
+        if history and history[-1].get("date") == today:
+            history[-1] = {"date": today, "momentum": r["momentum"]}
+        else:
+            history.append({"date": today, "momentum": r["momentum"]})
+        history = history[-max_days:]
+        sign = 1 if r["momentum"] > 0 else (-1 if r["momentum"] < 0 else 0)
+        streak = 0
+        for h in reversed(history):
+            h_sign = 1 if h["momentum"] > 0 else (-1 if h["momentum"] < 0 else 0)
+            if sign != 0 and h_sign == sign and abs(h["momentum"]) >= 5:
+                streak += 1
+            else:
+                break
+        trend[name] = {"history": history, "streak_days": streak, "days_tracked": len(history)}
+    return trend
+
 def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
     """Scouting lists for the Plan tab: players you DON'T currently own with
     strong underlying attacking numbers (xG+xA per 90) or a reliable
@@ -1813,6 +1846,7 @@ def main(team_id=TEAM_ID, out_path=None):
     hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
     avg = {e["id"]: e.get("average_entry_score") for e in boot["events"]}
     field_avg = dict(existing.get("field_avg_known") or {})
+    prev_price_trend = dict(existing.get("price_trend") or {})
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
     gws = []
     for row in hist.get("current", []):
@@ -1908,6 +1942,9 @@ def main(team_id=TEAM_ID, out_path=None):
     watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
     watch_names |= {r["name"] for r in wc_top3}
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names)
+    today_et = datetime.now(ET).strftime("%Y-%m-%d")
+    trend_rows = data["price_radar"]["squad"] + data["price_radar"]["watch"]
+    data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),
