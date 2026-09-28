@@ -233,7 +233,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-27",
-      "total_cost": 95.8,
+      "total_cost": 95.9,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -249,13 +249,13 @@ window.FPL_WILDCARD_WATCH = {
         "Tzolakis": 4.7,
         "Konsa": 4.6,
         "Cherki": 7.8,
-        "Barry": 5.6
+        "Barry": 5.7
       }
     },
     "entry_prices": {
       "Barry": 5.6
     },
-    "total_delta": -3.0,
+    "total_delta": -2.9,
     "players": [
       {
         "name": "De Cuyper",
@@ -377,10 +377,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barry",
         "baseline_cost": null,
-        "current_cost": 5.6,
+        "current_cost": 5.7,
         "delta": null,
         "entry_cost": 5.6,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -472,6 +472,14 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Barry",
         "price_at_change": 5.6
+      },
+      {
+        "date": "2026-09-27",
+        "event": "price_change",
+        "player": "Barry",
+        "from": 5.6,
+        "to": 5.7,
+        "delta": 0.1
       }
     ]
   }
