@@ -1,12 +1,12 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-28 15:33 UTC",
+  "generated_at": "2026-09-28 16:34 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -18,27 +18,7 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Haaland (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -50,17 +30,7 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Vuskovic (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Vuskovic",
-      "club": "BHA",
-      "tags": []
-    },
-    {
-      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 2/3 sites.",
+      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -93,34 +63,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Hub",
-      "title": "FPL stats: What the first five weeks of team data tells us",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-team-stats-gameweek-6-26-27-article"
-    },
-    {
-      "source": "Scout",
-      "title": "Where could rotation strike in FPL Gameweeks 6-10?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/28/where-could-rotation-in-fpl-gameweeks-6-10"
-    },
-    {
-      "source": "Scout",
-      "title": "Gakpo, Isak, Bruno + more: Latest international break injury news",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/28/gakpo-isak-bruno-more-latest-international-break-injury-news"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Real FPL FDR for Gameweek 6: Best Attacking & Defensive Fixtures",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-real-fpl-fdr-for-gameweek-6-best-attacking-defensive-fixtures/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 6 Wildcard Team",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-6-wildcard-team/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
