@@ -110,14 +110,14 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Groß",
     "captain_ep": 11.2,
-    "vice": "Tarkowski",
-    "vice_ep": 9.2,
+    "vice": "Bogle",
+    "vice_ep": 9.0,
     "bench_swaps": [
       {
         "bench": "Tavernier",
-        "bench_ep": 5.2,
+        "bench_ep": 6.7,
         "starter": "Dewsbury-Hall",
-        "starter_ep": 2.2
+        "starter_ep": 2.3
       }
     ],
     "availability_flags": [],
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 9.2,
+        "ep_next": 8.3,
         "status": "ok"
       },
       {
@@ -161,13 +161,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 7.0,
+        "ep_next": 7.3,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 2.2,
+        "ep_next": 2.3,
         "status": "ok"
       },
       {
@@ -193,13 +193,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 6.0,
+        "ep_next": 4.7,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.2,
+        "ep_next": 6.7,
         "status": "ok"
       },
       {
@@ -239,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-27",
+      "date": "2026-09-28",
       "total_cost": 93.0,
       "prices": {
         "Raya": 6.1,
