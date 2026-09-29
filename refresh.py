@@ -7,6 +7,8 @@ from zoneinfo import ZoneInfo
 from league_tactics import build_tactics
 from lab_audit import add_roll_rows
 import fpl_common
+import fixtures_external
+import os
 
 
 def _warn(msg):
@@ -1179,7 +1181,19 @@ def _rotation_flagged_players(root):
     return flagged
 
 
-def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
+COMPETITION_ABBREV = {
+    "premier league": "PL", "uefa champions league": "CL", "champions league": "CL",
+    "uefa europa league": "EL", "europa league": "EL",
+    "uefa europa conference league": "UECL", "europa conference league": "UECL",
+    "fa cup": "FA Cup", "efl cup": "EFL Cup", "carabao cup": "EFL Cup", "league cup": "EFL Cup",
+}
+
+
+def _comp_abbrev(name):
+    return COMPETITION_ABBREV.get((name or "").strip().lower(), name or "?")
+
+
+def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=60):
     """Minutes trend over the last few finished GWs for each squad player —
     catches a player sliding out of the XI while it's still happening,
     instead of only after the fact via a bench-audit miss the week it costs
@@ -1193,7 +1207,17 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
     reported in FPL's own news blurb or scraped news/X coverage), or plain
     "rested" (fit, dropped, and no other-competition explanation found
     anywhere — still worth watching) — and a player who's still nailed on by
-    minutes but freshly flagged gets caught too."""
+    minutes but freshly flagged gets caught too.
+
+    `team_recovery` (fixtures_external.build_team_recovery's per-club output,
+    keyed by short_name) adds a fourth, real-data reason: "congestion" — the
+    player's club has <=2 days' rest before its next match across ANY
+    competition, not just Premier League. Unlike "rotation" (a prose-keyword
+    guess against scraped text), this is a fact from actual fixture dates —
+    kept as a distinct reason value so the UI can tell them apart. It only
+    fills in when nothing else already explains the row (injury/rotation/
+    rested take priority — they're either more specific or already confirmed
+    by another signal)."""
     elements = {e["id"]: e for e in boot["elements"]}
     teams = {t["id"]: t for t in boot["teams"]}
     if not picks_gw:
@@ -1253,11 +1277,32 @@ def build_rotation_risk(boot, team_id, picks_gw, lookback=3, start_mins=60):
                 reason = "rested"
         elif avail["kind"] in ("out", "doubt"):
             reason = "injury"  # still nailed by recent minutes, but freshly flagged
+
+        club = teams[el["team"]]["short_name"]
+        recovery = (team_recovery or {}).get(club)
+        rest_days = recovery.get("rest_days") if recovery else None
+        next_match_label = None
+        if recovery and recovery.get("next_match"):
+            nm = recovery["next_match"]
+            comp = _comp_abbrev(nm.get("competition"))
+            days_until = None
+            try:
+                days_until = (datetime.strptime(nm["date"], "%Y-%m-%d").date() - datetime.now(ET).date()).days
+            except Exception:
+                pass
+            when = f" in {days_until}d" if days_until is not None and days_until >= 0 else ""
+            next_match_label = f"vs {nm['opponent']} ({comp}){when}" if nm.get("opponent") else f"{comp}{when}"
+        if reason is None and rest_days is not None and rest_days <= 2:
+            reason = "congestion"
+            if not rotation_note:
+                rotation_note = f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match"
+
         rows.append({
-            "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "name": el["web_name"], "pos": POS[el["element_type"]], "club": club,
             "minutes": mins, "trend": tag, "note": note,
             "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"],
             "reason": reason, "rotation_note": rotation_note,
+            "rest_days": rest_days, "next_match_label": next_match_label,
         })
     def sort_key(r):
         pri = 0 if r["reason"] is not None else (1 if r["trend"] == "rising" else 2)
@@ -1847,6 +1892,8 @@ def main(team_id=TEAM_ID, out_path=None):
     avg = {e["id"]: e.get("average_entry_score") for e in boot["events"]}
     field_avg = dict(existing.get("field_avg_known") or {})
     prev_price_trend = dict(existing.get("price_trend") or {})
+    today_et = datetime.now(ET).strftime("%Y-%m-%d")
+    team_recovery = fixtures_external.get_team_recovery(os.environ.get("API_FOOTBALL_KEY"), boot, existing, today_et)
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
     gws = []
     for row in hist.get("current", []):
@@ -1877,7 +1924,8 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
-    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"))
+    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"))
+    data["team_recovery"] = team_recovery
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
     squad_names = {r[1] for r in (plan.get("rows") or [])}
@@ -1942,7 +1990,6 @@ def main(team_id=TEAM_ID, out_path=None):
     watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
     watch_names |= {r["name"] for r in wc_top3}
     data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names)
-    today_et = datetime.now(ET).strftime("%Y-%m-%d")
     trend_rows = data["price_radar"]["squad"] + data["price_radar"]["watch"]
     data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
     now = datetime.now(timezone.utc)
