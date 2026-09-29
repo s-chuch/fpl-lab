@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Provisional squad from Bacalhau's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00). Treat as a strong signal of intent, not a locked squad.",
   "recommend": {
-    "captain": "Groß",
-    "captain_ep": 11.2,
-    "vice": "Bogle",
-    "vice_ep": 9.0,
+    "captain": "Bogle",
+    "captain_ep": 11.3,
+    "vice": "Groß",
+    "vice_ep": 10.7,
     "bench_swaps": [
       {
         "bench": "Tavernier",
@@ -149,13 +149,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 9.0,
+        "ep_next": 11.3,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.2,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
@@ -173,13 +173,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 11.2,
+        "ep_next": 10.7,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 9.0,
+        "ep_next": 8.7,
         "status": "ok"
       },
       {
@@ -205,7 +205,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 6.8,
+        "ep_next": 7.3,
         "status": "ok"
       },
       {
@@ -239,7 +239,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-28",
+      "date": "2026-09-29",
       "total_cost": 93.0,
       "prices": {
         "Raya": 6.1,
