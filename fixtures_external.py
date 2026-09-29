@@ -13,13 +13,14 @@ API key is missing, a request fails, or a club can't be matched — this is an
 optional enrichment layered on top of a pipeline that must keep working
 without it (same posture as this codebase's existing news-scrape fallbacks).
 
-NOTE: this module's request/response handling was written from provider-doc
-research, not a live test call — this sandbox has no network path to
-api-sports.io to hand-verify it, and the API key lives only in the project's
-GitHub secret. The first real GitHub Actions run after this ships is the
-actual verification point (see the "recovery period" plan). If team_recovery
-comes back all-null, check the _warn lines in that run's log for the raw
-response shape and adjust the field lookups below.
+NOTE: the first live GitHub Actions run (2026-09-29) found that API-Football's
+free tier rejects season-scoped current-season lookups (a /teams?league=&
+season=2026 call came back "Free plans do not have access to this season, try
+from 2022 to 2024."). Team identity is resolved via /teams?search=<name>
+instead, which isn't season-scoped and isn't affected by that restriction.
+If /fixtures calls ever hit the same wall, check the _warn lines in the
+run's log — the fallback in that case is scraping worldfootball.net, which
+was researched as a free, unlimited backstop when API-Football was chosen.
 """
 from __future__ import annotations
 import json, re, time, urllib.error, urllib.parse, urllib.request
@@ -27,7 +28,6 @@ import sys
 from datetime import datetime, timezone
 
 AF_BASE = "https://v3.football.api-sports.io"
-PL_LEAGUE_ID = 39
 USER_AGENT = "ShaalandFPLLab/1.0"
 
 # Hand-maintained hints for clubs whose FPL `name` is unlikely to match
@@ -74,14 +74,6 @@ def _af_get(path, params, api_key, timeout=20, retries=3, backoff=1.5):
     raise last_err
 
 
-def current_af_season(today=None):
-    """PL season label API-Football expects: the year the season started
-    (e.g. 2026 for the 2026-27 season). No network call needed — derived
-    from today's date, since the PL season always runs roughly Aug-May."""
-    d = today or datetime.now(timezone.utc)
-    return d.year if d.month >= 7 else d.year - 1
-
-
 def match_af_team(fpl_team, af_teams):
     """fpl_team: one of boot["teams"]. af_teams: [{"id":.., "name":..}, ...]
     from API-Football's /teams response. Tries an exact normalized-name
@@ -101,31 +93,65 @@ def match_af_team(fpl_team, af_teams):
     return None
 
 
-def fetch_af_team_ids(api_key, boot, season=None):
-    """{fpl_short_name: api_football_team_id} for every PL club that
-    matches. One API call total."""
-    season = season or current_af_season()
+def _search_af_team(api_key, query):
+    """One /teams?search= lookup -> [{"id":.., "name":..}, ...]. This
+    endpoint isn't season-scoped, unlike /teams?league=&season=, which
+    API-Football's free tier rejects for the current season (confirmed
+    live: 'Free plans do not have access to this season, try from 2022 to
+    2024.') — team identity lookup doesn't need a season at all, so this
+    sidesteps that restriction entirely."""
     try:
-        resp = _af_get("/teams", {"league": PL_LEAGUE_ID, "season": season}, api_key)
+        resp = _af_get("/teams", {"search": query}, api_key)
     except Exception as e:
-        _warn(f"fetch_af_team_ids: request failed: {e}")
-        return {}
-    af_teams = []
+        _warn(f"_search_af_team({query!r}): request failed: {e}")
+        return []
+    out = []
     for item in (resp or {}).get("response") or []:
         t = (item or {}).get("team") or {}
         if t.get("id") and t.get("name"):
-            af_teams.append({"id": t["id"], "name": t["name"]})
-    if not af_teams:
-        _warn(f"fetch_af_team_ids: no teams in response — check API key/season/shape: {json.dumps(resp)[:300]}")
-        return {}
+            out.append({"id": t["id"], "name": t["name"]})
+    if not out and (resp or {}).get("errors"):
+        _warn(f"_search_af_team({query!r}): {json.dumps(resp.get('errors'))[:200]}")
+    return out
+
+
+def fetch_af_team_ids(api_key, fpl_teams):
+    """{fpl_short_name: api_football_team_id} for the given FPL team dicts
+    (each one of boot["teams"]), resolved one /teams?search= call per club
+    (plus a retry per NAME_HINTS candidate if the first search doesn't
+    resolve). A club that still doesn't match is logged and simply left
+    out — the caller decides whether to retry it later."""
     out = {}
-    for t in boot["teams"]:
-        af_id = match_af_team(t, af_teams)
+    for t in fpl_teams:
+        queries = [q for q in [t.get("name")] + NAME_HINTS.get(t.get("short_name"), []) if q]
+        af_id = None
+        for q in queries:
+            candidates = _search_af_team(api_key, q)
+            af_id = match_af_team(t, candidates) if candidates else None
+            if af_id:
+                break
         if af_id:
             out[t["short_name"]] = af_id
         else:
             _warn(f"fetch_af_team_ids: no API-Football match for {t.get('name')} ({t.get('short_name')})")
     return out
+
+
+def get_af_team_ids(api_key, boot, existing):
+    """Permanent (season-independent) id cache — a club's API-Football id
+    never changes season to season, so this is resolved once per club and
+    kept forever, unlike team_recovery's rest-days which are refetched
+    daily. Only clubs missing from the cache (a new promotion, or a name
+    that failed to match before) cost a request; a fully-populated cache
+    costs zero."""
+    cached = dict((existing or {}).get("af_team_ids") or {})
+    if not api_key:
+        return cached
+    missing = [t for t in boot["teams"] if t["short_name"] not in cached]
+    if not missing:
+        return cached
+    cached.update(fetch_af_team_ids(api_key, missing))
+    return cached
 
 
 def _first_fixture(resp):
@@ -175,29 +201,31 @@ def fetch_recovery_for_team(api_key, af_team_id):
     }
 
 
-def build_team_recovery(api_key, boot):
-    """{fpl_short_name: recovery-record} for every club that resolves and
+def build_team_recovery(api_key, af_team_ids):
+    """{fpl_short_name: recovery-record} for every club id given that
     returns usable fixture data. Empty dict (not an exception) if the key
     is missing or nothing resolves."""
     if not api_key:
         return {}
-    team_ids = fetch_af_team_ids(api_key, boot)
     out = {}
-    for short_name, af_id in team_ids.items():
+    for short_name, af_id in (af_team_ids or {}).items():
         info = fetch_recovery_for_team(api_key, af_id)
         if info:
             out[short_name] = info
     return out
 
 
-def get_team_recovery(api_key, boot, existing, today_et):
+def get_team_recovery(api_key, af_team_ids, existing, today_et):
     """Top-level entry point for refresh.py's main(). Caches by ET calendar
     date so the ~40-request fetch (20 clubs x 2 calls) happens once a day
     no matter how many times the refresh workflow fires — the free tier is
-    ~100 requests/day and rest-days barely changes within a day anyway."""
+    ~100 requests/day and rest-days barely changes within a day anyway.
+    Takes an already-resolved af_team_ids map (see get_af_team_ids) rather
+    than resolving ids itself, since those are cached separately and
+    permanently."""
     prev = (existing or {}).get("team_recovery") or {}
     if prev.get("fetched_date") == today_et:
         return prev
     if not api_key:
         return prev if prev else {"fetched_date": None, "teams": {}}
-    return {"fetched_date": today_et, "teams": build_team_recovery(api_key, boot)}
+    return {"fetched_date": today_et, "teams": build_team_recovery(api_key, af_team_ids)}
