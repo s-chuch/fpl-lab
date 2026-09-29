@@ -142,8 +142,12 @@ def _search_af_team(api_key, query):
     live: 'Free plans do not have access to this season, try from 2022 to
     2024.') — team identity lookup doesn't need a season at all, so this
     sidesteps that restriction entirely."""
+    # The search field rejects anything but letters/digits/spaces (confirmed
+    # live: "Nott'm Forest" was rejected for its apostrophe) — strip
+    # everything else rather than lose that club's lookup entirely.
+    safe_query = re.sub(r"[^a-zA-Z0-9 ]", " ", query).strip()
     try:
-        resp = _af_get("/teams", {"search": query}, api_key)
+        resp = _af_get("/teams", {"search": safe_query}, api_key)
     except Exception as e:
         _warn(f"_search_af_team({query!r}): request failed: {e}")
         return []
@@ -152,8 +156,8 @@ def _search_af_team(api_key, query):
         t = (item or {}).get("team") or {}
         if t.get("id") and t.get("name"):
             out.append({"id": t["id"], "name": t["name"]})
-    if not out and (resp or {}).get("errors"):
-        _warn(f"_search_af_team({query!r}): {json.dumps(resp.get('errors'))[:200]}")
+    if not out:
+        _warn_if_errors(resp, f"_search_af_team({query!r})")
     return out
 
 
@@ -220,6 +224,18 @@ def _fixture_info(fx, own_af_id=None):
     return {"date": date, "date_str": date.strftime("%Y-%m-%d"), "competition": competition, "opponent": opponent}
 
 
+def _warn_if_errors(resp, label):
+    """The /teams?league=&season= call that failed live returned a 200 with
+    a populated "errors" field and an empty "response" array — a shape
+    that's easy to misread as "no results" rather than "the API is telling
+    you something." Surface it explicitly wherever a fixtures/teams response
+    comes back with nothing in it, instead of silently treating errors and
+    genuine empty-results the same way."""
+    errors = (resp or {}).get("errors")
+    if errors:
+        _warn(f"{label}: {json.dumps(errors)[:200]}")
+
+
 def fetch_recovery_for_team(api_key, af_team_id):
     """Rest days between this club's most recent finished match (any
     competition) and its next scheduled one (any competition). Two API
@@ -231,8 +247,13 @@ def fetch_recovery_for_team(api_key, af_team_id):
     except Exception as e:
         _warn(f"fetch_recovery_for_team({af_team_id}): request failed: {e}")
         return None
-    last_info = _fixture_info(_first_fixture(last_resp))
-    next_info = _fixture_info(_first_fixture(next_resp), own_af_id=af_team_id)
+    last_fx, next_fx = _first_fixture(last_resp), _first_fixture(next_resp)
+    if not last_fx:
+        _warn_if_errors(last_resp, f"fetch_recovery_for_team({af_team_id}): last-match call")
+    if not next_fx:
+        _warn_if_errors(next_resp, f"fetch_recovery_for_team({af_team_id}): next-match call")
+    last_info = _fixture_info(last_fx)
+    next_info = _fixture_info(next_fx, own_af_id=af_team_id)
     rest_days = None
     if last_info and next_info:
         rest_days = (next_info["date"].date() - last_info["date"].date()).days
