@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20260920c">
+<link rel="stylesheet" href="dashboard.css?v=20260929a">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -50,7 +50,7 @@ document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); 
   else if(b.dataset.id){activeTab=b.dataset.id; const owner=TAB_GROUPS.find(x=>x.tabs.some(t=>t[0]===activeTab)); if(owner) activeGroup=owner.id;}
   paintTabs();};
 paintTabs();
-function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div>`;}
+function gwTable(){const rows=D.gameweeks.map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><div class="table-scroll"><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;}
 document.getElementById("season").innerHTML=gwTable();
 function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
 function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
@@ -192,7 +192,7 @@ function renderWildcardWatch(){
   const wtDeltaCls=d=>d==null?"":d>0?"neg":d<0?"pos":"";
   let worthCard;
   if(WT){
-    const wtHead=`<thead><tr><th style="width:34%">Player</th><th style="width:15%">Then</th><th style="width:15%">Now</th><th style="width:16%">Δ</th><th style="width:20%">New Δ</th></tr></thead>`;
+    const wtHead=`<thead><tr><th style="width:37%">Player</th><th style="width:15%">Then</th><th style="width:15%">Now</th><th style="width:15%">Δ</th><th style="width:18%">New Δ</th></tr></thead>`;
     const wtRow=p=>{
       const statusTag=p.status==="removed"?` <span class="pill used">Dropped</span>`:p.status==="added"?` <span class="pill free">Added</span>`:"";
       const thenCell=p.baseline_cost!=null?`£${p.baseline_cost.toFixed(1)}`:"–";
