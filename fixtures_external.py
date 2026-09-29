@@ -59,18 +59,60 @@ def _norm(s):
     return s
 
 
-def _af_get(path, params, api_key, timeout=20, retries=3, backoff=1.5):
+RATE_LIMIT_PER_MIN = 10  # API-Football free tier's documented cap; confirmed live
+_call_times = []
+
+
+def _throttle():
+    """Proactively pace calls to stay under the free tier's 10-req/min cap,
+    rather than firing a burst and reacting to 429s after the fact — the
+    first live run showed that reactive retries (short backoff) never
+    actually clear a per-minute window, so every call after the 11th just
+    kept failing for the rest of that run."""
+    now = time.time()
+    while _call_times and now - _call_times[0] > 60:
+        _call_times.pop(0)
+    if len(_call_times) >= RATE_LIMIT_PER_MIN:
+        time.sleep(max(0, 60 - (now - _call_times[0]) + 0.5))
+        now = time.time()
+        while _call_times and now - _call_times[0] > 60:
+            _call_times.pop(0)
+    _call_times.append(time.time())
+
+
+class _RateLimited(Exception):
+    pass
+
+
+def _af_get(path, params, api_key, timeout=20, retries=4):
+    """A 429 shows up two ways from this API: an actual HTTP 429 status, or
+    (confirmed live) an HTTP 200 whose JSON body is just
+    {"rateLimit": "..."} — the latter looks like a valid empty response
+    unless checked for explicitly, so it's treated as a retryable failure
+    here rather than silently read as "no results"."""
     url = f"{AF_BASE}{path}?{urllib.parse.urlencode(params)}"
     last_err = None
     for attempt in range(retries):
+        _throttle()
         try:
             req = urllib.request.Request(url, headers={"x-apisports-key": api_key, "User-Agent": USER_AGENT})
             with urllib.request.urlopen(req, timeout=timeout) as r:
-                return json.loads(r.read().decode())
+                data = json.loads(r.read().decode())
+            if isinstance(data, dict) and data.get("rateLimit"):
+                raise _RateLimited(data["rateLimit"])
+            return data
+        except urllib.error.HTTPError as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(61 if e.code == 429 else 2)
+        except _RateLimited as e:
+            last_err = e
+            if attempt < retries - 1:
+                time.sleep(61)
         except (OSError, urllib.error.URLError, json.JSONDecodeError, ValueError) as e:
             last_err = e
             if attempt < retries - 1:
-                time.sleep(backoff ** attempt)
+                time.sleep(2)
     raise last_err
 
 

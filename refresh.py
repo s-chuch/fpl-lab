@@ -1893,9 +1893,22 @@ def main(team_id=TEAM_ID, out_path=None):
     field_avg = dict(existing.get("field_avg_known") or {})
     prev_price_trend = dict(existing.get("price_trend") or {})
     today_et = datetime.now(ET).strftime("%Y-%m-%d")
+    # Club rest-days are the same for both Shaaland and Bacalhau — refresh.py
+    # runs once per team per workflow invocation, so this lives in its own
+    # cache file (not data.js/bacalhau-data.js's `existing`) shared across
+    # both runs. Whichever team's run goes first pays the API cost for the
+    # day; the second reads what the first just wrote and makes zero calls.
+    recovery_cache_path = ROOT / "team_recovery_cache.json"
+    try:
+        recovery_cache = json.loads(recovery_cache_path.read_text())
+    except Exception:
+        recovery_cache = {}
     af_key = os.environ.get("API_FOOTBALL_KEY")
-    af_team_ids = fixtures_external.get_af_team_ids(af_key, boot, existing)
-    team_recovery = fixtures_external.get_team_recovery(af_key, af_team_ids, existing, today_et)
+    af_team_ids = fixtures_external.get_af_team_ids(af_key, boot, recovery_cache)
+    team_recovery = fixtures_external.get_team_recovery(af_key, af_team_ids, recovery_cache, today_et)
+    recovery_cache["af_team_ids"] = af_team_ids
+    recovery_cache["team_recovery"] = team_recovery
+    recovery_cache_path.write_text(json.dumps(recovery_cache, indent=2))
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
     gws = []
     for row in hist.get("current", []):

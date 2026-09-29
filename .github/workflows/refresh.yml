@@ -62,7 +62,7 @@ jobs:
           # hand-captured from screenshots, but their "recommend" blocks are
           # fully computed here — Actions committing them just keeps that
           # recommendation current.
-          git add data.js bacalhau-data.js news.js greekgod-archive.js bacalhau-wildcard.js shaaland-wildcard.js
+          git add data.js bacalhau-data.js news.js greekgod-archive.js bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json
           if git diff --staged --quiet; then
             echo "No data change"
           else
