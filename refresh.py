@@ -1184,7 +1184,7 @@ def _rotation_flagged_players(root):
 COMPETITION_ABBREV = {
     "premier league": "PL", "uefa champions league": "CL", "champions league": "CL",
     "uefa europa league": "EL", "europa league": "EL",
-    "uefa europa conference league": "UECL", "europa conference league": "UECL",
+    "uefa europa conference league": "UECL", "europa conference league": "UECL", "conference league": "UECL",
     "fa cup": "FA Cup", "efl cup": "EFL Cup", "carabao cup": "EFL Cup", "league cup": "EFL Cup",
 }
 
