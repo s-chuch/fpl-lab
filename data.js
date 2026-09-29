@@ -470,8 +470,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-29 01:36 UTC",
-  "generated_at_et": "2026-09-28 9:36 PM ET",
+  "generated_at": "2026-09-29 01:42 UTC",
+  "generated_at_et": "2026-09-28 9:42 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -10938,5 +10938,17 @@ window.FPL_DATA = {
   "team_recovery": {
     "fetched_date": "2026-09-28",
     "teams": {}
+  },
+  "af_team_ids": {
+    "ARS": 42,
+    "AVL": 66,
+    "BOU": 35,
+    "BRE": 55,
+    "BHA": 51,
+    "CHE": 49,
+    "COV": 15645,
+    "CRY": 52,
+    "EVE": 45,
+    "FUL": 36
   }
 };

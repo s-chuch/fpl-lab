@@ -292,8 +292,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-29 01:36 UTC",
-  "generated_at_et": "2026-09-28 9:36 PM ET",
+  "generated_at": "2026-09-29 01:43 UTC",
+  "generated_at_et": "2026-09-28 9:43 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -10226,5 +10226,6 @@ window.FPL_DATA = {
   "team_recovery": {
     "fetched_date": "2026-09-28",
     "teams": {}
-  }
+  },
+  "af_team_ids": {}
 };
