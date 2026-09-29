@@ -10,8 +10,10 @@ Source (found by testing several free options from GitHub Actions on
 2026-09-29): fixturedownload.com/feed/json/<competition>-<year> serves the whole
 season as static JSON — no key, not blocked from GitHub's servers, scores
 included once played. Used: epl, champions-league, europa-league,
-conference-league. NOT covered: the FA Cup and EFL Cup (no feed found), so a
-cup midweek game is invisible here. API-Football's free plan, worldfootball.net,
+conference-league. The EFL Cup and FA Cup have no feed, so they are read from English
+Wikipedia's cup pages ({{Football box}} templates via the parse API); the FA Cup
+page has no fixtures until later rounds are drawn, so that part is unverified
+until PL clubs enter (January). API-Football's free plan, worldfootball.net,
 ESPN and football-data.org were all ruled out (plan-blocked / 403 from Actions).
 
 Feed club names mostly match FPL's own team names ("Man City", "Spurs",
@@ -24,13 +26,15 @@ can't be fetched — this is optional enrichment on a pipeline that must keep
 working without it.
 """
 from __future__ import annotations
-import json, re, sys, urllib.error, urllib.request
+import json, re, sys, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 
 FEED_BASE = "https://fixturedownload.com/feed/json"
 FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
          ("Europa League", "europa-league"), ("Conference League", "conference-league")]
 USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
+WIKI_UA = "ShaalandFPLLab/1.0 (https://github.com/s-chuch/fpl-lab)"  # Wikipedia asks for an identifying UA
+WIKI_CUPS = [("EFL Cup", "{y}–{yy} EFL Cup"), ("FA Cup", "{y}–{yy} FA Cup")]
 REFETCH_MINUTES = 60  # feeds update as results land; also dedupes the two refresh.py runs per workflow
 
 # FPL short_name -> extra names the feed might use, beyond FPL's own `name`.
@@ -104,6 +108,58 @@ def recovery_from_matches(matches, now):
     }
 
 
+def _fetch_wiki_wikitext(title, timeout=25):
+    q = urllib.parse.urlencode({"action": "parse", "page": title, "prop": "wikitext", "format": "json", "redirects": 1})
+    req = urllib.request.Request(f"https://en.wikipedia.org/w/api.php?{q}", headers={"User-Agent": WIKI_UA})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        d = json.loads(r.read().decode("utf-8"))
+    if "error" in d:
+        raise ValueError(d["error"].get("info", "wikipedia error"))
+    return d["parse"]["wikitext"]["*"]
+
+
+_BOX_RE = re.compile(r"\{\{[Ff]ootball box.*?\n\}\}", re.S)
+_DATE_RE = re.compile(r"\|\s*date\s*=\s*(\d{1,2} [A-Za-z]+ \d{4})")
+_TIME_RE = re.compile(r"\|\s*time\s*=\s*(\d{1,2}):(\d{2})")
+_SCORE_RE = re.compile(r"\|\s*score\s*=\s*([^\n|]*)")
+
+
+def _wiki_team(box, field):
+    m = re.search(rf"\|\s*{field}\s*=\s*(.*?)(?=\s*\|\s*[A-Za-z0-9_]+\s*=|\n|\}}\}})", box)
+    if not m:
+        return None
+    raw = m.group(1)
+    link = re.search(r"\[\[(?:[^\]|]*\|)?([^\]]+)\]\]", raw)
+    name = link.group(1) if link else raw
+    return re.sub(r"\(\d+\)|\{\{.*?\}\}", "", name).strip() or None
+
+
+def matches_from_wikitext(wikitext, competition, name_index):
+    """Same shape as matches_from_feed, from a Wikipedia cup page's
+    {{Football box}} templates. Kickoff time is taken as UTC (only the date
+    matters for rest-days); a match counts as played once its score is filled."""
+    out = []
+    for box in _BOX_RE.findall(wikitext or ""):
+        dm = _DATE_RE.search(box)
+        if not dm:
+            continue
+        try:
+            when = datetime.strptime(dm.group(1), "%d %B %Y").replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+        tm = _TIME_RE.search(box)
+        if tm:
+            when = when.replace(hour=int(tm.group(1)), minute=int(tm.group(2)))
+        sm = _SCORE_RE.search(box)
+        played = bool(sm and re.search(r"\d", sm.group(1)))
+        t1, t2 = _wiki_team(box, "team1"), _wiki_team(box, "team2")
+        for me, opp in ((t1, t2), (t2, t1)):
+            sn = name_index.get(_norm(me))
+            if sn:
+                out.append((sn, {"date": when, "competition": competition, "opponent": opp, "played": played}))
+    return out
+
+
 def get_team_recovery(boot, existing, now=None):
     """Entry point for refresh.py's main(). Returns
     {"fetched_at", "teams": {short_name: record}}; refetches the four feeds
@@ -131,6 +187,19 @@ def get_team_recovery(boot, existing, now=None):
             per_club.setdefault(sn, []).append(m)
             if slug == "epl":
                 pl_seen.add(sn)
+    yy = lambda y: f"{y + 1}"[2:]
+    for competition, tmpl in WIKI_CUPS:
+        y = season_year(now)
+        try:
+            text = _fetch_wiki_wikitext(tmpl.format(y=y, yy=yy(y)))
+        except (urllib.error.URLError, OSError, ValueError, KeyError) as e:
+            _warn(f"{competition} wikipedia page failed: {e}")
+            continue
+        got = matches_from_wikitext(text, competition, idx)
+        print(f"[fixtures_external.py] {competition} (wikipedia): {len(got)} PL-club matches", file=sys.stderr)
+        for sn, m in got:
+            per_club.setdefault(sn, []).append(m)
+        ok += 1
     if not ok:
         return prev or {"fetched_at": None, "teams": {}}
     missing = [t["short_name"] for t in boot["teams"] if t["short_name"] not in pl_seen]
