@@ -39,7 +39,7 @@ NAME_HINTS = {
     "TOT": ["Tottenham", "Tottenham Hotspur"], "WOL": ["Wolves", "Wolverhampton Wanderers"],
     "NFO": ["Nottingham Forest", "Nott'm Forest"], "NEW": ["Newcastle United"],
     "WHU": ["West Ham", "West Ham United"], "BHA": ["Brighton & Hove Albion"],
-    "LEE": ["Leeds United"], "COV": ["Coventry City"], "HUL": ["Hull City"], "IPS": ["Ipswich Town"],
+    "LEE": ["Leeds United"], "COV": ["Coventry", "Coventry City"], "HUL": ["Hull", "Hull City"], "IPS": ["Ipswich", "Ipswich Town"],
 }
 
 
