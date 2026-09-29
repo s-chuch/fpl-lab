@@ -470,8 +470,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-09-29 21:41 UTC",
-  "generated_at_et": "2026-09-29 5:41 PM ET",
+  "generated_at": "2026-09-29 21:43 UTC",
+  "generated_at_et": "2026-09-29 5:43 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -11323,27 +11323,5 @@ window.FPL_DATA = {
         }
       }
     }
-  },
-  "af_team_ids": {
-    "ARS": 42,
-    "AVL": 66,
-    "BOU": 35,
-    "BRE": 55,
-    "BHA": 51,
-    "CHE": 49,
-    "COV": 15645,
-    "CRY": 52,
-    "EVE": 45,
-    "FUL": 36,
-    "HUL": 64,
-    "IPS": 15422,
-    "LEE": 63,
-    "LIV": 40,
-    "MCI": 13880,
-    "MUN": 5205,
-    "NEW": 34,
-    "NFO": 65,
-    "TOT": 2668,
-    "SUN": 746
   }
 };
