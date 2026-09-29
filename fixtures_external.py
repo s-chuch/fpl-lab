@@ -1,50 +1,45 @@
-"""All-competition rest-days for each PL club, via API-Football (api-sports.io).
+"""All-competition rest-days for each PL club, from fixturedownload.com's free JSON feeds.
 
 FPL's own API is Premier-League-only — no Champions League, Europa/Conference
-League, or domestic cup fixtures exist in it anywhere — so "how many days'
-rest did this club have before its next match" can't be answered from data
-this app already fetches. This module fills that one gap from an external,
-free-tier source, and nothing else: everything else about rotation risk
-(minutes trend, FPL's own injury status, scraped news/X mentions) stays in
-refresh.py's build_rotation_risk exactly as before.
+League fixtures exist in it — so "how many days' rest does this club have
+before its next match" can't be answered from data this app already fetches.
+This module fills that gap and nothing else: everything else about rotation
+risk stays in refresh.py's build_rotation_risk.
 
-Every function degrades to an empty/None result rather than raising when the
-API key is missing, a request fails, or a club can't be matched — this is an
-optional enrichment layered on top of a pipeline that must keep working
-without it (same posture as this codebase's existing news-scrape fallbacks).
+Source (found by testing several free options from GitHub Actions on
+2026-09-29): fixturedownload.com/feed/json/<competition>-<year> serves the whole
+season as static JSON — no key, not blocked from GitHub's servers, scores
+included once played. Used: epl, champions-league, europa-league,
+conference-league. NOT covered: the FA Cup and EFL Cup (no feed found), so a
+cup midweek game is invisible here. API-Football's free plan, worldfootball.net,
+ESPN and football-data.org were all ruled out (plan-blocked / 403 from Actions).
 
-NOTE: the first live GitHub Actions run (2026-09-29) found that API-Football's
-free tier rejects season-scoped current-season lookups (a /teams?league=&
-season=2026 call came back "Free plans do not have access to this season, try
-from 2022 to 2024."). Team identity is resolved via /teams?search=<name>
-instead, which isn't season-scoped and isn't affected by that restriction.
-If /fixtures calls ever hit the same wall, check the _warn lines in the
-run's log — the fallback in that case is scraping worldfootball.net, which
-was researched as a free, unlimited backstop when API-Football was chosen.
+Feed club names mostly match FPL's own team names ("Man City", "Spurs",
+"Nott'm Forest"); matching is exact-normalized only, plus NAME_HINTS. Any FPL
+club with no match in the Premier League feed is logged, so a rename shows up
+in the Actions log instead of silently dropping that club.
+
+Every function degrades to an empty/None result rather than raising when a feed
+can't be fetched — this is optional enrichment on a pipeline that must keep
+working without it.
 """
 from __future__ import annotations
-import json, re, time, urllib.error, urllib.parse, urllib.request
-import sys
-from datetime import datetime, timezone
+import json, re, sys, urllib.error, urllib.request
+from datetime import datetime, timedelta, timezone
 
-AF_BASE = "https://v3.football.api-sports.io"
-USER_AGENT = "ShaalandFPLLab/1.0"
+FEED_BASE = "https://fixturedownload.com/feed/json"
+FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
+         ("Europa League", "europa-league"), ("Conference League", "conference-league")]
+USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
+REFETCH_MINUTES = 60  # feeds update as results land; also dedupes the two refresh.py runs per workflow
 
-# Hand-maintained hints for clubs whose FPL `name` is unlikely to match
-# API-Football's team name via plain normalization (abbreviated/traditional
-# names on the FPL side). Keyed by FPL short_name; values are extra
-# normalized-name candidates to try. Not exhaustive by design — an unmatched
-# club is logged and simply excluded from recovery data for that run rather
-# than guessed at.
+# FPL short_name -> extra names the feed might use, beyond FPL's own `name`.
 NAME_HINTS = {
-    "MUN": ["manchester united", "man united", "man utd"],
-    "MCI": ["manchester city", "man city"],
-    "TOT": ["tottenham", "tottenham hotspur", "spurs"],
-    "WOL": ["wolverhampton", "wolverhampton wanderers", "wolves"],
-    "NFO": ["nottingham forest", "nottm forest", "forest"],
-    "NEW": ["newcastle", "newcastle united"],
-    "WHU": ["west ham", "west ham united"],
-    "BHA": ["brighton", "brighton hove albion", "brighton and hove albion"],
+    "MUN": ["Manchester United", "Man United"], "MCI": ["Manchester City"],
+    "TOT": ["Tottenham", "Tottenham Hotspur"], "WOL": ["Wolves", "Wolverhampton Wanderers"],
+    "NFO": ["Nottingham Forest", "Nott'm Forest"], "NEW": ["Newcastle United"],
+    "WHU": ["West Ham", "West Ham United"], "BHA": ["Brighton & Hove Albion"],
+    "LEE": ["Leeds United"], "COV": ["Coventry City"], "HUL": ["Hull City"], "IPS": ["Ipswich Town"],
 }
 
 
@@ -53,242 +48,93 @@ def _warn(msg):
 
 
 def _norm(s):
-    s = (s or "").lower()
-    s = re.sub(r"\b(fc|afc)\b", "", s)
-    s = re.sub(r"[^a-z0-9]", "", s)
-    return s
+    return re.sub(r"[^a-z0-9]", "", re.sub(r"\b(fc|afc)\b", "", (s or "").lower()))
 
 
-RATE_LIMIT_PER_MIN = 10  # API-Football free tier's documented cap; confirmed live
-_call_times = []
-
-
-def _throttle():
-    """Proactively pace calls to stay under the free tier's 10-req/min cap,
-    rather than firing a burst and reacting to 429s after the fact — the
-    first live run showed that reactive retries (short backoff) never
-    actually clear a per-minute window, so every call after the 11th just
-    kept failing for the rest of that run."""
-    now = time.time()
-    while _call_times and now - _call_times[0] > 60:
-        _call_times.pop(0)
-    if len(_call_times) >= RATE_LIMIT_PER_MIN:
-        time.sleep(max(0, 60 - (now - _call_times[0]) + 0.5))
-        now = time.time()
-        while _call_times and now - _call_times[0] > 60:
-            _call_times.pop(0)
-    _call_times.append(time.time())
-
-
-class _RateLimited(Exception):
-    pass
-
-
-def _af_get(path, params, api_key, timeout=20, retries=4):
-    """A 429 shows up two ways from this API: an actual HTTP 429 status, or
-    (confirmed live) an HTTP 200 whose JSON body is just
-    {"rateLimit": "..."} — the latter looks like a valid empty response
-    unless checked for explicitly, so it's treated as a retryable failure
-    here rather than silently read as "no results"."""
-    url = f"{AF_BASE}{path}?{urllib.parse.urlencode(params)}"
-    last_err = None
-    for attempt in range(retries):
-        _throttle()
-        try:
-            req = urllib.request.Request(url, headers={"x-apisports-key": api_key, "User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                data = json.loads(r.read().decode())
-            if isinstance(data, dict) and data.get("rateLimit"):
-                raise _RateLimited(data["rateLimit"])
-            return data
-        except urllib.error.HTTPError as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(61 if e.code == 429 else 2)
-        except _RateLimited as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(61)
-        except (OSError, urllib.error.URLError, json.JSONDecodeError, ValueError) as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(2)
-    raise last_err
-
-
-def match_af_team(fpl_team, af_teams):
-    """fpl_team: one of boot["teams"]. af_teams: [{"id":.., "name":..}, ...]
-    from API-Football's /teams response. Tries an exact normalized-name
-    match first, then this module's hand-maintained hints, then a loose
-    substring match either direction — returns the API-Football team id, or
-    None if nothing matches closely enough to trust."""
-    candidates = [_norm(fpl_team.get("name"))]
-    candidates += [_norm(h) for h in NAME_HINTS.get(fpl_team.get("short_name"), [])]
-    candidates = [c for c in candidates if c]
-    for af in af_teams:
-        if _norm(af["name"]) in candidates:
-            return af["id"]
-    for af in af_teams:
-        af_norm = _norm(af["name"])
-        if af_norm and any(af_norm in c or c in af_norm for c in candidates):
-            return af["id"]
-    return None
-
-
-def _search_af_team(api_key, query):
-    """One /teams?search= lookup -> [{"id":.., "name":..}, ...]. This
-    endpoint isn't season-scoped, unlike /teams?league=&season=, which
-    API-Football's free tier rejects for the current season (confirmed
-    live: 'Free plans do not have access to this season, try from 2022 to
-    2024.') — team identity lookup doesn't need a season at all, so this
-    sidesteps that restriction entirely."""
-    # The search field rejects anything but letters/digits/spaces (confirmed
-    # live: "Nott'm Forest" was rejected for its apostrophe) — strip
-    # everything else rather than lose that club's lookup entirely.
-    safe_query = re.sub(r"[^a-zA-Z0-9 ]", " ", query).strip()
-    try:
-        resp = _af_get("/teams", {"search": safe_query}, api_key)
-    except Exception as e:
-        _warn(f"_search_af_team({query!r}): request failed: {e}")
-        return []
-    out = []
-    for item in (resp or {}).get("response") or []:
-        t = (item or {}).get("team") or {}
-        if t.get("id") and t.get("name"):
-            out.append({"id": t["id"], "name": t["name"]})
-    if not out:
-        _warn_if_errors(resp, f"_search_af_team({query!r})")
-    return out
-
-
-def fetch_af_team_ids(api_key, fpl_teams):
-    """{fpl_short_name: api_football_team_id} for the given FPL team dicts
-    (each one of boot["teams"]), resolved one /teams?search= call per club
-    (plus a retry per NAME_HINTS candidate if the first search doesn't
-    resolve). A club that still doesn't match is logged and simply left
-    out — the caller decides whether to retry it later."""
-    out = {}
+def build_name_index(fpl_teams):
+    idx = {}
     for t in fpl_teams:
-        queries = [q for q in [t.get("name")] + NAME_HINTS.get(t.get("short_name"), []) if q]
-        af_id = None
-        for q in queries:
-            candidates = _search_af_team(api_key, q)
-            af_id = match_af_team(t, candidates) if candidates else None
-            if af_id:
-                break
-        if af_id:
-            out[t["short_name"]] = af_id
-        else:
-            _warn(f"fetch_af_team_ids: no API-Football match for {t.get('name')} ({t.get('short_name')})")
+        for n in [t.get("name")] + NAME_HINTS.get(t.get("short_name"), []):
+            if _norm(n):
+                idx.setdefault(_norm(n), t["short_name"])
+    return idx
+
+
+def season_year(now):
+    """Feeds are named by the year the season starts (2026 for 2026/27)."""
+    return now.year if now.month >= 7 else now.year - 1
+
+
+def _fetch_feed(slug, year, timeout=25):
+    req = urllib.request.Request(f"{FEED_BASE}/{slug}-{year}", headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def matches_from_feed(rows, competition, name_index):
+    """[(short_name, match-dict), ...] — one entry per PL club per row."""
+    out = []
+    for r in rows or []:
+        try:
+            when = datetime.strptime(r["DateUtc"].replace("Z", ""), "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        except (KeyError, ValueError, AttributeError):
+            continue
+        played = r.get("HomeTeamScore") is not None and r.get("AwayTeamScore") is not None
+        for me, opp in ((r.get("HomeTeam"), r.get("AwayTeam")), (r.get("AwayTeam"), r.get("HomeTeam"))):
+            sn = name_index.get(_norm(me))
+            if sn:
+                out.append((sn, {"date": when, "competition": competition, "opponent": opp, "played": played}))
     return out
 
 
-def get_af_team_ids(api_key, boot, existing):
-    """Permanent (season-independent) id cache — a club's API-Football id
-    never changes season to season, so this is resolved once per club and
-    kept forever, unlike team_recovery's rest-days which are refetched
-    daily. Only clubs missing from the cache (a new promotion, or a name
-    that failed to match before) cost a request; a fully-populated cache
-    costs zero."""
-    cached = dict((existing or {}).get("af_team_ids") or {})
-    if not api_key:
-        return cached
-    missing = [t for t in boot["teams"] if t["short_name"] not in cached]
-    if not missing:
-        return cached
-    cached.update(fetch_af_team_ids(api_key, missing))
-    return cached
-
-
-def _first_fixture(resp):
-    items = (resp or {}).get("response") or []
-    return items[0] if items else None
-
-
-def _fixture_info(fx, own_af_id=None):
-    if not fx:
+def recovery_from_matches(matches, now):
+    """Rest-days record for one club: last = latest played match, next =
+    earliest unplayed match still to come (a kickoff already past with no
+    score is treated as in-progress and ignored)."""
+    played = [m for m in matches if m["played"]]
+    upcoming = [m for m in matches if not m["played"] and m["date"] >= now]
+    last = max(played, key=lambda m: m["date"]) if played else None
+    nxt = min(upcoming, key=lambda m: m["date"]) if upcoming else None
+    if not last and not nxt:
         return None
-    raw_date = ((fx.get("fixture") or {}).get("date"))
-    if not raw_date:
-        return None
-    try:
-        date = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
-    except Exception:
-        return None
-    competition = ((fx.get("league") or {}).get("name")) or "?"
-    opponent = None
-    if own_af_id is not None:
-        teams = fx.get("teams") or {}
-        home, away = teams.get("home") or {}, teams.get("away") or {}
-        opponent = away.get("name") if home.get("id") == own_af_id else home.get("name")
-    return {"date": date, "date_str": date.strftime("%Y-%m-%d"), "competition": competition, "opponent": opponent}
-
-
-def _warn_if_errors(resp, label):
-    """The /teams?league=&season= call that failed live returned a 200 with
-    a populated "errors" field and an empty "response" array — a shape
-    that's easy to misread as "no results" rather than "the API is telling
-    you something." Surface it explicitly wherever a fixtures/teams response
-    comes back with nothing in it, instead of silently treating errors and
-    genuine empty-results the same way."""
-    errors = (resp or {}).get("errors")
-    if errors:
-        _warn(f"{label}: {json.dumps(errors)[:200]}")
-
-
-def fetch_recovery_for_team(api_key, af_team_id):
-    """Rest days between this club's most recent finished match (any
-    competition) and its next scheduled one (any competition). Two API
-    calls. Returns None on any failure so a single bad club can't take
-    down the whole recovery build."""
-    try:
-        last_resp = _af_get("/fixtures", {"team": af_team_id, "last": 1, "status": "FT"}, api_key)
-        next_resp = _af_get("/fixtures", {"team": af_team_id, "next": 1}, api_key)
-    except Exception as e:
-        _warn(f"fetch_recovery_for_team({af_team_id}): request failed: {e}")
-        return None
-    last_fx, next_fx = _first_fixture(last_resp), _first_fixture(next_resp)
-    if not last_fx:
-        _warn_if_errors(last_resp, f"fetch_recovery_for_team({af_team_id}): last-match call")
-    if not next_fx:
-        _warn_if_errors(next_resp, f"fetch_recovery_for_team({af_team_id}): next-match call")
-    last_info = _fixture_info(last_fx)
-    next_info = _fixture_info(next_fx, own_af_id=af_team_id)
-    rest_days = None
-    if last_info and next_info:
-        rest_days = (next_info["date"].date() - last_info["date"].date()).days
     return {
-        "rest_days": rest_days,
-        "last_match": {"date": last_info["date_str"], "competition": last_info["competition"]} if last_info else None,
-        "next_match": ({"date": next_info["date_str"], "competition": next_info["competition"], "opponent": next_info.get("opponent")} if next_info else None),
+        "rest_days": (nxt["date"].date() - last["date"].date()).days if last and nxt else None,
+        "last_match": {"date": last["date"].strftime("%Y-%m-%d"), "competition": last["competition"]} if last else None,
+        "next_match": ({"date": nxt["date"].strftime("%Y-%m-%d"), "competition": nxt["competition"], "opponent": nxt["opponent"]} if nxt else None),
     }
 
 
-def build_team_recovery(api_key, af_team_ids):
-    """{fpl_short_name: recovery-record} for every club id given that
-    returns usable fixture data. Empty dict (not an exception) if the key
-    is missing or nothing resolves."""
-    if not api_key:
-        return {}
-    out = {}
-    for short_name, af_id in (af_team_ids or {}).items():
-        info = fetch_recovery_for_team(api_key, af_id)
-        if info:
-            out[short_name] = info
-    return out
-
-
-def get_team_recovery(api_key, af_team_ids, existing, today_et):
-    """Top-level entry point for refresh.py's main(). Caches by ET calendar
-    date so the ~40-request fetch (20 clubs x 2 calls) happens once a day
-    no matter how many times the refresh workflow fires — the free tier is
-    ~100 requests/day and rest-days barely changes within a day anyway.
-    Takes an already-resolved af_team_ids map (see get_af_team_ids) rather
-    than resolving ids itself, since those are cached separately and
-    permanently."""
+def get_team_recovery(boot, existing, now=None):
+    """Entry point for refresh.py's main(). Returns
+    {"fetched_at", "teams": {short_name: record}}; refetches the four feeds
+    only if the last fetch is older than REFETCH_MINUTES. If every feed
+    fails the previous result is kept."""
+    now = now or datetime.now(timezone.utc)
     prev = (existing or {}).get("team_recovery") or {}
-    if prev.get("fetched_date") == today_et:
-        return prev
-    if not api_key:
-        return prev if prev else {"fetched_date": None, "teams": {}}
-    return {"fetched_date": today_et, "teams": build_team_recovery(api_key, af_team_ids)}
+    try:
+        if prev.get("fetched_at") and now - datetime.fromisoformat(prev["fetched_at"]) < timedelta(minutes=REFETCH_MINUTES):
+            return prev
+    except ValueError:
+        pass
+    idx = build_name_index(boot["teams"])
+    per_club, ok, pl_seen = {}, 0, set()
+    for competition, slug in FEEDS:
+        try:
+            rows = _fetch_feed(slug, season_year(now))
+        except (urllib.error.URLError, OSError, ValueError) as e:
+            _warn(f"{slug} feed failed: {e}")
+            continue
+        ok += 1
+        got = matches_from_feed(rows, competition, idx)
+        print(f"[fixtures_external.py] {slug}: {len(rows)} rows, {len(got)} PL-club matches", file=sys.stderr)
+        for sn, m in got:
+            per_club.setdefault(sn, []).append(m)
+            if slug == "epl":
+                pl_seen.add(sn)
+    if not ok:
+        return prev or {"fetched_at": None, "teams": {}}
+    missing = [t["short_name"] for t in boot["teams"] if t["short_name"] not in pl_seen]
+    if missing:
+        _warn(f"no Premier League feed match for: {', '.join(missing)} (rename? add to NAME_HINTS)")
+    teams = {sn: r for sn, r in ((sn, recovery_from_matches(ms, now)) for sn, ms in per_club.items()) if r}
+    return {"fetched_at": now.isoformat(), "teams": teams}
