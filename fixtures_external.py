@@ -48,6 +48,9 @@ NAME_HINTS = {
 }
 
 
+NON_SENIOR_RE = re.compile(r"\b(w|women|ladies|u\d{2}|ii|b|reserves|youth|academy)\b", re.I)
+
+
 def _warn(msg):
     print(f"[fixtures_external.py] WARNING: {msg}", file=sys.stderr)
 
@@ -125,6 +128,9 @@ def match_af_team(fpl_team, af_teams):
     candidates = [_norm(fpl_team.get("name"))]
     candidates += [_norm(h) for h in NAME_HINTS.get(fpl_team.get("short_name"), [])]
     candidates = [c for c in candidates if c]
+    # Women's/youth/reserve sides share a club's name plus a suffix ("Manchester
+    # City W", "Tottenham U21") and would otherwise win the loose match below.
+    af_teams = [af for af in af_teams if not NON_SENIOR_RE.search(af["name"])]
     for af in af_teams:
         if _norm(af["name"]) in candidates:
             return af["id"]
@@ -264,17 +270,33 @@ def fetch_recovery_for_team(api_key, af_team_id):
     }
 
 
-def build_team_recovery(api_key, af_team_ids):
+def _has_data(rec):
+    return bool(rec) and (rec.get("last_match") or rec.get("next_match"))
+
+
+def build_team_recovery(api_key, af_team_ids, prev_teams=None):
     """{fpl_short_name: recovery-record} for every club id given that
-    returns usable fixture data. Empty dict (not an exception) if the key
-    is missing or nothing resolves."""
+    returns usable fixture data. Clubs already holding data in prev_teams
+    are kept as-is, so a partial or rate-limited run only re-fetches the
+    gaps. Stops early after 3 consecutive empty responses (the free tier
+    blocking current-season fixtures) rather than burning the daily quota.
+    Empty dict (not an exception) if the key is missing."""
     if not api_key:
         return {}
-    out = {}
+    out = {k: v for k, v in (prev_teams or {}).items() if _has_data(v)}
+    empty_streak = 0
     for short_name, af_id in (af_team_ids or {}).items():
+        if short_name in out:
+            continue
         info = fetch_recovery_for_team(api_key, af_id)
-        if info:
+        if _has_data(info):
             out[short_name] = info
+            empty_streak = 0
+        else:
+            empty_streak += 1
+            if empty_streak >= 3:
+                _warn("build_team_recovery: 3 consecutive empty responses; stopping early")
+                break
     return out
 
 
@@ -282,13 +304,19 @@ def get_team_recovery(api_key, af_team_ids, existing, today_et):
     """Top-level entry point for refresh.py's main(). Caches by ET calendar
     date so the ~40-request fetch (20 clubs x 2 calls) happens once a day
     no matter how many times the refresh workflow fires — the free tier is
-    ~100 requests/day and rest-days barely changes within a day anyway.
-    Takes an already-resolved af_team_ids map (see get_af_team_ids) rather
-    than resolving ids itself, since those are cached separately and
+    ~100 requests/day. fetched_date is only stamped when every club has
+    data; otherwise later runs retry just the missing clubs. Takes an
+    already-resolved af_team_ids map (see get_af_team_ids) rather than
+    resolving ids itself, since those are cached separately and
     permanently."""
     prev = (existing or {}).get("team_recovery") or {}
+    prev_teams = prev.get("teams") or {}
     if prev.get("fetched_date") == today_et:
         return prev
     if not api_key:
         return prev if prev else {"fetched_date": None, "teams": {}}
-    return {"fetched_date": today_et, "teams": build_team_recovery(api_key, af_team_ids)}
+    teams = build_team_recovery(api_key, af_team_ids, prev_teams if prev.get("partial_date") == today_et else None)
+    complete = bool(af_team_ids) and all(k in teams for k in af_team_ids)
+    return {"fetched_date": today_et if complete else None,
+            "partial_date": None if complete else today_et,
+            "teams": teams}

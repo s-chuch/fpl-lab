@@ -44,7 +44,7 @@ Public site (after you finish step 4):
 5. Run the first refresh  
    Repo → **Actions** → **Refresh FPL data** → **Run workflow**
 
-After that it runs twice a day on its own. GitHub pauses scheduled jobs if the repo sits untouched for 60 days — open the repo once a month during the season.
+After that it runs on its own several times a day (see the cron entries in `.github/workflows/refresh.yml`). GitHub pauses scheduled jobs if the repo sits untouched for 60 days — open the repo once a month during the season.
 
 
 ## Data refresh ownership
