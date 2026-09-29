@@ -1,35 +1,32 @@
-import json, os, urllib.request, urllib.error
-def get(url, headers=None):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)", **(headers or {})})
+import json, urllib.request, urllib.error
+UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", "Accept": "application/json,text/plain,*/*"}
+def probe(label, url, extra=None, show=170):
+    req = urllib.request.Request(url, headers={**UA, **(extra or {})})
     try:
         with urllib.request.urlopen(req, timeout=25) as r:
-            return r.status, json.loads(r.read().decode())
+            body = r.read().decode("utf-8", "replace"); st = r.status
     except urllib.error.HTTPError as e:
-        return e.code, e.read().decode()[:200]
+        st, body = e.code, e.read().decode("utf-8", "replace")
     except Exception as e:
-        return 0, str(e)[:200]
-RANGE = "20260926-20261110"
-for code in ("eng.1", "uefa.champions", "uefa.europa", "uefa.europa.conf", "eng.fa", "eng.league_cup"):
-    st, d = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{code}/scoreboard?dates={RANGE}&limit=300")
-    if st != 200 or not isinstance(d, dict):
-        print("RESULT espn", code, "HTTP", st, str(d)[:120]); continue
-    ev = d.get("events") or []
-    print("RESULT espn", code, "HTTP", st, "events", len(ev))
-    for e in ev[:4]:
-        print("RESULT   ", e.get("date"), e.get("name"), (e.get("status") or {}).get("type", {}).get("name"))
-st, d = get("https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams")
-if st == 200:
-    ts = [t["team"] for t in d["sports"][0]["leagues"][0]["teams"]]
-    print("RESULT espn teams", len(ts), [(t["id"], t["displayName"]) for t in ts][:20])
-    st2, s = get(f"https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/teams/{ts[0]['id']}/schedule")
-    print("RESULT espn team schedule", ts[0]["displayName"], "HTTP", st2, "events", len(s.get("events") or []) if isinstance(s, dict) else s)
-    if isinstance(s, dict):
-        for e in (s.get("events") or [])[:12]:
-            print("RESULT   ", e.get("date"), e.get("name"), (e.get("league") or {}).get("name") or (e.get("seasonType") or {}).get("name"))
-else:
-    print("RESULT espn teams HTTP", st, d)
-# football-data.org without a key (shows what is open at all)
-st, d = get("https://api.football-data.org/v4/competitions/PL/matches?dateFrom=2026-09-26&dateTo=2026-10-10")
-print("RESULT football-data PL nokey HTTP", st, (len(d.get("matches", [])) if isinstance(d, dict) else d))
-st, d = get("https://api.football-data.org/v4/competitions/CL/matches?dateFrom=2026-09-26&dateTo=2026-10-10")
-print("RESULT football-data CL nokey HTTP", st, (len(d.get("matches", [])) if isinstance(d, dict) else d))
+        st, body = 0, str(e)
+    print(f"RESULT [{st}] {label} len={len(body)} :: {' '.join(body[:show].split())}")
+    return st, body
+T = "https://www.thesportsdb.com/api/v1/json/3"
+probe("sportsdb EPL next", f"{T}/eventsnextleague.php?id=4328")
+probe("sportsdb CL next", f"{T}/eventsnextleague.php?id=4480")
+probe("sportsdb Europa next", f"{T}/eventsnextleague.php?id=4481")
+probe("sportsdb team next (Arsenal 133604)", f"{T}/eventsnext.php?id=133604")
+probe("sportsdb team last (Arsenal)", f"{T}/eventslast.php?id=133604")
+probe("sportsdb search leagues", f"{T}/search_all_leagues.php?c=England")
+probe("fixturedownload epl", "https://fixturedownload.com/feed/json/epl-2026")
+probe("fixturedownload cl", "https://fixturedownload.com/feed/json/champions-league-2026")
+probe("openfootball england", "https://raw.githubusercontent.com/openfootball/england/master/2026-27/1-premierleague.txt")
+probe("openfootball cl", "https://raw.githubusercontent.com/openfootball/champions-league/master/2026-27/cl.txt")
+probe("uefa match api CL", "https://match.uefa.com/v5/matches?competitionId=1&seasonYear=2027&limit=5&offset=0&order=ASC", {"Origin": "https://www.uefa.com"})
+probe("fotmob team Arsenal", "https://www.fotmob.com/api/teams?id=9825")
+probe("espn core api", "https://sports.core.api.espn.com/v2/sports/soccer/leagues/eng.1/seasons/2026/types/1/events?limit=3")
+probe("espn cdn schedule", "https://cdn.espn.com/core/soccer/schedule/_/date/20261003/league/eng.1?xhr=1")
+probe("bbc", "https://web-cdn.api.bbci.co.uk/wc-poll-data/container/sport-data-scores-fixtures?selectedStartDate=2026-10-03&selectedEndDate=2026-10-10&todayDate=2026-09-29&urn=urn%3Abbc%3Asportsdata%3Afootball%3Atournament-collection%3Acollection&useSdApi=false")
+probe("football-data.co.uk csv", "https://www.football-data.co.uk/fixtures.csv")
+probe("wikipedia CL 2026-27", "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=2026%E2%80%9327+UEFA+Champions+League&format=json")
+probe("fpl fixtures", "https://fantasy.premierleague.com/api/fixtures/?future=1", show=100)
