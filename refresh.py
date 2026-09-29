@@ -1938,6 +1938,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"))
     data["team_recovery"] = team_recovery
+    data.pop("af_team_ids", None)  # left over from the removed API-Football code
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
     squad_names = {r[1] for r in (plan.get("rows") or [])}
