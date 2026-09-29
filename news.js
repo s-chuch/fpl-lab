@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-28 16:35 UTC",
+  "generated_at": "2026-09-29 00:17 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -27,13 +27,6 @@ window.FPL_NEWS = {
       "club": "MCI",
       "tags": [
         "injury/doubt"
-      ]
-    },
-    {
-      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
       ]
     }
   ],
