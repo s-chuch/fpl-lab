@@ -13,6 +13,7 @@ on:
     branches: [main]
     paths:
       - "refresh.py"
+      - "fixtures_external.py"
       - "news_scrape.py"
       - ".github/workflows/refresh.yml"
 
