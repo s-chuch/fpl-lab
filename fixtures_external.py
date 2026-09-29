@@ -1,322 +1,201 @@
-"""All-competition rest-days for each PL club, via API-Football (api-sports.io).
+"""All-competition rest-days for each PL club, scraped from worldfootball.net.
 
 FPL's own API is Premier-League-only — no Champions League, Europa/Conference
-League, or domestic cup fixtures exist in it anywhere — so "how many days'
-rest did this club have before its next match" can't be answered from data
-this app already fetches. This module fills that one gap from an external,
-free-tier source, and nothing else: everything else about rotation risk
-(minutes trend, FPL's own injury status, scraped news/X mentions) stays in
-refresh.py's build_rotation_risk exactly as before.
+League, or domestic cup fixtures exist in it — so "how many days' rest did
+this club have before its next match" can't be answered from data this app
+already fetches. This module fills that one gap and nothing else: everything
+else about rotation risk stays in refresh.py's build_rotation_risk.
 
-Every function degrades to an empty/None result rather than raising when the
-API key is missing, a request fails, or a club can't be matched — this is an
-optional enrichment layered on top of a pipeline that must keep working
-without it (same posture as this codebase's existing news-scrape fallbacks).
+(API-Football was tried first, but its free plan refuses the `last`/`next`
+fixture parameters and current-season data, so it was removed.)
 
-NOTE: the first live GitHub Actions run (2026-09-29) found that API-Football's
-free tier rejects season-scoped current-season lookups (a /teams?league=&
-season=2026 call came back "Free plans do not have access to this season, try
-from 2022 to 2024."). Team identity is resolved via /teams?search=<name>
-instead, which isn't season-scoped and isn't affected by that restriction.
-If /fixtures calls ever hit the same wall, check the _warn lines in the
-run's log — the fallback in that case is scraping worldfootball.net, which
-was researched as a free, unlimited backstop when API-Football was chosen.
+Every function degrades to an empty/None result rather than raising when a
+page can't be fetched or parsed — this is an optional enrichment layered on a
+pipeline that must keep working without it. Each club's outcome is logged to
+stderr so a layout change on the site is visible in the Actions log.
+
+The row parser is deliberately generic (any <tr> holding a dd/mm/yyyy or
+yyyy-mm-dd date) because it was written without being able to load the live
+pages; check the first Actions run's log lines and adjust here if a club
+reports no matches.
 """
 from __future__ import annotations
-import json, re, time, urllib.error, urllib.parse, urllib.request
-import sys
-from datetime import datetime, timezone
+import re, sys, time, urllib.error, urllib.request
+from datetime import date, datetime
+from html.parser import HTMLParser
 
-AF_BASE = "https://v3.football.api-sports.io"
-USER_AGENT = "ShaalandFPLLab/1.0"
+BASE = "https://www.worldfootball.net"
+USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
+FETCH_DELAY = 1.5  # seconds between requests; be polite to a free site
 
-# Hand-maintained hints for clubs whose FPL `name` is unlikely to match
-# API-Football's team name via plain normalization (abbreviated/traditional
-# names on the FPL side). Keyed by FPL short_name; values are extra
-# normalized-name candidates to try. Not exhaustive by design — an unmatched
-# club is logged and simply excluded from recovery data for that run rather
-# than guessed at.
-NAME_HINTS = {
-    "MUN": ["manchester united", "man united", "man utd"],
-    "MCI": ["manchester city", "man city"],
-    "TOT": ["tottenham", "tottenham hotspur", "spurs"],
-    "WOL": ["wolverhampton", "wolverhampton wanderers", "wolves"],
-    "NFO": ["nottingham forest", "nottm forest", "forest"],
-    "NEW": ["newcastle", "newcastle united"],
-    "WHU": ["west ham", "west ham united"],
-    "BHA": ["brighton", "brighton hove albion", "brighton and hove albion"],
+# FPL short_name -> extra slug candidates where the plain slugified FPL name
+# won't match the site's team slug.
+SLUG_HINTS = {
+    "MUN": ["manchester-united"], "MCI": ["manchester-city"],
+    "TOT": ["tottenham-hotspur"], "WOL": ["wolverhampton-wanderers"],
+    "NFO": ["nottingham-forest"], "NEW": ["newcastle-united"],
+    "WHU": ["west-ham-united"], "BHA": ["brighton-hove-albion"],
+    "LEE": ["leeds-united"], "AVL": ["aston-villa"], "CRY": ["crystal-palace"],
+    "BOU": ["afc-bournemouth"], "SUN": ["sunderland-afc"],
 }
 
-
-NON_SENIOR_RE = re.compile(r"\b(w|women|ladies|u\d{2}|ii|b|reserves|youth|academy)\b", re.I)
+DATE_RE = re.compile(r"\b(\d{2})/(\d{2})/(\d{4})\b|\b(\d{4})-(\d{2})-(\d{2})\b")
 
 
 def _warn(msg):
     print(f"[fixtures_external.py] WARNING: {msg}", file=sys.stderr)
 
 
-def _norm(s):
-    s = (s or "").lower()
-    s = re.sub(r"\b(fc|afc)\b", "", s)
-    s = re.sub(r"[^a-z0-9]", "", s)
+def _slugify(s):
+    s = re.sub(r"[^a-z0-9]+", "-", (s or "").lower()).strip("-")
     return s
 
 
-RATE_LIMIT_PER_MIN = 10  # API-Football free tier's documented cap; confirmed live
-_call_times = []
+def _fetch(url, timeout=20):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept-Language": "en"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read().decode("utf-8", errors="replace")
 
 
-def _throttle():
-    """Proactively pace calls to stay under the free tier's 10-req/min cap,
-    rather than firing a burst and reacting to 429s after the fact — the
-    first live run showed that reactive retries (short backoff) never
-    actually clear a per-minute window, so every call after the 11th just
-    kept failing for the rest of that run."""
-    now = time.time()
-    while _call_times and now - _call_times[0] > 60:
-        _call_times.pop(0)
-    if len(_call_times) >= RATE_LIMIT_PER_MIN:
-        time.sleep(max(0, 60 - (now - _call_times[0]) + 0.5))
-        now = time.time()
-        while _call_times and now - _call_times[0] > 60:
-            _call_times.pop(0)
-    _call_times.append(time.time())
+class _RowParser(HTMLParser):
+    """Collects every <tr> as {"cells": [text, ...], "links": [(href, text), ...]}."""
+
+    def __init__(self):
+        super().__init__()
+        self.rows, self._row, self._cell, self._href, self._link_txt = [], None, None, None, None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "tr":
+            self._row = {"cells": [], "links": []}
+        elif tag in ("td", "th") and self._row is not None:
+            self._cell = []
+        elif tag == "a" and self._row is not None:
+            self._href, self._link_txt = dict(attrs).get("href", ""), []
+
+    def handle_data(self, data):
+        if self._cell is not None:
+            self._cell.append(data)
+        if self._link_txt is not None:
+            self._link_txt.append(data)
+
+    def handle_endtag(self, tag):
+        if tag == "a" and self._row is not None and self._href is not None:
+            self._row["links"].append((self._href, " ".join("".join(self._link_txt).split())))
+            self._href = self._link_txt = None
+        elif tag in ("td", "th") and self._row is not None and self._cell is not None:
+            self._row["cells"].append(" ".join("".join(self._cell).split()))
+            self._cell = None
+        elif tag == "tr" and self._row is not None:
+            self.rows.append(self._row)
+            self._row = None
 
 
-class _RateLimited(Exception):
-    pass
-
-
-def _af_get(path, params, api_key, timeout=20, retries=4):
-    """A 429 shows up two ways from this API: an actual HTTP 429 status, or
-    (confirmed live) an HTTP 200 whose JSON body is just
-    {"rateLimit": "..."} — the latter looks like a valid empty response
-    unless checked for explicitly, so it's treated as a retryable failure
-    here rather than silently read as "no results"."""
-    url = f"{AF_BASE}{path}?{urllib.parse.urlencode(params)}"
-    last_err = None
-    for attempt in range(retries):
-        _throttle()
-        try:
-            req = urllib.request.Request(url, headers={"x-apisports-key": api_key, "User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                data = json.loads(r.read().decode())
-            if isinstance(data, dict) and data.get("rateLimit"):
-                raise _RateLimited(data["rateLimit"])
-            return data
-        except urllib.error.HTTPError as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(61 if e.code == 429 else 2)
-        except _RateLimited as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(61)
-        except (OSError, urllib.error.URLError, json.JSONDecodeError, ValueError) as e:
-            last_err = e
-            if attempt < retries - 1:
-                time.sleep(2)
-    raise last_err
-
-
-def match_af_team(fpl_team, af_teams):
-    """fpl_team: one of boot["teams"]. af_teams: [{"id":.., "name":..}, ...]
-    from API-Football's /teams response. Tries an exact normalized-name
-    match first, then this module's hand-maintained hints, then a loose
-    substring match either direction — returns the API-Football team id, or
-    None if nothing matches closely enough to trust."""
-    candidates = [_norm(fpl_team.get("name"))]
-    candidates += [_norm(h) for h in NAME_HINTS.get(fpl_team.get("short_name"), [])]
-    candidates = [c for c in candidates if c]
-    # Women's/youth/reserve sides share a club's name plus a suffix ("Manchester
-    # City W", "Tottenham U21") and would otherwise win the loose match below.
-    af_teams = [af for af in af_teams if not NON_SENIOR_RE.search(af["name"])]
-    for af in af_teams:
-        if _norm(af["name"]) in candidates:
-            return af["id"]
-    for af in af_teams:
-        af_norm = _norm(af["name"])
-        if af_norm and any(af_norm in c or c in af_norm for c in candidates):
-            return af["id"]
+def _row_date(cells):
+    for c in cells:
+        m = DATE_RE.search(c)
+        if m:
+            try:
+                if m.group(1):
+                    return date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+                return date(int(m.group(4)), int(m.group(5)), int(m.group(6)))
+            except ValueError:
+                return None
     return None
 
 
-def _search_af_team(api_key, query):
-    """One /teams?search= lookup -> [{"id":.., "name":..}, ...]. This
-    endpoint isn't season-scoped, unlike /teams?league=&season=, which
-    API-Football's free tier rejects for the current season (confirmed
-    live: 'Free plans do not have access to this season, try from 2022 to
-    2024.') — team identity lookup doesn't need a season at all, so this
-    sidesteps that restriction entirely."""
-    # The search field rejects anything but letters/digits/spaces (confirmed
-    # live: "Nott'm Forest" was rejected for its apostrophe) — strip
-    # everything else rather than lose that club's lookup entirely.
-    safe_query = re.sub(r"[^a-zA-Z0-9 ]", " ", query).strip()
+def parse_matches(html, own_slug=None):
+    """[{"date": date, "competition": str, "opponent": str|None}, ...] for
+    every table row carrying a date, in page order."""
+    p = _RowParser()
     try:
-        resp = _af_get("/teams", {"search": safe_query}, api_key)
+        p.feed(html)
     except Exception as e:
-        _warn(f"_search_af_team({query!r}): request failed: {e}")
+        _warn(f"parse_matches: HTML parse failed: {e}")
         return []
     out = []
-    for item in (resp or {}).get("response") or []:
-        t = (item or {}).get("team") or {}
-        if t.get("id") and t.get("name"):
-            out.append({"id": t["id"], "name": t["name"]})
-    if not out:
-        _warn_if_errors(resp, f"_search_af_team({query!r})")
+    for row in p.rows:
+        d = _row_date(row["cells"])
+        if not d:
+            continue
+        comp = next((t for h, t in row["links"] if "/competition/" in h and t), None)
+        opp = next((t for h, t in row["links"]
+                    if "/teams/" in h and t and (not own_slug or f"/teams/{own_slug}/" not in h)), None)
+        out.append({"date": d, "competition": comp or "?", "opponent": opp})
     return out
 
 
-def fetch_af_team_ids(api_key, fpl_teams):
-    """{fpl_short_name: api_football_team_id} for the given FPL team dicts
-    (each one of boot["teams"]), resolved one /teams?search= call per club
-    (plus a retry per NAME_HINTS candidate if the first search doesn't
-    resolve). A club that still doesn't match is logged and simply left
-    out — the caller decides whether to retry it later."""
-    out = {}
-    for t in fpl_teams:
-        queries = [q for q in [t.get("name")] + NAME_HINTS.get(t.get("short_name"), []) if q]
-        af_id = None
-        for q in queries:
-            candidates = _search_af_team(api_key, q)
-            af_id = match_af_team(t, candidates) if candidates else None
-            if af_id:
-                break
-        if af_id:
-            out[t["short_name"]] = af_id
-        else:
-            _warn(f"fetch_af_team_ids: no API-Football match for {t.get('name')} ({t.get('short_name')})")
-    return out
-
-
-def get_af_team_ids(api_key, boot, existing):
-    """Permanent (season-independent) id cache — a club's API-Football id
-    never changes season to season, so this is resolved once per club and
-    kept forever, unlike team_recovery's rest-days which are refetched
-    daily. Only clubs missing from the cache (a new promotion, or a name
-    that failed to match before) cost a request; a fully-populated cache
-    costs zero."""
-    cached = dict((existing or {}).get("af_team_ids") or {})
-    if not api_key:
-        return cached
-    missing = [t for t in boot["teams"] if t["short_name"] not in cached]
-    if not missing:
-        return cached
-    cached.update(fetch_af_team_ids(api_key, missing))
-    return cached
-
-
-def _first_fixture(resp):
-    items = (resp or {}).get("response") or []
-    return items[0] if items else None
-
-
-def _fixture_info(fx, own_af_id=None):
-    if not fx:
+def recovery_from_matches(matches, today):
+    """Rest-days record from a club's parsed matches: last match dated
+    before `today`, next dated `today` or later. None if either is missing
+    from the page (rest_days stays None but the other side is still kept)."""
+    past = [m for m in matches if m["date"] < today]
+    future = [m for m in matches if m["date"] >= today]
+    last = max(past, key=lambda m: m["date"]) if past else None
+    nxt = min(future, key=lambda m: m["date"]) if future else None
+    if not last and not nxt:
         return None
-    raw_date = ((fx.get("fixture") or {}).get("date"))
-    if not raw_date:
-        return None
-    try:
-        date = datetime.fromisoformat(str(raw_date).replace("Z", "+00:00"))
-    except Exception:
-        return None
-    competition = ((fx.get("league") or {}).get("name")) or "?"
-    opponent = None
-    if own_af_id is not None:
-        teams = fx.get("teams") or {}
-        home, away = teams.get("home") or {}, teams.get("away") or {}
-        opponent = away.get("name") if home.get("id") == own_af_id else home.get("name")
-    return {"date": date, "date_str": date.strftime("%Y-%m-%d"), "competition": competition, "opponent": opponent}
-
-
-def _warn_if_errors(resp, label):
-    """The /teams?league=&season= call that failed live returned a 200 with
-    a populated "errors" field and an empty "response" array — a shape
-    that's easy to misread as "no results" rather than "the API is telling
-    you something." Surface it explicitly wherever a fixtures/teams response
-    comes back with nothing in it, instead of silently treating errors and
-    genuine empty-results the same way."""
-    errors = (resp or {}).get("errors")
-    if errors:
-        _warn(f"{label}: {json.dumps(errors)[:200]}")
-
-
-def fetch_recovery_for_team(api_key, af_team_id):
-    """Rest days between this club's most recent finished match (any
-    competition) and its next scheduled one (any competition). Two API
-    calls. Returns None on any failure so a single bad club can't take
-    down the whole recovery build."""
-    try:
-        last_resp = _af_get("/fixtures", {"team": af_team_id, "last": 1, "status": "FT"}, api_key)
-        next_resp = _af_get("/fixtures", {"team": af_team_id, "next": 1}, api_key)
-    except Exception as e:
-        _warn(f"fetch_recovery_for_team({af_team_id}): request failed: {e}")
-        return None
-    last_fx, next_fx = _first_fixture(last_resp), _first_fixture(next_resp)
-    if not last_fx:
-        _warn_if_errors(last_resp, f"fetch_recovery_for_team({af_team_id}): last-match call")
-    if not next_fx:
-        _warn_if_errors(next_resp, f"fetch_recovery_for_team({af_team_id}): next-match call")
-    last_info = _fixture_info(last_fx)
-    next_info = _fixture_info(next_fx, own_af_id=af_team_id)
-    rest_days = None
-    if last_info and next_info:
-        rest_days = (next_info["date"].date() - last_info["date"].date()).days
     return {
-        "rest_days": rest_days,
-        "last_match": {"date": last_info["date_str"], "competition": last_info["competition"]} if last_info else None,
-        "next_match": ({"date": next_info["date_str"], "competition": next_info["competition"], "opponent": next_info.get("opponent")} if next_info else None),
+        "rest_days": (nxt["date"] - last["date"]).days if last and nxt else None,
+        "last_match": {"date": last["date"].isoformat(), "competition": last["competition"]} if last else None,
+        "next_match": ({"date": nxt["date"].isoformat(), "competition": nxt["competition"], "opponent": nxt["opponent"]} if nxt else None),
     }
 
 
-def _has_data(rec):
-    return bool(rec) and (rec.get("last_match") or rec.get("next_match"))
-
-
-def build_team_recovery(api_key, af_team_ids, prev_teams=None):
-    """{fpl_short_name: recovery-record} for every club id given that
-    returns usable fixture data. Clubs already holding data in prev_teams
-    are kept as-is, so a partial or rate-limited run only re-fetches the
-    gaps. Stops early after 3 consecutive empty responses (the free tier
-    blocking current-season fixtures) rather than burning the daily quota.
-    Empty dict (not an exception) if the key is missing."""
-    if not api_key:
-        return {}
-    out = {k: v for k, v in (prev_teams or {}).items() if _has_data(v)}
-    empty_streak = 0
-    for short_name, af_id in (af_team_ids or {}).items():
-        if short_name in out:
-            continue
-        info = fetch_recovery_for_team(api_key, af_id)
-        if _has_data(info):
-            out[short_name] = info
-            empty_streak = 0
-        else:
-            empty_streak += 1
-            if empty_streak >= 3:
-                _warn("build_team_recovery: 3 consecutive empty responses; stopping early")
-                break
+def _slug_candidates(team, cached):
+    out = [cached] if cached else []
+    base = _slugify(team.get("name"))
+    for s in SLUG_HINTS.get(team.get("short_name"), []) + [base, base + "-fc"]:
+        if s and s not in out:
+            out.append(s)
     return out
 
 
-def get_team_recovery(api_key, af_team_ids, existing, today_et):
-    """Top-level entry point for refresh.py's main(). Caches by ET calendar
-    date so the ~40-request fetch (20 clubs x 2 calls) happens once a day
-    no matter how many times the refresh workflow fires — the free tier is
-    ~100 requests/day. fetched_date is only stamped when every club has
-    data; otherwise later runs retry just the missing clubs. Takes an
-    already-resolved af_team_ids map (see get_af_team_ids) rather than
-    resolving ids itself, since those are cached separately and
-    permanently."""
+def fetch_recovery_for_team(team, today, cached_slug=None):
+    """(recovery-record | None, slug | None) for one FPL team dict. Tries
+    each slug candidate's team page until one yields dated rows."""
+    for slug in _slug_candidates(team, cached_slug):
+        url = f"{BASE}/teams/{slug}/"
+        try:
+            time.sleep(FETCH_DELAY)
+            html = _fetch(url)
+        except (urllib.error.URLError, OSError, ValueError) as e:
+            _warn(f"{team.get('short_name')}: {url} failed: {e}")
+            continue
+        matches = parse_matches(html, own_slug=slug)
+        rec = recovery_from_matches(matches, today)
+        if rec:
+            print(f"[fixtures_external.py] {team.get('short_name')}: {len(matches)} dated rows from {url}", file=sys.stderr)
+            return rec, slug
+        _warn(f"{team.get('short_name')}: {url} loaded but {len(matches)} dated rows gave no last/next match")
+    return None, None
+
+
+def get_team_recovery(boot, existing, today_et):
+    """Top-level entry point for refresh.py's main(). Returns
+    {"fetched_date", "slugs", "teams"}. Cached by ET calendar date, and
+    clubs that already have data today are not re-fetched, so repeated
+    workflow runs cost nothing and a partial run only retries the gaps.
+    fetched_date is stamped only when every club has data."""
     prev = (existing or {}).get("team_recovery") or {}
-    prev_teams = prev.get("teams") or {}
+    slugs = dict(prev.get("slugs") or {})
     if prev.get("fetched_date") == today_et:
         return prev
-    if not api_key:
-        return prev if prev else {"fetched_date": None, "teams": {}}
-    teams = build_team_recovery(api_key, af_team_ids, prev_teams if prev.get("partial_date") == today_et else None)
-    complete = bool(af_team_ids) and all(k in teams for k in af_team_ids)
+    today = datetime.strptime(today_et, "%Y-%m-%d").date()
+    teams = dict(prev.get("teams") or {}) if prev.get("partial_date") == today_et else {}
+    empty_streak = 0
+    for t in boot["teams"]:
+        sn = t["short_name"]
+        if sn in teams:
+            continue
+        rec, slug = fetch_recovery_for_team(t, today, slugs.get(sn))
+        if rec:
+            teams[sn], slugs[sn], empty_streak = rec, slug, 0
+        else:
+            empty_streak += 1
+            if empty_streak >= 4:
+                _warn("get_team_recovery: 4 consecutive clubs failed; stopping early (site blocked or layout changed?)")
+                break
+    complete = all(t["short_name"] in teams for t in boot["teams"])
     return {"fetched_date": today_et if complete else None,
             "partial_date": None if complete else today_et,
-            "teams": teams}
+            "slugs": slugs, "teams": teams}

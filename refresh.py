@@ -1896,17 +1896,15 @@ def main(team_id=TEAM_ID, out_path=None):
     # Club rest-days are the same for both Shaaland and Bacalhau — refresh.py
     # runs once per team per workflow invocation, so this lives in its own
     # cache file (not data.js/bacalhau-data.js's `existing`) shared across
-    # both runs. Whichever team's run goes first pays the API cost for the
-    # day; the second reads what the first just wrote and makes zero calls.
+    # both runs. Whichever team's run goes first pays the scrape cost for the
+    # day; the second reads what the first just wrote and makes zero requests.
     recovery_cache_path = ROOT / "team_recovery_cache.json"
     try:
         recovery_cache = json.loads(recovery_cache_path.read_text())
     except Exception:
         recovery_cache = {}
-    af_key = os.environ.get("API_FOOTBALL_KEY")
-    af_team_ids = fixtures_external.get_af_team_ids(af_key, boot, recovery_cache)
-    team_recovery = fixtures_external.get_team_recovery(af_key, af_team_ids, recovery_cache, today_et)
-    recovery_cache["af_team_ids"] = af_team_ids
+    team_recovery = fixtures_external.get_team_recovery(boot, recovery_cache, today_et)
+    recovery_cache.pop("af_team_ids", None)
     recovery_cache["team_recovery"] = team_recovery
     recovery_cache_path.write_text(json.dumps(recovery_cache, indent=2))
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
@@ -1941,7 +1939,6 @@ def main(team_id=TEAM_ID, out_path=None):
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"))
     data["team_recovery"] = team_recovery
-    data["af_team_ids"] = af_team_ids
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
     data["value_board"] = build_value_board(boot)
     squad_names = {r[1] for r in (plan.get("rows") or [])}

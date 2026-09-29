@@ -1,21 +1,4 @@
 {
-  "af_team_ids": {
-    "ARS": 42,
-    "AVL": 66,
-    "BOU": 35,
-    "BRE": 55,
-    "BHA": 51,
-    "CHE": 49,
-    "CRY": 52,
-    "EVE": 45,
-    "FUL": 36,
-    "HUL": 64,
-    "LEE": 63,
-    "LIV": 40,
-    "NEW": 34,
-    "NFO": 65,
-    "SUN": 746
-  },
   "team_recovery": {
     "fetched_date": null,
     "teams": {}
