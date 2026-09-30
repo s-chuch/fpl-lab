@@ -240,12 +240,12 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-30",
-      "total_cost": 93.0,
+      "total_cost": 93.1,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.7,
         "Hall": 5.3,
-        "Tarkowski": 6.1,
+        "Tarkowski": 6.2,
         "Bogle": 4.6,
         "De Cuyper": 5.0,
         "Belloumi": 5.1,
@@ -260,7 +260,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 0.4,
+    "total_delta": 0.5,
     "players": [
       {
         "name": "De Cuyper",
@@ -282,6 +282,15 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Tarkowski",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
         "delta": 0.1,
@@ -371,15 +380,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Tarkowski",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Tavernier",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
@@ -434,6 +434,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "De Cuyper",
         "from": 4.9,
         "to": 5.0,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-30",
+        "event": "price_change",
+        "player": "Tarkowski",
+        "from": 6.1,
+        "to": 6.2,
         "delta": 0.1
       }
     ]

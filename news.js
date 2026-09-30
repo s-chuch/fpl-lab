@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-30 15:15 UTC",
+  "generated_at": "2026-09-30 23:35 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -56,8 +56,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Which players rotate well in the next 8, 10 + 12 FPL Gameweeks?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/which-players-rotate-well-in-the-next-8-10-12-fpl-gameweeks"
+    },
+    {
+      "source": "Scout",
+      "title": "WUCL Fantasy Matchday 2: Team reveal",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/27/wucl-fantasy-matchday-2-team-reveal"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -145,11 +156,13 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/27/sofascore-nations-league-fantasy-round-2-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/09/27/sofascore-nations-league-fantasy-round-2-team-reveals",
     "https://www.fantasyfootballscout.co.uk/2026/09/27/the-xg-tables-which-fpl-players-and-teams-top-the-pile-2",
+    "https://www.fantasyfootballscout.co.uk/2026/09/27/wucl-fantasy-matchday-2-team-reveal",
     "https://www.fantasyfootballscout.co.uk/2026/09/28/gakpo-isak-bruno-more-latest-international-break-injury-news",
     "https://www.fantasyfootballscout.co.uk/2026/09/28/where-could-rotation-in-fpl-gameweeks-6-10",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/fpls-blank-less-wonders-the-most-consistent-players-of-2026-27",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/set-pieces-penalties-all-20-premier-league-clubs-takers-updated",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/the-biggest-fpl-flops-of-2026-27-so-far",
+    "https://www.fantasyfootballscout.co.uk/2026/09/30/which-players-rotate-well-in-the-next-8-10-12-fpl-gameweeks",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-has-the-best-fixtures-from-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-6-2",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/wucl-fantasy-matchday-2-team-reveal",

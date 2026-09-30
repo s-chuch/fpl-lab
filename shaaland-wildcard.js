@@ -112,7 +112,14 @@ window.FPL_WILDCARD_WATCH = {
     "captain_ep": 10.7,
     "vice": "Schade",
     "vice_ep": 8.7,
-    "bench_swaps": [],
+    "bench_swaps": [
+      {
+        "bench": "Konsa",
+        "bench_ep": 3.7,
+        "starter": "Calafiori",
+        "starter_ep": 3.0
+      }
+    ],
     "availability_flags": [],
     "xi_ep": [
       {
@@ -130,7 +137,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 5.0,
+        "ep_next": 3.0,
         "status": "ok"
       },
       {
@@ -192,7 +199,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Konsa",
         "pos": "DEF",
-        "ep_next": 3.0,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
@@ -233,13 +240,13 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-09-30",
-      "total_cost": 95.9,
+      "total_cost": 96.0,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
         "Calafiori": 5.8,
         "Hall": 5.3,
-        "Tarkowski": 6.1,
+        "Tarkowski": 6.2,
         "Barnes": 6.1,
         "King": 5.5,
         "Groß": 5.8,
@@ -255,7 +262,7 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Barry": 5.6
     },
-    "total_delta": -2.9,
+    "total_delta": -2.8,
     "players": [
       {
         "name": "De Cuyper",
@@ -277,6 +284,15 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Tarkowski",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
         "delta": 0.1,
@@ -358,15 +374,6 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Tarkowski",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
@@ -479,6 +486,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Barry",
         "from": 5.6,
         "to": 5.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-09-30",
+        "event": "price_change",
+        "player": "Tarkowski",
+        "from": 6.1,
+        "to": 6.2,
         "delta": 0.1
       }
     ]
