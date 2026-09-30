@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-30 03:15 UTC",
+  "generated_at": "2026-09-30 14:44 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -56,8 +56,29 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Who has the best fixtures from FPL Gameweek 6?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/who-has-the-best-fixtures-from-fpl-gameweek-6"
+    },
+    {
+      "source": "Scout",
+      "title": "Who is close to a ban or suspended in FPL Gameweek 6?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-6-2"
+    },
+    {
+      "source": "Scout",
+      "title": "WUCL Fantasy Matchday 2: Team reveal",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/wucl-fantasy-matchday-2-team-reveal"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "The 10 Best FPL Seasons from Man City Players Which No Longer Count",
+      "url": "https://ingenuityfantasy.com/game-week-tips/the-10-best-fpl-seasons-from-man-city-players-which-no-longer-count/"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -82,6 +103,7 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/fpl-guidebook/",
     "https://ingenuityfantasy.com/fpl-player-rankings/",
     "https://ingenuityfantasy.com/game-week-tips/best-defcon-good-defences/",
+    "https://ingenuityfantasy.com/game-week-tips/the-10-best-fpl-seasons-from-man-city-players-which-no-longer-count/",
     "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-6-wildcard-team/",
     "https://ingenuityfantasy.com/game-week-tips/the-real-fpl-fdr-for-gameweek-6-best-attacking-defensive-fixtures/",
     "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-transfer-tips-2026-27/",
@@ -149,6 +171,9 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/29/fpls-blank-less-wonders-the-most-consistent-players-of-2026-27",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/set-pieces-penalties-all-20-premier-league-clubs-takers-updated",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/the-biggest-fpl-flops-of-2026-27-so-far",
+    "https://www.fantasyfootballscout.co.uk/2026/09/30/who-has-the-best-fixtures-from-fpl-gameweek-6",
+    "https://www.fantasyfootballscout.co.uk/2026/09/30/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-6-2",
+    "https://www.fantasyfootballscout.co.uk/2026/09/30/wucl-fantasy-matchday-2-team-reveal",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]

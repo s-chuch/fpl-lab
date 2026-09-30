@@ -232,7 +232,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-09-29",
+      "date": "2026-09-30",
       "total_cost": 95.9,
       "prices": {
         "Raya": 6.1,
