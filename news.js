@@ -1,10 +1,20 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-01 15:21 UTC",
+  "generated_at": "2026-10-01 23:47 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
+    {
+      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Barnes",
+      "club": "NEW",
+      "tags": []
+    },
     {
       "text": "Konsa (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
@@ -16,6 +26,26 @@ window.FPL_NEWS = {
       "tags": [
         "injury/doubt"
       ]
+    },
+    {
+      "text": "Schade (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Schade",
+      "club": "BRE",
+      "tags": []
+    },
+    {
+      "text": "Tavernier (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": []
     }
   ],
   "links": [
@@ -44,8 +74,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Schade v Barnes v Tavernier: Who is the best midfielder to own in FPL?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/schade-v-barnes-v-tavernier-who-is-the-best-midfielder-to-own-in-fpl"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
@@ -145,6 +181,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-has-the-best-fixtures-from-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-6-2",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/wucl-fantasy-matchday-2-team-reveal",
+    "https://www.fantasyfootballscout.co.uk/2026/10/01/schade-v-barnes-v-tavernier-who-is-the-best-midfielder-to-own-in-fpl",
     "https://www.fantasyfootballscout.co.uk/2026/10/01/should-fpl-managers-keep-rolling-the-dice",
     "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-team-reveals",
