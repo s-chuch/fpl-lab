@@ -1,30 +1,18 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-09-30 23:35 UTC",
+  "generated_at": "2026-10-01 03:13 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
     {
-      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
+      "text": "Konsa (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Brobbey",
-      "club": "SUN",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Semenyo",
-      "club": "MCI",
+      "player": "Konsa",
+      "club": "ARS",
       "tags": [
         "injury/doubt"
       ]
@@ -59,13 +47,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Which players rotate well in the next 8, 10 + 12 FPL Gameweeks?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/which-players-rotate-well-in-the-next-8-10-12-fpl-gameweeks"
-    },
-    {
-      "source": "Scout",
-      "title": "WUCL Fantasy Matchday 2: Team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/09/27/wucl-fantasy-matchday-2-team-reveal"
+      "title": "Odegaard, van Hecke, Bruno, Konsa: Latest international break injury news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/09/30/odegaard-van-hecke-bruno-konsa-latest-international-break-injury-news"
     }
   ],
   "no_new": false,
@@ -162,6 +145,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/09/29/fpls-blank-less-wonders-the-most-consistent-players-of-2026-27",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/set-pieces-penalties-all-20-premier-league-clubs-takers-updated",
     "https://www.fantasyfootballscout.co.uk/2026/09/29/the-biggest-fpl-flops-of-2026-27-so-far",
+    "https://www.fantasyfootballscout.co.uk/2026/09/30/odegaard-van-hecke-bruno-konsa-latest-international-break-injury-news",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/which-players-rotate-well-in-the-next-8-10-12-fpl-gameweeks",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-has-the-best-fixtures-from-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/09/30/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-6-2",
