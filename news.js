@@ -1,37 +1,13 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-01 15:14 UTC",
+  "generated_at": "2026-10-01 15:21 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [
+  "agreed": [],
+  "split": [
     {
-      "text": "Haaland (MCI) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk.",
+      "text": "Konsa (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "captain talk"
-      ]
-    },
-    {
-      "text": "Kevin (FUL) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Kevin",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Konsa (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
         "Ingenuity",
         "Scout"
       ],
@@ -39,129 +15,6 @@ window.FPL_NEWS = {
       "club": "ARS",
       "tags": [
         "injury/doubt"
-      ]
-    },
-    {
-      "text": "Schade (BRE) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Schade",
-      "club": "BRE",
-      "tags": []
-    }
-  ],
-  "split": [
-    {
-      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Barnes",
-      "club": "NEW",
-      "tags": []
-    },
-    {
-      "text": "Barry (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": [
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Calafiori (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "David (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "David",
-      "club": "BHA",
-      "tags": []
-    },
-    {
-      "text": "Jo\u00e3o Pedro (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt, rotation risk.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Jo\u00e3o Pedro",
-      "club": "CHE",
-      "tags": [
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Lewis (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Lewis",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt, rotation risk.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Rayan (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Rayan",
-      "club": "BOU",
-      "tags": []
-    },
-    {
-      "text": "Rogers (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Rogers",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Silva (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: rotation risk.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Silva",
-      "club": "BOU",
-      "tags": [
-        "rotation risk"
       ]
     }
   ],
@@ -191,29 +44,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL GW6 Wildcard: Corey Baker's Picks at 18,360 Overall",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-6-wildcard-corey-baker/"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 3 Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-scout-picks"
-    },
-    {
-      "source": "Scout",
-      "title": "Should FPL managers keep rolling the dice?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/should-fpl-managers-keep-rolling-the-dice"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 3 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-team-reveals"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
     "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
