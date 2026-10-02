@@ -1,37 +1,12 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-02 14:34 UTC",
+  "generated_at": "2026-10-02 15:14 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [
-    {
-      "text": "James (CHE) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Konsa (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Konsa",
-      "club": "ARS",
-      "tags": [
-        "injury/doubt"
-      ]
-    }
-  ],
+  "agreed": [],
   "split": [
     {
-      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -41,71 +16,31 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Botman (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Botman",
-      "club": "NEW",
-      "tags": []
-    },
-    {
-      "text": "Branthwaite (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Branthwaite",
-      "club": "EVE",
-      "tags": []
-    },
-    {
-      "text": "Calafiori (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Gabriel (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Gabriel",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Lewis (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: captain talk.",
+      "text": "Fernandes (TOT) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: rotation risk.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Lewis",
-      "club": "MCI",
+      "player": "Fernandes",
+      "club": "TOT",
       "tags": [
-        "captain talk"
+        "rotation risk"
       ]
     },
     {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "text": "Konsa (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
-        "Fix",
-        "Ingenuity"
+        "Ingenuity",
+        "Scout"
       ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
+      "player": "Konsa",
+      "club": "ARS",
       "tags": [
         "injury/doubt"
       ]
     },
     {
-      "text": "Mykolenko (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "text": "Mykolenko (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -117,17 +52,7 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Robinson (FUL) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Robinson",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Schade (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "text": "Schade (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -135,6 +60,23 @@ window.FPL_NEWS = {
       "player": "Schade",
       "club": "BRE",
       "tags": []
+    },
+    {
+      "text": "Tavernier (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ]
     }
   ],
   "links": [
@@ -165,29 +107,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best FPL Defenders for Gameweek 6: Wildcard Picks & Stats",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-defenders-positional-review-2026/"
-    },
-    {
       "source": "Scout",
-      "title": "Tzolis, O\u2019Reilly, Mykolenko, Khalaili: Latest international break injury news",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/02/tzolis-oreilly-mykolenko-khalaili-latest-international-break-injury-news"
-    },
-    {
-      "source": "Scout",
-      "title": "The FPL half-term report: Aston Villa",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/02/the-fpl-half-term-report-aston-villa-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Fantasy EFL Gameweek 8: Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/fantasy-efl-gameweek-8-scout-picks-2"
-    },
-    {
-      "source": "Scout",
-      "title": "WSL Fantasy 2026/27: Expert team reveal for Matchweek 5",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-5"
+      "title": "FPL introduces Second Chance league",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/02/fpl-introduces-second-chance-league-2"
     }
   ],
   "no_new": false,
@@ -297,6 +219,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/10/01/sofascore-nations-league-fantasy-round-3-team-reveals",
     "https://www.fantasyfootballscout.co.uk/2026/10/01/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-5",
+    "https://www.fantasyfootballscout.co.uk/2026/10/02/fpl-introduces-second-chance-league-2",
     "https://www.fantasyfootballscout.co.uk/2026/10/02/the-fpl-half-term-report-aston-villa-2",
     "https://www.fantasyfootballscout.co.uk/2026/10/02/tzolis-oreilly-mykolenko-khalaili-latest-international-break-injury-news",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
