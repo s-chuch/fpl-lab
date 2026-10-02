@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-02 15:14 UTC",
+  "generated_at": "2026-10-02 23:38 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -16,15 +16,15 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Fernandes (TOT) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: rotation risk.",
+      "text": "Kluivert (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Fernandes",
-      "club": "TOT",
+      "player": "Kluivert",
+      "club": "BOU",
       "tags": [
-        "rotation risk"
+        "injury/doubt"
       ]
     },
     {
@@ -38,6 +38,16 @@ window.FPL_NEWS = {
       "tags": [
         "injury/doubt"
       ]
+    },
+    {
+      "text": "Lewis (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Lewis",
+      "club": "MCI",
+      "tags": []
     },
     {
       "text": "Mykolenko (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
@@ -70,13 +80,6 @@ window.FPL_NEWS = {
       "player": "Tavernier",
       "club": "BOU",
       "tags": []
-    },
-    {
-      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ]
     }
   ],
   "links": [
@@ -108,8 +111,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL introduces Second Chance league",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/02/fpl-introduces-second-chance-league-2"
+      "title": "The FPL half-term report: Bournemouth",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/02/the-fpl-half-term-report-bournemouth-2"
     }
   ],
   "no_new": false,
@@ -221,6 +224,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/01/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-5",
     "https://www.fantasyfootballscout.co.uk/2026/10/02/fpl-introduces-second-chance-league-2",
     "https://www.fantasyfootballscout.co.uk/2026/10/02/the-fpl-half-term-report-aston-villa-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/02/the-fpl-half-term-report-bournemouth-2",
     "https://www.fantasyfootballscout.co.uk/2026/10/02/tzolis-oreilly-mykolenko-khalaili-latest-international-break-injury-news",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
