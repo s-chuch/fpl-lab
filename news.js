@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-03 13:09 UTC",
+  "generated_at": "2026-10-03 19:09 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -16,58 +16,16 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Branthwaite (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Kostoulas (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Branthwaite",
-      "club": "EVE",
-      "tags": []
-    },
-    {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: rotation risk.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": [
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Lewis (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Lewis",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
+      "player": "Kostoulas",
+      "club": "BHA",
       "tags": [
         "injury/doubt"
       ]
-    },
-    {
-      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Murillo",
-      "club": "NFO",
-      "tags": []
     },
     {
       "text": "Mykolenko (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
@@ -82,16 +40,6 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Robinson (FUL) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Robinson",
-      "club": "FUL",
-      "tags": []
-    },
-    {
       "text": "Schade (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
@@ -102,13 +50,23 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Schuster (BRE) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Tavernier (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Schuster",
-      "club": "BRE",
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "Vuskovic (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Vuskovic",
+      "club": "BHA",
       "tags": []
     }
   ],
@@ -141,18 +99,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Norgaard, Baleba + Madjo make injury returns: Friendly round-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/03/norgaard-baleba-madjo-make-injury-returns-friendly-round-up"
-    },
-    {
-      "source": "Scout",
-      "title": "Big Numbers: 25 stand-out stats for FPL Gameweek 6",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/03/big-numbers-25-stand-out-stats-for-fpl-gameweek-6"
-    },
-    {
-      "source": "Scout",
-      "title": "Fantasy EFL Gameweek 8: Expert team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/01/fantasy-efl-gameweek-8-expert-team-reveals"
+      "title": "The FPL half-term report: Brighton",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/03/the-fpl-half-term-report-brighton"
     }
   ],
   "no_new": false,
@@ -269,6 +217,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/02/tzolis-oreilly-mykolenko-khalaili-latest-international-break-injury-news",
     "https://www.fantasyfootballscout.co.uk/2026/10/03/big-numbers-25-stand-out-stats-for-fpl-gameweek-6",
     "https://www.fantasyfootballscout.co.uk/2026/10/03/norgaard-baleba-madjo-make-injury-returns-friendly-round-up",
+    "https://www.fantasyfootballscout.co.uk/2026/10/03/the-fpl-half-term-report-brighton",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
