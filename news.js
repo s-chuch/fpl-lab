@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-04 13:49 UTC",
+  "generated_at": "2026-10-04 22:55 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -14,19 +14,6 @@ window.FPL_NEWS = {
       "player": "Barnes",
       "club": "NEW",
       "tags": []
-    },
-    {
-      "text": "Haaland (MCI) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "captain talk"
-      ]
     },
     {
       "text": "Schade (BRE) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
@@ -49,14 +36,6 @@ window.FPL_NEWS = {
       "player": "Tavernier",
       "club": "BOU",
       "tags": []
-    },
-    {
-      "text": "GW6 coverage is talking about a wildcard window \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity",
-        "Scout"
-      ]
     }
   ],
   "split": [
@@ -122,11 +101,21 @@ window.FPL_NEWS = {
     {
       "text": "David (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "AAFPL",
+        "Ingenuity"
       ],
       "player": "David",
       "club": "BHA",
+      "tags": []
+    },
+    {
+      "text": "Dewsbury-Hall (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Dewsbury-Hall",
+      "club": "EVE",
       "tags": []
     },
     {
@@ -140,6 +129,16 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
+      "text": "Gibbs-White (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Gibbs-White",
+      "club": "NFO",
+      "tags": []
+    },
+    {
       "text": "Gonzalo (FUL) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
@@ -148,29 +147,6 @@ window.FPL_NEWS = {
       "player": "Gonzalo",
       "club": "FUL",
       "tags": []
-    },
-    {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Jo\u00e3o Pedro (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt, rotation risk.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Jo\u00e3o Pedro",
-      "club": "CHE",
-      "tags": [
-        "injury/doubt",
-        "rotation risk"
-      ]
     }
   ],
   "links": [
@@ -201,29 +177,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Scout",
-      "title": "The FPL half-term report: Brentford",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/04/the-fpl-half-term-report-brentford-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 4 Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/04/sofascore-nations-league-fantasy-round-4-scout-picks"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 4 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/04/sofascore-nations-league-fantasy-round-4-team-reveals"
-    },
-    {
       "source": "AAFPL",
-      "title": "FPL GW6 Ultimate Guide: Tips, Captaincy, Differentials & More",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gw6-ultimate-guide-tips-captaincy-differentials-more/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL Gameweek 6 Transfer Tips: Players to Buy, Avoid, Sell & Hold",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-6-transfer-tips-players-to-buy-avoid-sell-hold/"
+      "title": "FPL GW6 Wildcard Drafts \u2013 Pros, Cons, Tips and Players to Target",
+      "url": "https://allaboutfpl.com/2026/10/fpl-gw6-wildcard-drafts-pros-cons-tips-and-players-to-target/"
     }
   ],
   "no_new": false,
@@ -249,6 +205,7 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/2026/08/best-premium-fpl-midfielders-8-0-12-0-million-26-27-season/",
     "https://allaboutfpl.com/2026/10/fpl-gameweek-6-transfer-tips-players-to-buy-avoid-sell-hold/",
     "https://allaboutfpl.com/2026/10/fpl-gw6-ultimate-guide-tips-captaincy-differentials-more/",
+    "https://allaboutfpl.com/2026/10/fpl-gw6-wildcard-drafts-pros-cons-tips-and-players-to-target/",
     "https://ingenuityfantasy.com/fpl-bookies/",
     "https://ingenuityfantasy.com/fpl-guidebook/",
     "https://ingenuityfantasy.com/fpl-player-rankings/",
