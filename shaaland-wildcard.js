@@ -240,7 +240,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-03",
-      "total_cost": 96.0,
+      "total_cost": 96.1,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -249,7 +249,7 @@ window.FPL_WILDCARD_WATCH = {
         "Tarkowski": 6.2,
         "Barnes": 6.1,
         "King": 5.5,
-        "Groß": 5.8,
+        "Groß": 5.9,
         "Schade": 6.2,
         "Haaland": 15.6,
         "Kostoulas": 5.6,
@@ -262,12 +262,21 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Barry": 5.6
     },
-    "total_delta": -2.8,
+    "total_delta": -2.7,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
         "current_cost": 5.0,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Groß",
+        "baseline_cost": 5.8,
+        "current_cost": 5.9,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -322,15 +331,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Cherki",
         "baseline_cost": 7.8,
         "current_cost": 7.8,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Groß",
-        "baseline_cost": 5.8,
-        "current_cost": 5.8,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -494,6 +494,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tarkowski",
         "from": 6.1,
         "to": 6.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-03",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 5.8,
+        "to": 5.9,
         "delta": 0.1
       }
     ]
