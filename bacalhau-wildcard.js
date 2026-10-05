@@ -108,16 +108,22 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Provisional squad from Bacalhau's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00). Treat as a strong signal of intent, not a locked squad.",
   "recommend": {
-    "captain": "Bogle",
-    "captain_ep": 11.3,
-    "vice": "Groß",
-    "vice_ep": 10.7,
+    "captain": "Groß",
+    "captain_ep": 15.5,
+    "vice": "Schade",
+    "vice_ep": 12.0,
     "bench_swaps": [
       {
         "bench": "Tavernier",
-        "bench_ep": 6.7,
+        "bench_ep": 5.0,
         "starter": "Dewsbury-Hall",
         "starter_ep": 2.3
+      },
+      {
+        "bench": "Kostoulas",
+        "bench_ep": 10.0,
+        "starter": "Haaland",
+        "starter_ep": 7.5
       }
     ],
     "availability_flags": [],
@@ -131,13 +137,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 7.7,
+        "ep_next": 7.5,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 5.7,
+        "ep_next": 6.5,
         "status": "ok"
       },
       {
@@ -149,19 +155,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 11.3,
+        "ep_next": 10.0,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 7.0,
+        "ep_next": 8.5,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 7.3,
+        "ep_next": 8.5,
         "status": "ok"
       },
       {
@@ -173,19 +179,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.7,
+        "ep_next": 15.5,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 8.7,
+        "ep_next": 12.0,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 8.0,
+        "ep_next": 7.5,
         "status": "ok"
       }
     ],
@@ -193,19 +199,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.7,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 6.7,
+        "ep_next": 5.0,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 7.3,
+        "ep_next": 10.0,
         "status": "ok"
       },
       {
@@ -239,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-04",
+      "date": "2026-10-05",
       "total_cost": 93.2,
       "prices": {
         "Raya": 6.1,

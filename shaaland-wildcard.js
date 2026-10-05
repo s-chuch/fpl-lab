@@ -109,18 +109,24 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 10.7,
+    "captain_ep": 15.5,
     "vice": "Schade",
-    "vice_ep": 8.7,
+    "vice_ep": 12.0,
     "bench_swaps": [
       {
-        "bench": "Konsa",
-        "bench_ep": 3.7,
-        "starter": "Calafiori",
-        "starter_ep": 3.0
+        "bench": "Cherki",
+        "bench_ep": 4.5,
+        "starter": "King",
+        "starter_ep": 2.5
       }
     ],
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Konsa",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
@@ -131,7 +137,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 7.0,
+        "ep_next": 8.5,
         "status": "ok"
       },
       {
@@ -143,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 5.7,
+        "ep_next": 6.5,
         "status": "ok"
       },
       {
@@ -155,37 +161,37 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 7.7,
+        "ep_next": 5.5,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 5.0,
+        "ep_next": 2.5,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.7,
+        "ep_next": 15.5,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 8.7,
+        "ep_next": 12.0,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 8.0,
+        "ep_next": 7.5,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 7.3,
+        "ep_next": 10.0,
         "status": "ok"
       }
     ],
@@ -193,19 +199,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.7,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
         "name": "Konsa",
         "pos": "DEF",
-        "ep_next": 3.7,
-        "status": "ok"
+        "ep_next": 2.8,
+        "status": "doubt"
       },
       {
         "name": "Cherki",
         "pos": "MID",
-        "ep_next": 4.0,
+        "ep_next": 4.5,
         "status": "ok"
       },
       {
@@ -239,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-04",
+      "date": "2026-10-05",
       "total_cost": 96.1,
       "prices": {
         "Raya": 6.1,
