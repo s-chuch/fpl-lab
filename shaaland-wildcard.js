@@ -155,7 +155,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.3,
+        "ep_next": 11.0,
         "status": "ok"
       },
       {
@@ -217,7 +217,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barry",
         "pos": "FWD",
-        "ep_next": 3.3,
+        "ep_next": 4.0,
         "status": "ok"
       }
     ]
@@ -245,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-05",
+      "date": "2026-10-06",
       "total_cost": 96.2,
       "prices": {
         "Raya": 6.1,

@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tavernier",
         "bench_ep": 5.0,
         "starter": "Dewsbury-Hall",
-        "starter_ep": 2.3
+        "starter_ep": 2.5
       },
       {
         "bench": "Kostoulas",
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.3,
+        "ep_next": 11.0,
         "status": "ok"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 2.3,
+        "ep_next": 2.5,
         "status": "ok"
       },
       {
@@ -245,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-05",
+      "date": "2026-10-06",
       "total_cost": 93.2,
       "prices": {
         "Raya": 6.1,
