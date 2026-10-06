@@ -246,11 +246,11 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-05",
-      "total_cost": 96.1,
+      "total_cost": 96.2,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
-        "Calafiori": 5.8,
+        "Calafiori": 5.9,
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "Barnes": 6.1,
@@ -268,8 +268,17 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Barry": 5.6
     },
-    "total_delta": -2.7,
+    "total_delta": -2.6,
     "players": [
+      {
+        "name": "Calafiori",
+        "baseline_cost": 5.8,
+        "current_cost": 5.9,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
@@ -319,15 +328,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Barnes",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Calafiori",
-        "baseline_cost": 5.8,
-        "current_cost": 5.8,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -506,6 +506,14 @@ window.FPL_WILDCARD_WATCH = {
         "date": "2026-10-03",
         "event": "price_change",
         "player": "Groß",
+        "from": 5.8,
+        "to": 5.9,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-05",
+        "event": "price_change",
+        "player": "Calafiori",
         "from": 5.8,
         "to": 5.9,
         "delta": 0.1
