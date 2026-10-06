@@ -131,7 +131,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 6.0,
+        "ep_next": 7.5,
         "status": "ok"
       },
       {
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.0,
+        "ep_next": 3.5,
         "status": "ok"
       },
       {
@@ -205,7 +205,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Konsa",
         "pos": "DEF",
-        "ep_next": 2.8,
+        "ep_next": 2.6,
         "status": "doubt"
       },
       {
@@ -246,7 +246,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-06",
-      "total_cost": 96.2,
+      "total_cost": 96.3,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -254,7 +254,7 @@ window.FPL_WILDCARD_WATCH = {
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "Barnes": 6.1,
-        "King": 5.5,
+        "King": 5.6,
         "Groß": 5.9,
         "Schade": 6.2,
         "Haaland": 15.6,
@@ -268,7 +268,7 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Barry": 5.6
     },
-    "total_delta": -2.6,
+    "total_delta": -2.5,
     "players": [
       {
         "name": "Calafiori",
@@ -301,6 +301,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Hall",
         "baseline_cost": 5.2,
         "current_cost": 5.3,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "King",
+        "baseline_cost": 5.5,
+        "current_cost": 5.6,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -346,15 +355,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.6,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "King",
-        "baseline_cost": 5.5,
-        "current_cost": 5.5,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -516,6 +516,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Calafiori",
         "from": 5.8,
         "to": 5.9,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-06",
+        "event": "price_change",
+        "player": "King",
+        "from": 5.5,
+        "to": 5.6,
         "delta": 0.1
       }
     ]
