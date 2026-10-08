@@ -1,197 +1,67 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-07 15:19 UTC",
+  "generated_at": "2026-10-08 00:05 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Haaland (MCI) is heavily featured in GW6 coverage \u2014 mentioned by 6/6 sites. Tags: captain talk, injury/doubt, rotation risk.",
+      "text": "Gibbs-White (NFO) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk.",
       "sources": [
         "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Hub",
         "Ingenuity",
         "Scout"
       ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "captain talk",
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Barry (EVE) is heavily featured in GW6 coverage \u2014 mentioned by 5/6 sites. Tags: differential, fade/sell, injury/doubt, rotation risk.",
-      "sources": [
-        "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": [
-        "differential",
-        "fade/sell",
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Fernandes (TOT) is heavily featured in GW6 coverage \u2014 mentioned by 5/6 sites. Tags: captain talk, differential, injury/doubt, rotation risk.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Fernandes",
-      "club": "TOT",
-      "tags": [
-        "captain talk",
-        "differential",
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Jo\u00e3o Pedro (CHE) is heavily featured in GW6 coverage \u2014 mentioned by 5/6 sites. Tags: captain talk, fade/sell, injury/doubt, rotation risk.",
-      "sources": [
-        "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Jo\u00e3o Pedro",
-      "club": "CHE",
-      "tags": [
-        "captain talk",
-        "fade/sell",
-        "injury/doubt",
-        "rotation risk"
-      ]
-    },
-    {
-      "text": "Palmer (CHE) is heavily featured in GW6 coverage \u2014 mentioned by 5/6 sites. Tags: captain talk, injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Palmer",
-      "club": "CHE",
-      "tags": [
-        "captain talk",
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "De Cuyper (BHA) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites.",
-      "sources": [
-        "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "De Cuyper",
-      "club": "BHA",
-      "tags": []
-    },
-    {
-      "text": "Gonzalo (FUL) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Gonzalo",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Mbeumo (MUN) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites. Tags: differential, injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Mbeumo",
-      "club": "MUN",
-      "tags": [
-        "differential",
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Rogers (CHE) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Rogers",
-      "club": "CHE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Schade (BRE) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Schade",
-      "club": "BRE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Tavernier (BOU) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Tavernier",
-      "club": "BOU",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Wissa (NEW) is heavily featured in GW6 coverage \u2014 mentioned by 4/6 sites. Tags: captain talk.",
-      "sources": [
-        "AAFPL",
-        "FPL Page",
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Wissa",
-      "club": "NEW",
+      "player": "Gibbs-White",
+      "club": "NFO",
       "tags": [
         "captain talk"
       ]
     },
     {
-      "text": "Affengruber (FUL) is heavily featured in GW6 coverage \u2014 mentioned by 3/6 sites. Tags: differential.",
+      "text": "James (CHE) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
       "sources": [
         "AAFPL",
-        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "James",
+      "club": "CHE",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Murillo (NFO) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Murillo",
+      "club": "NFO",
+      "tags": []
+    },
+    {
+      "text": "White (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk, differential, injury/doubt.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "White",
+      "club": "ARS",
+      "tags": [
+        "captain talk",
+        "differential",
+        "injury/doubt"
+      ]
+    }
+  ],
+  "split": [
+    {
+      "text": "Affengruber (FUL) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: differential.",
+      "sources": [
+        "AAFPL",
         "Ingenuity"
       ],
       "player": "Affengruber",
@@ -201,10 +71,32 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Brobbey (SUN) is heavily featured in GW6 coverage \u2014 mentioned by 3/6 sites. Tags: injury/doubt, transfer target.",
+      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
-        "Fix",
+        "Ingenuity"
+      ],
+      "player": "Barnes",
+      "club": "NEW",
+      "tags": []
+    },
+    {
+      "text": "Barry (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: differential, rotation risk.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": [
+        "differential",
+        "rotation risk"
+      ]
+    },
+    {
+      "text": "Brobbey (SUN) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt, transfer target.",
+      "sources": [
+        "AAFPL",
         "Ingenuity"
       ],
       "player": "Brobbey",
@@ -215,30 +107,51 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Calafiori (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/6 sites.",
+      "text": "Calafiori (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
-        "Hub",
         "Ingenuity"
       ],
       "player": "Calafiori",
       "club": "ARS",
       "tags": []
-    }
-  ],
-  "split": [
+    },
     {
-      "text": "Barnes (NEW) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites.",
+      "text": "Calvert-Lewin (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
       "sources": [
         "AAFPL",
         "Ingenuity"
       ],
-      "player": "Barnes",
-      "club": "NEW",
+      "player": "Calvert-Lewin",
+      "club": "LEE",
+      "tags": [
+        "fade/sell"
+      ]
+    },
+    {
+      "text": "David (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: differential.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "David",
+      "club": "BHA",
+      "tags": [
+        "differential"
+      ]
+    },
+    {
+      "text": "De Cuyper (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "De Cuyper",
+      "club": "BHA",
       "tags": []
     },
     {
-      "text": "Dewsbury-Hall (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites.",
+      "text": "Dewsbury-Hall (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
         "Ingenuity"
@@ -248,94 +161,14 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Gvardiol (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites.",
+      "text": "Evanilson (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
         "Ingenuity"
       ],
-      "player": "Gvardiol",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "James (CHE) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "James",
-      "club": "CHE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Manzambi (AVL) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Manzambi",
-      "club": "AVL",
-      "tags": []
-    },
-    {
-      "text": "Muharemovi\u0107 (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Murillo (NFO) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Murillo",
-      "club": "NFO",
-      "tags": []
-    },
-    {
-      "text": "Scott (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Scott",
+      "player": "Evanilson",
       "club": "BOU",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Semenyo (MCI) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Semenyo",
-      "club": "MCI",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Tarkowski (EVE) is starting to come up in GW6 coverage \u2014 mentioned by 2/6 sites. Tags: injury/doubt.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Tarkowski",
-      "club": "EVE",
-      "tags": [
-        "injury/doubt"
-      ]
+      "tags": []
     }
   ],
   "links": [
@@ -366,64 +199,24 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best FPL Forwards Gameweek 6: Wildcard Picks & Stats",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-forwards-positional-review-2026/"
-    },
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 6: Best & Worst Fixtures for GW6\u201311",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw6-best-and-worst-fixtures-2026/"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL Wildcard and team of the week for Gameweek 6",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-6-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "Fulham FPL: Best picks amid their strong fixture run",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fulham-fpl-gameweek-6-26-27-article"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL GW6 fixtures: 5 players to target opposition weaknesses",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-6-article-26-27"
+      "source": "Scout",
+      "title": "Every FPL player\u2019s minutes in the bumper international break",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/every-fpl-players-minutes-in-the-bumper-international-break"
     },
     {
       "source": "Scout",
-      "title": "The FPL half-term report: Newcastle",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-newcastle"
+      "title": "The FPL half-term report: Nottm Forest",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-nottm-forest"
     },
     {
       "source": "Scout",
-      "title": "The FPL half-term report: Man United",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-man-united"
+      "title": "Making FPL transfers: Don\u2019t let the heart rule the head",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/making-fpl-transfers-dont-let-the-heart-rule-the-head"
     },
     {
-      "source": "Scout",
-      "title": "Brighton players, Saka, Bruno: Buy, keep or sell in Gameweek 6?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/brighton-players-saka-bruno-buy-keep-or-sell-in-gameweek-6"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 6: Best clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/07/fpl-gameweek-6-best-clean-sheet-odds"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW6 Team Selection | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw6-team-selection-2627"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Players to Buy for Gameweek 6",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-players-to-buy-for-gameweek-6/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 6 Captains",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-6-captains/"
+      "source": "AAFPL",
+      "title": "Top FPL Gameweek 6 Captain Picks Based on Analysis & Metrics",
+      "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-6-captain-picks-based-on-analysis-metrics/"
     }
   ],
   "no_new": false,
@@ -451,6 +244,7 @@ window.FPL_NEWS = {
     "https://allaboutfpl.com/2026/10/fpl-gameweek-6-transfer-tips-players-to-buy-avoid-sell-hold/",
     "https://allaboutfpl.com/2026/10/fpl-gw6-ultimate-guide-tips-captaincy-differentials-more/",
     "https://allaboutfpl.com/2026/10/fpl-gw6-wildcard-drafts-pros-cons-tips-and-players-to-target/",
+    "https://allaboutfpl.com/2026/10/top-fpl-gameweek-6-captain-picks-based-on-analysis-metrics/",
     "https://fpl.page/article/fpl-gw6-best-players-to-buy-2627",
     "https://fpl.page/article/fpl-gw6-team-selection-2627",
     "https://ingenuityfantasy.com/fpl-bookies/",
@@ -579,9 +373,12 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/06/the-fpl-half-term-report-liverpool-2",
     "https://www.fantasyfootballscout.co.uk/2026/10/06/the-fpl-half-term-report-man-city",
     "https://www.fantasyfootballscout.co.uk/2026/10/07/brighton-players-saka-bruno-buy-keep-or-sell-in-gameweek-6",
+    "https://www.fantasyfootballscout.co.uk/2026/10/07/every-fpl-players-minutes-in-the-bumper-international-break",
     "https://www.fantasyfootballscout.co.uk/2026/10/07/fpl-gameweek-6-best-clean-sheet-odds",
+    "https://www.fantasyfootballscout.co.uk/2026/10/07/making-fpl-transfers-dont-let-the-heart-rule-the-head",
     "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-man-united",
     "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-newcastle",
+    "https://www.fantasyfootballscout.co.uk/2026/10/07/the-fpl-half-term-report-nottm-forest",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
   ]
