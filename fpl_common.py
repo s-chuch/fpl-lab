@@ -79,23 +79,35 @@ def event_window(prev=None):
                 prev_ev = [e for e in events if e["id"] < int(gw)]
                 if prev_ev:
                     cutoff = parse_iso(prev_ev[-1].get("deadline_time") or "")
-    except Exception:
-        pass
+    except Exception as e:
+        if cutoff is None:
+            # Bootstrap failed: don't silently leave cutoff=None (every dated article
+            # would count as new). Reuse the previous run's cutoff when we have one.
+            prev_cut = parse_iso(((prev or {}).get("cutoff") or "").replace(" UTC", "+00:00").replace(" ", "T", 1))
+            if prev_cut:
+                cutoff = prev_cut
+                print(f"warn: event_window bootstrap failed ({e}) — reusing previous cutoff {prev['cutoff']}")
+            else:
+                print(f"warn: event_window bootstrap failed ({e}) and no previous cutoff — every dated article will count as new")
     return gw, cutoff
 
 
 def load_js_object(path):
-    """Parse the JSON object embedded in a `window.X = {...};` data file."""
+    """Parse the JSON object embedded in a `window.X = {...};` data file.
+    {} only for a missing (or blank) file; a corrupt/merge-conflicted file raises
+    ValueError so callers fail loudly instead of rebuilding and overwriting it."""
     if not path.exists():
         return {}
     raw = path.read_text()
+    if not raw.strip():
+        return {}
     s, e = raw.find("{"), raw.rfind("}")
     if s == -1 or e == -1:
-        return {}
+        raise ValueError(f"{path.name}: no JSON object found (corrupt or merge-conflicted?)")
     try:
         return json.loads(raw[s:e + 1])
-    except Exception:
-        return {}
+    except Exception as ex:
+        raise ValueError(f"{path.name}: cannot parse embedded JSON ({ex}) — fix or restore the file") from ex
 
 
 # --- Trend discovery: shared by news_scrape.py (article text) and x_scrape.py

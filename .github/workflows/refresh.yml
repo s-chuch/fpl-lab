@@ -7,7 +7,6 @@ on:
     - cron: "0 16 * * 6"
     - cron: "0 22 * * 6"
     - cron: "0 22 * * 0"
-    - cron: "0 8 * * 1"
   workflow_dispatch:
   push:
     branches: [main]
@@ -19,7 +18,8 @@ on:
 
 concurrency:
   group: refresh-main
-  cancel-in-progress: true
+  # false: a push must not kill a scheduled run mid-step; runs queue per group.
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -27,6 +27,9 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    # A failing job emails the repo owner by default (GitHub notification), so no
+    # extra alerting is wired up here.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,7 +69,31 @@ jobs:
             echo "No data change"
           else
             git commit -m "Refresh FPL data $(date -u +%Y-%m-%dT%H:%MZ)"
-            # If another refresh landed first, keep THIS run's generated data files.
-            git pull --rebase -X theirs origin main
-            git push origin main
+            WILD="bacalhau-wildcard.js shaaland-wildcard.js"
+            for attempt in 1 2 3; do
+              echo "push attempt $attempt/3"
+              # If another refresh landed first, keep THIS run's generated data files
+              # (data.js etc. are fully regenerated every run, so -X theirs — which in a
+              # rebase means the commit being replayed, i.e. ours — is intended).
+              if ! git pull --rebase -X theirs origin main; then
+                git rebase --abort || true
+                sleep $((attempt * 5)); continue
+              fi
+              # The two wildcard files are the exception: their xi/bench are hand-edited
+              # on main, so take the REMOTE copy and recompute the generated blocks
+              # (recommend, worth_tracker) from that squad instead of reverting the edit.
+              git checkout origin/main -- $WILD
+              python wildcard_recommend.py bacalhau-wildcard.js
+              python wildcard_recommend.py shaaland-wildcard.js
+              git add $WILD
+              if ! git diff --staged --quiet; then
+                git commit -m "Recompute wildcard recommendations on current squad"
+              fi
+              if git push origin main; then
+                exit 0
+              fi
+              sleep $((attempt * 5))
+            done
+            echo "Push failed after 3 attempts"
+            exit 1
           fi

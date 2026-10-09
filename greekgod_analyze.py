@@ -130,6 +130,7 @@ def main():
     live_cache = {}
 
     def points_for(gw, player_id):
+        """Points for the player, or None if the live fetch failed (caller leaves the call pending)."""
         if gw not in live_cache:
             try:
                 live_cache[gw] = {
@@ -138,7 +139,9 @@ def main():
                 }
             except Exception as e:
                 print(f"warn: could not load GW{gw} live data for call grading: {e}")
-                live_cache[gw] = {}
+                live_cache[gw] = None
+        if live_cache[gw] is None:
+            return None
         return live_cache[gw].get(player_id, 0)
 
     archive = load_js_object(ARCHIVE_PATH)
@@ -185,7 +188,10 @@ def main():
                     graded.append({"player": pl["web_name"], "kind": kind, "gw": gw, "pts": None, "verdict": "pending"})
                 else:
                     pts = points_for(gw, pl["id"])
-                    graded.append({"player": pl["web_name"], "kind": kind, "gw": gw, "pts": pts, "verdict": grade_call(kind, pts)})
+                    if pts is None:  # live fetch failed: leave pending rather than grade 0 pts as "bad"
+                        graded.append({"player": pl["web_name"], "kind": kind, "gw": gw, "pts": None, "verdict": "pending"})
+                    else:
+                        graded.append({"player": pl["web_name"], "kind": kind, "gw": gw, "pts": pts, "verdict": grade_call(kind, pts)})
         # Only surface a post as a "call" if it's actionable (captain/transfer
         # advice, chip timing) or a prediction claim — plain commentary/banter
         # with no player mention and no chip/claim language is left out.
