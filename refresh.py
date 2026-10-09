@@ -48,7 +48,7 @@ def fmt_deadline_et(raw):
         return ""
     local = dt.astimezone(ET)
     # e.g. 2026-09-18 1:30 PM ET
-    return local.strftime("%Y-%m-%d %-I:%M %p ET").replace("AM", "AM").replace("PM", "PM")
+    return local.strftime("%Y-%m-%d %-I:%M %p ET")
 
 def fmt_generated_et(dt=None):
     dt = dt or datetime.now(timezone.utc)
@@ -85,7 +85,9 @@ def deadline_state(boot, now=None):
     if current_gw is None:
         current_gw = locked_gw or next_gw
     # Planning / intel target: next deadline that has not passed
-    intel_gw = next_gw or (nxt or {}).get("id") or ((current_gw or 0) + 1)
+    intel_gw = next_gw or (nxt or {}).get("id")
+    if intel_gw is None and not (events and current_gw == events[-1]["id"]):
+        intel_gw = (current_gw or 0) + 1  # no GW after the last event (season over)
     cur_dl = parse_deadline((by_id.get(current_gw) or {}).get("deadline_time"))
     deadline_passed = bool(cur_dl and now >= cur_dl)
     # Picks unlock for the locked GW (usually = current after deadline, else last finished)
@@ -412,7 +414,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
         "intel_clear": False,
         "intel_note": (
             f"Waiting for GW{intel_gw} intel — GW{ds['locked_gw']} deadline has passed."
-            if ds["deadline_passed"] and ds["locked_gw"]
+            if ds["deadline_passed"] and ds["locked_gw"] and intel_gw
             else None
         ),
     }
@@ -435,14 +437,21 @@ def captain_audit(boot, team_id):
         if not cap: continue
         cap_raw = pts.get(cap["element"], 0)
         vc_raw = pts.get(vc["element"], 0) if vc else 0
-        mult = cap.get("multiplier") or 2
+        # If the captain didn't play, FPL promotes the vice: grade the pick that
+        # actually carried the armband (multiplier >= 2), not the nominal captain.
+        eff = cap if (cap.get("multiplier") or 0) >= 2 else (vc if vc and (vc.get("multiplier") or 0) >= 2 else cap)
+        mult = eff.get("multiplier")
+        if mult is None:
+            mult = 2
+        cmult = mult if mult >= 2 else 2  # multiplier for the vs_vc/vs_best counterfactuals
+        eff_raw = pts.get(eff["element"], 0)
         best_id, best_raw = cap["element"], cap_raw
         for p in pk.get("picks", []):
             raw = pts.get(p["element"], 0)
             if raw > best_raw:
                 best_id, best_raw = p["element"], raw
-        got = cap_raw * mult
-        out.append({"gw": gw, "chip": pk.get("active_chip"), "captain": names.get(cap["element"], "?"), "captain_raw": cap_raw, "got": got, "vc": names.get(vc["element"], "?") if vc else "-", "vc_raw": vc_raw, "best": names.get(best_id, "?"), "best_raw": best_raw, "vs_vc": got - vc_raw * mult, "vs_best": got - best_raw * mult})
+        got = eff_raw * mult
+        out.append({"gw": gw, "chip": pk.get("active_chip"), "captain": names.get(cap["element"], "?"), "captain_raw": cap_raw, "got": got, "vc": names.get(vc["element"], "?") if vc else "-", "vc_raw": vc_raw, "best": names.get(best_id, "?"), "best_raw": best_raw, "vs_vc": got - vc_raw * cmult, "vs_best": got - best_raw * cmult})
     return out
 
 def _best_xi(squad):
@@ -545,7 +554,7 @@ def build_bench_audit(boot, team_id, lookback=3):
                 live_cache[g] = get(f"https://fantasy.premierleague.com/api/event/{g}/live/").get("elements", [])
             except Exception as e:
                 _warn(f"build_bench_audit: could not load GW{g} live data: {e}")
-                live_cache[g] = []
+                live_cache[g] = None  # unavailable: callers skip it rather than treat as 0 pts/0 mins
         return live_cache[g]
 
     out = {}
@@ -563,12 +572,14 @@ def build_bench_audit(boot, team_id, lookback=3):
             # hindsight XI is an apples-to-oranges number, not a real miss.
             continue
         live_elems = live_for(gw)
+        if live_elems is None:
+            continue
         pts = {el["id"]: el["stats"]["total_points"] for el in live_elems}
         mins = {el["id"]: el["stats"].get("minutes", 0) for el in live_elems}
         prior_gws = [g for g in finished_gws if g < gw][-lookback:]
         trail_mins = {}
         for g in prior_gws:
-            for el in live_for(g):
+            for el in live_for(g) or []:
                 trail_mins[el["id"]] = trail_mins.get(el["id"], 0) + int(el["stats"].get("minutes") or 0)
         cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
         mult = (cap or {}).get("multiplier") or 2
@@ -606,7 +617,7 @@ def build_bench_audit(boot, team_id, lookback=3):
         # via hindsight's points-only best XI was misleading. `better` now
         # lists actual starters process XI wouldn't have started, i.e. it
         # wanted a currently-benched player (by trailing minutes) instead.
-        better = [[p["name"], p["pts"]] for p in squad if p["name"] not in proc_started]
+        better = [[p["name"], p["pts"]] for p in squad if p["started"] and p["name"] not in proc_started]
         # Per-bench-player verdict, auto-derived instead of hand-typed per GW:
         # "process" = minutes said they should've started (a real misread),
         # "variance" = not a nailed-minutes starter, but scored well enough
@@ -851,13 +862,15 @@ def build_live_value(boot, team_id, picks_gw, hist, entry, locked_gw):
         total_sell_tenths += sell
 
     bank_tenths = entry.get("last_deadline_bank", 0)
+    # Only when picks_gw is AHEAD of locked_gw: in a Free Hit week picks_gw is
+    # the earlier GW, and last_deadline_bank already includes its transfers.
     # Defensive only: in practice `picks_gw` (from build_plan) never actually
     # gets ahead of `locked_gw`, because FPL's public picks endpoint 404s for
     # any not-yet-deadlined gameweek (confirmed live) — so this can't correct
     # for an in-progress wildcard draft, which is invisible to this scraper
     # regardless. Kept in case FPL's visibility rules differ in some case not
     # yet observed; last_deadline_bank is used as-is the rest of the time.
-    if locked_gw is not None and picks_gw is not None and picks_gw != locked_gw:
+    if locked_gw is not None and picks_gw is not None and picks_gw > locked_gw:
         for t in ordered:
             if t.get("event") == picks_gw:
                 bank_tenths += (t.get("element_out_cost") or 0) - (t.get("element_in_cost") or 0)
@@ -1238,7 +1251,9 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             minutes_by_gw[gw] = {el["id"]: int(el["stats"].get("minutes") or 0) for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
         except Exception as e:
             _warn(f"build_rotation_risk: could not load GW{gw} live data: {e}")
-            minutes_by_gw[gw] = {}
+    recent_gws = [g for g in recent_gws if g in minutes_by_gw]  # failed fetch != 0 minutes
+    if len(recent_gws) < 2:
+        return None
 
     rotation_flagged = _rotation_flagged_players(ROOT)
 
@@ -1594,7 +1609,7 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
             continue
         cost = el["now_cost"] / 10
         if cost > 0:
-            value_by_pos[POS[el["element_type"]]].append((el["id"], el.get("total_points", 0) / cost))
+            value_by_pos[POS[el["element_type"]]].append((el["id"], (el.get("total_points") or 0) / cost))
     good_value_ids = set()
     for pos_rows in value_by_pos.values():
         pos_rows.sort(key=lambda r: -r[1])
@@ -1890,7 +1905,12 @@ def main(team_id=TEAM_ID, out_path=None):
     entry = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/")
     hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
     avg = {e["id"]: e.get("average_entry_score") for e in boot["events"]}
-    field_avg = dict(existing.get("field_avg_known") or {})
+    field_avg = {}
+    for k, v in (existing.get("field_avg_known") or {}).items():
+        try:
+            field_avg[int(k)] = v  # JSON round-trip turns int GW keys into strings
+        except (TypeError, ValueError):
+            pass
     prev_price_trend = dict(existing.get("price_trend") or {})
     today_et = datetime.now(ET).strftime("%Y-%m-%d")
     # Club rest-days are the same for both Shaaland and Bacalhau — refresh.py
@@ -1903,7 +1923,13 @@ def main(team_id=TEAM_ID, out_path=None):
         recovery_cache = json.loads(recovery_cache_path.read_text())
     except Exception:
         recovery_cache = {}
-    team_recovery = fixtures_external.get_team_recovery(boot, recovery_cache)
+    try:
+        team_recovery = fixtures_external.get_team_recovery(boot, recovery_cache)
+        if not isinstance(team_recovery, dict) or not isinstance(team_recovery.get("teams"), dict):
+            raise ValueError(f"malformed recovery result: {type(team_recovery).__name__}")
+    except Exception as e:
+        _warn(f"main: team recovery unavailable, continuing without it: {e}")
+        team_recovery = {"fetched_at": None, "teams": {}}
     recovery_cache["team_recovery"] = team_recovery
     recovery_cache_path.write_text(json.dumps(recovery_cache, indent=2))
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
@@ -1915,7 +1941,7 @@ def main(team_id=TEAM_ID, out_path=None):
     plan = build_plan(boot, team_id, hist, chips_used)
     ds = deadline_state(boot)
     live = build_live_value(boot, team_id, plan.get("squad_from_gw"), hist, entry, ds.get("locked_gw"))
-    last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
+    last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=None)
     # After deadline: league picks for the locked GW. Before: ownership from provisional/latest squad GW.
     league_picks_gw = ds["locked_gw"] if ds["deadline_passed"] and ds["locked_gw"] else (plan.get("squad_from_gw") or last_fin)
     my_last_gw_pts = next((r["points"] for r in hist.get("current", []) if r.get("event") == last_fin), None)
