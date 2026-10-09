@@ -10,6 +10,11 @@ h1{font-size:28px;margin:6px 0 4px}.sub{color:var(--muted);font-size:13px}
 .tabs{display:flex;flex-direction:column;gap:8px;overflow:visible;padding:6px 0 14px;position:sticky;top:0;background:var(--bg);z-index:5}
 .tab-groups,.tab-pills{display:flex;flex-wrap:wrap;gap:6px}
 .tabs button{border:1px solid var(--line);background:#0C141C;color:var(--ink);border-radius:999px;padding:8px 12px;font-size:13px;white-space:nowrap}
+@media(max-width:720px){
+  /* pill row scrolls sideways instead of wrapping into many rows, so the sticky bar stays short */
+  .tab-pills{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+  .tab-pills button{flex:0 0 auto}
+}
 .tabs button.on{background:var(--teal);border-color:var(--teal);font-weight:700}
 .tabs button.group{border-radius:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:7px 10px}
 .tabs button.group.on{color:var(--gold);border-color:var(--gold);background:#16120a;font-weight:700}

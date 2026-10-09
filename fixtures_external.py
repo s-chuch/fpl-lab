@@ -11,7 +11,8 @@ Source (found by testing several free options from GitHub Actions on
 season as static JSON — no key, not blocked from GitHub's servers, scores
 included once played. Used: epl, champions-league, europa-league,
 conference-league. The EFL Cup and FA Cup have no feed, so they are read from English
-Wikipedia's cup pages ({{Football box}} templates via the parse API); the FA Cup
+Wikipedia's cup pages ({{Football box}} templates via the parse API; kickoff times
+there are UK local and converted to UTC); the FA Cup
 page has no fixtures until later rounds are drawn, so that part is unverified
 until PL clubs enter (January). API-Football's free plan, worldfootball.net,
 ESPN and football-data.org were all ruled out (plan-blocked / 403 from Actions).
@@ -21,6 +22,10 @@ Feed club names mostly match FPL's own team names ("Man City", "Spurs",
 club with no match in the Premier League feed is logged, so a rename shows up
 in the Actions log instead of silently dropping that club.
 
+A kickoff in the last IN_PROGRESS_HOURS with no score yet counts as the club's
+NEXT (in-progress) match. The previous result is only replaced when the
+Premier League feed itself was fetched.
+
 Every function degrades to an empty/None result rather than raising when a feed
 can't be fetched — this is optional enrichment on a pipeline that must keep
 working without it.
@@ -28,6 +33,7 @@ working without it.
 from __future__ import annotations
 import json, re, sys, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 FEED_BASE = "https://fixturedownload.com/feed/json"
 FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
@@ -35,7 +41,9 @@ FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
 USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
 WIKI_UA = "ShaalandFPLLab/1.0 (https://github.com/s-chuch/fpl-lab)"  # Wikipedia asks for an identifying UA
 WIKI_CUPS = [("EFL Cup", "{y}–{yy} EFL Cup"), ("FA Cup", "{y}–{yy} FA Cup")]
-REFETCH_MINUTES = 60  # feeds update as results land; also dedupes the two refresh.py runs per workflow
+REFETCH_MINUTES = 30  # feeds update as results land; also dedupes the two refresh.py runs per workflow
+IN_PROGRESS_HOURS = 3  # an unscored match kicked off this recently is still being played
+UK = ZoneInfo("Europe/London")
 
 # FPL short_name -> extra names the feed might use, beyond FPL's own `name`.
 NAME_HINTS = {
@@ -93,10 +101,10 @@ def matches_from_feed(rows, competition, name_index):
 
 def recovery_from_matches(matches, now):
     """Rest-days record for one club: last = latest played match, next =
-    earliest unplayed match still to come (a kickoff already past with no
-    score is treated as in-progress and ignored)."""
+    earliest unplayed match still to come, including one that kicked off
+    within IN_PROGRESS_HOURS (in progress / score not in the feed yet)."""
     played = [m for m in matches if m["played"]]
-    upcoming = [m for m in matches if not m["played"] and m["date"] >= now]
+    upcoming = [m for m in matches if not m["played"] and m["date"] >= now - timedelta(hours=IN_PROGRESS_HOURS)]
     last = max(played, key=lambda m: m["date"]) if played else None
     nxt = min(upcoming, key=lambda m: m["date"]) if upcoming else None
     if not last and not nxt:
@@ -121,7 +129,8 @@ def _fetch_wiki_wikitext(title, timeout=25):
 _BOX_RE = re.compile(r"\{\{[Ff]ootball box.*?\n\}\}", re.S)
 _DATE_RE = re.compile(r"\|\s*date\s*=\s*(\d{1,2} [A-Za-z]+ \d{4})")
 _TIME_RE = re.compile(r"\|\s*time\s*=\s*(\d{1,2}):(\d{2})")
-_SCORE_RE = re.compile(r"\|\s*score\s*=\s*([^\n|]*)")
+_SCORE_RE = re.compile(r"\|\s*score\s*=\s*((?:[^\n|{\[]|\[\[[^\]]*\]\]|\{\{[^}]*\}\})*)")
+_REAL_SCORE_RE = re.compile(r"\d+\s*[–—-]\s*\d+")
 
 
 def _wiki_team(box, field):
@@ -134,10 +143,17 @@ def _wiki_team(box, field):
     return re.sub(r"\(\d+\)|\{\{.*?\}\}", "", name).strip() or None
 
 
+def _clean_score(raw):
+    """Drop link targets ([[Match 12|v]] -> v) and unwrap {{score link|X|2–1}} to its last arg."""
+    raw = re.sub(r"\{\{[^|}]*\|(?:[^}]*\|)?([^|}]*)\}\}", r"\1", raw)
+    return re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]", r"\1", raw)
+
+
 def matches_from_wikitext(wikitext, competition, name_index):
     """Same shape as matches_from_feed, from a Wikipedia cup page's
-    {{Football box}} templates. Kickoff time is taken as UTC (only the date
-    matters for rest-days); a match counts as played once its score is filled."""
+    {{Football box}} templates. Kickoff times are UK local, converted to UTC;
+    with no time the match is dated 23:59 UTC so an unplayed tie today still
+    counts as upcoming. A match counts as played once a real score (2–1) is filled."""
     out = []
     for box in _BOX_RE.findall(wikitext or ""):
         dm = _DATE_RE.search(box)
@@ -149,9 +165,12 @@ def matches_from_wikitext(wikitext, competition, name_index):
             continue
         tm = _TIME_RE.search(box)
         if tm:
-            when = when.replace(hour=int(tm.group(1)), minute=int(tm.group(2)))
+            local = datetime(when.year, when.month, when.day, int(tm.group(1)), int(tm.group(2)), tzinfo=UK)
+            when = local.astimezone(timezone.utc)
+        else:
+            when = when.replace(hour=23, minute=59)
         sm = _SCORE_RE.search(box)
-        played = bool(sm and re.search(r"\d", sm.group(1)))
+        played = bool(sm and _REAL_SCORE_RE.search(_clean_score(sm.group(1))))
         t1, t2 = _wiki_team(box, "team1"), _wiki_team(box, "team2")
         for me, opp in ((t1, t2), (t2, t1)):
             sn = name_index.get(_norm(me))
@@ -163,8 +182,8 @@ def matches_from_wikitext(wikitext, competition, name_index):
 def get_team_recovery(boot, existing, now=None):
     """Entry point for refresh.py's main(). Returns
     {"fetched_at", "teams": {short_name: record}}; refetches the four feeds
-    only if the last fetch is older than REFETCH_MINUTES. If every feed
-    fails the previous result is kept."""
+    only if the last fetch is older than REFETCH_MINUTES. If the Premier League
+    feed fails the previous result is kept (never replaced by partial data)."""
     now = now or datetime.now(timezone.utc)
     prev = (existing or {}).get("team_recovery") or {}
     try:
@@ -173,14 +192,14 @@ def get_team_recovery(boot, existing, now=None):
     except ValueError:
         pass
     idx = build_name_index(boot["teams"])
-    per_club, ok, pl_seen = {}, 0, set()
+    per_club, pl_ok, pl_seen = {}, False, set()
     for competition, slug in FEEDS:
         try:
             rows = _fetch_feed(slug, season_year(now))
         except (urllib.error.URLError, OSError, ValueError) as e:
             _warn(f"{slug} feed failed: {e}")
             continue
-        ok += 1
+        pl_ok = pl_ok or slug == "epl"
         got = matches_from_feed(rows, competition, idx)
         print(f"[fixtures_external.py] {slug}: {len(rows)} rows, {len(got)} PL-club matches", file=sys.stderr)
         for sn, m in got:
@@ -199,8 +218,7 @@ def get_team_recovery(boot, existing, now=None):
         print(f"[fixtures_external.py] {competition} (wikipedia): {len(got)} PL-club matches", file=sys.stderr)
         for sn, m in got:
             per_club.setdefault(sn, []).append(m)
-        ok += 1
-    if not ok:
+    if not pl_ok:
         return prev or {"fetched_at": None, "teams": {}}
     missing = [t["short_name"] for t in boot["teams"] if t["short_name"] not in pl_seen]
     if missing:

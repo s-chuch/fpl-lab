@@ -154,10 +154,32 @@ function renderGreekGodTab(){
     const link=c.url?`<p class="note"><a href="${safeHref(c.url)}" target="_blank" rel="noopener">View post</a></p>`:"";
     return `<li><span class="who">${esc(toToronto(c.at))}</span> ${tags}<div class="detail">${esc(c.text||"")}</div>${graded?`<div class="detail">${graded}</div>`:""}${link}</li>`;
   }).join("")||`<li><span class="note">No captain/transfer/chip calls or predictions tagged yet.</span></li>`;
-  const range=(G.earliest&&G.latest)?`${toToronto(G.earliest)} → ${toToronto(G.latest)}`:"—";
+  const range=(G.earliest&&G.latest)?`${esc(toToronto(G.earliest))} → ${esc(toToronto(G.latest))}`:"—";
   const cg=G.call_grades||{};
   const record=cg.graded?`<div class="card"><h2>Captain/transfer call record</h2><p class="note">${cg.good_pct}% good · ${cg.mixed_pct}% mixed · ${cg.bad_pct}% bad — ${cg.graded} graded call${cg.graded===1?"":"s"}${cg.pending?`, ${cg.pending} pending (GW not played yet)`:""}.</p><ul class="note-list"><li>Auto-graded from actual points</li><li>Captain call: "good" at 8+ points, "bad" at 2 or fewer</li><li>Transfer target: "good" at 6+, "bad" at 1 or fewer — everything between is "mixed"</li><li>A blunt heuristic on whichever single GW the call was for, not a judgment of the reasoning</li></ul></div>`:"";
   document.getElementById("greekgod").innerHTML=`<div class="card"><h2>@${esc(G.handle||"greekgodFpl")}</h2><p class="note">${G.post_count??0} posts archived · ${range}</p><ul class="note-list"><li>Live X ingest only started partway through this season — coverage begins from when tracking started, not GW1</li><li>"Called it" flags self-referential prediction language for you to judge against what happened — that part still isn't automated</li></ul></div>${record}<div class="card"><h2>Most-mentioned players</h2><div class="xi">${mentions}</div></div><div class="card"><h2>Most-mentioned clubs</h2><div class="xi">${clubs}</div></div><div class="card"><h2>Captain / transfer / chip calls</h2><ul class="chiplist">${calls}</ul></div>`;
+}
+// Freshness line + stale-data banner for the News/X tabs (shared by both pages).
+function freshnessMeta(obj, kind){
+  const gen=obj.generated_at?esc(toToronto(obj.generated_at)):esc(obj.generated_at_et||"—");
+  const cut=obj.cutoff?esc(toToronto(obj.cutoff)):"—";
+  const bits=[`Scraped ${gen}`, `cutoff ${cut}`];
+  if(obj.mode) bits.push("mode "+esc(obj.mode));
+  return `<p class="note">${bits.join(" · ")}</p>`;
+}
+function staleWarn(obj, kind){
+  const gw=obj.gw!=null?("GW"+obj.gw):"this GW";
+  if(kind==="news" && (obj.no_new || !(obj.new_articles||[]).length))
+    return `<div class="warn">No new articles this run for ${gw}. Themes may be stale — check generated time.</div>`;
+  if(kind==="x"){
+    if((obj.mode||"manual")==="live"){
+      if(obj.no_new || !(obj.new_posts||[]).length)
+        return `<div class="warn">No new X posts this run for ${gw}. Themes may be stale — check generated time.</div>`;
+      return "";
+    }
+    return `<div class="warn">X themes are manual/seeded until live ingest exists. Not a live scrape.</div>`;
+  }
+  return "";
 }
 function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
@@ -165,7 +187,7 @@ function newsVsSquad(squadNames, startedNames, clubsByName){
     const t=normTxt(it.text); const names=it.player?[it.player]:namesInText(it.text);
     const isFade=/fade|sell into|sell /.test(t); const isCap=/captain/.test(t); const isIn=it.player?true:/transfer in|to target|popular forward|priority/.test(t);
     if(isCap) caps.push(it.text);
-    if(isFade){ const startedUnited=(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"); const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
+    if(isFade){ const aboutUnited=it.club==="MUN"||/\bman(?:chester)? (?:utd|united)\b|\bmun\b/.test(t); const startedUnited=aboutUnited?(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"):[]; const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
     // Structured fields (it.sources/it.tags) let the Plan-tab card render a
     // real table instead of one paragraph per player — club is only trusted
     // when the item names exactly one player (it.club can't be right for a
