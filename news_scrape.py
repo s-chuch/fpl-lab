@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, urllib.request
+import json, re, time, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -28,7 +28,14 @@ JUNK_HOST_TOOLS = (
 QUERY_LISTING_KEYS = ("category", "tag", "page", "author", "s", "search")
 
 
+FETCH_BUDGET_S = 8 * 60  # stop fetching further pages after this, so 20s-per-request can't run forever
+_t0 = time.monotonic()
+
+
 def fetch_html(url):
+    if time.monotonic() - _t0 > FETCH_BUDGET_S:
+        print(f"news_scrape.py: fetch SKIPPED (time budget {FETCH_BUDGET_S}s spent): {url}")
+        return ""
     try:
         req = urllib.request.Request(url, headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
@@ -148,7 +155,9 @@ def is_junk(title, url):
 def older_gw_in(url, gw):
     low = (url or "").lower()
     for n in range(1, int(gw or 1)):
-        if f"gw{n}" in low or f"gameweek-{n}" in low or f"gameweek_{n}" in low or f"gameweek {n}" in low:
+        # (?!\d) so gw1 doesn't match gw12; (?<![a-z\d]) so "gw" isn't matched
+        # inside other words/digits.
+        if re.search(rf"(?<![a-z\d])gw{n}(?!\d)|gameweek[-_ ]{n}(?!\d)", low):
             return True
     return False
 
@@ -366,7 +375,9 @@ def url_date(url):
 def main():
     prev = load_news()
     gw, cutoff = event_window(prev)
-    seen_set = {u for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
+    # dict (not set) so insertion order = recency survives into the trimmed "seen" list
+    seen_set = {u: None for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
+    ok_sources = 0
     listings = site_listings(gw)
     # Per-source blobs (title + article body only, not full page HTML), case
     # preserved for player-mention discovery. Articles are joined with ARTICLE_SEP
@@ -392,6 +403,8 @@ def main():
             feed_url, feed_items = (override, parse_feed_items(xml_text)) if xml_text else (None, [])
         else:
             feed_url, feed_items = discover_feed_url(base, home_html)
+        if feed_items or home_html:
+            ok_sources += 1
         if feed_items:
             print(f"news_scrape.py: {source} feed OK ({feed_url}) — {len(feed_items)} items")
             # Feed found: it covers this source's whole output, so use it once
@@ -464,12 +477,12 @@ def main():
         if art["url"] not in seen_set:
             new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
             title_blobs[art["source"]] = title_blobs.get(art["source"], "") + ARTICLE_SEP + title
-        seen_set.add(art["url"])
+        seen_set[art["url"]] = None
     print(f"news_scrape.py: filter funnel — {len(discovered)} candidates, "
           f"{drop_seen_stale} dropped (already seen / before cutoff by URL date), "
           f"{drop_junk} dropped (junk title/url), {drop_cutoff} dropped (pub date not after cutoff), "
           f"{len(new_articles)} new")
-    seen_set = {u for u in seen_set if keep_seen(u, gw, cutoff)}
+    seen_set = {u: None for u in seen_set if keep_seen(u, gw, cutoff)}
     # Weight new-article titles heavily by repeating them into the blob
     for src, tb in title_blobs.items():
         blobs[src] = blobs.get(src, "") + ARTICLE_SEP + tb + ARTICLE_SEP + tb
@@ -502,17 +515,23 @@ def main():
         if prev.get("gw") == gw:
             agreed = filter_themes_for_gw(prev.get("agreed") or [], gw, min_sources=3)
             split = filter_themes_for_gw(prev.get("split") or [], gw, min_sources=2)
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    if not ok_sources:
+        # Every source failed: any themes here are carried over, not fresh — keep the
+        # old timestamp so the dashboard doesn't present them as just-refreshed.
+        print("news_scrape.py: WARNING — 0 sources fetched successfully; keeping previous generated_at (themes are stale)")
+        generated_at = prev.get("generated_at") or generated_at
     news = {
         "gw": gw,
         "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "generated_at": generated_at,
         "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
         "agreed": agreed,
         "split": split,
         "links": links,
         "new_articles": new_articles[:12],
         "no_new": not new_articles,
-        "seen": sorted(seen_set)[-200:],
+        "seen": list(seen_set)[-200:],
     }
     NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
     print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set), "agreed", len(agreed), "split", len(split))

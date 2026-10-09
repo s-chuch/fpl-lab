@@ -198,12 +198,18 @@ def main(watch_path=DEFAULT_WATCH_PATH):
     }
 
     today = datetime.now(ET).strftime("%Y-%m-%d")
-    watch["worth_tracker"] = build_worth_tracker(watch, xi + bench, today)
+    unmatched = [p["name"] for p in xi + bench if p.get("cost") is None]
+    if unmatched:
+        # A partial total would understate the baseline for good and log spurious removed/added rows.
+        print(f"warn: {watch_path.name}: unmatched player(s) {unmatched} — skipping worth_tracker update this run")
+    else:
+        watch["worth_tracker"] = build_worth_tracker(watch, xi + bench, today)
 
     watch_path.write_text("window.FPL_WILDCARD_WATCH = " + json.dumps(watch, indent=2, ensure_ascii=False) + ";\n")
     cap = watch["recommend"]["captain"]
-    wt = watch["worth_tracker"]
-    print(f"wildcard_recommend {watch_path.name}: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s), worth £{wt['current']['total_cost']}m ({sign_str(wt['total_delta'])})")
+    wt = watch.get("worth_tracker")
+    worth = f", worth £{wt['current']['total_cost']}m ({sign_str(wt['total_delta'])})" if wt and not unmatched else ""
+    print(f"wildcard_recommend {watch_path.name}: captain={cap} ({watch['recommend']['captain_ep']}), {len(swaps)} bench-swap suggestion(s), {len(flags)} availability flag(s){worth}")
 
 
 def sign_str(n):
