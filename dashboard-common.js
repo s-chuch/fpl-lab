@@ -177,3 +177,47 @@ function newsVsSquad(squadNames, startedNames, clubsByName){
   }
   return {owned, missing, fade, caps};
 }
+
+// Wildcard tab: how the hand-captured wildcard squad (W.xi + W.bench) lines up
+// against the other managers' CURRENT squads in the European Super League
+// mini-league (id 125784) — what the room owns, what you'd be fading, who you'd
+// overlap with. Built from D.leagues.mini[].member_squads (already in the data
+// file), excluding the page owner's own row so the room is "the other N".
+const ESL_ID=125784;
+function eslWildcardCard(W,D,who){
+  const lg=((D&&D.leagues&&D.leagues.mini)||[]).find(l=>l.id===ESL_ID);
+  const rivals=((lg&&lg.member_squads)||[]).filter(m=>!m.me);
+  const mine=((W&&W.xi)||[]).concat((W&&W.bench)||[]);
+  if(!rivals.length||!mine.length) return "";
+  const n=rivals.length, key=p=>p.name+"|"+p.club;
+  const own={}, cap={}, info={};
+  rivals.forEach(m=>{
+    (m.xi||[]).concat(m.bench||[]).forEach(p=>{own[key(p)]=(own[key(p)]||0)+1;info[key(p)]=p;});
+    const c=(m.xi||[]).find(p=>p.name===m.captain);
+    if(c) cap[key(c)]=(cap[key(c)]||0)+1;
+  });
+  const pct=c=>Math.round(100*c/n);
+  const diffMax=Math.max(1,Math.floor(n/4));
+  const tag=c=>c>=Math.ceil(n/2)?["Template","pos"]:c===0?["Unique","used"]:c<=diffMax?["Differential","mid"]:["Shared",""];
+  const myKeys=new Set(mine.map(key));
+  const rows=mine.map(p=>({p,c:own[key(p)]||0,cc:cap[key(p)]||0}))
+    .sort((a,b)=>b.c-a.c)
+    .map(({p,c,cc})=>{const [t,k]=tag(c);
+      return `<tr><td>${nameCell(p.name,p.club)}${p.captain?` <span class="pill used">C</span>`:p.vice?` <span class="pill free">VC</span>`:""}</td><td>${c}/${n} (${pct(c)}%)</td><td>${cc||"–"}</td><td><span class="pill ${k}">${t}</span></td></tr>`;}).join("");
+  const nTemplate=mine.filter(p=>(own[key(p)]||0)>=Math.ceil(n/2)).length;
+  const nDiff=mine.filter(p=>(own[key(p)]||0)<=diffMax).length;
+  const missing=Object.keys(own).filter(k=>!myKeys.has(k)&&own[k]>=Math.max(3,Math.ceil(n/3)))
+    .sort((a,b)=>own[b]-own[a]).slice(0,8)
+    .map(k=>`<li><span class="who">${esc(info[k].name)} (${esc(info[k].club)}) · ${esc(info[k].pos)}</span><div class="detail">${own[k]}/${n} rivals (${pct(own[k])}%) own him${cap[k]?` · captained by ${cap[k]}`:""}</div></li>`).join("");
+  const overlaps=rivals.map(m=>{
+    const set=new Set((m.xi||[]).concat(m.bench||[]).map(key));
+    return {m,shared:mine.filter(p=>set.has(key(p))).length};
+  }).sort((a,b)=>(a.m.rank||99)-(b.m.rank||99));
+  const avgOverlap=(overlaps.reduce((s,o)=>s+o.shared,0)/overlaps.length).toFixed(1);
+  const ovRows=overlaps.map(o=>`<tr><td>${esc(o.m.team)}<br><span style="color:var(--muted);font-size:10px">#${o.m.rank} · ${fmt(o.m.pts)} pts</span></td><td>${o.shared}/${mine.length}</td><td>${esc(o.m.captain||"–")}</td></tr>`).join("");
+  const wc=mine.find(p=>p.captain), wcKey=wc&&key(wc);
+  const capTally={};rivals.forEach(m=>{if(m.captain)capTally[m.captain]=(capTally[m.captain]||0)+1;});
+  const top=Object.entries(capTally).sort((a,b)=>b[1]-a[1])[0];
+  const capLine=wc?`<li>Wildcard captain <b>${esc(wc.name)}</b>: ${cap[wcKey]||0} of ${n} rivals captain him${top?` · the room's most-captained is <b>${esc(top[0])}</b> (${top[1]})`:""}</li>`:"";
+  return `<div class="card"><h2>${esc(who||"Wildcard")} vs ${esc((lg&&lg.name)||"the European Super League")}</h2><ul class="note-list"><li>Compares the wildcard squad above with the other ${n} managers' <b>current</b> squads (their wildcards, if any, aren't visible until they confirm)</li><li><b>${nTemplate}</b> of ${mine.length} picks are template (owned by half the room or more) · <b>${nDiff}</b> are differentials (owned by ${diffMax} or fewer) · average overlap with a rival: <b>${avgOverlap}</b> of ${mine.length}</li>${capLine}</ul><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:26%">Room owns</th><th style="width:14%">Cap</th><th style="width:24%">Type</th></tr></thead><tbody>${rows}</tbody></table>${missing?`<h3>Room template you're not playing</h3><ul class="chiplist">${missing}</ul>`:""}<h3>Overlap with each rival</h3><table class="table-compact"><thead><tr><th style="width:50%">Manager</th><th style="width:20%">Shared</th><th style="width:30%">Captain</th></tr></thead><tbody>${ovRows}</tbody></table></div>`;
+}

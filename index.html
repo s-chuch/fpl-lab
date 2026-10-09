@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20260920h"></script>
+<script src="dashboard-common.js?v=20261009a"></script>
 <script src="data.js?v=20260918e"></script>
 <script src="bench-fix.js?v=20260918g"></script>
 <script src="news.js?v=20260918e"></script>
@@ -218,7 +218,7 @@ function renderWildcardWatch(){
   const wc3=(D.targets&&D.targets.wc_top3)||[];
   const wc3Card=wc3.length?`<div class="card"><h2>WC names the room barely owns</h2><ul class="chiplist">${wc3.map(r=>`<li><span class="who">${esc(r.name)} · £${r.cost.toFixed(1)}</span><div class="detail">${esc((r.why||[]).join(" · ")||"–")}${r.esl_own!=null?" · ESL own "+r.esl_own+"/"+(r.esl_n??"?"):""}</div></li>`).join("")}</ul></div>`:"";
 
-  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from your own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>Your Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}${wc3Card}`;
+  document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from your own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>Your Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}${wc3Card}${eslWildcardCard(W,D,W.team)}`;
 }
 renderWildcardWatch();
 function fmtSquadLine(sq){
