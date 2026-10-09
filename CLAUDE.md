@@ -8,7 +8,7 @@
   between its last played and next scheduled match. `refresh.py`'s `main()`
   calls `fixtures_external.get_team_recovery(boot, cache)`; the result feeds the
   "Rest" column and "Congestion" badge on the Rotations tab. Cached in
-  `team_recovery_cache.json` (refetched at most hourly).
+  `team_recovery_cache.json` (refetched at most every 30 minutes).
 - **Cups:** no feed exists for the EFL Cup / FA Cup, so `fixtures_external.py`
   parses English Wikipedia's `2026–27 EFL Cup` / `FA Cup` pages (`{{Football box}}`
   templates via the parse API). EFL Cup verified live; the FA Cup page has no
