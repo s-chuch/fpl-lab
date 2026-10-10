@@ -268,8 +268,8 @@ window.FPL_WILDCARD_WATCH = {
     },
     "entry_prices": {
       "João Pedro": 7.7,
-      "B.Fernandes": 11.9,
-      "Davis": 4.0
+      "Davis": 4.0,
+      "B.Fernandes": 11.9
     },
     "total_delta": 3.0,
     "players": [
