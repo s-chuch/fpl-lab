@@ -199,8 +199,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 17:58 UTC",
-  "generated_at_et": "2026-10-10 1:58 PM ET",
+  "generated_at": "2026-10-10 18:02 UTC",
+  "generated_at_et": "2026-10-10 2:02 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -215,7 +215,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 400,
-    "overall_rank": 784321,
+    "overall_rank": 784446,
     "bank": 2.4,
     "value": 101.9,
     "live_value": 98.1
@@ -584,9 +584,9 @@ window.FPL_DATA = {
       }
     },
     "transfer": {
-      "ft_available": 5,
+      "ft_available": 2,
       "action": "ROLL",
-      "reason": "You have 5 FT. No forced move. Bank it.",
+      "reason": "You have 2 FT. No forced move. Bank it.",
       "move": null,
       "fh_unused": false
     },
@@ -3458,7 +3458,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 784321,
+        "rank": 784446,
         "last_rank": 686560
       }
     ],
@@ -3923,7 +3923,7 @@ window.FPL_DATA = {
         ]
       }
     ],
-    "free_transfers": 5,
+    "free_transfers": 2,
     "hits": {
       "total_cost": 0,
       "total_moves_net": 0,
@@ -5887,17 +5887,17 @@ window.FPL_DATA = {
         "name": "B.Fernandes",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 517,
+        "minutes": 521,
         "cost": 11.9,
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
         "xg": 2.58,
-        "xa": 1.39,
-        "xgi": 3.97,
+        "xa": 1.4,
+        "xgi": 3.98,
         "xgi_p90": 0.69,
         "gi": 4,
-        "diff": 0.03,
+        "diff": 0.02,
         "tag": "on_track"
       },
       {
@@ -5915,23 +5915,6 @@ window.FPL_DATA = {
         "xgi_p90": 0.69,
         "gi": 3,
         "diff": -0.05,
-        "tag": "on_track"
-      },
-      {
-        "name": "Mbeumo",
-        "pos": "MID",
-        "club": "MUN",
-        "minutes": 517,
-        "cost": 7.9,
-        "owned_pct": 19.9,
-        "goals": 2,
-        "assists": 1,
-        "xg": 3.07,
-        "xa": 0.82,
-        "xgi": 3.89,
-        "xgi_p90": 0.68,
-        "gi": 3,
-        "diff": -0.89,
         "tag": "on_track"
       },
       {
@@ -5967,6 +5950,23 @@ window.FPL_DATA = {
         "gi": 5,
         "diff": 2.74,
         "tag": "overperforming"
+      },
+      {
+        "name": "Mbeumo",
+        "pos": "MID",
+        "club": "MUN",
+        "minutes": 521,
+        "cost": 7.9,
+        "owned_pct": 19.9,
+        "goals": 2,
+        "assists": 1,
+        "xg": 3.07,
+        "xa": 0.82,
+        "xgi": 3.89,
+        "xgi_p90": 0.67,
+        "gi": 3,
+        "diff": -0.89,
+        "tag": "on_track"
       },
       {
         "name": "\u00d8degaard",
@@ -6436,19 +6436,6 @@ window.FPL_DATA = {
         "tag": "reliable"
       },
       {
-        "name": "Bentancur",
-        "pos": "MID",
-        "club": "TOT",
-        "minutes": 371,
-        "cost": 5.5,
-        "owned_pct": 0.2,
-        "threshold": 12,
-        "per90": 14.56,
-        "season_total": 60.0,
-        "margin": 2.56,
-        "tag": "reliable"
-      },
-      {
         "name": "M.Sangar\u00e9",
         "pos": "MID",
         "club": "BRE",
@@ -6459,6 +6446,19 @@ window.FPL_DATA = {
         "per90": 14.54,
         "season_total": 58.0,
         "margin": 2.54,
+        "tag": "reliable"
+      },
+      {
+        "name": "Bentancur",
+        "pos": "MID",
+        "club": "TOT",
+        "minutes": 375,
+        "cost": 5.5,
+        "owned_pct": 0.2,
+        "threshold": 12,
+        "per90": 14.4,
+        "season_total": 60.0,
+        "margin": 2.4,
         "tag": "reliable"
       },
       {
@@ -6478,13 +6478,13 @@ window.FPL_DATA = {
         "name": "Mainoo",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 421,
+        "minutes": 425,
         "cost": 5.5,
         "owned_pct": 1.5,
         "threshold": 12,
-        "per90": 13.9,
-        "season_total": 65.0,
-        "margin": 1.9,
+        "per90": 13.98,
+        "season_total": 66.0,
+        "margin": 1.98,
         "tag": "reliable"
       }
     ]
@@ -7030,7 +7030,7 @@ window.FPL_DATA = {
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
-        "xgi": 3.97,
+        "xgi": 3.98,
         "xgi_p90": 0.69
       },
       {
@@ -7045,17 +7045,6 @@ window.FPL_DATA = {
         "xgi_p90": 0.69
       },
       {
-        "name": "Mbeumo",
-        "pos": "MID",
-        "club": "MUN",
-        "cost": 7.9,
-        "owned_pct": 19.9,
-        "goals": 2,
-        "assists": 1,
-        "xgi": 3.89,
-        "xgi_p90": 0.68
-      },
-      {
         "name": "Yalcouy\u00e9",
         "pos": "MID",
         "club": "BHA",
@@ -7064,6 +7053,17 @@ window.FPL_DATA = {
         "goals": 2,
         "assists": 0,
         "xgi": 1.91,
+        "xgi_p90": 0.67
+      },
+      {
+        "name": "Cherki",
+        "pos": "MID",
+        "club": "MCI",
+        "cost": 7.8,
+        "owned_pct": 28.8,
+        "goals": 3,
+        "assists": 2,
+        "xgi": 2.26,
         "xgi_p90": 0.67
       }
     ],
@@ -7129,16 +7129,6 @@ window.FPL_DATA = {
         "margin": 3.15
       },
       {
-        "name": "Bentancur",
-        "pos": "MID",
-        "club": "TOT",
-        "cost": 5.5,
-        "owned_pct": 0.2,
-        "per90": 14.56,
-        "threshold": 12,
-        "margin": 2.56
-      },
-      {
         "name": "M.Sangar\u00e9",
         "pos": "MID",
         "club": "BRE",
@@ -7147,6 +7137,16 @@ window.FPL_DATA = {
         "per90": 14.54,
         "threshold": 12,
         "margin": 2.54
+      },
+      {
+        "name": "Bentancur",
+        "pos": "MID",
+        "club": "TOT",
+        "cost": 5.5,
+        "owned_pct": 0.2,
+        "per90": 14.4,
+        "threshold": 12,
+        "margin": 2.4
       }
     ]
   },
@@ -7757,7 +7757,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.5,
           "points": 24,
-          "minutes": 517,
+          "minutes": 521,
           "owned_pct": 15.8,
           "value_per_1m": 5.33
         },
@@ -7802,7 +7802,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 4.9,
           "points": 20,
-          "minutes": 517,
+          "minutes": 521,
           "owned_pct": 9.4,
           "value_per_1m": 4.08
         },
@@ -7885,7 +7885,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.9,
           "points": 30,
-          "minutes": 517,
+          "minutes": 521,
           "owned_pct": 6.2,
           "value_per_1m": 6.12
         },
@@ -8004,7 +8004,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 5.5,
           "points": 25,
-          "minutes": 421,
+          "minutes": 425,
           "owned_pct": 1.5,
           "value_per_1m": 4.55
         }
@@ -8658,21 +8658,6 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Mbeumo",
-            "pos": "MID",
-            "club": "MUN",
-            "cost": 7.9,
-            "owned_pct": 19.9,
-            "form": 2.3,
-            "xgi_p90": 0.68,
-            "fdr": 2.0,
-            "score": 3,
-            "why": [
-              "Strong xGI",
-              "Kind run"
-            ]
-          },
-          {
             "name": "Yalcouy\u00e9",
             "pos": "MID",
             "club": "BHA",
@@ -8702,6 +8687,21 @@ window.FPL_DATA = {
               "Great value",
               "Sell-high risk",
               "News/X backed"
+            ]
+          },
+          {
+            "name": "Mbeumo",
+            "pos": "MID",
+            "club": "MUN",
+            "cost": 7.9,
+            "owned_pct": 19.9,
+            "form": 2.3,
+            "xgi_p90": 0.67,
+            "fdr": 2.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Kind run"
             ]
           },
           {
@@ -9016,7 +9016,8 @@ window.FPL_DATA = {
             "score": 3,
             "why": [
               "In form",
-              "Reliable DEFCON"
+              "Reliable DEFCON",
+              "Doubt"
             ]
           },
           {
@@ -9252,7 +9253,8 @@ window.FPL_DATA = {
             "score": 3,
             "why": [
               "In form",
-              "Reliable DEFCON"
+              "Reliable DEFCON",
+              "Doubt"
             ]
           },
           {
@@ -9597,6 +9599,17 @@ window.FPL_DATA = {
         "yours": false
       },
       {
+        "name": "George Hemmings",
+        "club": "AVL",
+        "pos": "MID",
+        "cost": 4.5,
+        "owned_pct": 1.1,
+        "status": "doubt",
+        "label": "DOUBT 75%",
+        "chance": 75,
+        "yours": false
+      },
+      {
         "name": "Scarlett",
         "club": "TOT",
         "pos": "FWD",
@@ -9682,6 +9695,17 @@ window.FPL_DATA = {
         "status": "out",
         "label": "INJ",
         "chance": 0,
+        "yours": false
+      },
+      {
+        "name": "Schuster",
+        "club": "BRE",
+        "pos": "DEF",
+        "cost": 4.5,
+        "owned_pct": 0.6,
+        "status": "doubt",
+        "label": "DOUBT 75%",
+        "chance": 75,
         "yours": false
       },
       {
@@ -10056,6 +10080,17 @@ window.FPL_DATA = {
         "status": "out",
         "label": "OUT",
         "chance": 0,
+        "yours": false
+      },
+      {
+        "name": "Ruggeri",
+        "club": "AVL",
+        "pos": "DEF",
+        "cost": 4.5,
+        "owned_pct": 0.1,
+        "status": "doubt",
+        "label": "DOUBT 75%",
+        "chance": 75,
         "yours": false
       },
       {
