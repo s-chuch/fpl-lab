@@ -118,13 +118,19 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 8.0,
         "starter": "Calafiori",
         "starter_ep": 3.5
+      },
+      {
+        "bench": "Saka",
+        "bench_ep": 5.0,
+        "starter": "King",
+        "starter_ep": 2.5
       }
     ],
     "bench_order": [
       "Tzolakis",
       "Davis",
       "João Pedro",
-      "B.Fernandes"
+      "Saka"
     ],
     "bench_order_changed": true,
     "availability_flags": [],
@@ -210,9 +216,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "B.Fernandes",
+        "name": "Saka",
         "pos": "MID",
-        "ep_next": 2.0,
+        "ep_next": 5.0,
         "status": "ok"
       },
       {
@@ -247,7 +253,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-10",
-      "total_cost": 101.8,
+      "total_cost": 99.5,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -262,16 +268,16 @@ window.FPL_WILDCARD_WATCH = {
         "Kostoulas": 5.6,
         "Tzolakis": 4.7,
         "Davis": 4.0,
-        "B.Fernandes": 11.9,
+        "Saka": 9.6,
         "João Pedro": 7.7
       }
     },
     "entry_prices": {
       "João Pedro": 7.7,
       "Davis": 4.0,
-      "B.Fernandes": 11.9
+      "Saka": 9.6
     },
-    "total_delta": 3.0,
+    "total_delta": 0.7,
     "players": [
       {
         "name": "Calafiori",
@@ -375,11 +381,11 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "B.Fernandes",
         "baseline_cost": null,
-        "current_cost": 11.9,
+        "current_cost": null,
         "delta": null,
-        "entry_cost": 11.9,
-        "delta_since_added": 0.0,
-        "status": "added"
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
       },
       {
         "name": "Cherki",
@@ -434,6 +440,15 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": null,
         "delta_since_added": null,
         "status": "removed"
+      },
+      {
+        "name": "Saka",
+        "baseline_cost": null,
+        "current_cost": 9.6,
+        "delta": null,
+        "entry_cost": 9.6,
+        "delta_since_added": 0.0,
+        "status": "added"
       },
       {
         "name": "Tzolakis",
@@ -582,6 +597,18 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Davis",
         "price_at_change": 4.0
+      },
+      {
+        "date": "2026-10-10",
+        "event": "removed",
+        "player": "B.Fernandes",
+        "price_at_change": 11.9
+      },
+      {
+        "date": "2026-10-10",
+        "event": "added",
+        "player": "Saka",
+        "price_at_change": 9.6
       }
     ]
   }

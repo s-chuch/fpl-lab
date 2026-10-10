@@ -426,8 +426,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 05:40 UTC",
-  "generated_at_et": "2026-10-10 1:40 AM ET",
+  "generated_at": "2026-10-10 05:49 UTC",
+  "generated_at_et": "2026-10-10 1:49 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5803,6 +5803,20 @@ window.FPL_DATA = {
         "expected_season_change": 0.2
       },
       {
+        "name": "Saka",
+        "pos": "MID",
+        "club": "ARS",
+        "cost": 9.6,
+        "owned_pct": 16.6,
+        "net_transfers_today": 342595,
+        "momentum": 18.7,
+        "changed_today": true,
+        "cost_change_today": 0.1,
+        "season_change": 0.1,
+        "expected_change": 0.1,
+        "expected_season_change": 0.2
+      },
+      {
         "name": "Schade",
         "pos": "MID",
         "club": "BRE",
@@ -11093,6 +11107,16 @@ window.FPL_DATA = {
       ],
       "streak_days": 0,
       "days_tracked": 7
+    },
+    "Saka": {
+      "history": [
+        {
+          "date": "2026-10-10",
+          "momentum": 18.7
+        }
+      ],
+      "streak_days": 1,
+      "days_tracked": 1
     },
     "Schade": {
       "history": [
