@@ -1006,7 +1006,7 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
         "fixtures": {"horizon": horizon, "ticker": {"gws": ticker_gws, "rows": ticker_rows}, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
     }
 
-def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10):
+def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10, exclude=None):
     """Flag your own squad's players as over/underperforming their underlying
     numbers — a concrete "due for a dry patch" (sell-high) or "still getting
     the chances, patience/buy-low" signal, using FPL's own expected-goals
@@ -1064,9 +1064,12 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
         r = row_of(el)
         if r:
             all_rows.append(r)
-    top = sorted(all_rows, key=lambda r: -r["xgi_p90"])[:top_n]
-    top_over = sorted((r for r in all_rows if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
-    top_under = sorted((r for r in all_rows if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
+    # The league-wide leaderboards are scouting lists: only players you don't already own
+    # (`exclude` = your squad as (name, club) pairs). Your own players stay in `rows` below.
+    pool = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ())]
+    top = sorted(pool, key=lambda r: -r["xgi_p90"])[:top_n]
+    top_over = sorted((r for r in pool if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
+    top_under = sorted((r for r in pool if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
 
     rows = []
     if picks_gw:
@@ -1086,7 +1089,7 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
         "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under,
     }
 
-def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
+def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10, exclude=None):
     """Every qualifying player's recent form (FPL's own rolling average
     points over their last 30 days) against how hard their very next
     fixture is — one number that separates "in form AND an easy game" from
@@ -1101,6 +1104,8 @@ def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
         mins = int(el.get("minutes") or 0)
         if mins < min_minutes:
             continue  # too little game time for "form" to mean anything yet
+        if (el["web_name"], teams[el["team"]]["short_name"]) in (exclude or ()):
+            continue  # already yours: this is a scouting list
         try:
             form = float(el.get("form") or 0)
         except (TypeError, ValueError):
@@ -1124,7 +1129,7 @@ def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10):
 
 DEFCON_THRESHOLD = {"DEF": 10, "MID": 12, "FWD": 12}
 
-def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10):
+def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10, exclude=None):
     """FPL's 2025-26+ Defensive Contribution rule awards 2 pts in any match
     where a player's combined defensive actions clear a position threshold:
     10 (clearances+blocks+interceptions+tackles) for defenders, 12 (the same
@@ -1170,6 +1175,7 @@ def build_defcon(boot, team_id, picks_gw, min_minutes=180, top_n=10):
         r = row_of(el)
         if r:
             top.append(r)
+    top = [r for r in top if (r["name"], r["club"]) not in (exclude or ())]  # leaderboard = players you don't own
     top.sort(key=lambda r: -r["margin"])
     top = top[:top_n]
 
@@ -1367,7 +1373,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
     notable = [r for r in rows if r["reason"] is not None or r["trend"] == "rising"]
     return {"gws": recent_gws, "start_mins": start_mins, "target_gw": target_gw, "rows": rows, "notable": notable}
 
-def build_value_board(boot, min_minutes=180, top_n=10):
+def build_value_board(boot, min_minutes=180, top_n=10, exclude=None):
     """Best points-per-money across the WHOLE player pool, split by position
     (comparing a £4m defender against a £15m forward on raw value isn't a
     fair scouting comparison) — league-wide, not scoped to your squad or
@@ -1386,6 +1392,8 @@ def build_value_board(boot, min_minutes=180, top_n=10):
         cost = el["now_cost"] / 10
         if mins < min_minutes or cost <= 0:
             continue
+        if (el["web_name"], teams.get(el["team"], "?")) in (exclude or ()):
+            continue  # already yours
         pts = int(el.get("total_points") or 0)
         row = {
             "name": el["web_name"], "club": teams.get(el["team"], "?"), "cost": cost,
@@ -1427,7 +1435,7 @@ def build_injury_watch(boot, squad_names=None, top_n=15):
     # slice the global table itself.
     return {"top_n": top_n, "rows": rows}
 
-def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
+def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclude=None):
     """Approximate price-change momentum from FPL's own transfer-volume
     fields: transfers_in_event/transfers_out_event (net transfers so far
     today) and cost_change_event/cost_change_start (price change already
@@ -1473,8 +1481,9 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None):
 
     squad_rows = sorted((row_of(elements[eid]) for eid in squad_ids), key=lambda r: -abs(r["momentum"]))
     all_rows = [row_of(el) for el in elements.values()]
-    rising = sorted((r for r in all_rows if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
-    falling = sorted((r for r in all_rows if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
+    movers = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ())]  # your own players are in `squad`
+    rising = sorted((r for r in movers if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
+    falling = sorted((r for r in movers if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
     # `watch` is the actual decision set (wildcard-watch names + the wildcard
     # tab's own top-3 target names) rather than the top-N market movers —
     # every one of those names gets a row here even if its price hasn't
@@ -2032,13 +2041,14 @@ def main(team_id=TEAM_ID, out_path=None):
     data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
-    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
-    data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
+    owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
+    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
+    data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     data["team_recovery"] = team_recovery
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
-    data["form_fdr"] = build_form_fdr(boot, next_fixture_map)
-    data["value_board"] = build_value_board(boot)
+    data["form_fdr"] = build_form_fdr(boot, next_fixture_map, exclude=owned)
+    data["value_board"] = build_value_board(boot, exclude=owned)
     squad_names = {r[1] for r in (plan.get("rows") or [])}
     data["injury_watch"] = build_injury_watch(boot, squad_names=squad_names)
 
@@ -2078,7 +2088,7 @@ def main(team_id=TEAM_ID, out_path=None):
     }
 
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
-    data["targets"] = build_targets(boot, exclude={(r[1], r[2]) for r in (plan.get("rows") or [])})
+    data["targets"] = build_targets(boot, exclude=owned)
 
     # Wildcard tab's "who the room barely owns" shortlist: top Target-6 names,
     # excluding your current squad, preferring names this ESL league's table
@@ -2100,7 +2110,7 @@ def main(team_id=TEAM_ID, out_path=None):
     watch = fpl_common.load_js_object(ROOT / watch_filename)
     watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
     watch_names |= {r["name"] for r in wc_top3}
-    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names)
+    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned)
     trend_rows = data["price_radar"]["squad"] + data["price_radar"]["watch"]
     data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
     now = datetime.now(timezone.utc)
