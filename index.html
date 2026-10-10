@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20261010e">
+<link rel="stylesheet" href="dashboard.css?v=20261010f">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -58,7 +58,7 @@ function gwTable(){const rows=(D.gameweeks||[]).map(g=>{const chip=g.chip?` <spa
 document.getElementById("season").innerHTML=gwTable();
 function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
 function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
-function benchBlock(key,title){
+function benchBlock(key,title,open){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
   const max=Math.max(b.you,b.process,b.hindsight,1);
   const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${esc(x[0])} · ${x[1]}</div>`).join("");
@@ -69,10 +69,10 @@ function benchBlock(key,title){
   // particular Hindsight is pure outcome (unknowable in advance), so coloring
   // it "bad" would imply you should have hit an unhittable target.
   const youKls=b.you>=b.process?"good":"bad";
-  return `<div class="card"><h2>${title}</h2>${bar("You",b.you,max,youKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></div>`;
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${youKls==="good"?"pos":"neg"}">You ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar("You",b.you,max,youKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Your bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></details>`;
 }
-const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(a).replace(/\D/g,""))-Number(String(b).replace(/\D/g,"")));
-document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map(k=>benchBlock(k,k.toUpperCase())).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<ul class="note-list"><li>Green You = matched or beat the process benchmark; red You = fell short of it</li><li>Process/Hindsight are reference lines, not verdicts</li><li>Chips: green = correct sit, red = process miss, yellow = variance</li></ul>`;
+const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(b).replace(/\D/g,""))-Number(String(a).replace(/\D/g,"")));  // newest GW first
+document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map((k,i)=>benchBlock(k,k.toUpperCase(),i===0)).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<ul class="note-list"><li>Green You = matched or beat the process benchmark; red You = fell short of it</li><li>Process/Hindsight are reference lines, not verdicts</li><li>Chips: green = correct sit, red = process miss, yellow = variance</li></ul>`;
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);
