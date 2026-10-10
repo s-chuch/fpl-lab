@@ -243,3 +243,21 @@ function eslWildcardCard(W,D,who){
   const capLine=wc?`<li>Wildcard captain <b>${esc(wc.name)}</b>: ${cap[wcKey]||0} of ${n} rivals captain him${top?` · the room's most-captained is <b>${esc(top[0])}</b> (${top[1]})`:""}</li>`:"";
   return `<div class="card"><h2>${esc(who||"Wildcard")} vs ${esc((lg&&lg.name)||"the European Super League")}</h2><ul class="note-list"><li>Compares the wildcard squad above with the other ${n} managers' <b>current</b> squads (their wildcards, if any, aren't visible until they confirm)</li><li><b>${nTemplate}</b> of ${mine.length} picks are template (owned by half the room or more) · <b>${nDiff}</b> are differentials (owned by ${diffMax} or fewer) · average overlap with a rival: <b>${avgOverlap}</b> of ${mine.length}</li>${capLine}</ul><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:26%">Room owns</th><th style="width:14%">Cap</th><th style="width:24%">Type</th></tr></thead><tbody>${rows}</tbody></table>${missing?`<h3>Room template you're not playing</h3><ul class="chiplist">${missing}</ul>`:""}<h3>Overlap with each rival</h3><table class="table-compact"><thead><tr><th style="width:50%">Manager</th><th style="width:20%">Shared</th><th style="width:30%">Captain</th></tr></thead><tbody>${ovRows}</tbody></table></div>`;
 }
+
+// Remember the open tab across a browser refresh. The URL fragment (#tab=<id>)
+// wins, so a refreshed or bookmarked URL reopens the same tab; localStorage is
+// the fallback for a fresh visit to the bare URL. "#tab=" rather than "#<id>"
+// because the sections carry those ids and a bare fragment would scroll to one.
+function restoreTab(groups,key,defGroup,defTab){
+  const find=id=>groups.find(g=>g.tabs.some(t=>t[0]===id));
+  let id=null;
+  const m=(location.hash||"").match(/^#tab=([\w-]+)$/);
+  if(m&&find(m[1])) id=m[1];
+  if(!id){try{const s=localStorage.getItem(key);if(s&&find(s)) id=s;}catch(e){}}
+  if(!id) return {group:defGroup,tab:defTab};
+  return {group:find(id).id,tab:id};
+}
+function saveTab(key,id){
+  try{history.replaceState(null,"",location.pathname+location.search+"#tab="+id);}catch(e){}
+  try{localStorage.setItem(key,id);}catch(e){}
+}
