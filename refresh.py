@@ -1555,7 +1555,7 @@ def _intel_tags_by_player(root):
 
 TARGET_HORIZONS = (1, 3, 6)
 
-def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
+def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15, exclude=None):
     """League-wide "who to target" shortlists for the Target tab, at three
     look-ahead horizons (next 1/3/6 GWs) — combining the same underlying
     signals already shown on the Strategy tab (form, xGI/90, DEFCON
@@ -1572,9 +1572,11 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
     when a player clears a fixed threshold, and every point is shown back
     to the user as a "Why" tag rather than only a bare score. A player FPL
     itself flags as out is excluded outright; a doubt is kept but never
-    scored positively.
+    scored positively. `exclude` is a set of (name, club) pairs — the current
+    squad — so the shortlist only ever shows players you don't already have.
     """
     teams = {t["id"]: t for t in boot["teams"]}
+    exclude = exclude or set()
 
     def to_float(v):
         try:
@@ -1622,6 +1624,8 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
         avail = player_availability(el)
         if avail["kind"] == "out":
             continue  # never recommend a player FPL itself says can't play
+        if (el["web_name"], teams[el["team"]]["short_name"]) in exclude:
+            continue  # already in the squad: a target is someone you don't have
 
         pos = POS[el["element_type"]]
         name = el["web_name"]
@@ -2033,7 +2037,7 @@ def main(team_id=TEAM_ID, out_path=None):
     }
 
     data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
-    data["targets"] = build_targets(boot)
+    data["targets"] = build_targets(boot, exclude={(r[1], r[2]) for r in (plan.get("rows") or [])})
 
     # Wildcard tab's "who the room barely owns" shortlist: top Target-6 names,
     # excluding your current squad, preferring names this ESL league's table
