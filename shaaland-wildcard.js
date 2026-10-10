@@ -109,21 +109,21 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 15.5,
+    "captain_ep": 10.3,
     "vice": "Schade",
-    "vice_ep": 12.0,
+    "vice_ep": 8.0,
     "bench_swaps": [
       {
         "bench": "Davis",
-        "bench_ep": 8.0,
+        "bench_ep": 5.3,
         "starter": "Calafiori",
-        "starter_ep": 3.5
+        "starter_ep": 2.3
       },
       {
         "bench": "Saka",
-        "bench_ep": 5.0,
+        "bench_ep": 3.3,
         "starter": "King",
-        "starter_ep": 2.5
+        "starter_ep": 1.7
       }
     ],
     "bench_order": [
@@ -138,67 +138,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 7.5,
+        "ep_next": 5.0,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 8.5,
+        "ep_next": 5.7,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.5,
+        "ep_next": 2.3,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 6.5,
+        "ep_next": 4.3,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 11.0,
+        "ep_next": 7.3,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 5.5,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 2.5,
+        "ep_next": 1.7,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 15.5,
+        "ep_next": 10.3,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 12.0,
+        "ep_next": 8.0,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 7.5,
+        "ep_next": 5.0,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 10.0,
+        "ep_next": 6.7,
         "status": "ok"
       }
     ],
@@ -206,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.0,
+        "ep_next": 2.7,
         "status": "ok"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 8.0,
+        "ep_next": 5.3,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 5.0,
+        "ep_next": 3.3,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 6.0,
+        "ep_next": 4.0,
         "status": "ok"
       }
     ]
@@ -377,15 +377,6 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
-      },
-      {
-        "name": "B.Fernandes",
-        "baseline_cost": null,
-        "current_cost": null,
-        "delta": null,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "removed"
       },
       {
         "name": "Cherki",
