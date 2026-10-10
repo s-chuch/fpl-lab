@@ -274,13 +274,11 @@ function rivalsCard(tac,leagueName,pronoun){
   const chipNames=a=>a.map(c=>CHIP_SHORT[c]||c).join(", ");
   const rows=list.map(c=>{
     const gap=c.gap==null?"?":(c.gap>0?`${c.gap} ahead`:c.gap<0?`${-c.gap} behind`:"level");
-    const bits=[];
-    bits.push(c.chips_left==null?`<span class="note">Chips: unknown</span>`:(c.chips_left.length?`Chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">No chips left this half</span>`));
-    if(c.chips_used&&c.chips_used.length) bits.push(`Used: ${esc(chipNames(c.chips_used))}`);
+    const left=c.chips_left==null?`<span class="note">chips: unknown</span>`:(c.chips_left.length?`chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">no chips left this half</span>`);
+    const used=(c.chips_used&&c.chips_used.length)?` · used: ${esc(chipNames(c.chips_used))}`:"";
     const tn=trendNote(c.gap_trend,pronoun||"you");
-    if(tn) bits.push(esc(tn));
-    if(c.fixture) bits.push(esc(c.fixture.label+" fixtures ("+c.fixture.avg_fdr+")"));
-    return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><ul class="why">${bits.map(x=>`<li>${x}</li>`).join("")}</ul></li>`;
+    const extra=[tn,c.fixture?c.fixture.label.toLowerCase()+" fixtures ("+c.fixture.avg_fdr+")":null].filter(Boolean);
+    return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><div class="detail">${left}${used}${extra.length?` · ${esc(extra.join(", "))}`:""}</div></li>`;
   }).join("");
   return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to you on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
 }
@@ -301,23 +299,4 @@ function fixtureTickerCard(F,who){
   const row=r=>`<tr class="${r.squad.length?"mine":""}"><td><b>${esc(r.club)}</b>${r.squad.length?`<span class="who">${esc(r.squad.join(", "))}</span>`:""}</td>${T.gws.map(g=>cell(r.cells.find(c=>c.gw===g)||{fx:[]})).join("")}</tr>`;
   const mine=T.rows.filter(r=>r.squad.length), rest=T.rows.filter(r=>!r.squad.length);
   return `<div class="card"><h2>Fixture ticker · next ${T.gws.length} GWs</h2><ul class="note-list"><li>Every club's opponents for the gameweeks you can still change, coloured by difficulty</li><li>Gold-edged rows are ${who==="you"?"your":esc(who)+"'s"} clubs, with the players ${who==="you"?"you":"they"} own there; the rest are ordered kindest run first — the place to look for targets</li></ul><table class="table-compact ticker">${head}<tbody>${mine.map(row).join("")}${rest.length?`<tr><td colspan="${T.gws.length+1}" style="color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:10px">Other clubs · easiest run first</td></tr>`:""}${rest.map(row).join("")}</tbody></table><ul class="legend-list"><li>CAPITALS = home, lower case = away · a dash is a blank gameweek, two names stacked is a double</li><li>Colour: green = easy (FDR 1–2), grey = 3, amber = 4, red = hard (5)</li></ul></div>`;
-}
-
-// Rotation tab "Why": every reason that applies to a player, one bullet each (refresh.py
-// build_rotation_risk -> row.reasons), not a single summary label. The table cell shows
-// the short label; rotationDetail() gives the full sentence per reason underneath.
-function _rotCls(r,x){
-  if(x.kind==="injury"||x.kind==="unused") return "neg";
-  if(x.kind==="congestion"&&r.rest_days!=null&&r.rest_days<=2) return "neg";
-  return "mid";
-}
-function rotationWhy(r){
-  const a=r.reasons||[];
-  if(!a.length) return "–";
-  return `<ul class="why">${a.map(x=>`<li class="${_rotCls(r,x)}">${esc(x.label)}</li>`).join("")}</ul>`;
-}
-function rotationDetail(r){
-  const a=(r.reasons||[]).filter(x=>x.text);
-  if(!a.length) return "";
-  return `<li><span class="who">${esc(r.name)}</span><ul class="why">${a.map(x=>`<li class="${_rotCls(r,x)}">${esc(x.text)}</li>`).join("")}</ul></li>`;
 }
