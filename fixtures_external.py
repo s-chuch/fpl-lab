@@ -41,6 +41,7 @@ FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
 USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
 WIKI_UA = "ShaalandFPLLab/1.0 (https://github.com/s-chuch/fpl-lab)"  # Wikipedia asks for an identifying UA
 WIKI_CUPS = [("EFL Cup", "{y}–{yy} EFL Cup"), ("FA Cup", "{y}–{yy} FA Cup")]
+SCHEMA = 2  # bump when the record shape changes so an old cached result is refetched, not reused for 30 minutes
 REFETCH_MINUTES = 30  # feeds update as results land; also dedupes the two refresh.py runs per workflow
 IN_PROGRESS_HOURS = 3  # an unscored match kicked off this recently is still being played
 UK = ZoneInfo("Europe/London")
@@ -190,7 +191,7 @@ def get_team_recovery(boot, existing, now=None):
     now = now or datetime.now(timezone.utc)
     prev = (existing or {}).get("team_recovery") or {}
     try:
-        if prev.get("fetched_at") and now - datetime.fromisoformat(prev["fetched_at"]) < timedelta(minutes=REFETCH_MINUTES):
+        if prev.get("schema") == SCHEMA and prev.get("fetched_at") and now - datetime.fromisoformat(prev["fetched_at"]) < timedelta(minutes=REFETCH_MINUTES):
             return prev
     except ValueError:
         pass
@@ -227,4 +228,4 @@ def get_team_recovery(boot, existing, now=None):
     if missing:
         _warn(f"no Premier League feed match for: {', '.join(missing)} (rename? add to NAME_HINTS)")
     teams = {sn: r for sn, r in ((sn, recovery_from_matches(ms, now)) for sn, ms in per_club.items()) if r}
-    return {"fetched_at": now.isoformat(), "teams": teams}
+    return {"schema": SCHEMA, "fetched_at": now.isoformat(), "teams": teams}
