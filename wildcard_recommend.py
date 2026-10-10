@@ -158,7 +158,10 @@ def main(watch_path=DEFAULT_WATCH_PATH):
     bench = [enrich(p) for p in watch.get("bench", [])]
 
     fit_xi = [p for p in xi if p["ep_next"] is not None and p["status"] != "out"]
-    ranked = sorted(fit_xi, key=lambda p: -p["ep_next"])
+    # A real doubt (<75% to play) shouldn't wear the armband: FPL's ep_next only
+    # partly discounts it. Fall back to them only if nobody safer is left.
+    safe_xi = [p for p in fit_xi if p["status"] != "doubt" or (p.get("chance") or 0) >= 75]
+    ranked = sorted(safe_xi if len(safe_xi) >= 2 else fit_xi, key=lambda p: -p["ep_next"])
     captain = ranked[0] if ranked else None
     vice = ranked[1] if len(ranked) > 1 else None
 
@@ -166,20 +169,31 @@ def main(watch_path=DEFAULT_WATCH_PATH):
     # starter in the same position group is worth reconsidering pre-deadline
     # — a pre-deadline "process" check, same framing as the season's bench
     # audit, just run forward instead of graded after the fact.
-    swaps = []
-    for b in bench:
-        if b["ep_next"] is None:
+    swaps, claimed = [], set()
+    # Best bench projection first; each starter is offered up only once, so two
+    # bench players in one position group can't both point at the same starter.
+    for bp in sorted((p for p in bench if p["ep_next"] is not None and p["status"] != "out"), key=lambda p: -p["ep_next"]):
+        pool = [p for p in xi if p["pos"] == bp["pos"] and p["ep_next"] is not None and p["name"] not in claimed]
+        if not pool:
             continue
-        same_pos = [p for p in xi if p["pos"] == b["pos"] and p["ep_next"] is not None]
-        if not same_pos:
-            continue
-        worst = min(same_pos, key=lambda p: p["ep_next"])
-        if b["ep_next"] > worst["ep_next"]:
+        worst = min(pool, key=lambda p: p["ep_next"])  # an out bench player can't be swapped in
+        if bp["ep_next"] > worst["ep_next"]:
+            claimed.add(worst["name"])
             swaps.append({
-                "bench": b["name"], "bench_ep": b["ep_next"],
+                "bench": bp["name"], "bench_ep": bp["ep_next"],
                 "starter": worst["name"], "starter_ep": worst["ep_next"],
             })
     swaps.sort(key=lambda s: -(s["bench_ep"] - s["starter_ep"]))
+
+    # Auto-sub order: FPL fixes the spare keeper in slot 1; the outfield bench is
+    # subbed in slot order, so the likeliest-to-play, highest-EP player goes first.
+    def bench_key(p):
+        rank = {"out": 2, "doubt": 1}.get(p["status"], 0)
+        return (rank, -(p["ep_next"] if p["ep_next"] is not None else -1))
+    gk_bench = [p for p in bench if p["pos"] == "GKP"]
+    out_bench = sorted([p for p in bench if p["pos"] != "GKP"], key=bench_key)
+    bench_order = [p["name"] for p in gk_bench + out_bench]
+    your_order = [p["name"] for p in bench]
 
     flags = [
         {"name": p["name"], "label": p.get("avail_label"), "chance": p.get("chance")}
@@ -192,6 +206,8 @@ def main(watch_path=DEFAULT_WATCH_PATH):
         "vice": vice["name"] if vice else None,
         "vice_ep": vice["ep_next"] if vice else None,
         "bench_swaps": swaps,
+        "bench_order": bench_order,
+        "bench_order_changed": bench_order != your_order,
         "availability_flags": flags,
         "xi_ep": [{"name": p["name"], "pos": p["pos"], "ep_next": p["ep_next"], "status": p["status"]} for p in xi],
         "bench_ep": [{"name": p["name"], "pos": p["pos"], "ep_next": p["ep_next"], "status": p["status"]} for p in bench],

@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20261009b"></script>
+<script src="dashboard-common.js?v=20261010a"></script>
 <script src="data.js?v=20260918e"></script>
 <script src="bench-fix.js?v=20260918g"></script>
 <script src="news.js?v=20260918e"></script>
@@ -180,10 +180,13 @@ function renderWildcardWatch(){
     const capLine=capDiffers
       ?`<p class="note">You captained <b>${esc(yourCap.name)}</b>${yourCapEp!=null?` (${yourCapEp} EP)`:""} — <b>${esc(R.captain)}</b> projects higher at <b>${R.captain_ep??"?"}</b> EP.</p>`
       :`<p class="note">Recommended captain matches your pick: <b>${esc(R.captain||"?")}</b> (${R.captain_ep??"?"} EP).</p>`;
-    const viceLine=`<p class="note">Recommended vice: <b>${esc(R.vice||"?")}</b> (${R.vice_ep??"?"} EP).</p>`;
+    const yourVice=(W.xi||[]).find(p=>p.vice);
+    const viceDiffers=yourVice&&R.vice&&yourVice.name!==R.vice;
+    const viceLine=`<p class="note">Recommended vice: <b>${esc(R.vice||"?")}</b> (${R.vice_ep??"?"} EP)${viceDiffers?` — your vice is <b>${esc(yourVice.name)}</b>${epByName[yourVice.name]&&epByName[yourVice.name].ep_next!=null?` (${epByName[yourVice.name].ep_next} EP)`:""}`:""}.</p>`;
+    const benchOrderLine=(R.bench_order&&R.bench_order.length)?`<p class="note">${R.bench_order_changed?"Suggested bench order (auto-subs go in this order — yours differs)":"Bench order looks right"}: ${R.bench_order.map((n,i)=>`${i+1}. <b>${esc(n)}</b>${epByName[n]&&epByName[n].ep_next!=null?` (${epByName[n].ep_next})`:""}${epByName[n]&&epByName[n].status&&epByName[n].status!=="ok"?` <span class="pill used">${esc(epByName[n].status)}</span>`:""}`).join(" → ")}</p>`:"";
     const swapRows=(R.bench_swaps||[]).map(s=>`<li><span class="who">${esc(s.bench)} (${s.bench_ep}) over ${esc(s.starter)} (${s.starter_ep})</span><div class="detail">This bench player projects higher than a starter in the same position — worth reconsidering before the deadline.</div></li>`).join("")||`<li><span class="note">No bench player currently out-projects a starter in their position.</span></li>`;
     const flagRows=(R.availability_flags||[]).map(f=>`<li><span class="who">${esc(f.name)}</span> <span class="pill used">${esc(f.label||"Flagged")}</span></li>`).join("")||`<li><span class="note">No injury/doubt flags on this squad right now.</span></li>`;
-    recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><ul class="note-list"><li>Based on FPL's own ep_next (form + fixture blended prediction for next GW)</li><li>Recomputed every refresh — a pre-deadline read, not a locked call</li></ul>${capLine}${viceLine}<p class="note">Bench-swap watch</p><ul class="chiplist">${swapRows}</ul><p class="note">Availability flags</p><ul class="chiplist">${flagRows}</ul></div>`;
+    recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><ul class="note-list"><li>Based on FPL's own ep_next (form + fixture blended prediction for next GW) · a doubtful player (under 75% to play) isn't picked as captain or vice · each starter is offered up for swap only once</li><li>Recomputed every refresh — a pre-deadline read, not a locked call</li></ul>${capLine}${viceLine}${benchOrderLine}<p class="note">Bench-swap watch</p><ul class="chiplist">${swapRows}</ul><p class="note">Availability flags</p><ul class="chiplist">${flagRows}</ul></div>`;
   } else {
     recCard=`<div class="card"><h2>Captain &amp; bench recommendation</h2><p class="note">Not computed yet — lands after the next refresh run.</p></div>`;
   }
