@@ -300,3 +300,29 @@ function fixtureTickerCard(F,who){
   const mine=T.rows.filter(r=>r.squad.length), rest=T.rows.filter(r=>!r.squad.length);
   return `<div class="card"><h2>Fixture ticker · next ${T.gws.length} GWs</h2><ul class="note-list"><li>Every club's opponents for the gameweeks you can still change, coloured by difficulty</li><li>Gold-edged rows are ${who==="you"?"your":esc(who)+"'s"} clubs, with the players ${who==="you"?"you":"they"} own there; the rest are ordered kindest run first — the place to look for targets</li></ul><table class="table-compact ticker">${head}<tbody>${mine.map(row).join("")}${rest.length?`<tr><td colspan="${T.gws.length+1}" style="color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:10px">Other clubs · easiest run first</td></tr>`:""}${rest.map(row).join("")}</tbody></table><ul class="legend-list"><li>CAPITALS = home, lower case = away · a dash is a blank gameweek, two names stacked is a double</li><li>Colour: green = easy (FDR 1–2), grey = 3, amber = 4, red = hard (5)</li></ul></div>`;
 }
+
+// Captain tab (Review): same You / Process / Hindsight shape as the bench audit. See
+// refresh.py build_captain_board. Newest GW open, older ones folded.
+function captainBlock(key,title,open,D){
+  const b=D.captain_board&&D.captain_board[key]; if(!b) return "";
+  const max=Math.max(b.you,b.process,b.hindsight,1);
+  const pct=v=>Math.max(4,Math.round(100*v/max));
+  const row=(l,v,k)=>`<div class="barrow"><span>${l}</span><div class="track"><i class="${k||""}" style="width:${pct(v)}%"></i></div><b>${v}</b></div>`;
+  const good=b.you>=b.process;
+  const chipTag=b.chip==="3xc"?" · Triple Captain":"";
+  const eff=b.effective&&b.effective!==b.captain[0]?`<li>${esc(b.captain[0])} did not play, so the vice ${esc(b.effective)} took the armband</li>`:"";
+  const opts=(b.options||[]).map(([n,p])=>{
+    const tags=[n===b.captain[0]?"C":"",b.vice&&n===b.vice[0]?"VC":"",n===b.process_pick[0]?"P":""].filter(Boolean).join("/");
+    const k=n===b.captain[0]?(good?"chip ok":"chip process"):"chip sit";
+    return `<div class="${k}">${esc(n)} · ${p}${tags?` (${tags})`:""}</div>`;
+  }).join("");
+  const why=[`Your captain: <b>${esc(b.captain[0])}</b> (${b.captain[1]} pts × ${b.mult} = ${b.you})${chipTag}`,
+    `Process pick: <b>${esc(b.process_pick[0])}</b> — best points per appearance over the previous GWs${b.process_pick[2]>=0?` (${b.process_pick[2]})`:""}`,
+    `Hindsight: <b>${esc(b.best[0])}</b> (${b.best[1]} pts) was the top scorer in your XI`].map(x=>`<li>${x}</li>`).join("")+eff;
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${good?"pos":"neg"}">You ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${row("You",b.you,good?"good":"bad")}${row("Process",b.process)}${row("Hindsight",b.hindsight)}<ul class="why">${why}</ul><p class="note">Top scorers in your XI (C = captain, VC = vice, P = process pick)</p><div class="xi">${opts}</div></details>`;
+}
+function renderCaptain(D){
+  const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
+  const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
+  document.getElementById("captain").innerHTML=(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
+}

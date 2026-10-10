@@ -7,7 +7,7 @@
 <div class="kpis" id="kpis"></div>
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div>
 <nav class="tabs" id="tabs"></nav>
-<section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
+<section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=20261010o"></script>
@@ -24,7 +24,7 @@ document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_point
 startDeadlineBanner(D,"deadlineBanner");
 document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 const TAB_GROUPS=[
-  {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["transfers","Transfers"],["chips","Chips"]]},
+  {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["captain","Captain"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
   {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"],["stratInjury","Injury"]]},
   {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
@@ -70,6 +70,7 @@ function benchBlock(key,title,open){
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(b).replace(/\D/g,""))-Number(String(a).replace(/\D/g,"")));  // newest GW first
 document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map((k,i)=>benchBlock(k,k.toUpperCase(),i===0)).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<ul class="note-list"><li>Green They = matched or beat the process benchmark; red They = fell short of it</li><li>Process/Hindsight are reference lines, not verdicts</li><li>Chips: green = correct sit, red = process miss, yellow = variance</li></ul>`;
+renderCaptain(D);
 function renderTransfers(){
   const rows=D.transfers||[];
   const total=rows.reduce((s,t)=>s+trNet(t),0);

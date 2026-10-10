@@ -535,6 +535,67 @@ def _process_xi(squad, mins_key="mins"):
         picked.append(p); counts[p["pos"]] += 1
     return picked
 
+def build_captain_board(boot, team_id, lookback=3):
+    """Per-GW captain audit shaped like the bench audit: You / Process / Hindsight.
+    You = what the armband actually returned (the effective captain's points x multiplier,
+    so a vice who took over, or a Triple Captain, is graded as played). Process = the
+    starter who had the best points-per-appearance over the `lookback` finished GWs BEFORE
+    this one - a call you could make at the deadline without the result. Hindsight = the
+    top scorer among the XI that started (the armband can't go on a benched player)."""
+    names = {e["id"]: e["web_name"] for e in boot["elements"]}
+    finished = sorted(e["id"] for e in boot["events"] if e.get("finished"))
+    live_cache = {}
+    def live_for(g):
+        if g not in live_cache:
+            try:
+                live_cache[g] = {el["id"]: (el["stats"].get("total_points", 0), el["stats"].get("minutes", 0))
+                                 for el in get(f"https://fantasy.premierleague.com/api/event/{g}/live/").get("elements", [])}
+            except Exception as e:
+                _warn(f"build_captain_board: could not load GW{g} live data: {e}")
+                live_cache[g] = None
+        return live_cache[g]
+    out = {}
+    for gw in finished:
+        live = live_for(gw)
+        if live is None:
+            continue
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+        except Exception as e:
+            _warn(f"build_captain_board: could not load GW{gw} picks: {e}")
+            continue
+        picks = pk.get("picks") or []
+        cap = next((x for x in picks if x.get("is_captain")), None)
+        vc = next((x for x in picks if x.get("is_vice_captain")), None)
+        if not cap:
+            continue
+        pts = lambda eid: live.get(eid, (0, 0))[0]
+        eff = next((x for x in (cap, vc) if x and (x.get("multiplier") or 0) >= 2), cap)
+        mult = max(2, eff.get("multiplier") or 2)
+        you = pts(eff["element"]) * mult
+        starters = [x for x in picks if x["position"] <= 11]
+        prior = [g for g in finished if g < gw][-lookback:]
+        def form(eid):
+            seen = [live_for(g) for g in prior]
+            played = [d[eid][0] for d in seen if d and eid in d and d[eid][1] > 0]
+            return sum(played) / len(played) if played else -1
+        proc = max(starters, key=lambda x: (form(x["element"]), x["element"] == cap["element"])) if starters else cap
+        if form(proc["element"]) < 0:
+            proc = cap  # no track record to judge on: the only defensible call is the one made
+        best = max(starters or [cap], key=lambda x: pts(x["element"]))
+        top = sorted(starters, key=lambda x: -pts(x["element"]))[:5]
+        out[f"gw{gw}"] = {
+            "you": you, "process": pts(proc["element"]) * mult, "hindsight": pts(best["element"]) * mult,
+            "mult": mult, "chip": pk.get("active_chip"),
+            "captain": [names.get(cap["element"], "?"), pts(cap["element"])],
+            "vice": [names.get(vc["element"], "?"), pts(vc["element"])] if vc else None,
+            "effective": names.get(eff["element"], "?"),
+            "process_pick": [names.get(proc["element"], "?"), pts(proc["element"]), round(form(proc["element"]), 1)],
+            "best": [names.get(best["element"], "?"), pts(best["element"])],
+            "options": [[names.get(x["element"], "?"), pts(x["element"])] for x in top],
+        }
+    return out
+
 def build_bench_audit(boot, team_id, lookback=3):
     """`process` grades your bench call against what was knowable BEFORE the
     deadline, not against what happened in the gameweek itself: a player's
@@ -2040,6 +2101,7 @@ def main(team_id=TEAM_ID, out_path=None):
     # "skip if already present" cache would silently freeze once a new GW finishes.
     data["transfers"] = add_roll_rows(build_transfers(boot, team_id), hist, chips_used)
     data["bench_audit"] = build_bench_audit(boot, team_id)
+    data["captain_board"] = build_captain_board(boot, team_id)
     data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
