@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20261010k"></script>
+<script src="dashboard-common.js?v=20261010l"></script>
 <script>document.write('<script src="bacalhau-data.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>document.write('<script src="news.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>document.write('<script src="x-posts.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
@@ -280,8 +280,8 @@ function renderStrategy(){
   const rrKls={falling:"neg",declining:"neg",rising:"pos",mixed:"mid"};
   const rrWhy=r=>{
     if(r.reason==="injury"){const lbl=r.avail_label||"Flagged"; return `<span class="neg">${esc(lbl.replace("DOUBT ",""))}</span>`;}
-    if(r.reason==="rotation") return `<span class="pos">Rotation</span>`;
-    if(r.reason==="congestion") return `<span class="pos">Congestion</span>`;
+    if(r.reason==="rotation") return `<span class="mid">Rotation</span>`;
+    if(r.reason==="congestion") return `<span class="${r.rest_days!=null&&r.rest_days<=2?"neg":"mid"}">Congestion</span>`;
     if(r.reason==="squeeze") return `<span class="mid">Squeeze</span>`;
     if(r.reason==="unused") return `<span class="neg">Unused</span>`;
     if(r.reason==="rested") return `<span class="mid">Rested</span>`;
