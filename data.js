@@ -597,8 +597,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 16:25 UTC",
-  "generated_at_et": "2026-10-10 12:25 PM ET",
+  "generated_at": "2026-10-10 16:26 UTC",
+  "generated_at_et": "2026-10-10 12:26 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
