@@ -1,15 +1,6 @@
 window.FPL_DATA = {
   "transfers": [
     {
-      "gw": 1,
-      "out": "\u2014",
-      "inn": "ROLL",
-      "net": "0",
-      "verdict": "Rolled",
-      "process": "ok",
-      "outcome": "n/a"
-    },
-    {
       "gw": 2,
       "out": "\u2014",
       "inn": "ROLL",
@@ -38,237 +29,11 @@ window.FPL_DATA = {
     },
     {
       "gw": 4,
-      "out": "Gro\u00df",
-      "inn": "Hughes",
-      "net": "-16",
-      "verdict": "Lost that GW",
-      "out_price": 5.6,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Verbruggen",
-      "inn": "Raya",
-      "net": "+6",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 6.0
-    },
-    {
-      "gw": 4,
-      "out": "Mendy",
-      "inn": "Konsa",
-      "net": "+5",
-      "verdict": "Good that GW",
-      "out_price": 4.0,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Mitchell",
-      "inn": "Khalaili",
-      "net": "+6",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 5.0
-    },
-    {
-      "gw": 4,
-      "out": "Raya",
-      "inn": "Verbruggen",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 6.0,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Konsa",
-      "inn": "Calafiori",
+      "out": "Free Hit",
+      "inn": "26 moves",
       "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 4.5,
-      "in_price": 5.8
-    },
-    {
-      "gw": 4,
-      "out": "Calafiori",
-      "inn": "Konsa",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 5.6,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Verbruggen",
-      "inn": "Raya",
-      "net": "+6",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 6.0
-    },
-    {
-      "gw": 4,
-      "out": "Khalaili",
-      "inn": "Mitchell",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 5.0,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Raya",
-      "inn": "Verbruggen",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 6.0,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Davis",
-      "inn": "Khalaili",
-      "net": "-7",
-      "verdict": "Lost that GW",
-      "out_price": 4.0,
-      "in_price": 5.0
-    },
-    {
-      "gw": 4,
-      "out": "Thomas",
-      "inn": "Van Hecke",
-      "net": "+8",
-      "verdict": "Good that GW",
-      "out_price": 4.0,
-      "in_price": 4.9
-    },
-    {
-      "gw": 4,
-      "out": "Gakpo",
-      "inn": "Gro\u00df",
-      "net": "+16",
-      "verdict": "Good that GW",
-      "out_price": 7.2,
-      "in_price": 5.6
-    },
-    {
-      "gw": 4,
-      "out": "Konsa",
-      "inn": "Thomas",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 4.4,
-      "in_price": 4.0
-    },
-    {
-      "gw": 4,
-      "out": "Mitchell",
-      "inn": "Davis",
-      "net": "+13",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 4.0
-    },
-    {
-      "gw": 4,
-      "out": "Gomez",
-      "inn": "Slater",
-      "net": "-1",
-      "verdict": "Even that GW",
-      "out_price": 5.0,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Gro\u00df",
-      "inn": "Gakpo",
-      "net": "-16",
-      "verdict": "Lost that GW",
-      "out_price": 5.5,
-      "in_price": 7.2
-    },
-    {
-      "gw": 4,
-      "out": "Davis",
-      "inn": "Konsa",
-      "net": "-8",
-      "verdict": "Lost that GW",
-      "out_price": 4.0,
-      "in_price": 4.4
-    },
-    {
-      "gw": 4,
-      "out": "Tzolis",
-      "inn": "Rogers",
-      "net": "+5",
-      "verdict": "Good that GW",
-      "out_price": 6.5,
-      "in_price": 7.6
-    },
-    {
-      "gw": 4,
-      "out": "Shaw",
-      "inn": "Mitchell",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 4.4,
-      "in_price": 4.5
-    },
-    {
-      "gw": 4,
-      "out": "Hume",
-      "inn": "Mendy",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 4.5,
-      "in_price": 4.0
-    },
-    {
-      "gw": 4,
-      "out": "Verbruggen",
-      "inn": "Raya",
-      "net": "+6",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 6.0
-    },
-    {
-      "gw": 4,
-      "out": "Kinsky",
-      "inn": "Dubravka",
-      "net": "-7",
-      "verdict": "Lost that GW",
-      "out_price": 4.5,
-      "in_price": 4.0
-    },
-    {
-      "gw": 4,
-      "out": "B.Fernandes",
-      "inn": "Gomez",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 12.0,
-      "in_price": 5.0
-    },
-    {
-      "gw": 4,
-      "out": "Cherki",
-      "inn": "Palmer",
-      "net": "+4",
-      "verdict": "Good that GW",
-      "out_price": 7.7,
-      "in_price": 9.6
-    },
-    {
-      "gw": 4,
-      "out": "Calvert-Lewin",
-      "inn": "Isak",
-      "net": "-8",
-      "verdict": "Lost that GW",
-      "out_price": 6.0,
-      "in_price": 9.0
+      "chip": "freehit",
+      "verdict": "Squad reverts next GW"
     },
     {
       "gw": 5,
@@ -281,174 +46,11 @@ window.FPL_DATA = {
     },
     {
       "gw": 6,
-      "out": "\u2014",
-      "inn": "ROLL",
+      "out": "Wildcard",
+      "inn": "18 moves",
       "net": "0",
-      "verdict": "Rolled",
-      "process": "ok",
-      "outcome": "n/a"
-    },
-    {
-      "gw": 6,
-      "out": "B.Fernandes",
-      "inn": "Saka",
-      "net": "-1",
-      "verdict": "Even that GW",
-      "out_price": 11.9,
-      "in_price": 9.6
-    },
-    {
-      "gw": 6,
-      "out": "Cherki",
-      "inn": "B.Fernandes",
-      "net": "+3",
-      "verdict": "Good that GW",
-      "out_price": 7.7,
-      "in_price": 11.9
-    },
-    {
-      "gw": 6,
-      "out": "Konsa",
-      "inn": "Davis",
-      "net": "-3",
-      "verdict": "Lost that GW",
-      "out_price": 4.5,
-      "in_price": 4.0
-    },
-    {
-      "gw": 6,
-      "out": "Barry",
-      "inn": "Jo\u00e3o Pedro",
-      "net": "+12",
-      "verdict": "Good that GW",
-      "out_price": 5.6,
-      "in_price": 7.7
-    },
-    {
-      "gw": 6,
-      "out": "Isak",
-      "inn": "Barry",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 9.1,
-      "in_price": 5.6
-    },
-    {
-      "gw": 6,
-      "out": "Kinsky",
-      "inn": "Tzolakis",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 4.5,
-      "in_price": 4.6
-    },
-    {
-      "gw": 6,
-      "out": "Tavernier",
-      "inn": "Schade",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 6.1,
-      "in_price": 6.1
-    },
-    {
-      "gw": 6,
-      "out": "Verbruggen",
-      "inn": "Raya",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 4.5,
-      "in_price": 6.0
-    },
-    {
-      "gw": 6,
-      "out": "Jo\u00e3o Pedro",
-      "inn": "Kostoulas",
-      "net": "-11",
-      "verdict": "Lost that GW",
-      "out_price": 7.6,
-      "in_price": 5.5
-    },
-    {
-      "gw": 6,
-      "out": "Dewsbury-Hall",
-      "inn": "Tavernier",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 6.5,
-      "in_price": 6.1
-    },
-    {
-      "gw": 6,
-      "out": "Davis",
-      "inn": "Hall",
-      "net": "-1",
-      "verdict": "Even that GW",
-      "out_price": 4.0,
-      "in_price": 5.2
-    },
-    {
-      "gw": 6,
-      "out": "Mykolenko",
-      "inn": "Tarkowski",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 4.5,
-      "in_price": 6.1
-    },
-    {
-      "gw": 6,
-      "out": "Calvert-Lewin",
-      "inn": "Isak",
-      "net": "-2",
-      "verdict": "Lost that GW",
-      "out_price": 6.0,
-      "in_price": 9.1
-    },
-    {
-      "gw": 6,
-      "out": "Szoboszlai",
-      "inn": "King",
-      "net": "+2",
-      "verdict": "Good that GW",
-      "out_price": 7.0,
-      "in_price": 5.5
-    },
-    {
-      "gw": 6,
-      "out": "B.Fernandes",
-      "inn": "Barnes",
-      "net": "-3",
-      "verdict": "Lost that GW",
-      "out_price": 12.0,
-      "in_price": 6.1
-    },
-    {
-      "gw": 6,
-      "out": "Tzolis",
-      "inn": "Dewsbury-Hall",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 6.4,
-      "in_price": 6.5
-    },
-    {
-      "gw": 6,
-      "out": "Hume",
-      "inn": "Konsa",
-      "net": "+3",
-      "verdict": "Good that GW",
-      "out_price": 4.4,
-      "in_price": 4.5
-    },
-    {
-      "gw": 6,
-      "out": "Shaw",
-      "inn": "Mykolenko",
-      "net": "-6",
-      "verdict": "Lost that GW",
-      "out_price": 4.4,
-      "in_price": 4.5
+      "chip": "wildcard",
+      "verdict": "Free rebuild - judged by the squad, not each swap"
     }
   ],
   "bench_audit": {
@@ -597,8 +199,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 17:54 UTC",
-  "generated_at_et": "2026-10-10 1:54 PM ET",
+  "generated_at": "2026-10-10 17:58 UTC",
+  "generated_at_et": "2026-10-10 1:58 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -6285,17 +5887,17 @@ window.FPL_DATA = {
         "name": "B.Fernandes",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 512,
+        "minutes": 517,
         "cost": 11.9,
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
-        "xg": 2.56,
+        "xg": 2.58,
         "xa": 1.39,
-        "xgi": 3.95,
+        "xgi": 3.97,
         "xgi_p90": 0.69,
         "gi": 4,
-        "diff": 0.05,
+        "diff": 0.03,
         "tag": "on_track"
       },
       {
@@ -6319,7 +5921,7 @@ window.FPL_DATA = {
         "name": "Mbeumo",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 512,
+        "minutes": 517,
         "cost": 7.9,
         "owned_pct": 19.9,
         "goals": 2,
@@ -6837,13 +6439,13 @@ window.FPL_DATA = {
         "name": "Bentancur",
         "pos": "MID",
         "club": "TOT",
-        "minutes": 370,
+        "minutes": 371,
         "cost": 5.5,
         "owned_pct": 0.2,
         "threshold": 12,
-        "per90": 14.59,
+        "per90": 14.56,
         "season_total": 60.0,
-        "margin": 2.59,
+        "margin": 2.56,
         "tag": "reliable"
       },
       {
@@ -6860,19 +6462,6 @@ window.FPL_DATA = {
         "tag": "reliable"
       },
       {
-        "name": "Gallagher",
-        "pos": "MID",
-        "club": "TOT",
-        "minutes": 196,
-        "cost": 5.3,
-        "owned_pct": 0.2,
-        "threshold": 12,
-        "per90": 14.23,
-        "season_total": 31.0,
-        "margin": 2.23,
-        "tag": "reliable"
-      },
-      {
         "name": "Egan",
         "pos": "DEF",
         "club": "HUL",
@@ -6883,6 +6472,19 @@ window.FPL_DATA = {
         "per90": 12.15,
         "season_total": 59.0,
         "margin": 2.15,
+        "tag": "reliable"
+      },
+      {
+        "name": "Mainoo",
+        "pos": "MID",
+        "club": "MUN",
+        "minutes": 421,
+        "cost": 5.5,
+        "owned_pct": 1.5,
+        "threshold": 12,
+        "per90": 13.9,
+        "season_total": 65.0,
+        "margin": 1.9,
         "tag": "reliable"
       }
     ]
@@ -7428,7 +7030,7 @@ window.FPL_DATA = {
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
-        "xgi": 3.95,
+        "xgi": 3.97,
         "xgi_p90": 0.69
       },
       {
@@ -7532,9 +7134,9 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 5.5,
         "owned_pct": 0.2,
-        "per90": 14.59,
+        "per90": 14.56,
         "threshold": 12,
-        "margin": 2.59
+        "margin": 2.56
       },
       {
         "name": "M.Sangar\u00e9",
@@ -8155,7 +7757,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.5,
           "points": 24,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 15.8,
           "value_per_1m": 5.33
         },
@@ -8200,7 +7802,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 4.9,
           "points": 20,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 9.4,
           "value_per_1m": 4.08
         },
@@ -8283,7 +7885,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.9,
           "points": 30,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 6.2,
           "value_per_1m": 6.12
         },
@@ -8402,7 +8004,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 5.5,
           "points": 25,
-          "minutes": 416,
+          "minutes": 421,
           "owned_pct": 1.5,
           "value_per_1m": 4.55
         }
@@ -8942,15 +8544,15 @@ window.FPL_DATA = {
           "ratio": 0.85
         },
         {
-          "name": "Thiago",
+          "name": "Marmoush",
           "pos": "FWD",
-          "club": "BRE",
-          "cost": 7.8,
-          "owned_pct": 9.4,
-          "form": 3.3,
-          "fdr": 4,
-          "fixture": "LIV (H)",
-          "ratio": 0.82
+          "club": "TOT",
+          "cost": 7.0,
+          "owned_pct": 2.2,
+          "form": 1.7,
+          "fdr": 2,
+          "fixture": "COV (H)",
+          "ratio": 0.85
         }
       ]
     }
@@ -9394,7 +8996,7 @@ window.FPL_DATA = {
             "cost": 4.9,
             "owned_pct": 6.2,
             "form": 6.7,
-            "xgi_p90": 0.2,
+            "xgi_p90": 0.19,
             "fdr": 3.33,
             "score": 3,
             "why": [
@@ -9630,7 +9232,7 @@ window.FPL_DATA = {
             "cost": 4.9,
             "owned_pct": 6.2,
             "form": 6.7,
-            "xgi_p90": 0.2,
+            "xgi_p90": 0.19,
             "fdr": 2.83,
             "score": 3,
             "why": [

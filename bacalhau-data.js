@@ -1,15 +1,6 @@
 window.FPL_DATA = {
   "transfers": [
     {
-      "gw": 1,
-      "out": "\u2014",
-      "inn": "ROLL",
-      "net": "0",
-      "verdict": "Rolled",
-      "process": "ok",
-      "outcome": "n/a"
-    },
-    {
       "gw": 2,
       "out": "Shaw",
       "inn": "Kayode",
@@ -56,84 +47,11 @@ window.FPL_DATA = {
     },
     {
       "gw": 6,
-      "out": "\u2014",
-      "inn": "ROLL",
+      "out": "Wildcard",
+      "inn": "8 moves",
       "net": "0",
-      "verdict": "Rolled",
-      "process": "ok",
-      "outcome": "n/a"
-    },
-    {
-      "gw": 6,
-      "out": "Szoboszlai",
-      "inn": "Tavernier",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 7.0,
-      "in_price": 6.1
-    },
-    {
-      "gw": 6,
-      "out": "Ajayi",
-      "inn": "Hall",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 4.1,
-      "in_price": 5.2
-    },
-    {
-      "gw": 6,
-      "out": "N.Williams",
-      "inn": "Gvardiol",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 5.0,
-      "in_price": 5.7
-    },
-    {
-      "gw": 6,
-      "out": "Mitchell",
-      "inn": "De Cuyper",
-      "net": "+15",
-      "verdict": "Good that GW",
-      "out_price": 4.5,
-      "in_price": 4.9
-    },
-    {
-      "gw": 6,
-      "out": "Kusi-Asare",
-      "inn": "Kostoulas",
-      "net": "+1",
-      "verdict": "Even that GW",
-      "out_price": 4.5,
-      "in_price": 5.5
-    },
-    {
-      "gw": 6,
-      "out": "Calafiori",
-      "inn": "Bogle",
-      "net": "-8",
-      "verdict": "Lost that GW",
-      "out_price": 5.6,
-      "in_price": 4.6
-    },
-    {
-      "gw": 6,
-      "out": "Dubravka",
-      "inn": "Tzolakis",
-      "net": "0",
-      "verdict": "Even that GW",
-      "out_price": 4.0,
-      "in_price": 4.6
-    },
-    {
-      "gw": 6,
-      "out": "B.Fernandes",
-      "inn": "Schade",
-      "net": "-2",
-      "verdict": "Lost that GW",
-      "out_price": 12.0,
-      "in_price": 6.1
+      "chip": "wildcard",
+      "verdict": "Free rebuild - judged by the squad, not each swap"
     }
   ],
   "bench_audit": {
@@ -293,8 +211,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 17:54 UTC",
-  "generated_at_et": "2026-10-10 1:54 PM ET",
+  "generated_at": "2026-10-10 17:58 UTC",
+  "generated_at_et": "2026-10-10 1:58 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -309,7 +227,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 373,
-    "overall_rank": 2090096,
+    "overall_rank": 2090511,
     "bank": 8.4,
     "value": 101.6,
     "live_value": 92.0
@@ -3535,7 +3453,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 2090096,
+        "rank": 2090511,
         "last_rank": 1187975
       }
     ],
@@ -5872,17 +5790,17 @@ window.FPL_DATA = {
         "name": "B.Fernandes",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 512,
+        "minutes": 517,
         "cost": 11.9,
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
-        "xg": 2.56,
+        "xg": 2.58,
         "xa": 1.39,
-        "xgi": 3.95,
+        "xgi": 3.97,
         "xgi_p90": 0.69,
         "gi": 4,
-        "diff": 0.05,
+        "diff": 0.03,
         "tag": "on_track"
       },
       {
@@ -5906,7 +5824,7 @@ window.FPL_DATA = {
         "name": "Mbeumo",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 512,
+        "minutes": 517,
         "cost": 7.9,
         "owned_pct": 19.9,
         "goals": 2,
@@ -6390,13 +6308,13 @@ window.FPL_DATA = {
         "name": "Bentancur",
         "pos": "MID",
         "club": "TOT",
-        "minutes": 370,
+        "minutes": 371,
         "cost": 5.5,
         "owned_pct": 0.2,
         "threshold": 12,
-        "per90": 14.59,
+        "per90": 14.56,
         "season_total": 60.0,
-        "margin": 2.59,
+        "margin": 2.56,
         "tag": "reliable"
       },
       {
@@ -6413,19 +6331,6 @@ window.FPL_DATA = {
         "tag": "reliable"
       },
       {
-        "name": "Gallagher",
-        "pos": "MID",
-        "club": "TOT",
-        "minutes": 196,
-        "cost": 5.3,
-        "owned_pct": 0.2,
-        "threshold": 12,
-        "per90": 14.23,
-        "season_total": 31.0,
-        "margin": 2.23,
-        "tag": "reliable"
-      },
-      {
         "name": "Egan",
         "pos": "DEF",
         "club": "HUL",
@@ -6436,6 +6341,19 @@ window.FPL_DATA = {
         "per90": 12.15,
         "season_total": 59.0,
         "margin": 2.15,
+        "tag": "reliable"
+      },
+      {
+        "name": "Mainoo",
+        "pos": "MID",
+        "club": "MUN",
+        "minutes": 421,
+        "cost": 5.5,
+        "owned_pct": 1.5,
+        "threshold": 12,
+        "per90": 13.9,
+        "season_total": 65.0,
+        "margin": 1.9,
         "tag": "reliable"
       }
     ]
@@ -6992,7 +6910,7 @@ window.FPL_DATA = {
         "owned_pct": 37.1,
         "goals": 3,
         "assists": 1,
-        "xgi": 3.95,
+        "xgi": 3.97,
         "xgi_p90": 0.69
       },
       {
@@ -7085,9 +7003,9 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 5.5,
         "owned_pct": 0.2,
-        "per90": 14.59,
+        "per90": 14.56,
         "threshold": 12,
-        "margin": 2.59
+        "margin": 2.56
       },
       {
         "name": "M.Sangar\u00e9",
@@ -7712,7 +7630,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.5,
           "points": 24,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 15.8,
           "value_per_1m": 5.33
         },
@@ -7757,7 +7675,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 4.9,
           "points": 20,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 9.4,
           "value_per_1m": 4.08
         },
@@ -7840,7 +7758,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.9,
           "points": 30,
-          "minutes": 512,
+          "minutes": 517,
           "owned_pct": 6.2,
           "value_per_1m": 6.12
         },
@@ -7959,7 +7877,7 @@ window.FPL_DATA = {
           "club": "MUN",
           "cost": 5.5,
           "points": 25,
-          "minutes": 416,
+          "minutes": 421,
           "owned_pct": 1.5,
           "value_per_1m": 4.55
         }
@@ -8957,7 +8875,7 @@ window.FPL_DATA = {
             "cost": 4.9,
             "owned_pct": 6.2,
             "form": 6.7,
-            "xgi_p90": 0.2,
+            "xgi_p90": 0.19,
             "fdr": 3.33,
             "score": 3,
             "why": [
@@ -9196,7 +9114,7 @@ window.FPL_DATA = {
             "cost": 4.9,
             "owned_pct": 6.2,
             "form": 6.7,
-            "xgi_p90": 0.2,
+            "xgi_p90": 0.19,
             "fdr": 2.83,
             "score": 3,
             "why": [
