@@ -95,9 +95,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "MID",
-      "name": "B.Fernandes",
-      "club": "MUN",
-      "fixture": "TOT (H)"
+      "name": "Saka",
+      "club": "ARS",
+      "fixture": "LEE (H)"
     },
     {
       "pos": "FWD",
