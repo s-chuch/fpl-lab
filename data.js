@@ -199,8 +199,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 18:02 UTC",
-  "generated_at_et": "2026-10-10 2:02 PM ET",
+  "generated_at": "2026-10-10 18:03 UTC",
+  "generated_at_et": "2026-10-10 2:03 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -215,7 +215,7 @@ window.FPL_DATA = {
     "name": "Shaaland",
     "manager": "s cc",
     "overall_points": 400,
-    "overall_rank": 784446,
+    "overall_rank": 784530,
     "bank": 2.4,
     "value": 101.9,
     "live_value": 98.1
@@ -3458,7 +3458,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 784446,
+        "rank": 784530,
         "last_rank": 686560
       }
     ],
