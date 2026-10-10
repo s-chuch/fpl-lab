@@ -41,6 +41,7 @@ FEEDS = [("Premier League", "epl"), ("Champions League", "champions-league"),
 USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
 WIKI_UA = "ShaalandFPLLab/1.0 (https://github.com/s-chuch/fpl-lab)"  # Wikipedia asks for an identifying UA
 WIKI_CUPS = [("EFL Cup", "{y}–{yy} EFL Cup"), ("FA Cup", "{y}–{yy} FA Cup")]
+PENDING_RESULT_HOURS = 48  # how long a finished-but-unscored match is treated as played
 SCHEMA = 2  # bump when the record shape changes so an old cached result is refetched, not reused for 30 minutes
 REFETCH_MINUTES = 30  # feeds update as results land; also dedupes the two refresh.py runs per workflow
 IN_PROGRESS_HOURS = 3  # an unscored match kicked off this recently is still being played
@@ -104,7 +105,11 @@ def recovery_from_matches(matches, now):
     """Rest-days record for one club: last = latest played match, next =
     earliest unplayed match still to come, including one that kicked off
     within IN_PROGRESS_HOURS (in progress / score not in the feed yet)."""
-    played = [m for m in matches if m["played"]]
+    # A match that kicked off more than IN_PROGRESS_HOURS ago but has no score in the
+    # feed yet has been played - the feed just lags - so it counts as the last match
+    # (otherwise a club that played at noon shows its rest as measured from weeks ago).
+    awaiting_score = [m for m in matches if not m["played"] and now - timedelta(hours=PENDING_RESULT_HOURS) <= m["date"] < now - timedelta(hours=IN_PROGRESS_HOURS)]
+    played = [m for m in matches if m["played"]] + awaiting_score
     upcoming = sorted((m for m in matches if not m["played"] and m["date"] >= now - timedelta(hours=IN_PROGRESS_HOURS)), key=lambda m: m["date"])
     last = max(played, key=lambda m: m["date"]) if played else None
     nxt = upcoming[0] if upcoming else None
