@@ -1194,6 +1194,9 @@ def _rotation_flagged_players(root):
     return flagged
 
 
+CONGESTION_DAYS = 3  # rest before the next match at or under this = fatigue risk (a Sat->Tue turnaround is 3)
+SQUEEZE_DAYS = 3     # next match followed by another within this many days = rotation risk in the first
+
 COMPETITION_ABBREV = {
     "premier league": "PL", "uefa champions league": "CL", "champions league": "CL",
     "uefa europa league": "EL", "europa league": "EL",
@@ -1296,21 +1299,34 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         club = teams[el["team"]]["short_name"]
         recovery = (team_recovery or {}).get(club)
         rest_days = recovery.get("rest_days") if recovery else None
-        next_match_label = None
-        if recovery and recovery.get("next_match"):
-            nm = recovery["next_match"]
-            comp = _comp_abbrev(nm.get("competition"))
-            days_until = None
+
+        def match_label(m):
+            if not m:
+                return None
+            comp = _comp_abbrev(m.get("competition"))
             try:
-                days_until = (datetime.strptime(nm["date"], "%Y-%m-%d").date() - datetime.now(ET).date()).days
+                days_until = (datetime.strptime(m["date"], "%Y-%m-%d").date() - datetime.now(ET).date()).days
             except Exception:
-                pass
+                days_until = None
             when = f" in {days_until}d" if days_until is not None and days_until >= 0 else ""
-            next_match_label = f"vs {nm['opponent']} ({comp}){when}" if nm.get("opponent") else f"{comp}{when}"
-        if reason is None and rest_days is not None and rest_days <= 2:
+            return f"vs {m['opponent']} ({comp}){when}" if m.get("opponent") else f"{comp}{when}"
+
+        next_match_label = match_label((recovery or {}).get("next_match"))
+        fol = (recovery or {}).get("following_match")
+        turnaround = fol.get("days_after") if fol else None
+        following_label = match_label(fol)
+        # Forward-looking signals, only when nothing more specific explains the row.
+        if reason is None and tag == "fringe" and avail["kind"] == "ok":
+            reason = "unused"  # fit, but no real minutes anywhere in the window
+            rotation_note = rotation_note or f"{max(mins)} min max across the last {len(mins)} GWs - not in the plans"
+        if reason is None and rest_days is not None and rest_days <= CONGESTION_DAYS:
             reason = "congestion"
             if not rotation_note:
                 rotation_note = f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match"
+        if reason is None and turnaround is not None and turnaround <= SQUEEZE_DAYS:
+            reason = "squeeze"  # plays again soon after the next match: the next one is the likelier rotation game
+            if not rotation_note:
+                rotation_note = f"Plays again {turnaround}d after {next_match_label or 'its next match'}: {following_label}"
 
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": club,
@@ -1318,9 +1334,12 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"],
             "reason": reason, "rotation_note": rotation_note,
             "rest_days": rest_days, "next_match_label": next_match_label,
+            "turnaround_days": turnaround, "following_label": following_label,
         })
+    reason_rank = {"injury": 0, "rested": 1, "rotation": 2, "unused": 3, "congestion": 4, "squeeze": 5}
     def sort_key(r):
-        pri = 0 if r["reason"] is not None else (1 if r["trend"] == "rising" else 2)
+        # most actionable first: a flagged/dropped player, then a player nobody is playing, then forward-looking fixture pressure
+        pri = reason_rank.get(r["reason"], 6) if r["reason"] is not None else (10 if r["trend"] == "rising" else 11)
         return (pri, r["minutes"][-1] - r["minutes"][0])
     rows.sort(key=sort_key)
     notable = [r for r in rows if r["reason"] is not None or r["trend"] == "rising"]

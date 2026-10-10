@@ -104,12 +104,15 @@ def recovery_from_matches(matches, now):
     earliest unplayed match still to come, including one that kicked off
     within IN_PROGRESS_HOURS (in progress / score not in the feed yet)."""
     played = [m for m in matches if m["played"]]
-    upcoming = [m for m in matches if not m["played"] and m["date"] >= now - timedelta(hours=IN_PROGRESS_HOURS)]
+    upcoming = sorted((m for m in matches if not m["played"] and m["date"] >= now - timedelta(hours=IN_PROGRESS_HOURS)), key=lambda m: m["date"])
     last = max(played, key=lambda m: m["date"]) if played else None
-    nxt = min(upcoming, key=lambda m: m["date"]) if upcoming else None
+    nxt = upcoming[0] if upcoming else None
+    fol = upcoming[1] if len(upcoming) > 1 else None  # the match after next: a short turnaround after `nxt` is the classic rotation trigger
     if not last and not nxt:
         return None
     return {
+        "following_match": ({"date": fol["date"].strftime("%Y-%m-%d"), "competition": fol["competition"], "opponent": fol["opponent"],
+                             "days_after": (fol["date"].date() - nxt["date"].date()).days} if fol and nxt else None),
         "rest_days": (nxt["date"].date() - last["date"].date()).days if last and nxt else None,
         "last_match": {"date": last["date"].strftime("%Y-%m-%d"), "competition": last["competition"]} if last else None,
         "next_match": ({"date": nxt["date"].strftime("%Y-%m-%d"), "competition": nxt["competition"], "opponent": nxt["opponent"]} if nxt else None),
