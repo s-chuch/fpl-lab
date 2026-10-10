@@ -1,17 +1,17 @@
 {
   "team_recovery": {
-    "fetched_at": "2026-10-10T14:20:01.177024+00:00",
+    "fetched_at": "2026-10-10T16:13:33.086797+00:00",
     "teams": {
       "ARS": {
-        "rest_days": 21,
+        "rest_days": 24,
         "last_match": {
           "date": "2026-09-19",
           "competition": "Premier League"
         },
         "next_match": {
-          "date": "2026-10-10",
-          "competition": "Premier League",
-          "opponent": "Leeds"
+          "date": "2026-10-13",
+          "competition": "Champions League",
+          "opponent": "Lille"
         }
       },
       "COV": {
@@ -111,15 +111,15 @@
         }
       },
       "LEE": {
-        "rest_days": 20,
+        "rest_days": 28,
         "last_match": {
           "date": "2026-09-20",
           "competition": "Premier League"
         },
         "next_match": {
-          "date": "2026-10-10",
+          "date": "2026-10-18",
           "competition": "Premier League",
-          "opponent": "Arsenal"
+          "opponent": "Man Utd"
         }
       },
       "BRE": {

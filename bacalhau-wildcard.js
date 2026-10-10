@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Bacalhau's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00). Treat as a strong signal of intent, not a locked squad.",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 10.7,
-    "vice": "Schade",
-    "vice_ep": 8.3,
+    "captain_ep": 12.3,
+    "vice": "De Cuyper",
+    "vice_ep": 10.7,
     "bench_swaps": [
       {
         "bench": "Kostoulas",
@@ -121,7 +121,7 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "bench": "Tavernier",
-        "bench_ep": 3.3,
+        "bench_ep": 3.7,
         "starter": "Dewsbury-Hall",
         "starter_ep": 1.7
       }
@@ -168,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 6.0,
+        "ep_next": 10.7,
         "status": "ok"
       },
       {
@@ -186,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.7,
+        "ep_next": 12.3,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 3.3,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
@@ -224,7 +224,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.0,
+        "ep_next": 0.3,
         "status": "ok"
       }
     ]
