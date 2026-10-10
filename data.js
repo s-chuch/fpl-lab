@@ -597,8 +597,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 16:24 UTC",
-  "generated_at_et": "2026-10-10 12:24 PM ET",
+  "generated_at": "2026-10-10 16:25 UTC",
+  "generated_at_et": "2026-10-10 12:25 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -11064,7 +11064,7 @@ window.FPL_DATA = {
   },
   "team_recovery": {
     "schema": 2,
-    "fetched_at": "2026-10-10T16:24:28.082672+00:00",
+    "fetched_at": "2026-10-10T16:25:07.475732+00:00",
     "teams": {
       "ARS": {
         "following_match": {
