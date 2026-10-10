@@ -426,8 +426,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 00:54 UTC",
-  "generated_at_et": "2026-10-09 8:54 PM ET",
+  "generated_at": "2026-10-10 00:55 UTC",
+  "generated_at_et": "2026-10-09 8:55 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5873,20 +5873,6 @@ window.FPL_DATA = {
         "expected_season_change": 0.3
       },
       {
-        "name": "Barry",
-        "pos": "FWD",
-        "club": "EVE",
-        "cost": 5.7,
-        "owned_pct": 8.7,
-        "net_transfers_today": 74891,
-        "momentum": 7.8,
-        "changed_today": true,
-        "cost_change_today": 0.1,
-        "season_change": 0.2,
-        "expected_change": 0.1,
-        "expected_season_change": 0.3
-      },
-      {
         "name": "King",
         "pos": "MID",
         "club": "FUL",
@@ -11292,40 +11278,6 @@ window.FPL_DATA = {
       "streak_days": 7,
       "days_tracked": 7
     },
-    "Barry": {
-      "history": [
-        {
-          "date": "2026-10-03",
-          "momentum": 5.2
-        },
-        {
-          "date": "2026-10-04",
-          "momentum": 5.2
-        },
-        {
-          "date": "2026-10-05",
-          "momentum": 5.3
-        },
-        {
-          "date": "2026-10-06",
-          "momentum": 5.4
-        },
-        {
-          "date": "2026-10-07",
-          "momentum": 5.8
-        },
-        {
-          "date": "2026-10-08",
-          "momentum": 6.4
-        },
-        {
-          "date": "2026-10-09",
-          "momentum": 7.8
-        }
-      ],
-      "streak_days": 7,
-      "days_tracked": 7
-    },
     "Tzolakis": {
       "history": [
         {
@@ -11470,7 +11422,7 @@ window.FPL_DATA = {
     }
   },
   "team_recovery": {
-    "fetched_at": "2026-10-10T00:54:07.247336+00:00",
+    "fetched_at": "2026-10-10T00:54:53.493828+00:00",
     "teams": {
       "ARS": {
         "rest_days": 21,
