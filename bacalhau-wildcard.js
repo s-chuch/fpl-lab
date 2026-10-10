@@ -259,17 +259,17 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-10",
-      "total_cost": 93.2,
+      "total_cost": 93.4,
       "prices": {
         "Raya": 6.1,
-        "Gvardiol": 5.7,
+        "Gvardiol": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "Bogle": 4.6,
         "De Cuyper": 5.0,
         "Belloumi": 5.1,
         "Dewsbury-Hall": 6.6,
-        "Groß": 5.9,
+        "Groß": 6.0,
         "Schade": 6.2,
         "Haaland": 15.6,
         "Tzolakis": 4.7,
@@ -279,8 +279,17 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 0.6,
+    "total_delta": 0.8,
     "players": [
+      {
+        "name": "Groß",
+        "baseline_cost": 5.8,
+        "current_cost": 6.0,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
@@ -291,9 +300,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Groß",
-        "baseline_cost": 5.8,
-        "current_cost": 5.9,
+        "name": "Gvardiol",
+        "baseline_cost": 5.7,
+        "current_cost": 5.8,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -357,15 +366,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Dewsbury-Hall",
         "baseline_cost": 6.6,
         "current_cost": 6.6,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Gvardiol",
-        "baseline_cost": 5.7,
-        "current_cost": 5.7,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -469,6 +469,22 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Groß",
         "from": 5.8,
         "to": 5.9,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-10",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 5.9,
+        "to": 6.0,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-10",
+        "event": "price_change",
+        "player": "Gvardiol",
+        "from": 5.7,
+        "to": 5.8,
         "delta": 0.1
       }
     ]
