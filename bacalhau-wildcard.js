@@ -133,7 +133,13 @@ window.FPL_WILDCARD_WATCH = {
       "Walle Egeli"
     ],
     "bench_order_changed": true,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Schade",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
@@ -192,8 +198,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 8.3,
-        "status": "ok"
+        "ep_next": 6.2,
+        "status": "doubt"
       },
       {
         "name": "Haaland",
