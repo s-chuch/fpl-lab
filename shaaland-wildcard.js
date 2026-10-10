@@ -109,27 +109,27 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from your picks).",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 10.3,
+    "captain_ep": 10.7,
     "vice": "Tarkowski",
     "vice_ep": 7.3,
     "bench_swaps": [
       {
         "bench": "Schade",
-        "bench_ep": 8.0,
+        "bench_ep": 8.3,
         "starter": "King",
-        "starter_ep": 1.7
-      },
-      {
-        "bench": "Davis",
-        "bench_ep": 5.3,
-        "starter": "Calafiori",
-        "starter_ep": 2.3
+        "starter_ep": 2.0
       },
       {
         "bench": "Kostoulas",
-        "bench_ep": 6.7,
+        "bench_ep": 7.0,
         "starter": "João Pedro",
-        "starter_ep": 4.0
+        "starter_ep": 4.3
+      },
+      {
+        "bench": "Davis",
+        "bench_ep": 5.7,
+        "starter": "Hall",
+        "starter_ep": 4.3
       }
     ],
     "bench_order": [
@@ -144,19 +144,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 5.0,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.7,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 2.3,
+        "ep_next": 5.3,
         "status": "ok"
       },
       {
@@ -180,19 +180,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 1.7,
+        "ep_next": 2.0,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.3,
+        "ep_next": 10.7,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 3.3,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
@@ -204,7 +204,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 4.0,
+        "ep_next": 4.3,
         "status": "ok"
       }
     ],
@@ -218,19 +218,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 6.7,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 8.0,
+        "ep_next": 8.3,
         "status": "ok"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 5.3,
+        "ep_next": 5.7,
         "status": "ok"
       }
     ]

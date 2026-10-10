@@ -109,13 +109,13 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Provisional squad from Bacalhau's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00). Treat as a strong signal of intent, not a locked squad.",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 10.3,
+    "captain_ep": 10.7,
     "vice": "Schade",
-    "vice_ep": 8.0,
+    "vice_ep": 8.3,
     "bench_swaps": [
       {
         "bench": "Kostoulas",
-        "bench_ep": 6.7,
+        "bench_ep": 7.0,
         "starter": "Haaland",
         "starter_ep": 5.0
       },
@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 5.0,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
@@ -162,13 +162,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 6.7,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.7,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
@@ -186,13 +186,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.3,
+        "ep_next": 10.7,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 8.0,
+        "ep_next": 8.3,
         "status": "ok"
       },
       {
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 6.7,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
