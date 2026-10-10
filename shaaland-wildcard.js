@@ -101,9 +101,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
-      "name": "Barry",
-      "club": "EVE",
-      "fixture": "HUL (A)"
+      "name": "João Pedro",
+      "club": "CHE",
+      "fixture": "BOU (H)"
     }
   ],
   "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
