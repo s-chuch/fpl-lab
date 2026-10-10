@@ -597,8 +597,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 16:14 UTC",
-  "generated_at_et": "2026-10-10 12:14 PM ET",
+  "generated_at": "2026-10-10 16:15 UTC",
+  "generated_at_et": "2026-10-10 12:15 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -7358,23 +7358,6 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Tarkowski",
-            "pos": "DEF",
-            "club": "EVE",
-            "cost": 6.2,
-            "owned_pct": 18.2,
-            "form": 7.3,
-            "xgi_p90": 0.04,
-            "fdr": 2.0,
-            "score": 5,
-            "why": [
-              "In form",
-              "Reliable DEFCON",
-              "Great value",
-              "Kind run"
-            ]
-          },
-          {
             "name": "Gonzalo",
             "pos": "FWD",
             "club": "FUL",
@@ -7514,24 +7497,6 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
-            "cost": 7.7,
-            "owned_pct": 66.7,
-            "form": 8.0,
-            "xgi_p90": 0.62,
-            "fdr": 3.0,
-            "score": 3,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "Fade signal"
-            ]
-          },
-          {
             "name": "Rudoni",
             "pos": "MID",
             "club": "COV",
@@ -7574,6 +7539,39 @@ window.FPL_DATA = {
             "why": [
               "In form",
               "Great value"
+            ]
+          },
+          {
+            "name": "McGinn",
+            "pos": "MID",
+            "club": "AVL",
+            "cost": 5.4,
+            "owned_pct": 2.2,
+            "form": 7.0,
+            "xgi_p90": 0.3,
+            "fdr": 3.0,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value"
+            ]
+          },
+          {
+            "name": "Semenyo",
+            "pos": "MID",
+            "club": "MCI",
+            "cost": 8.4,
+            "owned_pct": 13.5,
+            "form": 6.7,
+            "xgi_p90": 0.3,
+            "fdr": 4.0,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value",
+              "Sell-high risk",
+              "News/X backed",
+              "Doubt"
             ]
           }
         ]
@@ -7629,22 +7627,6 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Tarkowski",
-            "pos": "DEF",
-            "club": "EVE",
-            "cost": 6.2,
-            "owned_pct": 18.2,
-            "form": 7.3,
-            "xgi_p90": 0.04,
-            "fdr": 3.67,
-            "score": 4,
-            "why": [
-              "In form",
-              "Reliable DEFCON",
-              "Great value"
-            ]
-          },
-          {
             "name": "Yalcouy\u00e9",
             "pos": "MID",
             "club": "BHA",
@@ -7689,24 +7671,6 @@ window.FPL_DATA = {
             "why": [
               "Strong xGI",
               "Great value"
-            ]
-          },
-          {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
-            "cost": 7.7,
-            "owned_pct": 66.7,
-            "form": 8.0,
-            "xgi_p90": 0.62,
-            "fdr": 2.67,
-            "score": 3,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "Fade signal"
             ]
           },
           {
@@ -7816,6 +7780,36 @@ window.FPL_DATA = {
               "In form",
               "Reliable DEFCON"
             ]
+          },
+          {
+            "name": "Vuskovic",
+            "pos": "DEF",
+            "club": "BHA",
+            "cost": 5.0,
+            "owned_pct": 4.2,
+            "form": 7.3,
+            "xgi_p90": 0.14,
+            "fdr": 3.0,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value"
+            ]
+          },
+          {
+            "name": "F.Kad\u0131o\u011flu",
+            "pos": "DEF",
+            "club": "BHA",
+            "cost": 4.4,
+            "owned_pct": 1.5,
+            "form": 6.7,
+            "xgi_p90": 0.06,
+            "fdr": 3.0,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value"
+            ]
           }
         ]
       },
@@ -7851,22 +7845,6 @@ window.FPL_DATA = {
             "why": [
               "In form",
               "Strong xGI"
-            ]
-          },
-          {
-            "name": "Tarkowski",
-            "pos": "DEF",
-            "club": "EVE",
-            "cost": 6.2,
-            "owned_pct": 18.2,
-            "form": 7.3,
-            "xgi_p90": 0.04,
-            "fdr": 3.17,
-            "score": 4,
-            "why": [
-              "In form",
-              "Reliable DEFCON",
-              "Great value"
             ]
           },
           {
@@ -7929,24 +7907,6 @@ window.FPL_DATA = {
             "why": [
               "Strong xGI",
               "Due a return"
-            ]
-          },
-          {
-            "name": "Jo\u00e3o Pedro",
-            "pos": "FWD",
-            "club": "CHE",
-            "cost": 7.7,
-            "owned_pct": 66.7,
-            "form": 8.0,
-            "xgi_p90": 0.62,
-            "fdr": 3.0,
-            "score": 3,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Sell-high risk",
-              "Fade signal"
             ]
           },
           {
@@ -8055,6 +8015,36 @@ window.FPL_DATA = {
             "why": [
               "In form",
               "Reliable DEFCON"
+            ]
+          },
+          {
+            "name": "Vuskovic",
+            "pos": "DEF",
+            "club": "BHA",
+            "cost": 5.0,
+            "owned_pct": 4.2,
+            "form": 7.3,
+            "xgi_p90": 0.14,
+            "fdr": 3.17,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value"
+            ]
+          },
+          {
+            "name": "F.Kad\u0131o\u011flu",
+            "pos": "DEF",
+            "club": "BHA",
+            "cost": 4.4,
+            "owned_pct": 1.5,
+            "form": 6.7,
+            "xgi_p90": 0.06,
+            "fdr": 3.17,
+            "score": 3,
+            "why": [
+              "In form",
+              "Great value"
             ]
           }
         ]
