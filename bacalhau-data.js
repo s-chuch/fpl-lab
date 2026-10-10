@@ -293,8 +293,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 16:22 UTC",
-  "generated_at_et": "2026-10-10 12:22 PM ET",
+  "generated_at": "2026-10-10 16:24 UTC",
+  "generated_at_et": "2026-10-10 12:24 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5799,8 +5799,50 @@ window.FPL_DATA = {
         "rotation_note": "0 min max across the last 3 GWs - not in the plans",
         "rest_days": 21,
         "next_match_label": "vs Fulham (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 7,
+        "following_label": "vs Man City (PL) in 7d"
+      },
+      {
+        "name": "Gvardiol",
+        "pos": "DEF",
+        "club": "MCI",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "squeeze",
+        "rotation_note": "Plays again 3d after vs Liverpool (PL) in 1d: vs Paris (CL) in 4d",
+        "rest_days": 21,
+        "next_match_label": "vs Liverpool (PL) in 1d",
+        "turnaround_days": 3,
+        "following_label": "vs Paris (CL) in 4d"
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "club": "MCI",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "squeeze",
+        "rotation_note": "Plays again 3d after vs Liverpool (PL) in 1d: vs Paris (CL) in 4d",
+        "rest_days": 21,
+        "next_match_label": "vs Liverpool (PL) in 1d",
+        "turnaround_days": 3,
+        "following_label": "vs Paris (CL) in 4d"
       },
       {
         "name": "Kostoulas",
@@ -5820,8 +5862,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 21,
         "next_match_label": "vs Sunderland (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Kauno \u017dalgiris (UECL) in 5d"
       },
       {
         "name": "Tavernier",
@@ -5841,8 +5883,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 20,
         "next_match_label": "vs Chelsea (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Sturm Graz (EL) in 5d"
       },
       {
         "name": "Raya",
@@ -5862,29 +5904,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 24,
         "next_match_label": "vs Lille (CL) in 3d",
-        "turnaround_days": null,
-        "following_label": null
-      },
-      {
-        "name": "Gvardiol",
-        "pos": "DEF",
-        "club": "MCI",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window",
-        "avail_kind": "ok",
-        "avail_label": null,
-        "news": "",
-        "reason": null,
-        "rotation_note": null,
-        "rest_days": 21,
-        "next_match_label": "vs Liverpool (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Nott'm Forest (PL) in 8d"
       },
       {
         "name": "Tarkowski",
@@ -5904,8 +5925,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 22,
         "next_match_label": "vs Hull (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 6,
+        "following_label": "vs Chelsea (PL) in 7d"
       },
       {
         "name": "Dewsbury-Hall",
@@ -5925,8 +5946,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 22,
         "next_match_label": "vs Hull (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 6,
+        "following_label": "vs Chelsea (PL) in 7d"
       },
       {
         "name": "Gro\u00df",
@@ -5946,8 +5967,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 21,
         "next_match_label": "vs Sunderland (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Kauno \u017dalgiris (UECL) in 5d"
       },
       {
         "name": "Schade",
@@ -5967,29 +5988,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 22,
         "next_match_label": "vs Aston Villa (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
-      },
-      {
-        "name": "Haaland",
-        "pos": "FWD",
-        "club": "MCI",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window",
-        "avail_kind": "ok",
-        "avail_label": null,
-        "news": "",
-        "reason": null,
-        "rotation_note": null,
-        "rest_days": 21,
-        "next_match_label": "vs Liverpool (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 7,
+        "following_label": "vs Liverpool (PL) in 7d"
       },
       {
         "name": "Tzolakis",
@@ -6009,8 +6009,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 22,
         "next_match_label": "vs Everton (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 6,
+        "following_label": "vs Fulham (PL) in 7d"
       },
       {
         "name": "Hall",
@@ -6030,8 +6030,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 23,
         "next_match_label": "vs Coventry (PL) in 2d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Aston Villa (PL) in 7d"
       },
       {
         "name": "Belloumi",
@@ -6051,8 +6051,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 22,
         "next_match_label": "vs Everton (PL) in 1d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 6,
+        "following_label": "vs Fulham (PL) in 7d"
       },
       {
         "name": "Bogle",
@@ -6072,8 +6072,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 28,
         "next_match_label": "vs Man Utd (PL) in 8d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 7,
+        "following_label": "vs Sunderland (PL) in 15d"
       },
       {
         "name": "De Cuyper",
@@ -6093,8 +6093,8 @@ window.FPL_DATA = {
         "rotation_note": null,
         "rest_days": 21,
         "next_match_label": "vs Sunderland (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 5,
+        "following_label": "vs Kauno \u017dalgiris (UECL) in 5d"
       }
     ],
     "notable": [
@@ -6116,8 +6116,50 @@ window.FPL_DATA = {
         "rotation_note": "0 min max across the last 3 GWs - not in the plans",
         "rest_days": 21,
         "next_match_label": "vs Fulham (PL) in 0d",
-        "turnaround_days": null,
-        "following_label": null
+        "turnaround_days": 7,
+        "following_label": "vs Man City (PL) in 7d"
+      },
+      {
+        "name": "Gvardiol",
+        "pos": "DEF",
+        "club": "MCI",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "squeeze",
+        "rotation_note": "Plays again 3d after vs Liverpool (PL) in 1d: vs Paris (CL) in 4d",
+        "rest_days": 21,
+        "next_match_label": "vs Liverpool (PL) in 1d",
+        "turnaround_days": 3,
+        "following_label": "vs Paris (CL) in 4d"
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "club": "MCI",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "squeeze",
+        "rotation_note": "Plays again 3d after vs Liverpool (PL) in 1d: vs Paris (CL) in 4d",
+        "rest_days": 21,
+        "next_match_label": "vs Liverpool (PL) in 1d",
+        "turnaround_days": 3,
+        "following_label": "vs Paris (CL) in 4d"
       }
     ]
   },
@@ -10659,9 +10701,16 @@ window.FPL_DATA = {
     }
   },
   "team_recovery": {
-    "fetched_at": "2026-10-10T16:14:14.240372+00:00",
+    "schema": 2,
+    "fetched_at": "2026-10-10T16:24:28.082672+00:00",
     "teams": {
       "ARS": {
+        "following_match": {
+          "date": "2026-10-18",
+          "competition": "Premier League",
+          "opponent": "Nott'm Forest",
+          "days_after": 5
+        },
         "rest_days": 24,
         "last_match": {
           "date": "2026-09-19",
@@ -10674,6 +10723,12 @@ window.FPL_DATA = {
         }
       },
       "COV": {
+        "following_match": {
+          "date": "2026-10-19",
+          "competition": "Premier League",
+          "opponent": "Spurs",
+          "days_after": 7
+        },
         "rest_days": 23,
         "last_match": {
           "date": "2026-09-19",
@@ -10686,6 +10741,12 @@ window.FPL_DATA = {
         }
       },
       "HUL": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Fulham",
+          "days_after": 6
+        },
         "rest_days": 22,
         "last_match": {
           "date": "2026-09-19",
@@ -10698,6 +10759,12 @@ window.FPL_DATA = {
         }
       },
       "MUN": {
+        "following_match": {
+          "date": "2026-10-13",
+          "competition": "Champions League",
+          "opponent": "Atleti",
+          "days_after": 3
+        },
         "rest_days": 20,
         "last_match": {
           "date": "2026-09-20",
@@ -10710,6 +10777,12 @@ window.FPL_DATA = {
         }
       },
       "EVE": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Chelsea",
+          "days_after": 6
+        },
         "rest_days": 22,
         "last_match": {
           "date": "2026-09-19",
@@ -10722,6 +10795,12 @@ window.FPL_DATA = {
         }
       },
       "CRY": {
+        "following_match": {
+          "date": "2026-10-15",
+          "competition": "Europa League",
+          "opponent": "Lyon",
+          "days_after": 4
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-20",
@@ -10734,6 +10813,12 @@ window.FPL_DATA = {
         }
       },
       "IPS": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Man City",
+          "days_after": 7
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-19",
@@ -10746,6 +10831,12 @@ window.FPL_DATA = {
         }
       },
       "SUN": {
+        "following_match": {
+          "date": "2026-10-15",
+          "competition": "Europa League",
+          "opponent": "Torreense",
+          "days_after": 5
+        },
         "rest_days": 20,
         "last_match": {
           "date": "2026-09-20",
@@ -10758,6 +10849,12 @@ window.FPL_DATA = {
         }
       },
       "NFO": {
+        "following_match": {
+          "date": "2026-10-18",
+          "competition": "Premier League",
+          "opponent": "Arsenal",
+          "days_after": 7
+        },
         "rest_days": 22,
         "last_match": {
           "date": "2026-09-19",
@@ -10770,6 +10867,12 @@ window.FPL_DATA = {
         }
       },
       "LEE": {
+        "following_match": {
+          "date": "2026-10-25",
+          "competition": "Premier League",
+          "opponent": "Sunderland",
+          "days_after": 7
+        },
         "rest_days": 28,
         "last_match": {
           "date": "2026-09-20",
@@ -10782,6 +10885,12 @@ window.FPL_DATA = {
         }
       },
       "BRE": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Liverpool",
+          "days_after": 7
+        },
         "rest_days": 22,
         "last_match": {
           "date": "2026-09-18",
@@ -10794,6 +10903,12 @@ window.FPL_DATA = {
         }
       },
       "TOT": {
+        "following_match": {
+          "date": "2026-10-19",
+          "competition": "Premier League",
+          "opponent": "Coventry",
+          "days_after": 9
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-19",
@@ -10806,6 +10921,12 @@ window.FPL_DATA = {
         }
       },
       "BHA": {
+        "following_match": {
+          "date": "2026-10-15",
+          "competition": "Conference League",
+          "opponent": "Kauno \u017dalgiris",
+          "days_after": 5
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-19",
@@ -10818,6 +10939,12 @@ window.FPL_DATA = {
         }
       },
       "AVL": {
+        "following_match": {
+          "date": "2026-10-14",
+          "competition": "Champions League",
+          "opponent": "Fenerbah\u00e7e",
+          "days_after": 4
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-19",
@@ -10830,6 +10957,12 @@ window.FPL_DATA = {
         }
       },
       "MCI": {
+        "following_match": {
+          "date": "2026-10-14",
+          "competition": "Champions League",
+          "opponent": "Paris",
+          "days_after": 3
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-20",
@@ -10842,6 +10975,12 @@ window.FPL_DATA = {
         }
       },
       "BOU": {
+        "following_match": {
+          "date": "2026-10-15",
+          "competition": "Europa League",
+          "opponent": "Sturm Graz",
+          "days_after": 5
+        },
         "rest_days": 20,
         "last_match": {
           "date": "2026-09-20",
@@ -10854,6 +10993,12 @@ window.FPL_DATA = {
         }
       },
       "NEW": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Aston Villa",
+          "days_after": 5
+        },
         "rest_days": 23,
         "last_match": {
           "date": "2026-09-19",
@@ -10866,6 +11011,12 @@ window.FPL_DATA = {
         }
       },
       "LIV": {
+        "following_match": {
+          "date": "2026-10-14",
+          "competition": "Champions League",
+          "opponent": "LASK",
+          "days_after": 3
+        },
         "rest_days": 21,
         "last_match": {
           "date": "2026-09-20",
@@ -10878,6 +11029,12 @@ window.FPL_DATA = {
         }
       },
       "FUL": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Hull",
+          "days_after": 7
+        },
         "rest_days": 20,
         "last_match": {
           "date": "2026-09-20",
@@ -10890,6 +11047,12 @@ window.FPL_DATA = {
         }
       },
       "CHE": {
+        "following_match": {
+          "date": "2026-10-17",
+          "competition": "Premier League",
+          "opponent": "Everton",
+          "days_after": 7
+        },
         "rest_days": 22,
         "last_match": {
           "date": "2026-09-18",
