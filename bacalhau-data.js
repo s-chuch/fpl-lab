@@ -293,8 +293,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 16:26 UTC",
-  "generated_at_et": "2026-10-10 12:26 PM ET",
+  "generated_at": "2026-10-10 16:27 UTC",
+  "generated_at_et": "2026-10-10 12:27 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5803,6 +5803,27 @@ window.FPL_DATA = {
         "following_label": "vs Man City (PL) in 7d"
       },
       {
+        "name": "Raya",
+        "pos": "GKP",
+        "club": "ARS",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "congestion",
+        "rotation_note": "3d rest before vs Lille (CL) in 3d",
+        "rest_days": 3,
+        "next_match_label": "vs Lille (CL) in 3d",
+        "turnaround_days": 5,
+        "following_label": "vs Nott'm Forest (PL) in 8d"
+      },
+      {
         "name": "Gvardiol",
         "pos": "DEF",
         "club": "MCI",
@@ -5885,27 +5906,6 @@ window.FPL_DATA = {
         "next_match_label": "vs Chelsea (PL) in 0d",
         "turnaround_days": 5,
         "following_label": "vs Sturm Graz (EL) in 5d"
-      },
-      {
-        "name": "Raya",
-        "pos": "GKP",
-        "club": "ARS",
-        "minutes": [
-          90,
-          90,
-          90
-        ],
-        "trend": "starter",
-        "note": "nailed on across the window",
-        "avail_kind": "ok",
-        "avail_label": null,
-        "news": "",
-        "reason": null,
-        "rotation_note": null,
-        "rest_days": 24,
-        "next_match_label": "vs Lille (CL) in 3d",
-        "turnaround_days": 5,
-        "following_label": "vs Nott'm Forest (PL) in 8d"
       },
       {
         "name": "Tarkowski",
@@ -6070,7 +6070,7 @@ window.FPL_DATA = {
         "news": "",
         "reason": null,
         "rotation_note": null,
-        "rest_days": 28,
+        "rest_days": 8,
         "next_match_label": "vs Man Utd (PL) in 8d",
         "turnaround_days": 7,
         "following_label": "vs Sunderland (PL) in 15d"
@@ -6118,6 +6118,27 @@ window.FPL_DATA = {
         "next_match_label": "vs Fulham (PL) in 0d",
         "turnaround_days": 7,
         "following_label": "vs Man City (PL) in 7d"
+      },
+      {
+        "name": "Raya",
+        "pos": "GKP",
+        "club": "ARS",
+        "minutes": [
+          90,
+          90,
+          90
+        ],
+        "trend": "starter",
+        "note": "nailed on across the window",
+        "avail_kind": "ok",
+        "avail_label": null,
+        "news": "",
+        "reason": "congestion",
+        "rotation_note": "3d rest before vs Lille (CL) in 3d",
+        "rest_days": 3,
+        "next_match_label": "vs Lille (CL) in 3d",
+        "turnaround_days": 5,
+        "following_label": "vs Nott'm Forest (PL) in 8d"
       },
       {
         "name": "Gvardiol",
@@ -10701,8 +10722,8 @@ window.FPL_DATA = {
     }
   },
   "team_recovery": {
-    "schema": 2,
-    "fetched_at": "2026-10-10T16:25:07.475732+00:00",
+    "schema": 3,
+    "fetched_at": "2026-10-10T16:27:15.238069+00:00",
     "teams": {
       "ARS": {
         "following_match": {
@@ -10711,9 +10732,9 @@ window.FPL_DATA = {
           "opponent": "Nott'm Forest",
           "days_after": 5
         },
-        "rest_days": 24,
+        "rest_days": 3,
         "last_match": {
-          "date": "2026-09-19",
+          "date": "2026-10-10",
           "competition": "Premier League"
         },
         "next_match": {
@@ -10873,9 +10894,9 @@ window.FPL_DATA = {
           "opponent": "Sunderland",
           "days_after": 7
         },
-        "rest_days": 28,
+        "rest_days": 8,
         "last_match": {
-          "date": "2026-09-20",
+          "date": "2026-10-10",
           "competition": "Premier League"
         },
         "next_match": {

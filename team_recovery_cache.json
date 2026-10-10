@@ -1,7 +1,7 @@
 {
   "team_recovery": {
-    "schema": 2,
-    "fetched_at": "2026-10-10T16:25:07.475732+00:00",
+    "schema": 3,
+    "fetched_at": "2026-10-10T16:27:15.238069+00:00",
     "teams": {
       "ARS": {
         "following_match": {
@@ -10,9 +10,9 @@
           "opponent": "Nott'm Forest",
           "days_after": 5
         },
-        "rest_days": 24,
+        "rest_days": 3,
         "last_match": {
-          "date": "2026-09-19",
+          "date": "2026-10-10",
           "competition": "Premier League"
         },
         "next_match": {
@@ -172,9 +172,9 @@
           "opponent": "Sunderland",
           "days_after": 7
         },
-        "rest_days": 28,
+        "rest_days": 8,
         "last_match": {
-          "date": "2026-09-20",
+          "date": "2026-10-10",
           "competition": "Premier League"
         },
         "next_match": {
