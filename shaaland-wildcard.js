@@ -110,9 +110,15 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Groß",
     "captain_ep": 10.3,
-    "vice": "Schade",
-    "vice_ep": 8.0,
+    "vice": "Tarkowski",
+    "vice_ep": 7.3,
     "bench_swaps": [
+      {
+        "bench": "Schade",
+        "bench_ep": 8.0,
+        "starter": "King",
+        "starter_ep": 1.7
+      },
       {
         "bench": "Davis",
         "bench_ep": 5.3,
@@ -120,17 +126,17 @@ window.FPL_WILDCARD_WATCH = {
         "starter_ep": 2.3
       },
       {
-        "bench": "Saka",
-        "bench_ep": 3.3,
-        "starter": "King",
-        "starter_ep": 1.7
+        "bench": "Kostoulas",
+        "bench_ep": 6.7,
+        "starter": "João Pedro",
+        "starter_ep": 4.0
       }
     ],
     "bench_order": [
       "Tzolakis",
-      "Davis",
-      "João Pedro",
-      "Saka"
+      "Schade",
+      "Kostoulas",
+      "Davis"
     ],
     "bench_order_changed": true,
     "availability_flags": [],
@@ -184,9 +190,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Schade",
+        "name": "Saka",
         "pos": "MID",
-        "ep_next": 8.0,
+        "ep_next": 3.3,
         "status": "ok"
       },
       {
@@ -196,9 +202,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Kostoulas",
+        "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 6.7,
+        "ep_next": 4.0,
         "status": "ok"
       }
     ],
@@ -210,21 +216,21 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "ep_next": 6.7,
+        "status": "ok"
+      },
+      {
+        "name": "Schade",
+        "pos": "MID",
+        "ep_next": 8.0,
+        "status": "ok"
+      },
+      {
         "name": "Davis",
         "pos": "DEF",
         "ep_next": 5.3,
-        "status": "ok"
-      },
-      {
-        "name": "Saka",
-        "pos": "MID",
-        "ep_next": 3.3,
-        "status": "ok"
-      },
-      {
-        "name": "João Pedro",
-        "pos": "FWD",
-        "ep_next": 4.0,
         "status": "ok"
       }
     ]
@@ -263,13 +269,13 @@ window.FPL_WILDCARD_WATCH = {
         "Barnes": 6.1,
         "King": 5.6,
         "Groß": 5.9,
-        "Schade": 6.2,
-        "Haaland": 15.6,
-        "Kostoulas": 5.6,
-        "Tzolakis": 4.7,
-        "Davis": 4.0,
         "Saka": 9.6,
-        "João Pedro": 7.7
+        "Haaland": 15.6,
+        "João Pedro": 7.7,
+        "Tzolakis": 4.7,
+        "Kostoulas": 5.6,
+        "Schade": 6.2,
+        "Davis": 4.0
       }
     },
     "entry_prices": {
