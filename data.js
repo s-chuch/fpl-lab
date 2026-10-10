@@ -597,8 +597,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-10 17:20 UTC",
-  "generated_at_et": "2026-10-10 1:20 PM ET",
+  "generated_at": "2026-10-10 17:21 UTC",
+  "generated_at_et": "2026-10-10 1:21 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3899,7 +3899,7 @@ window.FPL_DATA = {
       {
         "name": "Barnes",
         "club": "NEW",
-        "own": 8.1
+        "own": 8.2
       }
     ],
     "picks_gw": 6,
@@ -4323,13 +4323,1384 @@ window.FPL_DATA = {
     },
     "fixtures": {
       "horizon": 8,
+      "ticker": {
+        "gws": [
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "rows": [
+          {
+            "club": "CHE",
+            "squad": [
+              "Jo\u00e3o Pedro"
+            ],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "TOT",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "FUL",
+            "squad": [
+              "King"
+            ],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MCI",
+                    "fdr": 5
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "MCI",
+            "squad": [
+              "Haaland"
+            ],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BHA",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "FUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "ARS",
+                    "fdr": 5
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "ARS",
+            "squad": [
+              "Calafiori",
+              "Raya",
+              "Saka"
+            ],
+            "avg_fdr": 3.17,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MCI",
+                    "fdr": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "BHA",
+            "squad": [
+              "De Cuyper",
+              "Gro\u00df",
+              "Kostoulas"
+            ],
+            "avg_fdr": 3.17,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CRY",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MCI",
+                    "fdr": 5
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "HUL",
+            "squad": [
+              "Tzolakis"
+            ],
+            "avg_fdr": 3.17,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "FUL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "ARS",
+                    "fdr": 5
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BHA",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CRY",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "IPS",
+            "squad": [
+              "Davis"
+            ],
+            "avg_fdr": 3.17,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MCI",
+                    "fdr": 5
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "TOT",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "BRE",
+            "squad": [
+              "Schade"
+            ],
+            "avg_fdr": 3.33,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BHA",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "NEW",
+            "squad": [
+              "Barnes",
+              "Hall"
+            ],
+            "avg_fdr": 3.33,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CRY",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "FUL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "ARS",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BHA",
+                    "fdr": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "EVE",
+            "squad": [
+              "Tarkowski"
+            ],
+            "avg_fdr": 3.5,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "ARS",
+                    "fdr": 5
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "COV",
+            "squad": [],
+            "avg_fdr": 2.67,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "TOT",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "FUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CRY",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "TOT",
+            "squad": [],
+            "avg_fdr": 2.67,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CRY",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "SUN",
+            "squad": [],
+            "avg_fdr": 2.83,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "TOT",
+                    "fdr": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "AVL",
+            "squad": [],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MCI",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "FUL",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "BOU",
+            "squad": [],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NFO",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "FUL",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "CRY",
+            "squad": [],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BHA",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "NEW",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "TOT",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "HUL",
+                    "fdr": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "LEE",
+            "squad": [],
+            "avg_fdr": 3.0,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "SUN",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "TOT",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "COV",
+                    "fdr": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "LIV",
+            "squad": [],
+            "avg_fdr": 3.33,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BHA",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "ARS",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CRY",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MUN",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "EVE",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "MUN",
+            "squad": [],
+            "avg_fdr": 3.33,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LEE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "AVL",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "LIV",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "club": "NFO",
+            "squad": [],
+            "avg_fdr": 3.33,
+            "cells": [
+              {
+                "gw": 7,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "ARS",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 8,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "IPS",
+                    "fdr": 2
+                  }
+                ]
+              },
+              {
+                "gw": 9,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BRE",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 10,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "MCI",
+                    "fdr": 4
+                  }
+                ]
+              },
+              {
+                "gw": 11,
+                "fx": [
+                  {
+                    "side": "A",
+                    "opp": "BOU",
+                    "fdr": 3
+                  }
+                ]
+              },
+              {
+                "gw": 12,
+                "fx": [
+                  {
+                    "side": "H",
+                    "opp": "CHE",
+                    "fdr": 4
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
       "rows": [
-        {
-          "gw": 6,
-          "avg_fdr": 2.7,
-          "blanks": [],
-          "doubles": []
-        },
         {
           "gw": 7,
           "avg_fdr": 3.1,
@@ -4371,11 +5742,17 @@ window.FPL_DATA = {
           "avg_fdr": 3.0,
           "blanks": [],
           "doubles": []
+        },
+        {
+          "gw": 14,
+          "avg_fdr": 3.1,
+          "blanks": [],
+          "doubles": []
         }
       ],
       "easiest": {
-        "gw": 6,
-        "avg_fdr": 2.7,
+        "gw": 8,
+        "avg_fdr": 3.0,
         "blanks": [],
         "doubles": []
       },
@@ -4451,7 +5828,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "minutes": 450,
         "cost": 6.1,
-        "owned_pct": 8.1,
+        "owned_pct": 8.2,
         "goals": 1,
         "assists": 3,
         "xg": 0.62,
@@ -4736,7 +6113,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "minutes": 450,
         "cost": 6.1,
-        "owned_pct": 8.1,
+        "owned_pct": 8.2,
         "goals": 1,
         "assists": 3,
         "xg": 0.62,
@@ -4935,7 +6312,7 @@ window.FPL_DATA = {
         "name": "B.Fernandes",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 494,
+        "minutes": 495,
         "cost": 11.9,
         "owned_pct": 37.2,
         "goals": 3,
@@ -4952,7 +6329,7 @@ window.FPL_DATA = {
         "name": "Mbeumo",
         "pos": "MID",
         "club": "MUN",
-        "minutes": 494,
+        "minutes": 495,
         "cost": 7.9,
         "owned_pct": 19.9,
         "goals": 2,
@@ -5113,7 +6490,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "minutes": 450,
         "cost": 6.1,
-        "owned_pct": 8.1,
+        "owned_pct": 8.2,
         "goals": 1,
         "assists": 3,
         "xg": 0.62,
@@ -5318,7 +6695,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "minutes": 450,
         "cost": 6.1,
-        "owned_pct": 8.1,
+        "owned_pct": 8.2,
         "threshold": 12,
         "per90": 6.6,
         "season_total": 33.0,
@@ -5545,7 +6922,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.0,
         "owned_pct": 31.9,
-        "net_transfers_today": 51156,
+        "net_transfers_today": 53473,
         "momentum": 1.5,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5559,7 +6936,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.6,
         "owned_pct": 8.1,
-        "net_transfers_today": 12261,
+        "net_transfers_today": 12429,
         "momentum": 1.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5573,8 +6950,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.9,
         "owned_pct": 36.4,
-        "net_transfers_today": 49452,
-        "momentum": 1.2,
+        "net_transfers_today": 51328,
+        "momentum": 1.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.4,
@@ -5587,7 +6964,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 7.7,
         "owned_pct": 66.9,
-        "net_transfers_today": 73846,
+        "net_transfers_today": 76431,
         "momentum": 1.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5601,7 +6978,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "cost": 6.2,
         "owned_pct": 16.1,
-        "net_transfers_today": 14765,
+        "net_transfers_today": 14135,
         "momentum": 0.8,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5614,8 +6991,8 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "NEW",
         "cost": 6.1,
-        "owned_pct": 8.1,
-        "net_transfers_today": 3632,
+        "owned_pct": 8.2,
+        "net_transfers_today": 3804,
         "momentum": 0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5629,7 +7006,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 9.6,
         "owned_pct": 17.1,
-        "net_transfers_today": -7650,
+        "net_transfers_today": -7872,
         "momentum": -0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5643,7 +7020,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 5.9,
         "owned_pct": 51.6,
-        "net_transfers_today": 16463,
+        "net_transfers_today": 16943,
         "momentum": 0.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5657,7 +7034,7 @@ window.FPL_DATA = {
         "club": "FUL",
         "cost": 5.6,
         "owned_pct": 4.7,
-        "net_transfers_today": 1372,
+        "net_transfers_today": 1363,
         "momentum": 0.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5671,7 +7048,7 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 5.3,
         "owned_pct": 20.8,
-        "net_transfers_today": 4076,
+        "net_transfers_today": 4224,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5685,7 +7062,7 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 6.2,
         "owned_pct": 18.2,
-        "net_transfers_today": 3790,
+        "net_transfers_today": 3894,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5699,7 +7076,7 @@ window.FPL_DATA = {
         "club": "HUL",
         "cost": 4.7,
         "owned_pct": 13.3,
-        "net_transfers_today": 2480,
+        "net_transfers_today": 2569,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5713,7 +7090,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 15.6,
         "owned_pct": 74.5,
-        "net_transfers_today": 6165,
+        "net_transfers_today": 6391,
         "momentum": 0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5727,7 +7104,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.1,
         "owned_pct": 43.7,
-        "net_transfers_today": 828,
+        "net_transfers_today": 818,
         "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5741,7 +7118,7 @@ window.FPL_DATA = {
         "club": "IPS",
         "cost": 4.0,
         "owned_pct": 7.7,
-        "net_transfers_today": 36,
+        "net_transfers_today": 16,
         "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5757,8 +7134,8 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 4.9,
         "owned_pct": 0.1,
-        "net_transfers_today": 4381,
-        "momentum": 39.6,
+        "net_transfers_today": 4593,
+        "momentum": 41.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -5771,8 +7148,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 0.2,
-        "net_transfers_today": 970,
-        "momentum": 4.4,
+        "net_transfers_today": 998,
+        "momentum": 4.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5785,8 +7162,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 6.5,
         "owned_pct": 2.0,
-        "net_transfers_today": 7860,
-        "momentum": 3.6,
+        "net_transfers_today": 8173,
+        "momentum": 3.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5799,8 +7176,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.7,
         "owned_pct": 1.9,
-        "net_transfers_today": 5598,
-        "momentum": 2.7,
+        "net_transfers_today": 5786,
+        "momentum": 2.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.3,
@@ -5808,13 +7185,13 @@ window.FPL_DATA = {
         "expected_season_change": -0.2
       },
       {
-        "name": "Gudmundsson",
-        "pos": "DEF",
-        "club": "LEE",
-        "cost": 4.5,
-        "owned_pct": 0.1,
-        "net_transfers_today": 269,
-        "momentum": 2.4,
+        "name": "Kudus",
+        "pos": "MID",
+        "club": "TOT",
+        "cost": 6.5,
+        "owned_pct": 0.2,
+        "net_transfers_today": 565,
+        "momentum": 2.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5822,13 +7199,13 @@ window.FPL_DATA = {
         "expected_season_change": 0.1
       },
       {
-        "name": "Kudus",
-        "pos": "MID",
-        "club": "TOT",
-        "cost": 6.5,
-        "owned_pct": 0.2,
-        "net_transfers_today": 526,
-        "momentum": 2.4,
+        "name": "Gudmundsson",
+        "pos": "DEF",
+        "club": "LEE",
+        "cost": 4.5,
+        "owned_pct": 0.1,
+        "net_transfers_today": 275,
+        "momentum": 2.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5841,8 +7218,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.8,
-        "net_transfers_today": 1917,
-        "momentum": 2.2,
+        "net_transfers_today": 2025,
+        "momentum": 2.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -5855,8 +7232,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 4.0,
         "owned_pct": 0.2,
-        "net_transfers_today": 460,
-        "momentum": 2.1,
+        "net_transfers_today": 478,
+        "momentum": 2.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -5871,8 +7248,8 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 6.1,
         "owned_pct": 4.2,
-        "net_transfers_today": -16051,
-        "momentum": -3.5,
+        "net_transfers_today": -16507,
+        "momentum": -3.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -5885,8 +7262,8 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 7.2,
         "owned_pct": 9.2,
-        "net_transfers_today": -35437,
-        "momentum": -3.5,
+        "net_transfers_today": -36441,
+        "momentum": -3.6,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2,
@@ -5899,8 +7276,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.3,
         "owned_pct": 7.4,
-        "net_transfers_today": -26229,
-        "momentum": -3.2,
+        "net_transfers_today": -26911,
+        "momentum": -3.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.2,
@@ -5913,7 +7290,7 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 9.1,
         "owned_pct": 16.4,
-        "net_transfers_today": -51949,
+        "net_transfers_today": -53451,
         "momentum": -2.9,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5927,7 +7304,7 @@ window.FPL_DATA = {
         "club": "NFO",
         "cost": 5.8,
         "owned_pct": 2.1,
-        "net_transfers_today": -5715,
+        "net_transfers_today": -5898,
         "momentum": -2.5,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5941,7 +7318,7 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 5.7,
         "owned_pct": 5.6,
-        "net_transfers_today": -14099,
+        "net_transfers_today": -14537,
         "momentum": -2.3,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5955,7 +7332,7 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 5.9,
         "owned_pct": 0.7,
-        "net_transfers_today": -1612,
+        "net_transfers_today": -1659,
         "momentum": -2.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5969,7 +7346,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 5.9,
         "owned_pct": 0.9,
-        "net_transfers_today": -1868,
+        "net_transfers_today": -1934,
         "momentum": -1.9,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5985,7 +7362,7 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.8,
         "owned_pct": 20.3,
-        "net_transfers_today": -8890,
+        "net_transfers_today": -9147,
         "momentum": -0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -5999,8 +7376,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.8,
-        "net_transfers_today": 1917,
-        "momentum": 2.2,
+        "net_transfers_today": 2025,
+        "momentum": 2.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -6013,7 +7390,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 4.5,
         "owned_pct": 3.9,
-        "net_transfers_today": -1574,
+        "net_transfers_today": -1658,
         "momentum": -0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6859,7 +8236,7 @@ window.FPL_DATA = {
           "club": "TOT",
           "cost": 4.5,
           "points": 19,
-          "minutes": 494,
+          "minutes": 495,
           "owned_pct": 15.8,
           "value_per_1m": 4.22
         },
@@ -7256,15 +8633,15 @@ window.FPL_DATA = {
           "ratio": 1.18
         },
         {
-          "name": "Kelleher",
+          "name": "Lammens",
           "pos": "GKP",
-          "club": "BRE",
-          "cost": 5.0,
-          "owned_pct": 6.1,
-          "form": 3.7,
-          "fdr": 4,
-          "fixture": "LIV (H)",
-          "ratio": 0.93
+          "club": "MUN",
+          "cost": 4.9,
+          "owned_pct": 9.4,
+          "form": 3.3,
+          "fdr": 3,
+          "fixture": "LEE (A)",
+          "ratio": 1.1
         }
       ],
       "DEF": [
@@ -10815,7 +12192,7 @@ window.FPL_DATA = {
         },
         {
           "date": "2026-10-10",
-          "momentum": 1.2
+          "momentum": 1.3
         }
       ],
       "streak_days": 0,
@@ -11219,7 +12596,7 @@ window.FPL_DATA = {
       "history": [
         {
           "date": "2026-10-10",
-          "momentum": 2.2
+          "momentum": 2.3
         }
       ],
       "streak_days": 0,
