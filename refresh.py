@@ -944,21 +944,32 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
     hits_summary = {"total_cost": total_hit_cost, "total_moves_net": total_moves_net, "net_after_cost": total_moves_net - total_hit_cost, "rows": hit_rows}
 
     squad_clubs = []
+    squad_by_club = {}
     if picks_gw:
         try:
             pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{picks_gw}/picks/")
             squad_clubs = sorted({elements[p["element"]]["team"] for p in pk.get("picks", []) if p.get("element") in elements})
+            for p in pk.get("picks", []):
+                el = elements.get(p.get("element"))
+                if el:
+                    squad_by_club.setdefault(el["team"], []).append(el["web_name"])
         except Exception as e:
             _warn(f"build_strategy: could not load GW{picks_gw} squad for fixture scan: {e}")
 
-    upcoming_events = sorted((e for e in boot["events"] if not e.get("finished")), key=lambda e: e["id"])[:horizon]
+    # Only gameweeks you can still act on: once a deadline has passed that squad is
+    # locked, so the locked GW is not part of a look-ahead.
+    now_utc = datetime.now(timezone.utc)
+    upcoming_events = sorted((e for e in boot["events"] if not e.get("finished") and (parse_deadline(e.get("deadline_time")) or now_utc) > now_utc), key=lambda e: e["id"])[:horizon]
     fixture_rows = []
+    ticker = {}  # club id -> [{gw, fx: [{side, opp, fdr}]}] for the fixture ticker
     for ev in upcoming_events:
         try:
             fx = fixture_scan(ev["id"], teams)
         except Exception as e:
             _warn(f"build_strategy: could not load GW{ev['id']} fixtures: {e}")
             continue
+        for cid in teams:
+            ticker.setdefault(cid, []).append({"gw": ev["id"], "fx": [{"side": f["side"], "opp": f["opp"], "fdr": f.get("fdr")} for f in (fx.get(cid) or [])]})
         fdrs, blanks, doubles = [], [], []
         for cid in squad_clubs:
             fixtures = fx.get(cid) or []
@@ -978,11 +989,21 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
     first_blank = next((r for r in fixture_rows if r["blanks"]), None)
     first_double = next((r for r in fixture_rows if r["doubles"]), None)
 
+    ticker_n = 6
+    ticker_gws = [e["id"] for e in upcoming_events][:ticker_n]
+    ticker_rows = []
+    for cid, cells in ticker.items():
+        cells = [c for c in cells if c["gw"] in ticker_gws]
+        fd = [f["fdr"] for c in cells for f in c["fx"] if f.get("fdr") is not None]
+        ticker_rows.append({"club": teams[cid]["short_name"], "squad": sorted(squad_by_club.get(cid, [])), "avg_fdr": round(sum(fd) / len(fd), 2) if fd else None, "cells": cells})
+    # your clubs first, then everyone else with the kindest run first
+    ticker_rows.sort(key=lambda r: (0 if r["squad"] else 1, r["avg_fdr"] if r["avg_fdr"] is not None else 9, r["club"]))
+
     return {
         "chips": chip_status,
         "free_transfers": free_transfers_for_next(hist or {}),
         "hits": hits_summary,
-        "fixtures": {"horizon": horizon, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
+        "fixtures": {"horizon": horizon, "ticker": {"gws": ticker_gws, "rows": ticker_rows}, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
     }
 
 def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10):

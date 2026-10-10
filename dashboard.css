@@ -74,3 +74,13 @@ footer{margin-top:22px;color:var(--muted);font-size:12px}
 .deadline-bar b{color:var(--gold);font-size:15px;white-space:nowrap}
 .chip-alert{background:#12241f;border:1px solid var(--teal);border-radius:12px;padding:10px 14px;margin:0 0 10px;font-size:13px}
 .chip-alert b{color:var(--green)}
+
+/* fixture ticker: opponent cells coloured by FDR (1 easiest - 5 hardest) */
+.ticker td.f{padding:4px 2px;text-align:center;font-size:11px;font-weight:700;white-space:nowrap;line-height:1.25}
+.ticker td.f.d1,.ticker td.f.d2{background:#16352e;color:#7dffc8}
+.ticker td.f.d3{background:#1b2735;color:var(--ink)}
+.ticker td.f.d4{background:#332a10;color:#f3d7a1}
+.ticker td.f.d5{background:#3a1d1a;color:#ffb4a8}
+.ticker td.f.blank{color:var(--muted);font-weight:400}
+.ticker tr.mine td:first-child{border-left:3px solid var(--gold)}
+.ticker .who{display:block;font-size:10px;font-weight:400;color:var(--muted);white-space:normal;line-height:1.2}

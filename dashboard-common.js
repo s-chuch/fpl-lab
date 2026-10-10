@@ -282,3 +282,21 @@ function rivalsCard(tac,leagueName,pronoun){
   }).join("");
   return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to you on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
 }
+
+
+// Fixture ticker: every club's opponent for the next few unlocked gameweeks, coloured by
+// FDR, your clubs on top (with the players you own there), then the rest kindest-run
+// first. Home = CAPITALS, away = lower case. A blank gameweek shows a dash; a double
+// stacks two fixtures. Built from strategy.fixtures.ticker (refresh.py build_strategy).
+function fixtureTickerCard(F,who){
+  const T=F&&F.ticker; if(!T||!(T.rows||[]).length) return "";
+  const cell=c=>{
+    if(!c.fx.length) return `<td class="f blank">–</td>`;
+    const txt=c.fx.map(f=>esc(f.side==="H"?String(f.opp).toUpperCase():String(f.opp).toLowerCase())).join("<br>");
+    return `<td class="f d${Math.min(5,Math.max(1,Math.round(c.fx.reduce((a,f)=>a+(f.fdr||3),0)/c.fx.length)))}" title="${esc(c.fx.map(f=>f.opp+" ("+f.side+") FDR "+(f.fdr??"?")).join(" + "))}">${txt}</td>`;
+  };
+  const head=`<thead><tr><th style="width:20%">Club</th>${T.gws.map(g=>`<th style="width:${Math.floor(80/T.gws.length)}%">GW${g}</th>`).join("")}</tr></thead>`;
+  const row=r=>`<tr class="${r.squad.length?"mine":""}"><td><b>${esc(r.club)}</b>${r.squad.length?`<span class="who">${esc(r.squad.join(", "))}</span>`:""}</td>${T.gws.map(g=>cell(r.cells.find(c=>c.gw===g)||{fx:[]})).join("")}</tr>`;
+  const mine=T.rows.filter(r=>r.squad.length), rest=T.rows.filter(r=>!r.squad.length);
+  return `<div class="card"><h2>Fixture ticker · next ${T.gws.length} GWs</h2><ul class="note-list"><li>Every club's opponents for the gameweeks you can still change, coloured by difficulty</li><li>Gold-edged rows are ${who==="you"?"your":esc(who)+"'s"} clubs, with the players ${who==="you"?"you":"they"} own there; the rest are ordered kindest run first — the place to look for targets</li></ul><table class="table-compact ticker">${head}<tbody>${mine.map(row).join("")}${rest.length?`<tr><td colspan="${T.gws.length+1}" style="color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:10px">Other clubs · easiest run first</td></tr>`:""}${rest.map(row).join("")}</tbody></table><ul class="legend-list"><li>CAPITALS = home, lower case = away · a dash is a blank gameweek, two names stacked is a double</li><li>Colour: green = easy (FDR 1–2), grey = 3, amber = 4, red = hard (5)</li></ul></div>`;
+}
