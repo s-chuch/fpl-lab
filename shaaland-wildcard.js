@@ -89,15 +89,15 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "DEF",
-      "name": "Konsa",
-      "club": "ARS",
-      "fixture": "LEE (H)"
+      "name": "Davis",
+      "club": "IPS",
+      "fixture": "FUL (H)"
     },
     {
       "pos": "MID",
-      "name": "Cherki",
-      "club": "MCI",
-      "fixture": "LIV (A)"
+      "name": "B.Fernandes",
+      "club": "MUN",
+      "fixture": "TOT (H)"
     },
     {
       "pos": "FWD",
