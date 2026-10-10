@@ -388,15 +388,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Barry",
-        "baseline_cost": null,
-        "current_cost": null,
-        "delta": null,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "removed"
-      },
-      {
         "name": "Isak",
         "baseline_cost": 9.1,
         "current_cost": null,
