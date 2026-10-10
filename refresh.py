@@ -1312,6 +1312,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             rotation_note = avail["news"]
         elif el["web_name"] in rotation_flagged:
             rotation_note = rotation_flagged[el["web_name"]]
+        rot_news = rotation_note  # a real other-competition mention, before the fixture notes below reuse the field
         reason = None
         if tag in ("falling", "declining"):
             if avail["kind"] in ("out", "doubt"):
@@ -1356,8 +1357,28 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             if not rotation_note:
                 rotation_note = f"Plays again {turnaround}d after {next_match_label or 'its next match'}: {following_label}"
 
+        # Every signal that applies, not just the highest-priority one: the table shows each as
+        # its own bullet. `reason` above stays the single primary one (sorting / "notable").
+        reasons = []
+        if avail["kind"] in ("out", "doubt"):
+            reasons.append({"kind": "injury", "label": avail["label"], "text": avail["news"] or avail["label"]})
+        if tag in ("falling", "declining"):
+            if avail["kind"] == "ok" and not rot_news:
+                reasons.append({"kind": "rested", "label": "Rested", "text": f"{note} ({' → '.join(str(m) for m in mins)} min), fit and no other-competition reason found"})
+            else:
+                reasons.append({"kind": "trend", "label": "Minutes falling" if tag == "falling" else "Minutes declining", "text": f"{note} ({' → '.join(str(m) for m in mins)} min)"})
+        if rot_news:
+            reasons.append({"kind": "rotation", "label": "Rotation", "text": rot_news})
+        if tag == "fringe" and avail["kind"] == "ok":
+            reasons.append({"kind": "unused", "label": "Unused", "text": f"{max(mins)} min max across the last {len(mins)} GWs - not in the plans"})
+        if rest_days is not None and rest_days <= CONGESTION_DAYS:
+            reasons.append({"kind": "congestion", "label": f"{rest_days}d rest", "text": (f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match") + (f" (after {between_labels[-1]})" if between_labels else "")})
+        if turnaround is not None and turnaround <= SQUEEZE_DAYS:
+            reasons.append({"kind": "squeeze", "label": "Squeeze", "text": f"Plays again {turnaround}d after {next_match_label or 'its next match'}: {following_label}"})
+
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": club,
+            "reasons": reasons,
             "minutes": mins, "trend": tag, "note": note,
             "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"],
             "reason": reason, "rotation_note": rotation_note,

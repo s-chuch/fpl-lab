@@ -301,12 +301,21 @@ function fixtureTickerCard(F,who){
   return `<div class="card"><h2>Fixture ticker · next ${T.gws.length} GWs</h2><ul class="note-list"><li>Every club's opponents for the gameweeks you can still change, coloured by difficulty</li><li>Gold-edged rows are ${who==="you"?"your":esc(who)+"'s"} clubs, with the players ${who==="you"?"you":"they"} own there; the rest are ordered kindest run first — the place to look for targets</li></ul><table class="table-compact ticker">${head}<tbody>${mine.map(row).join("")}${rest.length?`<tr><td colspan="${T.gws.length+1}" style="color:var(--muted);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding-top:10px">Other clubs · easiest run first</td></tr>`:""}${rest.map(row).join("")}</tbody></table><ul class="legend-list"><li>CAPITALS = home, lower case = away · a dash is a blank gameweek, two names stacked is a double</li><li>Colour: green = easy (FDR 1–2), grey = 3, amber = 4, red = hard (5)</li></ul></div>`;
 }
 
-
-// "Why" reasons as a bullet list, one reason per line, instead of a " · "-joined run-on.
-// Risk tags (sell-high, fade, doubt) are tinted red so a warning doesn't blend in.
-const WHY_NEG=new Set(["Sell-high risk","Fade signal","Doubt"]);
-function whyList(items){
-  const a=(items||[]).filter(Boolean);
+// Rotation tab "Why": every reason that applies to a player, one bullet each (refresh.py
+// build_rotation_risk -> row.reasons), not a single summary label. The table cell shows
+// the short label; rotationDetail() gives the full sentence per reason underneath.
+function _rotCls(r,x){
+  if(x.kind==="injury"||x.kind==="unused") return "neg";
+  if(x.kind==="congestion"&&r.rest_days!=null&&r.rest_days<=2) return "neg";
+  return "mid";
+}
+function rotationWhy(r){
+  const a=r.reasons||[];
   if(!a.length) return "–";
-  return `<ul class="why">${a.map(x=>`<li${WHY_NEG.has(x)?' class="neg"':""}>${esc(x)}</li>`).join("")}</ul>`;
+  return `<ul class="why">${a.map(x=>`<li class="${_rotCls(r,x)}">${esc(x.label)}</li>`).join("")}</ul>`;
+}
+function rotationDetail(r){
+  const a=(r.reasons||[]).filter(x=>x.text);
+  if(!a.length) return "";
+  return `<li><span class="who">${esc(r.name)}</span><ul class="why">${a.map(x=>`<li class="${_rotCls(r,x)}">${esc(x.text)}</li>`).join("")}</ul></li>`;
 }
