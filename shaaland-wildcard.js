@@ -2,12 +2,12 @@ window.FPL_WILDCARD_WATCH = {
   "team": "Shaaland",
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
-  "status": "provisional",
-  "captured_at": "2026-09-27",
+  "status": "confirmed",
+  "captured_at": "2026-10-10",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
-    "wildcard": "active",
+    "wildcard": "played_gw6",
     "freehit": "played_gw4"
   },
   "xi": [
@@ -39,8 +39,7 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "HUL (A)",
-      "vice": true
+      "fixture": "HUL (A)"
     },
     {
       "pos": "MID",
@@ -58,26 +57,27 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "SUN (A)",
-      "captain": true
+      "fixture": "SUN (A)"
     },
     {
       "pos": "MID",
-      "name": "Schade",
-      "club": "BRE",
-      "fixture": "AVL (A)"
+      "name": "Saka",
+      "club": "ARS",
+      "fixture": "LEE (H)",
+      "vice": true
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "LIV (A)"
+      "fixture": "LIV (A)",
+      "captain": true
     },
     {
       "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "SUN (A)"
+      "name": "João Pedro",
+      "club": "CHE",
+      "fixture": "BOU (H)"
     }
   ],
   "bench": [
@@ -88,25 +88,25 @@ window.FPL_WILDCARD_WATCH = {
       "fixture": "EVE (H)"
     },
     {
+      "pos": "FWD",
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "SUN (A)"
+    },
+    {
+      "pos": "MID",
+      "name": "Schade",
+      "club": "BRE",
+      "fixture": "AVL (A)"
+    },
+    {
       "pos": "DEF",
       "name": "Davis",
       "club": "IPS",
       "fixture": "FUL (H)"
-    },
-    {
-      "pos": "MID",
-      "name": "Saka",
-      "club": "ARS",
-      "fixture": "LEE (H)"
-    },
-    {
-      "pos": "FWD",
-      "name": "João Pedro",
-      "club": "CHE",
-      "fixture": "BOU (H)"
     }
   ],
-  "note": "Provisional squad from Shaaland's own Pick Team screen — this can still change before the GW6 deadline (Sat 10 Oct, 06:00).",
+  "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from your picks).",
   "recommend": {
     "captain": "Groß",
     "captain_ep": 10.3,
