@@ -1,22 +1,61 @@
 window.FPL_NEWS = {
   "gw": 6,
   "cutoff": "2026-09-18 17:30 UTC",
-  "generated_at": "2026-10-10 01:00 UTC",
+  "generated_at": "2026-10-10 05:40 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Fernandes (TOT) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk, injury/doubt, rotation risk.",
+      "text": "Calafiori (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites.",
       "sources": [
         "AAFPL",
         "Ingenuity",
         "Scout"
       ],
-      "player": "Fernandes",
-      "club": "TOT",
+      "player": "Calafiori",
+      "club": "ARS",
+      "tags": []
+    },
+    {
+      "text": "David (BHA) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: differential.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "David",
+      "club": "BHA",
       "tags": [
-        "captain talk",
+        "differential"
+      ]
+    },
+    {
+      "text": "Gabriel (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt, rotation risk.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Gabriel",
+      "club": "ARS",
+      "tags": [
         "injury/doubt",
         "rotation risk"
+      ]
+    },
+    {
+      "text": "White (ARS) is heavily featured in GW6 coverage \u2014 mentioned by 3/3 sites. Tags: captain talk, differential, fade/sell, injury/doubt.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "White",
+      "club": "ARS",
+      "tags": [
+        "captain talk",
+        "differential",
+        "fade/sell",
+        "injury/doubt"
       ]
     }
   ],
@@ -86,16 +125,6 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Calafiori (ARS) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": []
-    },
-    {
       "text": "Calvert-Lewin (LEE) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
       "sources": [
         "AAFPL",
@@ -105,18 +134,6 @@ window.FPL_NEWS = {
       "club": "LEE",
       "tags": [
         "fade/sell"
-      ]
-    },
-    {
-      "text": "David (BHA) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: differential.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity"
-      ],
-      "player": "David",
-      "club": "BHA",
-      "tags": [
-        "differential"
       ]
     },
     {
@@ -138,6 +155,30 @@ window.FPL_NEWS = {
       "player": "Dewsbury-Hall",
       "club": "EVE",
       "tags": []
+    },
+    {
+      "text": "Evanilson (BOU) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Evanilson",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "Fernandes (TOT) is starting to come up in GW6 coverage \u2014 mentioned by 2/3 sites. Tags: captain talk, injury/doubt, rotation risk.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Fernandes",
+      "club": "TOT",
+      "tags": [
+        "captain talk",
+        "injury/doubt",
+        "rotation risk"
+      ]
     }
   ],
   "links": [
@@ -166,21 +207,70 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "The FPL half-term report: Arsenal",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/the-fpl-half-term-report-arsenal-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Coventry v Newcastle predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/coventry-v-newcastle-predicted-line-ups-fpl-team-news"
+    },
+    {
+      "source": "Scout",
+      "title": "Liverpool v Man City predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/liverpool-v-man-city-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Hull v Everton predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/hull-v-everton-predicted-line-ups-fpl-team-news"
+    },
+    {
+      "source": "Scout",
+      "title": "Crystal Palace v Nott\u2019m Forest predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/crystal-palace-v-nottm-forest-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Man United v Tottenham predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/man-united-v-tottenham-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Sunderland v Brighton predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/sunderland-v-brighton-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Ipswich v Fulham predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/ipswich-v-fulham-predicted-line-ups-fpl-team-news"
+    },
+    {
+      "source": "Scout",
+      "title": "Chelsea v Bournemouth predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/chelsea-v-bournemouth-predicted-line-ups-fpl-team-news"
+    },
+    {
+      "source": "Scout",
+      "title": "Aston Villa v Brentford predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/aston-villa-v-brentford-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "Arsenal v Leeds predicted line-ups + FPL team news",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/arsenal-v-leeds-predicted-line-ups-fpl-team-news-2"
+    },
+    {
+      "source": "Scout",
+      "title": "The FPL Watchlist: Ranking the best players in each position",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/10/the-fpl-watchlist-ranking-the-best-players-in-each-position-4"
+    }
+  ],
+  "no_new": false,
   "seen": [
-    "https://allaboutfpl.com/2022/03/all-time-fpl-dream-team-since-the-first-season-in-2002-03-fpl-history/",
-    "https://allaboutfpl.com/2022/07/8-simple-effective-fpl-tips-for-a-higher-fpl-overall-rank/",
-    "https://allaboutfpl.com/2026/07/aks-fpl-first-draft-team-reveal-3x-top-5k-finishes/",
-    "https://allaboutfpl.com/2026/07/best-4-0-million-fpl-defenders-for-2026-27-fpl-season/",
-    "https://allaboutfpl.com/2026/07/best-5-0-5-5-million-fpl-defenders-for-the-2026-27-fpl-season/",
-    "https://allaboutfpl.com/2026/07/best-premium-fpl-defenders-for-the-2026-27-fpl-season/",
-    "https://allaboutfpl.com/2026/08/2026-2027-fpl-team-structure-guide-with-drafts-ratings/",
-    "https://allaboutfpl.com/2026/08/2026-27-fpl-chip-strategy-guide-first-half-of-the-season/",
-    "https://allaboutfpl.com/2026/08/best-4-5-million-fpl-defenders-for-the-2026-27-fpl-season/",
-    "https://allaboutfpl.com/2026/08/best-6m-forwards-comparison-for-the-2026-27-fpl-season/",
-    "https://allaboutfpl.com/2026/08/best-fpl-budget-forwards-4-5-6-0-million-26-27-fpl-season/",
-    "https://allaboutfpl.com/2026/08/best-fpl-forwards-at-each-price-point-for-the-2026-27-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-value-defenders-and-gks-for-the-2026-27-season/",
@@ -368,6 +458,18 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/09/who-is-the-best-captain-for-fpl-gameweek-6-5",
     "https://www.fantasyfootballscout.co.uk/2026/10/10/hall-of-famer-dan-wrights-fpl-gameweek-6-team-reveal",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
-    "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
+    "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/the-fpl-half-term-report-arsenal-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/coventry-v-newcastle-predicted-line-ups-fpl-team-news",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/liverpool-v-man-city-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/hull-v-everton-predicted-line-ups-fpl-team-news",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/crystal-palace-v-nottm-forest-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/man-united-v-tottenham-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/sunderland-v-brighton-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/ipswich-v-fulham-predicted-line-ups-fpl-team-news",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/chelsea-v-bournemouth-predicted-line-ups-fpl-team-news",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/aston-villa-v-brentford-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/arsenal-v-leeds-predicted-line-ups-fpl-team-news-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/10/the-fpl-watchlist-ranking-the-best-players-in-each-position-4"
   ]
 };

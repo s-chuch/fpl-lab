@@ -114,26 +114,20 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 12.0,
     "bench_swaps": [
       {
-        "bench": "Cherki",
-        "bench_ep": 4.5,
-        "starter": "King",
-        "starter_ep": 2.5
+        "bench": "Davis",
+        "bench_ep": 8.0,
+        "starter": "Calafiori",
+        "starter_ep": 3.5
       }
     ],
     "bench_order": [
       "Tzolakis",
+      "Davis",
       "João Pedro",
-      "Cherki",
-      "Konsa"
+      "B.Fernandes"
     ],
     "bench_order_changed": true,
-    "availability_flags": [
-      {
-        "name": "Konsa",
-        "label": "DOUBT 75%",
-        "chance": 75
-      }
-    ],
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
@@ -210,15 +204,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Konsa",
+        "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.6,
-        "status": "doubt"
+        "ep_next": 8.0,
+        "status": "ok"
       },
       {
-        "name": "Cherki",
+        "name": "B.Fernandes",
         "pos": "MID",
-        "ep_next": 4.5,
+        "ep_next": 2.0,
         "status": "ok"
       },
       {
@@ -252,8 +246,8 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-09",
-      "total_cost": 98.3,
+      "date": "2026-10-10",
+      "total_cost": 101.8,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -267,15 +261,17 @@ window.FPL_WILDCARD_WATCH = {
         "Haaland": 15.6,
         "Kostoulas": 5.6,
         "Tzolakis": 4.7,
-        "Konsa": 4.6,
-        "Cherki": 7.8,
+        "Davis": 4.0,
+        "B.Fernandes": 11.9,
         "João Pedro": 7.7
       }
     },
     "entry_prices": {
-      "João Pedro": 7.7
+      "João Pedro": 7.7,
+      "B.Fernandes": 11.9,
+      "Davis": 4.0
     },
-    "total_delta": -0.5,
+    "total_delta": 3.0,
     "players": [
       {
         "name": "Calafiori",
@@ -350,27 +346,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Cherki",
-        "baseline_cost": 7.8,
-        "current_cost": 7.8,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.6,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Konsa",
-        "baseline_cost": 4.6,
-        "current_cost": 4.6,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -395,6 +373,33 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "B.Fernandes",
+        "baseline_cost": null,
+        "current_cost": 11.9,
+        "delta": null,
+        "entry_cost": 11.9,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
+        "name": "Cherki",
+        "baseline_cost": 7.8,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "Davis",
+        "baseline_cost": null,
+        "current_cost": 4.0,
+        "delta": null,
+        "entry_cost": 4.0,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
         "name": "Isak",
         "baseline_cost": 9.1,
         "current_cost": null,
@@ -415,6 +420,15 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kinsky",
         "baseline_cost": 4.5,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "Konsa",
+        "baseline_cost": 4.6,
         "current_cost": null,
         "delta": null,
         "entry_cost": null,
@@ -544,6 +558,30 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "João Pedro",
         "price_at_change": 7.7
+      },
+      {
+        "date": "2026-10-10",
+        "event": "removed",
+        "player": "Cherki",
+        "price_at_change": 7.8
+      },
+      {
+        "date": "2026-10-10",
+        "event": "removed",
+        "player": "Konsa",
+        "price_at_change": 4.6
+      },
+      {
+        "date": "2026-10-10",
+        "event": "added",
+        "player": "B.Fernandes",
+        "price_at_change": 11.9
+      },
+      {
+        "date": "2026-10-10",
+        "event": "added",
+        "player": "Davis",
+        "price_at_change": 4.0
       }
     ]
   }
