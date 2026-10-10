@@ -274,11 +274,13 @@ function rivalsCard(tac,leagueName,pronoun){
   const chipNames=a=>a.map(c=>CHIP_SHORT[c]||c).join(", ");
   const rows=list.map(c=>{
     const gap=c.gap==null?"?":(c.gap>0?`${c.gap} ahead`:c.gap<0?`${-c.gap} behind`:"level");
-    const left=c.chips_left==null?`<span class="note">chips: unknown</span>`:(c.chips_left.length?`chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">no chips left this half</span>`);
-    const used=(c.chips_used&&c.chips_used.length)?` · used: ${esc(chipNames(c.chips_used))}`:"";
+    const bits=[];
+    bits.push(c.chips_left==null?`<span class="note">Chips: unknown</span>`:(c.chips_left.length?`Chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">No chips left this half</span>`));
+    if(c.chips_used&&c.chips_used.length) bits.push(`Used: ${esc(chipNames(c.chips_used))}`);
     const tn=trendNote(c.gap_trend,pronoun||"you");
-    const extra=[tn,c.fixture?c.fixture.label.toLowerCase()+" fixtures ("+c.fixture.avg_fdr+")":null].filter(Boolean);
-    return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><div class="detail">${left}${used}${extra.length?` · ${esc(extra.join(", "))}`:""}</div></li>`;
+    if(tn) bits.push(esc(tn));
+    if(c.fixture) bits.push(esc(c.fixture.label+" fixtures ("+c.fixture.avg_fdr+")"));
+    return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><ul class="why">${bits.map(x=>`<li>${x}</li>`).join("")}</ul></li>`;
   }).join("");
   return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to you on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
 }
