@@ -1209,7 +1209,7 @@ def _comp_abbrev(name):
     return COMPETITION_ABBREV.get((name or "").strip().lower(), name or "?")
 
 
-def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=60):
+def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=60, target_gw=None):
     """Minutes trend over the last few finished GWs for each squad player —
     catches a player sliding out of the XI while it's still happening,
     instead of only after the fact via a bench-audit miss the week it costs
@@ -1315,6 +1315,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         fol = (recovery or {}).get("following_match")
         turnaround = fol.get("days_after") if fol else None
         following_label = match_label(fol)
+        between_labels = [match_label(m) for m in ((recovery or {}).get("between") or [])]
         # Forward-looking signals, only when nothing more specific explains the row.
         if reason is None and tag == "fringe" and avail["kind"] == "ok":
             reason = "unused"  # fit, but no real minutes anywhere in the window
@@ -1322,7 +1323,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         if reason is None and rest_days is not None and rest_days <= CONGESTION_DAYS:
             reason = "congestion"
             if not rotation_note:
-                rotation_note = f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match"
+                rotation_note = (f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match") + (f" (after {between_labels[-1]})" if between_labels else "")
         if reason is None and turnaround is not None and turnaround <= SQUEEZE_DAYS:
             reason = "squeeze"  # plays again soon after the next match: the next one is the likelier rotation game
             if not rotation_note:
@@ -1334,7 +1335,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             "avail_kind": avail["kind"], "avail_label": avail["label"], "news": avail["news"],
             "reason": reason, "rotation_note": rotation_note,
             "rest_days": rest_days, "next_match_label": next_match_label,
-            "turnaround_days": turnaround, "following_label": following_label,
+            "turnaround_days": turnaround, "following_label": following_label, "between_labels": between_labels,
         })
     reason_rank = {"injury": 0, "rested": 1, "rotation": 2, "unused": 3, "congestion": 4, "squeeze": 5}
     def sort_key(r):
@@ -1343,7 +1344,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         return (pri, r["minutes"][-1] - r["minutes"][0])
     rows.sort(key=sort_key)
     notable = [r for r in rows if r["reason"] is not None or r["trend"] == "rising"]
-    return {"gws": recent_gws, "start_mins": start_mins, "rows": rows, "notable": notable}
+    return {"gws": recent_gws, "start_mins": start_mins, "target_gw": target_gw, "rows": rows, "notable": notable}
 
 def build_value_board(boot, min_minutes=180, top_n=10):
     """Best points-per-money across the WHOLE player pool, split by position
@@ -2012,7 +2013,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"))
-    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"))
+    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     data["team_recovery"] = team_recovery
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map)

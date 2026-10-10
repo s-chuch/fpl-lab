@@ -42,7 +42,7 @@ USER_AGENT = "Mozilla/5.0 (compatible; ShaalandFPLLab/1.0)"
 WIKI_UA = "ShaalandFPLLab/1.0 (https://github.com/s-chuch/fpl-lab)"  # Wikipedia asks for an identifying UA
 WIKI_CUPS = [("EFL Cup", "{y}–{yy} EFL Cup"), ("FA Cup", "{y}–{yy} FA Cup")]
 PENDING_RESULT_HOURS = 48  # how long a finished-but-unscored match is treated as played
-SCHEMA = 3  # bump when the record shape changes so an old cached result is refetched, not reused for 30 minutes
+SCHEMA = 4  # bump when the record shape changes so an old cached result is refetched, not reused for 30 minutes
 REFETCH_MINUTES = 30  # feeds update as results land; also dedupes the two refresh.py runs per workflow
 IN_PROGRESS_HOURS = 3  # an unscored match kicked off this recently is still being played
 UK = ZoneInfo("Europe/London")
@@ -101,10 +101,46 @@ def matches_from_feed(rows, competition, name_index):
     return out
 
 
-def recovery_from_matches(matches, now):
-    """Rest-days record for one club: last = latest played match, next =
-    earliest unplayed match still to come, including one that kicked off
-    within IN_PROGRESS_HOURS (in progress / score not in the feed yet)."""
+def _match_ref(m):
+    return {"date": m["date"].strftime("%Y-%m-%d"), "competition": m["competition"], "opponent": m.get("opponent")}
+
+
+def recovery_ahead(matches, now, anchor):
+    """Forward-looking rest record, anchored on the NEXT gameweek deadline you can
+    still act on (anchor). Once a gameweek's deadline has passed its squad is locked,
+    so rotation risk only matters for what comes after: target = the club's first
+    match on/after the anchor, last = the latest match BEFORE it in ANY competition
+    (scheduled ones count - a midweek European tie still to be played is exactly
+    what tires the squad for the target match), and `between` lists those scheduled
+    matches. Unscored matches older than PENDING_RESULT_HOURS are treated as
+    postponed and ignored."""
+    usable = [m for m in matches if m["played"] or m["date"] >= now - timedelta(hours=PENDING_RESULT_HOURS)]
+    ahead = sorted((m for m in usable if m["date"] >= anchor), key=lambda m: m["date"])
+    before = sorted((m for m in usable if m["date"] < anchor), key=lambda m: m["date"])
+    if not ahead:
+        return None
+    target, fol = ahead[0], (ahead[1] if len(ahead) > 1 else None)
+    last = before[-1] if before else None
+    between = [m for m in before if not m["played"] and m["date"] >= now - timedelta(hours=IN_PROGRESS_HOURS)]
+    return {
+        "rest_days": (target["date"].date() - last["date"].date()).days if last else None,
+        "last_match": ({**_match_ref(last), "scheduled": not last["played"]} if last else None),
+        "next_match": _match_ref(target),
+        "following_match": ({**_match_ref(fol), "days_after": (fol["date"].date() - target["date"].date()).days} if fol else None),
+        "between": [_match_ref(m) for m in between],
+    }
+
+
+def recovery_from_matches(matches, now, anchor=None):
+    """Rest-days record for one club. With `anchor` (the next gameweek deadline you
+    can still act on) it looks AHEAD of it - see recovery_ahead. Without one (season
+    over / no deadline known) it falls back to 'since the last played match, before
+    the next one': last = latest played match, next = earliest unplayed match still
+    to come, including one that kicked off within IN_PROGRESS_HOURS."""
+    if anchor is not None:
+        rec = recovery_ahead(matches, now, anchor)
+        if rec:
+            return rec
     # A match that kicked off more than IN_PROGRESS_HOURS ago but has no score in the
     # feed yet has been played - the feed just lags - so it counts as the last match
     # (otherwise a club that played at noon shows its rest as measured from weeks ago).
@@ -188,6 +224,21 @@ def matches_from_wikitext(wikitext, competition, name_index):
     return out
 
 
+def next_deadline(boot, now):
+    """(gameweek id, deadline datetime) of the first gameweek whose deadline is still
+    in the future - the next one you can still make changes for. (None, None) if the
+    season is over or no deadline parses."""
+    for e in sorted(boot.get("events") or [], key=lambda e: e.get("id") or 0):
+        raw = e.get("deadline_time")
+        try:
+            dl = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+        except (TypeError, ValueError):
+            continue
+        if dl > now:
+            return e["id"], dl
+    return None, None
+
+
 def get_team_recovery(boot, existing, now=None):
     """Entry point for refresh.py's main(). Returns
     {"fetched_at", "teams": {short_name: record}}; refetches the four feeds
@@ -195,8 +246,9 @@ def get_team_recovery(boot, existing, now=None):
     feed fails the previous result is kept (never replaced by partial data)."""
     now = now or datetime.now(timezone.utc)
     prev = (existing or {}).get("team_recovery") or {}
+    target_gw, anchor = next_deadline(boot, now)
     try:
-        if prev.get("schema") == SCHEMA and prev.get("fetched_at") and now - datetime.fromisoformat(prev["fetched_at"]) < timedelta(minutes=REFETCH_MINUTES):
+        if prev.get("schema") == SCHEMA and prev.get("target_gw") == target_gw and prev.get("fetched_at") and now - datetime.fromisoformat(prev["fetched_at"]) < timedelta(minutes=REFETCH_MINUTES):
             return prev
     except ValueError:
         pass
@@ -232,5 +284,5 @@ def get_team_recovery(boot, existing, now=None):
     missing = [t["short_name"] for t in boot["teams"] if t["short_name"] not in pl_seen]
     if missing:
         _warn(f"no Premier League feed match for: {', '.join(missing)} (rename? add to NAME_HINTS)")
-    teams = {sn: r for sn, r in ((sn, recovery_from_matches(ms, now)) for sn, ms in per_club.items()) if r}
-    return {"schema": SCHEMA, "fetched_at": now.isoformat(), "teams": teams}
+    teams = {sn: r for sn, r in ((sn, recovery_from_matches(ms, now, anchor)) for sn, ms in per_club.items()) if r}
+    return {"schema": SCHEMA, "fetched_at": now.isoformat(), "target_gw": target_gw, "anchor": anchor.isoformat() if anchor else None, "teams": teams}
