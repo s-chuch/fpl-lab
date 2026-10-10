@@ -29,6 +29,7 @@ section{display:none}section.on{display:block}
 .table-compact{table-layout:fixed}
 .table-compact th{padding:6px 3px;font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .table-compact td{padding:6px 3px;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.table-compact td.wrap{white-space:normal;text-overflow:clip;line-height:1.25}
 @media(max-width:400px){
   .table-compact th{padding:5px 2px;font-size:9px;letter-spacing:-.02em}
   .table-compact td{padding:5px 2px;font-size:10px;letter-spacing:-.02em}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20261010g">
+<link rel="stylesheet" href="dashboard.css?v=20261010h">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -384,9 +384,9 @@ function renderStrategy(){
     const bits=[];
     if(r.tag==="overperforming") bits.push("Sell-high");
     if(r.tag==="underperforming") bits.push("Buy-low");
-    if(r.gc_tag==="riding_luck") bits.push("D:luck");
-    if(r.gc_tag==="unlucky") bits.push("D:unlucky");
-    return bits.length?bits.join(" / "):"On track";
+    if(r.gc_tag==="riding_luck") bits.push("Defence lucky");
+    if(r.gc_tag==="unlucky") bits.push("Defence unlucky");
+    return bits.length?bits.map(esc).join("<br>"):"On track";
   };
   const xgTagCls=r=>{
     if(r.tag==="overperforming"||r.gc_tag==="riding_luck") return "neg";
@@ -394,8 +394,8 @@ function renderStrategy(){
     return "";
   };
   const xgDiffCls=r=>r.tag==="overperforming"?"neg":r.tag==="underperforming"?"pos":"";
-  const xgHead=`<thead><tr><th style="width:33%">Player</th><th style="width:10%">Pos</th><th style="width:22%">G+A/xGI</th><th style="width:13%">Diff</th><th style="width:22%">Tag</th></tr></thead>`;
-  const xgRow=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
+  const xgHead=`<thead><tr><th style="width:30%">Player</th><th style="width:9%">Pos</th><th style="width:19%">G+A/xGI</th><th style="width:13%">Diff</th><th style="width:29%">Tag</th></tr></thead>`;
+  const xgRow=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="wrap ${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
   const xgRows=(XG.rows||[]).map(xgRow).join("")||`<tr><td colspan="5"><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></td></tr>`;
   const xgTopHead=`<thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead>`;
   const xgTopRow=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`;
