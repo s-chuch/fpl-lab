@@ -261,3 +261,24 @@ function saveTab(key,id){
   try{history.replaceState(null,"",location.pathname+location.search+"#tab="+id);}catch(e){}
   try{localStorage.setItem(key,id);}catch(e){}
 }
+
+// "Rivals that matter" card for a mini-league: the managers closest to you on
+// points (league_tactics.pick_contenders), labelled by their real table
+// position, with the chips each can still play this half — the thing that lets
+// a close rival swing a week. Replaces the old fixed top-2 / bottom-2 strip.
+const CHIP_SHORT={wildcard:"Wildcard",freehit:"Free Hit",bboost:"Bench Boost","3xc":"Triple Captain"};
+function rivalsCard(tac,leagueName,pronoun){
+  if(!tac) return "";
+  const list=tac.contenders;
+  if(!Array.isArray(list)||!list.length) return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><p class="note">Computed on the next refresh.</p></div>`;
+  const chipNames=a=>a.map(c=>CHIP_SHORT[c]||c).join(", ");
+  const rows=list.map(c=>{
+    const gap=c.gap==null?"?":(c.gap>0?`${c.gap} ahead`:c.gap<0?`${-c.gap} behind`:"level");
+    const left=c.chips_left==null?`<span class="note">chips: unknown</span>`:(c.chips_left.length?`chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">no chips left this half</span>`);
+    const used=(c.chips_used&&c.chips_used.length)?` · used: ${esc(chipNames(c.chips_used))}`:"";
+    const tn=trendNote(c.gap_trend,pronoun||"you");
+    const extra=[tn,c.fixture?c.fixture.label.toLowerCase()+" fixtures ("+c.fixture.avg_fdr+")":null].filter(Boolean);
+    return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><div class="detail">${left}${used}${extra.length?` · ${esc(extra.join(", "))}`:""}</div></li>`;
+  }).join("");
+  return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to you on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
+}

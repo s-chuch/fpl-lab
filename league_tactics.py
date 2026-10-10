@@ -43,6 +43,23 @@ def _vs_pair(a, b, my_set, counts, owned_by, elements, teams, n):
     return you_unique[:6], they_share[:10]
 
 
+def pick_contenders(rows, team_id, window=25, min_n=3, max_n=8):
+    """The managers who are the real competition: closest to you on POINTS, not
+    on table position. Everyone within `window` points (at most `max_n`, nearest
+    first); if fewer than `min_n` are that close, the nearest `min_n` regardless,
+    so the list is never empty in a spread-out league. Returned in table order.
+    A bottom-placed manager 120 points back is not competition, however many
+    chips they have left."""
+    me = next((r for r in rows if r.get("entry") == team_id), None)
+    if not me or me.get("total") is None:
+        return []
+    others = [r for r in rows if r.get("entry") != team_id and r.get("total") is not None]
+    others.sort(key=lambda r: (abs(r["total"] - me["total"]), r.get("rank") or 10**9))
+    close = [r for r in others if abs(r["total"] - me["total"]) <= window][:max_n]
+    picked = close if len(close) >= min_n else others[:min_n]
+    return sorted(picked, key=lambda r: (r.get("rank") is None, r.get("rank") or 10**9))
+
+
 def _rival_card(row, me_row, ctx_by_entry):
     """{name, rank, pts, gap} for one rival row, plus chip-used/gap-trend/fixture
     extras when analyze_leagues fetched them for this specific rival (rival_ctx)."""
@@ -58,6 +75,8 @@ def _rival_card(row, me_row, ctx_by_entry):
     if ctx:
         if ctx.get("chips"):
             card["chips_used"] = sorted(ctx["chips"].keys())
+        if ctx.get("chips_left") is not None:
+            card["chips_left"] = list(ctx["chips_left"])  # chips still unused in the current half
         if ctx.get("gap_trend") is not None:
             card["gap_trend"] = ctx["gap_trend"]
         if ctx.get("fixture"):
@@ -127,6 +146,7 @@ def build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, eleme
         "second": _rival_card(second, me_row, rival_ctx),
         "last": _rival_card(last, me_row, rival_ctx),
         "second_last": _rival_card(second_last, me_row, rival_ctx),
+        "contenders": [_rival_card(r, me_row, rival_ctx) for r in pick_contenders(rows, team_id)],
         "template": league_template[:10],
         "you_unique": leader_unique,
         "they_share": leader_share,

@@ -4,7 +4,7 @@ import argparse, json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
-from league_tactics import build_tactics
+from league_tactics import build_tactics, pick_contenders
 from lab_audit import add_roll_rows
 import fpl_common
 import fixtures_external
@@ -1694,18 +1694,19 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15):
     return {"min_minutes": min_minutes, "top_n": top_n, "horizons": out}
 
 
-def target_rival_entries(rows, team_id, limit_top=2, limit_bottom=2, spread=1):
+def target_rival_entries(rows, team_id, limit_top=2, limit_bottom=0, spread=1):
     """Entry ids for the small, bounded set of rivals the Leagues tab actually
-    compares against: the top of the table (limit_top), the bottom of the table
-    (limit_bottom — a team with chips still banked can leapfrog you in one week
-    even from last place, which the top/neighbor comparisons alone never catch),
-    and whoever's within `spread` ranks of you either side — a superset of
-    whatever build_tactics() ends up calling "first"/"second"/"last"/
-    "second_last"/"neighbor_above"/"neighbor_below", so it doesn't need to
-    duplicate that exact tie-break logic here."""
+    compares against: the real competition (pick_contenders: nearest to you on
+    points), the top of the table (limit_top), and whoever's within `spread`
+    ranks of you either side — a superset of whatever build_tactics() ends up
+    calling "first"/"second"/"contenders"/"neighbor_above"/"neighbor_below",
+    so it doesn't need to duplicate that exact tie-break logic here. The
+    bottom of the table (limit_bottom, off by default) used to be fetched too;
+    a manager 100+ points back isn't competition."""
     sorted_rows = sorted(rows, key=lambda r: (r.get("rank") is None, r.get("rank") or 10**9))
     me_idx = next((i for i, r in enumerate(sorted_rows) if r.get("entry") == team_id), None)
     picked = list(sorted_rows[:limit_top]) + (list(sorted_rows[-limit_bottom:]) if limit_bottom else [])
+    picked.extend(pick_contenders(rows, team_id))
     if me_idx is not None:
         lo, hi = max(0, me_idx - spread), min(len(sorted_rows), me_idx + spread + 1)
         picked.extend(sorted_rows[lo:hi])
@@ -1719,7 +1720,27 @@ def target_rival_entries(rows, team_id, limit_top=2, limit_bottom=2, spread=1):
     return out
 
 
-def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map):
+def current_half_chip_windows(boot):
+    """{chip name: (start_gw, stop_gw)} for the half-season window we're in: the
+    one containing the next unfinished GW, else the next upcoming one. Every
+    chip is usable once per half, so 'chips left' means unused in THIS window."""
+    ref = next((e["id"] for e in boot.get("events") or [] if not e.get("finished")), None)
+    if ref is None:
+        return {}
+    by_chip = {}
+    for c in boot.get("chips") or []:
+        if c.get("name") and c.get("start_event") is not None and c.get("stop_event") is not None:
+            by_chip.setdefault(c["name"], []).append((c["start_event"], c["stop_event"]))
+    out = {}
+    for name, ws in by_chip.items():
+        ws.sort()
+        w = next((w for w in ws if w[0] <= ref <= w[1]), None) or next((w for w in ws if w[0] > ref), None)
+        if w:
+            out[name] = w
+    return out
+
+
+def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map, chip_windows=None):
     """Small, targeted extra fetches (season history only, no per-GW picks) for a
     bounded set of rivals: chips used this season, how much ground moved last GW,
     and — once picks are public — their squad's average fixture difficulty for
@@ -1733,6 +1754,12 @@ def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, 
             _warn(f"rival_context: could not load history for entry {eid}: {e}")
             continue
         chips = {c["name"]: c["event"] for c in h.get("chips", [])}
+        chips_left = None
+        if chip_windows:
+            events = {}
+            for c in h.get("chips", []):
+                events.setdefault(c["name"], []).append(c.get("event") or 0)
+            chips_left = sorted(n for n, (a, b) in chip_windows.items() if not any(a <= ev <= b for ev in events.get(n, [])))
         gap_trend = None
         if my_last_gw_pts is not None and last_fin_gw is not None:
             row = next((r for r in h.get("current", []) if r.get("event") == last_fin_gw), None)
@@ -1750,7 +1777,7 @@ def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, 
             if fdrs:
                 avg = sum(fdrs) / len(fdrs)
                 fixture = {"avg_fdr": round(avg, 1), "label": "Tough" if avg >= 3.6 else ("Easy" if avg <= 2.4 else "Mixed")}
-        ctx[eid] = {"chips": chips, "gap_trend": gap_trend, "fixture": fixture}
+        ctx[eid] = {"chips": chips, "chips_left": chips_left, "gap_trend": gap_trend, "fixture": fixture}
     return ctx
 
 
@@ -1839,7 +1866,7 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
                 if pid in my_picks and c <= diff_thresh: diffs.append(item)
         member_squads_by_entry = {s["entry"]: s for s in member_squads}
         target_entries = target_rival_entries(rows, team_id)
-        rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map) if target_entries else {}
+        rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map, current_half_chip_windows(boot)) if target_entries else {}
         tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams, rival_ctx=rival_ctx)
         counts_by_league[L["id"]] = {"counts": dict(counts), "cap_by": dict(cap_by), "n": n}
         league_obj = {

@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="greekgod"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20261010d"></script>
+<script src="dashboard-common.js?v=20261010e"></script>
 <script>document.write('<script src="bacalhau-data.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>document.write('<script src="news.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
 <script>document.write('<script src="x-posts.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
@@ -225,13 +225,7 @@ function renderStrategy(){
     :`<p class="note">No hits taken this season.</p>`;
   const eslLg=((D.leagues&&D.leagues.mini)||[]).find(x=>x.id===125784);
   const eslTac=(eslLg&&eslLg.tactics)||null;
-  const rivalStripLine=(label,card)=>{
-    if(!card) return "";
-    const chipsTxt=(card.chips_used&&card.chips_used.length)?(" · chips used: "+esc(card.chips_used.join(", "))):"";
-    return `<p class="note">${label} <b>${esc(card.name||"?")}</b> ${card.pts??"?"} (${card.gap!=null?sign(card.gap):"?"})${chipsTxt}</p>`;
-  };
-  const bottomLabel=card=>card&&card.rank!=null?("P"+card.rank):"Bottom";
-  const p2p3Card=eslTac?`<div class="card"><h2>Rival chips · ESL</h2>${rivalStripLine("P2",eslTac.first)}${rivalStripLine("P3",eslTac.second)}${rivalStripLine(bottomLabel(eslTac.second_last),eslTac.second_last)}${rivalStripLine(bottomLabel(eslTac.last),eslTac.last)}${eslTac.you_rank===1?`<p class="note">They can still chip a week Bacalhau cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`:"";
+  const p2p3Card=rivalsCard(eslTac,"ESL","they");
   const F=S.fixtures||{};
   const fRows=(F.rows||[]).map(r=>{
     const flags=[(r.blanks&&r.blanks.length)?`Blank: ${r.blanks.join(", ")}`:"",(r.doubles&&r.doubles.length)?`Dbl: ${r.doubles.join(", ")}`:""].filter(Boolean).join(" · ");
