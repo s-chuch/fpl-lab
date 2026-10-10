@@ -120,6 +120,13 @@ window.FPL_WILDCARD_WATCH = {
         "starter_ep": 2.5
       }
     ],
+    "bench_order": [
+      "Tzolakis",
+      "João Pedro",
+      "Cherki",
+      "Konsa"
+    ],
+    "bench_order_changed": true,
     "availability_flags": [
       {
         "name": "Konsa",

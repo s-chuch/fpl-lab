@@ -114,18 +114,25 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 12.0,
     "bench_swaps": [
       {
-        "bench": "Tavernier",
-        "bench_ep": 5.0,
-        "starter": "Dewsbury-Hall",
-        "starter_ep": 2.5
-      },
-      {
         "bench": "Kostoulas",
         "bench_ep": 10.0,
         "starter": "Haaland",
         "starter_ep": 7.5
+      },
+      {
+        "bench": "Tavernier",
+        "bench_ep": 5.0,
+        "starter": "Dewsbury-Hall",
+        "starter_ep": 2.5
       }
     ],
+    "bench_order": [
+      "Tzolakis",
+      "Kostoulas",
+      "Tavernier",
+      "Walle Egeli"
+    ],
+    "bench_order_changed": true,
     "availability_flags": [],
     "xi_ep": [
       {
