@@ -215,9 +215,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Barry",
+        "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 4.0,
+        "ep_next": 6.0,
         "status": "ok"
       }
     ]
@@ -246,7 +246,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-09",
-      "total_cost": 96.3,
+      "total_cost": 98.3,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.0,
@@ -262,13 +262,13 @@ window.FPL_WILDCARD_WATCH = {
         "Tzolakis": 4.7,
         "Konsa": 4.6,
         "Cherki": 7.8,
-        "Barry": 5.7
+        "João Pedro": 7.7
       }
     },
     "entry_prices": {
-      "Barry": 5.6
+      "João Pedro": 7.7
     },
-    "total_delta": -2.5,
+    "total_delta": -0.5,
     "players": [
       {
         "name": "Calafiori",
@@ -390,11 +390,11 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barry",
         "baseline_cost": null,
-        "current_cost": 5.7,
+        "current_cost": null,
         "delta": null,
-        "entry_cost": 5.6,
-        "delta_since_added": 0.1,
-        "status": "added"
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
       },
       {
         "name": "Isak",
@@ -404,6 +404,15 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": null,
         "delta_since_added": null,
         "status": "removed"
+      },
+      {
+        "name": "João Pedro",
+        "baseline_cost": null,
+        "current_cost": 7.7,
+        "delta": null,
+        "entry_cost": 7.7,
+        "delta_since_added": 0.0,
+        "status": "added"
       },
       {
         "name": "Kinsky",
@@ -525,6 +534,18 @@ window.FPL_WILDCARD_WATCH = {
         "from": 5.5,
         "to": 5.6,
         "delta": 0.1
+      },
+      {
+        "date": "2026-10-09",
+        "event": "removed",
+        "player": "Barry",
+        "price_at_change": 5.7
+      },
+      {
+        "date": "2026-10-09",
+        "event": "added",
+        "player": "João Pedro",
+        "price_at_change": 7.7
       }
     ]
   }
