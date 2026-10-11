@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-11T00:40:51.806779+00:00",
+    "fetched_at": "2026-10-11T07:16:12.666473+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -178,7 +178,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -253,7 +253,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Arsenal",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -274,7 +274,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Aston Villa",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -295,7 +295,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Man Utd",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-19",
@@ -488,7 +488,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Ipswich",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -509,7 +509,7 @@
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Bournemouth",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",

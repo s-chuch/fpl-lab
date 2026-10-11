@@ -211,8 +211,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-11 00:41 UTC",
-  "generated_at_et": "2026-10-10 8:41 PM ET",
+  "generated_at": "2026-10-11 07:16 UTC",
+  "generated_at_et": "2026-10-11 3:16 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -227,7 +227,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 373,
-    "overall_rank": 2060815,
+    "overall_rank": 2060813,
     "bank": 8.4,
     "value": 101.6,
     "live_value": 92.0
@@ -334,15 +334,15 @@ window.FPL_DATA = {
     "squad_from_gw": 6,
     "upcoming": [
       {
-        "gw": 6,
-        "deadline": "2026-10-10 6:00 AM ET",
-        "deadline_utc": "2026-10-10T10:00:00Z",
-        "deadline_passed": true
-      },
-      {
         "gw": 7,
         "deadline": "2026-10-17 6:00 AM ET",
         "deadline_utc": "2026-10-17T10:00:00Z",
+        "deadline_passed": false
+      },
+      {
+        "gw": 8,
+        "deadline": "2026-10-23 1:30 PM ET",
+        "deadline_utc": "2026-10-23T17:30:00Z",
         "deadline_passed": false
       }
     ],
@@ -351,10 +351,10 @@ window.FPL_DATA = {
         "GKP",
         "Raya",
         "ARS",
-        "H LEE",
+        "A NFO",
         3,
         "START",
-        "A NFO",
+        "H EVE",
         3,
         "START"
       ],
@@ -362,10 +362,10 @@ window.FPL_DATA = {
         "GKP",
         "Tzolakis",
         "HUL",
-        "H EVE",
+        "A FUL",
         3,
         "SIT",
-        "A FUL",
+        "H BRE",
         3,
         "SIT"
       ],
@@ -373,54 +373,54 @@ window.FPL_DATA = {
         "DEF",
         "De Cuyper",
         "BHA",
-        "A SUN",
-        3,
-        "START",
         "H CRY",
         2,
+        "START",
+        "A LIV",
+        4,
         "START"
       ],
       [
         "DEF",
         "Tarkowski",
         "EVE",
-        "A HUL",
-        2,
-        "START",
         "H CHE",
         4,
+        "START",
+        "A ARS",
+        5,
         "START"
       ],
       [
         "DEF",
         "Bogle",
         "LEE",
-        "A ARS",
-        5,
-        "START",
         "H MUN",
         4,
+        "START",
+        "A SUN",
+        3,
         "START"
       ],
       [
         "DEF",
         "Gvardiol",
         "MCI",
-        "A LIV",
-        4,
-        "START",
         "H IPS",
         2,
+        "START",
+        "A AVL",
+        3,
         "START"
       ],
       [
         "DEF",
         "Hall",
         "NEW",
-        "A COV",
-        2,
-        "START",
         "H AVL",
+        3,
+        "START",
+        "A CRY",
         3,
         "START"
       ],
@@ -428,54 +428,54 @@ window.FPL_DATA = {
         "MID",
         "Tavernier",
         "BOU",
-        "A CHE",
-        4,
-        "SIT",
         "H SUN",
         3,
+        "START",
+        "A MUN",
+        4,
         "START"
       ],
       [
         "MID",
         "Schade",
         "BRE",
-        "A AVL",
-        3,
-        "DOUBT",
         "H LIV",
         4,
+        "DOUBT",
+        "A HUL",
+        2,
         "DOUBT"
       ],
       [
         "MID",
         "Gro\u00df",
         "BHA",
-        "A SUN",
-        3,
-        "START",
         "H CRY",
         2,
+        "START",
+        "A LIV",
+        4,
         "START"
       ],
       [
         "MID",
         "Dewsbury-Hall",
         "EVE",
-        "A HUL",
-        2,
-        "START",
         "H CHE",
         4,
+        "SIT",
+        "A ARS",
+        5,
         "SIT"
       ],
       [
         "MID",
         "Belloumi",
         "HUL",
-        "H EVE",
+        "A FUL",
         3,
         "START",
-        "A FUL",
+        "H BRE",
         3,
         "START"
       ],
@@ -483,58 +483,37 @@ window.FPL_DATA = {
         "FWD",
         "Kostoulas",
         "BHA",
-        "A SUN",
-        3,
-        "START",
         "H CRY",
         2,
+        "START",
+        "A LIV",
+        4,
         "START"
       ],
       [
         "FWD",
         "Walle Egeli",
         "IPS",
-        "H FUL",
-        2,
-        "SIT",
         "A MCI",
         5,
+        "SIT",
+        "H NFO",
+        3,
         "SIT"
       ],
       [
         "FWD",
         "Haaland",
         "MCI",
-        "A LIV",
-        4,
-        "START",
         "H IPS",
         2,
+        "START",
+        "A AVL",
+        3,
         "START"
       ]
     ],
     "xis": {
-      "gw6": {
-        "xi": [
-          "Raya (VC)",
-          "De Cuyper",
-          "Tarkowski",
-          "Hall",
-          "Gro\u00df",
-          "Belloumi",
-          "Kostoulas (C)",
-          "Bogle",
-          "Haaland",
-          "Gvardiol",
-          "Dewsbury-Hall"
-        ],
-        "bench": [
-          "Tzolakis",
-          "Tavernier",
-          "Schade",
-          "Walle Egeli"
-        ]
-      },
       "gw7": {
         "xi": [
           "Raya (VC)",
@@ -555,14 +534,35 @@ window.FPL_DATA = {
           "Schade",
           "Walle Egeli"
         ]
+      },
+      "gw8": {
+        "xi": [
+          "Raya (VC)",
+          "De Cuyper",
+          "Bogle",
+          "Tarkowski",
+          "Gro\u00df",
+          "Belloumi",
+          "Kostoulas (C)",
+          "Haaland",
+          "Gvardiol",
+          "Hall",
+          "Tavernier"
+        ],
+        "bench": [
+          "Tzolakis",
+          "Schade",
+          "Dewsbury-Hall",
+          "Walle Egeli"
+        ]
       }
     },
     "bench_calls": [
       {
-        "gw": 6,
+        "gw": 7,
         "sit": [
           "Tzolakis",
-          "Tavernier",
+          "Dewsbury-Hall",
           "Schade",
           "Walle Egeli"
         ],
@@ -570,11 +570,11 @@ window.FPL_DATA = {
         "why": "Schade DOUBT \u00b7 Shoulder injury - 75% chance of playing"
       },
       {
-        "gw": 7,
+        "gw": 8,
         "sit": [
           "Tzolakis",
-          "Dewsbury-Hall",
           "Schade",
+          "Dewsbury-Hall",
           "Walle Egeli"
         ],
         "worst": "Schade",
@@ -3457,7 +3457,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 2060815,
+        "rank": 2060813,
         "last_rank": 1187975
       }
     ],
@@ -3465,7 +3465,7 @@ window.FPL_DATA = {
       {
         "name": "Jo\u00e3o Pedro",
         "club": "CHE",
-        "own": 67.3
+        "own": 67.4
       },
       {
         "name": "Calafiori",
@@ -5268,7 +5268,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 540,
         "cost": 6.0,
-        "owned_pct": 36.7,
+        "owned_pct": 36.8,
         "goals": 3,
         "assists": 5,
         "xg": 2.02,
@@ -5340,7 +5340,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "minutes": 498,
         "cost": 6.2,
-        "owned_pct": 16.0,
+        "owned_pct": 15.9,
         "goals": 3,
         "assists": 2,
         "xg": 1.93,
@@ -5357,7 +5357,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 490,
         "cost": 5.0,
-        "owned_pct": 32.3,
+        "owned_pct": 32.4,
         "goals": 2,
         "assists": 3,
         "xg": 1.8,
@@ -5536,7 +5536,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 540,
         "cost": 6.0,
-        "owned_pct": 36.7,
+        "owned_pct": 36.8,
         "goals": 3,
         "assists": 5,
         "xg": 2.02,
@@ -5608,7 +5608,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "minutes": 498,
         "cost": 6.2,
-        "owned_pct": 16.0,
+        "owned_pct": 15.9,
         "goals": 3,
         "assists": 2,
         "xg": 1.93,
@@ -5625,7 +5625,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 490,
         "cost": 5.0,
-        "owned_pct": 32.3,
+        "owned_pct": 32.4,
         "goals": 2,
         "assists": 3,
         "xg": 1.8,
@@ -5862,7 +5862,7 @@ window.FPL_DATA = {
         "club": "CHE",
         "minutes": 431,
         "cost": 7.7,
-        "owned_pct": 67.3,
+        "owned_pct": 67.4,
         "goals": 5,
         "assists": 3,
         "xg": 2.77,
@@ -6165,7 +6165,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "minutes": 498,
         "cost": 6.2,
-        "owned_pct": 16.0,
+        "owned_pct": 15.9,
         "threshold": 12,
         "per90": 6.87,
         "season_total": 38.0,
@@ -6178,7 +6178,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 540,
         "cost": 6.0,
-        "owned_pct": 36.7,
+        "owned_pct": 36.8,
         "threshold": 12,
         "per90": 6.0,
         "season_total": 36.0,
@@ -6191,7 +6191,7 @@ window.FPL_DATA = {
         "club": "BHA",
         "minutes": 490,
         "cost": 5.0,
-        "owned_pct": 32.3,
+        "owned_pct": 32.4,
         "threshold": 10,
         "per90": 3.49,
         "season_total": 19.0,
@@ -6323,7 +6323,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "minutes": 359,
         "cost": 5.6,
-        "owned_pct": 8.7,
+        "owned_pct": 8.6,
         "threshold": 12,
         "per90": 14.79,
         "season_total": 59.0,
@@ -6365,9 +6365,9 @@ window.FPL_DATA = {
         "pos": "DEF",
         "club": "BHA",
         "cost": 5.0,
-        "owned_pct": 32.3,
-        "net_transfers_today": 100047,
-        "momentum": 2.8,
+        "owned_pct": 32.4,
+        "net_transfers_today": 112993,
+        "momentum": 3.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.5,
@@ -6379,9 +6379,9 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BHA",
         "cost": 6.0,
-        "owned_pct": 36.7,
-        "net_transfers_today": 88801,
-        "momentum": 2.2,
+        "owned_pct": 36.8,
+        "net_transfers_today": 98616,
+        "momentum": 2.4,
         "changed_today": true,
         "cost_change_today": 0.1,
         "season_change": 0.5,
@@ -6394,8 +6394,8 @@ window.FPL_DATA = {
         "club": "BHA",
         "cost": 5.6,
         "owned_pct": 8.2,
-        "net_transfers_today": 16617,
-        "momentum": 1.8,
+        "net_transfers_today": 17845,
+        "momentum": 2.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -6408,8 +6408,8 @@ window.FPL_DATA = {
         "club": "LEE",
         "cost": 4.6,
         "owned_pct": 8.4,
-        "net_transfers_today": 11637,
-        "momentum": 1.3,
+        "net_transfers_today": 13074,
+        "momentum": 1.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -6422,8 +6422,8 @@ window.FPL_DATA = {
         "club": "HUL",
         "cost": 5.1,
         "owned_pct": 6.1,
-        "net_transfers_today": 8022,
-        "momentum": 1.2,
+        "net_transfers_today": 8925,
+        "momentum": 1.3,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -6436,8 +6436,8 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 6.6,
         "owned_pct": 5.5,
-        "net_transfers_today": -4544,
-        "momentum": -0.7,
+        "net_transfers_today": -4905,
+        "momentum": -0.8,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -6450,24 +6450,10 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 5.8,
         "owned_pct": 27.6,
-        "net_transfers_today": 15708,
-        "momentum": 0.5,
+        "net_transfers_today": 17074,
+        "momentum": 0.6,
         "changed_today": true,
         "cost_change_today": 0.1,
-        "season_change": 0.3,
-        "expected_change": 0.1,
-        "expected_season_change": 0.4
-      },
-      {
-        "name": "Hall",
-        "pos": "DEF",
-        "club": "NEW",
-        "cost": 5.3,
-        "owned_pct": 20.8,
-        "net_transfers_today": 6902,
-        "momentum": 0.3,
-        "changed_today": false,
-        "cost_change_today": 0.0,
         "season_change": 0.3,
         "expected_change": 0.1,
         "expected_season_change": 0.4
@@ -6478,8 +6464,8 @@ window.FPL_DATA = {
         "club": "EVE",
         "cost": 6.2,
         "owned_pct": 18.2,
-        "net_transfers_today": 6294,
-        "momentum": 0.3,
+        "net_transfers_today": 7113,
+        "momentum": 0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2,
@@ -6492,8 +6478,8 @@ window.FPL_DATA = {
         "club": "HUL",
         "cost": 4.7,
         "owned_pct": 13.3,
-        "net_transfers_today": 4927,
-        "momentum": 0.3,
+        "net_transfers_today": 5781,
+        "momentum": 0.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2,
@@ -6501,18 +6487,18 @@ window.FPL_DATA = {
         "expected_season_change": 0.3
       },
       {
-        "name": "Schade",
-        "pos": "MID",
-        "club": "BRE",
-        "cost": 6.2,
-        "owned_pct": 16.0,
-        "net_transfers_today": 4559,
+        "name": "Hall",
+        "pos": "DEF",
+        "club": "NEW",
+        "cost": 5.3,
+        "owned_pct": 20.8,
+        "net_transfers_today": 7697,
         "momentum": 0.3,
         "changed_today": false,
         "cost_change_today": 0.0,
-        "season_change": 0.2,
+        "season_change": 0.3,
         "expected_change": 0.1,
-        "expected_season_change": 0.3
+        "expected_season_change": 0.4
       },
       {
         "name": "Tavernier",
@@ -6520,7 +6506,7 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 6.1,
         "owned_pct": 7.3,
-        "net_transfers_today": 1368,
+        "net_transfers_today": 1549,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6534,7 +6520,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 15.6,
         "owned_pct": 74.6,
-        "net_transfers_today": 12790,
+        "net_transfers_today": 14681,
         "momentum": 0.2,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6548,7 +6534,7 @@ window.FPL_DATA = {
         "club": "IPS",
         "cost": 4.5,
         "owned_pct": 3.5,
-        "net_transfers_today": -229,
+        "net_transfers_today": -242,
         "momentum": -0.1,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6557,12 +6543,26 @@ window.FPL_DATA = {
         "expected_season_change": -0.1
       },
       {
+        "name": "Schade",
+        "pos": "MID",
+        "club": "BRE",
+        "cost": 6.2,
+        "owned_pct": 15.9,
+        "net_transfers_today": 1958,
+        "momentum": 0.1,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": 0.2,
+        "expected_change": 0.1,
+        "expected_season_change": 0.3
+      },
+      {
         "name": "Raya",
         "pos": "GKP",
         "club": "ARS",
         "cost": 6.1,
         "owned_pct": 43.7,
-        "net_transfers_today": 1212,
+        "net_transfers_today": 1128,
         "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
@@ -6578,8 +6578,8 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 4.9,
         "owned_pct": 0.1,
-        "net_transfers_today": 7928,
-        "momentum": 71.7,
+        "net_transfers_today": 9081,
+        "momentum": 82.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -6592,8 +6592,8 @@ window.FPL_DATA = {
         "club": "NEW",
         "cost": 4.5,
         "owned_pct": 0.2,
-        "net_transfers_today": 1479,
-        "momentum": 6.7,
+        "net_transfers_today": 1571,
+        "momentum": 7.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -6601,27 +6601,13 @@ window.FPL_DATA = {
         "expected_season_change": 0.1
       },
       {
-        "name": "Baleba",
-        "pos": "MID",
-        "club": "MUN",
-        "cost": 4.9,
-        "owned_pct": 0.1,
-        "net_transfers_today": 664,
-        "momentum": 6.0,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": -0.1,
-        "expected_change": 0.1,
-        "expected_season_change": 0.0
-      },
-      {
         "name": "N.Jackson",
         "pos": "FWD",
         "club": "AVL",
         "cost": 6.5,
         "owned_pct": 2.1,
-        "net_transfers_today": 13533,
-        "momentum": 5.8,
+        "net_transfers_today": 15107,
+        "momentum": 6.5,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -6634,8 +6620,8 @@ window.FPL_DATA = {
         "club": "TOT",
         "cost": 6.5,
         "owned_pct": 0.2,
-        "net_transfers_today": 1004,
-        "momentum": 4.5,
+        "net_transfers_today": 1126,
+        "momentum": 5.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -6643,27 +6629,13 @@ window.FPL_DATA = {
         "expected_season_change": 0.1
       },
       {
-        "name": "Bruno G.",
-        "pos": "MID",
-        "club": "ARS",
-        "cost": 6.7,
-        "owned_pct": 1.9,
-        "net_transfers_today": 8987,
-        "momentum": 4.3,
-        "changed_today": false,
-        "cost_change_today": 0.0,
-        "season_change": -0.3,
-        "expected_change": 0.1,
-        "expected_season_change": -0.2
-      },
-      {
         "name": "Manzambi",
         "pos": "MID",
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.8,
-        "net_transfers_today": 3763,
-        "momentum": 4.3,
+        "net_transfers_today": 4120,
+        "momentum": 4.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -6671,13 +6643,41 @@ window.FPL_DATA = {
         "expected_season_change": 0.0
       },
       {
+        "name": "Bruno G.",
+        "pos": "MID",
+        "club": "ARS",
+        "cost": 6.7,
+        "owned_pct": 1.9,
+        "net_transfers_today": 9767,
+        "momentum": 4.6,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": -0.3,
+        "expected_change": 0.1,
+        "expected_season_change": -0.2
+      },
+      {
+        "name": "Solanke",
+        "pos": "FWD",
+        "club": "TOT",
+        "cost": 5.8,
+        "owned_pct": 0.8,
+        "net_transfers_today": 3971,
+        "momentum": 4.5,
+        "changed_today": false,
+        "cost_change_today": 0.0,
+        "season_change": -0.2,
+        "expected_change": 0.1,
+        "expected_season_change": -0.1
+      },
+      {
         "name": "Gudmundsson",
         "pos": "DEF",
         "club": "LEE",
         "cost": 4.5,
         "owned_pct": 0.1,
-        "net_transfers_today": 392,
-        "momentum": 3.5,
+        "net_transfers_today": 432,
+        "momentum": 3.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.0,
@@ -6692,8 +6692,8 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 7.2,
         "owned_pct": 9.0,
-        "net_transfers_today": -54379,
-        "momentum": -5.5,
+        "net_transfers_today": -59605,
+        "momentum": -6.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.2,
@@ -6706,8 +6706,8 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 6.1,
         "owned_pct": 4.1,
-        "net_transfers_today": -24363,
-        "momentum": -5.4,
+        "net_transfers_today": -26678,
+        "momentum": -5.9,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.1,
@@ -6720,8 +6720,8 @@ window.FPL_DATA = {
         "club": "ARS",
         "cost": 6.3,
         "owned_pct": 7.3,
-        "net_transfers_today": -38857,
-        "momentum": -4.8,
+        "net_transfers_today": -42096,
+        "momentum": -5.2,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.2,
@@ -6734,8 +6734,8 @@ window.FPL_DATA = {
         "club": "LIV",
         "cost": 9.0,
         "owned_pct": 16.1,
-        "net_transfers_today": -80454,
-        "momentum": -4.5,
+        "net_transfers_today": -87399,
+        "momentum": -4.9,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": 0.0,
@@ -6748,8 +6748,8 @@ window.FPL_DATA = {
         "club": "NFO",
         "cost": 5.8,
         "owned_pct": 2.1,
-        "net_transfers_today": -8729,
-        "momentum": -3.8,
+        "net_transfers_today": -9557,
+        "momentum": -4.1,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.2,
@@ -6762,8 +6762,8 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 5.7,
         "owned_pct": 5.5,
-        "net_transfers_today": -20955,
-        "momentum": -3.4,
+        "net_transfers_today": -22564,
+        "momentum": -3.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.3,
@@ -6776,8 +6776,8 @@ window.FPL_DATA = {
         "club": "SUN",
         "cost": 4.8,
         "owned_pct": 1.8,
-        "net_transfers_today": -6405,
-        "momentum": -3.2,
+        "net_transfers_today": -7006,
+        "momentum": -3.5,
         "changed_today": true,
         "cost_change_today": -0.1,
         "season_change": -0.2,
@@ -6790,8 +6790,8 @@ window.FPL_DATA = {
         "club": "BOU",
         "cost": 5.9,
         "owned_pct": 0.7,
-        "net_transfers_today": -2387,
-        "momentum": -3.1,
+        "net_transfers_today": -2599,
+        "momentum": -3.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -6806,8 +6806,8 @@ window.FPL_DATA = {
         "club": "AVL",
         "cost": 5.9,
         "owned_pct": 0.8,
-        "net_transfers_today": 3763,
-        "momentum": 4.3,
+        "net_transfers_today": 4120,
+        "momentum": 4.7,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
@@ -6820,8 +6820,8 @@ window.FPL_DATA = {
         "club": "CHE",
         "cost": 7.8,
         "owned_pct": 43.3,
-        "net_transfers_today": 58393,
-        "momentum": 1.2,
+        "net_transfers_today": 66629,
+        "momentum": 1.4,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": 0.3,
@@ -6834,13 +6834,13 @@ window.FPL_DATA = {
         "club": "MUN",
         "cost": 7.9,
         "owned_pct": 19.9,
-        "net_transfers_today": -193,
-        "momentum": -0.0,
+        "net_transfers_today": 445,
+        "momentum": 0.0,
         "changed_today": false,
         "cost_change_today": 0.0,
         "season_change": -0.1,
-        "expected_change": -0.1,
-        "expected_season_change": -0.2
+        "expected_change": 0.1,
+        "expected_season_change": 0.0
       }
     ]
   },
@@ -7012,7 +7012,7 @@ window.FPL_DATA = {
         "pos": "MID",
         "club": "BRE",
         "cost": 5.6,
-        "owned_pct": 8.7,
+        "owned_pct": 8.6,
         "per90": 14.79,
         "threshold": 12,
         "margin": 2.79
@@ -7045,9 +7045,9 @@ window.FPL_DATA = {
         "reason": "injury",
         "rotation_note": null,
         "rest_days": 7,
-        "next_match_label": "vs Liverpool (PL) in 7d",
+        "next_match_label": "vs Liverpool (PL) in 6d",
         "turnaround_days": 8,
-        "following_label": "vs Hull (PL) in 15d",
+        "following_label": "vs Hull (PL) in 14d",
         "between_labels": []
       },
       {
@@ -7067,9 +7067,9 @@ window.FPL_DATA = {
         "reason": "unused",
         "rotation_note": "0 min max across the last 3 GWs - not in the plans",
         "rest_days": 7,
-        "next_match_label": "vs Man City (PL) in 7d",
+        "next_match_label": "vs Man City (PL) in 6d",
         "turnaround_days": 6,
-        "following_label": "vs Nott'm Forest (PL) in 13d",
+        "following_label": "vs Nott'm Forest (PL) in 12d",
         "between_labels": []
       },
       {
@@ -7087,13 +7087,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7111,13 +7111,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Sunderland (PL) in 8d (after vs Sturm Graz (EL) in 5d)",
+        "rotation_note": "3d rest before vs Sunderland (PL) in 7d (after vs Sturm Graz (EL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Sunderland (PL) in 8d",
+        "next_match_label": "vs Sunderland (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Milan (EL) in 12d",
+        "following_label": "vs Milan (EL) in 11d",
         "between_labels": [
-          "vs Sturm Graz (EL) in 5d"
+          "vs Sturm Graz (EL) in 4d"
         ]
       },
       {
@@ -7135,14 +7135,14 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Ipswich (PL) in 7d (after vs Paris (CL) in 4d)",
+        "rotation_note": "3d rest before vs Ipswich (PL) in 6d (after vs Paris (CL) in 3d)",
         "rest_days": 3,
-        "next_match_label": "vs Ipswich (PL) in 7d",
+        "next_match_label": "vs Ipswich (PL) in 6d",
         "turnaround_days": 3,
-        "following_label": "vs AEK Athens (CL) in 10d",
+        "following_label": "vs AEK Athens (CL) in 9d",
         "between_labels": [
-          "vs Liverpool (PL) in 1d",
-          "vs Paris (CL) in 4d"
+          "vs Liverpool (PL) in 0d",
+          "vs Paris (CL) in 3d"
         ]
       },
       {
@@ -7160,13 +7160,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7184,14 +7184,14 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Ipswich (PL) in 7d (after vs Paris (CL) in 4d)",
+        "rotation_note": "3d rest before vs Ipswich (PL) in 6d (after vs Paris (CL) in 3d)",
         "rest_days": 3,
-        "next_match_label": "vs Ipswich (PL) in 7d",
+        "next_match_label": "vs Ipswich (PL) in 6d",
         "turnaround_days": 3,
-        "following_label": "vs AEK Athens (CL) in 10d",
+        "following_label": "vs AEK Athens (CL) in 9d",
         "between_labels": [
-          "vs Liverpool (PL) in 1d",
-          "vs Paris (CL) in 4d"
+          "vs Liverpool (PL) in 0d",
+          "vs Paris (CL) in 3d"
         ]
       },
       {
@@ -7209,13 +7209,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7233,13 +7233,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "squeeze",
-        "rotation_note": "Plays again 3d after vs Nott'm Forest (PL) in 8d: vs Bayern M\u00fcnchen (CL) in 11d",
+        "rotation_note": "Plays again 3d after vs Nott'm Forest (PL) in 7d: vs Bayern M\u00fcnchen (CL) in 10d",
         "rest_days": 5,
-        "next_match_label": "vs Nott'm Forest (PL) in 8d",
+        "next_match_label": "vs Nott'm Forest (PL) in 7d",
         "turnaround_days": 3,
-        "following_label": "vs Bayern M\u00fcnchen (CL) in 11d",
+        "following_label": "vs Bayern M\u00fcnchen (CL) in 10d",
         "between_labels": [
-          "vs Lille (CL) in 3d"
+          "vs Lille (CL) in 2d"
         ]
       },
       {
@@ -7259,11 +7259,11 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 6,
-        "next_match_label": "vs Chelsea (PL) in 7d",
+        "next_match_label": "vs Chelsea (PL) in 6d",
         "turnaround_days": 7,
-        "following_label": "vs Arsenal (PL) in 14d",
+        "following_label": "vs Arsenal (PL) in 13d",
         "between_labels": [
-          "vs Hull (PL) in 1d"
+          "vs Hull (PL) in 0d"
         ]
       },
       {
@@ -7283,11 +7283,11 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 6,
-        "next_match_label": "vs Chelsea (PL) in 7d",
+        "next_match_label": "vs Chelsea (PL) in 6d",
         "turnaround_days": 7,
-        "following_label": "vs Arsenal (PL) in 14d",
+        "following_label": "vs Arsenal (PL) in 13d",
         "between_labels": [
-          "vs Hull (PL) in 1d"
+          "vs Hull (PL) in 0d"
         ]
       },
       {
@@ -7307,11 +7307,11 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 6,
-        "next_match_label": "vs Fulham (PL) in 7d",
+        "next_match_label": "vs Fulham (PL) in 6d",
         "turnaround_days": 8,
-        "following_label": "vs Brentford (PL) in 15d",
+        "following_label": "vs Brentford (PL) in 14d",
         "between_labels": [
-          "vs Everton (PL) in 1d"
+          "vs Everton (PL) in 0d"
         ]
       },
       {
@@ -7331,11 +7331,11 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 5,
-        "next_match_label": "vs Aston Villa (PL) in 7d",
+        "next_match_label": "vs Aston Villa (PL) in 6d",
         "turnaround_days": 8,
-        "following_label": "vs Crystal Palace (PL) in 15d",
+        "following_label": "vs Crystal Palace (PL) in 14d",
         "between_labels": [
-          "vs Coventry (PL) in 2d"
+          "vs Coventry (PL) in 1d"
         ]
       },
       {
@@ -7355,11 +7355,11 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 6,
-        "next_match_label": "vs Fulham (PL) in 7d",
+        "next_match_label": "vs Fulham (PL) in 6d",
         "turnaround_days": 8,
-        "following_label": "vs Brentford (PL) in 15d",
+        "following_label": "vs Brentford (PL) in 14d",
         "between_labels": [
-          "vs Everton (PL) in 1d"
+          "vs Everton (PL) in 0d"
         ]
       },
       {
@@ -7379,9 +7379,9 @@ window.FPL_DATA = {
         "reason": null,
         "rotation_note": null,
         "rest_days": 8,
-        "next_match_label": "vs Man Utd (PL) in 8d",
+        "next_match_label": "vs Man Utd (PL) in 7d",
         "turnaround_days": 7,
-        "following_label": "vs Sunderland (PL) in 15d",
+        "following_label": "vs Sunderland (PL) in 14d",
         "between_labels": []
       }
     ],
@@ -7403,9 +7403,9 @@ window.FPL_DATA = {
         "reason": "injury",
         "rotation_note": null,
         "rest_days": 7,
-        "next_match_label": "vs Liverpool (PL) in 7d",
+        "next_match_label": "vs Liverpool (PL) in 6d",
         "turnaround_days": 8,
-        "following_label": "vs Hull (PL) in 15d",
+        "following_label": "vs Hull (PL) in 14d",
         "between_labels": []
       },
       {
@@ -7425,9 +7425,9 @@ window.FPL_DATA = {
         "reason": "unused",
         "rotation_note": "0 min max across the last 3 GWs - not in the plans",
         "rest_days": 7,
-        "next_match_label": "vs Man City (PL) in 7d",
+        "next_match_label": "vs Man City (PL) in 6d",
         "turnaround_days": 6,
-        "following_label": "vs Nott'm Forest (PL) in 13d",
+        "following_label": "vs Nott'm Forest (PL) in 12d",
         "between_labels": []
       },
       {
@@ -7445,13 +7445,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7469,13 +7469,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Sunderland (PL) in 8d (after vs Sturm Graz (EL) in 5d)",
+        "rotation_note": "3d rest before vs Sunderland (PL) in 7d (after vs Sturm Graz (EL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Sunderland (PL) in 8d",
+        "next_match_label": "vs Sunderland (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Milan (EL) in 12d",
+        "following_label": "vs Milan (EL) in 11d",
         "between_labels": [
-          "vs Sturm Graz (EL) in 5d"
+          "vs Sturm Graz (EL) in 4d"
         ]
       },
       {
@@ -7493,14 +7493,14 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Ipswich (PL) in 7d (after vs Paris (CL) in 4d)",
+        "rotation_note": "3d rest before vs Ipswich (PL) in 6d (after vs Paris (CL) in 3d)",
         "rest_days": 3,
-        "next_match_label": "vs Ipswich (PL) in 7d",
+        "next_match_label": "vs Ipswich (PL) in 6d",
         "turnaround_days": 3,
-        "following_label": "vs AEK Athens (CL) in 10d",
+        "following_label": "vs AEK Athens (CL) in 9d",
         "between_labels": [
-          "vs Liverpool (PL) in 1d",
-          "vs Paris (CL) in 4d"
+          "vs Liverpool (PL) in 0d",
+          "vs Paris (CL) in 3d"
         ]
       },
       {
@@ -7518,13 +7518,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7542,14 +7542,14 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Ipswich (PL) in 7d (after vs Paris (CL) in 4d)",
+        "rotation_note": "3d rest before vs Ipswich (PL) in 6d (after vs Paris (CL) in 3d)",
         "rest_days": 3,
-        "next_match_label": "vs Ipswich (PL) in 7d",
+        "next_match_label": "vs Ipswich (PL) in 6d",
         "turnaround_days": 3,
-        "following_label": "vs AEK Athens (CL) in 10d",
+        "following_label": "vs AEK Athens (CL) in 9d",
         "between_labels": [
-          "vs Liverpool (PL) in 1d",
-          "vs Paris (CL) in 4d"
+          "vs Liverpool (PL) in 0d",
+          "vs Paris (CL) in 3d"
         ]
       },
       {
@@ -7567,13 +7567,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "congestion",
-        "rotation_note": "3d rest before vs Crystal Palace (PL) in 8d (after vs Kauno \u017dalgiris (UECL) in 5d)",
+        "rotation_note": "3d rest before vs Crystal Palace (PL) in 7d (after vs Kauno \u017dalgiris (UECL) in 4d)",
         "rest_days": 3,
-        "next_match_label": "vs Crystal Palace (PL) in 8d",
+        "next_match_label": "vs Crystal Palace (PL) in 7d",
         "turnaround_days": 4,
-        "following_label": "vs Jablonec (UECL) in 12d",
+        "following_label": "vs Jablonec (UECL) in 11d",
         "between_labels": [
-          "vs Kauno \u017dalgiris (UECL) in 5d"
+          "vs Kauno \u017dalgiris (UECL) in 4d"
         ]
       },
       {
@@ -7591,13 +7591,13 @@ window.FPL_DATA = {
         "avail_label": null,
         "news": "",
         "reason": "squeeze",
-        "rotation_note": "Plays again 3d after vs Nott'm Forest (PL) in 8d: vs Bayern M\u00fcnchen (CL) in 11d",
+        "rotation_note": "Plays again 3d after vs Nott'm Forest (PL) in 7d: vs Bayern M\u00fcnchen (CL) in 10d",
         "rest_days": 5,
-        "next_match_label": "vs Nott'm Forest (PL) in 8d",
+        "next_match_label": "vs Nott'm Forest (PL) in 7d",
         "turnaround_days": 3,
-        "following_label": "vs Bayern M\u00fcnchen (CL) in 11d",
+        "following_label": "vs Bayern M\u00fcnchen (CL) in 10d",
         "between_labels": [
-          "vs Lille (CL) in 3d"
+          "vs Lille (CL) in 2d"
         ]
       }
     ]
@@ -7631,7 +7631,7 @@ window.FPL_DATA = {
           "cost": 5.5,
           "points": 27,
           "minutes": 450,
-          "owned_pct": 4.2,
+          "owned_pct": 4.3,
           "value_per_1m": 4.91
         },
         {
@@ -7889,7 +7889,7 @@ window.FPL_DATA = {
           "cost": 7.7,
           "points": 45,
           "minutes": 431,
-          "owned_pct": 67.3,
+          "owned_pct": 67.4,
           "value_per_1m": 5.84
         },
         {
@@ -8019,7 +8019,7 @@ window.FPL_DATA = {
           "pos": "GKP",
           "club": "LIV",
           "cost": 5.5,
-          "owned_pct": 4.2,
+          "owned_pct": 4.3,
           "form": 5.7,
           "fdr": 3,
           "fixture": "BRE (A)",
@@ -8322,7 +8322,7 @@ window.FPL_DATA = {
           "pos": "FWD",
           "club": "CHE",
           "cost": 7.7,
-          "owned_pct": 67.3,
+          "owned_pct": 67.4,
           "form": 8.0,
           "fdr": 3,
           "fixture": "EVE (A)",
@@ -8598,7 +8598,7 @@ window.FPL_DATA = {
             "pos": "FWD",
             "club": "CHE",
             "cost": 7.7,
-            "owned_pct": 67.3,
+            "owned_pct": 67.4,
             "form": 8.0,
             "xgi_p90": 0.64,
             "fdr": 3.0,
@@ -8792,7 +8792,7 @@ window.FPL_DATA = {
             "pos": "FWD",
             "club": "CHE",
             "cost": 7.7,
-            "owned_pct": 67.3,
+            "owned_pct": 67.4,
             "form": 8.0,
             "xgi_p90": 0.64,
             "fdr": 2.67,
@@ -9014,7 +9014,7 @@ window.FPL_DATA = {
             "pos": "FWD",
             "club": "CHE",
             "cost": 7.7,
-            "owned_pct": 67.3,
+            "owned_pct": 67.4,
             "form": 8.0,
             "xgi_p90": 0.64,
             "fdr": 3.0,
@@ -9225,7 +9225,7 @@ window.FPL_DATA = {
         "club": "BRE",
         "pos": "MID",
         "cost": 6.2,
-        "owned_pct": 16.0,
+        "owned_pct": 15.9,
         "status": "doubt",
         "label": "DOUBT 75%",
         "chance": 75,
@@ -11478,7 +11478,7 @@ window.FPL_DATA = {
           "club": "BRE",
           "pos": "MID",
           "cost": 6.2,
-          "owned_pct": 16.0,
+          "owned_pct": 15.9,
           "status": "doubt",
           "label": "DOUBT 75%",
           "chance": 75,
@@ -11597,10 +11597,6 @@ window.FPL_DATA = {
     "De Cuyper": {
       "history": [
         {
-          "date": "2026-10-04",
-          "momentum": 9.4
-        },
-        {
           "date": "2026-10-05",
           "momentum": 9.6
         },
@@ -11623,6 +11619,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 2.8
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 3.2
         }
       ],
       "streak_days": 0,
@@ -11630,10 +11630,6 @@ window.FPL_DATA = {
     },
     "Gro\u00df": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 25.2
-        },
         {
           "date": "2026-10-05",
           "momentum": 25.5
@@ -11657,6 +11653,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 2.2
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 2.4
         }
       ],
       "streak_days": 0,
@@ -11664,10 +11664,6 @@ window.FPL_DATA = {
     },
     "Kostoulas": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 64.1
-        },
         {
           "date": "2026-10-05",
           "momentum": 64.7
@@ -11691,6 +11687,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 1.8
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 2.0
         }
       ],
       "streak_days": 0,
@@ -11698,10 +11698,6 @@ window.FPL_DATA = {
     },
     "Bogle": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 13.1
-        },
         {
           "date": "2026-10-05",
           "momentum": 13.3
@@ -11725,6 +11721,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 1.3
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 1.4
         }
       ],
       "streak_days": 0,
@@ -11732,10 +11732,6 @@ window.FPL_DATA = {
     },
     "Belloumi": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 9.4
-        },
         {
           "date": "2026-10-05",
           "momentum": 9.6
@@ -11759,6 +11755,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 1.2
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 1.3
         }
       ],
       "streak_days": 0,
@@ -11766,10 +11766,6 @@ window.FPL_DATA = {
     },
     "Dewsbury-Hall": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": -2.2
-        },
         {
           "date": "2026-10-05",
           "momentum": -2.5
@@ -11793,6 +11789,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": -0.7
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": -0.8
         }
       ],
       "streak_days": 0,
@@ -11800,10 +11800,6 @@ window.FPL_DATA = {
     },
     "Gvardiol": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 3.2
-        },
         {
           "date": "2026-10-05",
           "momentum": 3.3
@@ -11827,40 +11823,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.5
-        }
-      ],
-      "streak_days": 0,
-      "days_tracked": 7
-    },
-    "Hall": {
-      "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 12.3
         },
         {
-          "date": "2026-10-05",
-          "momentum": 12.6
-        },
-        {
-          "date": "2026-10-06",
-          "momentum": 13.1
-        },
-        {
-          "date": "2026-10-07",
-          "momentum": 13.9
-        },
-        {
-          "date": "2026-10-08",
-          "momentum": 15.5
-        },
-        {
-          "date": "2026-10-09",
-          "momentum": 21.6
-        },
-        {
-          "date": "2026-10-10",
-          "momentum": 0.3
+          "date": "2026-10-11",
+          "momentum": 0.6
         }
       ],
       "streak_days": 0,
@@ -11868,10 +11834,6 @@ window.FPL_DATA = {
     },
     "Tarkowski": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 12.0
-        },
         {
           "date": "2026-10-05",
           "momentum": 12.2
@@ -11895,6 +11857,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.3
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.4
         }
       ],
       "streak_days": 0,
@@ -11902,10 +11868,6 @@ window.FPL_DATA = {
     },
     "Tzolakis": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 7.6
-        },
         {
           "date": "2026-10-05",
           "momentum": 7.7
@@ -11929,39 +11891,43 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.3
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.4
         }
       ],
       "streak_days": 0,
       "days_tracked": 7
     },
-    "Schade": {
+    "Hall": {
       "history": [
         {
-          "date": "2026-10-04",
-          "momentum": 29.7
-        },
-        {
           "date": "2026-10-05",
-          "momentum": 30.3
+          "momentum": 12.6
         },
         {
           "date": "2026-10-06",
-          "momentum": 30.9
+          "momentum": 13.1
         },
         {
           "date": "2026-10-07",
-          "momentum": 32.2
+          "momentum": 13.9
         },
         {
           "date": "2026-10-08",
-          "momentum": 34.4
+          "momentum": 15.5
         },
         {
           "date": "2026-10-09",
-          "momentum": 42.1
+          "momentum": 21.6
         },
         {
           "date": "2026-10-10",
+          "momentum": 0.3
+        },
+        {
+          "date": "2026-10-11",
           "momentum": 0.3
         }
       ],
@@ -11970,10 +11936,6 @@ window.FPL_DATA = {
     },
     "Tavernier": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 5.5
-        },
         {
           "date": "2026-10-05",
           "momentum": 5.6
@@ -11997,6 +11959,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.2
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.2
         }
       ],
       "streak_days": 0,
@@ -12004,10 +11970,6 @@ window.FPL_DATA = {
     },
     "Haaland": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 0.8
-        },
         {
           "date": "2026-10-05",
           "momentum": 0.8
@@ -12031,6 +11993,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.2
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.2
         }
       ],
       "streak_days": 0,
@@ -12038,10 +12004,6 @@ window.FPL_DATA = {
     },
     "Walle Egeli": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": -2.3
-        },
         {
           "date": "2026-10-05",
           "momentum": -2.3
@@ -12065,6 +12027,44 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": -0.1
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": -0.1
+        }
+      ],
+      "streak_days": 0,
+      "days_tracked": 7
+    },
+    "Schade": {
+      "history": [
+        {
+          "date": "2026-10-05",
+          "momentum": 30.3
+        },
+        {
+          "date": "2026-10-06",
+          "momentum": 30.9
+        },
+        {
+          "date": "2026-10-07",
+          "momentum": 32.2
+        },
+        {
+          "date": "2026-10-08",
+          "momentum": 34.4
+        },
+        {
+          "date": "2026-10-09",
+          "momentum": 42.1
+        },
+        {
+          "date": "2026-10-10",
+          "momentum": 0.3
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.1
         }
       ],
       "streak_days": 0,
@@ -12072,10 +12072,6 @@ window.FPL_DATA = {
     },
     "Raya": {
       "history": [
-        {
-          "date": "2026-10-04",
-          "momentum": 1.7
-        },
         {
           "date": "2026-10-05",
           "momentum": 1.7
@@ -12099,6 +12095,10 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 0.0
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.0
         }
       ],
       "streak_days": 0,
@@ -12109,35 +12109,47 @@ window.FPL_DATA = {
         {
           "date": "2026-10-10",
           "momentum": 4.3
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 4.7
         }
       ],
       "streak_days": 0,
-      "days_tracked": 1
+      "days_tracked": 2
     },
     "Rogers": {
       "history": [
         {
           "date": "2026-10-10",
           "momentum": 1.2
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 1.4
         }
       ],
       "streak_days": 0,
-      "days_tracked": 1
+      "days_tracked": 2
     },
     "Mbeumo": {
       "history": [
         {
           "date": "2026-10-10",
           "momentum": -0.0
+        },
+        {
+          "date": "2026-10-11",
+          "momentum": 0.0
         }
       ],
       "streak_days": 0,
-      "days_tracked": 1
+      "days_tracked": 2
     }
   },
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-11T00:40:51.806779+00:00",
+    "fetched_at": "2026-10-11T07:16:12.666473+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -12314,7 +12326,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -12389,7 +12401,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Arsenal",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -12410,7 +12422,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Aston Villa",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -12431,7 +12443,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Man Utd",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-19",
@@ -12624,7 +12636,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Ipswich",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -12645,7 +12657,7 @@ window.FPL_DATA = {
           "date": "2026-10-10",
           "competition": "Premier League",
           "opponent": "Bournemouth",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
