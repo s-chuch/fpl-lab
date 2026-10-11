@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-11 07:17 UTC",
+  "generated_at": "2026-10-11 14:45 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -31,8 +31,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "2pm team news: Williams starts, Belloumi a sub, no Mykolenko",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/2pm-team-news-williams-starts-belloumi-a-sub-no-mykolenko"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Schade + Schuster injury updates, Sangare a sub again",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-schade-schuster-injury-updates-sangare-a-sub-again"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
@@ -70,6 +81,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
     "https://www.fantasyfootballhub.co.uk/the-green-arrow-fpl-podcast",
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
-    "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units"
+    "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/2pm-team-news-williams-starts-belloumi-a-sub-no-mykolenko",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-schade-schuster-injury-updates-sangare-a-sub-again"
   ]
 };

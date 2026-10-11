@@ -118,12 +118,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 7.0,
         "starter": "Haaland",
         "starter_ep": 5.0
-      },
-      {
-        "bench": "Tavernier",
-        "bench_ep": 3.7,
-        "starter": "Dewsbury-Hall",
-        "starter_ep": 1.7
       }
     ],
     "bench_order": [
@@ -162,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 7.3,
+        "ep_next": 8.3,
         "status": "ok"
       },
       {
@@ -180,13 +174,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 5.7,
+        "ep_next": 7.7,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 1.7,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {
@@ -212,7 +206,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 2.7,
+        "ep_next": 3.3,
         "status": "ok"
       },
       {
