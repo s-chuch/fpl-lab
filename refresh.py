@@ -272,7 +272,12 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     elements = {e["id"]: e for e in boot["elements"]}
     events = sorted(boot["events"], key=lambda e: e["id"])
     finished = [e for e in events if e.get("finished")]
-    upcoming = [e for e in events if not e.get("finished")][:2]
+    now = datetime.now(timezone.utc)
+    # Plan looks only at gameweeks you can still act on: once a GW's deadline has passed its
+    # squad is locked, so it drops out and the window rolls to the next two open GWs.
+    unfinished = [e for e in events if not e.get("finished")]
+    open_gws = [e for e in unfinished if not (parse_deadline(e.get("deadline_time")) and now >= parse_deadline(e.get("deadline_time")))]
+    upcoming = (open_gws or unfinished)[:2]
     last_fin = finished[-1] if finished else None
     picks, picks_gw, skipped_fh = [], None, None
     fh_gw = (chips_used or {}).get("freehit")
@@ -293,7 +298,6 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     if not picks:
         return {"note": "Could not load squad picks.", "upcoming": [], "rows": []}
     maps, headers = {}, []
-    now = datetime.now(timezone.utc)
     for ev in upcoming:
         maps[ev["id"]] = fixture_map(ev["id"], teams)
         dl = ev.get("deadline_time") or ""
