@@ -120,12 +120,6 @@ window.FPL_WILDCARD_WATCH = {
         "starter_ep": 2.3
       },
       {
-        "bench": "Kostoulas",
-        "bench_ep": 7.0,
-        "starter": "Haaland",
-        "starter_ep": 5.0
-      },
-      {
         "bench": "Davis",
         "bench_ep": 5.7,
         "starter": "Hall",
@@ -204,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.0,
+        "ep_next": 7.0,
         "status": "ok"
       },
       {
@@ -265,10 +259,10 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-11",
-      "total_cost": 99.6,
+      "total_cost": 99.8,
       "prices": {
         "Raya": 6.1,
-        "De Cuyper": 5.0,
+        "De Cuyper": 5.1,
         "Calafiori": 5.9,
         "Hall": 5.3,
         "Tarkowski": 6.2,
@@ -277,7 +271,7 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 6.0,
         "Saka": 9.6,
         "Haaland": 15.6,
-        "João Pedro": 7.7,
+        "João Pedro": 7.8,
         "Tzolakis": 4.7,
         "Kostoulas": 5.6,
         "Schade": 6.2,
@@ -289,8 +283,17 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Saka": 9.6
     },
-    "total_delta": 0.8,
+    "total_delta": 1.0,
     "players": [
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.1,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
       {
         "name": "Groß",
         "baseline_cost": 5.8,
@@ -304,15 +307,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 5.9,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 5.0,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -420,10 +414,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "baseline_cost": null,
-        "current_cost": 7.7,
+        "current_cost": 7.8,
         "delta": null,
         "entry_cost": 7.7,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -619,6 +613,22 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Groß",
         "from": 5.9,
         "to": 6.0,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-11",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.0,
+        "to": 5.1,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-11",
+        "event": "price_change",
+        "player": "João Pedro",
+        "from": 7.7,
+        "to": 7.8,
         "delta": 0.1
       }
     ]

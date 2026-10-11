@@ -112,14 +112,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain_ep": 12.3,
     "vice": "De Cuyper",
     "vice_ep": 10.7,
-    "bench_swaps": [
-      {
-        "bench": "Kostoulas",
-        "bench_ep": 7.0,
-        "starter": "Haaland",
-        "starter_ep": 5.0
-      }
-    ],
+    "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
       "Kostoulas",
@@ -144,7 +137,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 5.0,
+        "ep_next": 6.3,
         "status": "ok"
       },
       {
@@ -198,7 +191,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.0,
+        "ep_next": 7.0,
         "status": "ok"
       }
     ],
@@ -253,15 +246,15 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-11",
-      "total_cost": 93.4,
+      "total_cost": 93.7,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.2,
-        "Bogle": 4.6,
-        "De Cuyper": 5.0,
-        "Belloumi": 5.1,
+        "Bogle": 4.7,
+        "De Cuyper": 5.1,
+        "Belloumi": 5.2,
         "Dewsbury-Hall": 6.6,
         "Groß": 6.0,
         "Schade": 6.2,
@@ -273,8 +266,17 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 0.8,
+    "total_delta": 1.1,
     "players": [
+      {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.1,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
       {
         "name": "Groß",
         "baseline_cost": 5.8,
@@ -285,9 +287,18 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 5.0,
+        "name": "Belloumi",
+        "baseline_cost": 5.1,
+        "current_cost": 5.2,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Bogle",
+        "baseline_cost": 4.6,
+        "current_cost": 4.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -334,24 +345,6 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.6,
         "current_cost": 4.7,
         "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Belloumi",
-        "baseline_cost": 5.1,
-        "current_cost": 5.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Bogle",
-        "baseline_cost": 4.6,
-        "current_cost": 4.6,
-        "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -479,6 +472,30 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Gvardiol",
         "from": 5.7,
         "to": 5.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-11",
+        "event": "price_change",
+        "player": "Belloumi",
+        "from": 5.1,
+        "to": 5.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-11",
+        "event": "price_change",
+        "player": "Bogle",
+        "from": 4.6,
+        "to": 4.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-11",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.0,
+        "to": 5.1,
         "delta": 0.1
       }
     ]

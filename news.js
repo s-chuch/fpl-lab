@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-11 14:45 UTC",
+  "generated_at": "2026-10-11 23:31 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -34,13 +34,18 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "2pm team news: Williams starts, Belloumi a sub, no Mykolenko",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/2pm-team-news-williams-starts-belloumi-a-sub-no-mykolenko"
+      "title": "FPL notes: Dewsbury-Haul, Moyes on Barry + why Belloumi was benched",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-dewsbury-haul-moyes-on-barry-why-belloumi-was-benched"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: Schade + Schuster injury updates, Sangare a sub again",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-schade-schuster-injury-updates-sangare-a-sub-again"
+      "title": "FPL notes: Calafiori\u2019s threat, Saka\u2019s big chances + Konsa\u2019s DefCon",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-calafioris-threat-sakas-big-chances-konsa-defcon"
+    },
+    {
+      "source": "Scout",
+      "title": "Liverpool v Man City team news: Gvardiol benched, Szoboszlai absent",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/liverpool-v-man-city-team-news-gvardiol-benched-szoboszlai-absent"
     }
   ],
   "no_new": false,
@@ -83,6 +88,9 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/fpl-2026-27-transfer-news-confirmed-summer-signings",
     "https://www.fantasyfootballscout.co.uk/profiles/the-fpl-units",
     "https://www.fantasyfootballscout.co.uk/2026/10/11/2pm-team-news-williams-starts-belloumi-a-sub-no-mykolenko",
-    "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-schade-schuster-injury-updates-sangare-a-sub-again"
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-schade-schuster-injury-updates-sangare-a-sub-again",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-dewsbury-haul-moyes-on-barry-why-belloumi-was-benched",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-calafioris-threat-sakas-big-chances-konsa-defcon",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/liverpool-v-man-city-team-news-gvardiol-benched-szoboszlai-absent"
   ]
 };

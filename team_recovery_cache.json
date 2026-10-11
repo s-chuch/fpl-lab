@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-11T14:45:52.750452+00:00",
+    "fetched_at": "2026-10-11T23:31:45.557633+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -78,13 +78,7 @@
           "opponent": "Brentford",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Everton"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 5,
@@ -132,13 +126,7 @@
           "opponent": "Arsenal",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          }
-        ]
+        "between": []
       },
       "CRY": {
         "rest_days": 3,
@@ -160,11 +148,6 @@
           "days_after": 4
         },
         "between": [
-          {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Nott'm Forest"
-          },
           {
             "date": "2026-10-15",
             "competition": "Europa League",
@@ -239,13 +222,7 @@
           "opponent": "Ipswich",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Crystal Palace"
-          }
-        ]
+        "between": []
       },
       "LEE": {
         "rest_days": 8,
@@ -385,11 +362,6 @@
         },
         "between": [
           {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Liverpool"
-          },
-          {
             "date": "2026-10-14",
             "competition": "Champions League",
             "opponent": "Paris"
@@ -470,11 +442,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-11",
-            "competition": "Premier League",
-            "opponent": "Man City"
-          },
           {
             "date": "2026-10-14",
             "competition": "Champions League",
