@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-12 00:47 UTC",
+  "generated_at": "2026-10-12 02:12 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -34,8 +34,23 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: De Cuyper + Gross share top spot in points table",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-de-cuyper-gross-share-top-spot-in-points-table"
+      "title": "UCL Fantasy Matchday 2: Best Limitless Team",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-limitless-team"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy 2026/27: Matchday 2 early Scout Picks",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-2026-27-matchday-2-early-scout-picks"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 2 Best and worst fixtures",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-and-worst-fixtures"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy Matchday 2: Best Wildcard Team",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-wildcard-team"
     }
   ],
   "no_new": false,
@@ -82,6 +97,10 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-dewsbury-haul-moyes-on-barry-why-belloumi-was-benched",
     "https://www.fantasyfootballscout.co.uk/2026/10/11/fpl-notes-calafioris-threat-sakas-big-chances-konsa-defcon",
     "https://www.fantasyfootballscout.co.uk/2026/10/11/liverpool-v-man-city-team-news-gvardiol-benched-szoboszlai-absent",
-    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-de-cuyper-gross-share-top-spot-in-points-table"
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-de-cuyper-gross-share-top-spot-in-points-table",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-limitless-team",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-2026-27-matchday-2-early-scout-picks",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-and-worst-fixtures",
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-wildcard-team"
   ]
 };
