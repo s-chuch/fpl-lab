@@ -112,7 +112,14 @@ window.FPL_WILDCARD_WATCH = {
     "captain_ep": 12.3,
     "vice": "De Cuyper",
     "vice_ep": 10.7,
-    "bench_swaps": [],
+    "bench_swaps": [
+      {
+        "bench": "Tzolakis",
+        "bench_ep": 4.0,
+        "starter": "Raya",
+        "starter_ep": 2.0
+      }
+    ],
     "bench_order": [
       "Tzolakis",
       "Kostoulas",
@@ -131,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 6.0,
+        "ep_next": 2.0,
         "status": "ok"
       },
       {

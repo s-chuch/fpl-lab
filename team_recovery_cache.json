@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-12T17:32:50.112532+00:00",
+    "fetched_at": "2026-10-12T22:46:38.655058+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -51,13 +51,7 @@
           "opponent": "Fulham",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-12",
-            "competition": "Premier League",
-            "opponent": "Newcastle"
-          }
-        ]
+        "between": []
       },
       "HUL": {
         "rest_days": 6,
@@ -414,13 +408,7 @@
           "opponent": "Crystal Palace",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-12",
-            "competition": "Premier League",
-            "opponent": "Coventry"
-          }
-        ]
+        "between": []
       },
       "LIV": {
         "rest_days": 3,

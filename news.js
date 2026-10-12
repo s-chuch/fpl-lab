@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-12 17:32 UTC",
+  "generated_at": "2026-10-12 22:46 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -193,53 +193,13 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Rayan OOP, clinical Chelsea, Kluivert + Kroupi injury latest",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-rayan-oop-clinical-chelsea-kluivert-kroupi-injury-latest"
+      "title": "Who is close to a ban or suspended in FPL Gameweek 7?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-7-2"
     },
     {
       "source": "Scout",
-      "title": "Hincapie, Saliba: Latest FPL team news ahead of Gameweek 7",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/hincapie-saliba-latest-fpl-team-news-ahead-of-gameweek-7"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Gibbs-White\u2019s points-dodging, Ndoye \u201cgreat\u201d + leaky Palace",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-gibbs-whites-points-dodging-ndoye-great-leaky-palace"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Garcia wasteful + Affengruber\u2019s 100% DefCon record",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-garcia-wasteful-affengrubers-100-defcon-record"
-    },
-    {
-      "source": "Scout",
-      "title": "Want to work for Fantasy Football Scout? Get in touch\u2026",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/want-to-work-for-fantasy-football-scout-get-in-touch-8"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Szoboszlai injury latest, Haaland again + Doku impact",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-szoboszlai-injury-latest-haaland-again-doku-impact"
-    },
-    {
-      "source": "Scout",
-      "title": "Where could rotation strike in FPL Gameweeks 7-10?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/where-could-rotation-in-fpl-gameweeks-6-10"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Spurs improve, Bruno\u2019s two-year low + DefCon frenzy",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-spurs-improve-brunos-two-year-low-defcon-frenzy"
-    },
-    {
-      "source": "FPL Page",
-      "title": "FPL GW7 Players To Buy | FPL Dashboard",
-      "url": "https://fpl.page/article/fpl-gw7-best-players-to-buy-2627"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "FPL is the Wild West Right Now: Do Fixtures Even Matter?",
-      "url": "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/"
+      "title": "Coventry v Newcastle team news: van Ewijk + Gonzalez return",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/coventry-v-newcastle-team-news-van-ewijk-gonzalez-return"
     }
   ],
   "no_new": false,
@@ -300,6 +260,8 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/12/where-could-rotation-in-fpl-gameweeks-6-10",
     "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-spurs-improve-brunos-two-year-low-defcon-frenzy",
     "https://fpl.page/article/fpl-gw7-best-players-to-buy-2627",
-    "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/"
+    "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-7-2",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/coventry-v-newcastle-team-news-van-ewijk-gonzalez-return"
   ]
 };
