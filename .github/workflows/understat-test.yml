@@ -1,0 +1,34 @@
+name: Understat test
+on:
+  push:
+    branches: [understat-test]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe Understat
+        run: |
+          H=(-H "X-Requested-With: XMLHttpRequest" -H "Referer: https://understat.com/league/EPL/2026" -H "User-Agent: Mozilla/5.0")
+          for url in "https://understat.com/getLeagueData/EPL/2026" "https://understat.com/getLeagueData/EPL/2025" "https://understat.com/league/EPL/2026"; do
+            echo "=== $url"
+            curl -s -o /tmp/o.txt -w "HTTP %{http_code} size %{size_download}\n" "${H[@]}" "$url"
+            head -c 400 /tmp/o.txt; echo
+          done
+          curl -s "${H[@]}" "https://understat.com/getLeagueData/EPL/2026" -o /tmp/l.json
+          python3 - <<'PY'
+          import json
+          try:
+              d=json.load(open('/tmp/l.json'))
+          except Exception as e:
+              print("not json:", e); raise SystemExit
+          print("keys", list(d.keys()))
+          pl=d.get("players") or []
+          print("players", len(pl))
+          if pl:
+              print("fields", sorted(pl[0].keys()))
+              top=sorted(pl,key=lambda p:-float(p["shots"]))[:5]
+              for p in top: print({k:p[k] for k in ("player_name","team_title","games","time","goals","xG","assists","xA","shots","key_passes")})
+          ds=d.get("dates") or []
+          print("matches", len(ds), ds[0] if ds else None)
+          PY
