@@ -717,19 +717,27 @@ def build_bench_audit(boot, team_id, lookback=3):
         out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4], "bench_tags": bench_tags}
     return out
 
-def build_chip_net(chips_used, caps, bench_audit):
-    """Auto-compute each played chip's net points vs not using it, from data
-    already gathered for captain_audit/bench_audit — no per-chip hand-typed
-    numbers to keep updating. Wildcard has no well-defined "net vs no chip"
-    (it changes your whole squad), so it's intentionally left out."""
+def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, transfers=None):
+    """Auto-compute each played chip's result from data already gathered — no per-chip
+    hand-typed numbers to keep updating. Bench Boost = the bench's points that week (read
+    straight from that GW's picks: bench_audit skips Bench Boost weeks since every player
+    counts then). Triple Captain = the captain's extra multiple. Wildcard has no well-defined
+    "net vs no chip" (it rebuilds the whole squad), so it gets a description instead."""
     out = {}
     bboost_gw = chips_used.get("bboost")
     if bboost_gw:
         bench = (bench_audit.get(f"gw{bboost_gw}") or {}).get("your_bench") or []
-        out["bboost"] = {
-            "net": sum(pts for _name, pts in bench),
-            "note": " + ".join(f"{name} {pts}" for name, pts in bench) or None,
-        }
+        if not bench and boot and team_id:
+            try:
+                names = {e["id"]: e["web_name"] for e in boot["elements"]}
+                pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{bboost_gw}/picks/")
+                live = {el["id"]: el["stats"]["total_points"] for el in get(f"https://fantasy.premierleague.com/api/event/{bboost_gw}/live/").get("elements", [])}
+                bench = [[names.get(p["element"], "?"), live.get(p["element"], 0)] for p in pk.get("picks", []) if p["position"] > 11]
+            except Exception as e:
+                _warn(f"build_chip_net: could not read the GW{bboost_gw} Bench Boost bench: {e}")
+        if bench:
+            out["bboost"] = {"net": sum(pts for _name, pts in bench),
+                             "note": " + ".join(f"{name} {pts}" for name, pts in bench)}
     xc_gw = chips_used.get("3xc")
     if xc_gw:
         row = next((c for c in caps if c.get("gw") == xc_gw), None)
@@ -739,6 +747,10 @@ def build_chip_net(chips_used, caps, bench_audit):
                 "net": extra,
                 "note": f"{row.get('captain')} {extra} raw. Triple gave {extra * 3} instead of {extra * 2}.",
             }
+    wc_gw = chips_used.get("wildcard")
+    if wc_gw:
+        moves = next((t for t in (transfers or []) if t.get("chip") == "wildcard"), None)
+        out["wildcard"] = {"net": None, "note": f"{moves['inn']} rebuilt the squad for free" if moves else "Squad rebuilt for free"}
     return out
 
 
@@ -2235,7 +2247,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["captain_board"] = build_captain_board(boot, team_id)
     ft_rows, ft_next = free_transfer_ledger(hist or {})
     data["ft_ledger"] = {"rows": ft_rows, "next": ft_next, "next_gw": next((e["id"] for e in boot["events"] if not e.get("finished") and e["id"] > (ft_rows[-1]["gw"] if ft_rows else 0)), None)}
-    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
+    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
