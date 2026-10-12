@@ -1157,10 +1157,68 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
             _warn(f"build_xg_signal: could not load GW{picks_gw} squad: {e}")
     rows.sort(key=lambda r: -abs(r["diff"]))
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
+    imminent = _imminent_returns(boot, all_rows, rows, pool, top_n)
     return {
         "threshold": threshold, "min_minutes": min_minutes, "top_n": top_n,
         "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under,
+        "imminent": imminent,
     }
+
+IMMINENT_WINDOW = 4        # last N gameweeks the player actually played in
+IMMINENT_XG = 1.0          # xG over the window with no goal => goal "due"
+IMMINENT_XA = 0.7          # xA over the window with no assist => assist "due"
+
+def _imminent_returns(boot, all_rows, squad_rows, pool, top_n):
+    """Players whose RECENT underlying numbers say a goal / assist is overdue: plenty of
+    expected goals (xG, from the shots and chances FPL's data feed records) or expected
+    assists (xA, chances created) across their last few appearances, but no actual goal /
+    assist in that window. FPL's public API has no shots-on-target or big-chances-created
+    counts, so xG / xA per gameweek (element-summary) is the closest available stand-in:
+    xG is built from the quality of every shot, xA from the quality of every chance created."""
+    from concurrent.futures import ThreadPoolExecutor
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    by_key = {}
+    for e in boot["elements"]:
+        by_key[(e["web_name"], teams[e["team"]])] = e["id"]
+    wanted = {}
+    for r in sorted(pool, key=lambda r: -r["xg"] / max(r["minutes"] / 90, 1))[:40] + sorted(pool, key=lambda r: -r["xa"] / max(r["minutes"] / 90, 1))[:40] + list(squad_rows):
+        eid = by_key.get((r["name"], r["club"]))
+        if eid:
+            wanted[eid] = r
+    def window(eid):
+        try:
+            hist = get(f"https://fantasy.premierleague.com/api/element-summary/{eid}/").get("history", [])
+        except Exception as e:
+            _warn(f"imminent: could not load element {eid}: {e}")
+            return eid, None
+        played = [h for h in hist if int(h.get("minutes") or 0) > 0][-IMMINENT_WINDOW:]
+        if len(played) < 2:
+            return eid, None
+        f = lambda k: sum(float(h.get(k) or 0) for h in played)
+        return eid, {"gws": len(played), "mins": sum(int(h["minutes"]) for h in played),
+                     "xg": round(f("expected_goals"), 2), "xa": round(f("expected_assists"), 2),
+                     "goals": int(f("goals_scored")), "assists": int(f("assists"))}
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        wins = dict(ex.map(window, list(wanted)))
+    goal, assist, squad_due = [], [], {}
+    for eid, r in wanted.items():
+        w = wins.get(eid)
+        if not w:
+            continue
+        item = {"name": r["name"], "pos": r["pos"], "club": r["club"], "cost": r["cost"], "owned_pct": r["owned_pct"], **w}
+        due = []
+        if w["xg"] >= IMMINENT_XG and w["goals"] == 0 and r["pos"] != "GKP":
+            due.append("goal"); goal.append(item)
+        if w["xa"] >= IMMINENT_XA and w["assists"] == 0 and r["pos"] != "GKP":
+            due.append("assist"); assist.append(item)
+        squad_due[(r["name"], r["club"])] = due
+    owned_keys = {(r["name"], r["club"]) for r in squad_rows}
+    for r in squad_rows:
+        r["due"] = squad_due.get((r["name"], r["club"]), [])
+    goal.sort(key=lambda x: -x["xg"]); assist.sort(key=lambda x: -x["xa"])
+    return {"window": IMMINENT_WINDOW, "min_xg": IMMINENT_XG, "min_xa": IMMINENT_XA,
+            "goal": [x for x in goal if (x["name"], x["club"]) not in owned_keys][:top_n],
+            "assist": [x for x in assist if (x["name"], x["club"]) not in owned_keys][:top_n]}
 
 def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10, exclude=None):
     """Every qualifying player's recent form (FPL's own rolling average
