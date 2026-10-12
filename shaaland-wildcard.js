@@ -115,15 +115,15 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Schade",
-        "bench_ep": 6.2,
+        "bench_ep": 3.8,
         "starter": "King",
-        "starter_ep": 2.3
+        "starter_ep": 2.0
       },
       {
-        "bench": "Davis",
-        "bench_ep": 5.7,
-        "starter": "Hall",
-        "starter_ep": 4.3
+        "bench": "Kostoulas",
+        "bench_ep": 7.0,
+        "starter": "João Pedro",
+        "starter_ep": 6.0
       }
     ],
     "bench_order": [
@@ -168,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.3,
+        "ep_next": 8.5,
         "status": "ok"
       },
       {
@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 2.3,
+        "ep_next": 2.0,
         "status": "ok"
       },
       {
@@ -204,7 +204,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 8.0,
+        "ep_next": 6.0,
         "status": "ok"
       }
     ],
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.3,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
@@ -224,13 +224,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 6.2,
+        "ep_next": 3.8,
         "status": "doubt"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 5.7,
+        "ep_next": 1.5,
         "status": "ok"
       }
     ]
@@ -258,7 +258,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-11",
+      "date": "2026-10-12",
       "total_cost": 99.8,
       "prices": {
         "Raya": 6.1,

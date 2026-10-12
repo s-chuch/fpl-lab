@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-12T02:12:58.432606+00:00",
+    "fetched_at": "2026-10-12T17:32:50.112532+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -65,7 +65,7 @@
           "date": "2026-10-11",
           "competition": "Premier League",
           "opponent": "Everton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -113,7 +113,7 @@
           "date": "2026-10-11",
           "competition": "Premier League",
           "opponent": "Hull",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -209,7 +209,7 @@
           "date": "2026-10-11",
           "competition": "Premier League",
           "opponent": "Crystal Palace",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",

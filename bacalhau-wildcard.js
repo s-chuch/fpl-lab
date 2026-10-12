@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.3,
+        "ep_next": 8.5,
         "status": "ok"
       },
       {
@@ -167,13 +167,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 7.7,
+        "ep_next": 5.0,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 6.0,
+        "ep_next": 8.0,
         "status": "ok"
       },
       {
@@ -185,7 +185,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 6.2,
+        "ep_next": 3.8,
         "status": "doubt"
       },
       {
@@ -199,13 +199,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.3,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 3.7,
+        "ep_next": 1.5,
         "status": "ok"
       },
       {
@@ -217,7 +217,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.3,
+        "ep_next": 0.5,
         "status": "ok"
       }
     ]
@@ -245,7 +245,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-11",
+      "date": "2026-10-12",
       "total_cost": 93.7,
       "prices": {
         "Raya": 6.1,

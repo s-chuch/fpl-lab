@@ -1,10 +1,169 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-12 02:30 UTC",
+  "generated_at": "2026-10-12 17:32 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [],
-  "split": [],
+  "agreed": [
+    {
+      "text": "De Cuyper (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "De Cuyper",
+      "club": "BHA",
+      "tags": []
+    },
+    {
+      "text": "Gibbs-White (NFO) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Gibbs-White",
+      "club": "NFO",
+      "tags": []
+    },
+    {
+      "text": "Jo\u00e3o Pedro (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Jo\u00e3o Pedro",
+      "club": "CHE",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "White (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: fade/sell.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "White",
+      "club": "ARS",
+      "tags": [
+        "fade/sell"
+      ]
+    }
+  ],
+  "split": [
+    {
+      "text": "Affengruber (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Affengruber",
+      "club": "FUL",
+      "tags": []
+    },
+    {
+      "text": "Barry (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Belloumi (HUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Belloumi",
+      "club": "HUL",
+      "tags": []
+    },
+    {
+      "text": "Brobbey (SUN) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Brobbey",
+      "club": "SUN",
+      "tags": []
+    },
+    {
+      "text": "Calafiori (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Calafiori",
+      "club": "ARS",
+      "tags": [
+        "fade/sell"
+      ]
+    },
+    {
+      "text": "Gabriel (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity"
+      ],
+      "player": "Gabriel",
+      "club": "ARS",
+      "tags": [
+        "fade/sell"
+      ]
+    },
+    {
+      "text": "Gonzalo (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Ingenuity"
+      ],
+      "player": "Gonzalo",
+      "club": "FUL",
+      "tags": []
+    },
+    {
+      "text": "Haaland (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: captain talk, injury/doubt.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Haaland",
+      "club": "MCI",
+      "tags": [
+        "captain talk",
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Kluivert (BOU) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Kluivert",
+      "club": "BOU",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Konsa (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "FPL Page",
+        "Scout"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": []
+    }
+  ],
   "links": [
     {
       "name": "Fix",
@@ -31,8 +190,59 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL notes: Rayan OOP, clinical Chelsea, Kluivert + Kroupi injury latest",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-rayan-oop-clinical-chelsea-kluivert-kroupi-injury-latest"
+    },
+    {
+      "source": "Scout",
+      "title": "Hincapie, Saliba: Latest FPL team news ahead of Gameweek 7",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/hincapie-saliba-latest-fpl-team-news-ahead-of-gameweek-7"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Gibbs-White\u2019s points-dodging, Ndoye \u201cgreat\u201d + leaky Palace",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-gibbs-whites-points-dodging-ndoye-great-leaky-palace"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Garcia wasteful + Affengruber\u2019s 100% DefCon record",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-garcia-wasteful-affengrubers-100-defcon-record"
+    },
+    {
+      "source": "Scout",
+      "title": "Want to work for Fantasy Football Scout? Get in touch\u2026",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/want-to-work-for-fantasy-football-scout-get-in-touch-8"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Szoboszlai injury latest, Haaland again + Doku impact",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-szoboszlai-injury-latest-haaland-again-doku-impact"
+    },
+    {
+      "source": "Scout",
+      "title": "Where could rotation strike in FPL Gameweeks 7-10?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/where-could-rotation-in-fpl-gameweeks-6-10"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: Spurs improve, Bruno\u2019s two-year low + DefCon frenzy",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-spurs-improve-brunos-two-year-low-defcon-frenzy"
+    },
+    {
+      "source": "FPL Page",
+      "title": "FPL GW7 Players To Buy | FPL Dashboard",
+      "url": "https://fpl.page/article/fpl-gw7-best-players-to-buy-2627"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "FPL is the Wild West Right Now: Do Fixtures Even Matter?",
+      "url": "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
@@ -80,6 +290,16 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-limitless-team",
     "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-2026-27-matchday-2-early-scout-picks",
     "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-and-worst-fixtures",
-    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-wildcard-team"
+    "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-wildcard-team",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-rayan-oop-clinical-chelsea-kluivert-kroupi-injury-latest",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/hincapie-saliba-latest-fpl-team-news-ahead-of-gameweek-7",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-gibbs-whites-points-dodging-ndoye-great-leaky-palace",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-garcia-wasteful-affengrubers-100-defcon-record",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/want-to-work-for-fantasy-football-scout-get-in-touch-8",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-szoboszlai-injury-latest-haaland-again-doku-impact",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/where-could-rotation-in-fpl-gameweeks-6-10",
+    "https://www.fantasyfootballscout.co.uk/2026/10/12/fpl-notes-spurs-improve-brunos-two-year-low-defcon-frenzy",
+    "https://fpl.page/article/fpl-gw7-best-players-to-buy-2627",
+    "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/"
   ]
 };
