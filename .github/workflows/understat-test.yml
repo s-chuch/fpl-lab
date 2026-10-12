@@ -7,23 +7,23 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe Understat
+      - name: Probe match data
         run: |
-          H=(-H "X-Requested-With: XMLHttpRequest" -H "Referer: https://understat.com/league/EPL/2026" -H "User-Agent: Mozilla/5.0")
-          curl -s --compressed "${H[@]}" "https://understat.com/getLeagueData/EPL/2026" -o /tmp/l.json
+          H=(-H "X-Requested-With: XMLHttpRequest" -H "Referer: https://understat.com/match/31180" -H "User-Agent: Mozilla/5.0")
+          curl -s --compressed -w "HTTP %{http_code}\n" "${H[@]}" "https://understat.com/getMatchData/31180" -o /tmp/m.json
+          curl -s --compressed -w "HTTP %{http_code}\n" "${H[@]}" "https://understat.com/getPlayerData/8260" -o /tmp/p.json
           python3 - <<'PY'
-          import json
-          try:
-              d=json.load(open('/tmp/l.json'))
-          except Exception as e:
-              print("not json:", e); raise SystemExit
-          print("keys", list(d.keys()))
-          pl=d.get("players") or []
-          print("players", len(pl))
-          if pl:
-              print("fields", sorted(pl[0].keys()))
-              top=sorted(pl,key=lambda p:-float(p["shots"]))[:5]
-              for p in top: print({k:p[k] for k in ("player_name","team_title","games","time","goals","xG","assists","xA","shots","key_passes")})
-          ds=d.get("dates") or []
-          print("matches", len(ds), ds[0] if ds else None)
+          import json, collections
+          for f in ("/tmp/m.json","/tmp/p.json"):
+              try: d=json.load(open(f))
+              except Exception as e: print(f,"not json",e); continue
+              print(f, "keys", list(d.keys()))
+          m=json.load(open("/tmp/m.json"))
+          sh=m.get("shots",{})
+          allsh=(sh.get("h") or [])+(sh.get("a") or [])
+          print("shots", len(allsh), "fields", sorted(allsh[0].keys()) if allsh else None)
+          print(collections.Counter(s["result"] for s in allsh))
+          print(allsh[0] if allsh else None)
+          p=json.load(open("/tmp/p.json"))
+          print("player shots", len(p.get("shots",[])), collections.Counter(s["result"] for s in p.get("shots",[])).most_common(6))
           PY
