@@ -1169,6 +1169,61 @@ IMMINENT_XG = 1.0          # xG over the window with no goal => goal "due"
 IMMINENT_XA = 0.7          # xA over the window with no assist => assist "due"
 
 def _imminent_returns(boot, all_rows, squad_rows, pool, top_n):
+    """Understat shot data when reachable (real shots on target / big chances), else FPL's own xG/xA."""
+    try:
+        import understat
+        res = _imminent_understat(boot, squad_rows, top_n, understat)
+        if res:
+            return res
+    except Exception as e:
+        _warn(f"imminent: Understat unavailable, falling back to FPL xG/xA: {e}")
+    return _imminent_fpl(boot, all_rows, squad_rows, pool, top_n)
+
+UNDERSTAT_GOAL_SOT = 3      # shots on target over the window with no goal => goal due
+UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
+UNDERSTAT_ASSIST_CC = 4     # chances created (shots the player set up) with no assist => assist due
+UNDERSTAT_ASSIST_BIG = 2    # ...or this many big chances created
+
+def _imminent_understat(boot, squad_rows, top_n, understat):
+    """Goal due: the player's last few appearances show real shot volume (shots on target /
+    big chances) but no goal. Assist due: chances created (shots they set up, big ones counted
+    separately) but no assist. Counts are from Understat's per-shot records (understat.py)."""
+    windows = understat.player_windows(2026)
+    matched, unmatched = understat.match_to_fpl(windows, boot)
+    if len(matched) < 100:
+        _warn(f"imminent: only {len(matched)} Understat players matched to FPL; not using it")
+        return None
+    if unmatched:
+        print(f"[understat.py] unmatched: {', '.join(unmatched[:12])}")
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    els = {e["id"]: e for e in boot["elements"]}
+    owned = {(r["name"], r["club"]) for r in squad_rows}
+    goal, assist, due_by = [], [], {}
+    for eid, w in matched.items():
+        el = els[eid]
+        if el["element_type"] == 1 or w["apps"] < 2:
+            continue
+        key = (el["web_name"], teams[el["team"]])
+        item = {"name": el["web_name"], "pos": POS[el["element_type"]], "club": key[1], "cost": el["now_cost"] / 10,
+                "owned_pct": float(el.get("selected_by_percent") or 0), "gws": w["apps"], "shots": w["shots"],
+                "sot": w["sot"], "big": w["big"], "goals": w["goals"], "xg": w["xg"],
+                "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"]}
+        due = []
+        if w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
+            due.append("goal"); goal.append(item)
+        if w["assists"] == 0 and (w["cc"] >= UNDERSTAT_ASSIST_CC or w["big_cc"] >= UNDERSTAT_ASSIST_BIG):
+            due.append("assist"); assist.append(item)
+        due_by[key] = due
+    for r in squad_rows:
+        r["due"] = due_by.get((r["name"], r["club"]), [])
+    goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"]))
+    assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"]))
+    return {"source": "understat", "window": understat.WINDOW, "goal_rule": f"{UNDERSTAT_GOAL_SOT}+ shots on target or {UNDERSTAT_GOAL_BIG}+ big chances",
+            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created",
+            "goal": [x for x in goal if (x["name"], x["club"]) not in owned][:top_n],
+            "assist": [x for x in assist if (x["name"], x["club"]) not in owned][:top_n]}
+
+def _imminent_fpl(boot, all_rows, squad_rows, pool, top_n):
     """Players whose RECENT underlying numbers say a goal / assist is overdue: plenty of
     expected goals (xG, from the shots and chances FPL's data feed records) or expected
     assists (xA, chances created) across their last few appearances, but no actual goal /
@@ -1216,7 +1271,7 @@ def _imminent_returns(boot, all_rows, squad_rows, pool, top_n):
     for r in squad_rows:
         r["due"] = squad_due.get((r["name"], r["club"]), [])
     goal.sort(key=lambda x: -x["xg"]); assist.sort(key=lambda x: -x["xa"])
-    return {"window": IMMINENT_WINDOW, "min_xg": IMMINENT_XG, "min_xa": IMMINENT_XA,
+    return {"source": "fpl", "window": IMMINENT_WINDOW, "min_xg": IMMINENT_XG, "min_xa": IMMINENT_XA,
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned_keys][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned_keys][:top_n]}
 
