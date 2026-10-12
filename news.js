@@ -1,13 +1,33 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-12 22:46 UTC",
+  "generated_at": "2026-10-12 22:47 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [
+  "agreed": [],
+  "split": [
     {
-      "text": "De Cuyper (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
+      "text": "Barry (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
-        "FPL Page",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Belloumi (HUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Belloumi",
+      "club": "HUL",
+      "tags": []
+    },
+    {
+      "text": "De Cuyper (BHA) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
+      "sources": [
         "Ingenuity",
         "Scout"
       ],
@@ -16,9 +36,8 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Gibbs-White (NFO) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
+      "text": "Gibbs-White (NFO) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
-        "FPL Page",
         "Ingenuity",
         "Scout"
       ],
@@ -27,9 +46,8 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Jo\u00e3o Pedro (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
+      "text": "Jo\u00e3o Pedro (CHE) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites. Tags: injury/doubt.",
       "sources": [
-        "FPL Page",
         "Ingenuity",
         "Scout"
       ],
@@ -40,126 +58,12 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "White (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: fade/sell.",
+      "text": "White (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
-        "FPL Page",
         "Ingenuity",
         "Scout"
       ],
       "player": "White",
-      "club": "ARS",
-      "tags": [
-        "fade/sell"
-      ]
-    }
-  ],
-  "split": [
-    {
-      "text": "Affengruber (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Affengruber",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Barry (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": []
-    },
-    {
-      "text": "Belloumi (HUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Belloumi",
-      "club": "HUL",
-      "tags": []
-    },
-    {
-      "text": "Brobbey (SUN) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Brobbey",
-      "club": "SUN",
-      "tags": []
-    },
-    {
-      "text": "Calafiori (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": [
-        "fade/sell"
-      ]
-    },
-    {
-      "text": "Gabriel (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: fade/sell.",
-      "sources": [
-        "FPL Page",
-        "Ingenuity"
-      ],
-      "player": "Gabriel",
-      "club": "ARS",
-      "tags": [
-        "fade/sell"
-      ]
-    },
-    {
-      "text": "Gonzalo (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "FPL Page",
-        "Ingenuity"
-      ],
-      "player": "Gonzalo",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Haaland (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: captain talk, injury/doubt.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "captain talk",
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Kluivert (BOU) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Kluivert",
-      "club": "BOU",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Konsa (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "FPL Page",
-        "Scout"
-      ],
-      "player": "Konsa",
       "club": "ARS",
       "tags": []
     }
