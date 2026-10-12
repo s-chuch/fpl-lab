@@ -8,21 +8,48 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Probe
-        shell: bash
+        shell: bash {0}
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
           get() {
-            curl -s --compressed --max-time 30 -A "$UA" -H "Accept: application/json,text/html,*/*;q=0.8" \
+            curl -s --compressed --max-time 30 -A "$UA" -H "Accept: application/json,*/*;q=0.8" \
               -H "Accept-Language: en-GB,en;q=0.9" -H "Referer: https://www.fotmob.com/" -o "$2" -w "HTTP %{http_code} ctype=%{content_type}\n" "$1"
           }
-          for u in "https://www.fotmob.com/api/data/leagues?id=47&ccode3=GBR" \
-                   "https://www.fotmob.com/api/leagues?id=47&ccode3=GBR&tab=stats" \
-                   "https://www.fotmob.com/leagues/47/stats/premier-league/players/big_chance_created"; do
-            echo "--- $u"; get "$u" /tmp/o.txt; echo "size: $(wc -c < /tmp/o.txt)"; head -c 300 /tmp/o.txt; echo
-            grep -o '<title>[^<]*' /tmp/o.txt | head -1
-            grep -o '"fetchAllUrl":"[^"]*"' /tmp/o.txt | head -40
-            grep -o 'big_chance[a-z_]*' /tmp/o.txt | sort -u | head
-            grep -o 'ontarget_scoring_att[a-z_]*' /tmp/o.txt | sort -u | head -3
-            grep -o '"selectedSeason":"[^"]*"' /tmp/o.txt | head -2
+          get "https://www.fotmob.com/api/data/leagues?id=47&ccode3=GBR" /tmp/l.json
+          cat > /tmp/p.py <<'PY'
+          import json
+          d=json.load(open('/tmp/l.json'))
+          print("top keys:", list(d.keys()))
+          print("details:", {k:d.get('details',{}).get(k) for k in ('id','name','selectedSeason','latestSeason')})
+          st=d.get('stats',{}); print("stats keys:", list(st.keys()))
+          print("seasonStatLinks:", st.get('seasonStatLinks'))
+          for k in ('players','teams'):
+              for it in (st.get(k) or []):
+                  print(k, it.get('name'), '|', it.get('header'), '|', it.get('fetchAllUrl'))
+          PY
+          python3 /tmp/p.py
+          python3 - <<'PY'
+          import json,re
+          d=json.load(open('/tmp/l.json'))
+          urls=[it.get('fetchAllUrl') for it in d.get('stats',{}).get('players',[]) if it.get('fetchAllUrl')]
+          open('/tmp/urls.txt','w').write("\n".join(urls))
+          PY
+          for want in big_chance_created ontarget_scoring_att; do
+            u=$(grep "/$want\.json" /tmp/urls.txt | head -1)
+            echo "--- $want -> $u"
+            [ -z "$u" ] && continue
+            get "$u" /tmp/s.json; echo "size: $(wc -c < /tmp/s.json)"; head -c 500 /tmp/s.json; echo
+            python3 - <<'PY'
+          import json
+          try:
+              d=json.load(open('/tmp/s.json'))
+              print("keys:", list(d.keys()))
+              tl=d.get('TopLists') or []
+              for t in tl[:1]:
+                  print({k:(v if k!='StatList' else None) for k,v in t.items()})
+                  sl=t.get('StatList') or []
+                  print("n rows:", len(sl)); print(sl[:3])
+          except Exception as e: print("parse err", e)
+          PY
             sleep 3
           done
