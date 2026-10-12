@@ -10,12 +10,7 @@ jobs:
       - name: Probe Understat
         run: |
           H=(-H "X-Requested-With: XMLHttpRequest" -H "Referer: https://understat.com/league/EPL/2026" -H "User-Agent: Mozilla/5.0")
-          for url in "https://understat.com/getLeagueData/EPL/2026" "https://understat.com/getLeagueData/EPL/2025" "https://understat.com/league/EPL/2026"; do
-            echo "=== $url"
-            curl -s -o /tmp/o.txt -w "HTTP %{http_code} size %{size_download}\n" "${H[@]}" "$url"
-            head -c 400 /tmp/o.txt; echo
-          done
-          curl -s "${H[@]}" "https://understat.com/getLeagueData/EPL/2026" -o /tmp/l.json
+          curl -s --compressed "${H[@]}" "https://understat.com/getLeagueData/EPL/2026" -o /tmp/l.json
           python3 - <<'PY'
           import json
           try:
