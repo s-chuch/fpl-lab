@@ -199,8 +199,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-12 02:13 UTC",
-  "generated_at_et": "2026-10-11 10:13 PM ET",
+  "generated_at": "2026-10-12 02:19 UTC",
+  "generated_at_et": "2026-10-11 10:19 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -5382,7 +5382,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.64,
         "gi": 8,
         "diff": 4.94,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Gro\u00df",
@@ -5399,7 +5400,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.51,
         "gi": 8,
         "diff": 4.93,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Kostoulas",
@@ -5416,7 +5418,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.31,
         "gi": 5,
         "diff": 3.57,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Barnes",
@@ -5433,7 +5436,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.22,
         "gi": 4,
         "diff": 2.9,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Schade",
@@ -5450,7 +5454,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.41,
         "gi": 5,
         "diff": 2.74,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "De Cuyper",
@@ -5471,7 +5476,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 9.15,
         "gc_diff": 4.15,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       },
       {
         "name": "Davis",
@@ -5492,7 +5498,8 @@ window.FPL_DATA = {
         "goals_conceded": 12,
         "xgc": 10.79,
         "gc_diff": -1.21,
-        "gc_tag": "on_track"
+        "gc_tag": "on_track",
+        "due": []
       },
       {
         "name": "Tarkowski",
@@ -5513,7 +5520,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 8.27,
         "gc_diff": 3.27,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       },
       {
         "name": "Saka",
@@ -5530,7 +5538,10 @@ window.FPL_DATA = {
         "xgi_p90": 0.83,
         "gi": 3,
         "diff": -1.67,
-        "tag": "on_track"
+        "tag": "on_track",
+        "due": [
+          "assist"
+        ]
       },
       {
         "name": "Calafiori",
@@ -5551,7 +5562,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 4.38,
         "gc_diff": -0.62,
-        "gc_tag": "on_track"
+        "gc_tag": "on_track",
+        "due": []
       },
       {
         "name": "Hall",
@@ -5572,7 +5584,8 @@ window.FPL_DATA = {
         "goals_conceded": 9,
         "xgc": 9.12,
         "gc_diff": 0.12,
-        "gc_tag": "on_track"
+        "gc_tag": "on_track",
+        "due": []
       },
       {
         "name": "Haaland",
@@ -5589,7 +5602,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.91,
         "gi": 6,
         "diff": 0.64,
-        "tag": "on_track"
+        "tag": "on_track",
+        "due": []
       },
       {
         "name": "King",
@@ -5606,7 +5620,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.41,
         "gi": 2,
         "diff": -0.28,
-        "tag": "on_track"
+        "tag": "on_track",
+        "due": []
       },
       {
         "name": "Raya",
@@ -5627,7 +5642,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 4.65,
         "gc_diff": -0.35,
-        "gc_tag": "on_track"
+        "gc_tag": "on_track",
+        "due": []
       },
       {
         "name": "Tzolakis",
@@ -5648,7 +5664,8 @@ window.FPL_DATA = {
         "goals_conceded": 6,
         "xgc": 9.11,
         "gc_diff": 3.11,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       }
     ],
     "notable": [
@@ -5667,7 +5684,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.64,
         "gi": 8,
         "diff": 4.94,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Gro\u00df",
@@ -5684,7 +5702,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.51,
         "gi": 8,
         "diff": 4.93,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Kostoulas",
@@ -5701,7 +5720,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.31,
         "gi": 5,
         "diff": 3.57,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Barnes",
@@ -5718,7 +5738,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.22,
         "gi": 4,
         "diff": 2.9,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "Schade",
@@ -5735,7 +5756,8 @@ window.FPL_DATA = {
         "xgi_p90": 0.41,
         "gi": 5,
         "diff": 2.74,
-        "tag": "overperforming"
+        "tag": "overperforming",
+        "due": []
       },
       {
         "name": "De Cuyper",
@@ -5756,7 +5778,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 9.15,
         "gc_diff": 4.15,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       },
       {
         "name": "Tarkowski",
@@ -5777,7 +5800,8 @@ window.FPL_DATA = {
         "goals_conceded": 5,
         "xgc": 8.27,
         "gc_diff": 3.27,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       },
       {
         "name": "Tzolakis",
@@ -5798,7 +5822,8 @@ window.FPL_DATA = {
         "goals_conceded": 6,
         "xgc": 9.11,
         "gc_diff": 3.11,
-        "gc_tag": "riding_luck"
+        "gc_tag": "riding_luck",
+        "due": []
       }
     ],
     "top": [
@@ -6184,7 +6209,185 @@ window.FPL_DATA = {
         "diff": -2.03,
         "tag": "underperforming"
       }
-    ]
+    ],
+    "imminent": {
+      "window": 4,
+      "min_xg": 1.0,
+      "min_xa": 0.7,
+      "goal": [
+        {
+          "name": "Gonzalo",
+          "pos": "FWD",
+          "club": "FUL",
+          "cost": 6.1,
+          "owned_pct": 7.3,
+          "gws": 4,
+          "mins": 331,
+          "xg": 2.0,
+          "xa": 0.57,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Foden",
+          "pos": "MID",
+          "club": "MCI",
+          "cost": 6.8,
+          "owned_pct": 1.5,
+          "gws": 4,
+          "mins": 217,
+          "xg": 1.61,
+          "xa": 0.88,
+          "goals": 0,
+          "assists": 2
+        },
+        {
+          "name": "Awoniyi",
+          "pos": "FWD",
+          "club": "COV",
+          "cost": 5.4,
+          "owned_pct": 0.3,
+          "gws": 4,
+          "mins": 232,
+          "xg": 1.3,
+          "xa": 0.04,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Johnson",
+          "pos": "MID",
+          "club": "EVE",
+          "cost": 5.9,
+          "owned_pct": 0.1,
+          "gws": 4,
+          "mins": 269,
+          "xg": 1.07,
+          "xa": 0.39,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Bobb",
+          "pos": "MID",
+          "club": "FUL",
+          "cost": 5.5,
+          "owned_pct": 0.3,
+          "gws": 4,
+          "mins": 285,
+          "xg": 1.03,
+          "xa": 0.91,
+          "goals": 0,
+          "assists": 0
+        }
+      ],
+      "assist": [
+        {
+          "name": "\u00d8degaard",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 6.8,
+          "owned_pct": 20.1,
+          "gws": 4,
+          "mins": 321,
+          "xg": 1.61,
+          "xa": 1.27,
+          "goals": 1,
+          "assists": 0
+        },
+        {
+          "name": "Rudoni",
+          "pos": "MID",
+          "club": "COV",
+          "cost": 4.9,
+          "owned_pct": 0.1,
+          "gws": 4,
+          "mins": 277,
+          "xg": 0.77,
+          "xa": 1.11,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Enciso",
+          "pos": "MID",
+          "club": "IPS",
+          "cost": 5.5,
+          "owned_pct": 0.8,
+          "gws": 4,
+          "mins": 323,
+          "xg": 0.7,
+          "xa": 0.99,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Iwobi",
+          "pos": "MID",
+          "club": "FUL",
+          "cost": 5.4,
+          "owned_pct": 0.7,
+          "gws": 4,
+          "mins": 314,
+          "xg": 0.38,
+          "xa": 0.97,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "S\u00e1vio",
+          "pos": "MID",
+          "club": "TOT",
+          "cost": 6.5,
+          "owned_pct": 0.7,
+          "gws": 4,
+          "mins": 330,
+          "xg": 0.54,
+          "xa": 0.95,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Xhaka",
+          "pos": "MID",
+          "club": "SUN",
+          "cost": 5.4,
+          "owned_pct": 3.4,
+          "gws": 4,
+          "mins": 360,
+          "xg": 0.15,
+          "xa": 0.92,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "Bobb",
+          "pos": "MID",
+          "club": "FUL",
+          "cost": 5.5,
+          "owned_pct": 0.3,
+          "gws": 4,
+          "mins": 285,
+          "xg": 1.03,
+          "xa": 0.91,
+          "goals": 0,
+          "assists": 0
+        },
+        {
+          "name": "B.Fernandes",
+          "pos": "MID",
+          "club": "MUN",
+          "cost": 11.9,
+          "owned_pct": 35.9,
+          "gws": 4,
+          "mins": 360,
+          "xg": 0.48,
+          "xa": 0.72,
+          "goals": 0,
+          "assists": 0
+        }
+      ]
+    }
   },
   "defcon": {
     "min_minutes": 180,

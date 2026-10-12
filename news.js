@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-12 02:12 UTC",
+  "generated_at": "2026-10-12 02:19 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -31,29 +31,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 2: Best Limitless Team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-limitless-team"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Matchday 2 early Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-2026-27-matchday-2-early-scout-picks"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 2 Best and worst fixtures",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-and-worst-fixtures"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 2: Best Wildcard Team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/11/ucl-fantasy-matchday-2-best-wildcard-team"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
