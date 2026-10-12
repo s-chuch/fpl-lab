@@ -11,43 +11,18 @@ jobs:
         shell: bash
         run: |
           UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
-          get() { # url outfile referer
-            curl -s --compressed --max-time 30 -A "$UA" \
-              -H "Accept: text/html,application/json,*/*;q=0.8" -H "Accept-Language: en-GB,en;q=0.9" \
-              -H "Referer: $3" -o "$2" -w "HTTP %{http_code}\n" "$1"
+          get() {
+            curl -s --compressed --max-time 30 -A "$UA" -H "Accept: application/json,text/html,*/*;q=0.8" \
+              -H "Accept-Language: en-GB,en;q=0.9" -H "Referer: https://www.fotmob.com/" -o "$2" -w "HTTP %{http_code} ctype=%{content_type}\n" "$1"
           }
-          echo "=== FBREF ==="
-          blocked=0
-          for p in "Premier-League-Stats" "passing/Premier-League-Stats" "gca/Premier-League-Stats" "shooting/Premier-League-Stats"; do
-            [ $blocked = 1 ] && break
-            u="https://fbref.com/en/comps/9/$p"
-            echo "--- $u"
-            code=$(get "$u" /tmp/fb.html https://fbref.com/ | tee /dev/stderr | awk '{print $2}')
-            echo "size: $(wc -c < /tmp/fb.html)"
-            head -c 400 /tmp/fb.html; echo
-            grep -io 'just a moment\|cf-challenge\|Attention Required' /tmp/fb.html | head -2
-            if [ "$code" != "200" ]; then blocked=1; echo "STOP FBref"; continue; fi
-            echo "data-stat names:"; grep -o 'data-stat="[a-z_0-9]*"' /tmp/fb.html | sort -u | tr '\n' ' '; echo
-            grep -io 'big.chance[a-z ]*' /tmp/fb.html | sort -u | head
-            grep -o '<title>[^<]*' /tmp/fb.html
-            sleep 5
+          for u in "https://www.fotmob.com/api/data/leagues?id=47&ccode3=GBR" \
+                   "https://www.fotmob.com/api/leagues?id=47&ccode3=GBR&tab=stats" \
+                   "https://www.fotmob.com/leagues/47/stats/premier-league/players/big_chance_created"; do
+            echo "--- $u"; get "$u" /tmp/o.txt; echo "size: $(wc -c < /tmp/o.txt)"; head -c 300 /tmp/o.txt; echo
+            grep -o '<title>[^<]*' /tmp/o.txt | head -1
+            grep -o '"fetchAllUrl":"[^"]*"' /tmp/o.txt | head -40
+            grep -o 'big_chance[a-z_]*' /tmp/o.txt | sort -u | head
+            grep -o 'ontarget_scoring_att[a-z_]*' /tmp/o.txt | sort -u | head -3
+            grep -o '"selectedSeason":"[^"]*"' /tmp/o.txt | head -2
+            sleep 3
           done
-          echo "=== FOTMOB ==="
-          u="https://www.fotmob.com/api/leagues?id=47"
-          echo "--- $u"
-          code=$(get "$u" /tmp/fm.json https://www.fotmob.com/leagues/47/overview/premier-league | tee /dev/stderr | awk '{print $2}')
-          echo "size: $(wc -c < /tmp/fm.json)"
-          head -c 400 /tmp/fm.json; echo
-          if [ "$code" = "200" ]; then
-            python3 - <<'PY'
-          import json
-          d=json.load(open('/tmp/fm.json'))
-          print("top keys:", list(d.keys()))
-          det=d.get('details',{}); print("details:", {k:det.get(k) for k in ('id','name','selectedSeason','latestSeason')})
-          st=d.get('stats',{}); print("stats keys:", list(st.keys()) if isinstance(st,dict) else st)
-          for k in ('players','teams'):
-              for it in (st.get(k) or []):
-                  print(k, it.get('name'), it.get('header'), it.get('fetchAllUrl'))
-          print("seasons:", (st.get('seasonStatLinks') or [])[:4])
-          PY
-          else echo "STOP FotMob"; fi
