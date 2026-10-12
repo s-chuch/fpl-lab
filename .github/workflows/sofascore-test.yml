@@ -1,0 +1,29 @@
+name: sofascore-test
+on:
+  push:
+    branches: [sofascore-test]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probe
+        run: |
+          H=(-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" -H "Referer: https://www.sofascore.com/" -H "Accept: */*")
+          B=https://api.sofascore.com/api/v1
+          get() { echo "=== $1"; curl -s --compressed --max-time 30 "${H[@]}" -o /tmp/out.txt -w "HTTP %{http_code}\n" "$1"; head -c 400 /tmp/out.txt; echo; }
+          get "$B/unique-tournament/17/seasons"
+          SID=$(python3 -c "import json;d=json.load(open('/tmp/out.txt'));print(d['seasons'][0]['id'], d['seasons'][0]['year'])" 2>/dev/null)
+          echo "SEASON: $SID"
+          SID=${SID%% *}
+          [ -z "$SID" ] && SID=0
+          get "$B/unique-tournament/17/season/$SID/top-players/overall"
+          python3 -c "import json;d=json.load(open('/tmp/out.txt'));print(list(d.get('topPlayers',{}).keys()))" 2>&1 | head -3
+          get "$B/unique-tournament/17/season/$SID/statistics?limit=20&order=-bigChancesCreated&accumulation=total&fields=bigChancesCreated,shotsOnTarget,expectedAssists,keyPasses,goals,assists"
+          get "$B/unique-tournament/17/season/$SID/events/last/0"
+          EV=$(python3 -c "import json;d=json.load(open('/tmp/out.txt'));e=d['events'][-1];print(e['id'])" 2>/dev/null)
+          echo "EVENT: $EV"
+          get "$B/event/$EV/lineups"
+          PID=$(python3 -c "import json;d=json.load(open('/tmp/out.txt'));print(d['home']['players'][0]['player']['id'])" 2>/dev/null)
+          echo "PLAYER: $PID"
+          get "$B/event/$EV/player/$PID/statistics"
