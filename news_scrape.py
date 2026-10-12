@@ -8,7 +8,7 @@ from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, parse_qs
 
-from fpl_common import get, parse_iso, event_window, load_js_object, load_player_index, build_themes, ARTICLE_SEP
+from fpl_common import parse_iso, event_window, load_js_object, load_player_index, build_themes, ARTICLE_SEP
 
 ROOT = Path(__file__).resolve().parent
 NEWS_PATH = ROOT / "news.js"

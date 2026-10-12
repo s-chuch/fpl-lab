@@ -8,7 +8,7 @@ from league_tactics import build_tactics, pick_contenders
 from lab_audit import add_roll_rows
 import fpl_common
 import fixtures_external
-import os
+import copy
 
 
 def _warn(msg):
@@ -28,7 +28,16 @@ POS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
 MINN = {"GKP": 1, "DEF": 3, "MID": 2, "FWD": 1}
 MAXX = {"GKP": 1, "DEF": 5, "MID": 5, "FWD": 3}
 
+# Within one run the same per-GW endpoints are read by several builders (bench audit, captain
+# audit/board, transfers, ...). Memoise the ones that don't change during a run.
+_MEMO_PARTS = ("/live/", "/picks/", "/element-summary/", "/transfers/")
+_memo = {}
+
 def get(url):
+    if any(p in url for p in _MEMO_PARTS):
+        if url not in _memo:
+            _memo[url] = fpl_common.get(url, timeout=30)
+        return copy.deepcopy(_memo[url])  # callers may mutate what they get
     return fpl_common.get(url, timeout=30)
 
 
@@ -107,7 +116,6 @@ def format_pick_squad(picks, elements, teams):
     """XI + bench + captain from an entry event picks payload."""
     xi, bench = [], []
     captain = vice = None
-    chip = None
     for p in sorted(picks or [], key=lambda x: x.get("position") or 99):
         el = elements.get(p["element"])
         if not el:

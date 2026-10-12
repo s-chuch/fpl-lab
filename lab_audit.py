@@ -1,5 +1,4 @@
 """Process vs outcome helpers for refresh.py."""
-from datetime import datetime, timezone
 
 
 CHIP_LABEL = {"wildcard": "Wildcard", "freehit": "Free Hit"}
