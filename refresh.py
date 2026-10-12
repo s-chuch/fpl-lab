@@ -249,23 +249,29 @@ def pick_lineup(players, gw_key):
     rest_of = [p["name"] for _s, p in sorted([(_s, p) for pos in ("DEF", "MID", "FWD") for _s, p in ranked[pos] if p["name"] not in started()], key=lambda x: x[0], reverse=True)]
     return picked[:11], (rest_gk + rest_of)[:4]
 
-def free_transfers_for_next(hist):
-    """Free transfers banked heading into the next deadline.
-
-    Rules (2024/25 onward): GW1 is the initial squad build, so it banks nothing. From GW2
-    you gain 1 free transfer each gameweek, banked up to 5; each transfer made uses one
-    (extra ones are -4 hits, which never take the bank below 0). A Wildcard / Free Hit
-    week is neutral: its moves are free, nothing is used and no new free transfer is
-    added, so you carry out the same bank you carried in."""
-    chip_gws = {c["event"] for c in hist.get("chips", []) if c.get("name") in ("wildcard", "freehit")}
-    ft = 0
+def free_transfer_ledger(hist):
+    """Gameweek-by-gameweek free-transfer bank. GW1 is the initial squad build (no bank).
+    From GW2 you gain 1 free transfer per GW, banked up to 5; each transfer uses one and
+    extras are -4 hits (never taking the bank below 0). A Wildcard / Free Hit week is
+    neutral: its moves are free, nothing is used and no new free transfer is added, so the
+    bank carries through unchanged. Returns (rows, free transfers heading into the next GW)."""
+    chips = {c["event"]: c["name"] for c in hist.get("chips", []) if c.get("name") in ("wildcard", "freehit")}
+    ft, rows = 0, []
     for row in sorted(hist.get("current", []), key=lambda r: r.get("event") or 0):
         gw = row.get("event")
-        if gw == 1 or gw in chip_gws:
-            continue
-        ft = min(5, ft + 1)
-        ft = max(0, ft - int(row.get("event_transfers") or 0))
-    return min(5, ft + 1)
+        made = int(row.get("event_transfers") or 0)
+        if gw == 1:
+            rows.append({"gw": gw, "chip": None, "had": None, "made": made, "hit": 0, "left": 0})
+        elif gw in chips:
+            rows.append({"gw": gw, "chip": chips[gw], "had": ft, "made": made, "hit": 0, "left": ft})
+        else:
+            had = min(5, ft + 1)
+            ft = max(0, had - made)
+            rows.append({"gw": gw, "chip": None, "had": had, "made": made, "hit": max(0, made - had), "left": ft})
+    return rows, min(5, ft + 1)
+
+def free_transfers_for_next(hist):
+    return free_transfer_ledger(hist)[1]
 
 def build_plan(boot, team_id, hist=None, chips_used=None):
     teams = {t["id"]: t for t in boot["teams"]}
@@ -2106,6 +2112,8 @@ def main(team_id=TEAM_ID, out_path=None):
     data["transfers"] = add_roll_rows(build_transfers(boot, team_id), hist, chips_used)
     data["bench_audit"] = build_bench_audit(boot, team_id)
     data["captain_board"] = build_captain_board(boot, team_id)
+    ft_rows, ft_next = free_transfer_ledger(hist or {})
+    data["ft_ledger"] = {"rows": ft_rows, "next": ft_next, "next_gw": next((e["id"] for e in boot["events"] if not e.get("finished") and e["id"] > (ft_rows[-1]["gw"] if ft_rows else 0)), None)}
     data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"])
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
