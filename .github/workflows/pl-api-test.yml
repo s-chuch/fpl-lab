@@ -1,0 +1,20 @@
+name: pl-api-test
+on:
+  push:
+    branches: [pl-api-test]
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probe
+        run: |
+          H=(-H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" -H "Origin: https://www.premierleague.com" -H "Referer: https://www.premierleague.com/" -H "Accept: application/json")
+          t() { echo "=== $1"; curl -s --compressed --max-time 30 "${H[@]}" -o /tmp/o.txt -w "HTTP %{http_code}\n" "$1"; head -c 500 /tmp/o.txt; echo; }
+          t "https://footballapi.pulselive.com/football/competitions/1/compseasons"
+          t "https://footballapi.pulselive.com/football/stats/ranked/players/big_chances_created?comps=1&pageSize=5"
+          t "https://footballapi.pulselive.com/football/stats/ranked/players/ontarget_scoring_att?comps=1&pageSize=5"
+          t "https://footballapi.pulselive.com/football/players?pageSize=2&compSeasons=1&comps=1"
+          t "https://sdp-avl-pl-prod.premier-league-prod.pulselive.com/api/v1/competitions/8/seasons/2026/players/stats/leaderboard?stat=big_chance_created&_limit=5"
+          t "https://sdp-avl-pl-prod.premier-league-prod.pulselive.com/api/v2/competitions/8/seasons/2026/players/stats/leaderboard?stat=big_chance_created&_limit=5"
+          t "https://sdp-avl-pl-prod.premier-league-prod.pulselive.com/api/v1/competitions/8/seasons/2026/standings"
