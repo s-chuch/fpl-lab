@@ -238,6 +238,33 @@ def build_squad(vals, budget):
         if top[1] is None or top[0] < 0.003:
             break
         squad = [top[2] if i == top[1] else i for i in squad]
+    # Pair moves: one swap alone can't shift money (cheapen one slot to fund an upgrade elsewhere).
+    top_by_pos = {pos: sorted((v for v in cands if v["pos"] == pos), key=lambda v: -v["value"])[:35] for pos in SQUAD_SIZE}
+    cheap_by_pos = {pos: sorted((v for v in cands if v["pos"] == pos), key=lambda v: v["cost"])[:25] for pos in SQUAD_SIZE}
+    for _ in range(4):
+        cur = squad_score(squad, vals)
+        spent = sum(vals[i]["cost"] for i in squad)
+        best = (0.003, None)
+        for a in squad:
+            for down in cheap_by_pos[vals[a]["pos"]]:
+                if down["id"] in squad or down["cost"] >= vals[a]["cost"] or not _club_ok(squad, vals, down["id"], a):
+                    continue
+                s1 = [down["id"] if i == a else i for i in squad]
+                spent1 = spent - vals[a]["cost"] + down["cost"]
+                for b in s1:
+                    if b == down["id"]:
+                        continue
+                    for up in top_by_pos[vals[b]["pos"]]:
+                        if up["id"] in s1 or up["cost"] <= vals[b]["cost"]:
+                            continue
+                        if spent1 - vals[b]["cost"] + up["cost"] > budget + 1e-9 or not _club_ok(s1, vals, up["id"], b):
+                            continue
+                        gain = squad_score([up["id"] if i == b else i for i in s1], vals) - cur
+                        if gain > best[0]:
+                            best = (gain, [up["id"] if i == b else i for i in s1])
+        if best[1] is None:
+            break
+        squad = best[1]
     return squad
 
 
