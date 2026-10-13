@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-13 15:44 UTC",
+  "generated_at": "2026-10-13 19:26 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -49,8 +49,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Szoboszlai, Isak, Gakpo: Latest FPL team news ahead of Gameweek 7",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/szoboszlai-isak-gakpo-latest-fpl-team-news-ahead-of-gameweek-7"
+    }
+  ],
+  "no_new": false,
   "seen": [
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
@@ -126,6 +132,7 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-2026-27-matchday-2-clean-sheet-odds",
     "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-matchday-2-best-captains",
     "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-    "https://ingenuityfantasy.com/game-week-tips/premier-league-goal-involvement-by-player-2026-27-gw7/"
+    "https://ingenuityfantasy.com/game-week-tips/premier-league-goal-involvement-by-player-2026-27-gw7/",
+    "https://www.fantasyfootballscout.co.uk/2026/10/13/szoboszlai-isak-gakpo-latest-fpl-team-news-ahead-of-gameweek-7"
   ]
 };
