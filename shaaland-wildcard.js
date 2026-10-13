@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 7.0,
+        "ep_next": 6.0,
         "status": "ok"
       },
       {

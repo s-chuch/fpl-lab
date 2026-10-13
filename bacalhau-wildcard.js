@@ -144,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 6.3,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 7.0,
+        "ep_next": 6.0,
         "status": "ok"
       }
     ],

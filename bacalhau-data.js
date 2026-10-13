@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-13 15:37 UTC",
-  "generated_at_et": "2026-10-13 11:37 AM ET",
+  "generated_at": "2026-10-13 15:43 UTC",
+  "generated_at_et": "2026-10-13 11:43 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -554,12 +554,12 @@ window.FPL_DATA = {
           "Tzolakis (VC)",
           "De Cuyper",
           "Tarkowski",
-          "Gvardiol",
+          "Bogle",
           "Gro\u00df",
           "Dewsbury-Hall",
           "Haaland (C)",
           "Kostoulas",
-          "Bogle",
+          "Gvardiol",
           "Belloumi",
           "Hall"
         ],
@@ -579,10 +579,10 @@ window.FPL_DATA = {
           "Gro\u00df",
           "Dewsbury-Hall",
           "Haaland (C)",
-          "Gvardiol",
           "Belloumi",
           "Kostoulas",
-          "Hall"
+          "Hall",
+          "Gvardiol"
         ],
         "bench": [
           "Raya",
@@ -8539,10 +8539,10 @@ window.FPL_DATA = {
           "club": "MCI",
           "cost": 5.5,
           "owned_pct": 7.6,
-          "form": 6.0,
+          "form": 5.5,
           "fdr": 2,
           "fixture": "IPS (H)",
-          "ratio": 3.0
+          "ratio": 2.75
         },
         {
           "name": "Rushworth",
@@ -8684,21 +8684,10 @@ window.FPL_DATA = {
           "club": "MCI",
           "cost": 6.0,
           "owned_pct": 17.9,
-          "form": 5.3,
+          "form": 5.0,
           "fdr": 2,
           "fixture": "IPS (H)",
-          "ratio": 2.65
-        },
-        {
-          "name": "Matheus N.",
-          "pos": "DEF",
-          "club": "MCI",
-          "cost": 5.9,
-          "owned_pct": 1.0,
-          "form": 5.3,
-          "fdr": 2,
-          "fixture": "IPS (H)",
-          "ratio": 2.65
+          "ratio": 2.5
         },
         {
           "name": "Van Hecke",
@@ -8734,15 +8723,26 @@ window.FPL_DATA = {
           "ratio": 2.17
         },
         {
-          "name": "R\u00faben",
+          "name": "Bassey",
           "pos": "DEF",
-          "club": "MCI",
-          "cost": 5.5,
-          "owned_pct": 1.9,
-          "form": 4.3,
+          "club": "FUL",
+          "cost": 4.5,
+          "owned_pct": 1.0,
+          "form": 4.0,
           "fdr": 2,
-          "fixture": "IPS (H)",
-          "ratio": 2.15
+          "fixture": "HUL (H)",
+          "ratio": 2.0
+        },
+        {
+          "name": "Schuster",
+          "pos": "DEF",
+          "club": "BRE",
+          "cost": 4.5,
+          "owned_pct": 0.6,
+          "form": 7.5,
+          "fdr": 4,
+          "fixture": "LIV (H)",
+          "ratio": 1.88
         }
       ],
       "MID": [
@@ -8752,10 +8752,21 @@ window.FPL_DATA = {
           "club": "MCI",
           "cost": 8.3,
           "owned_pct": 13.7,
-          "form": 7.7,
+          "form": 10.0,
           "fdr": 2,
           "fixture": "IPS (H)",
-          "ratio": 3.85
+          "ratio": 5.0
+        },
+        {
+          "name": "Cherki",
+          "pos": "MID",
+          "club": "MCI",
+          "cost": 7.8,
+          "owned_pct": 31.3,
+          "form": 9.0,
+          "fdr": 2,
+          "fixture": "IPS (H)",
+          "ratio": 4.5
         },
         {
           "name": "Henderson",
@@ -8769,6 +8780,17 @@ window.FPL_DATA = {
           "ratio": 3.33
         },
         {
+          "name": "Cunha",
+          "pos": "MID",
+          "club": "MUN",
+          "cost": 7.9,
+          "owned_pct": 6.4,
+          "form": 10.0,
+          "fdr": 3,
+          "fixture": "LEE (A)",
+          "ratio": 3.33
+        },
+        {
           "name": "Gomez",
           "pos": "MID",
           "club": "BHA",
@@ -8778,17 +8800,6 @@ window.FPL_DATA = {
           "fdr": 2,
           "fixture": "CRY (H)",
           "ratio": 3.25
-        },
-        {
-          "name": "Cherki",
-          "pos": "MID",
-          "club": "MCI",
-          "cost": 7.8,
-          "owned_pct": 31.3,
-          "form": 6.3,
-          "fdr": 2,
-          "fixture": "IPS (H)",
-          "ratio": 3.15
         },
         {
           "name": "Manzambi",
@@ -8835,26 +8846,15 @@ window.FPL_DATA = {
           "ratio": 2.67
         },
         {
-          "name": "Cunha",
+          "name": "Enzo",
           "pos": "MID",
-          "club": "MUN",
-          "cost": 7.9,
-          "owned_pct": 6.4,
-          "form": 7.3,
-          "fdr": 3,
-          "fixture": "LEE (A)",
-          "ratio": 2.43
-        },
-        {
-          "name": "Iwobi",
-          "pos": "MID",
-          "club": "FUL",
-          "cost": 5.4,
-          "owned_pct": 0.7,
-          "form": 4.5,
+          "club": "MCI",
+          "cost": 6.9,
+          "owned_pct": 3.8,
+          "form": 5.0,
           "fdr": 2,
-          "fixture": "HUL (H)",
-          "ratio": 2.25
+          "fixture": "IPS (H)",
+          "ratio": 2.5
         }
       ],
       "FWD": [
@@ -8984,7 +8984,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 7.8,
             "owned_pct": 31.3,
-            "form": 6.3,
+            "form": 9.0,
             "xgi_p90": 0.69,
             "fdr": 2.0,
             "score": 6,
@@ -9097,7 +9097,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 8.3,
             "owned_pct": 13.7,
-            "form": 7.7,
+            "form": 10.0,
             "xgi_p90": 0.3,
             "fdr": 2.0,
             "score": 4,
@@ -9163,7 +9163,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 6.8,
             "owned_pct": 1.5,
-            "form": -0.7,
+            "form": 0.0,
             "xgi_p90": 1.03,
             "fdr": 2.0,
             "score": 3,
@@ -9178,7 +9178,7 @@ window.FPL_DATA = {
             "club": "MUN",
             "cost": 7.9,
             "owned_pct": 20.0,
-            "form": 4.0,
+            "form": 5.0,
             "xgi_p90": 0.7,
             "fdr": 3.0,
             "score": 3,
@@ -9247,7 +9247,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 7.8,
             "owned_pct": 31.3,
-            "form": 6.3,
+            "form": 9.0,
             "xgi_p90": 0.69,
             "fdr": 2.67,
             "score": 5,
@@ -9327,7 +9327,7 @@ window.FPL_DATA = {
             "club": "MUN",
             "cost": 7.9,
             "owned_pct": 20.0,
-            "form": 4.0,
+            "form": 5.0,
             "xgi_p90": 0.7,
             "fdr": 3.33,
             "score": 3,
@@ -9486,7 +9486,7 @@ window.FPL_DATA = {
             "club": "MCI",
             "cost": 7.8,
             "owned_pct": 31.3,
-            "form": 6.3,
+            "form": 9.0,
             "xgi_p90": 0.69,
             "fdr": 3.0,
             "score": 5,
@@ -9550,7 +9550,7 @@ window.FPL_DATA = {
             "club": "MUN",
             "cost": 7.9,
             "owned_pct": 20.0,
-            "form": 4.0,
+            "form": 5.0,
             "xgi_p90": 0.7,
             "fdr": 3.33,
             "score": 3,
@@ -9725,7 +9725,7 @@ window.FPL_DATA = {
         "club": "MCI",
         "cost": 7.8,
         "owned_pct": 31.3,
-        "form": 6.3,
+        "form": 9.0,
         "xgi_p90": 0.69,
         "fdr": 3.0,
         "score": 5,
@@ -14264,7 +14264,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-13T15:37:36.676536+00:00",
+      "computed_at": "2026-10-13T15:43:34.630840+00:00",
       "initial": true,
       "squad": [
         {
@@ -14351,12 +14351,12 @@ window.FPL_DATA = {
           "pos": "FWD",
           "club": "MCI",
           "cost": 15.6,
-          "xp": 5.92,
+          "xp": 5.72,
           "fixture": "IPS (H)",
           "fdr": 2,
           "avail": 1.0,
           "buy": 15.6,
-          "why": "xP 5.9 \u00b7 IPS (H) FDR 2 \u00b7 6 SoT, 6 big chances, 1 chances created in last 4"
+          "why": "xP 5.7 \u00b7 IPS (H) FDR 2 \u00b7 6 SoT, 6 big chances, 1 chances created in last 4"
         },
         {
           "id": 12,
@@ -14372,6 +14372,19 @@ window.FPL_DATA = {
           "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 8 SoT, 4 big chances, 7 chances created in last 4"
         },
         {
+          "id": 427,
+          "name": "Mbeumo",
+          "pos": "MID",
+          "club": "MUN",
+          "cost": 7.9,
+          "xp": 4.66,
+          "fixture": "LEE (A)",
+          "fdr": 3,
+          "avail": 1.0,
+          "buy": 7.9,
+          "why": "xP 4.7 \u00b7 LEE (A) FDR 3 \u00b7 5 SoT, 2 big chances, 7 chances created in last 4"
+        },
+        {
           "id": 249,
           "name": "Barry",
           "pos": "FWD",
@@ -14385,30 +14398,17 @@ window.FPL_DATA = {
           "why": "xP 4.8 \u00b7 CHE (H) FDR 4 \u00b7 5 SoT, 7 big chances, 3 chances created in last 4"
         },
         {
-          "id": 427,
-          "name": "Mbeumo",
+          "id": 397,
+          "name": "Semenyo",
           "pos": "MID",
-          "club": "MUN",
-          "cost": 7.9,
-          "xp": 4.46,
-          "fixture": "LEE (A)",
-          "fdr": 3,
+          "club": "MCI",
+          "cost": 8.3,
+          "xp": 4.9,
+          "fixture": "IPS (H)",
+          "fdr": 2,
           "avail": 1.0,
-          "buy": 7.9,
-          "why": "xP 4.5 \u00b7 LEE (A) FDR 3 \u00b7 5 SoT, 2 big chances, 7 chances created in last 4"
-        },
-        {
-          "id": 542,
-          "name": "E.Le F\u00e9e",
-          "pos": "MID",
-          "club": "SUN",
-          "cost": 5.7,
-          "xp": 4.33,
-          "fixture": "BOU (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 5.7,
-          "why": "xP 4.3 \u00b7 BOU (A) FDR 3 \u00b7 3 SoT, 2 big chances, 10 chances created in last 4"
+          "buy": 8.3,
+          "why": "xP 4.9 \u00b7 IPS (H) FDR 2 \u00b7 2 SoT, 0 big chances, 8 chances created in last 4"
         },
         {
           "id": 300,
@@ -14472,9 +14472,9 @@ window.FPL_DATA = {
         236,
         411,
         12,
-        249,
         427,
-        542
+        249,
+        397
       ],
       "bench": [
         300,
@@ -14490,9 +14490,9 @@ window.FPL_DATA = {
       "hit_cost": 0,
       "ft_before": null,
       "ft_after": null,
-      "bank": 5.0,
-      "squad_cost": 95.7,
-      "xp_xi": 61.7,
+      "bank": 2.4,
+      "squad_cost": 98.3,
+      "xp_xi": 62.2,
       "chip": null,
       "buys": {
         "300": 4.4,
@@ -14501,7 +14501,7 @@ window.FPL_DATA = {
         "236": 6.6,
         "12": 9.6,
         "427": 7.9,
-        "542": 5.7,
+        "397": 8.3,
         "124": 6.0,
         "411": 15.6,
         "249": 5.7,
@@ -14519,6 +14519,6 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "generated_at": "2026-10-13T15:37:36.676536+00:00"
+    "generated_at": "2026-10-13T15:43:34.630840+00:00"
   }
 };
