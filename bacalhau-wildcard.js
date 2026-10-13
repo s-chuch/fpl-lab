@@ -253,7 +253,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-12",
-      "total_cost": 93.7,
+      "total_cost": 93.8,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.8,
@@ -268,12 +268,12 @@ window.FPL_WILDCARD_WATCH = {
         "Haaland": 15.6,
         "Tzolakis": 4.7,
         "Tavernier": 6.1,
-        "Kostoulas": 5.6,
+        "Kostoulas": 5.7,
         "Walle Egeli": 4.5
       }
     },
     "entry_prices": {},
-    "total_delta": 1.1,
+    "total_delta": 1.2,
     "players": [
       {
         "name": "De Cuyper",
@@ -330,6 +330,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.7,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Schade",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
@@ -369,15 +378,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.6,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.6,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -503,6 +503,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "De Cuyper",
         "from": 5.0,
         "to": 5.1,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-12",
+        "event": "price_change",
+        "player": "Kostoulas",
+        "from": 5.6,
+        "to": 5.7,
         "delta": 0.1
       }
     ]
