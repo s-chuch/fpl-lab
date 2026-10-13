@@ -1,6 +1,6 @@
 window.FPL_GREEKGOD = {
   "handle": "greekgodFpl",
-  "generated_at": "2026-10-13 05:27 UTC",
+  "generated_at": "2026-10-13 15:35 UTC",
   "post_count": 66,
   "new_since_last_run": 0,
   "earliest": "2026-09-17 03:59 UTC",
@@ -170,14 +170,14 @@ window.FPL_GREEKGOD = {
     }
   ],
   "call_grades": {
-    "graded": 0,
-    "pending": 2,
+    "graded": 2,
+    "pending": 0,
     "good": 0,
-    "mixed": 0,
-    "bad": 0,
-    "good_pct": null,
-    "mixed_pct": null,
-    "bad_pct": null
+    "mixed": 1,
+    "bad": 1,
+    "good_pct": 0.0,
+    "mixed_pct": 50.0,
+    "bad_pct": 50.0
   },
   "calls": [
     {
@@ -234,8 +234,8 @@ window.FPL_GREEKGOD = {
           "player": "Fernandes",
           "kind": "captain",
           "gw": 6,
-          "pts": null,
-          "verdict": "pending"
+          "pts": 1,
+          "verdict": "bad"
         }
       ]
     },
@@ -349,8 +349,8 @@ window.FPL_GREEKGOD = {
           "player": "Haaland",
           "kind": "captain",
           "gw": 6,
-          "pts": null,
-          "verdict": "pending"
+          "pts": 6,
+          "verdict": "mixed"
         }
       ]
     },

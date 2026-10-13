@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from your picks).",
   "recommend": {
-    "captain": "Groß",
-    "captain_ep": 12.3,
-    "vice": "De Cuyper",
-    "vice_ep": 10.7,
+    "captain": "De Cuyper",
+    "captain_ep": 10.5,
+    "vice": "Groß",
+    "vice_ep": 10.0,
     "bench_swaps": [
       {
         "bench": "Tzolakis",
@@ -124,12 +124,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 3.8,
         "starter": "King",
         "starter_ep": 2.0
-      },
-      {
-        "bench": "Kostoulas",
-        "bench_ep": 7.0,
-        "starter": "João Pedro",
-        "starter_ep": 6.0
       }
     ],
     "bench_order": [
@@ -156,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 10.7,
+        "ep_next": 10.5,
         "status": "ok"
       },
       {
@@ -192,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 12.3,
+        "ep_next": 10.0,
         "status": "ok"
       },
       {
@@ -224,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 7.0,
+        "ep_next": 5.5,
         "status": "ok"
       },
       {
