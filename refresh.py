@@ -1341,6 +1341,36 @@ def backfill_volume_log(log, boot, team_id, top_n=10, first_gw=3):
         log[f"gw{g}"] = {"gw": g, "flags": flags, "graded": False, "backfilled": True}
     return log
 
+def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id):
+    """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
+    value + bank) and the same chip availability as you, and Understat chance volume as an extra
+    signal when reachable. Never lets a failure here break the rest of the refresh."""
+    import ai_team
+    try:
+        uwins = {}
+        try:
+            import understat
+            matched, _ = understat.match_to_fpl(understat.player_windows(2026), boot)
+            uwins = matched
+        except Exception as e:
+            _warn(f"ai_team: Understat unavailable, continuing without it: {e}")
+        team = data.get("team") or {}
+        budget = float(team.get("live_value") or team.get("value") or 100.0) + float(team.get("bank") or 0.0)
+        scan_cache = {}
+        def fix_scan(gw):
+            if gw not in scan_cache:
+                scan_cache[gw] = fixture_scan(gw, teams_by_id)
+            return scan_cache[gw]
+        def live(gw):
+            return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0)}
+                    for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
+        ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live,
+               "budget": budget, "chips_used": chips_used, "user_points": {g["gw"]: g["points"] for g in gws}, "uwins": uwins}
+        return ai_team.update(data.get("ai_team"), ctx)
+    except Exception as e:
+        _warn(f"ai_team: update failed, keeping the previous state: {e}")
+        return data.get("ai_team")
+
 def update_volume_log(log, imminent, ds, boot):
     """Track record for the xG/xA "high chance volume" lists. While a gameweek is still open,
     its flags (the players shown in the lists) are recorded and refreshed each run; once its
@@ -2333,6 +2363,7 @@ def main(team_id=TEAM_ID, out_path=None):
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
     data["volume_log"] = update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), data["xg_signal"].get("imminent"), ds, boot)
+    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id)
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     data["team_recovery"] = team_recovery

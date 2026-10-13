@@ -7,12 +7,16 @@ on:
     - cron: "0 16 * * 6"
     - cron: "0 22 * * 6"
     - cron: "0 22 * * 0"
+    # AI team lock window: fires every 30 minutes but the first step skips the run unless it falls
+    # in the hour after "12h before the next gameweek deadline" (see ai_team.py LOCK_HOURS).
+    - cron: "*/30 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
     paths:
       - "refresh.py"
       - "fixtures_external.py"
+      - "ai_team.py"
       - "understat.py"
       - "news_scrape.py"
       - ".github/workflows/refresh.yml"
@@ -32,20 +36,51 @@ jobs:
     # extra alerting is wired up here.
     timeout-minutes: 20
     steps:
+      - name: Gate the 30-minute AI-lock runs
+        id: gate
+        env:
+          EVENT: ${{ github.event_name }}
+          CRON: ${{ github.event.schedule }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import os, json, urllib.request
+          from datetime import datetime, timedelta, timezone
+          run = True
+          if os.environ.get("EVENT") == "schedule" and os.environ.get("CRON") == "*/30 * * * *":
+              run = False
+              try:
+                  req = urllib.request.Request("https://fantasy.premierleague.com/api/bootstrap-static/", headers={"User-Agent": "ShaalandFPLLab/1.0"})
+                  events = json.load(urllib.request.urlopen(req, timeout=30))["events"]
+                  now = datetime.now(timezone.utc)
+                  for e in events:
+                      dl = datetime.fromisoformat(e["deadline_time"].replace("Z", "+00:00"))
+                      if dl > now:
+                          lock = dl - timedelta(hours=12)
+                          run = lock <= now < lock + timedelta(minutes=75)
+                          break
+              except Exception as ex:
+                  import sys; print(f"gate failed: {ex}", file=sys.stderr)
+          print(f"run={'true' if run else 'false'}")
+          PY
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.run != 'false'
         with:
           persist-credentials: true
           fetch-depth: 0
 
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run != 'false'
         with:
           python-version: "3.12"
 
       - name: Syntax check
+        if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py greekgod_analyze.py wildcard_recommend.py fixtures_external.py understat.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py greekgod_analyze.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py
 
       - name: Pull live FPL data
+        if: steps.gate.outputs.run != 'false'
         run: |
           python news_scrape.py
           python refresh.py
@@ -55,6 +90,7 @@ jobs:
           python wildcard_recommend.py shaaland-wildcard.js
 
       - name: Commit data files if they changed
+        if: steps.gate.outputs.run != 'false'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

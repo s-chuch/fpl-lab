@@ -326,3 +326,47 @@ function renderCaptain(D){
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
   document.getElementById("captain").innerHTML=(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
 }
+
+// AI team (ai_team.py): a squad the program picks and plays itself, from GW7, with your money and
+// your chips. Plan tab = what it will do (locked 12h before the deadline); Results tab = points made.
+function aiWhen(iso){
+  try{return new Date(iso).toLocaleString("en-CA",{timeZone:"America/Toronto",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",hour12:false})+" ET";}catch(e){return iso||"";}
+}
+function aiCountdown(iso){
+  const ms=new Date(iso).getTime()-Date.now();
+  if(!(ms>0)) return "now";
+  const h=Math.floor(ms/3600000), m=Math.floor(ms%3600000/60000);
+  return h>=24?`${Math.floor(h/24)}d ${h%24}h`:`${h}h ${m}m`;
+}
+const AI_POS_ORDER=["GKP","DEF","MID","FWD"];
+function aiPlanCard(D,who){
+  const A=D.ai_team, P=A&&A.plan;
+  if(!P) return `<div class="card"><h2>AI team</h2><p class="note">Starts with GW7. Its first plan appears on the next refresh.</p></div>`;
+  const sq=Object.fromEntries(P.squad.map(p=>[p.id,p]));
+  const tag=id=>id===P.captain?` <span class="pill free">C</span>`:id===P.vice?` <span class="pill used">VC</span>`:"";
+  const pill=P.locked?`<span class="pill used">Locked ${esc(aiWhen(P.locked_at))}</span>`:`<span class="pill free">Planned · locks in ${esc(aiCountdown(P.lock_at))}</span>`;
+  const xiRows=AI_POS_ORDER.map(pos=>P.xi.filter(i=>sq[i].pos===pos).map(i=>{const p=sq[i];return `<tr><td>${nameCell(p.name,p.club)}${tag(i)}</td><td>${esc(p.pos)}</td><td>£${p.cost.toFixed(1)}</td><td>${esc(p.fixture)}</td><td><b>${p.xp.toFixed(1)}</b></td></tr>`;}).join("")).join("");
+  const benchRows=P.bench.map((i,n)=>{const p=sq[i];return `<tr><td>${n+1}. ${nameCell(p.name,p.club)}</td><td>${esc(p.pos)}</td><td>£${p.cost.toFixed(1)}</td><td>${esc(p.fixture)}</td><td>${p.xp.toFixed(1)}</td></tr>`;}).join("");
+  const head=`<thead><tr><th style="width:36%">Player</th><th style="width:9%">Pos</th><th style="width:13%">Cost</th><th style="width:30%">Next</th><th style="width:12%">xP</th></tr></thead>`;
+  const moves=P.initial
+    ?`<li>Initial squad: all 15 picked from scratch (free), £${P.squad_cost.toFixed(1)}m spent, £${P.bank.toFixed(1)}m in the bank</li>`
+    :(P.transfers.length?P.transfers.map(t=>`<li>${esc(t.out)} → <b>${esc(t.in)}</b> <span class="note">(+${t.gain} pts${t.hit?", −4 hit":""})</span></li>`).join(""):`<li>No transfers — rolls ${P.ft_before??0} free transfer${P.ft_before===1?"":"s"}</li>`);
+  const chips=(A.chips_available||[]).length?`${(A.chips_available).map(c=>({wildcard:"Wildcard",freehit:"Free Hit",bboost:"Bench Boost","3xc":"Triple Captain"}[c]||c)).join(", ")} available (same as ${who||"you"}) — held, not played yet`:`No chips left (same as ${who||"you"})`;
+  const why=P.squad.map(p=>`<li><span class="who">${esc(p.name)}</span><div class="detail">${esc(p.why||"")}</div></li>`).join("");
+  return `<div class="card"><h2>AI team · GW${P.gw} plan ${pill}</h2><ul class="note-list"><li>Deadline ${esc(aiWhen(P.deadline))} · it makes its moves ${esc(aiWhen(P.lock_at))} (12h before) and shows them here before then</li><li>Formation <b>${esc(P.formation)}</b> · expected ${P.xp_xi} pts (captain doubled) · budget £${A.budget.toFixed(1)}m (${who==="you"?"your":esc(who||"your")+"'s"} squad sell value + bank when it started)</li><li>Chips: ${esc(chips)}</li></ul><h3>Transfers</h3><ul class="note-list">${moves}</ul></div><div class="card"><h2>Starting XI · captain C, vice VC</h2><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><h3>Bench (in auto-sub order)</h3><table class="table-compact">${head}<tbody>${benchRows}</tbody></table><ul class="legend-list"><li>xP = expected points for GW${P.gw}: FPL's form/expected points, our xG/xA model, minutes security, the fixture and availability, plus Understat chance volume</li><li>Squad score also weights the next gameweek's fixture so it avoids short-lived picks; transfers must beat a threshold (free moves +0.6, a −4 hit needs +5.5)</li></ul><details class="fold"><summary><h3>Why each pick</h3></summary><ul class="chiplist">${why}</ul></details></div>`;
+}
+function aiResultsCard(D,who){
+  const A=D.ai_team; if(!A) return `<div class="card"><h2>AI team results</h2><p class="note">Nothing yet.</p></div>`;
+  const H=Object.values(A.history||{}).sort((a,b)=>b.gw-a.gw);
+  if(!H.length) return `<div class="card"><h2>AI team results</h2><p class="note">GW${A.plan?A.plan.gw:7} is the first gameweek it plays; points appear once its deadline passes.</p></div>`;
+  const tot=A.total_points||0, you=A.user_total||0;
+  const rows=H.map(p=>{const r=p.result||{};return `<tr><td>GW${p.gw}${r.final?"":` <span class="pill free">live</span>`}</td><td><b>${r.points??"–"}</b></td><td>${p.user_points??"–"}</td><td class="${cls((r.points??0)-(p.user_points??0))}">${p.user_points==null||r.points==null?"–":sign(r.points-p.user_points)}</td><td>${esc(r.captain||"–")}</td></tr>`;}).join("");
+  const blocks=H.map((p,i)=>{const r=p.result||{};const L=(r.lines||[]).map(l=>`<tr><td>${esc(l.name)}${l.mult>1?` <span class="pill free">C×${l.mult}</span>`:""}</td><td>${esc(l.pos)}</td><td>${l.played?"":`<span class="note">DNP</span> `}<b>${l.pts*l.mult}</b></td></tr>`).join("");const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";
+    return `<details class="card fold"${i===0?" open":""}><summary><h2>GW${p.gw}</h2><span class="foldsum"><b>${r.points??"–"}</b> pts${r.hits?` (−${r.hits} hit)`:""} · ${esc(who||"you")} ${p.user_points??"–"}</span></summary><table class="table-compact"><thead><tr><th style="width:55%">Player</th><th style="width:20%">Pos</th><th style="width:25%">Pts</th></tr></thead><tbody>${L}</tbody></table>${subs}<p class="note">Bench left unused: ${r.bench_pts??0} pts${r.final?"":" · gameweek still in progress"}</p></details>`;}).join("");
+  return `<div class="card"><h2>AI team results</h2><ul class="chiplist"><li><span class="who">AI team total</span><span><b>${tot}</b> pts</span><div class="detail">${esc(who||"You")} over the same gameweeks: ${you} · <b class="${cls(tot-you)}">${sign(tot-you)}</b></div></li></ul><table class="table-compact"><thead><tr><th style="width:22%">GW</th><th style="width:18%">AI</th><th style="width:18%">${esc(who||"You")}</th><th style="width:16%">Diff</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table><ul class="legend-list"><li>AI points use FPL's live scoring: captain doubled (vice if the captain doesn't play), auto-subs in bench order, −4 per extra transfer</li></ul></div>${blocks}`;
+}
+function renderAiTeam(D,who){
+  const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults");
+  if(a) a.innerHTML=aiPlanCard(D,who);
+  if(r) r.innerHTML=aiResultsCard(D,who);
+}
