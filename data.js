@@ -12685,7 +12685,7 @@ window.FPL_DATA = {
   },
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-13T05:25:51.830479+00:00",
+    "fetched_at": "2026-10-13T05:26:41.017276+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
