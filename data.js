@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-13 15:36 UTC",
-  "generated_at_et": "2026-10-13 11:36 AM ET",
+  "generated_at": "2026-10-13 15:37 UTC",
+  "generated_at_et": "2026-10-13 11:37 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -9110,12 +9110,11 @@ window.FPL_DATA = {
             "form": 6.0,
             "xgi_p90": 0.82,
             "fdr": 4.0,
-            "score": 4,
+            "score": 5,
             "why": [
               "In form",
               "Strong xGI",
-              "Great value",
-              "Fade signal"
+              "Great value"
             ]
           },
           {
@@ -9161,6 +9160,22 @@ window.FPL_DATA = {
             "why": [
               "Strong xGI",
               "Great value",
+              "Kind run"
+            ]
+          },
+          {
+            "name": "Gonzalo",
+            "pos": "FWD",
+            "club": "FUL",
+            "cost": 6.1,
+            "owned_pct": 7.3,
+            "form": 2.0,
+            "xgi_p90": 0.63,
+            "fdr": 2.0,
+            "score": 4,
+            "why": [
+              "Strong xGI",
+              "Due a return",
               "Kind run"
             ]
           },
@@ -9292,23 +9307,6 @@ window.FPL_DATA = {
             ]
           },
           {
-            "name": "Gonzalo",
-            "pos": "FWD",
-            "club": "FUL",
-            "cost": 6.1,
-            "owned_pct": 7.3,
-            "form": 2.0,
-            "xgi_p90": 0.63,
-            "fdr": 2.0,
-            "score": 3,
-            "why": [
-              "Strong xGI",
-              "Due a return",
-              "Kind run",
-              "Fade signal"
-            ]
-          },
-          {
             "name": "Rogers",
             "pos": "MID",
             "club": "CHE",
@@ -9329,6 +9327,22 @@ window.FPL_DATA = {
         "horizon": 3,
         "top": [
           {
+            "name": "Barry",
+            "pos": "FWD",
+            "club": "EVE",
+            "cost": 5.7,
+            "owned_pct": 8.6,
+            "form": 6.0,
+            "xgi_p90": 0.82,
+            "fdr": 4.0,
+            "score": 5,
+            "why": [
+              "In form",
+              "Strong xGI",
+              "Great value"
+            ]
+          },
+          {
             "name": "Cherki",
             "pos": "MID",
             "club": "MCI",
@@ -9344,23 +9358,6 @@ window.FPL_DATA = {
               "Great value",
               "Sell-high risk",
               "News/X backed"
-            ]
-          },
-          {
-            "name": "Barry",
-            "pos": "FWD",
-            "club": "EVE",
-            "cost": 5.7,
-            "owned_pct": 8.6,
-            "form": 6.0,
-            "xgi_p90": 0.82,
-            "fdr": 4.0,
-            "score": 4,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Fade signal"
             ]
           },
           {
@@ -9391,6 +9388,22 @@ window.FPL_DATA = {
             "why": [
               "In form",
               "Strong xGI"
+            ]
+          },
+          {
+            "name": "Gonzalo",
+            "pos": "FWD",
+            "club": "FUL",
+            "cost": 6.1,
+            "owned_pct": 7.3,
+            "form": 2.0,
+            "xgi_p90": 0.63,
+            "fdr": 2.33,
+            "score": 4,
+            "why": [
+              "Strong xGI",
+              "Due a return",
+              "Kind run"
             ]
           },
           {
@@ -9452,23 +9465,6 @@ window.FPL_DATA = {
             "why": [
               "Strong xGI",
               "Great value"
-            ]
-          },
-          {
-            "name": "Gonzalo",
-            "pos": "FWD",
-            "club": "FUL",
-            "cost": 6.1,
-            "owned_pct": 7.3,
-            "form": 2.0,
-            "xgi_p90": 0.63,
-            "fdr": 2.33,
-            "score": 3,
-            "why": [
-              "Strong xGI",
-              "Due a return",
-              "Kind run",
-              "Fade signal"
             ]
           },
           {
@@ -9567,6 +9563,22 @@ window.FPL_DATA = {
         "horizon": 6,
         "top": [
           {
+            "name": "Barry",
+            "pos": "FWD",
+            "club": "EVE",
+            "cost": 5.7,
+            "owned_pct": 8.6,
+            "form": 6.0,
+            "xgi_p90": 0.82,
+            "fdr": 3.5,
+            "score": 5,
+            "why": [
+              "In form",
+              "Strong xGI",
+              "Great value"
+            ]
+          },
+          {
             "name": "Cherki",
             "pos": "MID",
             "club": "MCI",
@@ -9582,23 +9594,6 @@ window.FPL_DATA = {
               "Great value",
               "Sell-high risk",
               "News/X backed"
-            ]
-          },
-          {
-            "name": "Barry",
-            "pos": "FWD",
-            "club": "EVE",
-            "cost": 5.7,
-            "owned_pct": 8.6,
-            "form": 6.0,
-            "xgi_p90": 0.82,
-            "fdr": 3.5,
-            "score": 4,
-            "why": [
-              "In form",
-              "Strong xGI",
-              "Great value",
-              "Fade signal"
             ]
           },
           {
@@ -9693,6 +9688,21 @@ window.FPL_DATA = {
             ]
           },
           {
+            "name": "Gonzalo",
+            "pos": "FWD",
+            "club": "FUL",
+            "cost": 6.1,
+            "owned_pct": 7.3,
+            "form": 2.0,
+            "xgi_p90": 0.63,
+            "fdr": 3.0,
+            "score": 3,
+            "why": [
+              "Strong xGI",
+              "Due a return"
+            ]
+          },
+          {
             "name": "Rogers",
             "pos": "MID",
             "club": "CHE",
@@ -9781,26 +9791,29 @@ window.FPL_DATA = {
               "In form",
               "Great value"
             ]
-          },
-          {
-            "name": "Gomez",
-            "pos": "MID",
-            "club": "BHA",
-            "cost": 5.0,
-            "owned_pct": 3.6,
-            "form": 6.5,
-            "xgi_p90": 0.31,
-            "fdr": 3.17,
-            "score": 3,
-            "why": [
-              "In form",
-              "Great value"
-            ]
           }
         ]
       }
     },
     "wc_top3": [
+      {
+        "name": "Barry",
+        "pos": "FWD",
+        "club": "EVE",
+        "cost": 5.7,
+        "owned_pct": 8.6,
+        "form": 6.0,
+        "xgi_p90": 0.82,
+        "fdr": 3.5,
+        "score": 5,
+        "why": [
+          "In form",
+          "Strong xGI",
+          "Great value"
+        ],
+        "esl_own": null,
+        "esl_n": 13
+      },
       {
         "name": "Cherki",
         "pos": "MID",
@@ -9817,25 +9830,6 @@ window.FPL_DATA = {
           "Great value",
           "Sell-high risk",
           "News/X backed"
-        ],
-        "esl_own": null,
-        "esl_n": 13
-      },
-      {
-        "name": "Barry",
-        "pos": "FWD",
-        "club": "EVE",
-        "cost": 5.7,
-        "owned_pct": 8.6,
-        "form": 6.0,
-        "xgi_p90": 0.82,
-        "fdr": 3.5,
-        "score": 4,
-        "why": [
-          "In form",
-          "Strong xGI",
-          "Great value",
-          "Fade signal"
         ],
         "esl_own": null,
         "esl_n": 13
@@ -14355,7 +14349,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-13T15:36:05.044674+00:00",
+      "computed_at": "2026-10-13T15:37:26.229566+00:00",
       "initial": true,
       "squad": [
         {
@@ -14385,19 +14379,6 @@ window.FPL_DATA = {
           "why": "xP 5.6 \u00b7 CRY (H) FDR 2 \u00b7 1 SoT, 0 big chances, 7 chances created in last 4"
         },
         {
-          "id": 504,
-          "name": "Vuskovic",
-          "pos": "DEF",
-          "club": "BHA",
-          "cost": 5.0,
-          "xp": 4.91,
-          "fixture": "CRY (H)",
-          "fdr": 2,
-          "avail": 1.0,
-          "buy": 5.0,
-          "why": "xP 4.9 \u00b7 CRY (H) FDR 2 \u00b7 1 SoT, 2 big chances, 0 chances created in last 4"
-        },
-        {
           "id": 330,
           "name": "Bogle",
           "pos": "DEF",
@@ -14409,6 +14390,32 @@ window.FPL_DATA = {
           "avail": 1.0,
           "buy": 4.7,
           "why": "xP 4.7 \u00b7 MUN (H) FDR 4 \u00b7 5 SoT, 2 big chances, 3 chances created in last 4"
+        },
+        {
+          "id": 8,
+          "name": "Calafiori",
+          "pos": "DEF",
+          "club": "ARS",
+          "cost": 5.9,
+          "xp": 4.53,
+          "fixture": "NFO (A)",
+          "fdr": 3,
+          "avail": 1.0,
+          "buy": 5.9,
+          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 2 SoT, 2 big chances, 4 chances created in last 4"
+        },
+        {
+          "id": 124,
+          "name": "Gro\u00df",
+          "pos": "MID",
+          "club": "BHA",
+          "cost": 6.0,
+          "xp": 6.42,
+          "fixture": "CRY (H)",
+          "fdr": 2,
+          "avail": 1.0,
+          "buy": 6.0,
+          "why": "xP 6.4 \u00b7 CRY (H) FDR 2 \u00b7 2 SoT, 2 big chances, 12 chances created in last 4"
         },
         {
           "id": 236,
@@ -14424,19 +14431,6 @@ window.FPL_DATA = {
           "why": "xP 5.2 \u00b7 CHE (H) FDR 4 \u00b7 4 SoT, 3 big chances, 9 chances created in last 4"
         },
         {
-          "id": 12,
-          "name": "Saka",
-          "pos": "MID",
-          "club": "ARS",
-          "cost": 9.6,
-          "xp": 4.49,
-          "fixture": "NFO (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 9.6,
-          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 8 SoT, 4 big chances, 7 chances created in last 4"
-        },
-        {
           "id": 411,
           "name": "Haaland",
           "pos": "FWD",
@@ -14450,6 +14444,19 @@ window.FPL_DATA = {
           "why": "xP 5.9 \u00b7 IPS (H) FDR 2 \u00b7 6 SoT, 6 big chances, 1 chances created in last 4"
         },
         {
+          "id": 12,
+          "name": "Saka",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 9.6,
+          "xp": 4.49,
+          "fixture": "NFO (A)",
+          "fdr": 3,
+          "avail": 1.0,
+          "buy": 9.6,
+          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 8 SoT, 4 big chances, 7 chances created in last 4"
+        },
+        {
           "id": 249,
           "name": "Barry",
           "pos": "FWD",
@@ -14461,19 +14468,6 @@ window.FPL_DATA = {
           "avail": 1.0,
           "buy": 5.7,
           "why": "xP 4.8 \u00b7 CHE (H) FDR 4 \u00b7 5 SoT, 7 big chances, 3 chances created in last 4"
-        },
-        {
-          "id": 8,
-          "name": "Calafiori",
-          "pos": "DEF",
-          "club": "ARS",
-          "cost": 5.9,
-          "xp": 4.53,
-          "fixture": "NFO (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 5.9,
-          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 2 SoT, 2 big chances, 4 chances created in last 4"
         },
         {
           "id": 427,
@@ -14515,19 +14509,6 @@ window.FPL_DATA = {
           "why": "xP 0.9 \u00b7 MCI (A) FDR 5"
         },
         {
-          "id": 45,
-          "name": "McGinn",
-          "pos": "MID",
-          "club": "AVL",
-          "cost": 5.4,
-          "xp": 4.61,
-          "fixture": "NEW (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 5.4,
-          "why": "xP 4.6 \u00b7 NEW (A) FDR 3 \u00b7 3 SoT, 2 big chances, 7 chances created in last 4"
-        },
-        {
           "id": 176,
           "name": "Dasilva",
           "pos": "DEF",
@@ -14552,48 +14533,61 @@ window.FPL_DATA = {
           "avail": 1.0,
           "buy": 6.0,
           "why": "xP 4.0 \u00b7 MUN (H) FDR 4 \u00b7 4 SoT, 4 big chances, 2 chances created in last 4"
+        },
+        {
+          "id": 173,
+          "name": "Thomas",
+          "pos": "DEF",
+          "club": "COV",
+          "cost": 4.0,
+          "xp": 3.91,
+          "fixture": "TOT (A)",
+          "fdr": 3,
+          "avail": 1.0,
+          "buy": 4.0,
+          "why": "xP 3.9 \u00b7 TOT (A) FDR 3 \u00b7 0 SoT, 0 big chances, 3 chances created in last 4"
         }
       ],
       "xi": [
         109,
         115,
-        504,
         330,
-        236,
-        12,
-        411,
-        249,
         8,
+        124,
+        236,
+        411,
+        12,
+        249,
         427,
         542
       ],
       "bench": [
         300,
-        45,
         176,
-        346
+        346,
+        173
       ],
-      "captain": 411,
-      "vice": 115,
-      "formation": "4-4-2",
+      "captain": 124,
+      "vice": 411,
+      "formation": "3-5-2",
       "transfers": [],
       "hits": 0,
       "hit_cost": 0,
       "ft_before": null,
       "ft_after": null,
-      "bank": 4.5,
-      "squad_cost": 96.1,
-      "xp_xi": 59.6,
+      "bank": 4.9,
+      "squad_cost": 95.7,
+      "xp_xi": 61.7,
       "chip": null,
       "buys": {
         "300": 4.4,
         "115": 5.1,
-        "504": 5.0,
+        "173": 4.0,
         "236": 6.6,
         "12": 9.6,
         "427": 7.9,
         "542": 5.7,
-        "45": 5.4,
+        "124": 6.0,
         "411": 15.6,
         "249": 5.7,
         "346": 6.0,
@@ -14607,6 +14601,6 @@ window.FPL_DATA = {
     "total_points": 0,
     "user_total": 0,
     "chips_available": [],
-    "generated_at": "2026-10-13T15:36:05.044674+00:00"
+    "generated_at": "2026-10-13T15:37:26.229566+00:00"
   }
 };

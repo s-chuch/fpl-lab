@@ -1,245 +1,25 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-13 15:35 UTC",
+  "generated_at": "2026-10-13 15:37 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [
-    {
-      "text": "Cherki (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Cherki",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "De Cuyper (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "De Cuyper",
-      "club": "BHA",
-      "tags": []
-    },
-    {
-      "text": "Fernandes (TOT) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Fernandes",
-      "club": "TOT",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Gabriel (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Gabriel",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Gvardiol (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Gvardiol",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "Jo\u00e3o Pedro (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: fade/sell, injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Jo\u00e3o Pedro",
-      "club": "CHE",
-      "tags": [
-        "fade/sell",
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Konsa (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Konsa",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Palmer (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Palmer",
-      "club": "CHE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Rayan (BOU) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Rayan",
-      "club": "BOU",
-      "tags": []
-    },
-    {
-      "text": "Rogers (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Rogers",
-      "club": "CHE",
-      "tags": []
-    },
-    {
-      "text": "Semenyo (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 3/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Semenyo",
-      "club": "MCI",
-      "tags": []
-    }
-  ],
+  "agreed": [],
   "split": [
     {
-      "text": "Affengruber (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "text": "Thomas (COV) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
       ],
-      "player": "Affengruber",
-      "club": "FUL",
+      "player": "Thomas",
+      "club": "COV",
       "tags": []
     },
     {
-      "text": "Barry (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Calafiori (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "text": "GW7 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Calvert-Lewin (LEE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Calvert-Lewin",
-      "club": "LEE",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "David (BHA) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "David",
-      "club": "BHA",
-      "tags": []
-    },
-    {
-      "text": "Dewsbury-Hall (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Dewsbury-Hall",
-      "club": "EVE",
-      "tags": []
-    },
-    {
-      "text": "Foden (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Foden",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "Gibbs-White (NFO) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Gibbs-White",
-      "club": "NFO",
-      "tags": []
-    },
-    {
-      "text": "Gonzalo (FUL) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Gonzalo",
-      "club": "FUL",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Haaland (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "injury/doubt"
       ]
     }
   ],
@@ -269,69 +49,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 7 Differentials: 5 Overlooked Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-differentials/"
-    },
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Expert team reveals for Matchday 2",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-2026-27-expert-team-reveals-for-matchday-2"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 2: Best Wildcard Team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-matchday-2-best-wildcard-team"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 2: Best Limitless Team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-matchday-2-best-limitless-team"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Predicted Matchday 2 line-ups for all 36 teams",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-2026-27-predicted-matchday-2-line-ups-for-all-36-teams"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: \u00a34.9m midfielder on pens + \u00a34.0m DefCon king Thomas",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/fpl-notes-4-9m-midfielder-on-pens-4-0m-defcon-king-thomas"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 2: Best differentials",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-matchday-2-best-differentials-2"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Matchday 2 Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-2026-27-matchday-2-early-scout-picks"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7 early Scout Picks: Man City triple-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/fpl-gameweek-7-early-scout-picks-man-city-triple-up"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 2 Best and worst fixtures",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/ucl-fantasy-matchday-2-best-and-worst-fixtures"
-    },
-    {
-      "source": "Scout",
-      "title": "Why haven\u2019t the FPL auto-subs been processed yet?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/why-havent-the-fpl-auto-subs-been-processed-yet"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "seen": [
     "https://allaboutfpl.com/2026/08/best-fpl-goalkeepers-to-target-for-the-2026-27-fpl-season/",
     "https://allaboutfpl.com/2026/08/best-fpl-midfielders-at-each-price-point-for-the-2026-27-season/",
