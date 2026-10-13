@@ -1204,11 +1204,11 @@ UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
 UNDERSTAT_ASSIST_CC = 4     # chances created (shots the player set up) with no assist => assist due
 UNDERSTAT_ASSIST_BIG = 2    # ...or this many big chances created
 
-def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=None):
+def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=None, windows=None, extra_owned=None):
     """Goal due: the player's last few appearances show real shot volume (shots on target /
     big chances) but no goal. Assist due: chances created (shots they set up, big ones counted
     separately) but no assist. Counts are from Understat's per-shot records (understat.py)."""
-    windows = understat.player_windows(2026)
+    windows = windows if windows is not None else understat.player_windows(2026)
     matched, unmatched = understat.match_to_fpl(windows, boot)
     if len(matched) < 100:
         _warn(f"imminent: only {len(matched)} Understat players matched to FPL; not using it")
@@ -1217,7 +1217,7 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
         print(f"[understat.py] unmatched: {', '.join(unmatched[:12])}")
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     els = {e["id"]: e for e in boot["elements"]}
-    owned = {(r["name"], r["club"]) for r in squad_rows}
+    owned = {(r["name"], r["club"]) for r in squad_rows} | set(extra_owned or ())
     goal, assist, due_by = [], [], {}
     for eid, w in matched.items():
         el = els[eid]
@@ -1301,6 +1301,45 @@ def _imminent_fpl(boot, all_rows, squad_rows, pool, top_n):
     return {"source": "fpl", "window": IMMINENT_WINDOW, "min_xg": IMMINENT_XG, "min_xa": IMMINENT_XA,
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned_keys][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned_keys][:top_n]}
+
+def backfill_volume_log(log, boot, team_id, top_n=10, first_gw=3):
+    """Rebuild the lists as they would have looked before each past gameweek (using only the
+    matches played before its deadline, that week's fixtures and the squad you held then) so the
+    track record has history. Entries are marked backfilled; grading happens in update_volume_log.
+    Ownership % is today's (FPL does not keep history), which only affects the small
+    differential bonus in the ranking."""
+    import understat
+    log = dict(log or {})
+    finished = sorted(e["id"] for e in boot["events"] if e.get("finished"))
+    todo = [g for g in finished if g >= first_gw and f"gw{g}" not in log]
+    if not todo:
+        return log
+    try:
+        fetched = understat.fetch_matches(2026)
+    except Exception as e:
+        _warn(f"volume_log backfill: Understat unavailable: {e}")
+        return log
+    teams = {t["id"]: t for t in boot["teams"]}
+    els = {e["id"]: e for e in boot["elements"]}
+    for g in todo:
+        ev = next(e for e in boot["events"] if e["id"] == g)
+        cutoff = (ev.get("deadline_time") or "").replace("T", " ").replace("Z", "")
+        if not cutoff:
+            continue
+        try:
+            fx = fixture_map(g, teams)
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{g}/picks/")
+            owned = {(els[p["element"]]["web_name"], teams[els[p["element"]]["team"]]["short_name"]) for p in pk.get("picks", []) if p["element"] in els}
+            res = _imminent_understat(boot, [], top_n, understat, fx, windows=understat.player_windows(2026, before=cutoff, fetched=fetched), extra_owned=owned)
+        except Exception as e:
+            _warn(f"volume_log backfill GW{g}: {e}")
+            continue
+        if not res:
+            continue
+        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "kind": kind}
+                 for kind in ("goal", "assist") for x in res.get(kind, [])]
+        log[f"gw{g}"] = {"gw": g, "flags": flags, "graded": False, "backfilled": True}
+    return log
 
 def update_volume_log(log, imminent, ds, boot):
     """Track record for the xG/xA "high chance volume" lists. While a gameweek is still open,
@@ -2293,7 +2332,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
-    data["volume_log"] = update_volume_log(data.get("volume_log"), data["xg_signal"].get("imminent"), ds, boot)
+    data["volume_log"] = update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), data["xg_signal"].get("imminent"), ds, boot)
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     data["team_recovery"] = team_recovery

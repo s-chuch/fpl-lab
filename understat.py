@@ -88,9 +88,13 @@ def fetch_matches(season):
     return played, cache["matches"]
 
 
-def player_windows(season=2026):
-    """{understat_name: stats over the player's last WINDOW appearances (inside the fetched matches)}."""
-    played, matches = fetch_matches(season)
+def player_windows(season=2026, before=None, fetched=None):
+    """{understat_name: stats over the player's last WINDOW appearances (inside the fetched matches)}.
+    `before` ("YYYY-MM-DD HH:MM:SS", UTC) only counts matches kicked off earlier, to rebuild what the
+    lists would have shown before a past gameweek; `fetched` reuses an earlier fetch_matches result."""
+    played, matches = fetched or fetch_matches(season)
+    if before:
+        played = [m for m in played if m["datetime"] < before]
     apps = {}  # name -> [(match id, club)] for matches the player played in, oldest first
     for m in played:
         rec = matches.get(m["id"])
