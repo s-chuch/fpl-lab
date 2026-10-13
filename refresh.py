@@ -1099,7 +1099,7 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
         "fixtures": {"horizon": horizon, "ticker": {"gws": ticker_gws, "rows": ticker_rows}, "rows": fixture_rows, "easiest": easiest, "hardest": hardest, "first_blank": first_blank, "first_double": first_double},
     }
 
-def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10, exclude=None):
+def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10, exclude=None, next_fixture_map=None):
     """Flag your own squad's players as over/underperforming their underlying
     numbers — a concrete "due for a dry patch" (sell-high) or "still getting
     the chances, patience/buy-low" signal, using FPL's own expected-goals
@@ -1177,7 +1177,7 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
             _warn(f"build_xg_signal: could not load GW{picks_gw} squad: {e}")
     rows.sort(key=lambda r: -abs(r["diff"]))
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
-    imminent = _imminent_returns(boot, all_rows, rows, pool, top_n)
+    imminent = _imminent_returns(boot, all_rows, rows, pool, top_n, next_fixture_map)
     return {
         "threshold": threshold, "min_minutes": min_minutes, "top_n": top_n,
         "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under,
@@ -1188,11 +1188,11 @@ IMMINENT_WINDOW = 4        # last N gameweeks the player actually played in
 IMMINENT_XG = 1.0          # xG over the window with no goal => goal "due"
 IMMINENT_XA = 0.7          # xA over the window with no assist => assist "due"
 
-def _imminent_returns(boot, all_rows, squad_rows, pool, top_n):
+def _imminent_returns(boot, all_rows, squad_rows, pool, top_n, next_fixture_map=None):
     """Understat shot data when reachable (real shots on target / big chances), else FPL's own xG/xA."""
     try:
         import understat
-        res = _imminent_understat(boot, squad_rows, top_n, understat)
+        res = _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map)
         if res:
             return res
     except Exception as e:
@@ -1204,7 +1204,7 @@ UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
 UNDERSTAT_ASSIST_CC = 4     # chances created (shots the player set up) with no assist => assist due
 UNDERSTAT_ASSIST_BIG = 2    # ...or this many big chances created
 
-def _imminent_understat(boot, squad_rows, top_n, understat):
+def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=None):
     """Goal due: the player's last few appearances show real shot volume (shots on target /
     big chances) but no goal. Assist due: chances created (shots they set up, big ones counted
     separately) but no assist. Counts are from Understat's per-shot records (understat.py)."""
@@ -1227,7 +1227,14 @@ def _imminent_understat(boot, squad_rows, top_n, understat):
         item = {"name": el["web_name"], "pos": POS[el["element_type"]], "club": key[1], "cost": el["now_cost"] / 10,
                 "owned_pct": float(el.get("selected_by_percent") or 0), "gws": w["apps"], "shots": w["shots"],
                 "sot": w["sot"], "big": w["big"], "goals": w["goals"], "xg": w["xg"],
-                "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"]}
+                "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"], "eid": eid}
+        fx = next_fixture_map.get(el["team"]) if next_fixture_map else None
+        item["next"] = f"{fx['opp']} ({fx['side']})" if fx else "Blank"
+        item["fdr"] = fx["fdr"] if fx else None
+        # Easy next fixture and a low-owned differential rank higher; a blank GW drops a player
+        # down, since no fixture means no chance of a return.
+        bonus = (3 - fx["fdr"] if fx and fx.get("fdr") else -2) + (1 if item["owned_pct"] < 10 else 0)
+        item["bonus"] = bonus
         due = []
         if w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
             due.append("goal"); goal.append(item)
@@ -1236,8 +1243,8 @@ def _imminent_understat(boot, squad_rows, top_n, understat):
         due_by[key] = due
     for r in squad_rows:
         r["due"] = due_by.get((r["name"], r["club"]), [])
-    goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"]))
-    assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"]))
+    goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"] + x["bonus"]))
+    assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"] + x["bonus"]))
     return {"source": "understat", "window": understat.WINDOW, "goal_rule": f"{UNDERSTAT_GOAL_SOT}+ shots on target or {UNDERSTAT_GOAL_BIG}+ big chances",
             "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created",
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned][:top_n],
@@ -1294,6 +1301,40 @@ def _imminent_fpl(boot, all_rows, squad_rows, pool, top_n):
     return {"source": "fpl", "window": IMMINENT_WINDOW, "min_xg": IMMINENT_XG, "min_xa": IMMINENT_XA,
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned_keys][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned_keys][:top_n]}
+
+def update_volume_log(log, imminent, ds, boot):
+    """Track record for the xG/xA "high chance volume" lists. While a gameweek is still open,
+    its flags (the players shown in the lists) are recorded and refreshed each run; once its
+    deadline passes the entry freezes, and when the gameweek finishes it is graded against FPL's
+    live goals/assists (did the flagged player score / assist, and did they play at all), along
+    with the league-wide rate for context. Builds a real hit rate over the season."""
+    log = dict(log or {})
+    gw = ds.get("next_gw")
+    if imminent and imminent.get("source") == "understat" and gw:
+        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "kind": kind}
+                 for kind in ("goal", "assist") for x in imminent.get(kind, [])]
+        log[f"gw{gw}"] = {"gw": gw, "flags": flags, "graded": False}
+    finished = {e["id"] for e in boot["events"] if e.get("finished")}
+    els = {e["id"]: e for e in boot["elements"]}
+    for key, entry in log.items():
+        if entry.get("graded") or entry["gw"] not in finished:
+            continue
+        try:
+            live = {el["id"]: el["stats"] for el in get(f"https://fantasy.premierleague.com/api/event/{entry['gw']}/live/").get("elements", [])}
+        except Exception as e:
+            _warn(f"volume_log: could not grade GW{entry['gw']}: {e}")
+            continue
+        for f in entry["flags"]:
+            st = live.get(f["eid"]) or {}
+            f["played"] = int(st.get("minutes") or 0) > 0
+            f["got"] = int(st.get("goals_scored" if f["kind"] == "goal" else "assists") or 0)
+        outfield = [st for eid, st in live.items() if els.get(eid, {}).get("element_type") != 1 and int(st.get("minutes") or 0) > 0]
+        n = len(outfield) or 1
+        entry["baseline"] = {"players": len(outfield),
+                             "goal": round(sum(1 for st in outfield if int(st.get("goals_scored") or 0) > 0) / n, 3),
+                             "assist": round(sum(1 for st in outfield if int(st.get("assists") or 0) > 0) / n, 3)}
+        entry["graded"] = True
+    return log
 
 def build_form_fdr(boot, next_fixture_map, min_minutes=90, top_n=10, exclude=None):
     """Every qualifying player's recent form (FPL's own rolling average
@@ -2251,7 +2292,8 @@ def main(team_id=TEAM_ID, out_path=None):
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
-    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
+    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
+    data["volume_log"] = update_volume_log(data.get("volume_log"), data["xg_signal"].get("imminent"), ds, boot)
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     data["team_recovery"] = team_recovery
