@@ -411,9 +411,16 @@ def score_plan(plan, live, final):
 
 
 # --------------------------------------------------------------------------- main entry
-def new_state(budget, chips_used):
-    return {"version": 1, "start_gw": START_GW, "budget": round(budget, 1), "bank": round(budget, 1), "ft": 0,
-            "squad": [], "buys": {}, "chips_used": dict(chips_used), "plan": None, "history": {}}
+VERSION = 2   # v2: starts as a copy of the user's team (squad, bank, free transfers, chips, points)
+
+
+def new_state(clone, start_gw, now):
+    """The AI team begins as a snapshot of your team - same 15 players at the prices you paid, same
+    bank, same free transfers, same chips, same points so far - and plays on its own from then on."""
+    return {"version": VERSION, "start_gw": start_gw, "cloned_from_gw": clone["gw"], "cloned_at": now.isoformat(),
+            "budget": round(clone["sell_value"] + clone["bank"], 1), "bank": round(clone["bank"], 1), "ft": int(clone["ft"]),
+            "squad": [int(i) for i in clone["squad"]], "buys": {str(k): v for k, v in clone["buys"].items()},
+            "chips_used": dict(clone["chips_used"]), "plan": None, "history": {}, "changes": []}
 
 
 def _flag_text(p):
@@ -463,16 +470,20 @@ def watch_locked(plan, vals, now):
 def update(state, ctx):
     """Advance the AI team one refresh. ctx keys: now (datetime, UTC), boot, deadline_state,
     fix_scan (callable gw -> {team: [fixtures]}), live (callable gw -> {id: {minutes, points}}),
-    budget (user's sell value + bank), chips_used (user's), user_points ({gw: pts}), uwins ({id: window}).
+    clone (your squad/bank/free transfers/chips at the moment of the copy), user_points ({gw: pts}),
+    uwins ({id: window}), risk (daily-check inputs).
     Returns the new state (pure: input is not mutated)."""
     state = copy.deepcopy(state) if state else None
     now, boot, ds = ctx["now"], ctx["boot"], ctx["deadline_state"]
     events = {e["id"]: e for e in boot["events"]}
     target = ds.get("next_gw")
+    if state is not None and state.get("version") != VERSION:
+        state = None                     # an older AI team that was built from scratch: replace it with the copy
     if state is None:
-        if not target or target < START_GW:
+        clone = ctx.get("clone")
+        if not clone or not target or target < START_GW:
             return None
-        state = new_state(ctx["budget"], ctx["chips_used"])
+        state = new_state(clone, target, now)
     finished = {i for i, e in events.items() if e.get("finished")}
     gws_played = max(1, len(finished) + (1 if ds.get("locked_gw") and ds["locked_gw"] not in finished else 0))
 
@@ -521,7 +532,11 @@ def update(state, ctx):
     h = state["history"].values()
     state["total_points"] = sum(p.get("result", {}).get("points", 0) for p in h)
     state["user_total"] = sum(p.get("user_points") or 0 for p in h)
-    state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc") if not (ctx["chips_used"] or {}).get(c)]
+    up = ctx.get("user_points") or {}
+    state["baseline_points"] = sum(v for g, v in up.items() if g < state["start_gw"])   # copied from you
+    state["season_points"] = state["baseline_points"] + state["total_points"]
+    state["user_season"] = sum(up.values())
+    state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc") if not state["chips_used"].get(c)]
     state["changes"] = state["changes"][-60:]
     state["last_check"] = now.isoformat()
     state["generated_at"] = now.isoformat()

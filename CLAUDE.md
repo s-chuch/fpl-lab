@@ -25,13 +25,17 @@
 
 ## AI team (Plan / Results tabs under "AI team")
 
-- `ai_team.py` plays a squad on its own from GW7 with the user's money (sell value + bank at
-  start) and chip availability. State lives in `data["ai_team"]` (data.js / bacalhau-data.js),
-  advanced by `refresh.py`'s `run_ai_team()` every run. Failures there never break the refresh.
+- `ai_team.py` is a copy of the user's team that then plays on its own. On its first run (state
+  version 2) `refresh.py`'s `_clone_user_team()` snapshots the locked GW's 15 players at the prices
+  paid, the bank, the free transfers banked, the chips used and the points so far; after that the AI
+  ignores what the user does. State lives in `data["ai_team"]` (data.js / bacalhau-data.js),
+  advanced by `run_ai_team()` every run. Failures there never break the refresh.
+- Season points = the user's points up to the copy (`baseline_points`) + what the AI scores itself.
 - Each GW: the plan is recomputed every run until 12h before the deadline (`LOCK_HOURS`), then
   the first run after that locks it (transfers, XI, bench order, captain, vice). `refresh.yml`
   has a `*/30` cron whose first step skips the run unless it lands in the hour after the lock
-  time; the normal crons are unaffected.
+  time; the normal crons are unaffected. Every run re-checks injuries, rotation, congestion and
+  minutes, and logs changes (`changes`, `watch_locked`).
 - Points come from FPL's live data (auto-subs, captain/vice, hits). Chip *decisions* are not
-  built: it only lists the chips still available (same as the user). Revisit when chips reset (GW20).
+  built: it only lists the chips still available. Revisit when chips reset (GW20).
 - `ep_next` in FPL's bootstrap currently equals `form`, so it only gets a 20% weight.

@@ -1384,7 +1384,30 @@ def build_daily_check(prev, boot, squad_ids, ai_plan, rotation, now):
     return {"checked_at": at, "previous_check": (prev or {}).get("checked_at"), "watching": len(snap),
             "changes": changes, "history": history[-80:], "snapshot": snap}
 
-def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None):
+def _clone_user_team(boot, team_id, ds, hist, chips_used, team):
+    """Snapshot of the user's team right now for the AI team: the locked gameweek's 15 players at the
+    prices actually paid (latest transfer in, ignoring Free Hit weeks; otherwise the start price), the
+    bank, the free transfers banked for the next gameweek, and the chips already used."""
+    import ai_team
+    gw = ds.get("locked_gw")
+    if not gw:
+        return None
+    els = {e["id"]: e for e in boot["elements"]}
+    pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+    ids = [p["element"] for p in pk.get("picks", [])]
+    if len(ids) != 15:
+        return None
+    fh = {c["event"] for c in (hist or {}).get("chips", []) if c.get("name") == "freehit"}
+    paid = {}
+    for t in sorted(get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/"), key=lambda t: (t.get("event") or 0, t.get("time") or "")):
+        if t.get("event") not in fh:
+            paid[t["element_in"]] = (t.get("element_in_cost") or 0) / 10
+    buys = {i: paid.get(i) or (els[i]["now_cost"] - (els[i].get("cost_change_start") or 0)) / 10 for i in ids}
+    sell = round(sum(ai_team.sell_price(buys[i], els[i]["now_cost"] / 10) for i in ids), 1)
+    return {"gw": gw, "squad": ids, "buys": buys, "sell_value": sell, "bank": float(team.get("bank") or 0.0),
+            "ft": free_transfers_for_next(hist or {}), "chips_used": dict(chips_used)}
+
+def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None):
     """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
     value + bank) and the same chip availability as you, and Understat chance volume as an extra
     signal when reachable. Never lets a failure here break the rest of the refresh."""
@@ -1398,7 +1421,9 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
         except Exception as e:
             _warn(f"ai_team: Understat unavailable, continuing without it: {e}")
         team = data.get("team") or {}
-        budget = float(team.get("live_value") or team.get("value") or 100.0) + float(team.get("bank") or 0.0)
+        clone = None
+        if not (data.get("ai_team") or {}).get("version") == 2:      # only needed once, to make the copy
+            clone = _clone_user_team(boot, team_id, ds, hist, chips_used, team)
         scan_cache = {}
         def fix_scan(gw):
             if gw not in scan_cache:
@@ -1429,7 +1454,7 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
         except Exception as e:
             _warn(f"ai_team: reported rotation unavailable: {e}")
         ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
-               "budget": budget, "chips_used": chips_used, "user_points": {g["gw"]: g["points"] for g in gws}, "uwins": uwins}
+               "clone": clone, "user_points": {g["gw"]: g["points"] for g in gws}, "uwins": uwins}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")
@@ -2427,7 +2452,7 @@ def main(team_id=TEAM_ID, out_path=None):
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
     data["volume_log"] = update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), data["xg_signal"].get("imminent"), ds, boot)
-    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"))
+    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist)
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
     try:
