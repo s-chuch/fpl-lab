@@ -62,7 +62,7 @@ PRIOR = {"GKP": {"xg": 0.0, "xa": 0.0, "cs": 0.30}, "DEF": {"xg": 0.04, "xa": 0.
          "MID": {"xg": 0.12, "xa": 0.10, "cs": 0.30}, "FWD": {"xg": 0.30, "xa": 0.10, "cs": 0.30}}
 
 
-def model_xp(el, fixtures, gws_played, uwin=None):
+def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     """Expected points for one gameweek from the player's own numbers and the fixtures:
     minutes security x (appearance + attacking returns + clean sheet + saves - goals conceded + bonus).
     Everything per fixture, summed (double gameweek = two, blank = zero)."""
@@ -71,6 +71,9 @@ def model_xp(el, fixtures, gws_played, uwin=None):
     pos = POS[el["element_type"]]
     mins = _f(el.get("minutes"))
     mp = min(1.0, mins / (90.0 * max(1, gws_played)))
+    if recent and len(recent) >= 2:
+        # what he has actually played in the last few finished gameweeks counts as much as the season
+        mp = 0.5 * mp + 0.5 * min(1.0, sum(min(90, m) for m in recent) / (90.0 * len(recent)))
     w = min(1.0, mins / 900.0)
     pr = PRIOR[pos]
     xg90 = w * _f(el.get("expected_goals_per_90")) + (1 - w) * pr["xg"]
@@ -94,26 +97,45 @@ def model_xp(el, fixtures, gws_played, uwin=None):
     return total * mp
 
 
-def player_values(boot, fix_next, fix_after, gws_played, uwins=None):
+def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
     """{element id: {xp, xp2, value, fixture label...}} for everyone; value = xp + weight * xp2."""
     out = {}
+    risk = risk or {}
+    rec = risk.get("recent_minutes") or {}
+    club_rest = risk.get("club_rest") or {}
+    rot_names = risk.get("rot_names") or {}
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     for el in boot["elements"]:
         av = availability(el)
+        flags, factor = [], 1.0
+        recent = rec.get(el["id"])
+        if recent and len(recent) >= 2:
+            season = min(1.0, _f(el.get("minutes")) / (90.0 * max(1, gws_played)))
+            share = sum(min(90, m) for m in recent) / (90.0 * len(recent))
+            if season >= 0.5 and (share < 0.6 * season or recent[-1] < 45):
+                flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); factor *= 0.85
+        cr = club_rest.get(el["team"]) or {}
+        if cr.get("rest_days") is not None and cr["rest_days"] <= 3:
+            flags.append(f"only {cr['rest_days']}d rest before its next match"); factor *= 0.93
+        if cr.get("turnaround") is not None and cr["turnaround"] <= 3:
+            flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= 0.93
+        if el["web_name"] in rot_names:
+            flags.append(f"rotation reported: {str(rot_names[el['web_name']])[:90]}"); factor *= 0.8
         f1, f2 = fix_next.get(el["team"], []), fix_after.get(el["team"], [])
         uw = (uwins or {}).get(el["id"])
-        m1 = model_xp(el, f1, gws_played, uw) * av
+        m1 = model_xp(el, f1, gws_played, uw, recent) * av * factor
         ep = _f(el.get("ep_next"), None) if el.get("ep_next") not in (None, "") else None
-        xp1 = (0.8 * m1 + 0.2 * ep) if ep is not None and f1 else m1   # ep_next mirrors recent form this season: a light recency nudge
+        xp1 = (0.8 * m1 + 0.2 * ep * factor) if ep is not None and f1 else m1   # ep_next mirrors recent form this season: a light recency nudge
         if av == 0:
             xp1 = 0.0
-        xp2 = model_xp(el, f2, gws_played, uw) * (1.0 if av > 0.5 else av)
+        xp2 = model_xp(el, f2, gws_played, uw, recent) * (1.0 if av > 0.5 else av) * factor
         label = " + ".join(f"{fx['opp']} ({fx['side']})" for fx in f1) or "Blank"
         out[el["id"]] = {
             "id": el["id"], "name": el["web_name"], "pos": POS[el["element_type"]], "team": el["team"],
             "club": teams[el["team"]], "cost": el["now_cost"] / 10, "xp": round(xp1, 2), "xp2": round(xp2, 2),
             "value": xp1 + NEXT_WEIGHT * xp2, "fixture": label, "fdr": (f1[0].get("fdr") if f1 else None),
             "avail": av, "status": el.get("status"), "news": el.get("news") or "", "owned": _f(el.get("selected_by_percent")),
+            "risks": flags,
         }
     return out
 
@@ -309,6 +331,7 @@ def _why(v, uwin, role):
             bits.append(f"{uwin.get('sot', 0)} SoT, {uwin.get('big', 0)} big chances, {uwin.get('cc', 0)} chances created in last {uwin['apps']}")
     if v["avail"] < 1:
         bits.append(f"{int(v['avail'] * 100)}% fit" + (f" ({v['news']})" if v["news"] else ""))
+    bits.extend("risk: " + r for r in v.get("risks", []))
     return " · ".join(bits)
 
 
@@ -333,6 +356,7 @@ def make_plan(gw, deadline, vals, state, uwins, now):
     ft_after = None if ft_before is None else max(0, ft_before - len(moves))
     plan.update({
         "squad": [{**{k: vals[i][k] for k in ("id", "name", "pos", "club", "cost", "xp", "fixture", "fdr", "avail")},
+                   "news": vals[i]["news"], "risks": vals[i].get("risks", []),
                    "buy": buys.get(i, vals[i]["cost"]), "why": _why(vals[i], (uwins or {}).get(i), "")} for i in xi + bench],
         "xi": xi, "bench": bench, "captain": captain, "vice": vice, "formation": formation(xi, vals),
         "transfers": [{"out": vals[m["out"]]["name"], "out_id": m["out"], "in": vals[m["in"]]["name"], "in_id": m["in"],
@@ -392,6 +416,50 @@ def new_state(budget, chips_used):
             "squad": [], "buys": {}, "chips_used": dict(chips_used), "plan": None, "history": {}}
 
 
+def _flag_text(p):
+    bits = []
+    if p.get("avail", 1) < 1:
+        bits.append(f"{int(p['avail'] * 100)}% fit" + (f" - {p['news']}" if p.get("news") else ""))
+    bits.extend(p.get("risks") or [])
+    return "; ".join(bits)
+
+
+def diff_plans(prev, new, vals, now):
+    """Human-readable changes between two plans for the same gameweek (the daily check):
+    new injuries / doubts / rotation risks on squad players, swaps and captaincy."""
+    out, at = [], now.isoformat()
+    pold = {p["id"]: p for p in prev["squad"]}
+    pnew = {p["id"]: p for p in new["squad"]}
+    for i, p in pnew.items():
+        if i in pold and _flag_text(pold[i]) != _flag_text(p) and _flag_text(p):
+            out.append({"at": at, "gw": new["gw"], "kind": "risk", "text": f"{p['name']}: {_flag_text(p)}"})
+    for i in pold:
+        if i not in pnew:
+            out.append({"at": at, "gw": new["gw"], "kind": "swap", "text": f"{pold[i]['name']} out" + (f" ({_flag_text(pold[i])})" if _flag_text(pold[i]) else " (a better option appeared)")})
+    for i in pnew:
+        if i not in pold:
+            out.append({"at": at, "gw": new["gw"], "kind": "swap", "text": f"{pnew[i]['name']} in, xP {pnew[i]['xp']:.1f}"})
+    if prev["captain"] != new["captain"]:
+        out.append({"at": at, "gw": new["gw"], "kind": "captain", "text": f"Captain {pold[prev['captain']]['name'] if prev['captain'] in pold else '?'} → {pnew[new['captain']]['name']}"})
+    return out
+
+
+def watch_locked(plan, vals, now):
+    """After the lock nothing can change, but flag squad players whose fitness/rotation news moved."""
+    out = []
+    for p in plan["squad"]:
+        v = vals.get(p["id"])
+        if not v:
+            continue
+        cur = {"avail": v["avail"], "news": v["news"], "risks": v["risks"]}
+        if _flag_text(cur) and _flag_text(cur) != _flag_text(p) and not any(
+                c.get("player") == p["id"] and c.get("text") == _flag_text(cur) for c in plan.setdefault("alerts", [])):
+            plan["alerts"].append({"player": p["id"], "text": _flag_text(cur)})
+            out.append({"at": now.isoformat(), "gw": plan["gw"], "kind": "after-lock",
+                        "text": f"{p['name']} (locked in): {_flag_text(cur)}"})
+    return out
+
+
 def update(state, ctx):
     """Advance the AI team one refresh. ctx keys: now (datetime, UTC), boot, deadline_state,
     fix_scan (callable gw -> {team: [fixtures]}), live (callable gw -> {id: {minutes, points}}),
@@ -421,17 +489,23 @@ def update(state, ctx):
         state["ft"] = min(5, left + 1)
         state["plan"] = plan = None
 
-    # 2. plan / lock the target gameweek
+    # 2. plan / lock the target gameweek, logging every change the daily check finds
+    state.setdefault("changes", [])
     if target and target >= START_GW:
         deadline = datetime.fromisoformat(events[target]["deadline_time"].replace("Z", "+00:00"))
         lock_at = deadline - timedelta(hours=LOCK_HOURS)
+        fix1, fix2 = ctx["fix_scan"](target), (ctx["fix_scan"](target + 1) if target + 1 in events else {})
+        vals = player_values(boot, fix1, fix2, gws_played, ctx.get("uwins"), ctx.get("risk"))
         if not (plan and plan["locked"]):
-            fix1, fix2 = ctx["fix_scan"](target), (ctx["fix_scan"](target + 1) if target + 1 in events else {})
-            vals = player_values(boot, fix1, fix2, gws_played, ctx.get("uwins"))
+            prev = plan
             plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now)
             if now >= lock_at:
                 plan["locked"], plan["locked_at"] = True, now.isoformat()
             state["plan"] = plan
+            if prev and prev["gw"] == target:
+                state["changes"] += diff_plans(prev, plan, vals, now)
+        else:
+            state["changes"] += watch_locked(plan, vals, now)
 
     # 3. score every played gameweek from live data
     for key, p in state["history"].items():
@@ -448,5 +522,7 @@ def update(state, ctx):
     state["total_points"] = sum(p.get("result", {}).get("points", 0) for p in h)
     state["user_total"] = sum(p.get("user_points") or 0 for p in h)
     state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc") if not (ctx["chips_used"] or {}).get(c)]
+    state["changes"] = state["changes"][-60:]
+    state["last_check"] = now.isoformat()
     state["generated_at"] = now.isoformat()
     return state

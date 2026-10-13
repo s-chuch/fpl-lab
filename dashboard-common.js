@@ -367,6 +367,25 @@ function aiResultsCard(D,who){
 }
 function renderAiTeam(D,who){
   const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults");
-  if(a) a.innerHTML=aiPlanCard(D,who);
+  if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team);
   if(r) r.innerHTML=aiResultsCard(D,who);
+}
+
+// Daily check (refresh.py build_daily_check): injuries, news, price moves and new rotation risks for
+// everyone you own plus the AI team, compared with the previous run. Shown on the Season tab.
+function dailyCheckCard(D){
+  const C=D.daily_check; if(!C) return "";
+  const ET=iso=>aiWhen(iso);
+  const icon={availability:"🩹",news:"📰",price:"£",rotation:"🔄"};
+  const li=c=>`<li><span class="who">${esc(c.who)}</span> <span class="note">${esc(ET(c.at))}</span><div class="detail">${icon[c.kind]||""} ${esc(c.text)}</div></li>`;
+  const now=(C.changes||[]).map(li).join("");
+  const earlier=(C.history||[]).filter(c=>c.at!==C.checked_at).slice().reverse().slice(0,25).map(li).join("");
+  return `<div class="card"><h2>Daily check</h2><ul class="note-list"><li>Last ran ${esc(ET(C.checked_at))} · watching ${C.watching} players (your squad and the AI team) for injuries, news, price moves and rotation risk</li><li>The program refreshes at least twice a day, more on match days</li></ul>${now?`<ul class="chiplist">${now}</ul>`:`<p class="note">Nothing new since the last check${C.previous_check?` (${esc(ET(C.previous_check))})`:""}.</p>`}${earlier?`<details class="fold"><summary><h3>Earlier changes</h3></summary><ul class="chiplist">${earlier}</ul></details>`:""}</div>`;
+}
+function aiChangesCard(A){
+  if(!A) return "";
+  const ch=(A.changes||[]).slice().reverse().slice(0,20);
+  const icon={risk:"⚠️",swap:"🔁",captain:"©️","after-lock":"🔒"};
+  const rows=ch.map(c=>`<li><span class="who">GW${c.gw} · ${esc(aiWhen(c.at))}</span><div class="detail">${icon[c.kind]||""} ${esc(c.text)}</div></li>`).join("");
+  return `<div class="card"><h2>AI team · daily check</h2><ul class="note-list"><li>Re-checks every refresh (at least twice a day) for new injuries, doubts, reported rotation, fixture congestion and minutes that are falling, and re-picks if it helps — until it locks 12h before the deadline</li><li>Last checked ${esc(aiWhen(A.last_check))}. After the lock it can't change anything, but still flags news on locked players</li></ul>${rows?`<ul class="chiplist">${rows}</ul>`:`<p class="note">No changes to the plan yet.</p>`}</div>`;
 }

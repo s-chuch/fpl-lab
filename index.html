@@ -55,7 +55,7 @@ document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); 
 window.addEventListener("hashchange",()=>{const r=restoreTab(TAB_GROUPS,TAB_KEY,activeGroup,activeTab); if(r.tab!==activeTab){activeGroup=r.group; activeTab=r.tab; paintTabs();}});
 paintTabs();
 function gwTable(){const rows=(D.gameweeks||[]).map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><div class="table-scroll"><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;}
-document.getElementById("season").innerHTML=gwTable();
+document.getElementById("season").innerHTML=dailyCheckCard(D)+gwTable();
 function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
 function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
 function benchBlock(key,title,open){

@@ -1341,7 +1341,50 @@ def backfill_volume_log(log, boot, team_id, top_n=10, first_gw=3):
         log[f"gw{g}"] = {"gw": g, "flags": flags, "graded": False, "backfilled": True}
     return log
 
-def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id):
+def build_daily_check(prev, boot, squad_ids, ai_plan, rotation, now):
+    """Program-wide daily check: compares today's state of everyone you own and everyone in the AI
+    team's plan with the previous run, and lists what changed - new injuries / doubts, news updates,
+    price moves and new rotation risks. The snapshot is kept so the next run can diff against it."""
+    els = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    rot_by_name = {r["name"]: r.get("reason") for r in ((rotation or {}).get("rows") or [])}
+    watch = {}
+    for i in squad_ids or []:
+        watch.setdefault(i, set()).add("your squad")
+    for p in (ai_plan or {}).get("squad", []):
+        watch.setdefault(p["id"], set()).add("AI team")
+    snap = {}
+    for i, who in watch.items():
+        el = els.get(i)
+        if not el:
+            continue
+        av = player_availability(el)
+        snap[str(i)] = {"name": el["web_name"], "club": teams[el["team"]], "kind": av["kind"], "label": av["label"],
+                        "news": av["news"], "cost": el["now_cost"] / 10, "rot": rot_by_name.get(el["web_name"]),
+                        "who": sorted(who)}
+    old = (prev or {}).get("snapshot") or {}
+    at = now.isoformat()
+    changes = []
+    for k, n in snap.items():
+        o = old.get(k)
+        if not o:
+            continue
+        who = " & ".join(n["who"])
+        tag = f"{n['name']} ({n['club']})"
+        if (o["label"] or None) != (n["label"] or None):
+            changes.append({"at": at, "who": who, "kind": "availability",
+                            "text": f"{tag}: {o['label'] or 'fit'} → {n['label'] or 'fit'}" + (f" — {n['news']}" if n["news"] else "")})
+        elif n["news"] and n["news"] != o["news"]:
+            changes.append({"at": at, "who": who, "kind": "news", "text": f"{tag}: {n['news']}"})
+        if n["cost"] != o["cost"]:
+            changes.append({"at": at, "who": who, "kind": "price", "text": f"{tag}: £{o['cost']:.1f} → £{n['cost']:.1f}"})
+        if n["rot"] != o.get("rot") and n["rot"]:
+            changes.append({"at": at, "who": who, "kind": "rotation", "text": f"{tag}: new {n['rot']} risk on the Rotation tab"})
+    history = ((prev or {}).get("history") or []) + changes
+    return {"checked_at": at, "previous_check": (prev or {}).get("checked_at"), "watching": len(snap),
+            "changes": changes, "history": history[-80:], "snapshot": snap}
+
+def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None):
     """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
     value + bank) and the same chip availability as you, and Understat chance volume as an extra
     signal when reachable. Never lets a failure here break the rest of the refresh."""
@@ -1364,7 +1407,28 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id):
         def live(gw):
             return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0)}
                     for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
-        ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live,
+        # Daily-check inputs: what each player really played lately, club fixture congestion across all
+        # competitions, and rotation already reported in news/X. All fail soft.
+        risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
+        try:
+            fin = sorted(e["id"] for e in boot["events"] if e.get("finished"))[-3:]
+            for g in fin:
+                for eid, st in live(g).items():
+                    risk["recent_minutes"].setdefault(eid, []).append(st["minutes"])
+        except Exception as e:
+            _warn(f"ai_team: recent minutes unavailable: {e}")
+        try:
+            short_to_id = {t["short_name"]: t["id"] for t in boot["teams"]}
+            for club, rec in (team_recovery or {}).items():
+                fol = rec.get("following_match") or {}
+                risk["club_rest"][short_to_id[club]] = {"rest_days": rec.get("rest_days"), "turnaround": fol.get("days_after")}
+        except Exception as e:
+            _warn(f"ai_team: club rest unavailable: {e}")
+        try:
+            risk["rot_names"] = _rotation_flagged_players(ROOT)
+        except Exception as e:
+            _warn(f"ai_team: reported rotation unavailable: {e}")
+        ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
                "budget": budget, "chips_used": chips_used, "user_points": {g["gw"]: g["points"] for g in gws}, "uwins": uwins}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
@@ -2363,9 +2427,15 @@ def main(team_id=TEAM_ID, out_path=None):
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
     data["volume_log"] = update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), data["xg_signal"].get("imminent"), ds, boot)
-    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id)
+    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"))
     data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
     data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
+    try:
+        _pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{plan.get('squad_from_gw')}/picks/") if plan.get("squad_from_gw") else {}
+        data["daily_check"] = build_daily_check(data.get("daily_check"), boot, [p["element"] for p in _pk.get("picks", [])],
+                                                (data.get("ai_team") or {}).get("plan"), data.get("rotation_risk"), datetime.now(timezone.utc))
+    except Exception as e:
+        _warn(f"daily_check failed: {e}")
     data["team_recovery"] = team_recovery
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
     data["form_fdr"] = build_form_fdr(boot, next_fixture_map, exclude=owned)
