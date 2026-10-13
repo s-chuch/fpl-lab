@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-13T19:57:11.321656+00:00",
+    "fetched_at": "2026-10-13T23:40:23.863276+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -24,13 +24,7 @@
           "opponent": "Bayern M\u00fcnchen",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-13",
-            "competition": "Champions League",
-            "opponent": "Lille"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 7,
@@ -93,13 +87,7 @@
           "opponent": "Como",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-13",
-            "competition": "Champions League",
-            "opponent": "Atleti"
-          }
-        ]
+        "between": []
       },
       "EVE": {
         "rest_days": 6,

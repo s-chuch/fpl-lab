@@ -1,12 +1,63 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-13 19:57 UTC",
+  "generated_at": "2026-10-13 23:40 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [],
+  "agreed": [
+    {
+      "text": "GW7 coverage is talking about a wildcard window \u2014 mentioned by 3/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ]
+    }
+  ],
   "split": [
     {
-      "text": "Thomas (COV) is starting to come up in GW7 coverage \u2014 mentioned by 2/2 sites.",
+      "text": "Barry (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Cherki (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Cherki",
+      "club": "MCI",
+      "tags": []
+    },
+    {
+      "text": "Palmer (CHE) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites. Tags: injury/doubt.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Rayan (BOU) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Rayan",
+      "club": "BOU",
+      "tags": []
+    },
+    {
+      "text": "Thomas (COV) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -16,11 +67,14 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "GW7 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
+      "text": "White (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/3 sites.",
       "sources": [
-        "Ingenuity",
-        "Scout"
-      ]
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "White",
+      "club": "ARS",
+      "tags": []
     }
   ],
   "links": [
@@ -51,9 +105,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Scout",
-      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 7?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/goals-assists-imminent-who-is-due-in-fpl-gameweek-7"
+      "source": "AAFPL",
+      "title": "FPL GW7 Ultimate Guide: Tips, Captaincy, Differentials & More",
+      "url": "https://allaboutfpl.com/2026/10/fpl-gw7-ultimate-guide-tips-captaincy-differentials-more/"
     }
   ],
   "no_new": false,
@@ -134,6 +188,7 @@ window.FPL_NEWS = {
     "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
     "https://ingenuityfantasy.com/game-week-tips/premier-league-goal-involvement-by-player-2026-27-gw7/",
     "https://www.fantasyfootballscout.co.uk/2026/10/13/szoboszlai-isak-gakpo-latest-fpl-team-news-ahead-of-gameweek-7",
-    "https://www.fantasyfootballscout.co.uk/2026/10/13/goals-assists-imminent-who-is-due-in-fpl-gameweek-7"
+    "https://www.fantasyfootballscout.co.uk/2026/10/13/goals-assists-imminent-who-is-due-in-fpl-gameweek-7",
+    "https://allaboutfpl.com/2026/10/fpl-gw7-ultimate-guide-tips-captaincy-differentials-more/"
   ]
 };
