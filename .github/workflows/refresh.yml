@@ -77,7 +77,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py greekgod_analyze.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py
 
       - name: Pull live FPL data
         if: steps.gate.outputs.run != 'false'
@@ -85,7 +85,7 @@ jobs:
           python news_scrape.py
           python refresh.py
           python refresh.py --team 1360920 --out bacalhau-data.js
-          python greekgod_analyze.py
+          python
           python wildcard_recommend.py bacalhau-wildcard.js
           python wildcard_recommend.py shaaland-wildcard.js
 
@@ -95,13 +95,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # X live ingest is Grok Bot / user-X MCP — never commit x-posts.js from Actions.
-          # greekgod-archive.js is a derived accumulator (reads x-posts.js, doesn't
-          # write it) and IS Actions' to commit, same as the other data files.
           # bacalhau-wildcard.js/shaaland-wildcard.js's squads (xi/bench) are
           # hand-captured from screenshots, but their "recommend" blocks are
           # fully computed here — Actions committing them just keeps that
           # recommendation current.
-          git add data.js bacalhau-data.js news.js greekgod-archive.js bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json
+          git add data.js bacalhau-data.js news.js bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json
           if git diff --staged --quiet; then
             echo "No data change"
           else
