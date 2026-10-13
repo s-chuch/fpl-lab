@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-13 15:43 UTC",
-  "generated_at_et": "2026-10-13 11:43 AM ET",
+  "generated_at": "2026-10-13 15:44 UTC",
+  "generated_at_et": "2026-10-13 11:44 AM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -14349,21 +14349,23 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-13T15:43:08.176245+00:00",
+      "computed_at": "2026-10-13T15:44:27.423070+00:00",
       "initial": true,
       "squad": [
         {
-          "id": 109,
-          "name": "Verbruggen",
+          "id": 385,
+          "name": "Trafford",
           "pos": "GKP",
-          "club": "BHA",
-          "cost": 4.5,
-          "xp": 4.83,
-          "fixture": "CRY (H)",
-          "fdr": 2,
+          "club": "LEE",
+          "cost": 5.0,
+          "xp": 4.32,
+          "fixture": "MUN (H)",
+          "fdr": 4,
           "avail": 1.0,
-          "buy": 4.5,
-          "why": "xP 4.8 \u00b7 CRY (H) FDR 2"
+          "news": "",
+          "risks": [],
+          "buy": 5.0,
+          "why": "xP 4.3 \u00b7 MUN (H) FDR 4"
         },
         {
           "id": 115,
@@ -14371,12 +14373,16 @@ window.FPL_DATA = {
           "pos": "DEF",
           "club": "BHA",
           "cost": 5.1,
-          "xp": 5.59,
+          "xp": 5.21,
           "fixture": "CRY (H)",
           "fdr": 2,
           "avail": 1.0,
+          "news": "",
+          "risks": [
+            "only 3d rest before its next match"
+          ],
           "buy": 5.1,
-          "why": "xP 5.6 \u00b7 CRY (H) FDR 2 \u00b7 1 SoT, 0 big chances, 7 chances created in last 4"
+          "why": "xP 5.2 \u00b7 CRY (H) FDR 2 \u00b7 1 SoT, 0 big chances, 7 chances created in last 4 \u00b7 risk: only 3d rest before its next match"
         },
         {
           "id": 330,
@@ -14384,12 +14390,14 @@ window.FPL_DATA = {
           "pos": "DEF",
           "club": "LEE",
           "cost": 4.7,
-          "xp": 4.7,
+          "xp": 4.77,
           "fixture": "MUN (H)",
           "fdr": 4,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 4.7,
-          "why": "xP 4.7 \u00b7 MUN (H) FDR 4 \u00b7 5 SoT, 2 big chances, 3 chances created in last 4"
+          "why": "xP 4.8 \u00b7 MUN (H) FDR 4 \u00b7 5 SoT, 2 big chances, 3 chances created in last 4"
         },
         {
           "id": 8,
@@ -14397,12 +14405,16 @@ window.FPL_DATA = {
           "pos": "DEF",
           "club": "ARS",
           "cost": 5.9,
-          "xp": 4.53,
+          "xp": 4.31,
           "fixture": "NFO (A)",
           "fdr": 3,
           "avail": 1.0,
+          "news": "",
+          "risks": [
+            "plays again 3d after its next match"
+          ],
           "buy": 5.9,
-          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 2 SoT, 2 big chances, 4 chances created in last 4"
+          "why": "xP 4.3 \u00b7 NFO (A) FDR 3 \u00b7 2 SoT, 2 big chances, 4 chances created in last 4 \u00b7 risk: plays again 3d after its next match"
         },
         {
           "id": 124,
@@ -14410,12 +14422,16 @@ window.FPL_DATA = {
           "pos": "MID",
           "club": "BHA",
           "cost": 6.0,
-          "xp": 6.42,
+          "xp": 5.97,
           "fixture": "CRY (H)",
           "fdr": 2,
           "avail": 1.0,
+          "news": "",
+          "risks": [
+            "only 3d rest before its next match"
+          ],
           "buy": 6.0,
-          "why": "xP 6.4 \u00b7 CRY (H) FDR 2 \u00b7 2 SoT, 2 big chances, 12 chances created in last 4"
+          "why": "xP 6.0 \u00b7 CRY (H) FDR 2 \u00b7 2 SoT, 2 big chances, 12 chances created in last 4 \u00b7 risk: only 3d rest before its next match"
         },
         {
           "id": 236,
@@ -14427,6 +14443,8 @@ window.FPL_DATA = {
           "fixture": "CHE (H)",
           "fdr": 4,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 6.6,
           "why": "xP 5.2 \u00b7 CHE (H) FDR 4 \u00b7 4 SoT, 3 big chances, 9 chances created in last 4"
         },
@@ -14436,25 +14454,17 @@ window.FPL_DATA = {
           "pos": "FWD",
           "club": "MCI",
           "cost": 15.6,
-          "xp": 5.72,
+          "xp": 4.9,
           "fixture": "IPS (H)",
           "fdr": 2,
           "avail": 1.0,
+          "news": "",
+          "risks": [
+            "only 3d rest before its next match",
+            "plays again 3d after its next match"
+          ],
           "buy": 15.6,
-          "why": "xP 5.7 \u00b7 IPS (H) FDR 2 \u00b7 6 SoT, 6 big chances, 1 chances created in last 4"
-        },
-        {
-          "id": 12,
-          "name": "Saka",
-          "pos": "MID",
-          "club": "ARS",
-          "cost": 9.6,
-          "xp": 4.49,
-          "fixture": "NFO (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 9.6,
-          "why": "xP 4.5 \u00b7 NFO (A) FDR 3 \u00b7 8 SoT, 4 big chances, 7 chances created in last 4"
+          "why": "xP 4.9 \u00b7 IPS (H) FDR 2 \u00b7 6 SoT, 6 big chances, 1 chances created in last 4 \u00b7 risk: only 3d rest before its next match \u00b7 risk: plays again 3d after its next match"
         },
         {
           "id": 427,
@@ -14475,25 +14485,63 @@ window.FPL_DATA = {
           "pos": "FWD",
           "club": "EVE",
           "cost": 5.7,
-          "xp": 4.75,
+          "xp": 4.87,
           "fixture": "CHE (H)",
           "fdr": 4,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 5.7,
-          "why": "xP 4.8 \u00b7 CHE (H) FDR 4 \u00b7 5 SoT, 7 big chances, 3 chances created in last 4"
+          "why": "xP 4.9 \u00b7 CHE (H) FDR 4 \u00b7 5 SoT, 7 big chances, 3 chances created in last 4"
+        },
+        {
+          "id": 12,
+          "name": "Saka",
+          "pos": "MID",
+          "club": "ARS",
+          "cost": 9.6,
+          "xp": 4.24,
+          "fixture": "NFO (A)",
+          "fdr": 3,
+          "avail": 1.0,
+          "news": "",
+          "risks": [
+            "plays again 3d after its next match"
+          ],
+          "buy": 9.6,
+          "why": "xP 4.2 \u00b7 NFO (A) FDR 3 \u00b7 8 SoT, 4 big chances, 7 chances created in last 4 \u00b7 risk: plays again 3d after its next match"
         },
         {
           "id": 397,
           "name": "Semenyo",
           "pos": "MID",
-          "club": "MCI",
-          "cost": 8.3,
-          "xp": 4.9,
-          "fixture": "IPS (H)",
-          "fdr": 2,
+          "club": "MUN",
+          "cost": 7.9,
+          "xp": 4.33,
+          "fixture": "LEE (A)",
+          "fdr": 3,
           "avail": 1.0,
-          "buy": 8.3,
-          "why": "xP 4.9 \u00b7 IPS (H) FDR 2 \u00b7 2 SoT, 0 big chances, 8 chances created in last 4"
+          "news": "",
+          "risks": [
+            "plays again 3d after its next match"
+          ],
+          "buy": 7.9,
+          "why": "xP 4.3 \u00b7 LEE (A) FDR 3 \u00b7 5 SoT, 2 big chances, 7 chances created in last 4 \u00b7 risk: plays again 3d after its next match"
+        },
+        {
+          "id": 480,
+          "name": "Gibbs-White",
+          "pos": "MID",
+          "club": "NFO",
+          "cost": 8.0,
+          "xp": 4.03,
+          "fixture": "ARS (H)",
+          "fdr": 4,
+          "avail": 1.0,
+          "news": "",
+          "risks": [],
+          "buy": 8.0,
+          "why": "xP 4.0 \u00b7 ARS (H) FDR 4 \u00b7 1 SoT, 0 big chances, 16 chances created in last 4"
         },
         {
           "id": 300,
@@ -14501,12 +14549,31 @@ window.FPL_DATA = {
           "pos": "GKP",
           "club": "IPS",
           "cost": 4.4,
-          "xp": 0.93,
+          "xp": 1.26,
           "fixture": "MCI (A)",
           "fdr": 5,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 4.4,
-          "why": "xP 0.9 \u00b7 MCI (A) FDR 5"
+          "why": "xP 1.3 \u00b7 MCI (A) FDR 5"
+        },
+        {
+          "id": 504,
+          "name": "Vuskovic",
+          "pos": "DEF",
+          "club": "BHA",
+          "cost": 5.0,
+          "xp": 4.52,
+          "fixture": "CRY (H)",
+          "fdr": 2,
+          "avail": 1.0,
+          "news": "",
+          "risks": [
+            "only 3d rest before its next match"
+          ],
+          "buy": 5.0,
+          "why": "xP 4.5 \u00b7 CRY (H) FDR 2 \u00b7 1 SoT, 2 big chances, 0 chances created in last 4 \u00b7 risk: only 3d rest before its next match"
         },
         {
           "id": 176,
@@ -14514,10 +14581,12 @@ window.FPL_DATA = {
           "pos": "DEF",
           "club": "COV",
           "cost": 4.0,
-          "xp": 4.5,
+          "xp": 4.52,
           "fixture": "TOT (A)",
           "fdr": 3,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 4.0,
           "why": "xP 4.5 \u00b7 TOT (A) FDR 3 \u00b7 1 SoT, 0 big chances, 5 chances created in last 4"
         },
@@ -14527,80 +14596,458 @@ window.FPL_DATA = {
           "pos": "FWD",
           "club": "LEE",
           "cost": 6.0,
-          "xp": 3.98,
+          "xp": 4.0,
           "fixture": "MUN (H)",
           "fdr": 4,
           "avail": 1.0,
+          "news": "",
+          "risks": [],
           "buy": 6.0,
           "why": "xP 4.0 \u00b7 MUN (H) FDR 4 \u00b7 4 SoT, 4 big chances, 2 chances created in last 4"
-        },
-        {
-          "id": 173,
-          "name": "Thomas",
-          "pos": "DEF",
-          "club": "COV",
-          "cost": 4.0,
-          "xp": 3.91,
-          "fixture": "TOT (A)",
-          "fdr": 3,
-          "avail": 1.0,
-          "buy": 4.0,
-          "why": "xP 3.9 \u00b7 TOT (A) FDR 3 \u00b7 0 SoT, 0 big chances, 3 chances created in last 4"
         }
       ],
       "xi": [
-        109,
+        385,
         115,
         330,
         8,
         124,
         236,
         411,
+        249,
         12,
         427,
-        249,
-        397
+        480
       ],
       "bench": [
         300,
+        504,
         176,
-        346,
-        173
+        346
       ],
       "captain": 124,
-      "vice": 411,
+      "vice": 236,
       "formation": "3-5-2",
       "transfers": [],
       "hits": 0,
       "hit_cost": 0,
       "ft_before": null,
       "ft_after": null,
-      "bank": 2.3,
-      "squad_cost": 98.3,
-      "xp_xi": 62.2,
+      "bank": 1.1,
+      "squad_cost": 99.5,
+      "xp_xi": 58.1,
       "chip": null,
       "buys": {
-        "300": 4.4,
+        "385": 5.0,
         "115": 5.1,
-        "173": 4.0,
+        "330": 4.7,
+        "124": 6.0,
         "236": 6.6,
         "12": 9.6,
         "427": 7.9,
-        "397": 8.3,
-        "124": 6.0,
+        "480": 8.0,
         "411": 15.6,
         "249": 5.7,
         "346": 6.0,
-        "109": 4.5,
+        "300": 4.4,
         "176": 4.0,
-        "8": 5.9,
-        "330": 4.7
+        "504": 5.0,
+        "8": 5.9
       }
     },
     "history": {},
     "total_points": 0,
     "user_total": 0,
     "chips_available": [],
-    "generated_at": "2026-10-13T15:43:08.176245+00:00"
+    "generated_at": "2026-10-13T15:44:27.423070+00:00",
+    "changes": [
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "De Cuyper: only 3d rest before its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "Calafiori: plays again 3d after its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "Gro\u00df: only 3d rest before its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "Haaland: only 3d rest before its next match; plays again 3d after its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "Saka: plays again 3d after its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "risk",
+        "text": "Mbeumo: plays again 3d after its next match"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "Verbruggen out (a better option appeared)"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "E.Le F\u00e9e out (a better option appeared)"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "Thomas out (a better option appeared)"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "Trafford in, xP 4.3"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "Gibbs-White in, xP 4.0"
+      },
+      {
+        "at": "2026-10-13T15:44:27.423070+00:00",
+        "gw": 7,
+        "kind": "swap",
+        "text": "Vuskovic in, xP 4.5"
+      }
+    ],
+    "last_check": "2026-10-13T15:44:27.423070+00:00"
+  },
+  "daily_check": {
+    "checked_at": "2026-10-13T15:44:29.149945+00:00",
+    "previous_check": null,
+    "watching": 25,
+    "changes": [],
+    "history": [],
+    "snapshot": {
+      "1": {
+        "name": "Raya",
+        "club": "ARS",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.1,
+        "rot": "squeeze",
+        "who": [
+          "your squad"
+        ]
+      },
+      "115": {
+        "name": "De Cuyper",
+        "club": "BHA",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.1,
+        "rot": "rested",
+        "who": [
+          "AI team",
+          "your squad"
+        ]
+      },
+      "8": {
+        "name": "Calafiori",
+        "club": "ARS",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.9,
+        "rot": "squeeze",
+        "who": [
+          "AI team",
+          "your squad"
+        ]
+      },
+      "449": {
+        "name": "Hall",
+        "club": "NEW",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.3,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "229": {
+        "name": "Tarkowski",
+        "club": "EVE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.2,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "453": {
+        "name": "Barnes",
+        "club": "NEW",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.1,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "268": {
+        "name": "King",
+        "club": "FUL",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.6,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "124": {
+        "name": "Gro\u00df",
+        "club": "BHA",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.0,
+        "rot": "congestion",
+        "who": [
+          "AI team",
+          "your squad"
+        ]
+      },
+      "12": {
+        "name": "Saka",
+        "club": "ARS",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 9.6,
+        "rot": "squeeze",
+        "who": [
+          "AI team",
+          "your squad"
+        ]
+      },
+      "411": {
+        "name": "Haaland",
+        "club": "MCI",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 15.6,
+        "rot": "congestion",
+        "who": [
+          "AI team",
+          "your squad"
+        ]
+      },
+      "165": {
+        "name": "Jo\u00e3o Pedro",
+        "club": "CHE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 7.8,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "572": {
+        "name": "Tzolakis",
+        "club": "HUL",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 4.7,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "138": {
+        "name": "Kostoulas",
+        "club": "BHA",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.7,
+        "rot": "rested",
+        "who": [
+          "your squad"
+        ]
+      },
+      "94": {
+        "name": "Schade",
+        "club": "BRE",
+        "kind": "doubt",
+        "label": "DOUBT 75%",
+        "news": "Shoulder injury - 75% chance of playing",
+        "cost": 6.2,
+        "rot": "injury",
+        "who": [
+          "your squad"
+        ]
+      },
+      "305": {
+        "name": "Davis",
+        "club": "IPS",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 4.0,
+        "rot": null,
+        "who": [
+          "your squad"
+        ]
+      },
+      "385": {
+        "name": "Trafford",
+        "club": "LEE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.0,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "330": {
+        "name": "Bogle",
+        "club": "LEE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 4.7,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "236": {
+        "name": "Dewsbury-Hall",
+        "club": "EVE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.6,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "249": {
+        "name": "Barry",
+        "club": "EVE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.7,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "427": {
+        "name": "Mbeumo",
+        "club": "MUN",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 7.9,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "480": {
+        "name": "Gibbs-White",
+        "club": "NFO",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 8.0,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "300": {
+        "name": "Walton",
+        "club": "IPS",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 4.4,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "504": {
+        "name": "Vuskovic",
+        "club": "BHA",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 5.0,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "176": {
+        "name": "Dasilva",
+        "club": "COV",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 4.0,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      },
+      "346": {
+        "name": "Calvert-Lewin",
+        "club": "LEE",
+        "kind": "ok",
+        "label": null,
+        "news": "",
+        "cost": 6.0,
+        "rot": null,
+        "who": [
+          "AI team"
+        ]
+      }
+    }
   }
 };
