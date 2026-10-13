@@ -1404,6 +1404,9 @@ def _clone_user_team(boot, team_id, ds, hist, chips_used, team):
             paid[t["element_in"]] = (t.get("element_in_cost") or 0) / 10
     buys = {i: paid.get(i) or (els[i]["now_cost"] - (els[i].get("cost_change_start") or 0)) / 10 for i in ids}
     sell = round(sum(ai_team.sell_price(buys[i], els[i]["now_cost"] / 10) for i in ids), 1)
+    live_value = (team or {}).get("live_value")
+    if live_value is not None and abs(sell - float(live_value)) > 0.05:
+        _warn(f"ai_team clone: sell value {sell} differs from the dashboard's live value {live_value}")
     return {"gw": gw, "squad": ids, "buys": buys, "sell_value": sell, "bank": float(team.get("bank") or 0.0),
             "ft": free_transfers_for_next(hist or {}), "chips_used": dict(chips_used)}
 
@@ -1422,7 +1425,7 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
             _warn(f"ai_team: Understat unavailable, continuing without it: {e}")
         team = data.get("team") or {}
         clone = None
-        if not (data.get("ai_team") or {}).get("version") == 2:      # only needed once, to make the copy
+        if (data.get("ai_team") or {}).get("version") != ai_team.VERSION:      # only needed once, to make the copy
             clone = _clone_user_team(boot, team_id, ds, hist, chips_used, team)
         scan_cache = {}
         def fix_scan(gw):

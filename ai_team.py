@@ -38,11 +38,15 @@ def _f(v, d=0.0):
         return d
 
 
+def tenths(x):
+    return int(round(float(x) * 10))
+
+
 def sell_price(buy, now):
-    """FPL sell rule: half of any profit (rounded down to 0.1m) is kept; losses pass through."""
-    if now <= buy:
-        return round(now, 1)
-    return round(buy + int((now - buy) * 10 / 2) / 10, 1)
+    """FPL sell rule, in whole tenths of a million (no float drift): you keep half of any profit
+    since you bought (rounded down to 0.1m); if the price has dropped you take the full loss."""
+    b, n = tenths(buy), tenths(now)
+    return (b + (n - b) // 2 if n > b else n) / 10
 
 
 # --------------------------------------------------------------------------- expected points
@@ -315,8 +319,9 @@ def plan_transfers(squad, buys, bank, ft, vals):
         if top[1] is None or top[0] < need:
             break
         gain, out, inn, sell = top
-        moves.append({"out": out, "in": inn, "gain": round(gain, 2), "hit": n >= ft})
-        bank_now = round(bank_now + sell - vals[inn]["cost"], 1)
+        moves.append({"out": out, "in": inn, "gain": round(gain, 2), "hit": n >= ft, "sell": sell,
+                      "bought_at": buys.get(out, vals[out]["cost"]), "cost_in": vals[inn]["cost"]})
+        bank_now = round((tenths(bank_now) + tenths(sell) - tenths(vals[inn]["cost"])) / 10, 1)
         buys = dict(buys); buys[inn] = vals[inn]["cost"]
         squad = [inn if i == out else i for i in squad]
         hits += 1 if n >= ft else 0
@@ -360,9 +365,11 @@ def make_plan(gw, deadline, vals, state, uwins, now):
                    "buy": buys.get(i, vals[i]["cost"]), "why": _why(vals[i], (uwins or {}).get(i), "")} for i in xi + bench],
         "xi": xi, "bench": bench, "captain": captain, "vice": vice, "formation": formation(xi, vals),
         "transfers": [{"out": vals[m["out"]]["name"], "out_id": m["out"], "in": vals[m["in"]]["name"], "in_id": m["in"],
-                       "gain": m["gain"], "hit": m["hit"]} for m in moves],
+                       "gain": m["gain"], "hit": m["hit"], "sell": m["sell"], "bought_at": m["bought_at"], "cost_in": m["cost_in"]} for m in moves],
         "hits": hits, "hit_cost": hits * HIT_COST, "ft_before": ft_before, "ft_after": ft_after, "bank": bank,
         "squad_cost": round(sum(vals[i]["cost"] for i in squad), 1),
+        # what the squad would sell for today (FPL profit-share rule) - the money that really counts
+        "sell_value": round(sum(sell_price(buys.get(i, vals[i]["cost"]), vals[i]["cost"]) for i in squad), 1),
         "xp_xi": round(sum(vals[i]["xp"] for i in xi) + vals[captain]["xp"], 1), "chip": None,
         "buys": {str(k): v for k, v in buys.items()},
     })
@@ -411,7 +418,7 @@ def score_plan(plan, live, final):
 
 
 # --------------------------------------------------------------------------- main entry
-VERSION = 2   # v2: starts as a copy of the user's team (squad, bank, free transfers, chips, points)
+VERSION = 3   # v2: copy of the user's team; v3: same, with prices/sell values in exact tenths
 
 
 def new_state(clone, start_gw, now):
