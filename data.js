@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-13 19:26 UTC",
-  "generated_at_et": "2026-10-13 3:26 PM ET",
+  "generated_at": "2026-10-13 19:31 UTC",
+  "generated_at_et": "2026-10-13 3:31 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -14319,10 +14319,10 @@ window.FPL_DATA = {
     }
   },
   "ai_team": {
-    "version": 2,
+    "version": 3,
     "start_gw": 7,
     "cloned_from_gw": 6,
-    "cloned_at": "2026-10-13T19:26:20.249775+00:00",
+    "cloned_at": "2026-10-13T19:31:49.226314+00:00",
     "budget": 100.6,
     "bank": 2.4,
     "ft": 2,
@@ -14372,7 +14372,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-13T19:26:20.249775+00:00",
+      "computed_at": "2026-10-13T19:31:49.226314+00:00",
       "initial": false,
       "squad": [
         {
@@ -14643,7 +14643,10 @@ window.FPL_DATA = {
           "in": "Dewsbury-Hall",
           "in_id": 236,
           "gain": 2.29,
-          "hit": false
+          "hit": false,
+          "sell": 6.1,
+          "bought_at": 6.1,
+          "cost_in": 6.6
         },
         {
           "out": "Kostoulas",
@@ -14651,7 +14654,10 @@ window.FPL_DATA = {
           "in": "Barry",
           "in_id": 249,
           "gain": 1.94,
-          "hit": false
+          "hit": false,
+          "sell": 5.6,
+          "bought_at": 5.5,
+          "cost_in": 5.7
         }
       ],
       "hits": 0,
@@ -14660,6 +14666,7 @@ window.FPL_DATA = {
       "ft_after": 0,
       "bank": 1.8,
       "squad_cost": 100.3,
+      "sell_value": 98.8,
       "xp_xi": 56.8,
       "chip": null,
       "buys": {
@@ -14690,12 +14697,12 @@ window.FPL_DATA = {
     "season_points": 417,
     "user_season": 417,
     "chips_available": [],
-    "last_check": "2026-10-13T19:26:20.249775+00:00",
-    "generated_at": "2026-10-13T19:26:20.249775+00:00"
+    "last_check": "2026-10-13T19:31:49.226314+00:00",
+    "generated_at": "2026-10-13T19:31:49.226314+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-13T19:26:20.434924+00:00",
-    "previous_check": "2026-10-13T15:44:29.149945+00:00",
+    "checked_at": "2026-10-13T19:31:49.363670+00:00",
+    "previous_check": "2026-10-13T19:26:20.434924+00:00",
     "watching": 17,
     "changes": [],
     "history": [],

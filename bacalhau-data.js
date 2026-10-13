@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-13 19:26 UTC",
-  "generated_at_et": "2026-10-13 3:26 PM ET",
+  "generated_at": "2026-10-13 19:31 UTC",
+  "generated_at_et": "2026-10-13 3:31 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -262,7 +262,7 @@ window.FPL_DATA = {
     "name": "Bacalhau",
     "manager": "Victor M",
     "overall_points": 405,
-    "overall_rank": 1319299,
+    "overall_rank": 1319298,
     "bank": 8.4,
     "value": 101.6,
     "live_value": 92.3
@@ -3509,7 +3509,7 @@ window.FPL_DATA = {
       {
         "id": 314,
         "name": "Overall",
-        "rank": 1319299,
+        "rank": 1319298,
         "last_rank": 1187975
       }
     ],
@@ -14236,11 +14236,11 @@ window.FPL_DATA = {
     }
   },
   "ai_team": {
-    "version": 2,
+    "version": 3,
     "start_gw": 7,
     "cloned_from_gw": 6,
-    "cloned_at": "2026-10-13T19:26:30.726642+00:00",
-    "budget": 100.6,
+    "cloned_at": "2026-10-13T19:31:56.329844+00:00",
+    "budget": 100.7,
     "bank": 8.4,
     "ft": 1,
     "squad": [
@@ -14287,7 +14287,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-13T19:26:30.726642+00:00",
+      "computed_at": "2026-10-13T19:31:56.329844+00:00",
       "initial": false,
       "squad": [
         {
@@ -14564,7 +14564,10 @@ window.FPL_DATA = {
           "in": "Barry",
           "in_id": 249,
           "gain": 3.36,
-          "hit": false
+          "hit": false,
+          "sell": 4.5,
+          "bought_at": 4.5,
+          "cost_in": 5.7
         }
       ],
       "hits": 0,
@@ -14573,6 +14576,7 @@ window.FPL_DATA = {
       "ft_after": 0,
       "bank": 7.2,
       "squad_cost": 95.0,
+      "sell_value": 93.5,
       "xp_xi": 54.9,
       "chip": null,
       "buys": {
@@ -14605,12 +14609,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-13T19:26:30.726642+00:00",
-    "generated_at": "2026-10-13T19:26:30.726642+00:00"
+    "last_check": "2026-10-13T19:31:56.329844+00:00",
+    "generated_at": "2026-10-13T19:31:56.329844+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-13T19:26:30.911642+00:00",
-    "previous_check": "2026-10-13T15:44:39.297479+00:00",
+    "checked_at": "2026-10-13T19:31:56.449289+00:00",
+    "previous_check": "2026-10-13T19:26:30.911642+00:00",
     "watching": 16,
     "changes": [],
     "history": [],
