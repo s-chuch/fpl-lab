@@ -1389,6 +1389,12 @@ def main(team_id=TEAM_ID, out_path=None):
     wc_candidates.sort(key=lambda r: (0 if (own_by_name.get(r["name"]) is None or own_by_name.get(r["name"]) <= 3) else 1, -r["score"]))
     wc_top3 = [{**r, "esl_own": own_by_name.get(r["name"]), "esl_n": tac.get("n")} for r in wc_candidates[:3]]
     data["targets"]["wc_top3"] = wc_top3
+    data["elite"] = section("elite", build_elite_ownership, boot, ds.get("locked_gw"), fallback={})
+    _elite = data["elite"] or {}
+    for _h in ((data["targets"].get("horizons") or {}).values()):
+        for _r in _h.get("top") or []:
+            if _elite.get("n") and _r.get("id") is not None:
+                _r["elite_pct"] = round(100 * (_elite["own"].get(str(_r["id"])) or _elite["own"].get(_r["id"]) or 0) / _elite["n"])
 
     watch_filename = "bacalhau-wildcard.js" if "bacalhau" in data_file.name else "shaaland-wildcard.js"
     watch = fpl_common.load_js_object(ROOT / watch_filename)

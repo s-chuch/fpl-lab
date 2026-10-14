@@ -336,10 +336,23 @@ function thisGwCard(D){
     return `<div class="card"><h2>This gameweek · GW${u.gw}</h2><p class="note">Deadline ${esc(when)}</p><ul class="chiplist"><li><span class="who">Captain</span><span><b>${esc(cap?bare(cap):"–")}</b>${vice?` · vice ${esc(bare(vice))}`:""}</span></li><li><span class="who">Transfer</span><span>${transfer}</span></li><li><span class="who">XI fitness</span><span>${flags||"No injury or doubt flags in the XI"}</span></li><li><span class="who">Chips</span><span>${chipRecs.length?chipRecs.join(", "):"No chip play recommended"}</span></li>${aiLine?`<li><span class="who">AI team</span><span>${aiLine}</span></li>`:""}</ul></div>`;
   }catch(e){ return ""; }
 }
+// Elite ownership (signals.build_elite_ownership): what the best managers hold and captain. FPL only serves the
+// first 50 of the overall table, so this is a top-50 sample.
+function eliteCard(D){
+  const E=D.elite||{}; if(!E.n) return "";
+  const mine=new Set(((D.plan||{}).rows||[]).map(r=>r[1]));
+  const ownRows=Object.keys(E.own||{}).sort((a,b)=>E.own[b]-E.own[a]).slice(0,12).map(id=>{
+    const [name,club,pos]=(E.names||{})[id]||["?","",""];
+    const pct=Math.round(100*E.own[id]/E.n);
+    return `<tr><td>${esc(name)} <span class="note">${esc(club)}</span></td><td>${esc(pos)}</td><td><b>${pct}%</b></td><td>${mine.has(name)?'<span class="pill used">You own</span>':'<span class="note">–</span>'}</td></tr>`;
+  }).join("");
+  const caps=Object.keys(E.cap||{}).sort((a,b)=>E.cap[b]-E.cap[a]).slice(0,5).map(id=>`${esc(((E.names||{})[id]||["?"])[0])} <b>${Math.round(100*E.cap[id]/E.n)}%</b>`).join(" · ");
+  return `<div class="card"><h2>Elite ownership · ${esc(E.label||"")}</h2><ul class="note-list"><li>GW${E.gw} squads of the best managers in the overall table (FPL only publishes the first 50, so this is a small, elite sample)</li><li>Captains: ${caps||"–"}</li></ul><table class="table-compact"><thead><tr><th>Player</th><th>Pos</th><th>Top 50</th><th>You</th></tr></thead><tbody>${ownRows}</tbody></table></div>`;
+}
 function renderCaptain(D){
   const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
-  document.getElementById("captain").innerHTML=predLogCard(D)+(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
+  document.getElementById("captain").innerHTML=predLogCard(D)+eliteCard(D)+(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
 }
 
 // AI team (ai_team.py): a squad the program picks and plays itself, from GW7, with your money and
@@ -469,11 +482,11 @@ function renderTargets(){
   const T=D.targets||{};
   const H=T.horizons||{};
   const scoreCls=s=>s>=5?"pos":s<0?"neg":"";
-  const tgtHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Cost</th><th style="width:15%">Score</th><th style="width:39%">Why</th></tr></thead>`;
+  const tgtHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Cost</th><th style="width:13%">Score</th><th style="width:11%">Top 50</th><th style="width:30%">Why</th></tr></thead>`;
   const buildCard=key=>{
     const h=H[key]||{};
     const n=h.horizon??Number(key);
-    const rows=(h.top||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td class="${scoreCls(r.score)}"><b>${r.score}</b></td><td style="white-space:normal">${esc((r.why||[]).join(" · ")||"–")}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying players yet.</span></td></tr>`;
+    const rows=(h.top||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td class="${scoreCls(r.score)}"><b>${r.score}</b></td><td>${r.elite_pct!=null?r.elite_pct+"%":"–"}</td><td style="white-space:normal">${esc((r.why||[]).join(" · ")||"–")}</td></tr>`).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
     return `<div class="card"><h2>Target · next ${n} GW${n===1?"":"s"}</h2><ul class="note-list"><li>League-wide shortlist combining Strategy tab signals (form, xGI/90, DEFCON, value, xG/xA regression) with Intel tab's News/X consensus</li><li>Score is a plain point count, not a hidden formula — see the Why column and legend below</li><li>Only players ${W.own} — everyone in the current squad is left out</li><li>Excludes anyone FPL itself flags as unavailable (${T.min_minutes??"?"}+ mins played to qualify)</li></ul><table class="table-compact">${tgtHead}<tbody>${rows}</tbody></table><ul class="legend-list"><li>In form = FPL form ≥6.0 (+2)</li><li>Strong xGI = xG+xA per 90 ≥0.5, non-GKP (+2)</li><li>Reliable DEFCON = clears the defensive-actions threshold for their position (+1)</li><li>Great value = top 25% points-per-£1m for their position (+1)</li><li>Due a return = underperforming their xGI by 2+ (buy-low signal) (+1) · Sell-high risk = overperforming their xGI by 2+ (-1)</li><li>Kind run = average fixture difficulty ≤2.6 over this horizon (+1)</li><li>News/X backed = tagged a transfer target in Intel coverage (+1) · Fade signal = tagged fade/sell or injury/doubt (-1)</li><li>Doubt = FPL flags a fitness doubt — shown, never scored</li></ul></div>`;
   };
   document.getElementById("target1").innerHTML=buildCard("1");

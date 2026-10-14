@@ -783,3 +783,36 @@ def build_price_trend(prev_trend, rows, today, max_days=7):
                 break
         trend[name] = {"history": history, "streak_days": streak, "days_tracked": len(history)}
     return trend
+
+
+def build_elite_ownership(boot, gw, top_n=50):
+    """Ownership and captaincy among the top managers of the overall league (FPL only serves the first 50 of
+    the overall table, so this is the top-50 sample, not a top-10k figure). Uses the picks of `gw`, the latest
+    locked gameweek, as the best read of what the best managers hold right now."""
+    from concurrent.futures import ThreadPoolExecutor
+    if not gw:
+        return {}
+    standings = get("https://fantasy.premierleague.com/api/leagues-classic/314/standings/?page_standing=1")["standings"]["results"][:top_n]
+    entries = [r["entry"] for r in standings]
+    def picks(e):
+        try:
+            return get(f"https://fantasy.premierleague.com/api/entry/{e}/event/{gw}/picks/").get("picks") or []
+        except Exception as ex:
+            _warn(f"elite ownership: entry {e}: {ex}")
+            return None
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        got = [p for p in pool.map(picks, entries) if p]
+    if len(got) < 20:
+        raise RuntimeError(f"only {len(got)} top-manager squads readable")
+    own, cap = {}, {}
+    for squad in got:
+        for p in squad:
+            own[p["element"]] = own.get(p["element"], 0) + 1
+            if p.get("is_captain"):
+                cap[p["element"]] = cap.get(p["element"], 0) + 1
+    els = {e["id"]: e for e in boot["elements"]}
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    keep = sorted(own, key=lambda i: -own[i])[:60]
+    return {"gw": gw, "n": len(got), "label": f"top {len(got)} of the overall table",
+            "own": {i: own[i] for i in keep}, "cap": cap,
+            "names": {i: [els[i]["web_name"], teams[els[i]["team"]], POS[els[i]["element_type"]]] for i in set(keep) | set(cap) if i in els}}
