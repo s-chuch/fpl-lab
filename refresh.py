@@ -835,44 +835,40 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
         return total, xi
 
     def score_original_squad(pk):
-        """Best process-based XI from the full 15-man squad you'd have carried
-        into fh_gw, scored against fh_gw's results — reusing _process_xi (same
-        "best legal XI by minutes played, captain pinned" rule the bench audit
-        uses) rather than just replaying whatever was literally started/benched
-        in orig_gw, since that start/bench split was made for a different
-        gameweek's team news and isn't the comparison worth making here."""
-        squad = []
-        for p in pk.get("picks") or []:
-            el = elements.get(p["element"])
-            if not el:
-                continue
-            squad.append({
-                "name": el["web_name"],
-                "pos": POS[el["element_type"]],
-                "pts": pts.get(p["element"], 0),
-                "mins": mins.get(p["element"], 0),
-                "started": (p.get("position") or 99) <= 11,
-                "captain": bool(p.get("is_captain")),
-            })
-        xi = _process_xi(squad)
-        cap_name = next((p["name"] for p in squad if p["captain"]), None)
-        total, out_xi = 0, []
-        for p in xi:
-            mult = 2 if p["name"] == cap_name else 1
-            total += p["pts"] * mult
-            item = {"name": p["name"], "pos": p["pos"], "got": p["pts"] * mult}
-            if mult != 1:
-                item["mult"] = mult
-            if p["name"] == cap_name:
+        """What the squad you would have carried would really have scored: the lineup you had picked
+        (same XI, captain, vice and bench order) replayed against this gameweek's results with FPL's
+        own auto-sub and captain-fallback rules - no hindsight reshuffle. A Triple Captain played the
+        week before is not carried over (the captain counts double)."""
+        import ai_team
+        picks = sorted(pk.get("picks") or [], key=lambda p: p.get("position") or 99)
+        squad = [{"id": p["element"], "name": elements[p["element"]]["web_name"], "pos": POS[elements[p["element"]]["element_type"]]}
+                 for p in picks if p["element"] in elements]
+        plan = {"squad": squad, "xi": [p["element"] for p in picks if (p.get("position") or 99) <= 11 and p["element"] in elements],
+                "bench": [p["element"] for p in picks if (p.get("position") or 99) > 11 and p["element"] in elements],
+                "captain": next((p["element"] for p in picks if p.get("is_captain")), None),
+                "vice": next((p["element"] for p in picks if p.get("is_vice_captain")), None), "hit_cost": 0}
+        if plan["captain"] is None or plan["vice"] is None or len(plan["xi"]) != 11:
+            return 0, [], None
+        live_stats = {i: {"minutes": mins.get(i, 0), "points": pts.get(i, 0)} for i in set(pts) | set(mins)}
+        res = ai_team.score_plan(plan, live_stats, True)
+        out_xi = []
+        for l in res["lines"]:
+            item = {"name": l["name"], "pos": l["pos"], "got": l["pts"] * l["mult"]}
+            if l["mult"] != 1:
+                item["mult"] = l["mult"]
                 item["captain"] = True
             out_xi.append(item)
-        return total, out_xi, cap_name
+        return res["points"], out_xi, res["captain"]
 
     fh_points, fh_xi = score_fh_squad(fh_pk)
     fh_cap_pick = next((p for p in (fh_pk.get("picks") or []) if p.get("is_captain")), None)
     fh_cap = elements.get((fh_cap_pick or {}).get("element"), {}).get("web_name")
     orig_points, orig_xi, orig_cap = score_original_squad(orig_pk)
     net = fh_points - orig_points
+    eh = fh_pk.get("entry_history") or {}
+    if eh.get("points") is not None and fh_points != eh["points"] + (eh.get("event_transfers_cost") or 0):
+        # Cross-check against FPL's own gameweek total: a mismatch means the multipliers/autosubs were misread.
+        _warn(f"build_fh_audit: GW{fh_gw} {label} squad adds up to {fh_points} but FPL reports {eh['points']} (+{eh.get('event_transfers_cost') or 0} hits)")
     return {
         "gw": fh_gw,
         "fh_points": fh_points,
@@ -884,7 +880,7 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
         "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
-        "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label}'s best process XI — net {'+' if net >= 0 else ''}{net}.",
+        "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label} (same XI, captain and auto-subs) — net {'+' if net >= 0 else ''}{net}.",
     }
 
 

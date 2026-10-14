@@ -467,7 +467,7 @@ function renderFh(){
       const isCap=p.captain||p.mult>1;
       return `<div class="chip ${isCap?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.got!=null?" · "+p.got:""}${isCap?" (C)":""}</div>`;
     }).join("")||`<p class="note">No XI recorded.</p>`;
-    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p><div class="compare2"><div><h3>Original · best process XI · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${xiChips(A.original_xi)}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${xiChips(A.fh_xi)}</div></div></div></div>`;
+    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p><div class="compare2"><div><h3>Original · same XI, captain and auto-subs · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${xiChips(A.original_xi)}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${xiChips(A.fh_xi)}</div></div></div></div>`;
     return;
   }
   if(used!=null){
