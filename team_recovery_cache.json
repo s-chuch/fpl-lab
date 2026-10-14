@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-13T23:40:23.863276+00:00",
+    "fetched_at": "2026-10-14T13:26:59.938512+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -11,7 +11,7 @@
           "date": "2026-10-13",
           "competition": "Champions League",
           "opponent": "Lille",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -74,7 +74,7 @@
           "date": "2026-10-13",
           "competition": "Champions League",
           "opponent": "Atleti",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
