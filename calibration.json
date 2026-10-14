@@ -1,0 +1,272 @@
+{
+ "version": 1,
+ "fitted_on": "2024-25",
+ "holdout": "2025-26 GW6-38",
+ "per_position": {
+  "GKP": {
+   "a": 0.2617,
+   "b": 0.8106,
+   "n": 952
+  },
+  "DEF": {
+   "a": 0.4409,
+   "b": 0.7759,
+   "n": 4070
+  },
+  "MID": {
+   "a": 0.5029,
+   "b": 0.9515,
+   "n": 5287
+  },
+  "FWD": {
+   "a": 1.0432,
+   "b": 0.7814,
+   "n": 1090
+  }
+ },
+ "metrics": {
+  "holdout": {
+   "uncalibrated": {
+    "n": 11508,
+    "mae": 1.9733,
+    "rmse": 2.8923,
+    "pearson": 0.3106,
+    "spearman": 0.3636,
+    "mean_pred": 2.1034,
+    "mean_actual": 2.3386,
+    "slope": 0.7505,
+    "intercept": 0.7599,
+    "elite_bias": 0.43
+   },
+   "calibrated": {
+    "n": 11508,
+    "mae": 2.0258,
+    "rmse": 2.8626,
+    "pearson": 0.3163,
+    "spearman": 0.3761,
+    "mean_pred": 2.3183,
+    "mean_actual": 2.3386,
+    "slope": 0.8903,
+    "intercept": 0.2747,
+    "elite_bias": 0.2334
+   },
+   "fpl_xp": {
+    "n": 11508,
+    "mae": 2.2085,
+    "rmse": 3.6036,
+    "pearson": 0.1879,
+    "spearman": 0.1209,
+    "mean_pred": 0.3906,
+    "mean_actual": 2.3386,
+    "slope": 0.4657,
+    "intercept": 2.1567
+   },
+   "form_baseline": {
+    "n": 11508,
+    "mae": 2.0928,
+    "rmse": 2.9088,
+    "pearson": 0.3079,
+    "spearman": 0.3655,
+    "mean_pred": 2.4933,
+    "mean_actual": 2.3386,
+    "slope": 0.6698,
+    "intercept": 0.6686
+   }
+  },
+  "holdout_by_position": {
+   "GKP": {
+    "uncalibrated": {
+     "n": 924,
+     "mae": 1.9016,
+     "rmse": 2.5534,
+     "pearson": 0.3971,
+     "spearman": 0.5155,
+     "mean_pred": 2.4509,
+     "mean_actual": 2.2522,
+     "slope": 0.787,
+     "intercept": 0.3233,
+     "elite_bias": 0.998
+    },
+    "calibrated": {
+     "n": 924,
+     "mae": 1.8267,
+     "rmse": 2.5286,
+     "pearson": 0.3971,
+     "spearman": 0.5155,
+     "mean_pred": 2.2484,
+     "mean_actual": 2.2522,
+     "slope": 0.9709,
+     "intercept": 0.0693,
+     "elite_bias": 0.4057
+    },
+    "fpl_xp": {
+     "n": 924,
+     "mae": 2.1118,
+     "rmse": 3.379,
+     "pearson": 0.155,
+     "spearman": 0.1296,
+     "mean_pred": 0.3915,
+     "mean_actual": 2.2522,
+     "slope": 0.3657,
+     "intercept": 2.109
+    },
+    "form_baseline": {
+     "n": 924,
+     "mae": 1.8843,
+     "rmse": 2.571,
+     "pearson": 0.3898,
+     "spearman": 0.5147,
+     "mean_pred": 2.4339,
+     "mean_actual": 2.2522,
+     "slope": 0.7408,
+     "intercept": 0.4493
+    }
+   },
+   "DEF": {
+    "uncalibrated": {
+     "n": 4232,
+     "mae": 2.0975,
+     "rmse": 2.9538,
+     "pearson": 0.2959,
+     "spearman": 0.3421,
+     "mean_pred": 2.1456,
+     "mean_actual": 2.2344,
+     "slope": 0.7076,
+     "intercept": 0.7163,
+     "elite_bias": 0.6581
+    },
+    "calibrated": {
+     "n": 4232,
+     "mae": 2.0844,
+     "rmse": 2.9327,
+     "pearson": 0.2959,
+     "spearman": 0.3421,
+     "mean_pred": 2.1057,
+     "mean_actual": 2.2344,
+     "slope": 0.9119,
+     "intercept": 0.3142,
+     "elite_bias": 0.0869
+    },
+    "fpl_xp": {
+     "n": 4232,
+     "mae": 2.1498,
+     "rmse": 3.5915,
+     "pearson": 0.1859,
+     "spearman": 0.1213,
+     "mean_pred": 0.3831,
+     "mean_actual": 2.2344,
+     "slope": 0.4749,
+     "intercept": 2.0525
+    },
+    "form_baseline": {
+     "n": 4232,
+     "mae": 2.1954,
+     "rmse": 2.9974,
+     "pearson": 0.2817,
+     "spearman": 0.3239,
+     "mean_pred": 2.4075,
+     "mean_actual": 2.2344,
+     "slope": 0.6116,
+     "intercept": 0.762
+    }
+   },
+   "MID": {
+    "uncalibrated": {
+     "n": 5154,
+     "mae": 1.8711,
+     "rmse": 2.8266,
+     "pearson": 0.3155,
+     "spearman": 0.3589,
+     "mean_pred": 2.0516,
+     "mean_actual": 2.3675,
+     "slope": 0.8107,
+     "intercept": 0.7043,
+     "elite_bias": 0.1737
+    },
+    "calibrated": {
+     "n": 5154,
+     "mae": 1.9785,
+     "rmse": 2.8065,
+     "pearson": 0.3155,
+     "spearman": 0.3589,
+     "mean_pred": 2.455,
+     "mean_actual": 2.3675,
+     "slope": 0.852,
+     "intercept": 0.2759,
+     "elite_bias": 0.4679
+    },
+    "fpl_xp": {
+     "n": 5154,
+     "mae": 2.2117,
+     "rmse": 3.5684,
+     "pearson": 0.1882,
+     "spearman": 0.1228,
+     "mean_pred": 0.3898,
+     "mean_actual": 2.3675,
+     "slope": 0.4613,
+     "intercept": 2.1877
+    },
+    "form_baseline": {
+     "n": 5154,
+     "mae": 2.0158,
+     "rmse": 2.836,
+     "pearson": 0.3078,
+     "spearman": 0.3501,
+     "mean_pred": 2.5211,
+     "mean_actual": 2.3675,
+     "slope": 0.7124,
+     "intercept": 0.5714
+    }
+   },
+   "FWD": {
+    "uncalibrated": {
+     "n": 1198,
+     "mae": 2.0291,
+     "rmse": 3.1833,
+     "pearson": 0.3273,
+     "spearman": 0.3788,
+     "mean_pred": 1.9093,
+     "mean_actual": 2.6494,
+     "slope": 0.7893,
+     "intercept": 1.1425,
+     "elite_bias": 0.1556
+    },
+    "calibrated": {
+     "n": 1198,
+     "mae": 2.1757,
+     "rmse": 3.0851,
+     "pearson": 0.3273,
+     "spearman": 0.3788,
+     "mean_pred": 2.5351,
+     "mean_actual": 2.6494,
+     "slope": 1.0101,
+     "intercept": 0.0888,
+     "elite_bias": 0.1379
+    },
+    "fpl_xp": {
+     "n": 1198,
+     "mae": 2.4766,
+     "rmse": 3.9487,
+     "pearson": 0.2106,
+     "spearman": 0.1098,
+     "mean_pred": 0.4204,
+     "mean_actual": 2.6494,
+     "slope": 0.5057,
+     "intercept": 2.4368
+    },
+    "form_baseline": {
+     "n": 1198,
+     "mae": 2.2224,
+     "rmse": 3.1372,
+     "pearson": 0.3276,
+     "spearman": 0.4072,
+     "mean_pred": 2.7225,
+     "mean_actual": 2.6494,
+     "slope": 0.6491,
+     "intercept": 0.8823
+    }
+   }
+  }
+ },
+ "generated": "2026-10-14T23:21:47+00:00"
+}
