@@ -29,6 +29,7 @@ JUNK_HOST_TOOLS = (
 QUERY_LISTING_KEYS = ("category", "tag", "page", "author", "s", "search")
 
 
+MAX_BODY_FETCHES = 30     # full-article fetches per run
 FETCH_BUDGET_S = 8 * 60  # stop fetching further pages after this, so 20s-per-request can't run forever
 _t0 = time.monotonic()
 
@@ -448,6 +449,7 @@ def main():
     discovered = uniq
     print(f"news_scrape.py: {len(discovered)} unique candidate link(s) across all sources before filtering")
     first_seed = len(seen_set) < 8
+    fetched_bodies = 0
     new_articles = []
     drop_seen_stale, drop_junk, drop_cutoff = 0, 0, 0
     for art in discovered:
@@ -459,7 +461,10 @@ def main():
         # A feed's <content:encoded> already gives the full article for free; only
         # fall back to fetching the rendered page when the feed gave us nothing (or
         # just a short <description> summary too thin for good mention detection).
-        if len(body_html) < 400 and (art["url"] not in seen_set or first_seed):
+        # Articles inside the window get their full text every run (not only the first time they are seen): the
+        # verdict on each player lives in the body, and the feed alone usually carries just the headline.
+        if len(body_html) < 400 and fetched_bodies < MAX_BODY_FETCHES:
+            fetched_bodies += 1
             fetched = fetch_html(art["url"])
             if fetched:
                 body_html = fetched

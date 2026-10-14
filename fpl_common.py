@@ -312,6 +312,95 @@ def sane_tags(tags, p):
     return out
 
 
+# --- What the articles actually SAY about a player (not just that he is mentioned) ---------------------------
+STANCE_PATTERNS = {
+    "buy": r"\b(?:buy|buying|bring(?:ing)? (?:him|her) in|transfer(?:ring)? (?:him|her)? ?in|must[- ]have|essential|get (?:him|her) in|"
+           r"great value|bargain|top pick|best (?:option|pick|buy)|in form|flying|recommend\w*|target(?:s|ing)?|differential|priority)\b",
+    "sell": r"\b(?:sell|selling|fade|fading|avoid|dump|move (?:him|her) on|overpriced|overrated|not worth|stay away|get rid|offload|bin)\b",
+    "hold": r"\b(?:keep|hold|stay put|sit tight|patient|stick with|roll(?:ing)? on)\b",
+    "captain": r"\bcaptain(?:s|ed|ing|cy)?\b|\barmband\b",
+    "risk": r"\b(?:injur\w*|doubt\w*|knock|fitness|rotat\w*|rested|benched|suspend\w*|illness|ruled out|fitness test)\b",
+}
+_NEGATION = re.compile(r"(?:\bnot|n't|\bnever|\bno)\s+(?:\w+\s+){0,2}$", re.I)
+_SENT_SPLIT = re.compile(r"(?<=[.!?])\s+|\n+")
+
+
+_MARKET_FACT = re.compile(r"\b(?:managers|owners|in droves|most[- ]sold|most[- ]bought|sales|top 10|transfer combinations?)\b", re.I)
+_BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie", re.I)
+
+
+def sentence_stance(sentence, key):
+    """Stance tags for one sentence that contains the player: buy / sell / captain / risk. 'not buy' flips to sell
+    and 'not sell' to buy; a stance word counts only inside the sentence, so one player's praise cannot leak to a
+    neighbour."""
+    low = sentence.lower()
+    hits = {}
+    for tag, pat in STANCE_PATTERNS.items():
+        for m in re.finditer(pat, low):
+            before = low[max(0, m.start() - 24):m.start()]
+            t = tag
+            if tag in ("buy", "sell") and _MARKET_FACT.search(sentence):
+                continue            # "100,000 managers sold him" reports what the market did, not what the writer advises
+            if tag in ("buy", "sell") and _NEGATION.search(before):
+                t = "sell" if tag == "buy" else "buy"
+            hits[t] = hits.get(t, 0) + 1
+    return hits
+
+
+_LIST_OF_NAMES = re.compile(r"(?:[A-Z][\w.'\u2019-]+,\s+){2,}[A-Z]")      # "De Cuyper, Pedro, Cherki, Gibbs-White": a roundup headline
+_FEED_FOOTER = re.compile(r"\s*The post .*$", re.S)                            # WordPress feeds append "The post X appeared first on Y"
+
+
+def stance_quotes(raw_text, key, window=80):
+    """The sentences of `raw_text` that mention `key` and say something about him (a buy/sell/captain/risk cue
+    within `window` characters of the name).
+    Roundup headlines that list several players ('A, B, C, D: buy, keep or sell?') are skipped: one verdict on a
+    list is not a verdict on each name."""
+    found, seen = [], set()
+    pat = re.compile(rf"\b{re.escape(key)}\b")
+    for item in raw_text.split(ARTICLE_SEP):
+        for sent in _SENT_SPLIT.split(item):
+            sent = _FEED_FOOTER.sub("", sent).strip()
+            if (len(sent) < 25 or _LIST_OF_NAMES.search(sent) or re.search(r"keep or sell|buy, hold or sell", sent, re.I)
+                    or _BOILERPLATE.search(sent) or sent.count("\u00a3") >= 3):
+                continue
+            plain = norm_keep_case(sent)
+            near = ""
+            for m in pat.finditer(plain):
+                near += " " + plain[max(0, m.start() - window):m.end() + window]
+            if not near:
+                continue
+            hits = sentence_stance(near, key)
+            if not hits:
+                continue
+            k = sent.lower()[:80]
+            if k in seen:
+                continue
+            seen.add(k)
+            found.append((sum(hits.values()), hits, sent))
+    return [{"text": (sent[:230] + "...") if len(sent) > 230 else sent, "key": sent.lower()[:80], "stance": sorted(h), "n": n_}
+            for n_, h, sent in found]
+
+
+def stance_verdict(counts):
+    """One-line read of the counts: what the coverage is leaning towards."""
+    b, se, c, r = (counts.get(k, 0) for k in ("buy", "sell", "captain", "risk"))
+    h = counts.get("hold", 0)
+    if r >= 2 and r >= max(b, se):
+        return "Fitness or rotation doubts"
+    if b and se and abs(b - se) <= 1:
+        return "Mixed: some say buy, some say sell"
+    if se > b:
+        return "Leaning sell / avoid"
+    if c >= 2 and c >= b:
+        return "Captain candidate"
+    if b:
+        return "Leaning buy"
+    if h:
+        return "Leaning keep / hold"
+    return "Mentioned, no clear view"
+
+
 def build_themes(blobs, gw, player_index, unit="sites", checked=None):
     """Discover which players are actually mentioned across the given per-source
     text blobs, instead of checking a fixed list of names someone hand-picked in
@@ -325,9 +414,11 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
         for p in player_index:
             if not re.search(rf"\b{re.escape(p['match'])}\b", text):
                 continue
-            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p})
+            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p, "sent": {}})
             rec["sources"].add(source)
             rec["tags"] |= qualifiers_near(text, p["match"])
+            for q in stance_quotes(raw_text, p["match"]):
+                rec["sent"].setdefault((source, q["key"]), {"source": source, **q})      # one record per sentence, however many aliases hit it
     agreed, split = [], []
     for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):
         n = len(rec["sources"])
@@ -335,12 +426,29 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
             continue  # a single mention is noise, not worth surfacing as an "emerging" theme
         rec["tags"] = sane_tags(rec["tags"], rec["p"])
         club = f" ({rec['club']})" if rec["club"] else ""
-        tag_str = f" Tags: {', '.join(sorted(rec['tags']))}." if rec["tags"] else ""
         is_agreed = n >= 3
-        verb = "is heavily featured in" if is_agreed else "is starting to come up in"
+        sents = sorted(rec["sent"].values(), key=lambda q: -q["n"])
+        rec["counts"] = {}
+        for q in sents:
+            for tg in q["stance"]:
+                rec["counts"][tg] = rec["counts"].get(tg, 0) + 1
+        quotes, seen_src = [], {}
+        for q in sents:                    # best sentence per site first, then the next best, up to four
+            if seen_src.get(q["source"], 0) < 1:
+                quotes.append(q); seen_src[q["source"]] = 1
+        for q in sents:
+            if len(quotes) >= 4:
+                break
+            if q not in quotes:
+                quotes.append(q)
+        rec["quotes"] = [{"source": q["source"], "text": q["text"], "stance": q["stance"]} for q in quotes[:4]]
+        verdict = stance_verdict(rec["counts"])
         scope = f"{n}/{total} {unit} with fresh articles" + (f" ({checked} checked)" if checked and checked != total else "")
-        text = f"{name}{club} {verb} GW{gw} coverage — mentioned by {scope}.{tag_str}"
-        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"]}
+        cnt = rec["counts"]
+        says = ", ".join(f"{cnt[k]} {lbl}" for k, lbl in (("buy", "buy"), ("hold", "keep"), ("sell", "sell/avoid"), ("captain", "captain"), ("risk", "fitness/rotation")) if cnt.get(k))
+        text = f"{name}{club} — {verdict}" + (f" ({says} mentions)" if says else "") + f" · {scope}"
+        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"],
+                "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"]}
         (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)
     return (agreed + concept_agreed)[:15], (split + concept_split)[:10]

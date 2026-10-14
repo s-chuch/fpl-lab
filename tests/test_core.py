@@ -164,5 +164,27 @@ class NewsMatching(unittest.TestCase):
         self.assertEqual(fpl_common.sane_tags({"injury/doubt", "differential"}, q), {"injury/doubt", "differential"})
 
 
+class NewsStance(unittest.TestCase):
+    def test_negation_and_market_facts(self):
+        import fpl_common
+        self.assertEqual(fpl_common.sentence_stance("I would not buy Haaland at that price.", "Haaland"), {"sell": 1})
+        self.assertNotIn("sell", fpl_common.sentence_stance("Over 100,000 managers sold Schade after the injury.", "Schade"))
+        self.assertIn("risk", fpl_common.sentence_stance("Over 100,000 managers sold Schade after the injury.", "Schade"))
+
+    def test_roundup_headlines_are_not_a_verdict_on_each_name(self):
+        import fpl_common
+        text = "De Cuyper, Pedro, Cherki, Gibbs-White: Buy, keep or sell in Gameweek 7? Cherki is a must-have this week, bring him in."
+        quotes = fpl_common.stance_quotes(text, "Cherki")
+        self.assertEqual(len(quotes), 1)
+        self.assertEqual(quotes[0]["stance"], ["buy"])
+
+    def test_verdicts(self):
+        import fpl_common
+        self.assertEqual(fpl_common.stance_verdict({"buy": 3}), "Leaning buy")
+        self.assertEqual(fpl_common.stance_verdict({"sell": 2}), "Leaning sell / avoid")
+        self.assertTrue(fpl_common.stance_verdict({"buy": 2, "sell": 2}).startswith("Mixed"))
+        self.assertEqual(fpl_common.stance_verdict({}), "Mentioned, no clear view")
+
+
 if __name__ == "__main__":
     unittest.main()

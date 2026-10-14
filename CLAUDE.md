@@ -127,3 +127,8 @@
   `data["news_players"]`; `data["team_news"]` (FPL status changes, 72h, parsed return dates) and `data["set_pieces"]` (taker orders)
   feed the Team news and Set pieces tabs; Injury, Rotation and Price radar moved into Intel. The scraper's processed-URL list lives in
   `news_seen.json` (not shipped to the page). Counts read "N/M sites with fresh articles (K checked)".
+- **News verdicts.** `fpl_common.stance_quotes` / `sentence_stance` read the sentences around each player's name (cue within 80
+  chars; "not buy" flips; roundup headlines listing several names, boilerplate and "managers sold him" market facts are ignored) and
+  `build_themes` turns them into a verdict (`stance_verdict`), cue counts and up to four quotes per theme. News articles in the
+  window get their full text fetched every run (`MAX_BODY_FETCHES`), since the verdicts live in the body. It is a heuristic, not
+  an LLM: the page says so.
