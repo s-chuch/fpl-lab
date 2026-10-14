@@ -49,6 +49,9 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
             "goals": goals, "assists": assists, "xg": round(xg, 2), "xa": round(xa, 2),
             "xgi": round(xgi, 2), "xgi_p90": round(xgi / p90, 2) if p90 else 0.0, "gi": gi, "diff": diff, "tag": tag,
         }
+        fx = (next_fixture_map or {}).get(el["team"])
+        row["next"] = f"{fx['opp']} ({fx['side']})" if fx else "Blank"
+        row["fdr"] = fx.get("fdr") if fx else None
         if pos in ("DEF", "GKP"):
             xgc = to_float(el.get("expected_goals_conceded"))
             if xgc is not None:
@@ -111,9 +114,20 @@ UNDERSTAT_GOAL_SOT = 3      # shots on target over the window with no goal => go
 
 UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
 
-UNDERSTAT_ASSIST_CC = 4     # chances created (shots the player set up) with no assist => assist due
+UNDERSTAT_ASSIST_CC = 6     # chances created (shots the player set up) with no assist => assist due
 
-UNDERSTAT_ASSIST_BIG = 2    # ...or this many big chances created
+UNDERSTAT_ASSIST_BIG = 3    # ...or this many big chances created
+
+ASSIST_DEF_FACTOR = 2       # a defender must clear the assist bar at 2x (12+ chances created or 6+ big)
+
+STARTER_SHARE = 0.55        # season minutes / (90 * finished gameweeks) a player needs to be flagged
+
+def starter_share(el, boot):
+    """Share of the available minutes this season (None before any gameweek has finished)."""
+    fin = sum(1 for e in boot["events"] if e.get("finished"))
+    if not fin:
+        return None
+    return int(el.get("minutes") or 0) / (90 * fin)
 
 def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=None, windows=None, extra_owned=None):
     """Goal due: the player's last few appearances show real shot volume (shots on target /
@@ -134,6 +148,9 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
         el = els[eid]
         if el["element_type"] == 1 or w["apps"] < 2:
             continue
+        share = starter_share(el, boot)
+        if share is not None and share < STARTER_SHARE:
+            continue    # rotation / bench player: chance volume over a few cameos is noise
         key = (el["web_name"], teams[el["team"]])
         item = {"name": el["web_name"], "pos": POS[el["element_type"]], "club": key[1], "cost": el["now_cost"] / 10,
                 "owned_pct": float(el.get("selected_by_percent") or 0), "gws": w["apps"], "shots": w["shots"],
@@ -147,9 +164,10 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
         bonus = (3 - fx["fdr"] if fx and fx.get("fdr") else -2) + (1 if item["owned_pct"] < 10 else 0)
         item["bonus"] = bonus
         due = []
-        if w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
+        mult = ASSIST_DEF_FACTOR if el["element_type"] == 2 else 1
+        if el["element_type"] != 2 and w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
             due.append("goal"); goal.append(item)
-        if w["assists"] == 0 and (w["cc"] >= UNDERSTAT_ASSIST_CC or w["big_cc"] >= UNDERSTAT_ASSIST_BIG):
+        if w["assists"] == 0 and (w["cc"] >= UNDERSTAT_ASSIST_CC * mult or w["big_cc"] >= UNDERSTAT_ASSIST_BIG * mult):
             due.append("assist"); assist.append(item)
         due_by[key] = due
     for r in squad_rows:
@@ -157,7 +175,8 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
     goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"] + x["bonus"]))
     assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"] + x["bonus"]))
     return {"source": "understat", "window": understat.WINDOW, "goal_rule": f"{UNDERSTAT_GOAL_SOT}+ shots on target or {UNDERSTAT_GOAL_BIG}+ big chances",
-            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created",
+            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created (defenders: double)",
+            "starter_rule": f"regular starters only ({round(STARTER_SHARE * 100)}%+ of available minutes); goal list is midfielders and forwards",
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned][:top_n]}
 
@@ -247,7 +266,7 @@ def backfill_volume_log(log, boot, team_id, top_n=10, first_gw=3):
             continue
         if not res:
             continue
-        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "kind": kind}
+        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "pos": x["pos"], "kind": kind}
                  for kind in ("goal", "assist") for x in res.get(kind, [])]
         log[f"gw{g}"] = {"gw": g, "flags": flags, "graded": False, "backfilled": True}
     return log
@@ -260,12 +279,17 @@ def update_volume_log(log, imminent, ds, boot):
     with the league-wide rate for context. Builds a real hit rate over the season."""
     log = dict(log or {})
     gw = ds.get("next_gw")
+    els = {e["id"]: e for e in boot["elements"]}
     if imminent and imminent.get("source") == "understat" and gw:
-        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "kind": kind}
+        flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "pos": x.get("pos") or POS.get((els.get(x["eid"]) or {}).get("element_type")), "kind": kind}
                  for kind in ("goal", "assist") for x in imminent.get(kind, [])]
         log[f"gw{gw}"] = {"gw": gw, "flags": flags, "graded": False}
-    finished = {e["id"] for e in boot["events"] if e.get("finished")}
-    els = {e["id"]: e for e in boot["elements"]}
+    # grade only once FPL has settled the gameweek (finished AND data_checked)
+    finished = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
+    for entry in log.values():     # backfill the position onto older flags
+        for f in entry.get("flags", []):
+            if not f.get("pos") and f.get("eid") in els:
+                f["pos"] = POS[els[f["eid"]]["element_type"]]
     for key, entry in log.items():
         if entry["gw"] not in finished or (entry.get("graded") and entry.get("baseline_att")):
             continue

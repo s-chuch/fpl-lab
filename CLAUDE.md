@@ -152,3 +152,7 @@
   `elo_cache.json`; it returned 502 from the dev sandbox, so it is unverified from Actions and silently skipped when unavailable.
 - **Price changes** use FPL's own `price_change_percent` / `price_change_projections` (likelihood -5..4; +-90% projects a move),
   with transfer momentum only as a fallback; both the Price radar and the transfer signals use it.
+- **xG/xA volume lists** (after the track-record review): goal list = MID/FWD only; assist list needs 6+ chances created or 3+ big
+  chances (defenders at double that); regular starters only (55%+ of available minutes); flags carry `pos` and the track record shows
+  hit rates by position; a gameweek is graded only when FPL has settled it (`finished AND data_checked`). The regression tags are shown as
+  "Overperforming"/"Underperforming" (not transfer orders); squad rows show next fixture, FDR and ownership.
