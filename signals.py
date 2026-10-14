@@ -732,10 +732,20 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclud
         # the rule itself, not something this needs to estimate.
         # Only a strong swing projects a move: a handful of net transfers is noise (a backtest found 2 of 89
         # "rising" calls right). FPL's counter is for the whole gameweek, not the day.
-        strong = abs(momentum) >= 5 and abs(net) >= 5000
-        expected_change = (0.1 if net > 0 else -0.1) if strong else 0.0
+        # FPL now publishes its own progress towards a price change (price_change_percent: +100 = rise tonight, -100 =
+        # fall) and a likelihood bucket; use that when present, and the transfer-momentum rule only as a fallback.
+        try:
+            fpl_pct = float(el.get("price_change_percent")) if el.get("price_change_percent") not in (None, "") else None
+        except (TypeError, ValueError):
+            fpl_pct = None
+        if fpl_pct is not None:
+            expected_change = 0.1 if fpl_pct >= 90 else (-0.1 if fpl_pct <= -90 else 0.0)
+        else:
+            strong = abs(momentum) >= 5 and abs(net) >= 5000
+            expected_change = (0.1 if net > 0 else -0.1) if strong else 0.0
         return {
             "id": el["id"], "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "fpl_pct": fpl_pct, "fpl_likelihood": ((el.get("price_change_projections") or [{}])[0] or {}).get("likelihood"),
             "cost": el["now_cost"] / 10, "owned_pct": owned, "net_transfers_today": net, "momentum": momentum,
             "changed_today": (el.get("cost_change_event") or 0) != 0,
             "cost_change_today": (el.get("cost_change_event") or 0) / 10,
@@ -755,8 +765,12 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclud
     squad_rows = sorted((row_of(elements[eid]) for eid in squad_ids), key=lambda r: -abs(r["momentum"]))
     all_rows = [row_of(el) for el in elements.values()]
     movers = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ())]  # your own players are in `squad`
-    rising = sorted((r for r in movers if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
-    falling = sorted((r for r in movers if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
+    if any(r.get("fpl_pct") is not None for r in movers):      # FPL's own progress towards a change, closest first
+        rising = sorted((r for r in movers if (r.get("fpl_pct") or 0) > 0), key=lambda r: -r["fpl_pct"])[:top_n]
+        falling = sorted((r for r in movers if (r.get("fpl_pct") or 0) < 0), key=lambda r: r["fpl_pct"])[:top_n]
+    else:
+        rising = sorted((r for r in movers if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
+        falling = sorted((r for r in movers if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
     # `watch` is the actual decision set (wildcard-watch names + the wildcard
     # tab's own top-3 target names) rather than the top-N market movers —
     # every one of those names gets a row here even if its price hasn't

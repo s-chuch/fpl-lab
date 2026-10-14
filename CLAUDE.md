@@ -144,3 +144,11 @@
   planner's first step (`plan["transfer"].source = "planner"`), the news-rule idea survives only as an advisory line with its xP cost, and
   the Plan XI/bench/captain come from `refresh._lineup_by_xp`. Target 1/3/6 and the transfer-target tables carry `xp` and `sig`
   (`ai_run.enrich_with_model`). In `main()` everything that needs these signals (AI team, pred_log, planner, daily check) runs last.
+- **Fixture swing** (Strategy > Fixtures): `fixture_swing.py` builds `data["swing"]` (20 clubs x next 8 gameweeks, opponent, FDR, attack and
+  defence difficulty, blank/double flags, owned clubs), `swing.js` renders it (3/6/8 GW windows, Overall/Attack/Defence, clubs to
+  target / sell, 20-club heat table). FPL's `strength_*` team fields are all 0 this season, so attack/defence difficulty comes from each
+  club's goals for/against per game (`ai_run._team_form`, shrunk to the league mean). The Wildcard line in the chip hints only
+  appears when the Wildcard is available this half. `elo.py` fetches Club Elo (api.clubelo.com) into `data["elo_ratings"]` and
+  `elo_cache.json`; it returned 502 from the dev sandbox, so it is unverified from Actions and silently skipped when unavailable.
+- **Price changes** use FPL's own `price_change_percent` / `price_change_projections` (likelihood -5..4; +-90% projects a move),
+  with transfer momentum only as a fallback; both the Price radar and the transfer signals use it.

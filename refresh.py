@@ -1445,6 +1445,8 @@ def main(team_id=TEAM_ID, out_path=None):
     _lc = counts_by_league.get(125784) or {}
     signals = section("transfer_signals", build_transfer_signals, boot, fpl_common.load_js_object(ROOT / "news.js"), data.get("elite"),
                       {"counts": _lc.get("counts") or {}, "n": _lc.get("n"), "mode": _mode}, data.get("set_pieces"), fallback={}) or {}
+    data["elo_ratings"] = section("elo", lambda: __import__("elo").fetch_ratings(boot, cache_path=ROOT / "elo_cache.json").get("ratings") or {}, fallback={})
+    data["swing"] = section("swing", build_swing_data, boot, ds, teams_by_id, plan, data.get("elo_ratings"), fallback={})
     data["transfer_signals"] = {"mode": _mode, "players": len(signals)}
     try:
         enrich_with_model(data, boot, ds, teams_by_id, inputs, signals)

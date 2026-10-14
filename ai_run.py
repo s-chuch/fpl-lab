@@ -216,9 +216,23 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
             pct = 100 * c / elite["n"]
             if pct >= 10:
                 put(eid, "elite", 0.4 * min(1.0, pct / 50), f"Top-{elite['n']} own {round(pct)}%")
-    # 3. price momentum: buy before a rise, sell before a fall
+    # 3. price: buy before a rise, sell before a fall. FPL publishes its own progress towards a change and a likelihood bucket
+    # (price_change_projections[0].likelihood: 4 = about to rise ... -4 = about to fall); transfer momentum is the fallback.
     total = boot.get("total_players") or 0
     for el in boot["elements"]:
+        proj = (el.get("price_change_projections") or [None])[0]
+        pct = el.get("price_change_percent")
+        if proj is not None and pct not in (None, ""):
+            lk = proj.get("likelihood") or 0
+            if lk >= 3:
+                put(el["id"], "price", 0.3, f"Price likely to rise (FPL: {pct}% to the threshold)")
+            elif lk == 2:
+                put(el["id"], "price", 0.12, f"Price may rise (FPL: {pct}%)")
+            elif lk <= -3:
+                put(el["id"], "price", -0.3, f"Price likely to fall (FPL: {pct}%)")
+            elif lk == -2:
+                put(el["id"], "price", -0.12, f"Price may fall (FPL: {pct}%)")
+            continue
         net = int(el.get("transfers_in_event") or 0) - int(el.get("transfers_out_event") or 0)
         owners = float(el.get("selected_by_percent") or 0) / 100 * total
         mom = net / owners * 100 if owners >= 1 else 0
@@ -299,3 +313,43 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     tt = data.get("transfer_targets") or {}
     for r in (tt.get("xg") or []) + (tt.get("defcon") or []):
         annotate(r, 1)
+
+
+def build_swing_data(boot, ds, teams_by_id, plan, elo=None, horizon=8):
+    """Club-by-club fixture swing for the next `horizon` open gameweeks (fixture_swing.py), highlighting the clubs your
+    squad owns. `elo` is {club short name: rating} when Club Elo was reachable."""
+    import fixture_swing
+    nxt = ds.get("next_gw")
+    if not nxt:
+        return {}
+    events = {e["id"] for e in boot["events"]}
+    gws = [g for g in range(nxt, nxt + horizon) if g in events]
+    scan = {g: fixture_scan(g, teams_by_id) for g in gws}
+    owned = {}
+    for row in (plan or {}).get("rows") or []:
+        owned.setdefault(row[2], []).append(row[1])
+    return fixture_swing.build_swing(boot, scan, owned, elo, form=_team_form(boot))
+
+
+def _team_form(boot):
+    """Goals scored / conceded per game for every club from the season's finished fixtures, shrunk towards the league
+    mean (three games' worth), for attack/defence difficulty when FPL's own strength ratings are empty."""
+    import fplbase
+    fx = fplbase._fixtures_cache.get("all")
+    if fx is None:
+        fx = get("https://fantasy.premierleague.com/api/fixtures/")
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    gf, ga, n = {}, {}, {}
+    for f in fx:
+        if not f.get("finished") and not f.get("finished_provisional"):
+            continue
+        h, a, hs, as_ = f["team_h"], f["team_a"], f.get("team_h_score"), f.get("team_a_score")
+        if hs is None or as_ is None:
+            continue
+        for t, s_for, s_against in ((h, hs, as_), (a, as_, hs)):
+            gf[t] = gf.get(t, 0) + s_for; ga[t] = ga.get(t, 0) + s_against; n[t] = n.get(t, 0) + 1
+    games = sum(n.values()) / 2 or 1
+    mean = sum(gf.values()) / (2 * games) if gf else 1.4
+    k = 3
+    return {teams[t]: {"gf": (gf.get(t, 0) + mean * k) / (n.get(t, 0) + k), "ga": (ga.get(t, 0) + mean * k) / (n.get(t, 0) + k)} for t in teams}
+
