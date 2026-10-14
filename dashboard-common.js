@@ -363,6 +363,22 @@ function plannerCard(D){
   const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}.`:"This week: roll.";
   return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)} now</li><li>${esc(P.note||"")}</li></ul><table class="table-compact"><thead><tr><th style="width:12%">GW</th><th style="width:46%">Move</th><th style="width:16%">xP</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
+// Matchday snapshot (live_update.py -> live-data.js, written every ~10 min while matches are in play). The browser
+// cannot call FPL's API itself (no CORS), so the page reads that snapshot and refreshes it while it is open.
+function liveBar(L,team){
+  try{
+    const T=L&&L.teams&&L.teams[team]; if(!T) return "";
+    const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
+    if(!(ageMin<360)) return "";           // a stale snapshot (match day long over) is not shown as live
+    const xi=T.xi.map(p=>`<tr><td>${esc(p.name)}${p.mult>1?" (C)":""}</td><td>${esc(p.pos)}</td><td class="${p.played?"":"note"}">${p.played?p.pts*p.mult+(p.bonus?` <span class="note">+${p.bonus}b</span>`:""):"yet to play"}</td></tr>`).join("");
+    const games=(L.games||[]).filter(g=>g.started).map(g=>`${esc(g.home)} ${g.hs??"-"}-${g.as??"-"} ${esc(g.away)}${g.finished?"":" ("+(g.minutes||"")+"')"}`).join(" · ");
+    return `<details class="card fold" open><summary><h2>Live · GW${L.gw}</h2><span class="foldsum"><b>${T.points}</b> pts · ${T.yet_to_play} yet to play · updated ${esc(toToronto(L.generated_at))}</span></summary><ul class="note-list"><li>${L.in_play} match${L.in_play===1?"":"es"} in play${games?" — "+games:""}</li><li>Provisional: FPL's live points with bonus so far. Auto-subs and a vice-captain taking over are only applied once the gameweek is settled${T.hits?`; includes -${T.hits} for hits`:""}${T.chip?` · ${esc(T.chip)} active`:""}</li></ul><table class="table-compact"><thead><tr><th style="width:50%">Player</th><th style="width:18%">Pos</th><th>Pts</th></tr></thead><tbody>${xi}</tbody></table><p class="note">Bench: ${T.bench.map(b=>esc(b.name)+" "+(b.played?b.pts:"–")).join(" · ")}</p></details>`;
+  }catch(e){ return ""; }
+}
+function loadLive(team){
+  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
+  load(); setInterval(load,5*60*1000);
+}
 function renderCaptain(D){
   const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;

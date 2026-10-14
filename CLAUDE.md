@@ -117,3 +117,8 @@
   transfers, -4 hits) on `ai_team.player_values` per gameweek; shown on the Plan tab (`plannerCard`, `data["planner"]`). It says
   "roll" unless the plan beats rolling by 1+ expected points. Chips are not planned. `signals.build_elite_ownership` gives
   top-50 ownership (`data["elite"]`: Captain tab card and a Top 50 column on Target lists).
+- **Live matchday layer.** The browser cannot read FPL's API (no CORS), so `.github/workflows/live.yml` runs `live_update.py` every
+  10 minutes in match windows; it writes `live-data.js` (your squad's provisional live points, scores, who has played) only when a
+  gameweek is live, so the repo changes only on match days. The pages load it with a cache-busting query (`loadLive`, not stamped)
+  and show `liveBar` above the tabs, re-reading it every 5 minutes while open. Auto-subs and vice promotion are not applied until the
+  gameweek settles.
