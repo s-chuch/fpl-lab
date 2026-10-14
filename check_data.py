@@ -50,7 +50,7 @@ def check(name, d):
         have = net.get(chip) or ({"net": audit.get("net"), "note": audit.get("why")} if chip == "freehit" else None)
         if not have or not have.get("note"):
             problems.append(f"{name}: chip '{chip}' was played in GW{gw} but has no result line")
-        elif chip != "wildcard" and have.get("net") is None:
+        elif have.get("net") is None:
             problems.append(f"{name}: chip '{chip}' (GW{gw}) has no points result")
     ai, nxt = d.get("ai_team") or {}, (d.get("deadline") or {}).get("next_gw")
     plan = ai.get("plan") or {}

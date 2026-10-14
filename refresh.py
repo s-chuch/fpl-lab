@@ -733,12 +733,29 @@ def build_bench_audit(boot, team_id, lookback=3):
         out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4], "bench_tags": bench_tags}
     return out
 
-def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, transfers=None):
-    """Auto-compute each played chip's result from data already gathered — no per-chip
-    hand-typed numbers to keep updating. Bench Boost = the bench's points that week (read
-    straight from that GW's picks: bench_audit skips Bench Boost weeks since every player
-    counts then). Triple Captain = the captain's extra multiple. Wildcard has no well-defined
-    "net vs no chip" (it rebuilds the whole squad), so it gets a description instead."""
+def _chip_week_facts(gws, gw):
+    """The measurable facts about a gameweek: points, the field average, overall rank before and after."""
+    g = next((x for x in (gws or []) if x.get("gw") == gw), None)
+    if not g:
+        return None
+    prev = next((x for x in (gws or []) if x.get("gw") == gw - 1), None)
+    return {"points": g.get("points"), "avg": g.get("field_avg"), "rank": g.get("rank"), "prev_rank": (prev or {}).get("rank")}
+
+
+def _rank_text(f):
+    if f and f.get("rank") and f.get("prev_rank"):
+        return f" Overall rank {f['prev_rank']:,} → {f['rank']:,}."
+    return ""
+
+
+def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, transfers=None, gws=None):
+    """Each played chip's result, using only things that can actually be measured:
+      * Bench Boost = the bench's points that week (exactly what the chip added).
+      * Triple Captain = the captain's third multiple (exactly what the chip added).
+      * Free Hit / Wildcard rebuild the whole squad, so the true "points the chip added" is unknowable:
+        it depends on what you would have done without it. The figure shown is therefore a FACT -
+        that gameweek's points against the field average - and the unchanged-squad comparison is kept
+        only as a labelled estimate in the note."""
     out = {}
     bboost_gw = chips_used.get("bboost")
     if bboost_gw:
@@ -752,33 +769,39 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
             except Exception as e:
                 _warn(f"build_chip_net: could not read the GW{bboost_gw} Bench Boost bench: {e}")
         if bench:
-            out["bboost"] = {"net": sum(pts for _name, pts in bench),
-                             "note": " + ".join(f"{name} {pts}" for name, pts in bench)}
+            out["bboost"] = {"net": sum(pts for _name, pts in bench), "label": "from the bench",
+                             "note": "Bench points that counted: " + " + ".join(f"{name} {pts}" for name, pts in bench)}
     xc_gw = chips_used.get("3xc")
     if xc_gw:
         row = next((c for c in caps if c.get("gw") == xc_gw), None)
         if row:
             extra = row.get("captain_raw") or 0  # 3xc's only gain over a normal (C) is the 3rd multiple
-            out["3xc"] = {
-                "net": extra,
-                "note": f"{row.get('captain')} {extra} raw. Triple gave {extra * 3} instead of {extra * 2}.",
-            }
-    wc_gw = chips_used.get("wildcard")
-    if wc_gw:
-        moves = next((t for t in (transfers or []) if t.get("chip") == "wildcard"), None)
-        built = f"{moves['inn']} rebuilt the squad for free" if moves else "Squad rebuilt for free"
+            out["3xc"] = {"net": extra, "label": "from the 3rd multiple",
+                          "note": f"{row.get('captain')} {extra} raw. Triple gave {extra * 3} instead of {extra * 2}."}
+    for key, label, prior in (("freehit", "FH", "reverted squad"), ("wildcard", "WC", "previous squad")):
+        gw = chips_used.get(key)
+        if not gw:
+            continue
+        f = _chip_week_facts(gws, gw)
         audit = None
         if boot and team_id:
             try:
-                audit = build_fh_audit(boot, team_id, chips_used, "wildcard", "WC", "previous squad")
+                audit = build_fh_audit(boot, team_id, chips_used, key, label, prior)
             except Exception as e:
-                _warn(f"build_chip_net: Wildcard result unavailable: {e}")
+                _warn(f"build_chip_net: {label} comparison unavailable: {e}")
+        moves = next((t for t in (transfers or []) if t.get("chip") == key), None)
+        built = f" {moves['inn']} rebuilt the squad for free." if (key == "wildcard" and moves) else ""
+        if not f or f.get("points") is None:
+            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet — retried every refresh."}
+            continue
+        avg = f.get("avg")
+        net = (f["points"] - avg) if avg else None
+        text = f"GW{gw}: {f['points']} pts" + (f" vs {avg} field average." if avg else ".") + _rank_text(f) + built
         if audit:
-            # Same yardstick as the Free Hit: the squad you actually played vs the best XI the squad
-            # you would have carried could have fielded in that gameweek (updates live until it ends).
-            out["wildcard"] = {"net": audit["net"], "note": f"{audit['why']} {built}."}
-        else:
-            out["wildcard"] = {"net": None, "note": f"{built}. Result not available yet — retried every refresh."}
+            text += (f" Estimate only: your unchanged squad (same XI, captain, auto-subs) would have scored about "
+                     f"{audit['original_points']} ({'+' if audit['net'] >= 0 else ''}{audit['net']} for the chip) — what you'd have done "
+                     f"without the chip isn't known, so treat that as a guide, not an exact figure.")
+        out[key] = {"net": net, "label": "vs field average", "note": text}
     return out
 
 
@@ -2447,10 +2470,15 @@ def main(team_id=TEAM_ID, out_path=None):
     entry = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/")
     hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
     avg = {e["id"]: e.get("average_entry_score") for e in boot["events"]}
+    # FPL's average for a gameweek keeps moving until the gameweek is finished AND its data checked. Only a
+    # settled average may be cached: GW6's was cached at 37 mid-gameweek and never corrected (final: 58),
+    # which made every "vs the field" figure for that week wrong.
+    settled = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
     field_avg = {}
     for k, v in (existing.get("field_avg_known") or {}).items():
         try:
-            field_avg[int(k)] = v  # JSON round-trip turns int GW keys into strings
+            if int(k) in settled:
+                field_avg[int(k)] = v  # JSON round-trip turns int GW keys into strings
         except (TypeError, ValueError):
             pass
     prev_price_trend = dict(existing.get("price_trend") or {})
@@ -2477,8 +2505,11 @@ def main(team_id=TEAM_ID, out_path=None):
     chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
     gws = []
     for row in hist.get("current", []):
-        gw = row["event"]; fa = field_avg.get(gw) or avg.get(gw)
-        if fa: field_avg[gw] = fa
+        gw = row["event"]
+        # a settled gameweek always uses FPL's final average; one still being played shows the live figure uncached
+        fa = (avg.get(gw) or field_avg.get(gw)) if gw in settled else (avg.get(gw) or None)
+        if fa and gw in settled:
+            field_avg[gw] = fa
         gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
     plan = build_plan(boot, team_id, hist, chips_used)
     ds = deadline_state(boot)
@@ -2502,7 +2533,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["captain_board"] = build_captain_board(boot, team_id)
     ft_rows, ft_next = free_transfer_ledger(hist or {})
     data["ft_ledger"] = {"rows": ft_rows, "next": ft_next, "next_gw": next((e["id"] for e in boot["events"] if not e.get("finished") and e["id"] > (ft_rows[-1]["gw"] if ft_rows else 0)), None)}
-    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"])
+    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"], gws)
     data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
     data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
