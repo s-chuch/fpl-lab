@@ -575,16 +575,21 @@ function renderTargets(){
 // ---- Intel tab renderers (shared). News themes carry FPL numbers from data.news_players (refresh.build_news_players).
 function newsThemeRow(x,NP){
   const p=(NP||{})[String(x.id)]||null;
+  const TONE={good:{i:"🟢",l:"Good news",c:"pos"},bad:{i:"🔴",l:"Bad news",c:"neg"},mixed:{i:"🟠",l:"Mixed",c:""},neutral:{i:"⚪",l:"Neutral",c:""}};
+  const T=TONE[x.tone]||TONE.neutral;
   const pills=p?`${p.yours?'<span class="pill used">Yours</span> ':''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
   const nums=p?`<div class="detail note">${p.owned}% owned · £${Number(p.cost).toFixed(1)} · xP ${p.xp} · ${esc(p.fixture)}${p.news?` · ${esc(p.news)}`:""}</div>`:"";
-  // Specific claims, each tagged by topic with its article link (news_scrape facts): the first three inline, the rest folded.
-  const TL={fitness:"Fitness",role:"Role",fixture:"Fixture",form:"Form",price:"Price",captain:"Captain"};
-  const fact=f=>`<li><span class="pill free">${esc(TL[f.topic]||f.topic)}</span> ${esc(f.text)} ${f.url?`<a href="${safeHref(f.url)}" target="_blank" rel="noopener" title="${esc(f.title||"")}">${esc(f.source)}</a>`:`<span class="note">${esc(f.source)}</span>`}</li>`;
-  const fl=(x.facts||[]);
-  const sayBlock=fl.length?`<ul class="chiplist facts">${fl.slice(0,3).map(fact).join("")}</ul>${fl.length>3?`<details class="fold"><summary>${fl.length-3} more</summary><ul class="chiplist facts">${fl.slice(3).map(fact).join("")}</ul></details>`:""}`:"";
   const L=x.llm; const VL={buy:"Buy",keep:"Keep",sell:"Sell",captain:"Captain",avoid:"Avoid",monitor:"Monitor",no_view:"No clear view"};
   const llmBlock=L?`<div class="detail"><span class="pill ${L.verdict==="buy"||L.verdict==="captain"?"used":"free"}">Claude: ${esc(VL[L.verdict]||L.verdict)}</span> <span class="note">${esc(L.confidence)} confidence</span><div>${esc(L.summary)}</div>${L.risks?`<div class="note">Risk: ${esc(L.risks)}</div>`:""}</div>`:"";
-  return `<li><span class="who">${esc(x.text)}</span>${llmBlock}${pills?`<div class="detail">${pills}</div>`:""}${nums}${sayBlock}<div class="detail">${srcChips(x.sources)}</div></li>`;
+  // Point form: one short bullet per specific fact, split into good / bad news; neutral facts are folded.
+  const TL={fitness:"fitness",role:"role",fixture:"fixture",form:"form",price:"price",captain:"captain"};
+  const short=t=>{t=String(t).replace(/\s+/g," ").trim(); if(t.length<=150) return t; const cut=t.slice(0,150); const i=Math.max(cut.lastIndexOf(". "),cut.lastIndexOf(", "),cut.lastIndexOf(" "));return cut.slice(0,i>60?i:150)+"…";};
+  const bullet=f=>`<li>${f.tone==="good"?"🟢":f.tone==="bad"?"🔴":"⚪"} <span class="note">${esc(TL[f.topic]||f.topic)}</span> ${esc(short(f.text))} ${f.url?`<a href="${safeHref(f.url)}" target="_blank" rel="noopener" title="${esc(f.title||"")}">${esc(f.source)}</a>`:`<span class="note">${esc(f.source)}</span>`}</li>`;
+  const fl=(x.facts||[]), good=fl.filter(f=>f.tone==="good"), bad=fl.filter(f=>f.tone==="bad"), neu=fl.filter(f=>f.tone!=="good"&&f.tone!=="bad");
+  const main=bad.concat(good);     // bad news first: it is what changes a decision
+  const sayBlock=(main.length?`<ul class="chiplist facts">${main.map(bullet).join("")}</ul>`:"")+(neu.length?`<details class="fold"><summary>${neu.length} neutral</summary><ul class="chiplist facts">${neu.map(bullet).join("")}</ul></details>`:"");
+  const sites=(x.sources||[]).length;
+  return `<li><span class="who">${esc(x.player||"")} <span class="note">${esc(x.club||"")}</span> · ${T.i} <b class="${T.c}">${T.l}</b></span><div class="detail note">${sites} site${sites===1?"":"s"} · ${good.length} good · ${bad.length} bad · ${neu.length} neutral</div>${pills?`<div class="detail">${pills}</div>`:""}${nums}${llmBlock}${sayBlock}</li>`;
 }
 function renderNews(){
   const N=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};

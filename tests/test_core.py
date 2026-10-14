@@ -321,5 +321,26 @@ class NewsFacts(unittest.TestCase):
         self.assertNotIn("Gibbs-White", texts)
 
 
+class NewsTone(unittest.TestCase):
+    def test_good_bad_and_neutral(self):
+        import fpl_common
+        self.assertEqual(fpl_common.tone_of("Brighton have a great fixture this week."), "good")
+        self.assertEqual(fpl_common.tone_of("Schade was substituted early with a possible injury."), "bad")
+        self.assertEqual(fpl_common.tone_of("Man City vs Ipswich feels like a cricket score."), "neutral")
+
+    def test_negation_flips_a_cue(self):
+        import fpl_common
+        self.assertEqual(fpl_common.tone_of("Haaland is not worth the price this week."), "bad")
+        self.assertEqual(fpl_common.tone_of("There is no injury concern for Palmer."), "good")
+
+    def test_overall_tone(self):
+        import fpl_common
+        f = lambda *t: [{"tone": x} for x in t]
+        self.assertEqual(fpl_common.overall_tone(f("good", "good", "neutral")), "good")
+        self.assertEqual(fpl_common.overall_tone(f("bad")), "bad")
+        self.assertEqual(fpl_common.overall_tone(f("good", "bad")), "mixed")
+        self.assertEqual(fpl_common.overall_tone(f("neutral")), "neutral")
+
+
 if __name__ == "__main__":
     unittest.main()

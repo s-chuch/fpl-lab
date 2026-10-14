@@ -349,7 +349,7 @@ _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+|\n+")
 
 
 _MARKET_FACT = re.compile(r"\b(?:managers|owners|in droves|most[- ]sold|most[- ]bought|sales|top 10|transfer combinations?)\b", re.I)
-_BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie|free trial|related topics|unlock all|% off|start your", re.I)
+_BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie|free trial|related topics|unlock all|% off|start your|membership|discount|click on the image|promo", re.I)
 
 
 def sentence_stance(sentence, key):
@@ -445,8 +445,41 @@ def fact_sentences(raw_text, key, window=110):
                 continue
             seen.add(k)
             score = (2 if re.search(r"\d", sent) else 0) + (1 if len(sent) < 200 else 0) - 0.5 * (len(topics) - 1)
-            out.append({"topic": topics[0], "topics": topics, "text": (sent[:260] + "...") if len(sent) > 260 else sent, "url": url, "title": atitle[:120], "score": score, "key": k})
+            out.append({"topic": topics[0], "topics": topics, "tone": tone_of(sent), "text": (sent[:260] + "...") if len(sent) > 260 else sent, "url": url, "title": atitle[:120], "score": score, "key": k})
     return out
+
+
+# --- Is a sentence good news, bad news or neutral for someone who owns (or wants) the player? -------------------------
+_GOOD = re.compile(r"\b(?:great|excellent|easy|favourable|favorable|good|strong|superb|brilliant|flying|in form|in-form|must[- ]have|"
+                   r"essential|bargain|value|differential|penalty taker|takes? penalties|on penalties|set[- ]pieces?|clean sheet|haul|brace|hat[- ]trick|"
+                   r"scored|assist(?:s|ed)?|returns?|back (?:in|from)|available|fit again|passed (?:a )?fitness|cleared|starts?|nailed|safe|"
+                   r"most[- ]captained|standout|top pick|best (?:option|pick|buy)|recommend\w*|target|priority|upgrade|bring (?:him )?in)\b", re.I)
+_BAD = re.compile(r"\b(?:injur\w*|knock|doubt\w*|fitness test|ruled out|miss(?:es|ed|ing)?|suspend\w*|ban(?:ned)?|illness|hamstring|ankle|calf|groin|"
+                  r"rotat\w*|rested|benched|bench|dropped|out of the (?:team|squad)|sub(?:bed)? off|tough|difficult|hard|poor|struggl\w*|"
+                  r"avoid|sell|fade|dump|overpriced|overrated|not worth|stay away|lacklustre|blank(?:ed|s)?|no returns?|dry|slump|price fall|"
+                  r"unwanted|risk(?:y)?|worry|concern\w*)\b", re.I)
+_TONE_NEG = re.compile(r"(?:\bnot|n't|\bnever|\bno|\bwithout)\s+(?:\w+\s+){0,2}$", re.I)
+
+
+def tone_of(sentence):
+    """'good' / 'bad' / 'neutral' from the cue words in a sentence. A negation just before a cue flips it ("not worth",
+    "no injury"); mixed or cue-less sentences are neutral. Rule-based: it reads wording, not meaning."""
+    good = bad = 0
+    low = sentence
+    for pat, is_good in ((_GOOD, True), (_BAD, False)):
+        for m in pat.finditer(low):
+            flip = bool(_TONE_NEG.search(low[max(0, m.start() - 26):m.start()]))
+            if is_good != flip:
+                good += 1
+            else:
+                bad += 1
+    if good and not bad:
+        return "good"
+    if bad and not good:
+        return "bad"
+    if good and bad:
+        return "good" if good >= bad + 2 else ("bad" if bad >= good + 2 else "neutral")
+    return "neutral"
 
 
 def mention_sentences(raw_text, key, limit=6):
@@ -484,6 +517,15 @@ def stance_verdict(counts):
     if h:
         return "Leaning keep / hold"
     return "Mentioned, no clear view"
+
+
+def overall_tone(facts):
+    """Overall read of a player's news: good / bad / mixed (both) / neutral, from the toned facts."""
+    g = sum(1 for f in facts if f.get("tone") == "good")
+    b = sum(1 for f in facts if f.get("tone") == "bad")
+    if g and b:
+        return "mixed" if abs(g - b) <= 1 else ("good" if g > b else "bad")
+    return "good" if g else ("bad" if b else "neutral")
 
 
 def build_themes(blobs, gw, player_index, unit="sites", checked=None):
@@ -533,10 +575,10 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
         # specific facts: the best sentence per topic (different sites preferred), in a fixed topic order
         best = {}
         for fct in sorted(rec["facts"].values(), key=lambda f: -f["score"]):
-            if fct["topic"] not in best:
-                best[fct["topic"]] = fct
-        facts = [{"topic": t, "text": best[t]["text"], "source": best[t]["source"], "url": best[t]["url"], "title": best[t]["title"]}
-                 for t in TOPIC_ORDER if t in best]
+            best.setdefault((fct["topic"], fct["tone"]), fct)
+        order = lambda k: (TOPIC_ORDER.index(k[0]), {"bad": 0, "good": 1, "neutral": 2}[k[1]])
+        facts = [{"topic": k[0], "tone": k[1], "text": best[k]["text"], "source": best[k]["source"], "url": best[k]["url"], "title": best[k]["title"]}
+                 for k in sorted(best, key=order)][:8]
         verdict = stance_verdict(rec["counts"])
         scope = f"{n}/{total} {unit} with fresh articles" + (f" ({checked} checked)" if checked and checked != total else "")
         cnt = rec["counts"]
@@ -544,6 +586,7 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
         text = f"{name}{club} — {verdict}" + (f" ({says} mentions)" if says else "") + f" · {scope}"
         item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"],
                 "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"], "facts": facts,
+                "tone": overall_tone(facts),
                 "excerpts": [{"source": src, "text": t} for src, ts in sorted(rec["ex"].items()) for t in ts[:3]][:12]}
         (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)

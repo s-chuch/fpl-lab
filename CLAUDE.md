@@ -173,3 +173,6 @@
   `fpl_common.items_of`); `fact_sentences` pulls the sentences that mention a player with a concrete cue (fitness, role, fixture, form,
   price, captaincy; roundups, lineup lists, emoji and sign-up boilerplate dropped) and `build_themes` keeps the best per topic as
   `facts` with the source link. Player names match as whole tokens (`_name_re`: "White" is not found in "Gibbs-White").
+- **Good / bad / neutral news.** Every news fact has a `tone` (`fpl_common.tone_of`: cue words with negation flipping; reads wording, not
+  meaning) and each theme an `overall_tone`; the News card is point form: 🔴 bad first, then 🟢 good, neutral folded, each bullet a short
+  sentence with its topic and linked source.
