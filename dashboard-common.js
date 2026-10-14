@@ -413,3 +413,70 @@ function chipCompareFold(c){
   const d=c.new_total-c.old_total, b=c.new_best-c.old_best;
   return `<details class="fold"><summary><span class="foldsum">Player for player · ${c.old_total} vs ${c.new_total} (${sign(d)})</span></summary><table class="table-compact"><thead><tr><th style="width:16%">Pos</th><th style="width:42%">Before</th><th style="width:42%">After</th></tr></thead><tbody>${rows}<tr><td><b>All 15</b></td><td><b>${c.old_total}</b></td><td><b>${c.new_total}</b></td></tr><tr><td><b>Best XI</b></td><td><b>${c.old_best}</b></td><td><b>${c.new_best}</b></td></tr></tbody></table></details>`;
 }
+
+// ---- shared by index.html and bacalhau.html (moved out of the pages) ----
+function paintTabs(){
+  const g=TAB_GROUPS.find(x=>x.id===activeGroup)||TAB_GROUPS[0];
+  const groups=TAB_GROUPS.map(x=>`<button class="group ${x.id===activeGroup?"on":""}" data-group="${x.id}" aria-pressed="${x.id===activeGroup}">${x.label}</button>`).join("");
+  // A group with only one tab has nothing to switch between, so the pill row
+  // is just a lone, oddly-small-looking button — skip it for single-tab
+  // groups (e.g. Leagues) instead of rendering a selector with one option.
+  const pills=g.tabs.length>1?`<div class="tab-pills">${g.tabs.map(([id,label])=>`<button class="${id===activeTab?"on":""}" data-id="${id}" aria-pressed="${id===activeTab}">${label}</button>`).join("")}</div>`:"";
+  document.getElementById("tabs").innerHTML=`<div class="tab-groups">${groups}</div>${pills}`;
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("on",s.id===activeTab));
+  saveTab(TAB_KEY,activeTab);
+}
+function gwTable(){const rows=(D.gameweeks||[]).map(g=>{const chip=g.chip?` <span class="pill used">${esc(g.chip)}</span>`:"";return `<tr><td>GW${g.gw}${chip}</td><td><b>${g.points}</b></td><td>${g.field_avg??"-"}</td><td class="${cls(g.delta)}">${sign(g.delta)}</td><td>${g.bench}</td><td>${g.transfers}</td><td>${fmt(g.rank)}</td></tr>`;}).join("");return `<div class="card"><h2>Gameweek log</h2><div class="table-scroll"><table><thead><tr><th>GW</th><th>Pts</th><th>Field</th><th>d</th><th>Bench</th><th>Tr</th><th>OR</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;}
+function chipClass(gw,name){const t=((D.bench_audit&&D.bench_audit[gw]&&D.bench_audit[gw].bench_tags)||{})[name];return t?"chip "+t:"chip sit";}
+function bar(label,val,max,klass){const pct=Math.max(4,Math.round(100*val/Math.max(max,1)));return `<div class="barrow"><span>${label}</span><div class="track"><i class="${klass||""}" style="width:${pct}%"></i></div><b>${val}</b></div>`;}
+function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${esc(label)}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b> <span class="note">${esc((CHIP_NET[key]||{}).label||"")}</span>`:`<span class="note">—</span>`}</span><div class="detail">${used&&CHIP_NET[key]&&CHIP_NET[key].compare?chipCompareFold(CHIP_NET[key].compare):esc(used?(note||"Result not available yet."):"Still available.")}</div></li>`;}
+function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${esc(s)}</span>`).join(" ");}
+function fhHead(A){
+  const cn=(D.chip_net||{}).freehit;
+  if(cn&&cn.net!=null) return `<p class="note">Net <b class="${cls(cn.net)}">${sign(cn.net)}</b> · the Free Hit squad against the one before it, player for player, bench included, no captain multiplier (same as the Chips tab)</p>${cn.compare?chipCompareFold(cn.compare):""}<p class="note">Lineups as actually played, with captain and auto-subs:</p>`;
+  return `<p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b></p><p class="note">${esc(A.why||"")}</p>`;
+}
+
+function benchBlock(key,title,open){
+  const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
+  const max=Math.max(b.you,b.process,b.hindsight,1);
+  const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${esc(x[0])} · ${x[1]}</div>`).join("");
+  const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
+  // The first bar is the only judgment: green if the team matched/beat the
+  // process benchmark (the best XI knowable pre-deadline), red if it fell
+  // short of it. Process/Hindsight are reference lines, not verdicts — in
+  // particular Hindsight is pure outcome (unknowable in advance), so coloring
+  // it "bad" would imply it should have hit an unhittable target.
+  const youKls=b.you>=b.process?"good":"bad";
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${youKls==="good"?"pos":"neg"}">${W.You} ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar(W.You,b.you,max,"you")}${bar("Process",b.process,max,"proc")}${bar("Hindsight",b.hindsight,max,"hind")}<p class="note">${W.Your} bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></details>`;
+}
+function newsCard(title, vs){
+  // Own/missing used to be one <li> per player with a full repeated sentence
+  // ("X is heavily featured in GW6 coverage — mentioned by N/16 accounts.") —
+  // readable for 1-2 names, but this squad-vs-consensus list routinely runs
+  // to 8-9 players and that read as a wall of near-identical paragraphs. The
+  // structured fields newsVsSquad already carries (mentions/tags) make a
+  // table the same information in a fraction of the height.
+  const tagTxt=tags=>(tags&&tags.length)?esc(tags.join(", ")):"–";
+  const rowHtml=r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${r.mentions}</td><td>${tagTxt(r.tags)}</td></tr>`;
+  const tblHead=`<thead><tr><th style="width:46%">Player</th><th style="width:18%">Mentions</th><th style="width:36%">Tags</th></tr></thead>`;
+  const tbl=(rows,empty)=>rows.length?`<table class="table-compact">${tblHead}<tbody>${rows.map(rowHtml).join("")}</tbody></table>`:`<p class="note">${empty}</p>`;
+  const fadeLi=vs.fade.length?vs.fade.map(raw=>{const x=esc(raw);return `<li><span class="who">${x.split(" · ")[0]}</span><div class="detail">${x.includes(" · ")?x.split(" · ").slice(1).join(" · "):x}</div></li>`;}).join(""):`<li><span class="note">No fade conflict.</span></li>`;
+  const cap=vs.caps[0]?`<p class="note">Captain check: ${esc(vs.caps[0])}</p>`:"";
+  return `<div class="card"><h2>${title}</h2><h3>Own and agreed</h3>${tbl(vs.owned,"None of the agreed names are in this squad.")}<h3>Missing and agreed</h3>${tbl(vs.missing,`${W.You} already own the agreed targets, or none were named.`)}<h3>Fade, but ${W.you} still start them</h3><ul class="chiplist">${fadeLi}</ul>${cap}</div>`;
+}
+function renderTargets(){
+  const T=D.targets||{};
+  const H=T.horizons||{};
+  const scoreCls=s=>s>=5?"pos":s<0?"neg":"";
+  const tgtHead=`<thead><tr><th style="width:24%">Player</th><th style="width:10%">Pos</th><th style="width:12%">Cost</th><th style="width:15%">Score</th><th style="width:39%">Why</th></tr></thead>`;
+  const buildCard=key=>{
+    const h=H[key]||{};
+    const n=h.horizon??Number(key);
+    const rows=(h.top||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td class="${scoreCls(r.score)}"><b>${r.score}</b></td><td style="white-space:normal">${esc((r.why||[]).join(" · ")||"–")}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying players yet.</span></td></tr>`;
+    return `<div class="card"><h2>Target · next ${n} GW${n===1?"":"s"}</h2><ul class="note-list"><li>League-wide shortlist combining Strategy tab signals (form, xGI/90, DEFCON, value, xG/xA regression) with Intel tab's News/X consensus</li><li>Score is a plain point count, not a hidden formula — see the Why column and legend below</li><li>Only players ${W.own} — everyone in the current squad is left out</li><li>Excludes anyone FPL itself flags as unavailable (${T.min_minutes??"?"}+ mins played to qualify)</li></ul><table class="table-compact">${tgtHead}<tbody>${rows}</tbody></table><ul class="legend-list"><li>In form = FPL form ≥6.0 (+2)</li><li>Strong xGI = xG+xA per 90 ≥0.5, non-GKP (+2)</li><li>Reliable DEFCON = clears the defensive-actions threshold for their position (+1)</li><li>Great value = top 25% points-per-£1m for their position (+1)</li><li>Due a return = underperforming their xGI by 2+ (buy-low signal) (+1) · Sell-high risk = overperforming their xGI by 2+ (-1)</li><li>Kind run = average fixture difficulty ≤2.6 over this horizon (+1)</li><li>News/X backed = tagged a transfer target in Intel coverage (+1) · Fade signal = tagged fade/sell or injury/doubt (-1)</li><li>Doubt = FPL flags a fitness doubt — shown, never scored</li></ul></div>`;
+  };
+  document.getElementById("target1").innerHTML=buildCard("1");
+  document.getElementById("target3").innerHTML=buildCard("3");
+  document.getElementById("target6").innerHTML=buildCard("6");
+}
