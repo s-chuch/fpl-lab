@@ -457,7 +457,9 @@ function aiChangesCard(A){
   const icon={risk:"⚠️",swap:"🔁",transfer:"🔁",captain:"©️","after-lock":"🔒"};
   // Oldest first: group consecutive entries sharing the same check time (one refresh = one header).
   const groups=[];
-  (A.changes||[]).forEach(c=>{const g=groups[groups.length-1];if(g&&g.at===c.at&&g.gw===c.gw)g.items.push(c);else groups.push({at:c.at,gw:c.gw,items:[c]});});
+  // Only what CHANGED is listed (the plan card above already says what the plan is): legacy per-player "swap" lines repeat the
+  // plan and are dropped.
+  (A.changes||[]).filter(c=>c.kind!=="swap").forEach(c=>{const g=groups[groups.length-1];if(g&&g.at===c.at&&g.gw===c.gw)g.items.push(c);else groups.push({at:c.at,gw:c.gw,items:[c]});});
   const key=g=>{const m=[];g.items.forEach(c=>{if(c.kind==="transfer")(c.moves||[]).forEach(x=>m.push(x.out+">"+x.in));});return m.sort().join("|");};
   // A->B->A: the middle check's transfers were undone by the check after it (render only).
   groups.forEach((g,i)=>{
@@ -477,8 +479,8 @@ function aiChangesCard(A){
     }
     return `<div class="detail">${t}</div>`;
   };
-  const rows=groups.slice().reverse().slice(0,20).map(g=>`<li><span class="who">GW${esc(g.gw)} · ${esc(aiWhen(g.at))}</span>${g.items.map(line).join("")}</li>`).join("");
-  return `<div class="card"><h2>AI team · daily check</h2><ul class="note-list"><li>Re-checks every refresh (at least twice a day) for new injuries, doubts, reported rotation, fixture congestion and minutes that are falling, and re-picks if it helps — until it locks 12h before the deadline</li><li>Last checked ${esc(aiWhen(A.last_check))}. After the lock it can't change anything, but still flags news on locked players</li></ul>${rows?`<ul class="chiplist">${rows}</ul>`:`<p class="note">No changes to the plan yet.</p>`}</div>`;
+  const rows=groups.slice().reverse().slice(0,5).map(g=>`<li><span class="who">GW${esc(g.gw)} · ${esc(aiWhen(g.at))}</span>${g.items.map(line).join("")}</li>`).join("")||`<li><span class="note">No changes since the plan was first made.</span></li>`;
+  return `<div class="card"><h2>AI team · what changed</h2><p class="note">Checked ${esc(aiWhen(A.last_check))} · re-checks every refresh until it locks. Only changes are listed.</p><ul class="chiplist">${rows}</ul></div>`;
 }
 
 // Chips tab: Free Hit / Wildcard player-for-player points, previous squad vs new squad (collapsed by default).

@@ -706,7 +706,7 @@ def update(state, ctx):
     second = (target or max(finished, default=0) + 1) >= HALF_SPLIT
     state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc")
                                 if not state["chips_used"].get(c + "_h2" if second else c)]
-    state["changes"] = state["changes"][-60:]
+    state["changes"] = [c for c in state["changes"] if c.get("kind") != "swap"][-60:]      # legacy per-player swap lines repeated the plan
     state["last_check"] = now.isoformat()
     state["generated_at"] = now.isoformat()
     return state
