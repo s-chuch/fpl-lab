@@ -28,6 +28,9 @@ HIT_COST = 4
 NEXT_WEIGHT = 0.35        # weight of the gameweek after the target when scoring a squad
 BENCH_WEIGHT = 0.18       # a bench player's xP counts this much towards the squad score
 MIN_FREE_GAIN = 0.6       # a free transfer must add at least this many points
+HYSTERESIS = MIN_FREE_GAIN   # a new set of transfers must beat the previous (kept) one by this much to replace it
+KEEP_FLOOR = MIN_FREE_GAIN / 2   # kept moves that have decayed below this gain are dropped
+KEEP_AVAIL = 0.75          # a kept "in" player below this fitness forces a re-plan
 MIN_HIT_GAIN = HIT_COST + 1.5
 MAX_HITS = 2
 HALF_SPLIT = 20            # chips reset at GW20
@@ -122,20 +125,24 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     for el in boot["elements"]:
         av = availability(el)
-        flags, factor = [], 1.0
+        flags, factor, adjf = [], 1.0, []
         recent = rec.get(el["id"])
         if recent and len(recent) >= 2:
             season = min(1.0, _f(el.get("minutes")) / (90.0 * max(1, gws_played)))
             share = sum(min(90, m) for m in recent) / (90.0 * len(recent))
             if season >= 0.5 and (share < 0.6 * season or recent[-1] < 45):
                 flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); factor *= 0.85
+                adjf.append({"why": flags[-1], "factor": 0.85, "label": "minutes"})
         cr = club_rest.get(el["team"]) or {}
         if cr.get("rest_days") is not None and cr["rest_days"] <= 3:
             flags.append(f"only {cr['rest_days']}d rest before its next match"); factor *= 0.93
+            adjf.append({"why": flags[-1], "factor": 0.93, "label": "rest"})
         if cr.get("turnaround") is not None and cr["turnaround"] <= 3:
             flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= 0.93
+            adjf.append({"why": flags[-1], "factor": 0.93, "label": "rest"})
         if el["web_name"] in rot_names:
             flags.append(f"rotation reported: {str(rot_names[el['web_name']])[:90]}"); factor *= 0.8
+            adjf.append({"why": flags[-1], "factor": 0.8, "label": "rotation"})
         f1, f2 = fix_next.get(el["team"], []), fix_after.get(el["team"], [])
         uw = (uwins or {}).get(el["id"])
         m1 = model_xp(el, f1, gws_played, uw, recent) * av * factor
@@ -152,7 +159,7 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
             "club": teams[el["team"]], "cost": el["now_cost"] / 10, "xp": round(xp1, 2), "xp2": round(xp2, 2),
             "value": xp1 + NEXT_WEIGHT * xp2, "fixture": label, "fdr": (f1[0].get("fdr") if f1 else None),
             "avail": av, "status": el.get("status"), "news": el.get("news") or "", "owned": _f(el.get("selected_by_percent")),
-            "risks": flags,
+            "risks": flags, "adj_factors": adjf,
         }
     return out
 
@@ -346,9 +353,61 @@ def plan_transfers(squad, buys, bank, ft, vals, signals=None):
     return squad, moves, bank_now, hits, buys
 
 
+def rescore_transfers(state, vals, prev_moves, signals=None):
+    """Re-apply the previous plan's transfers (pairs of out_id -> in_id) to the carried squad with today's values
+    and the same scoring plan_transfers uses. Returns (squad, moves, bank, hits, buys) like plan_transfers, or None
+    if any move is no longer legal (out player gone, in player unavailable / unaffordable / club limit) or has
+    decayed (gain below KEEP_FLOOR, in player under KEEP_AVAIL fitness)."""
+    squad = [int(i) for i in state["squad"]]
+    buys = {int(k): v for k, v in state["buys"].items()}
+    bank_now, ft = state["bank"], state["ft"]
+    signals = signals or {}
+    adj = lambda i: (signals.get(i) or {}).get("adj_ai", 0.0)
+    moves, hits = [], 0
+    for n, (out, inn) in enumerate(prev_moves):
+        if out not in squad or inn in squad or out not in vals or inn not in vals:
+            return None
+        if vals[inn]["avail"] <= 0 or vals[inn]["avail"] < KEEP_AVAIL or vals[inn]["pos"] != vals[out]["pos"]:
+            return None
+        sell = sell_price(buys.get(out, vals[out]["cost"]), vals[out]["cost"])
+        if vals[inn]["cost"] > bank_now + sell + 1e-9 or not _club_ok(squad, vals, inn, out):
+            return None
+        cur = squad_score(squad, vals)
+        gain = squad_score([inn if i == out else i for i in squad], vals) - cur + adj(inn) - adj(out)
+        if gain < KEEP_FLOOR:
+            return None
+        moves.append({"out": out, "in": inn, "gain": round(gain, 2), "hit": n >= ft, "sell": sell,
+                      "bought_at": buys.get(out, vals[out]["cost"]), "cost_in": vals[inn]["cost"],
+                      "adj": round(adj(inn) - adj(out), 2), "reasons_in": (signals.get(inn) or {}).get("reasons", []),
+                      "reasons_out": (signals.get(out) or {}).get("reasons", [])})
+        bank_now = round((tenths(bank_now) + tenths(sell) - tenths(vals[inn]["cost"])) / 10, 1)
+        buys = dict(buys); buys[inn] = vals[inn]["cost"]
+        squad = [inn if i == out else i for i in squad]
+        hits += 1 if n >= ft else 0
+    return squad, moves, bank_now, hits, buys
+
+
+def keep_previous(state, vals, prev, new_plan, signals=None):
+    """Hysteresis: the rescored previous transfers (same shape as plan_transfers' result) if they should stay,
+    else None. They stay while still legal and the fresh plan does not beat them by HYSTERESIS."""
+    if set(_pairs(prev)) == set(_pairs(new_plan)):
+        return None                      # nothing to keep: identical moves
+    kept = rescore_transfers(state, vals, _pairs(prev), signals)
+    if kept is None or _net_gain(new_plan["transfers"]) - _net_gain(kept[1]) >= HYSTERESIS:
+        return None
+    return kept
+
+
+def _net_gain(moves):
+    return sum(m["gain"] for m in moves) - HIT_COST * sum(1 for m in moves if m["hit"])
+
+
 # --------------------------------------------------------------------------- plans
 def _why(v, uwin, role):
-    bits = [f"xP {v['xp']:.1f}", v["fixture"] + (f" FDR {v['fdr']}" if v["fdr"] else "")]
+    xp_txt = f"xP {v['xp']:.1f}"
+    if v.get("adj_factors"):
+        xp_txt += " (" + ", ".join(f"{a.get('label', 'adj')} ×{a['factor']:g}" for a in v["adj_factors"]) + ")"
+    bits = [xp_txt, v["fixture"] + (f" FDR {v['fdr']}" if v["fdr"] else "")]
     if uwin and uwin.get("apps"):
         if v["pos"] != "GKP" and (uwin.get("sot") or uwin.get("big") or uwin.get("cc")):
             bits.append(f"{uwin.get('sot', 0)} SoT, {uwin.get('big', 0)} big chances, {uwin.get('cc', 0)} chances created in last {uwin['apps']}")
@@ -358,7 +417,7 @@ def _why(v, uwin, role):
     return " · ".join(bits)
 
 
-def make_plan(gw, deadline, vals, state, uwins, now, signals=None):
+def make_plan(gw, deadline, vals, state, uwins, now, signals=None, forced=None):
     """Compute (not lock) the plan for `gw` from the carried squad (or build the initial one)."""
     initial = not state.get("squad")
     plan = {"gw": gw, "deadline": deadline.isoformat(), "lock_at": (deadline - timedelta(hours=LOCK_HOURS)).isoformat(),
@@ -371,7 +430,10 @@ def make_plan(gw, deadline, vals, state, uwins, now, signals=None):
     else:
         ft_before = state["ft"]
         buys = {int(k): v for k, v in state["buys"].items()}
-        squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals, signals)
+        if forced is not None:       # hysteresis: the previous plan's transfers, rescored (see choose_transfers)
+            squad, moves, bank, hits, buys = forced
+        else:
+            squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals, signals)
     xi, bench = pick_xi(squad, vals, "xp")          # the lineup played is chosen on this gameweek's expected points
     ranked = sorted(xi, key=lambda i: -vals[i]["xp"])
     captain = ranked[0]
@@ -379,7 +441,7 @@ def make_plan(gw, deadline, vals, state, uwins, now, signals=None):
     ft_after = None if ft_before is None else max(0, ft_before - len(moves))
     plan.update({
         "squad": [{**{k: vals[i][k] for k in ("id", "name", "pos", "club", "cost", "xp", "fixture", "fdr", "avail")},
-                   "news": vals[i]["news"], "risks": vals[i].get("risks", []),
+                   "news": vals[i]["news"], "risks": vals[i].get("risks", []), "adj_factors": vals[i].get("adj_factors", []),
                    "buy": buys.get(i, vals[i]["cost"]), "why": _why(vals[i], (uwins or {}).get(i), "")} for i in xi + bench],
         "xi": xi, "bench": bench, "captain": captain, "vice": vice, "formation": formation(xi, vals),
         "transfers": [{"out": vals[m["out"]]["name"], "out_id": m["out"], "in": vals[m["in"]]["name"], "in_id": m["in"],
@@ -460,24 +522,88 @@ def _flag_text(p):
     return "; ".join(bits)
 
 
-def diff_plans(prev, new, vals, now):
-    """Human-readable changes between two plans for the same gameweek (the daily check):
-    new injuries / doubts / rotation risks on squad players, swaps and captaincy."""
+def _pairs(plan):
+    return [(t["out_id"], t["in_id"]) for t in plan.get("transfers", [])]
+
+
+def _move_text(t):
+    return f"{t['out']}→{t['in']} ({t['gain']:+.1f})"
+
+
+def _transfer_cause(prev, new, vals, ctx_ref):
+    pold = {p["id"]: p for p in prev["squad"]}
+    ids = {i for t in prev.get("transfers", []) + new.get("transfers", []) for i in (t["out_id"], t["in_id"])}
+    for i in ids:
+        if i in pold and i in vals and _flag_text(pold[i]) != _flag_text(vals[i]):
+            return "injury/fitness", None
+    pref = prev.get("model_ref")
+    if pref and ctx_ref and pref != ctx_ref:
+        return "model update", ctx_ref
+    for i in ids:
+        if i in pold and i in vals and pold[i].get("cost") != vals[i]["cost"]:
+            return "price", None
+    return "inputs changed", None
+
+
+def diff_plans(prev, new, vals, now, model_ref=None):
+    """Human-readable changes between two plans for the same gameweek (the daily check): new injuries /
+    doubts / rotation risks on squad players, ONE entry when the set of transfers changes (not a squad diff),
+    and captaincy."""
     out, at = [], now.isoformat()
     pold = {p["id"]: p for p in prev["squad"]}
     pnew = {p["id"]: p for p in new["squad"]}
     for i, p in pnew.items():
         if i in pold and _flag_text(pold[i]) != _flag_text(p) and _flag_text(p):
             out.append({"at": at, "gw": new["gw"], "kind": "risk", "text": f"{p['name']}: {_flag_text(p)}"})
-    for i in pold:
-        if i not in pnew:
-            out.append({"at": at, "gw": new["gw"], "kind": "swap", "text": f"{pold[i]['name']} out" + (f" ({_flag_text(pold[i])})" if _flag_text(pold[i]) else " (a better option appeared)")})
-    for i in pnew:
-        if i not in pold:
-            out.append({"at": at, "gw": new["gw"], "kind": "swap", "text": f"{pnew[i]['name']} in, xP {pnew[i]['xp']:.1f}"})
+    pp, np_ = _pairs(prev), _pairs(new)
+    if set(pp) != set(np_):
+        dropped = [t for t in prev.get("transfers", []) if (t["out_id"], t["in_id"]) not in set(np_)]
+        added = [t for t in new.get("transfers", []) if (t["out_id"], t["in_id"]) not in set(pp)]
+        if len(added) == len(new.get("transfers", [])) and len(added) == 1 and not dropped:
+            text = "Now " + _move_text(added[0])
+        elif not added and len(dropped) == 1:
+            text = "Dropped " + _move_text(dropped[0])
+        else:
+            text = "Now: " + ", ".join(_move_text(t) for t in new.get("transfers", [])) if new.get("transfers") else "Now rolling the transfer"
+            if dropped:
+                text += " · Dropped: " + ", ".join(_move_text(t) for t in dropped)
+        cause, ref = _transfer_cause(prev, new, vals, model_ref or new.get("model_ref"))
+        mv = lambda ts: [{"out": t["out"], "in": t["in"], "gain": t["gain"], "out_id": t["out_id"], "in_id": t["in_id"]} for t in ts]
+        out.append({"at": at, "gw": new["gw"], "kind": "transfer", "text": text, "cause": cause, "cause_ref": ref,
+                    "moves": mv(new.get("transfers", [])), "was": mv(prev.get("transfers", []))})
     if prev["captain"] != new["captain"]:
         out.append({"at": at, "gw": new["gw"], "kind": "captain", "text": f"Captain {pold[prev['captain']]['name'] if prev['captain'] in pold else '?'} → {pnew[new['captain']]['name']}"})
     return out
+
+
+def _entry_pairs(moves):
+    return {(m.get("out_id", m.get("out")), m.get("in_id", m.get("in"))) for m in moves or []}
+
+
+def merge_changes(changes, entries):
+    """Append new log entries, collapsing reversals: a transfer entry that restores the set from before the last
+    transfer entry of the same gameweek (A->B->A) removes that entry instead of being added; one equal to the last
+    logged set adds nothing."""
+    changes = list(changes)
+    reverted = False
+    for e in entries:
+        if e.get("kind") == "captain" and reverted:
+            continue                     # the captain change of a reversal is undone with it
+        if e.get("kind") == "transfer":
+            last = next((k for k in range(len(changes) - 1, -1, -1)
+                         if changes[k].get("kind") == "transfer" and changes[k].get("gw") == e["gw"]), None)
+            if last is not None:
+                lp = _entry_pairs(changes[last].get("moves"))
+                if _entry_pairs(e.get("moves")) == lp:
+                    continue
+                if _entry_pairs(e.get("moves")) == _entry_pairs(changes[last].get("was")):
+                    at = changes[last]["at"]
+                    changes = [c for k, c in enumerate(changes) if k != last and not (
+                        c.get("kind") == "captain" and c.get("gw") == e["gw"] and c.get("at") == at)]
+                    reverted = True
+                    continue
+        changes.append(e)
+    return changes
 
 
 def watch_locked(plan, vals, now):
@@ -539,12 +665,19 @@ def update(state, ctx):
         vals = player_values(boot, fix1, fix2, gws_played, ctx.get("uwins"), ctx.get("risk"))
         if not (plan and plan["locked"]):
             prev = plan
+            ref = ctx.get("model_ref")
             plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"))
+            if prev and prev["gw"] == target and not plan["initial"] and prev.get("transfers") is not None:
+                # hysteresis: keep the previous transfers (rescored on today's numbers) unless the fresh plan beats them
+                kept = keep_previous(state, vals, prev, plan, ctx.get("signals"))
+                if kept is not None:
+                    plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"), forced=kept)
+            plan["model_ref"] = ref
             if now >= lock_at:
                 plan["locked"], plan["locked_at"] = True, now.isoformat()
             state["plan"] = plan
             if prev and prev["gw"] == target:
-                state["changes"] += diff_plans(prev, plan, vals, now)
+                state["changes"] = merge_changes(state["changes"], diff_plans(prev, plan, vals, now, ref))
         else:
             state["changes"] += watch_locked(plan, vals, now)
 

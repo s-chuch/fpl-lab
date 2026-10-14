@@ -156,3 +156,8 @@
   chances (defenders at double that); regular starters only (55%+ of available minutes); flags carry `pos` and the track record shows
   hit rates by position; a gameweek is graded only when FPL has settled it (`finished AND data_checked`). The regression tags are shown as
   "Overperforming"/"Underperforming" (not transfer orders); squad rows show next fixture, FDR and ownership.
+- **AI plan stability.** An unlocked AI plan keeps its previous transfers unless the fresh plan beats them by `HYSTERESIS` (0.6 expected
+  points) or a kept move becomes illegal / its in-player drops below 75% fit (`rescore_transfers`, `keep_previous` in `ai_team.py`), so a
+  model tweak cannot flip a near-tie. The daily-check log is transfer-level (`kind: "transfer"`, with `cause`, `cause_ref` = git sha from
+  `ai_run._model_ref`), reversals are merged away (`merge_changes`), and `aiChangesCard` groups lines by check time. Old `swap` entries
+  from before this change may still appear in the log.
