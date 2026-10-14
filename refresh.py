@@ -769,15 +769,15 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
             except Exception as e:
                 _warn(f"build_chip_net: could not read the GW{bboost_gw} Bench Boost bench: {e}")
         if bench:
-            out["bboost"] = {"net": sum(pts for _name, pts in bench), "label": "from the bench",
-                             "note": "Bench points that counted: " + " + ".join(f"{name} {pts}" for name, pts in bench)}
+            out["bboost"] = {"net": sum(pts for _name, pts in bench), "label": "bench",
+                             "note": " + ".join(f"{name} {pts}" for name, pts in bench)}
     xc_gw = chips_used.get("3xc")
     if xc_gw:
         row = next((c for c in caps if c.get("gw") == xc_gw), None)
         if row:
             extra = row.get("captain_raw") or 0  # 3xc's only gain over a normal (C) is the 3rd multiple
-            out["3xc"] = {"net": extra, "label": "from the 3rd multiple",
-                          "note": f"{row.get('captain')} {extra} raw. Triple gave {extra * 3} instead of {extra * 2}."}
+            out["3xc"] = {"net": extra, "label": "extra",
+                          "note": f"{row.get('captain')} {extra} × 3 = {extra * 3}"}
     for key, label, prior in (("freehit", "FH", "reverted squad"), ("wildcard", "WC", "previous squad")):
         gw = chips_used.get(key)
         if not gw:
@@ -789,22 +789,20 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
                 audit = build_fh_audit(boot, team_id, chips_used, key, label, prior)
             except Exception as e:
                 _warn(f"build_chip_net: {label} comparison unavailable: {e}")
-        moves = next((t for t in (transfers or []) if t.get("chip") == key), None)
-        built = f" {moves['inn']} rebuilt the squad for free." if (key == "wildcard" and moves) else ""
         if not f or f.get("points") is None:
-            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet — retried every refresh."}
+            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet"}
             continue
         avg = f.get("avg")
         net = (f["points"] - avg) if avg else None
-        text = f"GW{gw}: {f['points']} pts" + (f" vs {avg} field average." if avg else ".") + _rank_text(f) + built
+        sgn = lambda n: f"{'+' if n >= 0 else '−'}{abs(n)}"
+        parts = [f"GW{gw}: {f['points']}" + (f" vs {avg} avg" if avg else "")]
+        if f.get("rank") and f.get("prev_rank"):
+            parts.append(f"rank {f['prev_rank']:,} → {f['rank']:,}")
         if audit:
-            d15 = audit["all15_new"] - audit["all15_old"]
-            dbest = audit["best_new"] - audit["best_old"]
-            text += (f" Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped "
-                     f"them): all 15 players scored {audit['all15_new']} vs {audit['all15_old']} for your previous squad "
-                     f"({'+' if d15 >= 0 else ''}{d15}); best XI with perfect swaps {audit['best_new']} vs {audit['best_old']} "
-                     f"({'+' if dbest >= 0 else ''}{dbest}). An estimate - what you'd have done without the chip isn't known.")
-        out[key] = {"net": net, "label": "vs field average", "note": text}
+            parts.append(f"15 players {audit['all15_new']} vs {audit['all15_old']} ({sgn(audit['all15_new'] - audit['all15_old'])})")
+            parts.append(f"best XI {audit['best_new']} vs {audit['best_old']} ({sgn(audit['best_new'] - audit['best_old'])})")
+        text = " · ".join(parts)
+        out[key] = {"net": net, "label": "vs avg", "note": text}
     return out
 
 

@@ -431,7 +431,7 @@ const FHNET=(D.fh_audit||(window.FPL_FH&&window.FPL_FH.audit)||null);
 const CN=D.chip_net||{};
 const CHIP_NET={bboost:CN.bboost||null,"3xc":CN["3xc"]||null,wildcard:CN.wildcard||null,freehit:CN.freehit||(FHNET?{net:FHNET.net,label:"vs unchanged squad (estimate)",note:FHNET.why}:null)};
 function chipRow(label,key){const gw=co[key];const used=gw!=null;const net=used&&CHIP_NET[key]?CHIP_NET[key].net:null;const note=used&&CHIP_NET[key]?CHIP_NET[key].note:"";return `<li><span class="who">${esc(label)}</span><span>${used?`<span class="pill used">Used GW${gw}</span>`:`<span class="pill free">Not used</span>`} ${used&&net!=null?`<b class="${net>=0?"pos":"neg"}">${sign(net)}</b> <span class="note">${esc((CHIP_NET[key]||{}).label||"")}</span>`:`<span class="note">—</span>`}</span><div class="detail">${esc(used?(note||"Result not available yet."):"Still available.")}</div></li>`;}
-document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">Results update every refresh · data from ${esc(D.generated_at_et||"?")}</p><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
+document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">Updated ${esc(D.generated_at_et||"?")}</p><ul class="chiplist">${chipRow("Bench Boost","bboost")}${chipRow("Triple Captain","3xc")}${chipRow("Free Hit","freehit")}${chipRow("Wildcard","wildcard")}</ul></div>`;
 function srcChips(list){return (list||[]).map(s=>`<span class="pill free">${esc(s)}</span>`).join(" ");}
 function renderNews(){
   const N=window.FPL_NEWS||D.news||{};
