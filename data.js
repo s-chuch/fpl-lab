@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:39 UTC",
-  "generated_at_et": "2026-10-14 4:39 PM ET",
+  "generated_at": "2026-10-14 20:41 UTC",
+  "generated_at_et": "2026-10-14 4:41 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3769,23 +3769,23 @@ window.FPL_DATA = {
   "chip_net": {
     "bboost": {
       "net": 12,
-      "label": "from the bench",
-      "note": "Bench points that counted: Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
+      "label": "bench",
+      "note": "Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
     },
     "3xc": {
       "net": 9,
-      "label": "from the 3rd multiple",
-      "note": "Haaland 9 raw. Triple gave 27 instead of 18."
+      "label": "extra",
+      "note": "Haaland 9 \u00d7 3 = 27"
     },
     "freehit": {
       "net": 21,
-      "label": "vs field average",
-      "note": "GW4: 90 pts vs 69 field average. Overall rank 1,516,623 \u2192 820,064. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 94 vs 103 for your previous squad (-9); best XI with perfect swaps 89 vs 95 (-6). An estimate - what you'd have done without the chip isn't known."
+      "label": "vs avg",
+      "note": "GW4: 90 vs 69 avg \u00b7 rank 1,516,623 \u2192 820,064 \u00b7 15 players 94 vs 103 (\u22129) \u00b7 best XI 89 vs 95 (\u22126)"
     },
     "wildcard": {
       "net": 8,
-      "label": "vs field average",
-      "note": "GW6: 66 pts vs 58 field average. Overall rank 686,560 \u2192 775,958. 18 moves rebuilt the squad for free. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 65 vs 78 for your previous squad (-13); best XI with perfect swaps 61 vs 74 (-13). An estimate - what you'd have done without the chip isn't known."
+      "label": "vs avg",
+      "note": "GW6: 66 vs 58 avg \u00b7 rank 686,560 \u2192 775,958 \u00b7 15 players 65 vs 78 (\u221213) \u00b7 best XI 61 vs 74 (\u221213)"
     }
   },
   "fh_audit": {
@@ -14330,7 +14330,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:39:36.092954+00:00",
+      "computed_at": "2026-10-14T20:41:11.968051+00:00",
       "initial": false,
       "squad": [
         {
@@ -14655,12 +14655,12 @@ window.FPL_DATA = {
     "season_points": 417,
     "user_season": 417,
     "chips_available": [],
-    "last_check": "2026-10-14T20:39:36.092954+00:00",
-    "generated_at": "2026-10-14T20:39:36.092954+00:00"
+    "last_check": "2026-10-14T20:41:11.968051+00:00",
+    "generated_at": "2026-10-14T20:41:11.968051+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:39:36.171883+00:00",
-    "previous_check": "2026-10-14T20:35:08.150815+00:00",
+    "checked_at": "2026-10-14T20:41:12.037351+00:00",
+    "previous_check": "2026-10-14T20:39:36.171883+00:00",
     "watching": 17,
     "changes": [],
     "history": [],

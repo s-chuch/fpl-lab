@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:39 UTC",
-  "generated_at_et": "2026-10-14 4:39 PM ET",
+  "generated_at": "2026-10-14 20:41 UTC",
+  "generated_at_et": "2026-10-14 4:41 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3788,13 +3788,13 @@ window.FPL_DATA = {
   "chip_net": {
     "3xc": {
       "net": 9,
-      "label": "from the 3rd multiple",
-      "note": "Haaland 9 raw. Triple gave 27 instead of 18."
+      "label": "extra",
+      "note": "Haaland 9 \u00d7 3 = 27"
     },
     "wildcard": {
       "net": 6,
-      "label": "vs field average",
-      "note": "GW6: 64 pts vs 58 field average. Overall rank 1,187,975 \u2192 1,319,300. 8 moves rebuilt the squad for free. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 63 vs 54 for your previous squad (+9); best XI with perfect swaps 59 vs 53 (+6). An estimate - what you'd have done without the chip isn't known."
+      "label": "vs avg",
+      "note": "GW6: 64 vs 58 avg \u00b7 rank 1,187,975 \u2192 1,319,300 \u00b7 15 players 63 vs 54 (+9) \u00b7 best XI 59 vs 53 (+6)"
     }
   },
   "fh_audit": null,
@@ -14236,7 +14236,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:39:39.637458+00:00",
+      "computed_at": "2026-10-14T20:41:16.177009+00:00",
       "initial": false,
       "squad": [
         {
@@ -14558,12 +14558,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:39:39.637458+00:00",
-    "generated_at": "2026-10-14T20:39:39.637458+00:00"
+    "last_check": "2026-10-14T20:41:16.177009+00:00",
+    "generated_at": "2026-10-14T20:41:16.177009+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:39:39.722957+00:00",
-    "previous_check": "2026-10-14T20:35:12.814810+00:00",
+    "checked_at": "2026-10-14T20:41:16.249046+00:00",
+    "previous_check": "2026-10-14T20:39:39.722957+00:00",
     "watching": 16,
     "changes": [],
     "history": [],
