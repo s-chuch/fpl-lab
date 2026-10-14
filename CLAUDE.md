@@ -124,8 +124,7 @@
 - **Intel tab.** News themes are matched by `fpl_common.load_player_index` (full name + initial/surname aliases, the more-owned
   player wins a shared surname, a bare common first name is not a match) and their tags are checked against FPL (`sane_tags`:
   injury only if FPL flags him, differential only under 15% owned, no fade on heavy buying). News numbers come from
-  `data["news_players"]`; `data["team_news"]` (FPL status changes, 72h, parsed return dates) and `data["set_pieces"]` (taker orders)
-  feed the Team news and Set pieces tabs; Injury, Rotation and Price radar moved into Intel. The scraper's processed-URL list lives in
+  `data["news_players"]`; `data["set_pieces"]` (taker orders) feeds the Set pieces tab (a separate Team news tab was removed: it repeated the Injury tab); Injury, Rotation and Price radar moved into Intel. The scraper's processed-URL list lives in
   `news_seen.json` (not shipped to the page). Counts read "N/M sites with fresh articles (K checked)".
 - **News verdicts.** `fpl_common.stance_quotes` / `sentence_stance` read the sentences around each player's name (cue within 80
   chars; "not buy" flips; roundup headlines listing several names, boilerplate and "managers sold him" market facts are ignored) and

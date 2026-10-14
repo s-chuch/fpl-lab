@@ -872,30 +872,6 @@ def build_elite_ownership(boot, gw, top_n=50):
             "names": {i: [els[i]["web_name"], teams[els[i]["team"]], POS[els[i]["element_type"]]] for i in set(keep) | set(cap) if i in els}}
 
 
-_RETURN_RE = re.compile(r"(?:expected back|until|returns?(?: on)?|back on|out until)\s+(\d{1,2}\s+[A-Za-z]{3,9})", re.I)
-
-
-def build_team_news(boot, mine=None, hours=72, limit=40):
-    """FPL's own player news added in the last `hours`: status, chance of playing, the news line and a parsed
-    return date where the line gives one. Your players first, then the most-owned."""
-    now = datetime.now(timezone.utc)
-    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
-    mine = set(mine or ())
-    rows = []
-    for el in boot["elements"]:
-        news = (el.get("news") or "").strip()
-        added = parse_deadline(el.get("news_added"))
-        if not news or not added or (now - added).total_seconds() > hours * 3600:
-            continue
-        m = _RETURN_RE.search(news)
-        rows.append({"id": el["id"], "name": el["web_name"], "club": teams[el["team"]], "pos": POS[el["element_type"]],
-                     "status": el.get("status"), "chance": el.get("chance_of_playing_next_round"), "news": news,
-                     "added": added.strftime("%Y-%m-%d %H:%M UTC"), "returns": m.group(1) if m else None,
-                     "owned": float(el.get("selected_by_percent") or 0), "yours": el["id"] in mine})
-    rows.sort(key=lambda r: (not r["yours"], -r["owned"]))
-    return {"hours": hours, "rows": rows[:limit], "total": len(rows)}
-
-
 def build_set_pieces(boot, mine=None):
     """First-choice penalty, direct free-kick and corner takers per club, from FPL's own taker-order fields."""
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}

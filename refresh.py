@@ -1424,7 +1424,6 @@ def main(team_id=TEAM_ID, out_path=None):
     data["targets"]["wc_top3"] = wc_top3
     _by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
     my_ids = {_by_key[(row[1], row[2])] for row in (plan.get("rows") or []) if (row[1], row[2]) in _by_key}
-    data["team_news"] = section("team_news", build_team_news, boot, my_ids, fallback={"rows": []})
     data["set_pieces"] = section("set_pieces", build_set_pieces, boot, my_ids, fallback={"rows": []})
     data["news_players"] = section("news_players", build_news_players, boot, ds, teams_by_id, inputs, fpl_common.load_js_object(ROOT / "news.js"),
                                    [x["name"] for x in (tac.get("they_share") or [])], my_ids, fallback={})
