@@ -127,5 +127,42 @@ class Planner(unittest.TestCase):
         self.assertTrue(all(not s["moves"] for s in best["steps"]))
 
 
+class NewsMatching(unittest.TestCase):
+    BOOT = {"teams": [{"id": 1, "short_name": "MUN"}, {"id": 2, "short_name": "TOT"}, {"id": 3, "short_name": "BHA"}, {"id": 4, "short_name": "LEE"}],
+            "elements": [
+                {"id": 1, "web_name": "B.Fernandes", "first_name": "Bruno", "second_name": "Borges Fernandes", "team": 1, "selected_by_percent": "34.4", "minutes": 900},
+                {"id": 2, "web_name": "Fernandes", "first_name": "Mateus", "second_name": "Fernandes", "team": 2, "selected_by_percent": "0.7", "minutes": 300},
+                {"id": 3, "web_name": "David", "first_name": "Promise", "second_name": "David", "team": 3, "selected_by_percent": "0.2", "minutes": 100},
+                {"id": 4, "web_name": "D.James", "first_name": "Daniel", "second_name": "James", "team": 4, "selected_by_percent": "2.0", "minutes": 500},
+                {"id": 5, "web_name": "Raya", "first_name": "David", "second_name": "Raya", "team": 1, "selected_by_percent": "10", "minutes": 900},
+                {"id": 6, "web_name": "Brooks", "first_name": "David", "second_name": "Brooks", "team": 3, "selected_by_percent": "5", "minutes": 900}]}
+
+    def themes(self, text):
+        import fpl_common
+        idx = fpl_common.load_player_index(self.BOOT)
+        agreed, split = fpl_common.build_themes({"A": text, "B": text, "C": text}, 7, idx)
+        return {t["player"]: t for t in agreed + split}
+
+    def test_shared_surname_goes_to_the_more_owned_player(self):
+        th = self.themes("Fernandes is the pick of the week at United.")
+        self.assertIn("B.Fernandes", th)
+        self.assertNotIn("Fernandes", th)
+
+    def test_bare_common_first_name_is_not_a_player(self):
+        th = self.themes("David Moyes spoke before the weekend.")
+        self.assertNotIn("David", th)
+
+    def test_full_name_still_matches(self):
+        th = self.themes("Promise David is flying at Brighton.")
+        self.assertIn("David", th)
+
+    def test_tags_are_checked_against_fpl(self):
+        import fpl_common
+        p = {"status": "a", "chance": 100, "owned": 75.0, "net_transfers": 200000}
+        self.assertEqual(fpl_common.sane_tags({"injury/doubt", "differential", "fade/sell", "captain talk"}, p), {"captain talk"})
+        q = {"status": "d", "chance": 75, "owned": 3.0, "net_transfers": 0}
+        self.assertEqual(fpl_common.sane_tags({"injury/doubt", "differential"}, q), {"injury/doubt", "differential"})
+
+
 if __name__ == "__main__":
     unittest.main()

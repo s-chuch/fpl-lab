@@ -1,5 +1,5 @@
 window.planIntel = function(D){
-  const N0=window.FPL_NEWS||{}, X0=window.FPL_X||{};
+  const N0=window.FPL_NEWS||{};
   const P=D.plan||{}, up=P.upcoming||[];
   const deadline=D.deadline||{};
   const intelGw=P.intel_gw||deadline.intel_gw||deadline.next_gw||(up.find(u=>!u.deadline_passed)||up[0]||{}).gw;
@@ -9,10 +9,10 @@ window.planIntel = function(D){
     if(obj.gw==null) return {};
     return Number(obj.gw) >= Number(intelGw) ? obj : {};
   }
-  const N=fresh(N0), X=fresh(X0);
-  const scrapeGws=[N0.gw, X0.gw].filter(g=>g!=null).map(Number);
+  const N=fresh(N0);
+  const scrapeGws=[N0.gw].filter(g=>g!=null).map(Number);
   const bestScrape=scrapeGws.length?Math.max.apply(null, scrapeGws):0;
-  const themePool=[].concat(N.agreed||[], N.split||[], X.agreed||[], X.split||[]);
+  const themePool=[].concat(N.agreed||[], N.split||[]);
   const hasFreshThemes=themePool.length>0;
   const namesLocked=lockedGw!=null && themePool.some(it=>new RegExp("GW"+lockedGw+"\\b","i").test(String(it.text||"")));
   // After GW N locks, intel_gw becomes N+1. Clear until scrapes are labeled for that GW
@@ -50,7 +50,7 @@ window.planIntel = function(D){
   const chips=D.chips_official||{};
   const bank=Number((D.team||{}).bank||0);
   const ft=(P.transfer||{}).ft_available;
-  const pool=[].concat(N.agreed||[], X.agreed||[], X.split||[], N.split||[]);
+  const pool=[].concat(N.agreed||[], N.split||[]);
   const blob=pool.map(x=>String(x.text||"")).join(" | ").toLowerCase();
   const wantsWC=/wildcard/.test(blob);
   const wantsFH=/free hit/.test(blob);
@@ -63,7 +63,7 @@ window.planIntel = function(D){
   // don't carry a structured player field the way news_scrape.py's discovered
   // themes do.
   const names=[["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"],["wissa","Wissa"],["palmer","Palmer"]];
-  for(const it of [].concat(N.agreed||[], X.agreed||[])){
+  for(const it of (N.agreed||[])){
     if(it.player){
       if(!have.has(it.player) && !targets.includes(it.player)) targets.push(it.player);
       continue;

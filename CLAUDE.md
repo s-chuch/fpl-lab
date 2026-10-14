@@ -47,8 +47,7 @@
   with static tags). `refresh.yml` runs it before committing and again after the rebase, and its
   `paths:` list includes the page/JS/CSS files so a push that edits them also gets stamped. Run it
   yourself before committing a UI change if you want the new URL immediately.
-- `x-posts.js` is no longer loaded by the pages (the X feed is discontinued and stale), and
-  `refresh.py` only uses a theme file (`_load_theme_file`) if it is at most 3 days old.
+- The X feed and `x-posts.js` / `x_scrape.py` are gone. `signals._load_theme_file` only uses `news.js` if it is at most 3 days old.
 - `fpl_common.get` reuses one keep-alive HTTPS connection per host per thread and does not retry
   4xx (e.g. the expected 404 for a GW that has not locked); fixtures come from one whole-season
   request (`_fixtures_for`); league members' picks are prefetched in parallel (`_prefetch_picks`).
@@ -122,3 +121,9 @@
   gameweek is live, so the repo changes only on match days. The pages load it with a cache-busting query (`loadLive`, not stamped)
   and show `liveBar` above the tabs, re-reading it every 5 minutes while open. Auto-subs and vice promotion are not applied until the
   gameweek settles.
+- **Intel tab.** News themes are matched by `fpl_common.load_player_index` (full name + initial/surname aliases, the more-owned
+  player wins a shared surname, a bare common first name is not a match) and their tags are checked against FPL (`sane_tags`:
+  injury only if FPL flags him, differential only under 15% owned, no fade on heavy buying). News numbers come from
+  `data["news_players"]`; `data["team_news"]` (FPL status changes, 72h, parsed return dates) and `data["set_pieces"]` (taker orders)
+  feed the Team news and Set pieces tabs; Injury, Rotation and Price radar moved into Intel. The scraper's processed-URL list lives in
+  `news_seen.json` (not shipped to the page). Counts read "N/M sites with fresh articles (K checked)".

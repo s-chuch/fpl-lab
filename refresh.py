@@ -820,14 +820,14 @@ def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
 
 
 def _intel_tags_by_player(root):
-    """Every player's News/X qualifier tags (fpl_common.QUALIFIER_PATTERNS),
+    """Every player's News qualifier tags (fpl_common.QUALIFIER_PATTERNS),
     merged across both sources' agreed+split themes — reused by build_targets
     as a light "what's the internet already saying about this player" signal
     on top of the app's own underlying-stats signals. Same {agreed, split}
     shape and reuse pattern as _rotation_flagged_players above, just keyed on
     every tag instead of filtering to one."""
     tags = {}
-    for filename in ("news.js", "x-posts.js"):
+    for filename in ("news.js",):
         data = _load_theme_file(root, filename)
         if data is None:
             continue
@@ -844,7 +844,7 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15, exclude=None):
     look-ahead horizons (next 1/3/6 GWs) — combining the same underlying
     signals already shown on the Strategy tab (form, xGI/90, DEFCON
     reliability, points-per-£1m value, xG/xA over/underperformance) with
-    the Intel tab's News/X "transfer target"/"fade" consensus, so the two
+    the Intel tab's News "transfer target"/"fade" consensus, so the two
     tabs' signals feed one shortlist instead of the user mentally combining
     six tabs themselves.
 
@@ -984,7 +984,7 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15, exclude=None):
             if doubles:
                 why.append(f"{doubles} double GW" + ("s" if doubles > 1 else "")); score += 2 * doubles
             if r["intel_target"]:
-                why.append("News/X backed"); score += 1
+                why.append("News backed"); score += 1
             if r["intel_fade"]:
                 why.append("Fade signal"); score -= 1
             if r["doubt"]:
@@ -1390,6 +1390,12 @@ def main(team_id=TEAM_ID, out_path=None):
     wc_candidates.sort(key=lambda r: (0 if (own_by_name.get(r["name"]) is None or own_by_name.get(r["name"]) <= 3) else 1, -r["score"]))
     wc_top3 = [{**r, "esl_own": own_by_name.get(r["name"]), "esl_n": tac.get("n")} for r in wc_candidates[:3]]
     data["targets"]["wc_top3"] = wc_top3
+    _by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
+    my_ids = {_by_key[(row[1], row[2])] for row in (plan.get("rows") or []) if (row[1], row[2]) in _by_key}
+    data["team_news"] = section("team_news", build_team_news, boot, my_ids, fallback={"rows": []})
+    data["set_pieces"] = section("set_pieces", build_set_pieces, boot, my_ids, fallback={"rows": []})
+    data["news_players"] = section("news_players", build_news_players, boot, ds, teams_by_id, inputs, fpl_common.load_js_object(ROOT / "news.js"),
+                                   [x["name"] for x in (tac.get("they_share") or [])], my_ids, fallback={})
     data["elite"] = section("elite", build_elite_ownership, boot, ds.get("locked_gw"), fallback={})
     _elite = data["elite"] or {}
     for _h in ((data["targets"].get("horizons") or {}).values()):

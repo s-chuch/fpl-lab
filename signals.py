@@ -289,6 +289,12 @@ def update_volume_log(log, imminent, ds, boot):
         attackers = [st for eid, st in live.items() if els.get(eid, {}).get("element_type") in (3, 4) and int(st.get("minutes") or 0) >= 60]
         entry["baseline"] = rate(outfield)
         entry["baseline_att"] = rate(attackers)
+        if entry.get("news"):
+            pts = [(live.get(n["id"]) or {}) for n in entry["news"]]
+            played = [p for p in pts if p.get("minutes")]
+            allp = [st for st in live.values() if st.get("minutes")]
+            entry["news_points"] = {"avg": round(sum(p.get("total_points") or 0 for p in played) / len(played), 2) if played else None,
+                                    "n": len(played), "field_avg": round(sum(st.get("total_points") or 0 for st in allp) / max(1, len(allp)), 2)}
         entry["graded"] = True
     return log
 
@@ -299,6 +305,7 @@ def update_pred_log(log, ds, boot, plan, ai):
     log = dict(log or {})
     gw = ds.get("next_gw")
     names = {e["id"]: e["web_name"] for e in boot["elements"]}
+    teams_short = {t["id"]: t["short_name"] for t in boot["teams"]}
     ids = {}
     for e in boot["elements"]:
         ids.setdefault(e["web_name"], []).append(e["id"])
@@ -313,6 +320,15 @@ def update_pred_log(log, ds, boot, plan, ai):
             entry["ai_captain"] = names.get(ap["captain"])
             entry["ai_captain_id"] = ap["captain"]
             entry["ai_locked"] = bool(ap.get("locked"))
+        # the players the news themes agreed on at the time (3+ sites), to be scored against what they scored
+        try:
+            themes = fpl_common.load_js_object(ROOT / "news.js")
+            by_key = {(e["web_name"], teams_short[e["team"]]): e["id"] for e in boot["elements"]}
+            entry["news"] = [{"id": it.get("id") or by_key.get((it.get("player"), it.get("club"))), "name": it.get("player"), "club": it.get("club")}
+                             for it in (themes.get("agreed") or [])]
+            entry["news"] = [n for n in entry["news"] if n["id"] is not None]
+        except Exception as e:
+            _warn(f"pred_log: could not record news themes: {e}")
         log[f"gw{gw}"] = entry
     finished = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
     for key, entry in log.items():
@@ -449,7 +465,7 @@ OTHER_COMP_RE = re.compile(
 )
 
 def _load_theme_file(root, filename, max_age_days=3):
-    """news.js / x-posts.js themes, or None when the file is stale. The X feed was discontinued (last
+    """news.js themes, or None when the file is stale. The X feed was discontinued (last
     generated 21 Sep) but its old themes were still feeding rotation flags and Plan intel, so a theme
     file only counts while it is at most `max_age_days` old."""
     data = fpl_common.load_js_object(root / filename)
@@ -461,13 +477,13 @@ def _load_theme_file(root, filename, max_age_days=3):
     return data if age <= timedelta(days=max_age_days) else None
 
 def _rotation_flagged_players(root):
-    """Players already reported (news.js / x-posts.js themes) as rotated for
+    """Players already reported (news.js themes) as rotated for
     another competition — {web_name: explanatory text}. Both files carry the
     same {agreed, split} shape from fpl_common.build_themes, each item tagged
     via the shared qualifiers_near/QUALIFIER_PATTERNS used everywhere else in
     this app for "what is this text actually saying about this player"."""
     flagged = {}
-    for filename in ("news.js", "x-posts.js"):
+    for filename in ("news.js",):
         data = _load_theme_file(root, filename)
         if data is None:
             continue
@@ -816,3 +832,45 @@ def build_elite_ownership(boot, gw, top_n=50):
     return {"gw": gw, "n": len(got), "label": f"top {len(got)} of the overall table",
             "own": {i: own[i] for i in keep}, "cap": cap,
             "names": {i: [els[i]["web_name"], teams[els[i]["team"]], POS[els[i]["element_type"]]] for i in set(keep) | set(cap) if i in els}}
+
+
+_RETURN_RE = re.compile(r"(?:expected back|until|returns?(?: on)?|back on|out until)\s+(\d{1,2}\s+[A-Za-z]{3,9})", re.I)
+
+
+def build_team_news(boot, mine=None, hours=72, limit=40):
+    """FPL's own player news added in the last `hours`: status, chance of playing, the news line and a parsed
+    return date where the line gives one. Your players first, then the most-owned."""
+    now = datetime.now(timezone.utc)
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    mine = set(mine or ())
+    rows = []
+    for el in boot["elements"]:
+        news = (el.get("news") or "").strip()
+        added = parse_deadline(el.get("news_added"))
+        if not news or not added or (now - added).total_seconds() > hours * 3600:
+            continue
+        m = _RETURN_RE.search(news)
+        rows.append({"id": el["id"], "name": el["web_name"], "club": teams[el["team"]], "pos": POS[el["element_type"]],
+                     "status": el.get("status"), "chance": el.get("chance_of_playing_next_round"), "news": news,
+                     "added": added.strftime("%Y-%m-%d %H:%M UTC"), "returns": m.group(1) if m else None,
+                     "owned": float(el.get("selected_by_percent") or 0), "yours": el["id"] in mine})
+    rows.sort(key=lambda r: (not r["yours"], -r["owned"]))
+    return {"hours": hours, "rows": rows[:limit], "total": len(rows)}
+
+
+def build_set_pieces(boot, mine=None):
+    """First-choice penalty, direct free-kick and corner takers per club, from FPL's own taker-order fields."""
+    teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    mine = set(mine or ())
+    out = {tid: {"club": teams[tid], "pens": [], "fks": [], "corners": []} for tid in teams}
+    for el in boot["elements"]:
+        rec = out[el["team"]]
+        item = {"name": el["web_name"], "yours": el["id"] in mine, "owned": float(el.get("selected_by_percent") or 0)}
+        if el.get("penalties_order") == 1:
+            rec["pens"].append(item)
+        if el.get("direct_freekicks_order") == 1:
+            rec["fks"].append(item)
+        if el.get("corners_and_indirect_freekicks_order") == 1:
+            rec["corners"].append(item)
+    rows = sorted(out.values(), key=lambda r: r["club"])
+    return {"rows": rows}

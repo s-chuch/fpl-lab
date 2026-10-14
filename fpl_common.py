@@ -1,7 +1,7 @@
 """Shared helpers for the refresh/scrape scripts: a retrying JSON GET, ISO date
 parsing, the planning-GW/cutoff window used to line up scrape themes with the
 live gameweek, the `window.X = {...};` data-file loader, and the player-mention
-trend discovery used by both news_scrape.py and x_scrape.py so a name only has
+trend discovery used by news_scrape.py so a name only has
 to actually be talked about somewhere to surface as a theme — never a fixed,
 hand-maintained watchlist."""
 from __future__ import annotations
@@ -163,7 +163,7 @@ def load_js_object(path):
         raise ValueError(f"{path.name}: cannot parse embedded JSON ({ex}) — fix or restore the file") from ex
 
 
-# --- Trend discovery: shared by news_scrape.py (article text) and x_scrape.py
+# --- Trend discovery for news_scrape.py (article text)
 # (tweet text) so "who's being talked about" is discovered once, the same way,
 # from whatever source text each scraper hands it. ---
 
@@ -174,29 +174,73 @@ def norm_keep_case(s):
 
 
 def load_player_index(boot=None):
-    """Every current FPL player, keyed for matching against raw (case-preserved)
-    source text — this is what lets a scraper discover whichever names are
-    actually trending, instead of only checking a hand-maintained watchlist.
-    Single-word names under 5 letters are skipped: matched case-sensitively
-    against scraped text they're rarely a problem, but short surnames (Cash,
-    King, Cole...) can coincide with ordinary capitalized words often enough
-    to not be worth the noise.
+    """Every current FPL player, keyed for matching against raw (case-preserved) source text, so a scraper
+    discovers whichever names are actually trending instead of checking a hand-kept watchlist.
 
-    Pass an already-fetched `boot` (bootstrap-static response) to avoid a
-    second network round-trip when the caller also needs events/elements.
-    """
+    Matching is by name AND club-safe rules, because surnames collide:
+      * a name written with an initial ("B.Fernandes") is also matched by its surname alone, since that is how
+        articles write it;
+      * when several players share a match key (Fernandes: Mateus 0.7% owned, Bruno 34%), the more-owned player
+        wins - an article that says "Fernandes" almost always means him;
+      * a key that is also the first name of two or more players ("David", "James") is matched only as the
+        full "First Surname" form, so the bare word does not turn into a player;
+      * every player is also matchable by his full name, which is unambiguous.
+    Single-word keys under 5 letters are skipped (Cash, King, Cole... clash with ordinary words).
+    Each entry carries ownership, status and transfer momentum so themes can be sanity-checked against FPL.
+
+    Pass an already-fetched `boot` (bootstrap-static response) to avoid a second network round-trip."""
     boot = boot or get("https://fantasy.premierleague.com/api/bootstrap-static/")
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
-    idx, seen = [], set()
+    first_counts = {}
+    for el in boot["elements"]:
+        fn = norm_keep_case((el.get("first_name") or "").strip()).lower()
+        if fn:
+            first_counts[fn] = first_counts.get(fn, 0) + 1
+    def owned(el):
+        try:
+            return float(el.get("selected_by_percent") or 0)
+        except (TypeError, ValueError):
+            return 0.0
+    def info(el, key):
+        net = int(el.get("transfers_in_event") or 0) - int(el.get("transfers_out_event") or 0)
+        return {"id": el["id"], "web_name": (el.get("web_name") or "").strip(), "club": teams.get(el["team"], ""), "match": key,
+                "owned": owned(el), "status": el.get("status") or "a", "chance": el.get("chance_of_playing_next_round"), "net_transfers": net}
+    keys = {}                     # lower-case match key -> {element id: (key as written, element)}
+    def add(key, el):
+        if not key:
+            return
+        keys.setdefault(key.lower(), {})[el["id"]] = (key, el)
     for el in boot["elements"]:
         name = (el.get("web_name") or "").strip()
-        if not name or (" " not in name and "-" not in name and len(name) < 5):
+        if not name:
             continue
         match = norm_keep_case(name)
-        if match.lower() in seen:
+        # web_name: plain, short single words skipped; a first-name clash is matched only in full
+        single = " " not in name and "-" not in name
+        first = norm_keep_case((el.get("first_name") or "").strip())
+        common_first = first_counts.get(match.lower(), 0) >= 2 and single
+        if not (single and len(name) < 5) and not common_first:
+            add(match, el)
+        if "." in name:                                  # "B.Fernandes" is written "Fernandes" in articles
+            sur = match.split(".", 1)[1].strip()
+            if len(sur) >= 5 or " " in sur or "-" in sur:
+                add(sur, el)
+        second = norm_keep_case((el.get("second_name") or "").strip())
+        if first and second:
+            add(f"{first} {second}", el)
+            add(f"{first.split()[0]} {second.split()[-1]}", el)       # "Bruno Fernandes" for Bruno Miguel Borges Fernandes
+        if first and match and not match.startswith(first) and single and not common_first and len(match) >= 5:
+            add(f"{first} {match}", el)
+        elif first and common_first:
+            add(f"{first} {match}", el)
+    idx, used = [], set()
+    for lk, group in keys.items():
+        key, el = max(group.values(), key=lambda v: (owned(v[1]), int(v[1].get("minutes") or 0)))
+        entry = info(el, key)
+        if (entry["id"], lk) in used:
             continue
-        seen.add(match.lower())
-        idx.append({"id": el["id"], "web_name": name, "club": teams.get(el["team"], ""), "match": match})
+        used.add((entry["id"], lk))
+        idx.append(entry)
     return idx
 
 
@@ -254,7 +298,21 @@ def concept_themes(blobs, gw, unit="sites"):
     return agreed, split
 
 
-def build_themes(blobs, gw, player_index, unit="sites"):
+def sane_tags(tags, p):
+    """Keyword tags come from words near a name, so check them against what FPL itself says: 'injury/doubt' only
+    when FPL flags the player, 'differential' only for genuinely low ownership, 'fade/sell' not for a player
+    being bought in bulk."""
+    out = set(tags)
+    if "injury/doubt" in out and p.get("status", "a") == "a" and p.get("chance") in (None, 100):
+        out.discard("injury/doubt")
+    if "differential" in out and (p.get("owned") or 0) >= 15:
+        out.discard("differential")
+    if "fade/sell" in out and (p.get("net_transfers") or 0) > 100000:
+        out.discard("fade/sell")
+    return out
+
+
+def build_themes(blobs, gw, player_index, unit="sites", checked=None):
     """Discover which players are actually mentioned across the given per-source
     text blobs, instead of checking a fixed list of names someone hand-picked in
     advance. 3+ sources = agreed (matches the "Agreed = 3+ ..." note in the UI).
@@ -267,7 +325,7 @@ def build_themes(blobs, gw, player_index, unit="sites"):
         for p in player_index:
             if not re.search(rf"\b{re.escape(p['match'])}\b", text):
                 continue
-            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set()})
+            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p})
             rec["sources"].add(source)
             rec["tags"] |= qualifiers_near(text, p["match"])
     agreed, split = [], []
@@ -275,12 +333,14 @@ def build_themes(blobs, gw, player_index, unit="sites"):
         n = len(rec["sources"])
         if n < 2:
             continue  # a single mention is noise, not worth surfacing as an "emerging" theme
+        rec["tags"] = sane_tags(rec["tags"], rec["p"])
         club = f" ({rec['club']})" if rec["club"] else ""
         tag_str = f" Tags: {', '.join(sorted(rec['tags']))}." if rec["tags"] else ""
         is_agreed = n >= 3
         verb = "is heavily featured in" if is_agreed else "is starting to come up in"
-        text = f"{name}{club} {verb} GW{gw} coverage — mentioned by {n}/{total} {unit}.{tag_str}"
-        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"])}
+        scope = f"{n}/{total} {unit} with fresh articles" + (f" ({checked} checked)" if checked and checked != total else "")
+        text = f"{name}{club} {verb} GW{gw} coverage — mentioned by {scope}.{tag_str}"
+        item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"]}
         (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)
     return (agreed + concept_agreed)[:15], (split + concept_split)[:10]

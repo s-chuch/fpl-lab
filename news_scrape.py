@@ -12,6 +12,7 @@ from fpl_common import parse_iso, event_window, load_js_object, load_player_inde
 
 ROOT = Path(__file__).resolve().parent
 NEWS_PATH = ROOT / "news.js"
+SEEN_PATH = ROOT / "news_seen.json"     # processed-article URLs: scraper state, not shipped to the page
 JUNK_TITLE = ("log in", "login", "lost password", "sign in", "privacy", "cookie", "wp-login")
 JUNK_PATH_PARTS = (
     "/tag/", "/category/", "/categories/", "/wp-json", "/wp-login",
@@ -376,7 +377,11 @@ def main():
     prev = load_news()
     gw, cutoff = event_window(prev)
     # dict (not set) so insertion order = recency survives into the trimmed "seen" list
-    seen_set = {u: None for u in (prev.get("seen") or []) if keep_seen(u, gw, cutoff)}
+    try:
+        prev_seen = json.loads(SEEN_PATH.read_text()) if SEEN_PATH.exists() else (prev.get("seen") or [])
+    except Exception:
+        prev_seen = prev.get("seen") or []
+    seen_set = {u: None for u in prev_seen if keep_seen(u, gw, cutoff)}
     ok_sources = 0
     listings = site_listings(gw)
     # Per-source blobs (title + article body only, not full page HTML), case
@@ -491,7 +496,7 @@ def main():
     except Exception as e:
         print(f"news_scrape.py: could not load player index for theme discovery: {e}")
         player_index = []
-    agreed, split = build_themes(blobs, gw, player_index) if player_index else ([], [])
+    agreed, split = build_themes(blobs, gw, player_index, checked=len(by_source)) if player_index else ([], [])
     def filter_themes_for_gw(items, gw_id, min_sources=1):
         """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6),
         or that fall below the current source-count floor — e.g. stale 1-source items
@@ -531,8 +536,10 @@ def main():
         "links": links,
         "new_articles": new_articles[:12],
         "no_new": not new_articles,
-        "seen": list(seen_set)[-200:],
+        "sites_checked": len(by_source),
+        "sites_with_articles": len(blobs),
     }
+    SEEN_PATH.write_text(json.dumps(list(seen_set)[-200:]))
     NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
     print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set), "agreed", len(agreed), "split", len(split))
 

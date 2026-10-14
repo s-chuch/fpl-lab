@@ -44,7 +44,7 @@ function rivalExtra(card, pronoun){
 }
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-function agreedPool(){const N=window.FPL_NEWS||{},X=window.FPL_X||{}; return [].concat((N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources})),(X.agreed||[]).map(x=>({text:x.text,from:"X",player:x.player,club:x.club,tags:x.tags,sources:x.sources})));}
+function agreedPool(){const N=window.FPL_NEWS||{}; return (N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources}));}
 function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
 // news_scrape.py now discovers trending players dynamically and tags each theme
 // with the exact player it found (it.player), rather than the page having to
@@ -136,9 +136,9 @@ function chipAlertBanner(D){
   return `<div class="chip-alert">${lines}</div>`;
 }
 // One account's own post history over time, not cross-account consensus
-// like News/X — so unlike those tabs this has no pronoun/team framing and
+// like News — so unlike those tabs this has no pronoun/team framing and
 // renders identically on both dashboards.
-// Freshness line + stale-data banner for the News/X tabs (shared by both pages).
+// Freshness line + stale-data banner for the News tab (shared by both pages).
 function freshnessMeta(obj, kind){
   const gen=obj.generated_at?esc(toToronto(obj.generated_at)):esc(obj.generated_at_et||"—");
   const cut=obj.cutoff?esc(toToronto(obj.cutoff)):"—";
@@ -147,17 +147,11 @@ function freshnessMeta(obj, kind){
   return `<p class="note">${bits.join(" · ")}</p>`;
 }
 function staleWarn(obj, kind){
-  const gw=obj.gw!=null?("GW"+obj.gw):"this GW";
-  if(kind==="news" && (obj.no_new || !(obj.new_articles||[]).length))
-    return `<div class="warn">No new articles this run for ${gw}. Themes may be stale — check generated time.</div>`;
-  if(kind==="x"){
-    if((obj.mode||"manual")==="live"){
-      if(obj.no_new || !(obj.new_posts||[]).length)
-        return `<div class="warn">No new X posts this run for ${gw}. Themes may be stale — check generated time.</div>`;
-      return "";
-    }
-    return `<div class="warn">X themes are manual/seeded until live ingest exists. Not a live scrape.</div>`;
-  }
+  // News is only stale when the scrape itself is old (a run that finds no new articles on fresh data is normal)
+  const t=new Date(String(obj.generated_at||"").replace(" UTC","Z").replace(" ","T")).getTime();
+  const ageH=isNaN(t)?null:(Date.now()-t)/3600000;
+  if(ageH!=null && ageH>24) return `<div class="warn">News was last scraped ${Math.round(ageH)}h ago - themes may be out of date.</div>`;
+  if(!(obj.agreed||[]).length && !(obj.split||[]).length) return `<div class="warn">No player themes in the latest scrape.</div>`;
   return "";
 }
 function newsVsSquad(squadNames, startedNames, clubsByName){
@@ -311,10 +305,12 @@ function predLogCard(D){
     const cell=(name,pts)=>name?`${esc(name)}${done&&pts!=null?` <b>${pts}</b>`:""}`:"–";
     return `<tr><td>GW${e.gw}${done?"":` <span class="pill free">open</span>`}</td><td>${cell(e.plan_captain,e.plan_captain_points)}</td><td>${cell(e.ai_captain,e.ai_captain_points)}</td><td>${done?e.best_player_points:"–"}</td></tr>`;
   }).join("");
+  const gn=rows.filter(e=>e.graded&&e.news_points&&e.news_points.avg!=null);
+  const newsLine=gn.length?`<li>News-agreed players (3+ sites) averaged <b>${(gn.reduce((s,e)=>s+e.news_points.avg,0)/gn.length).toFixed(1)}</b> points when they played, against <b>${(gn.reduce((s,e)=>s+e.news_points.field_avg,0)/gn.length).toFixed(1)}</b> for every player who played (${gn.length} gameweek${gn.length===1?"":"s"})</li>`:`<li>News themes are logged each gameweek and scored here once it is settled</li>`;
   const g=rows.filter(e=>e.graded&&e.plan_captain_points!=null);
   const avg=g.length?(g.reduce((s,e)=>s+e.plan_captain_points,0)/g.length).toFixed(1):null;
   const bestAvg=g.length?(g.reduce((s,e)=>s+e.best_player_points,0)/g.length).toFixed(1):null;
-  return `<div class="card"><h2>Captain scorecard</h2><ul class="note-list"><li>The captain the program picked before each deadline, and the raw points that player scored (before the armband multiple)</li><li>Best player = the top scorer in the whole league that week, for scale${avg?` · graded gameweeks: Plan captain averaged <b>${avg}</b> vs <b>${bestAvg}</b> for the best player`:" · no gameweek graded yet"}</li></ul><table class="table-compact"><thead><tr><th>GW</th><th>Plan captain</th><th>AI captain</th><th>Best player</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  return `<div class="card"><h2>Captain scorecard</h2><ul class="note-list"><li>The captain the program picked before each deadline, and the raw points that player scored (before the armband multiple)</li>${newsLine}<li>Best player = the top scorer in the whole league that week, for scale${avg?` · graded gameweeks: Plan captain averaged <b>${avg}</b> vs <b>${bestAvg}</b> for the best player`:" · no gameweek graded yet"}</li></ul><table class="table-compact"><thead><tr><th>GW</th><th>Plan captain</th><th>AI captain</th><th>Best player</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 // "This GW" card: the answer to "what do I do before the deadline" in one place, built from what the Plan,
 // Chips and AI team already know (one captain, like-for-like transfer advice, fitness flags, chips).
@@ -524,9 +520,42 @@ function renderTargets(){
     const h=H[key]||{};
     const n=h.horizon??Number(key);
     const rows=(h.top||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td class="${scoreCls(r.score)}"><b>${r.score}</b></td><td>${r.elite_pct!=null?r.elite_pct+"%":"–"}</td><td style="white-space:normal">${esc((r.why||[]).join(" · ")||"–")}</td></tr>`).join("")||`<tr><td colspan="6"><span class="note">No qualifying players yet.</span></td></tr>`;
-    return `<div class="card"><h2>Target · next ${n} GW${n===1?"":"s"}</h2><ul class="note-list"><li>League-wide shortlist combining Strategy tab signals (form, xGI/90, DEFCON, value, xG/xA regression) with Intel tab's News/X consensus</li><li>Score is a plain point count, not a hidden formula — see the Why column and legend below</li><li>Only players ${W.own} — everyone in the current squad is left out</li><li>Excludes anyone FPL itself flags as unavailable (${T.min_minutes??"?"}+ mins played to qualify)</li></ul><table class="table-compact">${tgtHead}<tbody>${rows}</tbody></table><ul class="legend-list"><li>In form = FPL form ≥6.0 (+2)</li><li>Strong xGI = xG+xA per 90 ≥0.5, non-GKP (+2)</li><li>Reliable DEFCON = clears the defensive-actions threshold for their position (+1)</li><li>Great value = top 25% points-per-£1m for their position (+1)</li><li>Due a return = underperforming their xGI by 2+ (buy-low signal) (+1) · Sell-high risk = overperforming their xGI by 2+ (-1)</li><li>Kind run = average fixture difficulty ≤2.6 over this horizon (+1)</li><li>News/X backed = tagged a transfer target in Intel coverage (+1) · Fade signal = tagged fade/sell or injury/doubt (-1)</li><li>Doubt = FPL flags a fitness doubt — shown, never scored</li></ul></div>`;
+    return `<div class="card"><h2>Target · next ${n} GW${n===1?"":"s"}</h2><ul class="note-list"><li>League-wide shortlist combining Strategy tab signals (form, xGI/90, DEFCON, value, xG/xA regression) with Intel tab's News consensus</li><li>Score is a plain point count, not a hidden formula — see the Why column and legend below</li><li>Only players ${W.own} — everyone in the current squad is left out</li><li>Excludes anyone FPL itself flags as unavailable (${T.min_minutes??"?"}+ mins played to qualify)</li></ul><table class="table-compact">${tgtHead}<tbody>${rows}</tbody></table><ul class="legend-list"><li>In form = FPL form ≥6.0 (+2)</li><li>Strong xGI = xG+xA per 90 ≥0.5, non-GKP (+2)</li><li>Reliable DEFCON = clears the defensive-actions threshold for their position (+1)</li><li>Great value = top 25% points-per-£1m for their position (+1)</li><li>Due a return = underperforming their xGI by 2+ (buy-low signal) (+1) · Sell-high risk = overperforming their xGI by 2+ (-1)</li><li>Kind run = average fixture difficulty ≤2.6 over this horizon (+1)</li><li>News backed = tagged a transfer target in Intel coverage (+1) · Fade signal = tagged fade/sell or injury/doubt (-1)</li><li>Doubt = FPL flags a fitness doubt — shown, never scored</li></ul></div>`;
   };
   document.getElementById("target1").innerHTML=buildCard("1");
   document.getElementById("target3").innerHTML=buildCard("3");
   document.getElementById("target6").innerHTML=buildCard("6");
+}
+
+// ---- Intel tab renderers (shared). News themes carry FPL numbers from data.news_players (refresh.build_news_players).
+function newsThemeRow(x,NP){
+  const p=(NP||{})[String(x.id)]||null;
+  const pills=p?`${p.yours?'<span class="pill used">Yours</span> ':''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
+  const nums=p?`<div class="detail note">${p.owned}% owned · £${Number(p.cost).toFixed(1)} · xP ${p.xp} · ${esc(p.fixture)}${p.news?` · ${esc(p.news)}`:""}</div>`:"";
+  return `<li><span class="who">${esc(x.text)}</span>${pills?`<div class="detail">${pills}</div>`:""}${nums}<div class="detail">${srcChips(x.sources)}</div></li>`;
+}
+function renderNews(){
+  const N=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};
+  const rank=(x)=>{const p=NP[String(x.id)]||{}; return [p.yours?0:1, -(x.sources||[]).length, -(p.owned||0)];};
+  const order=(a,b)=>{const ra=rank(a), rb=rank(b); for(let i=0;i<3;i++) if(ra[i]!==rb[i]) return ra[i]-rb[i]; return 0;};
+  const rows=list=>(list||[]).slice().sort(order).map(x=>newsThemeRow(x,NP)).join("");
+  const agreed=rows(N.agreed)||`<li><span class="note">No 3-site overlap yet.</span></li>`;
+  const split=rows(N.split)||`<li><span class="note">Nothing below the agreed threshold right now.</span></li>`;
+  const links=(N.links||[]).map(x=>`<a href="${safeHref(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join(" · ");
+  const fresh=N.new_articles||[];
+  const rawCap=8;
+  const newBlock=fresh.length?fresh.slice(0,rawCap).map(x=>`<li><span class="who">${esc(x.title)}</span><div class="detail"><span class="pill free">${esc(x.source)}</span> <a href="${safeHref(x.url)}" target="_blank" rel="noopener">open</a></div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape - already folded into the themes above.</span></li>`:""):`<li><span class="note">No new articles this scrape.</span></li>`;
+  const sites=N.sites_checked?` · ${N.sites_with_articles??"?"} of ${N.sites_checked} sites had fresh articles`:"";
+  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Emerging = 2 sites so far · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. Your players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
+}
+function renderTeamNews(){
+  const T=D.team_news||{rows:[]};
+  const rows=(T.rows||[]).map(r=>`<tr><td>${esc(r.name)} <span class="note">${esc(r.club)}</span>${r.yours?' <span class="pill used">Yours</span>':""}</td><td>${esc(r.pos)}</td><td>${r.chance==null?"–":r.chance+"%"}</td><td style="white-space:normal">${esc(r.news)}${r.returns?` <b>· back ${esc(r.returns)}</b>`:""}</td><td class="note">${esc(toToronto(r.added))}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No FPL status changes in the last ${T.hours||72} hours.</span></td></tr>`;
+  document.getElementById("teamNews").innerHTML=`<div class="card"><h2>Team news · last ${T.hours||72}h</h2><ul class="note-list"><li>FPL's own status changes, newest data first; your players first, then the most owned</li><li>Return dates are read from FPL's news line where it gives one${T.total>(T.rows||[]).length?` · showing ${(T.rows||[]).length} of ${T.total}`:""}</li></ul><table class="table-compact"><thead><tr><th style="width:26%">Player</th><th style="width:8%">Pos</th><th style="width:10%">Fit</th><th style="width:38%">News</th><th style="width:18%">Added</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderSetPieces(){
+  const S=D.set_pieces||{rows:[]};
+  const cell=l=>(l||[]).map(p=>`${esc(p.name)}${p.yours?" ★":""}`).join(", ")||"–";
+  const rows=(S.rows||[]).map(r=>`<tr><td>${esc(r.club)}</td><td>${cell(r.pens)}</td><td>${cell(r.fks)}</td><td>${cell(r.corners)}</td></tr>`).join("");
+  document.getElementById("setPieces").innerHTML=`<div class="card"><h2>Set-piece takers</h2><ul class="note-list"><li>First-choice taker per club from FPL's own order fields (★ = in your squad)</li></ul><table class="table-compact"><thead><tr><th style="width:12%">Club</th><th style="width:30%">Penalties</th><th style="width:29%">Free kicks</th><th style="width:29%">Corners</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }

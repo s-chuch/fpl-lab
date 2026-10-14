@@ -8,11 +8,11 @@
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div><div id="liveBar"></div>
 <nav class="tabs" id="tabs"></nav>
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
-<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
+<section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="teamNews"></section><section id="setPieces"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=dcda311e"></script>
+<script src="dashboard-common.js?v=11c0bade"></script>
 <script src="bacalhau-data.js?v=1c0ba688"></script>
-<script src="news.js?v=9692f649"></script>
+<script src="news.js?v=6a99e2d1"></script>
 <script src="bacalhau-wildcard.js?v=f210e1dd"></script>
 <script>
 const W={"You":"They","you":"they","Your":"Their","own":"Bacalhau doesn't own"}; // wording for the shared renderers in dashboard-common.js
@@ -28,9 +28,9 @@ const TAB_GROUPS=[
   {id:"review",label:"Review",tabs:[["season","Season"],["bench","Bench"],["captain","Captain"],["transfers","Transfers"],["chips","Chips"]]},
   {id:"ai",label:"AI team",tabs:[["aiPlan","Plan"],["aiResults","Results"]]},
   {id:"plan",label:"Plan",tabs:[["plan","Next 2 GWs"],["fh","Free Hit"],["wildcard","Wildcard"]]},
-  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratRotation","Rotation"],["stratFormFdr","Form/FDR"],["stratValue","Value"],["stratPrice","Price radar"],["stratInjury","Injury"]]},
+  {id:"strategy",label:"Strategy",tabs:[["strategy","Chips & Hits"],["stratFixtures","Fixtures"],["stratPlayers","xG/xA"],["stratDefcon","DEFCON"],["stratFormFdr","Form/FDR"],["stratValue","Value"]]},
   {id:"target",label:"Target",tabs:[["target1","1 GW"],["target3","3 GW"],["target6","6 GW"]]},
-  {id:"intel",label:"Intel",tabs:[["news","News"]]},
+  {id:"intel",label:"Intel",tabs:[["news","News"],["teamNews","Team news"],["stratInjury","Injury"],["stratRotation","Rotation"],["stratPrice","Price radar"],["setPieces","Set pieces"]]},
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
 let activeGroup="review", activeTab="season";
@@ -93,7 +93,7 @@ function renderPlan(){
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players Bacalhau doesn't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit their squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
   const W=window.FPL_WILDCARD_WATCH;
   const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">Bacalhau has Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad.</div>`:"";
-  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${plannerCard(D)}${wildcardNote}${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
+  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${plannerCard(D)}${wildcardNote}${transferCard}${newsCard("News vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
 function renderWildcardWatch(){
@@ -380,31 +380,9 @@ for(const k of ["bboost_h2","3xc_h2","freehit_h2","wildcard_h2"]) CHIP_NET[k]=CN
 const CHIP_ROWS=[["Bench Boost","bboost"],["Triple Captain","3xc"],["Free Hit","freehit"],["Wildcard","wildcard"]];
 const secondHalf=((D.deadline||{}).next_gw||0)>=20||Object.keys(co).some(k=>/_h2$/.test(k)&&co[k]!=null);
 document.getElementById("chips").innerHTML=`<div class="card"><h2>Chips</h2><p class="note">Updated ${esc(D.generated_at_et||"?")}${secondHalf?" · every chip can be played once in each half (reset at GW20)":""}</p>${secondHalf?`<h3>Second half (GW20+)</h3><ul class="chiplist">${CHIP_ROWS.map(([l,k])=>chipRow(l,k+"_h2")).join("")}</ul><h3>First half (GW1-19)</h3>`:""}<ul class="chiplist">${CHIP_ROWS.map(([l,k])=>chipRow(l,k)).join("")}</ul></div>`;
-function renderNews(){
-  const N=window.FPL_NEWS||D.news||{};
-  const agreed=(N.agreed||[]).map(x=>`<li><span class="who">${esc(x.text)}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">No 3-site overlap yet.</span></li>`;
-  const split=(N.split||[]).map(x=>`<li><span class="who">${esc(x.text)}</span><div class="detail">${srcChips(x.sources)}</div></li>`).join("")||`<li><span class="note">Nothing below the agreed threshold right now.</span></li>`;
-  const links=(N.links||[]).map(x=>`<a href="${safeHref(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a>`).join(" · ");
-  const fresh=N.new_articles||[];
-  const rawCap=8;
-  const newBlock=fresh.length?fresh.slice(0,rawCap).map(x=>`<li><span class="who">${esc(x.title)}</span><div class="detail"><span class="pill free">${esc(x.source)}</span> <a href="${safeHref(x.url)}" target="_blank" rel="noopener">open</a></div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape — already folded into the consensus above.</span></li>`:""):`<li><span class="note">No new articles recently.</span></li>`;
-  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="warn">Emerging = 2 sites so far. Agreed = 3+ sites (consensus).</div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Raw articles just fetched this run — not analyzed yet, this is what feeds the consensus above.</p><ul class="chiplist">${newBlock}</ul></details></div><div class="card"><h2>Sources</h2><p class="note">${links||"Waiting."}</p>${freshnessMeta(N,"news")}</div>`;
-}
 renderNews();
-function renderX(){
-  const X=window.FPL_X||{};
-  const acc=(X.accounts||[]).map(a=>`<div class="chip">@${esc(a.handle||a)}</div>`).join("")||`<p class="note">No X accounts yet.</p>`;
-  const fresh=X.new_posts||[];
-  const rawCap=8;
-  const newBlock=fresh.length?fresh.slice(0,rawCap).map(p=>`<li><span class="who">@${esc(p.handle)}</span><div class="detail">${esc(p.text||"")}</div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape — already folded into the consensus above.</span></li>`:""):`<li><span class="note">No new posts recently.</span></li>`;
-  const agreed=(X.agreed||[]).map(x=>`<li><span class="who">${esc(x.text)}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">No 3-account overlap yet.</span></li>`;
-  const split=(X.split||[]).map(x=>`<li><span class="who">${esc(x.text)}</span><div class="detail">${srcChips((x.sources||[]).map(s=>"@"+s))}</div></li>`).join("")||`<li><span class="note">Nothing below the agreed threshold right now.</span></li>`;
-  document.getElementById("xtab").innerHTML=`<div class="warn">Emerging = 2 accounts so far. Agreed = 3+ accounts (consensus).</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Raw posts just fetched this run — not analyzed yet, this is what feeds the consensus above.</p><ul class="chiplist">${newBlock}</ul></details></div>`;
-}
-// X tab discontinued (live ingest cancelled — paid API/Grok Bot) — renderX()
-// kept intact below for whenever ingest comes back; just add ["xtab","X"] and a <script src="x-posts.js"> tag (x-posts.js is no longer loaded: it is stale)
-// back into the Intel tab group and uncomment this call to restore it.
-// renderX();
+renderTeamNews();
+renderSetPieces();
 function renderFh(){
   const used=(D.chips_official||{}).freehit;
   const A=D.fh_audit||null;
