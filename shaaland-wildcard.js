@@ -109,21 +109,21 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Groß",
-    "captain_ep": 5.72,
+    "captain_ep": 6.56,
     "vice": "De Cuyper",
-    "vice_ep": 5.65,
+    "vice_ep": 6.02,
     "bench_swaps": [
       {
         "bench": "Tzolakis",
-        "bench_ep": 4.28,
+        "bench_ep": 4.57,
         "starter": "Raya",
-        "starter_ep": 3.7
+        "starter_ep": 3.63
       }
     ],
     "bench_order": [
       "Tzolakis",
-      "Kostoulas",
       "Davis",
+      "Kostoulas",
       "Schade"
     ],
     "bench_order_changed": true,
@@ -138,67 +138,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.7,
+        "ep_next": 3.63,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.65,
+        "ep_next": 6.02,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 4.21,
+        "ep_next": 4.8,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.86,
+        "ep_next": 4.5,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.43,
+        "ep_next": 5.8,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.89,
+        "ep_next": 4.41,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.3,
+        "ep_next": 3.78,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 5.72,
+        "ep_next": 6.56,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.08,
+        "ep_next": 4.96,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.22,
+        "ep_next": 5.46,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.77,
+        "ep_next": 3.87,
         "status": "ok"
       }
     ],
@@ -206,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.28,
+        "ep_next": 4.57,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.09,
+        "ep_next": 3.03,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.88,
+        "ep_next": 2.95,
         "status": "doubt"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.66,
+        "ep_next": 3.04,
         "status": "ok"
       }
     ]
@@ -634,5 +634,6 @@ window.FPL_WILDCARD_WATCH = {
         "delta": 0.1
       }
     ]
-  }
+  },
+  "squad_gw": 6
 };
