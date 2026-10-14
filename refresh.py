@@ -800,22 +800,25 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
         if audit:
             d15 = audit["all15_new"] - audit["all15_old"]
             dbest = audit["best_new"] - audit["best_old"]
+            cap_txt = f"{audit['shared_captain']} as captain in both" if audit.get("shared_captain") else "the best captain in each"
             text += (f" Squad comparison (bench counted too, since you could have swapped them): all 15 players scored "
                      f"{audit['all15_new']} vs {audit['all15_old']} for your previous squad ({'+' if d15 >= 0 else ''}{d15}); best XI with "
-                     f"perfect swaps and captain {audit['best_new']} vs {audit['best_old']} ({'+' if dbest >= 0 else ''}{dbest}). "
+                     f"perfect swaps and {cap_txt}: {audit['best_new']} vs {audit['best_old']} ({'+' if dbest >= 0 else ''}{dbest}). "
                      f"An estimate - what you'd have done without the chip isn't known.")
         out[key] = {"net": net, "label": "vs field average", "note": text}
     return out
 
 
-def _best_xi_hindsight(players):
-    """players: [{"pos","pts"}] x15. Best legal XI by points with the best scorer as captain (doubled) - what
-    perfect swaps and a perfect captain pick would have returned from this squad."""
+def _best_xi_hindsight(players, captain=None):
+    """players: [{"name","pos","pts"}] x15. Best legal XI by points with a doubled captain - what perfect swaps
+    would have returned from this squad. With `captain` (a name) that player is forced into the XI and is the
+    one doubled, so two squads can be compared with the SAME captain instead of each getting a hindsight pick."""
     by = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
     for p in players:
-        by[p["pos"]].append(p["pts"])
+        by[p["pos"]].append(p)
     for k in by:
-        by[k].sort(reverse=True)
+        by[k].sort(key=lambda p: (p["name"] != captain, -p["pts"]))
+    cap_pos = next((p["pos"] for p in players if p["name"] == captain), None)
     best = 0
     for d in range(3, 6):
         for m in range(2, 6):
@@ -823,7 +826,10 @@ def _best_xi_hindsight(players):
                 if 1 + d + m + f != 11 or len(by["GKP"]) < 1 or len(by["DEF"]) < d or len(by["MID"]) < m or len(by["FWD"]) < f:
                     continue
                 xi = by["GKP"][:1] + by["DEF"][:d] + by["MID"][:m] + by["FWD"][:f]
-                best = max(best, sum(xi) + max(xi))
+                if cap_pos and not any(p["name"] == captain for p in xi):
+                    continue
+                cap_pts = next((p["pts"] for p in xi if p["name"] == captain), None) if cap_pos else max(p["pts"] for p in xi)
+                best = max(best, sum(p["pts"] for p in xi) + cap_pts)
     return best
 
 
@@ -910,12 +916,15 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
     fh_cap = elements.get((fh_cap_pick or {}).get("element"), {}).get("web_name")
     orig_points, orig_xi, orig_cap = score_original_squad(orig_pk)
     net = fh_points - orig_points
-    def strength(pk):
-        sq = [{"pos": POS[elements[p["element"]]["element_type"]], "pts": pts.get(p["element"], 0)}
-              for p in pk.get("picks") or [] if p["element"] in elements]
-        return sum(x["pts"] for x in sq), _best_xi_hindsight(sq)
-    all15_new, best_new = strength(fh_pk)
-    all15_old, best_old = strength(orig_pk)
+    def squad_players(pk):
+        return [{"name": elements[p["element"]]["web_name"], "pos": POS[elements[p["element"]]["element_type"]], "pts": pts.get(p["element"], 0)}
+                for p in pk.get("picks") or [] if p["element"] in elements]
+    new_sq, old_sq = squad_players(fh_pk), squad_players(orig_pk)
+    # the same captain for both squads: the previous squad's captain when he is in both, else the new squad's
+    names_new, names_old = {p["name"] for p in new_sq}, {p["name"] for p in old_sq}
+    shared_cap = next((c for c in (orig_cap, fh_cap) if c and c in names_new and c in names_old), None)
+    all15_new, all15_old = sum(p['pts'] for p in new_sq), sum(p['pts'] for p in old_sq)
+    best_new, best_old = _best_xi_hindsight(new_sq, shared_cap), _best_xi_hindsight(old_sq, shared_cap)
     eh = fh_pk.get("entry_history") or {}
     if eh.get("points") is not None and fh_points != eh["points"] + (eh.get("event_transfers_cost") or 0):
         # Cross-check against FPL's own gameweek total: a mismatch means the multipliers/autosubs were misread.
@@ -931,7 +940,7 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
         "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
-        "all15_new": all15_new, "all15_old": all15_old, "best_new": best_new, "best_old": best_old,
+        "all15_new": all15_new, "all15_old": all15_old, "best_new": best_new, "best_old": best_old, "shared_captain": shared_cap,
         "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label} (same XI, captain and auto-subs) — net {'+' if net >= 0 else ''}{net}.",
     }
 
