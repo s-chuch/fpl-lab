@@ -798,11 +798,33 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
         net = (f["points"] - avg) if avg else None
         text = f"GW{gw}: {f['points']} pts" + (f" vs {avg} field average." if avg else ".") + _rank_text(f) + built
         if audit:
-            text += (f" Estimate only: your unchanged squad (same XI, captain, auto-subs) would have scored about "
-                     f"{audit['original_points']} ({'+' if audit['net'] >= 0 else ''}{audit['net']} for the chip) — what you'd have done "
-                     f"without the chip isn't known, so treat that as a guide, not an exact figure.")
+            d15 = audit["all15_new"] - audit["all15_old"]
+            dbest = audit["best_new"] - audit["best_old"]
+            text += (f" Squad comparison (bench counted too, since you could have swapped them): all 15 players scored "
+                     f"{audit['all15_new']} vs {audit['all15_old']} for your previous squad ({'+' if d15 >= 0 else ''}{d15}); best XI with "
+                     f"perfect swaps and captain {audit['best_new']} vs {audit['best_old']} ({'+' if dbest >= 0 else ''}{dbest}). "
+                     f"An estimate - what you'd have done without the chip isn't known.")
         out[key] = {"net": net, "label": "vs field average", "note": text}
     return out
+
+
+def _best_xi_hindsight(players):
+    """players: [{"pos","pts"}] x15. Best legal XI by points with the best scorer as captain (doubled) - what
+    perfect swaps and a perfect captain pick would have returned from this squad."""
+    by = {"GKP": [], "DEF": [], "MID": [], "FWD": []}
+    for p in players:
+        by[p["pos"]].append(p["pts"])
+    for k in by:
+        by[k].sort(reverse=True)
+    best = 0
+    for d in range(3, 6):
+        for m in range(2, 6):
+            for f in range(1, 4):
+                if 1 + d + m + f != 11 or len(by["GKP"]) < 1 or len(by["DEF"]) < d or len(by["MID"]) < m or len(by["FWD"]) < f:
+                    continue
+                xi = by["GKP"][:1] + by["DEF"][:d] + by["MID"][:m] + by["FWD"][:f]
+                best = max(best, sum(xi) + max(xi))
+    return best
 
 
 def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", prior_label="reverted squad"):
@@ -888,6 +910,12 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
     fh_cap = elements.get((fh_cap_pick or {}).get("element"), {}).get("web_name")
     orig_points, orig_xi, orig_cap = score_original_squad(orig_pk)
     net = fh_points - orig_points
+    def strength(pk):
+        sq = [{"pos": POS[elements[p["element"]]["element_type"]], "pts": pts.get(p["element"], 0)}
+              for p in pk.get("picks") or [] if p["element"] in elements]
+        return sum(x["pts"] for x in sq), _best_xi_hindsight(sq)
+    all15_new, best_new = strength(fh_pk)
+    all15_old, best_old = strength(orig_pk)
     eh = fh_pk.get("entry_history") or {}
     if eh.get("points") is not None and fh_points != eh["points"] + (eh.get("event_transfers_cost") or 0):
         # Cross-check against FPL's own gameweek total: a mismatch means the multipliers/autosubs were misread.
@@ -903,6 +931,7 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
         "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
+        "all15_new": all15_new, "all15_old": all15_old, "best_new": best_new, "best_old": best_old,
         "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label} (same XI, captain and auto-subs) — net {'+' if net >= 0 else ''}{net}.",
     }
 
