@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:06 UTC",
-  "generated_at_et": "2026-10-14 4:06 PM ET",
+  "generated_at": "2026-10-14 20:17 UTC",
+  "generated_at_et": "2026-10-14 4:17 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -14234,7 +14234,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:06:14.241265+00:00",
+      "computed_at": "2026-10-14T20:17:18.472961+00:00",
       "initial": false,
       "squad": [
         {
@@ -14556,12 +14556,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:06:14.241265+00:00",
-    "generated_at": "2026-10-14T20:06:14.241265+00:00"
+    "last_check": "2026-10-14T20:17:18.472961+00:00",
+    "generated_at": "2026-10-14T20:17:18.472961+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:06:14.322006+00:00",
-    "previous_check": "2026-10-14T20:01:11.022351+00:00",
+    "checked_at": "2026-10-14T20:17:18.549567+00:00",
+    "previous_check": "2026-10-14T20:06:14.322006+00:00",
     "watching": 16,
     "changes": [],
     "history": [],

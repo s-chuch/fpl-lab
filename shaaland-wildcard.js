@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-10",
+  "captured_at": "2026-10-14",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "LEE (H)"
+      "fixture": "NFO (A)"
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "SUN (A)"
+      "fixture": "CRY (H)"
     },
     {
       "pos": "DEF",
       "name": "Calafiori",
       "club": "ARS",
-      "fixture": "LEE (H)"
+      "fixture": "NFO (A)"
     },
     {
       "pos": "DEF",
       "name": "Hall",
       "club": "NEW",
-      "fixture": "COV (A)"
+      "fixture": "AVL (H)"
     },
     {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "HUL (A)"
+      "fixture": "CHE (H)"
     },
     {
       "pos": "MID",
       "name": "Barnes",
       "club": "NEW",
-      "fixture": "COV (A)"
+      "fixture": "AVL (H)"
     },
     {
       "pos": "MID",
       "name": "King",
       "club": "FUL",
-      "fixture": "IPS (A)"
+      "fixture": "HUL (H)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "SUN (A)"
+      "fixture": "CRY (H)"
     },
     {
       "pos": "MID",
       "name": "Saka",
       "club": "ARS",
-      "fixture": "LEE (H)",
+      "fixture": "NFO (A)",
       "vice": true
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "LIV (A)",
+      "fixture": "IPS (H)",
       "captain": true
     },
     {
       "pos": "FWD",
       "name": "João Pedro",
       "club": "CHE",
-      "fixture": "BOU (H)"
+      "fixture": "EVE (A)"
     }
   ],
   "bench": [
@@ -85,45 +85,39 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "EVE (H)"
+      "fixture": "FUL (A)"
     },
     {
       "pos": "FWD",
       "name": "Kostoulas",
       "club": "BHA",
-      "fixture": "SUN (A)"
+      "fixture": "CRY (H)"
     },
     {
       "pos": "MID",
       "name": "Schade",
       "club": "BRE",
-      "fixture": "AVL (A)"
+      "fixture": "LIV (H)"
     },
     {
       "pos": "DEF",
       "name": "Davis",
       "club": "IPS",
-      "fixture": "FUL (H)"
+      "fixture": "MCI (A)"
     }
   ],
-  "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from your picks).",
+  "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "De Cuyper",
-    "captain_ep": 10.5,
-    "vice": "Groß",
-    "vice_ep": 10.0,
+    "captain": "Groß",
+    "captain_ep": 5.72,
+    "vice": "De Cuyper",
+    "vice_ep": 5.65,
     "bench_swaps": [
       {
         "bench": "Tzolakis",
-        "bench_ep": 4.0,
+        "bench_ep": 4.28,
         "starter": "Raya",
-        "starter_ep": 2.0
-      },
-      {
-        "bench": "Schade",
-        "bench_ep": 3.8,
-        "starter": "King",
-        "starter_ep": 2.0
+        "starter_ep": 3.7
       }
     ],
     "bench_order": [
@@ -144,67 +138,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.0,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 10.5,
+        "ep_next": 5.65,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 5.0,
+        "ep_next": 4.21,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 6.5,
+        "ep_next": 3.86,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 8.5,
+        "ep_next": 4.43,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 5.5,
+        "ep_next": 3.89,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 2.0,
+        "ep_next": 3.3,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 10.0,
+        "ep_next": 5.72,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 2.0,
+        "ep_next": 4.08,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 6.0,
+        "ep_next": 5.22,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 6.0,
+        "ep_next": 3.77,
         "status": "ok"
       }
     ],
@@ -212,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.0,
+        "ep_next": 4.28,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 5.5,
+        "ep_next": 3.09,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.8,
+        "ep_next": 2.88,
         "status": "doubt"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 1.5,
+        "ep_next": 2.66,
         "status": "ok"
       }
     ]
