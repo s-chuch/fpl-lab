@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:41 UTC",
-  "generated_at_et": "2026-10-14 4:41 PM ET",
+  "generated_at": "2026-10-14 20:43 UTC",
+  "generated_at_et": "2026-10-14 4:43 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3780,12 +3780,388 @@ window.FPL_DATA = {
     "freehit": {
       "net": 21,
       "label": "vs avg",
-      "note": "GW4: 90 vs 69 avg \u00b7 rank 1,516,623 \u2192 820,064 \u00b7 15 players 94 vs 103 (\u22129) \u00b7 best XI 89 vs 95 (\u22126)"
+      "note": "",
+      "compare": {
+        "rows": [
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Verbruggen",
+              "pts": 8
+            },
+            "new": {
+              "name": "Raya",
+              "pts": 14
+            },
+            "kept": false
+          },
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Kinsky",
+              "pts": 7
+            },
+            "new": {
+              "name": "Dubravka",
+              "pts": 0
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "De Cuyper",
+              "pts": 11
+            },
+            "new": {
+              "name": "De Cuyper",
+              "pts": 11
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Calafiori",
+              "pts": 6
+            },
+            "new": {
+              "name": "Calafiori",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Davis",
+              "pts": 14
+            },
+            "new": {
+              "name": "Van Hecke",
+              "pts": 8
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Hume",
+              "pts": 0
+            },
+            "new": {
+              "name": "Khalaili",
+              "pts": 7
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Shaw",
+              "pts": 0
+            },
+            "new": {
+              "name": "Konsa",
+              "pts": 6
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Szoboszlai",
+              "pts": 3
+            },
+            "new": {
+              "name": "Szoboszlai",
+              "pts": 3
+            },
+            "kept": true
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Gro\u00df",
+              "pts": 17
+            },
+            "new": {
+              "name": "Rogers",
+              "pts": 8
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Tzolis",
+              "pts": 3
+            },
+            "new": {
+              "name": "Palmer",
+              "pts": 5
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "B.Fernandes",
+              "pts": 2
+            },
+            "new": {
+              "name": "Slater",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Cherki",
+              "pts": 1
+            },
+            "new": {
+              "name": "Hughes",
+              "pts": 1
+            },
+            "kept": false
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Jo\u00e3o Pedro",
+              "pts": 12
+            },
+            "new": {
+              "name": "Jo\u00e3o Pedro",
+              "pts": 12
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Haaland",
+              "pts": 9
+            },
+            "new": {
+              "name": "Haaland",
+              "pts": 9
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Calvert-Lewin",
+              "pts": 10
+            },
+            "new": {
+              "name": "Isak",
+              "pts": 2
+            },
+            "kept": false
+          }
+        ],
+        "old_total": 103,
+        "new_total": 94,
+        "old_best": 95,
+        "new_best": 89
+      }
     },
     "wildcard": {
       "net": 8,
       "label": "vs avg",
-      "note": "GW6: 66 vs 58 avg \u00b7 rank 686,560 \u2192 775,958 \u00b7 15 players 65 vs 78 (\u221213) \u00b7 best XI 61 vs 74 (\u221213)"
+      "note": "",
+      "compare": {
+        "rows": [
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Verbruggen",
+              "pts": 9
+            },
+            "new": {
+              "name": "Raya",
+              "pts": 3
+            },
+            "kept": false
+          },
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Kinsky",
+              "pts": 3
+            },
+            "new": {
+              "name": "Tzolakis",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "De Cuyper",
+              "pts": 15
+            },
+            "new": {
+              "name": "De Cuyper",
+              "pts": 15
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Calafiori",
+              "pts": 9
+            },
+            "new": {
+              "name": "Calafiori",
+              "pts": 9
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Davis",
+              "pts": 1
+            },
+            "new": {
+              "name": "Davis",
+              "pts": 1
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Shaw",
+              "pts": 3
+            },
+            "new": {
+              "name": "Tarkowski",
+              "pts": 3
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Hume",
+              "pts": 1
+            },
+            "new": {
+              "name": "Hall",
+              "pts": 0
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Gro\u00df",
+              "pts": 6
+            },
+            "new": {
+              "name": "Gro\u00df",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Cherki",
+              "pts": 10
+            },
+            "new": {
+              "name": "Barnes",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "B.Fernandes",
+              "pts": 1
+            },
+            "new": {
+              "name": "King",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Szoboszlai",
+              "pts": 0
+            },
+            "new": {
+              "name": "Saka",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Tzolis",
+              "pts": 0
+            },
+            "new": {
+              "name": "Schade",
+              "pts": 1
+            },
+            "kept": false
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Jo\u00e3o Pedro",
+              "pts": 12
+            },
+            "new": {
+              "name": "Jo\u00e3o Pedro",
+              "pts": 12
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Haaland",
+              "pts": 6
+            },
+            "new": {
+              "name": "Haaland",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Calvert-Lewin",
+              "pts": 2
+            },
+            "new": {
+              "name": "Kostoulas",
+              "pts": 1
+            },
+            "kept": false
+          }
+        ],
+        "old_total": 78,
+        "new_total": 65,
+        "old_best": 74,
+        "new_best": 61
+      }
     }
   },
   "fh_audit": {
@@ -3919,6 +4295,194 @@ window.FPL_DATA = {
     "all15_old": 103,
     "best_new": 89,
     "best_old": 95,
+    "compare": {
+      "rows": [
+        {
+          "pos": "GKP",
+          "old": {
+            "name": "Verbruggen",
+            "pts": 8
+          },
+          "new": {
+            "name": "Raya",
+            "pts": 14
+          },
+          "kept": false
+        },
+        {
+          "pos": "GKP",
+          "old": {
+            "name": "Kinsky",
+            "pts": 7
+          },
+          "new": {
+            "name": "Dubravka",
+            "pts": 0
+          },
+          "kept": false
+        },
+        {
+          "pos": "DEF",
+          "old": {
+            "name": "De Cuyper",
+            "pts": 11
+          },
+          "new": {
+            "name": "De Cuyper",
+            "pts": 11
+          },
+          "kept": true
+        },
+        {
+          "pos": "DEF",
+          "old": {
+            "name": "Calafiori",
+            "pts": 6
+          },
+          "new": {
+            "name": "Calafiori",
+            "pts": 6
+          },
+          "kept": true
+        },
+        {
+          "pos": "DEF",
+          "old": {
+            "name": "Davis",
+            "pts": 14
+          },
+          "new": {
+            "name": "Van Hecke",
+            "pts": 8
+          },
+          "kept": false
+        },
+        {
+          "pos": "DEF",
+          "old": {
+            "name": "Hume",
+            "pts": 0
+          },
+          "new": {
+            "name": "Khalaili",
+            "pts": 7
+          },
+          "kept": false
+        },
+        {
+          "pos": "DEF",
+          "old": {
+            "name": "Shaw",
+            "pts": 0
+          },
+          "new": {
+            "name": "Konsa",
+            "pts": 6
+          },
+          "kept": false
+        },
+        {
+          "pos": "MID",
+          "old": {
+            "name": "Szoboszlai",
+            "pts": 3
+          },
+          "new": {
+            "name": "Szoboszlai",
+            "pts": 3
+          },
+          "kept": true
+        },
+        {
+          "pos": "MID",
+          "old": {
+            "name": "Gro\u00df",
+            "pts": 17
+          },
+          "new": {
+            "name": "Rogers",
+            "pts": 8
+          },
+          "kept": false
+        },
+        {
+          "pos": "MID",
+          "old": {
+            "name": "Tzolis",
+            "pts": 3
+          },
+          "new": {
+            "name": "Palmer",
+            "pts": 5
+          },
+          "kept": false
+        },
+        {
+          "pos": "MID",
+          "old": {
+            "name": "B.Fernandes",
+            "pts": 2
+          },
+          "new": {
+            "name": "Slater",
+            "pts": 2
+          },
+          "kept": false
+        },
+        {
+          "pos": "MID",
+          "old": {
+            "name": "Cherki",
+            "pts": 1
+          },
+          "new": {
+            "name": "Hughes",
+            "pts": 1
+          },
+          "kept": false
+        },
+        {
+          "pos": "FWD",
+          "old": {
+            "name": "Jo\u00e3o Pedro",
+            "pts": 12
+          },
+          "new": {
+            "name": "Jo\u00e3o Pedro",
+            "pts": 12
+          },
+          "kept": true
+        },
+        {
+          "pos": "FWD",
+          "old": {
+            "name": "Haaland",
+            "pts": 9
+          },
+          "new": {
+            "name": "Haaland",
+            "pts": 9
+          },
+          "kept": true
+        },
+        {
+          "pos": "FWD",
+          "old": {
+            "name": "Calvert-Lewin",
+            "pts": 10
+          },
+          "new": {
+            "name": "Isak",
+            "pts": 2
+          },
+          "kept": false
+        }
+      ],
+      "old_total": 103,
+      "new_total": 94,
+      "old_best": 95,
+      "new_best": 89
+    },
     "why": "FH scored 90 vs 102 for the reverted squad (same XI, captain and auto-subs) \u2014 net -12."
   },
   "strategy": {
@@ -14330,7 +14894,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:41:11.968051+00:00",
+      "computed_at": "2026-10-14T20:43:57.233869+00:00",
       "initial": false,
       "squad": [
         {
@@ -14655,12 +15219,12 @@ window.FPL_DATA = {
     "season_points": 417,
     "user_season": 417,
     "chips_available": [],
-    "last_check": "2026-10-14T20:41:11.968051+00:00",
-    "generated_at": "2026-10-14T20:41:11.968051+00:00"
+    "last_check": "2026-10-14T20:43:57.233869+00:00",
+    "generated_at": "2026-10-14T20:43:57.233869+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:41:12.037351+00:00",
-    "previous_check": "2026-10-14T20:39:36.171883+00:00",
+    "checked_at": "2026-10-14T20:43:57.307281+00:00",
+    "previous_check": "2026-10-14T20:41:12.037351+00:00",
     "watching": 17,
     "changes": [],
     "history": [],

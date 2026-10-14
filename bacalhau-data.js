@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:41 UTC",
-  "generated_at_et": "2026-10-14 4:41 PM ET",
+  "generated_at": "2026-10-14 20:44 UTC",
+  "generated_at_et": "2026-10-14 4:44 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3794,7 +3794,195 @@ window.FPL_DATA = {
     "wildcard": {
       "net": 6,
       "label": "vs avg",
-      "note": "GW6: 64 vs 58 avg \u00b7 rank 1,187,975 \u2192 1,319,300 \u00b7 15 players 63 vs 54 (+9) \u00b7 best XI 59 vs 53 (+6)"
+      "note": "",
+      "compare": {
+        "rows": [
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Raya",
+              "pts": 3
+            },
+            "new": {
+              "name": "Raya",
+              "pts": 3
+            },
+            "kept": true
+          },
+          {
+            "pos": "GKP",
+            "old": {
+              "name": "Dubravka",
+              "pts": 0
+            },
+            "new": {
+              "name": "Tzolakis",
+              "pts": 2
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Tarkowski",
+              "pts": 3
+            },
+            "new": {
+              "name": "Tarkowski",
+              "pts": 3
+            },
+            "kept": true
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Calafiori",
+              "pts": 9
+            },
+            "new": {
+              "name": "De Cuyper",
+              "pts": 15
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Mitchell",
+              "pts": 4
+            },
+            "new": {
+              "name": "Gvardiol",
+              "pts": 4
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "N.Williams",
+              "pts": 1
+            },
+            "new": {
+              "name": "Bogle",
+              "pts": 1
+            },
+            "kept": false
+          },
+          {
+            "pos": "DEF",
+            "old": {
+              "name": "Ajayi",
+              "pts": 1
+            },
+            "new": {
+              "name": "Hall",
+              "pts": 0
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Dewsbury-Hall",
+              "pts": 13
+            },
+            "new": {
+              "name": "Dewsbury-Hall",
+              "pts": 13
+            },
+            "kept": true
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Belloumi",
+              "pts": 6
+            },
+            "new": {
+              "name": "Belloumi",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Gro\u00df",
+              "pts": 6
+            },
+            "new": {
+              "name": "Gro\u00df",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "B.Fernandes",
+              "pts": 1
+            },
+            "new": {
+              "name": "Schade",
+              "pts": 1
+            },
+            "kept": false
+          },
+          {
+            "pos": "MID",
+            "old": {
+              "name": "Szoboszlai",
+              "pts": 0
+            },
+            "new": {
+              "name": "Tavernier",
+              "pts": 1
+            },
+            "kept": false
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Haaland",
+              "pts": 6
+            },
+            "new": {
+              "name": "Haaland",
+              "pts": 6
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Walle Egeli",
+              "pts": 1
+            },
+            "new": {
+              "name": "Walle Egeli",
+              "pts": 1
+            },
+            "kept": true
+          },
+          {
+            "pos": "FWD",
+            "old": {
+              "name": "Kusi-Asare",
+              "pts": 0
+            },
+            "new": {
+              "name": "Kostoulas",
+              "pts": 1
+            },
+            "kept": false
+          }
+        ],
+        "old_total": 54,
+        "new_total": 63,
+        "old_best": 53,
+        "new_best": 59
+      }
     }
   },
   "fh_audit": null,
@@ -14236,7 +14424,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:41:16.177009+00:00",
+      "computed_at": "2026-10-14T20:44:00.773662+00:00",
       "initial": false,
       "squad": [
         {
@@ -14558,12 +14746,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:41:16.177009+00:00",
-    "generated_at": "2026-10-14T20:41:16.177009+00:00"
+    "last_check": "2026-10-14T20:44:00.773662+00:00",
+    "generated_at": "2026-10-14T20:44:00.773662+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:41:16.249046+00:00",
-    "previous_check": "2026-10-14T20:39:39.722957+00:00",
+    "checked_at": "2026-10-14T20:44:00.850079+00:00",
+    "previous_check": "2026-10-14T20:41:16.249046+00:00",
     "watching": 16,
     "changes": [],
     "history": [],
