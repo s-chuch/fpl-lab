@@ -1,0 +1,21 @@
+name: Probe free data sources
+
+# Manual check of which free sources GitHub Actions can reach (the dev sandbox cannot reach Club Elo).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe
+        run: |
+          for u in "http://api.clubelo.com/$(date -u +%F)" "http://api.clubelo.com/Arsenal" "https://www.football-data.co.uk/fixtures.csv" "https://raw.githubusercontent.com/vaastav/Fantasy-Premier-League/master/data/2025-26/gws/merged_gw.csv"; do
+            echo "== $u"
+            curl -sL -m 30 -o /tmp/p.out -w "HTTP %{http_code} bytes %{size_download}\n" -A "ShaalandFPLLab/1.0" "$u" || echo "curl failed"
+            head -c 200 /tmp/p.out; echo
+          done
