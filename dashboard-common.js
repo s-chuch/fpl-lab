@@ -533,8 +533,10 @@ function newsThemeRow(x,NP){
   const pills=p?`${p.yours?'<span class="pill used">Yours</span> ':''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
   const nums=p?`<div class="detail note">${p.owned}% owned · £${Number(p.cost).toFixed(1)} · xP ${p.xp} · ${esc(p.fixture)}${p.news?` · ${esc(p.news)}`:""}</div>`:"";
   const say=(x.quotes||[]).map(q=>`<li><span class="pill free">${esc(q.source)}</span> <span class="note">${esc((q.stance||[]).join(" / "))}</span><div>"${esc(q.text)}"</div></li>`).join("");
-  const sayBlock=say?`<details class="fold"><summary>What they say (${(x.quotes||[]).length})</summary><ul class="chiplist">${say}</ul><p class="note">Sentences that mention him with a buy / keep / sell / captain / fitness cue next to his name. Read automatically, so check the context before acting.</p></details>`:"";
-  return `<li><span class="who">${esc(x.text)}</span>${pills?`<div class="detail">${pills}</div>`:""}${nums}${sayBlock}<div class="detail">${srcChips(x.sources)}</div></li>`;
+  const sayBlock=say?`<details class="fold"><summary>What they say (${(x.quotes||[]).length})</summary><ul class="chiplist">${say}</ul><p class="note">Sentences that mention him with a buy / keep / sell / captain / fitness cue next to his name. The verdict line is read by rules; where a Claude summary is shown it was written from the sentences that mention him. Check the context before acting.</p></details>`:"";
+  const L=x.llm; const VL={buy:"Buy",keep:"Keep",sell:"Sell",captain:"Captain",avoid:"Avoid",monitor:"Monitor",no_view:"No clear view"};
+  const llmBlock=L?`<div class="detail"><span class="pill ${L.verdict==="buy"||L.verdict==="captain"?"used":"free"}">Claude: ${esc(VL[L.verdict]||L.verdict)}</span> <span class="note">${esc(L.confidence)} confidence</span><div>${esc(L.summary)}</div>${L.risks?`<div class="note">Risk: ${esc(L.risks)}</div>`:""}</div>`:"";
+  return `<li><span class="who">${esc(x.text)}</span>${llmBlock}${pills?`<div class="detail">${pills}</div>`:""}${nums}${sayBlock}<div class="detail">${srcChips(x.sources)}</div></li>`;
 }
 function renderNews(){
   const N=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};

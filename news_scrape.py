@@ -525,6 +525,20 @@ def main():
         if prev.get("gw") == gw:
             agreed = filter_themes_for_gw(prev.get("agreed") or [], gw, min_sources=3)
             split = filter_themes_for_gw(prev.get("split") or [], gw, min_sources=2)
+    # Optional language-model read of each theme (needs the ANTHROPIC_API_KEY secret; otherwise the rule-based
+    # verdicts stay). Excerpts are only an input to it and are not shipped to the page.
+    try:
+        import news_llm
+        themed = agreed + split
+        facts = {e["id"]: e for e in player_index}
+        got = news_llm.summarise(themed, (prev.get("agreed") or []) + (prev.get("split") or []), facts)
+        for it in themed:
+            if it.get("id") in got:
+                it["llm"], it["llm_hash"] = got[it["id"]], news_llm.excerpt_hash(it)
+    except Exception as e:
+        print(f"news_scrape.py: language-model step skipped: {e}")
+    for it in agreed + split:
+        it.pop("excerpts", None)
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     if not ok_sources:
         # Every source failed: any themes here are carried over, not fresh — keep the

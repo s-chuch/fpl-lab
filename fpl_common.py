@@ -382,6 +382,24 @@ def stance_quotes(raw_text, key, window=80):
             for n_, h, sent in found]
 
 
+def mention_sentences(raw_text, key, limit=6):
+    """Sentences that mention `key` (cue or not), for a language-model read: roundup lists and boilerplate dropped."""
+    out, seen = [], set()
+    pat = re.compile(rf"\b{re.escape(key)}\b")
+    for item in raw_text.split(ARTICLE_SEP):
+        for sent in _SENT_SPLIT.split(item):
+            sent = _FEED_FOOTER.sub("", sent).strip()
+            if (len(sent) < 25 or _BOILERPLATE.search(sent) or sent.count("\u00a3") >= 3 or not pat.search(norm_keep_case(sent))):
+                continue
+            k = sent.lower()[:80]
+            if k in seen:
+                continue
+            seen.add(k)
+            out.append((len(_LIST_OF_NAMES.findall(sent)), sent))
+    out.sort(key=lambda t: t[0])              # single-subject sentences first, list-like ones last
+    return [(s[:300] + "...") if len(s) > 300 else s for _n, s in out[:limit]]
+
+
 def stance_verdict(counts):
     """One-line read of the counts: what the coverage is leaning towards."""
     b, se, c, r = (counts.get(k, 0) for k in ("buy", "sell", "captain", "risk"))
@@ -414,9 +432,10 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
         for p in player_index:
             if not re.search(rf"\b{re.escape(p['match'])}\b", text):
                 continue
-            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p, "sent": {}})
+            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p, "sent": {}, "ex": {}})
             rec["sources"].add(source)
             rec["tags"] |= qualifiers_near(text, p["match"])
+            rec["ex"][source] = rec["ex"].get(source, []) + [t for t in mention_sentences(raw_text, p["match"], 4) if t not in rec["ex"].get(source, [])]
             for q in stance_quotes(raw_text, p["match"]):
                 rec["sent"].setdefault((source, q["key"]), {"source": source, **q})      # one record per sentence, however many aliases hit it
     agreed, split = [], []
@@ -448,7 +467,8 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
         says = ", ".join(f"{cnt[k]} {lbl}" for k, lbl in (("buy", "buy"), ("hold", "keep"), ("sell", "sell/avoid"), ("captain", "captain"), ("risk", "fitness/rotation")) if cnt.get(k))
         text = f"{name}{club} — {verdict}" + (f" ({says} mentions)" if says else "") + f" · {scope}"
         item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"],
-                "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"]}
+                "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"],
+                "excerpts": [{"source": src, "text": t} for src, ts in sorted(rec["ex"].items()) for t in ts[:3]][:12]}
         (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)
     return (agreed + concept_agreed)[:15], (split + concept_split)[:10]

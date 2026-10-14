@@ -132,3 +132,8 @@
   `build_themes` turns them into a verdict (`stance_verdict`), cue counts and up to four quotes per theme. News articles in the
   window get their full text fetched every run (`MAX_BODY_FETCHES`), since the verdicts live in the body. It is a heuristic, not
   an LLM: the page says so.
+- **Claude summaries on News (optional).** `news_llm.py` sends each theme's player-mentioning sentences plus FPL facts to the Claude API
+  (`claude-haiku-5-5`, override with `NEWS_LLM_MODEL`) in one batched call per run and stores a validated verdict / summary /
+  risks / confidence as `llm` on the theme (unchanged excerpts are not re-sent). It only runs when the `ANTHROPIC_API_KEY` repo secret
+  exists (the workflow passes it to the "Pull live FPL data" step); without it, or on any error, the rule-based verdicts stay.
+  Article text is treated as untrusted in the prompt and the output is bounded before it is stored.

@@ -123,6 +123,9 @@ jobs:
 
       - name: Pull live FPL data
         if: steps.gate.outputs.run != 'false'
+        env:
+          # optional: with this repo secret the News tab gets a Claude summary per player (see news_llm.py)
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           # a broken news site must not stop the FPL data refresh (the news themes just stay as they were)
           python news_scrape.py || echo "::warning::news_scrape.py failed - keeping the previous news themes"
