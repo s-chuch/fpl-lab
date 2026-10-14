@@ -313,6 +313,27 @@ def chip_for_gw(chips_used, name, gw):
 def chip_base(key):
     return key[:-3] if key.endswith("_h2") else key
 
+def squad_changes_for_chips(team_id, hist):
+    """{chip gameweek: players in that gameweek's squad that were not in the squad before it}. FPL logs one
+    transfer per swap in a chain (A->B, B->C), so counting its records overstates a Wildcard / Free Hit."""
+    out = {}
+    chip_gws = {c["event"] for c in hist.get("chips", []) if c.get("name") in ("wildcard", "freehit")}
+    fh = {c["event"] for c in hist.get("chips", []) if c.get("name") == "freehit"}
+    def ids(gw):
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+        return {p["element"] for p in pk.get("picks") or []}
+    for gw in sorted(chip_gws):
+        prev = gw - 1
+        while prev in fh and prev >= 1:
+            prev -= 1
+        if prev < 1:
+            continue
+        try:
+            out[gw] = len(ids(gw) - ids(prev))
+        except Exception as e:
+            _warn(f"squad_changes: GW{gw}: {e}")
+    return out
+
 def free_transfer_ledger(hist):
     """Gameweek-by-gameweek free-transfer bank. GW1 is the initial squad build (no bank).
     From GW2 you gain 1 free transfer per GW, banked up to 5; each transfer uses one and
@@ -2709,7 +2730,7 @@ def main(team_id=TEAM_ID, out_path=None):
     # Recomputed every run rather than cached off `existing`: both only cover finished
     # GWs (whose points never change), so recomputing is cheap and safe, whereas a
     # "skip if already present" cache would silently freeze once a new GW finishes.
-    data["transfers"] = section("transfers", lambda: add_roll_rows(build_transfers(boot, team_id), hist, chips_used), fallback=[])
+    data["transfers"] = section("transfers", lambda: add_roll_rows(build_transfers(boot, team_id), hist, chips_used, squad_changes_for_chips(team_id, hist)), fallback=[])
     data["bench_audit"] = section("bench_audit", build_bench_audit, boot, team_id, fallback={})
     data["captain_board"] = section("captain_board", build_captain_board, boot, team_id, fallback={})
     ft_rows, ft_next = free_transfer_ledger(hist or {})
@@ -2731,6 +2752,13 @@ def main(team_id=TEAM_ID, out_path=None):
     except Exception as e:
         _warn(f"daily_check failed: {e}")
     data["team_recovery"] = team_recovery
+    # name -> position for every player (None where two players share a name in different positions): lets the
+    # Plan tab's transfer advice only ever swap like for like
+    _pos = {}
+    for _e in boot["elements"]:
+        _p = POS[_e["element_type"]]
+        _pos[_e["web_name"]] = _p if _pos.get(_e["web_name"], _p) == _p else None
+    data["pos_by_name"] = _pos
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
     data["form_fdr"] = section("form_fdr", build_form_fdr, boot, next_fixture_map, exclude=owned, fallback={})
     data["value_board"] = section("value_board", build_value_board, boot, exclude=owned, fallback={})

@@ -4,7 +4,7 @@
 CHIP_LABEL = {"wildcard": "Wildcard", "freehit": "Free Hit"}
 
 
-def add_roll_rows(rows, hist, chips_used):
+def add_roll_rows(rows, hist, chips_used, squad_changes=None):
     """Chip weeks (Wildcard / Free Hit) collapse into ONE summary row: those moves are
     free and rebuild the squad (a Free Hit reverts, a Wildcard draft is churn), so judging
     each swap on a single GW's points is noise and must not feed the season net. GW1 is
@@ -17,6 +17,7 @@ def add_roll_rows(rows, hist, chips_used):
         else:
             out.append(t)
     for gw, n in counts.items():
+        n = (squad_changes or {}).get(gw, n)      # players really changed, not the transfers FPL logged (swaps in a chain count twice)
         name = CHIP_LABEL[chip_gw[gw]]
         out.append({"gw": gw, "out": name, "inn": f"{n} move{'' if n == 1 else 's'}", "net": "0", "chip": chip_gw[gw],
                     "verdict": "Squad reverts next GW" if chip_gw[gw] == "freehit" else "Free rebuild - judged by the squad, not each swap"})

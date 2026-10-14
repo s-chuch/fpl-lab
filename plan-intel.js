@@ -28,7 +28,7 @@ window.planIntel = function(D){
       chipRows:[],
       action:"WAIT",
       moveLine:"Waiting for GW"+wait+" intel.",
-      reason:P.intel_note||("GW"+(lockedGw||"?")+" is locked. News/X themes for the locked GW are not current Plan advice."),
+      reason:P.intel_note||("GW"+(lockedGw||"?")+" is locked. News themes for the locked GW are not current Plan advice."),
       optional:[],
       targets:[],
       wantsWC:false,
@@ -42,6 +42,11 @@ window.planIntel = function(D){
   const squad=(P.rows||[]).map(r=>r[1]);
   const clubs={}; (P.rows||[]).forEach(r=>clubs[r[1]]=r[2]);
   const have=new Set(squad);
+  // A transfer swaps like for like: a keeper for a keeper, a midfielder for a midfielder. Positions come from
+  // the squad rows and the all-player name -> position map the refresh writes (unknown = not suggested).
+  const POSMAP=D.pos_by_name||{};
+  const posOf=n=>{const r=(P.rows||[]).find(x=>x[1]===n); return (r&&r[0])||POSMAP[n]||null;};
+  const samePos=(a,b)=>{const pa=posOf(a), pb=posOf(b); return !!pa && pa===pb;};
   const chips=D.chips_official||{};
   const bank=Number((D.team||{}).bank||0);
   const ft=(P.transfer||{}).ft_available;
@@ -88,7 +93,7 @@ window.planIntel = function(D){
   const chipRows=[];
   if(gwA){
     chipRows.push(chipState("wildcard","Wildcard",gwA,"HOLD",
-      wantsWC?"News/X flag a wildcard window, but there is no case yet this week.":"No wildcard consensus for this week."));
+      wantsWC?"News flag a wildcard window, but there is no case yet this week.":"No wildcard consensus for this week."));
     chipRows.push(chipState("freehit","Free Hit",gwA,"HOLD",
       wantsFH?"FH drafts are being talked about, but there is no blank/double case to force it.":"No reason to Free Hit a full slate."));
     chipRows.push(chipState("3xc","Triple Captain",gwA,"HOLD",
@@ -113,13 +118,15 @@ window.planIntel = function(D){
     const c=ownByName[n];
     if(c==null || c<=3) wc.push(n+(c!=null?" · "+c+"/"+(Tac.n||"?"):" · 0 in room"));
   }
-  const haalandOwn=(Tac.template||[]).find(x=>x.name==="Haaland");
-  const haalandFdr=((((P.rows||[]).find(r=>r[1]==="Haaland")||[])[4]));
-  let cap="Captain Haaland. He is the league default.";
-  if(haalandFdr!=null && Number(haalandFdr)>=4 && wc.length){
-    cap="Haaland FDR "+haalandFdr+". Cap-diff only if the alt is owned by 3 or fewer here: "+wc.join(", ")+".";
-  } else if(wantsHaalandCap){
-    cap="Captain Haaland. News/X and this league both default to him.";
+  // The captain is the one the Plan tab, AI team and Wildcard watch share: highest expected points in your XI.
+  const xiA=((((P.xis||{})["gw"+gwA]||{}).xi)||[]);
+  const capName=(xiA.find(n=>/ \(C\)$/.test(n))||"").replace(/ \(C\)$/,"");
+  const capRow=(P.rows||[]).find(r=>r[1]===capName);
+  const capFdr=capRow?capRow[4+Math.max(0,idxA)*3]:null;
+  const capOwn=(Tac.template||[]).find(x=>x.name===capName);
+  let cap=capName?("Captain "+capName+" - highest expected points in your XI"+(capOwn?(", owned by "+capOwn.count+"/"+(Tac.n||"?")+" in this league"):"")+"."):"No captain pick yet.";
+  if(capName && capFdr!=null && Number(capFdr)>=4 && wc.length){
+    cap="Captain "+capName+" (FDR "+capFdr+"). Cap-diff only if the alt is owned by 3 or fewer here: "+wc.join(", ")+".";
   }
   const blocked=targets.filter(n=>!have.has(n));
   const cheapHit=blocked.find(n=>wc.some(w=>w.indexOf(n)===0));
@@ -157,8 +164,9 @@ window.planIntel = function(D){
   let threat=[];
   if(mode==="defend") threat=[describeRival(Tac.first),describeRival(Tac.second)].filter(Boolean);
   else if(mode==="climb" && nb) threat=[describeRival(nb.above)].filter(Boolean);
-  const defendTransfer=(cheapHit && bank>=1 && sitSells.length)
-    ?("Consider "+sitSells[0]+" → "+cheapHit+". Funds a name this room barely owns while you defend the lead.")
+  const defendSell=cheapHit?sitSells.find(n=>samePos(n,cheapHit)):null;
+  const defendTransfer=(cheapHit && bank>=1 && defendSell)
+    ?("Consider "+defendSell+" → "+cheapHit+". Funds a name this room barely owns while you defend the lead.")
     :"Roll. Keep transfers banked while you defend the lead.";
 
   const pairs=[
@@ -170,14 +178,15 @@ window.planIntel = function(D){
   let action="ROLL", moveLine="Roll. Keep both free transfers.", reason="";
   let chosen=null;
   for(const p of pairs){
-    if(!have.has(p.sell) || !blocked.includes(p.buy)) continue;
+    if(!have.has(p.sell) || !blocked.includes(p.buy) || !samePos(p.sell,p.buy)) continue;
     if(bank + 1e-9 < p.needBank) continue;
     const strongSit=doubleSit(p.sell);
     const strongHit=!!cheapHit && cheapHit===p.buy && bank>=1;
     if(strongSit || strongHit){ chosen=p; break; }
   }
-  if(!chosen && cheapHit && bank>=1 && sitSells.length){
-    chosen={sell:sitSells[0], buy:cheapHit, needBank:0, note:"Scarce agreed name vs a double-sit sell."};
+  const likeSell=cheapHit?sitSells.find(n=>samePos(n,cheapHit)):null;
+  if(!chosen && cheapHit && bank>=1 && likeSell){
+    chosen={sell:likeSell, buy:cheapHit, needBank:0, note:"Scarce agreed name vs a double-sit sell."};
   }
 
   if(chosen){
@@ -185,9 +194,9 @@ window.planIntel = function(D){
     moveLine="Consider "+chosen.sell+" → "+chosen.buy+".";
     reason=(chosen.note?chosen.note+" ":"")+"Agreed missing target with "+(doubleSit(chosen.sell)?"a double-sit/doubt sell":"bank/hit cover")+". Only pull the trigger if you still like the buy after team news.";
   } else if(cheapHit && bank>=1){
-    reason="A News/X name this room barely owns could fit. Still only move if the sell is a sit both weeks.";
+    reason="A News name this room barely owns could fit. Still only move if the sell is a sit both weeks.";
   } else if(blocked.length && bank<1){
-    reason="News/X want "+blocked.join(", ")+". Bank is £"+bank.toFixed(1)+"m. Those names wait for the Wildcard. Rolling is the process play.";
+    reason="News want "+blocked.join(", ")+". Bank is £"+bank.toFixed(1)+"m. Those names wait for the Wildcard. Rolling is the process play.";
   } else if(!blocked.length){
     reason="You already own the agreed core. Nothing required.";
   } else {
@@ -203,7 +212,7 @@ window.planIntel = function(D){
   if(have.has("Cherki") && blocked.includes("Rogers")) optional.push("Only if you refuse to roll: Cherki → Rogers. Prices line up.");
   if(have.has("Calvert-Lewin") && blocked.includes("Wissa")) optional.push("DCL → Wissa is the cheap forward version.");
   if(have.has("Tzolis") && blocked.includes("Gakpo")) optional.push("Tzolis → Gakpo needs another £0.5m. Sit Tzolis instead.");
-  if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) optional.push("News/X fade United. Shaw is already a sit. Do not fire Fernandes this week to match a fade.");
+  if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) optional.push("News fade United. Shaw is already a sit. Do not fire Fernandes this week to match a fade.");
   const they=(Tac.they_share||[]).map(x=>x.name);
   if(they.length) optional.push("Do not buy "+they.join(", ")+" this week. 1st and 2nd already own them — that is insurance, not a differential.");
   return {
