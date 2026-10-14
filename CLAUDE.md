@@ -57,10 +57,10 @@
 
 - Every chip you have played must show a result on Review > Chips (`build_chip_net` in `refresh.py`),
   using only things that can be measured: Bench Boost = the bench's points, Triple Captain = the
-  captain's third multiple, Free Hit / Wildcard = that gameweek's points against the field average
-  (plus rank before/after). Free Hit and Wildcard rebuild the whole squad, so "points the chip added"
-  is unknowable (it depends on what you would have done without it); the unchanged-squad replay from
-  `build_fh_audit` is shown only as a labelled estimate in the note. The card shows when the data
+  captain's third multiple, Free Hit / Wildcard = the new squad's 15 players' GW points minus the previous squad's, player for
+  player with the bench counted and no captain multiplier (`build_fh_audit` -> `compare`, shown as a
+  collapsible list). Never the gameweek score vs the field average: that reads as a gain even when the
+  chip made the squad worse. The card shows when the data
   was generated.
 - Field averages: FPL's `average_entry_score` moves until a gameweek is finished AND `data_checked`;
   `refresh.py` only caches settled values (GW6 was cached at 37 mid-week, final 58, and every

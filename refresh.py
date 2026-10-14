@@ -792,10 +792,12 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
         if not f or f.get("points") is None:
             out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet", "compare": None}
             continue
-        avg = f.get("avg")
-        net = (f["points"] - avg) if avg else None
-        text = ""
-        out[key] = {"net": net, "label": "vs avg", "note": text, "compare": (audit or {}).get("compare")}
+        # The chip's effect is the new squad against the one you had before, player for player and bench
+        # included (you could have swapped them) - NOT the gameweek score against the field average, which
+        # reads as a gain even when the chip made the squad worse.
+        net = (audit["all15_new"] - audit["all15_old"]) if audit else None
+        text = "" if audit else f"GW{gw} comparison not available yet"
+        out[key] = {"net": net, "label": "vs before", "note": text, "compare": (audit or {}).get("compare")}
     return out
 
 
