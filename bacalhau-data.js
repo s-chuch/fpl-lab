@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:44 UTC",
-  "generated_at_et": "2026-10-14 4:44 PM ET",
+  "generated_at": "2026-10-14 20:50 UTC",
+  "generated_at_et": "2026-10-14 4:50 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3792,8 +3792,8 @@ window.FPL_DATA = {
       "note": "Haaland 9 \u00d7 3 = 27"
     },
     "wildcard": {
-      "net": 6,
-      "label": "vs avg",
+      "net": 9,
+      "label": "vs before",
       "note": "",
       "compare": {
         "rows": [
@@ -12780,7 +12780,7 @@ window.FPL_DATA = {
   },
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T20:19:06.630816+00:00",
+    "fetched_at": "2026-10-14T20:49:56.519320+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -14424,7 +14424,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:44:00.773662+00:00",
+      "computed_at": "2026-10-14T20:50:06.195461+00:00",
       "initial": false,
       "squad": [
         {
@@ -14746,12 +14746,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:44:00.773662+00:00",
-    "generated_at": "2026-10-14T20:44:00.773662+00:00"
+    "last_check": "2026-10-14T20:50:06.195461+00:00",
+    "generated_at": "2026-10-14T20:50:06.195461+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:44:00.850079+00:00",
-    "previous_check": "2026-10-14T20:41:16.249046+00:00",
+    "checked_at": "2026-10-14T20:50:06.273995+00:00",
+    "previous_check": "2026-10-14T20:44:00.850079+00:00",
     "watching": 16,
     "changes": [],
     "history": [],
