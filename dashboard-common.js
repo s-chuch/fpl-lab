@@ -577,8 +577,11 @@ function newsThemeRow(x,NP){
   const p=(NP||{})[String(x.id)]||null;
   const pills=p?`${p.yours?'<span class="pill used">Yours</span> ':''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
   const nums=p?`<div class="detail note">${p.owned}% owned · £${Number(p.cost).toFixed(1)} · xP ${p.xp} · ${esc(p.fixture)}${p.news?` · ${esc(p.news)}`:""}</div>`:"";
-  const say=(x.quotes||[]).map(q=>`<li><span class="pill free">${esc(q.source)}</span> <span class="note">${esc((q.stance||[]).join(" / "))}</span><div>"${esc(q.text)}"</div></li>`).join("");
-  const sayBlock=say?`<details class="fold"><summary>What they say (${(x.quotes||[]).length})</summary><ul class="chiplist">${say}</ul><p class="note">Sentences that mention him with a buy / keep / sell / captain / fitness cue next to his name. The verdict line is read by rules; where a Claude summary is shown it was written from the sentences that mention him. Check the context before acting.</p></details>`:"";
+  // Specific claims, each tagged by topic with its article link (news_scrape facts): the first three inline, the rest folded.
+  const TL={fitness:"Fitness",role:"Role",fixture:"Fixture",form:"Form",price:"Price",captain:"Captain"};
+  const fact=f=>`<li><span class="pill free">${esc(TL[f.topic]||f.topic)}</span> ${esc(f.text)} ${f.url?`<a href="${safeHref(f.url)}" target="_blank" rel="noopener" title="${esc(f.title||"")}">${esc(f.source)}</a>`:`<span class="note">${esc(f.source)}</span>`}</li>`;
+  const fl=(x.facts||[]);
+  const sayBlock=fl.length?`<ul class="chiplist facts">${fl.slice(0,3).map(fact).join("")}</ul>${fl.length>3?`<details class="fold"><summary>${fl.length-3} more</summary><ul class="chiplist facts">${fl.slice(3).map(fact).join("")}</ul></details>`:""}`:"";
   const L=x.llm; const VL={buy:"Buy",keep:"Keep",sell:"Sell",captain:"Captain",avoid:"Avoid",monitor:"Monitor",no_view:"No clear view"};
   const llmBlock=L?`<div class="detail"><span class="pill ${L.verdict==="buy"||L.verdict==="captain"?"used":"free"}">Claude: ${esc(VL[L.verdict]||L.verdict)}</span> <span class="note">${esc(L.confidence)} confidence</span><div>${esc(L.summary)}</div>${L.risks?`<div class="note">Risk: ${esc(L.risks)}</div>`:""}</div>`:"";
   return `<li><span class="who">${esc(x.text)}</span>${llmBlock}${pills?`<div class="detail">${pills}</div>`:""}${nums}${sayBlock}<div class="detail">${srcChips(x.sources)}</div></li>`;

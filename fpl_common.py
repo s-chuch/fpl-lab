@@ -256,13 +256,36 @@ QUALIFIER_PATTERNS = [
 ARTICLE_SEP = "\x00"  # joins separate items in a source's blob; never occurs in real text
 
 
+def _name_re(key):
+    """A player's name as a whole token: not inside a longer word or a hyphenated name (so "White" does not match
+    "Gibbs-White")."""
+    return re.compile(rf"(?<![\w-]){re.escape(key)}(?![\w-])")
+
+
+_HEADER = re.compile(r"^\x02(.*?)\x03(.*?)\x02", re.S)
+
+
+def items_of(raw_text):
+    """[(url, title, body)] for each article segment of a source blob (url/title are "" for segments without a header,
+    e.g. the repeated headlines)."""
+    out = []
+    for item in raw_text.split(ARTICLE_SEP):
+        m = _HEADER.match(item)
+        out.append((m.group(1), m.group(2), item[m.end():]) if m else ("", "", item))
+    return out
+
+
+def strip_headers(raw_text):
+    return ARTICLE_SEP.join(body for _u, _t, body in items_of(raw_text))
+
+
 def qualifiers_near(text, key, window=90):
     """Tags describing HOW a name is being talked about, from the words actually
     surrounding each mention (not a per-player hand-written script). The window is
     clipped at ARTICLE_SEP so a mention in one item can't pick up a qualifier from
     an unrelated sentence in the next item concatenated after it."""
     tags = set()
-    for m in re.finditer(rf"\b{re.escape(key)}\b", text):
+    for m in _name_re(key).finditer(text):
         left = text.rfind(ARTICLE_SEP, 0, m.start())
         left = 0 if left == -1 else left + 1
         right = text.find(ARTICLE_SEP, m.end())
@@ -326,7 +349,7 @@ _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+|\n+")
 
 
 _MARKET_FACT = re.compile(r"\b(?:managers|owners|in droves|most[- ]sold|most[- ]bought|sales|top 10|transfer combinations?)\b", re.I)
-_BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie", re.I)
+_BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie|free trial|related topics|unlock all|% off|start your", re.I)
 
 
 def sentence_stance(sentence, key):
@@ -347,7 +370,15 @@ def sentence_stance(sentence, key):
     return hits
 
 
-_LIST_OF_NAMES = re.compile(r"(?:[A-Z][\w.'\u2019-]+,\s+){2,}[A-Z]")      # "De Cuyper, Pedro, Cherki, Gibbs-White": a roundup headline
+_LIST_OF_NAMES = re.compile(r"(?:[A-Z][\w.'\u2019-]+,\s+){2,}[A-Z]|(?:[A-Z][\w.'\u2019-]+ ){5,}[A-Z]")      # "De Cuyper, Pedro, Cherki, Gibbs-White": a roundup headline
+_EMOJI = re.compile("[\U0001F300-\U0001FAFF\u2600-\u27BF]")
+
+
+def _noisy(sent):
+    """Lineup lists and round-up intros are not claims about one player: two or more emoji, or 'round-up'."""
+    return len(_EMOJI.findall(sent)) >= 2 or re.search(r"round-?up", sent, re.I) is not None
+
+
 _FEED_FOOTER = re.compile(r"\s*The post .*$", re.S)                            # WordPress feeds append "The post X appeared first on Y"
 
 
@@ -357,8 +388,8 @@ def stance_quotes(raw_text, key, window=80):
     Roundup headlines that list several players ('A, B, C, D: buy, keep or sell?') are skipped: one verdict on a
     list is not a verdict on each name."""
     found, seen = [], set()
-    pat = re.compile(rf"\b{re.escape(key)}\b")
-    for item in raw_text.split(ARTICLE_SEP):
+    pat = _name_re(key)
+    for url, atitle, item in items_of(raw_text):
         for sent in _SENT_SPLIT.split(item):
             sent = _FEED_FOOTER.sub("", sent).strip()
             if (len(sent) < 25 or _LIST_OF_NAMES.search(sent) or re.search(r"keep or sell|buy, hold or sell", sent, re.I)
@@ -377,16 +408,52 @@ def stance_quotes(raw_text, key, window=80):
             if k in seen:
                 continue
             seen.add(k)
-            found.append((sum(hits.values()), hits, sent))
-    return [{"text": (sent[:230] + "...") if len(sent) > 230 else sent, "key": sent.lower()[:80], "stance": sorted(h), "n": n_}
-            for n_, h, sent in found]
+            found.append((sum(hits.values()), hits, sent, url, atitle))
+    return [{"text": (sent[:230] + "...") if len(sent) > 230 else sent, "key": sent.lower()[:80], "stance": sorted(h), "n": n_,
+             "url": u, "title": t} for n_, h, sent, u, t in found]
+
+
+TOPICS = [
+    ("fitness", r"\b(?:injur\w*|knock|doubt\w*|fitness|ruled out|suspend\w*|illness|hamstring|ankle|calf|groin|thigh|muscle|(?:return|back) from|miss(?:es|ed|ing)?)\b"),
+    ("role", r"\b(?:penalt\w*|set[- ]pieces?|corners?|free[- ]kicks?|minutes|rotat\w*|rested|benched|bench|subbed?|wing[- ]?back|plays? (?:as|on|up)|starting (?:xi|eleven|lineup)|starter)\b"),
+    ("fixture", r"\b(?:fixtures?|against|facing|faces?|vs\.?|home|away|double gameweek|blank gameweek|dgw|bgw|opponents?|run of)\b|\([HA]\)"),
+    ("form", r"\b(?:xgi?|xa|goals?|assists?|shots?|big chances?|hauls?|clean sheets?|bonus|in form|form)\b"),
+    ("price", r"\u00a3\s?\d|\b(?:price|rises?|falls?|owned|ownership|differential|template|transfers? (?:in|out)|bought|sold)\b"),
+    ("captain", r"\bcaptain\w*\b|\barmband\b"),
+]
+TOPIC_ORDER = [t for t, _p in TOPICS]
+
+
+def fact_sentences(raw_text, key, window=110):
+    """Specific claims about a player: sentences that mention him with a concrete cue (fitness, role, fixture, form, price,
+    captaincy), tagged by topic, with the article link and headline. Numbers and short sentences rank first."""
+    out, seen = [], set()
+    pat = _name_re(key)
+    for url, atitle, item in items_of(raw_text):
+        for sent in _SENT_SPLIT.split(item):
+            sent = _FEED_FOOTER.sub("", sent).strip()
+            if (len(sent) < 30 or len(sent) > 400 or _noisy(sent) or _LIST_OF_NAMES.search(sent) or _BOILERPLATE.search(sent)
+                    or re.search(r"keep or sell|buy, hold or sell", sent, re.I) or sent.count("\u00a3") >= 3):
+                continue
+            plain = norm_keep_case(sent)
+            near = " ".join(plain[max(0, m.start() - window):m.end() + window] for m in pat.finditer(plain))
+            if not near:
+                continue
+            topics = [t for t, p in TOPICS if re.search(p, near, re.I)]
+            k = sent.lower()[:80]
+            if not topics or k in seen:
+                continue
+            seen.add(k)
+            score = (2 if re.search(r"\d", sent) else 0) + (1 if len(sent) < 200 else 0) - 0.5 * (len(topics) - 1)
+            out.append({"topic": topics[0], "topics": topics, "text": (sent[:260] + "...") if len(sent) > 260 else sent, "url": url, "title": atitle[:120], "score": score, "key": k})
+    return out
 
 
 def mention_sentences(raw_text, key, limit=6):
     """Sentences that mention `key` (cue or not), for a language-model read: roundup lists and boilerplate dropped."""
     out, seen = [], set()
-    pat = re.compile(rf"\b{re.escape(key)}\b")
-    for item in raw_text.split(ARTICLE_SEP):
+    pat = _name_re(key)
+    for _u, _t, item in items_of(raw_text):
         for sent in _SENT_SPLIT.split(item):
             sent = _FEED_FOOTER.sub("", sent).strip()
             if (len(sent) < 25 or _BOILERPLATE.search(sent) or sent.count("\u00a3") >= 3 or not pat.search(norm_keep_case(sent))):
@@ -428,16 +495,18 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
     total = len(blobs)
     mentions = {}
     for source, raw_text in blobs.items():
-        text = norm_keep_case(raw_text)  # match accent-stripped key against accent-stripped text
+        text = norm_keep_case(strip_headers(raw_text))  # match accent-stripped key against accent-stripped text
         for p in player_index:
-            if not re.search(rf"\b{re.escape(p['match'])}\b", text):
+            if not _name_re(p['match']).search(text):
                 continue
-            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p, "sent": {}, "ex": {}})
+            rec = mentions.setdefault(p["web_name"], {"club": p["club"], "sources": set(), "tags": set(), "p": p, "sent": {}, "ex": {}, "facts": {}})
             rec["sources"].add(source)
             rec["tags"] |= qualifiers_near(text, p["match"])
             rec["ex"][source] = rec["ex"].get(source, []) + [t for t in mention_sentences(raw_text, p["match"], 4) if t not in rec["ex"].get(source, [])]
             for q in stance_quotes(raw_text, p["match"]):
                 rec["sent"].setdefault((source, q["key"]), {"source": source, **q})      # one record per sentence, however many aliases hit it
+            for fct in fact_sentences(raw_text, p["match"]):
+                rec["facts"].setdefault((source, fct["key"]), {"source": source, **fct})
     agreed, split = [], []
     for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):
         n = len(rec["sources"])
@@ -460,14 +529,21 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
                 break
             if q not in quotes:
                 quotes.append(q)
-        rec["quotes"] = [{"source": q["source"], "text": q["text"], "stance": q["stance"]} for q in quotes[:4]]
+        rec["quotes"] = [{"source": q["source"], "text": q["text"], "stance": q["stance"], "url": q.get("url", ""), "title": q.get("title", "")} for q in quotes[:4]]
+        # specific facts: the best sentence per topic (different sites preferred), in a fixed topic order
+        best = {}
+        for fct in sorted(rec["facts"].values(), key=lambda f: -f["score"]):
+            if fct["topic"] not in best:
+                best[fct["topic"]] = fct
+        facts = [{"topic": t, "text": best[t]["text"], "source": best[t]["source"], "url": best[t]["url"], "title": best[t]["title"]}
+                 for t in TOPIC_ORDER if t in best]
         verdict = stance_verdict(rec["counts"])
         scope = f"{n}/{total} {unit} with fresh articles" + (f" ({checked} checked)" if checked and checked != total else "")
         cnt = rec["counts"]
         says = ", ".join(f"{cnt[k]} {lbl}" for k, lbl in (("buy", "buy"), ("hold", "keep"), ("sell", "sell/avoid"), ("captain", "captain"), ("risk", "fitness/rotation")) if cnt.get(k))
         text = f"{name}{club} — {verdict}" + (f" ({says} mentions)" if says else "") + f" · {scope}"
         item = {"text": text, "sources": sorted(rec["sources"]), "player": name, "club": rec["club"], "tags": sorted(rec["tags"]), "id": rec["p"]["id"],
-                "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"],
+                "verdict": verdict, "stance": rec["counts"], "quotes": rec["quotes"], "facts": facts,
                 "excerpts": [{"source": src, "text": t} for src, ts in sorted(rec["ex"].items()) for t in ts[:3]][:12]}
         (agreed if is_agreed else split).append(item)
     concept_agreed, concept_split = concept_themes(blobs, gw, unit)

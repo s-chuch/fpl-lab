@@ -479,6 +479,8 @@ def main():
         title = art.get("title") or ""
         text_blob = article_text(body_html, lower=False) if body_html else ""
         match_blob = (title + " " + text_blob).strip()
+        if match_blob:
+            match_blob = f"\x02{art['url']}\x03{title}\x02" + match_blob      # carries the article's link and headline with its text
         if not match_blob and body_html:
             # last resort: still avoid raw HTML tags by stripping
             match_blob = re.sub(r"<[^>]+>", " ", body_html)[:8000]

@@ -297,5 +297,29 @@ class ModelOdds(unittest.TestCase):
             fplbase._fixtures_cache["all"] = None
 
 
+class NewsFacts(unittest.TestCase):
+    def blob(self):
+        sep = "\x00"
+        return sep.join([
+            "\x02https://x.test/a\x03Headline A\x02Penalty taker Cole Palmer and Morgan Rogers could be excellent options against Everton this week. "
+            "Gibbs-White drops off with Forest facing Arsenal. Start your free trial today for Palmer tips.",
+            "\x02https://x.test/b\x03Headline B\x02Our round-up covers \U0001F61F Palmer \U0001F92B City and more. White has a knock and is a doubt for the weekend."])
+
+    def test_facts_carry_topic_and_the_article_link(self):
+        import fpl_common
+        facts = fpl_common.fact_sentences(self.blob(), "Palmer")
+        topics = {f["topic"]: f for f in facts}
+        self.assertIn("role", topics)
+        self.assertEqual(topics["role"]["url"], "https://x.test/a")
+        self.assertTrue(all("free trial" not in f["text"].lower() and "round-up" not in f["text"].lower() for f in facts))
+
+    def test_a_surname_is_not_found_inside_a_hyphenated_name(self):
+        import fpl_common
+        facts = fpl_common.fact_sentences(self.blob(), "White")
+        texts = " ".join(f["text"] for f in facts)
+        self.assertIn("knock", texts)
+        self.assertNotIn("Gibbs-White", texts)
+
+
 if __name__ == "__main__":
     unittest.main()

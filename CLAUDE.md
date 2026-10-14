@@ -170,3 +170,7 @@
   117-regular in-sample audit was a selection effect), so the linear correction is not applied (it is shown as a row on the accuracy card,
   `data["model_accuracy"]`). Re-run `python calibrate.py` to refresh it. Club Elo (`elo.py`) returns 502 from both the dev sandbox and
   Actions, so it is skipped silently.
+- **Specific news facts.** `news_scrape` tags each article segment with its URL and headline (`\x02url\x03title\x02` header, parsed by
+  `fpl_common.items_of`); `fact_sentences` pulls the sentences that mention a player with a concrete cue (fitness, role, fixture, form,
+  price, captaincy; roundups, lineup lists, emoji and sign-up boilerplate dropped) and `build_themes` keeps the best per topic as
+  `facts` with the source link. Player names match as whole tokens (`_name_re`: "White" is not found in "Gibbs-White").

@@ -102,3 +102,5 @@ details.fold .foldsum{font-size:12px;color:var(--muted)}
 details.fold[open]>summary{margin-bottom:10px}
 
 .table-compact tr.kept td{color:var(--muted)}
+
+.facts li{font-size:13px;line-height:1.35;padding:6px 0}.facts a{color:var(--gold);text-decoration:none;white-space:nowrap}.facts a:hover{text-decoration:underline}
