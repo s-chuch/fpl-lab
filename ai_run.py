@@ -110,6 +110,18 @@ def model_inputs(boot, team_recovery=None):
         _warn(f"model_inputs: reported rotation unavailable: {e}")
     return uwins, risk, live
 
+def _model_ref():
+    """Short git sha of the code that produced this run, so a changed AI plan can say which model update caused it."""
+    import os, subprocess
+    sha = os.environ.get("GITHUB_SHA")
+    if sha:
+        return sha[:7]
+    try:
+        return subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, timeout=5, cwd=str(ROOT)).stdout.strip() or None
+    except Exception:
+        return None
+
+
 def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None, inputs=None, signals=None):
     """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
     value + bank) and the same chip availability as you, and Understat chance volume as an extra
@@ -127,7 +139,7 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
                 scan_cache[gw] = fixture_scan(gw, teams_by_id)
             return scan_cache[gw]
         ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
-               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins, "signals": signals}
+               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins, "signals": signals, "model_ref": _model_ref()}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")

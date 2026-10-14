@@ -445,9 +445,30 @@ function dailyCheckCard(D){
 }
 function aiChangesCard(A){
   if(!A) return "";
-  const ch=(A.changes||[]).slice().reverse().slice(0,20);
-  const icon={risk:"⚠️",swap:"🔁",captain:"©️","after-lock":"🔒"};
-  const rows=ch.map(c=>`<li><span class="who">GW${c.gw} · ${esc(aiWhen(c.at))}</span><div class="detail">${icon[c.kind]||""} ${esc(c.text)}</div></li>`).join("");
+  const icon={risk:"⚠️",swap:"🔁",transfer:"🔁",captain:"©️","after-lock":"🔒"};
+  // Oldest first: group consecutive entries sharing the same check time (one refresh = one header).
+  const groups=[];
+  (A.changes||[]).forEach(c=>{const g=groups[groups.length-1];if(g&&g.at===c.at&&g.gw===c.gw)g.items.push(c);else groups.push({at:c.at,gw:c.gw,items:[c]});});
+  const key=g=>{const m=[];g.items.forEach(c=>{if(c.kind==="transfer")(c.moves||[]).forEach(x=>m.push(x.out+">"+x.in));});return m.sort().join("|");};
+  // A->B->A: the middle check's transfers were undone by the check after it (render only).
+  groups.forEach((g,i)=>{
+    const k=key(g);
+    if(i>=2&&k&&groups[i-2].gw===g.gw&&groups[i-1].gw===g.gw&&key(groups[i-2])===k){
+      const mid=groups[i-1], km=key(mid);
+      if(km&&km!==k) mid.items.forEach(c=>{if(c.kind==="transfer")c._rev=true;});
+    }
+  });
+  const pill=t=>`<span style="display:inline-block;border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600;background:rgba(128,128,128,.22);color:var(--muted,#999);white-space:nowrap">${esc(t)}</span>`;
+  const line=c=>{
+    let t=`${icon[c.kind]||""} ${esc(c.text)}`;
+    if(c.kind==="transfer"){
+      const cause=c.cause?pill(c.cause+(c.cause_ref?" · "+c.cause_ref:"")):"";
+      if(c._rev) return `<div class="detail" style="opacity:.6"><s>${t}</s> ${cause} ${pill("reverted")}</div>`;
+      t+=cause?" "+cause:"";
+    }
+    return `<div class="detail">${t}</div>`;
+  };
+  const rows=groups.slice().reverse().slice(0,20).map(g=>`<li><span class="who">GW${esc(g.gw)} · ${esc(aiWhen(g.at))}</span>${g.items.map(line).join("")}</li>`).join("");
   return `<div class="card"><h2>AI team · daily check</h2><ul class="note-list"><li>Re-checks every refresh (at least twice a day) for new injuries, doubts, reported rotation, fixture congestion and minutes that are falling, and re-picks if it helps — until it locks 12h before the deadline</li><li>Last checked ${esc(aiWhen(A.last_check))}. After the lock it can't change anything, but still flags news on locked players</li></ul>${rows?`<ul class="chiplist">${rows}</ul>`:`<p class="note">No changes to the plan yet.</p>`}</div>`;
 }
 
