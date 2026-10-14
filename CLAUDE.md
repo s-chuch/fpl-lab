@@ -39,3 +39,16 @@
 - Points come from FPL's live data (auto-subs, captain/vice, hits). Chip *decisions* are not
   built: it only lists the chips still available. Revisit when chips reset (GW20).
 - `ep_next` in FPL's bootstrap currently equals `form`, so it only gets a 20% weight.
+
+## Asset versions and caching
+
+- `stamp_versions.py` rewrites every local `<script src>` / `<link href>` in `index.html` and
+  `bacalhau.html` to `?v=<content hash>` (and replaced the old per-minute `document.write` loaders
+  with static tags). `refresh.yml` runs it before committing and again after the rebase, and its
+  `paths:` list includes the page/JS/CSS files so a push that edits them also gets stamped. Run it
+  yourself before committing a UI change if you want the new URL immediately.
+- `x-posts.js` is no longer loaded by the pages (the X feed is discontinued and stale), and
+  `refresh.py` only uses a theme file (`_load_theme_file`) if it is at most 3 days old.
+- `fpl_common.get` reuses one keep-alive HTTPS connection per host per thread and does not retry
+  4xx (e.g. the expected 404 for a GW that has not locked); fixtures come from one whole-season
+  request (`_fixtures_for`); league members' picks are prefetched in parallel (`_prefetch_picks`).

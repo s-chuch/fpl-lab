@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Bacalhau · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=20261010h">
+<link rel="stylesheet" href="dashboard.css?v=529b2761">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -10,11 +10,10 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=20261010o"></script>
-<script>document.write('<script src="bacalhau-data.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
-<script>document.write('<script src="news.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
-<script>document.write('<script src="x-posts.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
-<script>document.write('<script src="bacalhau-wildcard.js?t='+Math.floor(Date.now()/60000)+'"><\/script>')</script>
+<script src="dashboard-common.js?v=c330b395"></script>
+<script src="bacalhau-data.js?v=e05eacea"></script>
+<script src="news.js?v=4d62e8e1"></script>
+<script src="bacalhau-wildcard.js?v=47e1c61a"></script>
 <script>
 const D=window.FPL_DATA;
 document.getElementById("teamName").textContent=D.team.name;
@@ -456,7 +455,7 @@ function renderX(){
   document.getElementById("xtab").innerHTML=`<div class="warn">Emerging = 2 accounts so far. Agreed = 3+ accounts (consensus).</div><div class="card"><h2>Accounts</h2><div class="xi">${acc}</div></div><div class="card"><h2>Agreed for GW${X.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Raw posts just fetched this run — not analyzed yet, this is what feeds the consensus above.</p><ul class="chiplist">${newBlock}</ul></details></div>`;
 }
 // X tab discontinued (live ingest cancelled — paid API/Grok Bot) — renderX()
-// kept intact below for whenever ingest comes back; just add ["xtab","X"]
+// kept intact below for whenever ingest comes back; just add ["xtab","X"] and a <script src="x-posts.js"> tag (x-posts.js is no longer loaded: it is stale)
 // back into the Intel tab group and uncomment this call to restore it.
 // renderX();
 function renderFh(){

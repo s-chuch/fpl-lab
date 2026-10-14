@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T13:26:59.938512+00:00",
+    "fetched_at": "2026-10-14T19:48:52.063244+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -417,13 +417,7 @@
           "opponent": "Villarreal",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-14",
-            "competition": "Champions League",
-            "opponent": "LASK"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 7,

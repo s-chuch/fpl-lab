@@ -6,7 +6,7 @@ in a match with its player, assist-maker, result and xG. Finished matches never 
 one is fetched once and kept in understat_cache.json; later runs only fetch new matches.
 Everything here fails soft: on any error the caller falls back to FPL's xG/xA."""
 from __future__ import annotations
-import gzip, json, re, unicodedata, urllib.request
+import difflib, gzip, json, re, unicodedata, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
@@ -34,7 +34,7 @@ def _get(path, referer):
 
 
 def _norm(s):
-    s = str(s or "").translate(str.maketrans({"ø": "o", "Ø": "O", "ð": "d", "đ": "d", "ł": "l", "æ": "ae", "ß": "ss"}))
+    s = str(s or "").translate(str.maketrans({"ø": "o", "Ø": "O", "ð": "d", "đ": "d", "ł": "l", "æ": "ae", "ß": "ss", "ı": "i", "İ": "I", "œ": "oe"}))
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
     return re.sub(r"[^a-z ]", " ", s.replace("-", " ")).split()
 
@@ -123,6 +123,14 @@ def player_windows(season=2026, before=None, fetched=None):
     return out
 
 
+def _close(a, b, cutoff=0.8):
+    """Last-resort spelling tolerance (Yarmolyuk/Yarmoliuk, Yeremi/Yéremy): every part of the Understat
+    name has a near-identical part in the FPL name. Used only when exactly one player at the club fits."""
+    if not a or not b:
+        return False
+    return all(any(difflib.SequenceMatcher(None, t, x).ratio() >= cutoff for x in b) for t in a)
+
+
 def match_to_fpl(windows, boot):
     """{fpl element id: window stats}. A name is matched within its club (Understat's
     full name vs FPL's first/second/web name); anything ambiguous or unmatched is skipped."""
@@ -151,7 +159,8 @@ def match_to_fpl(windows, boot):
              or pick(lambda full, web: bool(web) and u == web)
              or pick(lambda full, web: bool(web) and set(web) <= set(u))
              or pick(lambda full, web: bool(full) and u[-1:] == full[-1:] and u[:1] == full[:1])
-             or pick(lambda full, web: bool(u) and u[-1] in full and u[0] in full))
+             or pick(lambda full, web: bool(u) and u[-1] in full and u[0] in full)
+             or pick(lambda full, web: _close(u, full)))
         if e:
             out[e["id"]] = w
         else:

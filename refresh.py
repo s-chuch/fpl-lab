@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import argparse, json, re, sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from league_tactics import build_tactics, pick_contenders
@@ -136,8 +136,24 @@ def format_pick_squad(picks, elements, teams):
             bench.append(item)
     return {"xi": xi, "bench": bench, "captain": captain, "vice": vice}
 
+_fixtures_cache = {}
+
+def _fixtures_for(event_id):
+    """Every fixture of one gameweek, from a single whole-season request made once per run (the
+    per-gameweek form of the endpoint was being called 19 times)."""
+    if "all" not in _fixtures_cache:
+        try:
+            _fixtures_cache["all"] = get("https://fantasy.premierleague.com/api/fixtures/")
+        except Exception as e:
+            _warn(f"fixtures: whole-season request failed, using per-gameweek requests: {e}")
+            _fixtures_cache["all"] = None
+    allfx = _fixtures_cache["all"]
+    if allfx is None:
+        return get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
+    return [f for f in allfx if f.get("event") == event_id]
+
 def fixture_map(event_id, teams):
-    fx = get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
+    fx = _fixtures_for(event_id)
     out = {}
     for f in fx:
         h, a = f["team_h"], f["team_a"]
@@ -150,7 +166,7 @@ def fixture_scan(event_id, teams):
     fixture_map's dict overwrites a team's earlier entry on a double gameweek,
     which is fine for the single-fixture Plan tab but hides blanks/doubles,
     exactly the signal chip-timing strategy needs."""
-    fx = get(f"https://fantasy.premierleague.com/api/fixtures/?event={event_id}")
+    fx = _fixtures_for(event_id)
     out = {}
     for f in fx:
         h, a = f["team_h"], f["team_a"]
@@ -1614,6 +1630,19 @@ OTHER_COMP_RE = re.compile(
 )
 
 
+def _load_theme_file(root, filename, max_age_days=3):
+    """news.js / x-posts.js themes, or None when the file is stale. The X feed was discontinued (last
+    generated 21 Sep) but its old themes were still feeding rotation flags and Plan intel, so a theme
+    file only counts while it is at most `max_age_days` old."""
+    data = fpl_common.load_js_object(root / filename)
+    stamp = (data.get("generated_at") or "").replace(" UTC", "")
+    try:
+        age = datetime.now(timezone.utc) - datetime.strptime(stamp, "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
+    except ValueError:
+        return data if filename == "news.js" else None
+    return data if age <= timedelta(days=max_age_days) else None
+
+
 def _rotation_flagged_players(root):
     """Players already reported (news.js / x-posts.js themes) as rotated for
     another competition — {web_name: explanatory text}. Both files carry the
@@ -1622,7 +1651,9 @@ def _rotation_flagged_players(root):
     this app for "what is this text actually saying about this player"."""
     flagged = {}
     for filename in ("news.js", "x-posts.js"):
-        data = fpl_common.load_js_object(root / filename)
+        data = _load_theme_file(root, filename)
+        if data is None:
+            continue
         for item in (data.get("agreed") or []) + (data.get("split") or []):
             if item.get("player") and "rotation risk" in (item.get("tags") or []):
                 flagged.setdefault(item["player"], item.get("text"))
@@ -2004,7 +2035,9 @@ def _intel_tags_by_player(root):
     every tag instead of filtering to one."""
     tags = {}
     for filename in ("news.js", "x-posts.js"):
-        data = fpl_common.load_js_object(root / filename)
+        data = _load_theme_file(root, filename)
+        if data is None:
+            continue
         for item in (data.get("agreed") or []) + (data.get("split") or []):
             if item.get("player"):
                 tags.setdefault(item["player"], set()).update(item.get("tags") or [])
@@ -2243,6 +2276,19 @@ def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, 
     return ctx
 
 
+def _prefetch_picks(entries, gw, workers=6):
+    """{entry id: picks payload} for many managers, fetched concurrently (they were one at a time,
+    ~0.4 s each). Failures are warned about and left out, as the sequential loop did."""
+    from concurrent.futures import ThreadPoolExecutor
+    def one(entry):
+        try:
+            return entry, get(f"https://fantasy.premierleague.com/api/entry/{entry}/event/{gw}/picks/")
+        except Exception as e:
+            _warn(f"analyze_leagues: could not load picks for entry {entry}: {e}")
+            return entry, None
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        return dict(ex.map(one, list(entries)))
+
 def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_last_gw_pts=None, last_fin_gw=None, next_fixture_map=None):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
@@ -2280,11 +2326,10 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
         member_squads = []
         picks_available = 0
         if len(rows) >= 2:
+            picks_by_entry = _prefetch_picks([r["entry"] for r in rows], picks_gw)
             for r in rows:
-                try:
-                    pk = get(f"https://fantasy.premierleague.com/api/entry/{r['entry']}/event/{picks_gw}/picks/")
-                except Exception as e:
-                    _warn(f"analyze_leagues: could not load picks for entry {r.get('entry')}: {e}")
+                pk = picks_by_entry.get(r["entry"])
+                if pk is None:
                     continue
                 picks = pk.get("picks") or []
                 if not picks:

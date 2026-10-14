@@ -18,6 +18,16 @@ on:
       - "fixtures_external.py"
       - "ai_team.py"
       - "understat.py"
+      - "stamp_versions.py"
+      - "fpl_common.py"
+      - "dashboard-common.js"
+      - "dashboard.css"
+      - "plan-intel.js"
+      - "fh.js"
+      - "shaaland-wildcard.js"
+      - "bacalhau-wildcard.js"
+      - "index.html"
+      - "bacalhau.html"
       - "news_scrape.py"
       - ".github/workflows/refresh.yml"
 
@@ -77,7 +87,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py
 
       - name: Pull live FPL data
         if: steps.gate.outputs.run != 'false'
@@ -99,7 +109,8 @@ jobs:
           # hand-captured from screenshots, but their "recommend" blocks are
           # fully computed here — Actions committing them just keeps that
           # recommendation current.
-          git add data.js bacalhau-data.js news.js bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json
+          python stamp_versions.py
+          git add data.js bacalhau-data.js news.js bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html
           if git diff --staged --quiet; then
             echo "No data change"
           else
@@ -123,6 +134,12 @@ jobs:
               git add $WILD
               if ! git diff --staged --quiet; then
                 git commit -m "Recompute wildcard recommendations on current squad"
+              fi
+              # Re-stamp against the rebased files so the asset versions always match what is pushed.
+              python stamp_versions.py
+              git add index.html bacalhau.html
+              if ! git diff --staged --quiet; then
+                git commit -m "Stamp asset versions"
               fi
               if git push origin main; then
                 exit 0

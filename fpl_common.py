@@ -5,26 +5,79 @@ trend discovery used by both news_scrape.py and x_scrape.py so a name only has
 to actually be talked about somewhere to surface as a theme — never a fixed,
 hand-maintained watchlist."""
 from __future__ import annotations
-import json, re, time, unicodedata, urllib.error, urllib.request
+import http.client, json, re, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone
 
 USER_AGENT = "ShaalandFPLLab/1.0"
 
 
+_local = threading.local()
+
+
+def _connection(host, timeout):
+    """One keep-alive HTTPS connection per host per thread, so a run of ~70 requests pays for the TLS
+    handshake once instead of every time."""
+    conns = getattr(_local, "conns", None)
+    if conns is None:
+        conns = _local.conns = {}
+    c = conns.get(host)
+    if c is None:
+        c = conns[host] = http.client.HTTPSConnection(host, timeout=timeout)
+    return c
+
+
+def _drop(host):
+    c = getattr(_local, "conns", {}).pop(host, None)
+    if c is not None:
+        try:
+            c.close()
+        except Exception:
+            pass
+
+
+def _get_urllib(url, timeout):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return json.loads(r.read().decode())
+
+
 def get(url, timeout=20, retries=3, backoff=1.5):
-    """GET url as JSON, retrying transient failures with exponential backoff."""
+    """GET url as JSON over a reused connection. Transient failures (timeouts, dropped connections,
+    5xx, 429, bad JSON) are retried with exponential backoff; any other 4xx (e.g. the expected 404 for a
+    gameweek that has not locked yet) is raised straight away - retrying cannot change the answer."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https":
+        return _get_urllib(url, timeout)
+    path = parts.path + (("?" + parts.query) if parts.query else "")
     last_err = None
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-            with urllib.request.urlopen(req, timeout=timeout) as r:
-                return json.loads(r.read().decode())
-        except (OSError, json.JSONDecodeError) as e:
-            last_err = e
+            conn = _connection(parts.netloc, timeout)
+            conn.request("GET", path, headers={"User-Agent": USER_AGENT, "Accept-Encoding": "identity"})
+            resp = conn.getresponse()
+            body = resp.read()
+            if resp.status in (301, 302, 303, 307, 308):
+                _drop(parts.netloc)
+                return _get_urllib(url, timeout)   # let urllib follow the redirect
+            if resp.status >= 400:
+                err = urllib.error.HTTPError(url, resp.status, resp.reason, resp.headers, None)
+                if resp.status < 500 and resp.status != 429:
+                    raise err
+                raise _Transient(err)
+            return json.loads(body.decode())
+        except urllib.error.HTTPError as e:
+            raise e                                 # a non-retryable 4xx
+        except (OSError, http.client.HTTPException, json.JSONDecodeError, _Transient) as e:
+            _drop(parts.netloc)
+            last_err = e.args[0] if isinstance(e, _Transient) else e
             if attempt < retries - 1:
-                print(f"get() retry {attempt + 1}/{retries - 1} after {e} — {url}")
+                print(f"get() retry {attempt + 1}/{retries - 1} after {last_err} — {url}")
                 time.sleep(backoff ** attempt)
     raise last_err
+
+
+class _Transient(Exception):
+    pass
 
 
 def parse_iso(raw):
