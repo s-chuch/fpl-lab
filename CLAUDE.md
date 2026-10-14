@@ -113,3 +113,7 @@
   so `refresh.chips_by_half` etc. still work for tests and `wildcard_recommend.py`.
 - Shared page code lives in `dashboard-common.js`; per-team wording for shared renderers is the `W` table at the top of
   each page's script.
+- `planner.py` (multi-GW transfer planner): beam search over the next 5 open gameweeks from your locked squad (sell prices, bank, free
+  transfers, -4 hits) on `ai_team.player_values` per gameweek; shown on the Plan tab (`plannerCard`, `data["planner"]`). It says
+  "roll" unless the plan beats rolling by 1+ expected points. Chips are not planned. `signals.build_elite_ownership` gives
+  top-50 ownership (`data["elite"]`: Captain tab card and a Top 50 column on Target lists).

@@ -1320,6 +1320,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["volume_log"] = section("volume_log", lambda: update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), (data.get("xg_signal") or {}).get("imminent"), ds, boot), fallback={})
     data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs)
     data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
+    data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, fallback={})
     data["defcon"] = section("defcon", build_defcon, boot, team_id, plan.get("squad_from_gw"), exclude=owned, fallback={})
     data["rotation_risk"] = section("rotation_risk", build_rotation_risk, boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"), fallback={})
     try:

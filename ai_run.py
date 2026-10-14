@@ -132,3 +132,16 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")
         return data.get("ai_team")
+
+
+def run_planner(boot, team_id, ds, hist, chips_used, team, teams_by_id, inputs):
+    """Multi-gameweek transfer plan for your locked squad (planner.py), on the same model inputs as the AI team."""
+    import planner
+    clone = _clone_user_team(boot, team_id, ds, hist, chips_used, team)
+    uwins, risk, _live = inputs
+    cache = {}
+    def fix_scan(gw):
+        if gw not in cache:
+            cache[gw] = fixture_scan(gw, teams_by_id)
+        return cache[gw]
+    return planner.build_planner(boot, clone, ds, fix_scan, uwins, risk)

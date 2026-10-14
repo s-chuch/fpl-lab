@@ -97,5 +97,35 @@ class Model(unittest.TestCase):
         self.assertEqual(ai_team.model_xp({"element_type": 3, "minutes": 900}, [], 10), 0.0)
 
 
+class Planner(unittest.TestCase):
+    def vals(self, upgrade_xp):
+        """15-player squad where player 8 (a midfielder) is weak and player 99 is a cheap strong midfielder."""
+        v = {}
+        for p in squad():
+            xp = {"GKP": 3.0, "DEF": 3.5, "MID": 4.0, "FWD": 4.5}[p["pos"]]
+            v[p["id"]] = {"id": p["id"], "name": p["name"], "pos": p["pos"], "team": p["id"], "club": f"C{p['id']}", "cost": 5.0,
+                          "xp": xp, "avail": 1.0}
+        v[8]["xp"] = 1.0           # a starter in a bad run
+        v[99] = {"id": 99, "name": "Upgrade", "pos": "MID", "team": 99, "club": "UPG", "cost": 5.0, "xp": upgrade_xp, "avail": 1.0}
+        return v
+
+    def run_plan(self, upgrade_xp, ft=1):
+        import planner
+        V = [self.vals(upgrade_xp) for _ in range(3)]
+        ids = [p["id"] for p in squad()]
+        buys = {i: 5.0 for i in ids}
+        return planner.plan_path(ids, buys, 0, ft, V)
+
+    def test_swaps_a_weak_starter_for_a_clearly_better_player(self):
+        best, base = self.run_plan(7.0)
+        self.assertGreater(best["banked"], base + 5)
+        self.assertIn(99, best["steps"][0]["squad"])
+
+    def test_no_move_when_nothing_is_better(self):
+        best, base = self.run_plan(0.5)
+        self.assertAlmostEqual(best["banked"], base, places=6)
+        self.assertTrue(all(not s["moves"] for s in best["steps"]))
+
+
 if __name__ == "__main__":
     unittest.main()

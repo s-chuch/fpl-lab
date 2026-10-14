@@ -349,6 +349,20 @@ function eliteCard(D){
   const caps=Object.keys(E.cap||{}).sort((a,b)=>E.cap[b]-E.cap[a]).slice(0,5).map(id=>`${esc(((E.names||{})[id]||["?"])[0])} <b>${Math.round(100*E.cap[id]/E.n)}%</b>`).join(" · ");
   return `<div class="card"><h2>Elite ownership · ${esc(E.label||"")}</h2><ul class="note-list"><li>GW${E.gw} squads of the best managers in the overall table (FPL only publishes the first 50, so this is a small, elite sample)</li><li>Captains: ${caps||"–"}</li></ul><table class="table-compact"><thead><tr><th>Player</th><th>Pos</th><th>Top 50</th><th>You</th></tr></thead><tbody>${ownRows}</tbody></table></div>`;
 }
+// Multi-gameweek transfer plan (planner.py): the transfer path with the most expected points over the next few
+// gameweeks, hits included, against simply rolling every week.
+function plannerCard(D){
+  const P=D.planner||{}; if(!(P.steps||[]).length) return "";
+  const rows=P.steps.map(s=>{
+    const mv=(s.moves||[]).map(m=>`${esc(m.out)} → <b>${esc(m.in)}</b> <span class="note">${esc(m.pos)} · £${m.sell.toFixed(1)}→£${m.cost.toFixed(1)}</span>`).join("<br>")||`<span class="note">Roll${s.ft_after!=null?" · "+s.ft_after+" FT banked":""}</span>`;
+    return `<tr><td>GW${s.gw}</td><td style="white-space:normal">${mv}${s.hits?` <b class="neg">-${s.hits*4}</b>`:""}</td><td>${s.xp}</td><td>${esc(s.captain)}</td></tr>`;
+  }).join("");
+  const head=P.recommend==="follow"
+    ?`Following this plan is worth about <b class="pos">+${P.gain}</b> expected points over rolling (${P.plan_xp} vs ${P.roll_xp})`
+    :`Rolling every week is as good as any plan (best found: ${sign(P.gain)} over rolling) - nothing is worth a move yet`;
+  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}.`:"This week: roll.";
+  return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)} now</li><li>${esc(P.note||"")}</li></ul><table class="table-compact"><thead><tr><th style="width:12%">GW</th><th style="width:46%">Move</th><th style="width:16%">xP</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
 function renderCaptain(D){
   const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
