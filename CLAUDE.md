@@ -78,3 +78,25 @@
   at the 20 Sep draft after GW6). `check_data.py` fails the run if that ever happens again.
 - Captain / bench advice uses the program's own expected points (`ai_team.player_values`, next open
   gameweek), not FPL's `ep_next` — which currently just repeats last week's form.
+
+## Reliability and correctness rules (added after the R&D review)
+
+- **One captain.** Plan tab (`_armband_by_xp`), AI plan and Wildcard watch all rank on `ai_team.player_values`
+  with the same inputs (`refresh.model_inputs`: Understat windows + risk). Lineup/captain/bench use this
+  gameweek's `xp`; `value` (this + next GW) is only for transfer decisions.
+- **Points.** FPL's `points` is gross of hits. Anything compared with the AI team (net of hits) uses
+  `points - event_transfers_cost`.
+- **Chips are per half.** `chips_by_half(hist)` returns `chip` (GW1-19) and `chip_h2` (GW20+); never collapse to
+  one entry per name. `chips_official`, `chip_net`, the Chips tab and `check_data` all use these keys; the AI
+  team's `chips_available` ignores first-half plays from GW20.
+- **Sections cannot kill a refresh.** `main()` wraps builders in `section(name, fn, ...)`: on failure the previous
+  value is kept and `data["_health"][name]` records it; `check_data.py` fails the run on any failed section, an
+  empty key section, data older than 30h, an illegal AI squad, or points that do not add up. A corrupt
+  `data.js` stops the run instead of starting from scratch; files are written atomically and compact.
+- **Workflow.** Checkout is `ref: main` then `git pull --ff-only`; the `*/30` gate is stateless (next deadline
+  within 12h and that GW's AI plan not locked yet, retrying the FPL fetch). `tests/` (offline unit tests for
+  sell price, chips, squad pairing, score_plan, model) run in the Syntax check step.
+- **Plan/Targets.** `fixture_map` combines double gameweeks; Targets only use gameweeks whose deadline has not
+  passed and score blank (-2) / double (+2) gameweeks. Price radar projects a move only for a strong swing.
+- `data["pred_log"]` records each GW's Plan/AI captain and grades it against actual points after `data_checked`.
+- xG/xA track record baseline = attacking starters (MID/FWD, 60+ mins), `baseline_att`.

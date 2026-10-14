@@ -13,6 +13,7 @@ Timeline per gameweek (all driven by refresh runs):
 Pure functions + a single `update()` entry point so it can be tested offline."""
 from __future__ import annotations
 import copy
+import math
 from datetime import datetime, timedelta
 
 POS = {1: "GKP", 2: "DEF", 3: "MID", 4: "FWD"}
@@ -29,6 +30,7 @@ BENCH_WEIGHT = 0.18       # a bench player's xP counts this much towards the squ
 MIN_FREE_GAIN = 0.6       # a free transfer must add at least this many points
 MIN_HIT_GAIN = HIT_COST + 1.5
 MAX_HITS = 2
+HALF_SPLIT = 20            # chips reset at GW20
 
 
 def _f(v, d=0.0):
@@ -62,8 +64,10 @@ def availability(el):
 
 # League-typical per-90 rates by position. A season rate over only a few games is noisy, so each
 # player's rate is shrunk towards these until they have ~900 minutes (ten full games).
-PRIOR = {"GKP": {"xg": 0.0, "xa": 0.0, "cs": 0.30}, "DEF": {"xg": 0.04, "xa": 0.05, "cs": 0.30},
-         "MID": {"xg": 0.12, "xa": 0.10, "cs": 0.30}, "FWD": {"xg": 0.30, "xa": 0.10, "cs": 0.30}}
+PRIOR = {"GKP": {"xg": 0.0, "xa": 0.0, "cs": 0.30, "dc": 0.0}, "DEF": {"xg": 0.06, "xa": 0.05, "cs": 0.30, "dc": 8.0},
+         "MID": {"xg": 0.15, "xa": 0.11, "cs": 0.30, "dc": 7.0}, "FWD": {"xg": 0.35, "xa": 0.09, "cs": 0.30, "dc": 4.0}}
+SHRINK_MINUTES = 500.0     # a player's own rate has full weight after ~five full games (regulars' priors above)
+DEFCON_THRESHOLD = {"DEF": 10.0, "MID": 12.0, "FWD": 12.0}   # defensive contributions per match for the +2 points
 
 
 def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
@@ -78,7 +82,7 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     if recent and len(recent) >= 2:
         # what he has actually played in the last few finished gameweeks counts as much as the season
         mp = 0.5 * mp + 0.5 * min(1.0, sum(min(90, m) for m in recent) / (90.0 * len(recent)))
-    w = min(1.0, mins / 900.0)
+    w = min(1.0, mins / SHRINK_MINUTES)
     pr = PRIOR[pos]
     xg90 = w * _f(el.get("expected_goals_per_90")) + (1 - w) * pr["xg"]
     xa90 = w * _f(el.get("expected_assists_per_90")) + (1 - w) * pr["xa"]
@@ -91,13 +95,20 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     xgc90 = _f(el.get("expected_goals_conceded_per_90"))
     saves = _f(el.get("saves_per_90")) / 3 if pos == "GKP" else 0.0
     bonus = _f(el.get("bonus")) / max(1, gws_played) * 0.5 * w
+    defcon = 0.0
+    thr = DEFCON_THRESHOLD.get(pos)
+    if thr:
+        # chance of reaching the defensive-contribution threshold (+2): his own per-90 rate (shrunk to the
+        # position's typical rate) against the threshold, as a logistic curve
+        mu = w * _f(el.get("defensive_contribution_per_90")) + (1 - w) * pr["dc"]
+        defcon = 2.0 / (1.0 + math.exp(-(mu - thr) / (0.18 * thr)))
     total = 0.0
     for fx in fixtures:
         fdr = fx.get("fdr") or 3
         cs = 0.5 * cs90 + 0.5 * max(0.08, min(0.6, 0.40 - 0.07 * (fdr - 3)))
         concede = xgc90 / 2 if pos in ("GKP", "DEF") else 0.0
         att = attack * (1.12 - 0.06 * fdr)  # easier fixture -> a few more attacking returns
-        total += 1 + mp + att + cs * CS_PTS[pos] + saves - concede + bonus
+        total += 1 + mp + att + cs * CS_PTS[pos] + saves - concede + bonus + defcon
     return total * mp
 
 
@@ -129,7 +140,9 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
         uw = (uwins or {}).get(el["id"])
         m1 = model_xp(el, f1, gws_played, uw, recent) * av * factor
         ep = _f(el.get("ep_next"), None) if el.get("ep_next") not in (None, "") else None
-        xp1 = (0.8 * m1 + 0.2 * ep * factor) if ep is not None and f1 else m1   # ep_next mirrors recent form this season: a light recency nudge
+        # ep_next mirrors recent form this season (a light recency nudge) and is per fixture, so it is scaled
+        # by fitness and by the number of fixtures like the model's own figure
+        xp1 = (0.8 * m1 + 0.2 * ep * factor * av * len(f1)) if ep is not None and f1 else m1
         if av == 0:
             xp1 = 0.0
         xp2 = model_xp(el, f2, gws_played, uw, recent) * (1.0 if av > 0.5 else av) * factor
@@ -145,15 +158,16 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
 
 
 # --------------------------------------------------------------------------- lineups
-def pick_xi(ids, vals):
-    """Best legal XI from 15 ids by value: one keeper, the position minimums, then best remaining."""
-    by = {p: sorted([i for i in ids if vals[i]["pos"] == p], key=lambda i: -vals[i]["value"]) for p in XI_MIN}
+def pick_xi(ids, vals, key="value"):
+    """Best legal XI from 15 ids: one keeper, the position minimums, then best remaining. `key` is "value"
+    (this + next gameweek, for transfer decisions) or "xp" (this gameweek only, for the lineup actually played)."""
+    by = {p: sorted([i for i in ids if vals[i]["pos"] == p], key=lambda i: -vals[i][key]) for p in XI_MIN}
     xi = [by["GKP"][0]]
     counts = {"GKP": 1, "DEF": 0, "MID": 0, "FWD": 0}
     for p in ("DEF", "MID", "FWD"):
         for i in by[p][:XI_MIN[p]]:
             xi.append(i); counts[p] += 1
-    rest = sorted([i for p in ("DEF", "MID", "FWD") for i in by[p] if i not in xi], key=lambda i: -vals[i]["value"])
+    rest = sorted([i for p in ("DEF", "MID", "FWD") for i in by[p] if i not in xi], key=lambda i: -vals[i][key])
     for i in rest:
         if len(xi) >= 11:
             break
@@ -161,7 +175,7 @@ def pick_xi(ids, vals):
         if counts[p] < XI_MAX[p]:
             xi.append(i); counts[p] += 1
     bench_gk = [i for i in by["GKP"][1:]]
-    bench_out = sorted([i for i in ids if i not in xi and vals[i]["pos"] != "GKP"], key=lambda i: -vals[i]["value"])
+    bench_out = sorted([i for i in ids if i not in xi and vals[i]["pos"] != "GKP"], key=lambda i: -vals[i][key])
     return xi, bench_gk + bench_out
 
 
@@ -354,8 +368,8 @@ def make_plan(gw, deadline, vals, state, uwins, now):
         ft_before = state["ft"]
         buys = {int(k): v for k, v in state["buys"].items()}
         squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals)
-    xi, bench = pick_xi(squad, vals)
-    ranked = sorted(xi, key=lambda i: -vals[i]["value"])
+    xi, bench = pick_xi(squad, vals, "xp")          # the lineup played is chosen on this gameweek's expected points
+    ranked = sorted(xi, key=lambda i: -vals[i]["xp"])
     captain = ranked[0]
     vice = next((i for i in ranked[1:] if vals[i]["team"] != vals[captain]["team"]), ranked[1])
     ft_after = None if ft_before is None else max(0, ft_before - len(moves))
@@ -393,12 +407,14 @@ def score_plan(plan, live, final):
     played = lambda i: ((live.get(i) or {}).get("minutes", 0) or 0) > 0
     xi, bench = list(plan["xi"]), list(plan["bench"])
     subs = []
-    gk_bench = [b for b in bench if pos_of[b] == "GKP"]
+    # Until the gameweek is over a player on 0 minutes may simply not have kicked off yet: no auto-sub or
+    # vice-captain promotion is applied (they would show up and then reverse), so the total is a floor.
+    gk_bench = [b for b in bench if pos_of[b] == "GKP"] if final else []
     for b in gk_bench:
         starter = next((s for s in xi if pos_of[s] == "GKP"), None)
         if starter is not None and not played(starter) and played(b):
             xi[xi.index(starter)] = b; subs.append({"out": name_of[starter], "in": name_of[b]})
-    for b in [b for b in bench if pos_of[b] != "GKP"]:
+    for b in [b for b in bench if pos_of[b] != "GKP"] if final else []:
         if not played(b):
             continue
         for s in xi:
@@ -407,14 +423,15 @@ def score_plan(plan, live, final):
             trial = [b if i == s else i for i in xi]
             if _valid_formation(trial, pos_of):
                 xi = trial; subs.append({"out": name_of[s], "in": name_of[b]}); break
-    cap = plan["captain"] if played(plan["captain"]) or not played(plan["vice"]) else plan["vice"]
+    cap = plan["captain"] if (not final or played(plan["captain"]) or not played(plan["vice"])) else plan["vice"]
     mult = 3 if plan.get("chip") == "3xc" else 2
     lines = [{"id": i, "name": name_of[i], "pos": pos_of[i], "pts": got(i), "mult": mult if i == cap else 1,
               "played": played(i)} for i in xi]
     gross = sum(l["pts"] * l["mult"] for l in lines)
     bench_pts = sum(got(b) for b in bench if b not in xi)
     return {"points": gross - plan.get("hit_cost", 0), "gross": gross, "hits": plan.get("hit_cost", 0),
-            "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "final": final}
+            "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "final": final,
+            "provisional": not final}
 
 
 # --------------------------------------------------------------------------- main entry
@@ -492,6 +509,7 @@ def update(state, ctx):
             return None
         state = new_state(clone, target, now)
     finished = {i for i, e in events.items() if e.get("finished")}
+    settled = {i for i in finished if events[i].get("data_checked")}     # FPL can still adjust points until then
     gws_played = max(1, len(finished) + (1 if ds.get("locked_gw") and ds["locked_gw"] not in finished else 0))
 
     # 1. a plan whose deadline has passed becomes history and the carried squad
@@ -534,7 +552,9 @@ def update(state, ctx):
             live = ctx["live"](gw)
         except Exception:
             continue
-        p["result"] = score_plan(p, live, gw in finished)
+        res = score_plan(p, live, gw in finished)
+        res["final"] = gw in settled
+        p["result"] = res
         p["user_points"] = (ctx.get("user_points") or {}).get(gw)
     h = state["history"].values()
     state["total_points"] = sum(p.get("result", {}).get("points", 0) for p in h)
@@ -543,7 +563,11 @@ def update(state, ctx):
     state["baseline_points"] = sum(v for g, v in up.items() if g < state["start_gw"])   # copied from you
     state["season_points"] = state["baseline_points"] + state["total_points"]
     state["user_season"] = sum(up.values())
-    state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc") if not state["chips_used"].get(c)]
+    # every chip is usable once per half, and the clone's chips_used is only the snapshot taken at the copy:
+    # from GW20 on, the first-half plays no longer count
+    second = (target or max(finished, default=0) + 1) >= HALF_SPLIT
+    state["chips_available"] = [c for c in ("wildcard", "freehit", "bboost", "3xc")
+                                if not state["chips_used"].get(c + "_h2" if second else c)]
     state["changes"] = state["changes"][-60:]
     state["last_check"] = now.isoformat()
     state["generated_at"] = now.isoformat()

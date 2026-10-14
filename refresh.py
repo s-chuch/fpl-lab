@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import argparse, json, re, sys
+import argparse, json, os, re, sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -153,12 +153,15 @@ def _fixtures_for(event_id):
     return [f for f in allfx if f.get("event") == event_id]
 
 def fixture_map(event_id, teams):
-    fx = _fixtures_for(event_id)
+    """One entry per team. A double gameweek is combined (opponents joined with "+", FDR averaged, "double"
+    set) rather than the second fixture overwriting the first; a blank team simply has no entry."""
+    multi = fixture_scan(event_id, teams)
     out = {}
-    for f in fx:
-        h, a = f["team_h"], f["team_a"]
-        out[h] = {"side": "H", "opp": teams[a]["short_name"], "fdr": f.get("team_h_difficulty")}
-        out[a] = {"side": "A", "opp": teams[h]["short_name"], "fdr": f.get("team_a_difficulty")}
+    for tid, fl in multi.items():
+        fdrs = [f["fdr"] for f in fl if f.get("fdr") is not None]
+        out[tid] = {"side": fl[0]["side"], "opp": "+".join(f["opp"] for f in fl),
+                    "fdr": (round(sum(fdrs) / len(fdrs), 1) if len(fl) > 1 else (fdrs[0] if fdrs else None)),
+                    **({"double": True} if len(fl) > 1 else {})}
     return out
 
 def fixture_scan(event_id, teams):
@@ -273,6 +276,43 @@ def pick_lineup(players, gw_key):
     rest_of = [p["name"] for _s, p in sorted([(_s, p) for pos in ("DEF", "MID", "FWD") for _s, p in ranked[pos] if p["name"] not in started()], key=lambda x: x[0], reverse=True)]
     return picked[:11], (rest_gk + rest_of)[:4]
 
+def _armband_by_xp(boot, gw, xi, players, teams, inputs=None):
+    """Captain and vice-captain = the two highest expected-points players in the XI for that gameweek, from the
+    same model (ai_team.player_values, with the same Understat/risk inputs) the AI team and Wildcard watch use,
+    so the dashboard shows one captain. Falls back to the XI order's own tags if the model is unavailable."""
+    try:
+        import ai_team
+        uwins, risk, _live = inputs or ({}, {}, None)
+        finished = sum(1 for e in boot["events"] if e.get("finished"))
+        played = max(1, finished)
+        vals = ai_team.player_values(boot, fixture_scan(gw, teams), {}, played, uwins, risk)
+        by_name = {p["name"]: p["id"] for p in players}
+        clean = [bare(x) for x in xi]
+        ranked = sorted(clean, key=lambda n: -(vals.get(by_name.get(n), {}).get("xp") or 0))
+        cap, vice = ranked[0], ranked[1] if len(ranked) > 1 else None
+        return [n + (" (C)" if n == cap else " (VC)" if n == vice else "") for n in clean]
+    except Exception as e:
+        _warn(f"build_plan: could not rank the armband by expected points: {e}")
+        return xi
+
+CHIP_KEYS = ("bboost", "3xc", "freehit", "wildcard")
+HALF_SPLIT = 20   # FPL resets every chip at GW20: one play per chip in GW1-19 and one in GW20-38
+
+def chips_by_half(hist):
+    """{chip: gameweek} for the first-half play and {chip + "_h2": gameweek} for the second-half one. A
+    second-half play must not overwrite the first-half one: results, audits and 'chips left' all key off this."""
+    out = {}
+    for c in sorted(hist.get("chips", []), key=lambda c: c.get("event") or 0):
+        out[c["name"] + ("_h2" if (c.get("event") or 0) >= HALF_SPLIT else "")] = c["event"]
+    return out
+
+def chip_for_gw(chips_used, name, gw):
+    """The play of `name` in the half that gameweek `gw` falls in (None if unused there)."""
+    return chips_used.get(name + "_h2") if (gw or 0) >= HALF_SPLIT else chips_used.get(name)
+
+def chip_base(key):
+    return key[:-3] if key.endswith("_h2") else key
+
 def free_transfer_ledger(hist):
     """Gameweek-by-gameweek free-transfer bank. GW1 is the initial squad build (no bank).
     From GW2 you gain 1 free transfer per GW, banked up to 5; each transfer uses one and
@@ -297,7 +337,7 @@ def free_transfer_ledger(hist):
 def free_transfers_for_next(hist):
     return free_transfer_ledger(hist)[1]
 
-def build_plan(boot, team_id, hist=None, chips_used=None):
+def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
     teams = {t["id"]: t for t in boot["teams"]}
     elements = {e["id"]: e for e in boot["elements"]}
     events = sorted(boot["events"], key=lambda e: e["id"])
@@ -310,13 +350,13 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     upcoming = (open_gws or unfinished)[:2]
     last_fin = finished[-1] if finished else None
     picks, picks_gw, skipped_fh = [], None, None
-    fh_gw = (chips_used or {}).get("freehit")
+    fh_gws = {v for k, v in (chips_used or {}).items() if chip_base(k) == "freehit"}
     for ev in reversed(events):
         if ev["id"] > (last_fin["id"] if last_fin else 0) + 1: continue
         try:
             payload = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{ev['id']}/picks/")
             chip = payload.get("active_chip")
-            if chip == "freehit" or ev["id"] == fh_gw:
+            if chip == "freehit" or ev["id"] in fh_gws:
                 skipped_fh = ev["id"]
                 continue
             picks = payload.get("picks") or []
@@ -357,7 +397,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
             }
             gws[f"gw{ev['id']}"] = cell
             row.extend([cell["fixture"], fdr if fdr is not None else "-", cell["call"]])
-        players.append({"name": el["web_name"], "pos": pos, "gws": gws, "cost": cost, "avail": avail})
+        players.append({"id": el["id"], "name": el["web_name"], "pos": pos, "gws": gws, "cost": cost, "avail": avail})
         if avail["kind"] != "ok":
             availability[el["web_name"]] = avail
         rows.append(row)
@@ -365,6 +405,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
     for ev in upcoming:
         key = f"gw{ev['id']}"
         xi, bn = pick_lineup(players, key)
+        xi = _armband_by_xp(boot, ev["id"], xi, players, teams, inputs)
         xis[key] = {"xi": xi, "bench": bn}
     for i, ev in enumerate(upcoming):
         started = {bare(n) for n in xis[f"gw{ev['id']}"]["xi"]}
@@ -392,7 +433,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None):
             else:
                 cell["call"] = "START" if p["name"] in started else "SIT"
     ft = free_transfers_for_next(hist or {})
-    fh_used = bool((chips_used or {}).get("freehit"))
+    fh_used = bool(chip_for_gw(chips_used or {}, "freehit", (upcoming[0]["id"] if upcoming else 0)))
     bench_calls = []
     for ev in upcoming:
         key = f"gw{ev['id']}"
@@ -757,47 +798,50 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
         that gameweek's points against the field average - and the unchanged-squad comparison is kept
         only as a labelled estimate in the note."""
     out = {}
-    bboost_gw = chips_used.get("bboost")
-    if bboost_gw:
-        bench = (bench_audit.get(f"gw{bboost_gw}") or {}).get("your_bench") or []
-        if not bench and boot and team_id:
-            try:
-                names = {e["id"]: e["web_name"] for e in boot["elements"]}
-                pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{bboost_gw}/picks/")
-                live = {el["id"]: el["stats"]["total_points"] for el in get(f"https://fantasy.premierleague.com/api/event/{bboost_gw}/live/").get("elements", [])}
-                bench = [[names.get(p["element"], "?"), live.get(p["element"], 0)] for p in pk.get("picks", []) if p["position"] > 11]
-            except Exception as e:
-                _warn(f"build_chip_net: could not read the GW{bboost_gw} Bench Boost bench: {e}")
-        if bench:
-            out["bboost"] = {"net": sum(pts for _name, pts in bench), "label": "bench",
-                             "note": " + ".join(f"{name} {pts}" for name, pts in bench)}
-    xc_gw = chips_used.get("3xc")
-    if xc_gw:
-        row = next((c for c in caps if c.get("gw") == xc_gw), None)
-        if row:
-            extra = row.get("captain_raw") or 0  # 3xc's only gain over a normal (C) is the 3rd multiple
-            out["3xc"] = {"net": extra, "label": "extra",
-                          "note": f"{row.get('captain')} {extra} × 3 = {extra * 3}"}
-    for key, label, prior in (("freehit", "FH", "reverted squad"), ("wildcard", "WC", "previous squad")):
-        gw = chips_used.get(key)
-        if not gw:
-            continue
-        f = _chip_week_facts(gws, gw)
-        audit = None
-        if boot and team_id:
-            try:
-                audit = build_fh_audit(boot, team_id, chips_used, key, label, prior)
-            except Exception as e:
-                _warn(f"build_chip_net: {label} comparison unavailable: {e}")
-        if not f or f.get("points") is None:
-            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet", "compare": None}
-            continue
-        # The chip's effect is the new squad against the one you had before, player for player and bench
-        # included (you could have swapped them) - NOT the gameweek score against the field average, which
-        # reads as a gain even when the chip made the squad worse.
-        net = (audit["all15_new"] - audit["all15_old"]) if audit else None
-        text = "" if audit else f"GW{gw} comparison not available yet"
-        out[key] = {"net": net, "label": "vs before", "note": text, "compare": (audit or {}).get("compare")}
+    for suffix in ("", "_h2"):
+        sfx_label = " (2nd half)" if suffix else ""
+        bboost_gw = chips_used.get("bboost" + suffix)
+        if bboost_gw:
+            bench = (bench_audit.get(f"gw{bboost_gw}") or {}).get("your_bench") or []
+            if not bench and boot and team_id:
+                try:
+                    names = {e["id"]: e["web_name"] for e in boot["elements"]}
+                    pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{bboost_gw}/picks/")
+                    live = {el["id"]: el["stats"]["total_points"] for el in get(f"https://fantasy.premierleague.com/api/event/{bboost_gw}/live/").get("elements", [])}
+                    bench = [[names.get(p["element"], "?"), live.get(p["element"], 0)] for p in pk.get("picks", []) if p["position"] > 11]
+                except Exception as e:
+                    _warn(f"build_chip_net: could not read the GW{bboost_gw} Bench Boost bench: {e}")
+            if bench:
+                out["bboost" + suffix] = {"net": sum(pts for _name, pts in bench), "label": "bench",
+                                          "note": " + ".join(f"{name} {pts}" for name, pts in bench)}
+        xc_gw = chips_used.get("3xc" + suffix)
+        if xc_gw:
+            row = next((c for c in caps if c.get("gw") == xc_gw), None)
+            if row:
+                extra = row.get("captain_raw") or 0  # 3xc's only gain over a normal (C) is the 3rd multiple
+                out["3xc" + suffix] = {"net": extra, "label": "extra",
+                                       "note": f"{row.get('captain')} {extra} × 3 = {extra * 3}"}
+        for base, label, prior in (("freehit", "FH", "reverted squad"), ("wildcard", "WC", "previous squad")):
+            key = base + suffix
+            gw = chips_used.get(key)
+            if not gw:
+                continue
+            f = _chip_week_facts(gws, gw)
+            audit = None
+            if boot and team_id:
+                try:
+                    audit = build_fh_audit(boot, team_id, chips_used, key, label + sfx_label, prior)
+                except Exception as e:
+                    _warn(f"build_chip_net: {label} comparison unavailable: {e}")
+            if not f or f.get("points") is None:
+                out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet", "compare": None}
+                continue
+            # The chip's effect is the new squad against the one you had before, player for player and bench
+            # included (you could have swapped them) - NOT the gameweek score against the field average, which
+            # reads as a gain even when the chip made the squad worse.
+            net = (audit["all15_new"] - audit["all15_old"]) if audit else None
+            text = "" if audit else f"GW{gw} comparison not available yet"
+            out[key] = {"net": net, "label": "vs before", "note": text, "compare": (audit or {}).get("compare")}
     return out
 
 
@@ -858,7 +902,10 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
     except Exception as e:
         _warn(f"build_fh_audit: could not load GW{fh_gw} FH picks/live: {e}")
         return None
+    fh_weeks = {v for k, v in chips_used.items() if chip_base(k) == "freehit"}
     orig_gw = fh_gw - 1
+    while orig_gw in fh_weeks:      # a Free Hit squad is never carried on: step back to the squad before it
+        orig_gw -= 1
     orig_pk = {}
     if orig_gw >= 1:
         try:
@@ -930,9 +977,9 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
     all15_new, all15_old = sum(p['pts'] for p in new_sq), sum(p['pts'] for p in old_sq)
     best_new, best_old = _best_xi_hindsight(new_sq), _best_xi_hindsight(old_sq)
     eh = fh_pk.get("entry_history") or {}
-    if eh.get("points") is not None and fh_points != eh["points"] + (eh.get("event_transfers_cost") or 0):
-        # Cross-check against FPL's own gameweek total: a mismatch means the multipliers/autosubs were misread.
-        _warn(f"build_fh_audit: GW{fh_gw} {label} squad adds up to {fh_points} but FPL reports {eh['points']} (+{eh.get('event_transfers_cost') or 0} hits)")
+    if eh.get("points") is not None and fh_points != eh["points"]:
+        # Cross-check against FPL's own gameweek points (gross of hits): a mismatch means the multipliers/autosubs were misread.
+        _warn(f"build_fh_audit: GW{fh_gw} {label} squad adds up to {fh_points} but FPL reports {eh['points']}")
     return {
         "gw": fh_gw,
         "fh_points": fh_points,
@@ -1501,19 +1548,48 @@ def _clone_user_team(boot, team_id, ds, hist, chips_used, team):
     return {"gw": gw, "squad": ids, "buys": buys, "sell_value": sell, "bank": float(team.get("bank") or 0.0),
             "ft": free_transfers_for_next(hist or {}), "chips_used": dict(chips_used)}
 
-def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None):
+def model_inputs(boot, team_recovery=None):
+    """The extra signals the expected-points model uses: Understat chance volume per player and the daily
+    risk checks (recent minutes, club rest, reported rotation). Shared by the AI team and the Plan tab so
+    both rank players on the same numbers. Every part fails soft."""
+    uwins = {}
+    try:
+        import understat
+        matched, _ = understat.match_to_fpl(understat.player_windows(2026), boot)
+        uwins = matched
+    except Exception as e:
+        _warn(f"model_inputs: Understat unavailable, continuing without it: {e}")
+    def live(gw):
+        return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0)}
+                for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
+    risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
+    try:
+        fin = sorted(e["id"] for e in boot["events"] if e.get("finished"))[-3:]
+        for g in fin:
+            for eid, st in live(g).items():
+                risk["recent_minutes"].setdefault(eid, []).append(st["minutes"])
+    except Exception as e:
+        _warn(f"model_inputs: recent minutes unavailable: {e}")
+    try:
+        short_to_id = {t["short_name"]: t["id"] for t in boot["teams"]}
+        for club, rec in (team_recovery or {}).items():
+            fol = rec.get("following_match") or {}
+            risk["club_rest"][short_to_id[club]] = {"rest_days": rec.get("rest_days"), "turnaround": fol.get("days_after")}
+    except Exception as e:
+        _warn(f"model_inputs: club rest unavailable: {e}")
+    try:
+        risk["rot_names"] = _rotation_flagged_players(ROOT)
+    except Exception as e:
+        _warn(f"model_inputs: reported rotation unavailable: {e}")
+    return uwins, risk, live
+
+def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None, inputs=None):
     """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
     value + bank) and the same chip availability as you, and Understat chance volume as an extra
     signal when reachable. Never lets a failure here break the rest of the refresh."""
     import ai_team
     try:
-        uwins = {}
-        try:
-            import understat
-            matched, _ = understat.match_to_fpl(understat.player_windows(2026), boot)
-            uwins = matched
-        except Exception as e:
-            _warn(f"ai_team: Understat unavailable, continuing without it: {e}")
+        uwins, risk, live = inputs or model_inputs(boot, team_recovery)
         team = data.get("team") or {}
         clone = None
         if (data.get("ai_team") or {}).get("version") != ai_team.VERSION:      # only needed once, to make the copy
@@ -1523,32 +1599,8 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
             if gw not in scan_cache:
                 scan_cache[gw] = fixture_scan(gw, teams_by_id)
             return scan_cache[gw]
-        def live(gw):
-            return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0)}
-                    for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
-        # Daily-check inputs: what each player really played lately, club fixture congestion across all
-        # competitions, and rotation already reported in news/X. All fail soft.
-        risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
-        try:
-            fin = sorted(e["id"] for e in boot["events"] if e.get("finished"))[-3:]
-            for g in fin:
-                for eid, st in live(g).items():
-                    risk["recent_minutes"].setdefault(eid, []).append(st["minutes"])
-        except Exception as e:
-            _warn(f"ai_team: recent minutes unavailable: {e}")
-        try:
-            short_to_id = {t["short_name"]: t["id"] for t in boot["teams"]}
-            for club, rec in (team_recovery or {}).items():
-                fol = rec.get("following_match") or {}
-                risk["club_rest"][short_to_id[club]] = {"rest_days": rec.get("rest_days"), "turnaround": fol.get("days_after")}
-        except Exception as e:
-            _warn(f"ai_team: club rest unavailable: {e}")
-        try:
-            risk["rot_names"] = _rotation_flagged_players(ROOT)
-        except Exception as e:
-            _warn(f"ai_team: reported rotation unavailable: {e}")
         ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
-               "clone": clone, "user_points": {g["gw"]: g["points"] for g in gws}, "uwins": uwins}
+               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")
@@ -1569,7 +1621,7 @@ def update_volume_log(log, imminent, ds, boot):
     finished = {e["id"] for e in boot["events"] if e.get("finished")}
     els = {e["id"]: e for e in boot["elements"]}
     for key, entry in log.items():
-        if entry.get("graded") or entry["gw"] not in finished:
+        if entry["gw"] not in finished or (entry.get("graded") and entry.get("baseline_att")):
             continue
         try:
             live = {el["id"]: el["stats"] for el in get(f"https://fantasy.premierleague.com/api/event/{entry['gw']}/live/").get("elements", [])}
@@ -1580,11 +1632,58 @@ def update_volume_log(log, imminent, ds, boot):
             st = live.get(f["eid"]) or {}
             f["played"] = int(st.get("minutes") or 0) > 0
             f["got"] = int(st.get("goals_scored" if f["kind"] == "goal" else "assists") or 0)
+        def rate(group):
+            n = len(group) or 1
+            return {"players": len(group),
+                    "goal": round(sum(1 for st in group if int(st.get("goals_scored") or 0) > 0) / n, 3),
+                    "assist": round(sum(1 for st in group if int(st.get("assists") or 0) > 0) / n, 3)}
         outfield = [st for eid, st in live.items() if els.get(eid, {}).get("element_type") != 1 and int(st.get("minutes") or 0) > 0]
-        n = len(outfield) or 1
-        entry["baseline"] = {"players": len(outfield),
-                             "goal": round(sum(1 for st in outfield if int(st.get("goals_scored") or 0) > 0) / n, 3),
-                             "assist": round(sum(1 for st in outfield if int(st.get("assists") or 0) > 0) / n, 3)}
+        # The flagged players are attacking starters, so the fair yardstick is other attacking starters (not
+        # every outfield sub and defender): midfielders/forwards who played 60+ minutes.
+        attackers = [st for eid, st in live.items() if els.get(eid, {}).get("element_type") in (3, 4) and int(st.get("minutes") or 0) >= 60]
+        entry["baseline"] = rate(outfield)
+        entry["baseline_att"] = rate(attackers)
+        entry["graded"] = True
+    return log
+
+def update_pred_log(log, ds, boot, plan, ai):
+    """Prediction log: what the program said it would do each gameweek, graded once the gameweek is over, so
+    its forward calls can be scored instead of trusted. Per gameweek: the Plan tab's captain and the AI team's
+    captain, each with the points that player actually scored. Entries freeze at the deadline."""
+    log = dict(log or {})
+    gw = ds.get("next_gw")
+    names = {e["id"]: e["web_name"] for e in boot["elements"]}
+    ids = {}
+    for e in boot["elements"]:
+        ids.setdefault(e["web_name"], []).append(e["id"])
+    if gw and not ds.get("deadline_passed"):
+        entry = {"gw": gw, "graded": False}
+        xi = ((plan or {}).get("xis") or {}).get(f"gw{gw}", {}).get("xi") or []
+        cap = next((bare(x) for x in xi if x.endswith(" (C)")), None)
+        if cap:
+            entry["plan_captain"] = cap
+        ap = (ai or {}).get("plan") or {}
+        if ap.get("gw") == gw and ap.get("captain"):
+            entry["ai_captain"] = names.get(ap["captain"])
+            entry["ai_captain_id"] = ap["captain"]
+            entry["ai_locked"] = bool(ap.get("locked"))
+        log[f"gw{gw}"] = entry
+    finished = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
+    for key, entry in log.items():
+        if entry.get("graded") or entry["gw"] not in finished:
+            continue
+        try:
+            live = {el["id"]: el["stats"] for el in get(f"https://fantasy.premierleague.com/api/event/{entry['gw']}/live/").get("elements", [])}
+        except Exception as e:
+            _warn(f"pred_log: could not grade GW{entry['gw']}: {e}")
+            continue
+        best = max((st.get("total_points") or 0 for st in live.values()), default=0)
+        entry["best_player_points"] = best
+        if entry.get("ai_captain_id") is not None:
+            entry["ai_captain_points"] = (live.get(entry["ai_captain_id"]) or {}).get("total_points")
+        cands = [i for i in ids.get(entry.get("plan_captain"), []) if (live.get(i) or {}).get("minutes")]
+        if entry.get("plan_captain") and cands:
+            entry["plan_captain_points"] = (live.get(cands[0]) or {}).get("total_points")
         entry["graded"] = True
     return log
 
@@ -1935,7 +2034,7 @@ def build_injury_watch(boot, squad_names=None, top_n=15):
         if avail["kind"] == "ok":
             continue
         rows.append({
-            "name": el["web_name"], "club": teams[el["team"]]["short_name"], "pos": POS[el["element_type"]],
+            "id": el["id"], "name": el["web_name"], "club": teams[el["team"]]["short_name"], "pos": POS[el["element_type"]],
             "cost": el["now_cost"] / 10, "owned_pct": float(el.get("selected_by_percent") or 0),
             "status": avail["kind"], "label": avail["label"], "chance": avail["chance"],
             "yours": el["web_name"] in squad_names,
@@ -1974,9 +2073,12 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclud
         # "expected" is a direction call off today's momentum sign, not a
         # probability — the size of the move (if one happens) is fixed by
         # the rule itself, not something this needs to estimate.
-        expected_change = 0.1 if net > 0 else (-0.1 if net < 0 else 0.0)
+        # Only a strong swing projects a move: a handful of net transfers is noise (a backtest found 2 of 89
+        # "rising" calls right). FPL's counter is for the whole gameweek, not the day.
+        strong = abs(momentum) >= 5 and abs(net) >= 5000
+        expected_change = (0.1 if net > 0 else -0.1) if strong else 0.0
         return {
-            "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
+            "id": el["id"], "name": el["web_name"], "pos": POS[el["element_type"]], "club": teams[el["team"]]["short_name"],
             "cost": el["now_cost"] / 10, "owned_pct": owned, "net_transfers_today": net, "momentum": momentum,
             "changed_today": (el.get("cost_change_event") or 0) != 0,
             "cost_change_today": (el.get("cost_change_event") or 0) / 10,
@@ -2022,8 +2124,8 @@ def build_price_trend(prev_trend, rows, today, max_days=7):
     to `max_days` per player so this can't grow unbounded over a season."""
     trend = {}
     for r in rows:
-        name = r["name"]
-        prev = prev_trend.get(name) or {}
+        name = f'{r["name"]}|{r["club"]}'     # two players can share a web_name: key on name + club
+        prev = prev_trend.get(name) or prev_trend.get(r["name"]) or {}
         history = list(prev.get("history") or [])
         if history and history[-1].get("date") == today:
             history[-1] = {"date": today, "momentum": r["momentum"]}
@@ -2152,18 +2254,29 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15, exclude=None):
 
     intel = _intel_tags_by_player(ROOT)
 
-    upcoming = sorted((e for e in boot["events"] if not e.get("finished")), key=lambda e: e["id"])[:max(TARGET_HORIZONS)]
+    # Only gameweeks you can still act on: a live gameweek whose deadline has passed is not a target horizon.
+    now_utc = datetime.now(timezone.utc)
+    upcoming = sorted((e for e in boot["events"] if not e.get("finished")
+                       and not (parse_deadline(e.get("deadline_time")) and now_utc >= parse_deadline(e.get("deadline_time")))),
+                      key=lambda e: e["id"])[:max(TARGET_HORIZONS)]
     fdr_samples = {n: {} for n in TARGET_HORIZONS}  # horizon -> team_id -> [fdr,...]
+    blank_gws = {n: {} for n in TARGET_HORIZONS}    # horizon -> team_id -> gameweeks with no fixture
+    double_gws = {n: {} for n in TARGET_HORIZONS}   # horizon -> team_id -> gameweeks with two or more
     for i, ev in enumerate(upcoming, start=1):
         try:
             fx = fixture_scan(ev["id"], teams)
         except Exception as e:
             _warn(f"build_targets: could not load GW{ev['id']} fixtures: {e}")
             continue
-        for tid, fixtures in fx.items():
+        for tid in teams:
+            fixtures = fx.get(tid, [])
             for n in TARGET_HORIZONS:
                 if i <= n:
                     fdr_samples[n].setdefault(tid, []).extend(f["fdr"] for f in fixtures if f.get("fdr") is not None)
+                    if not fixtures:
+                        blank_gws[n][tid] = blank_gws[n].get(tid, 0) + 1
+                    elif len(fixtures) > 1:
+                        double_gws[n][tid] = double_gws[n].get(tid, 0) + 1
     avg_fdr = {n: {tid: round(sum(v) / len(v), 2) for tid, v in fdr_samples[n].items() if v} for n in TARGET_HORIZONS}
 
     # Points-per-£1m value is only meaningful relative to a position's own
@@ -2248,6 +2361,12 @@ def build_targets(boot, min_minutes=180, threshold=2.0, top_n=15, exclude=None):
                 why.append("Sell-high risk"); score -= 1
             if kind_run:
                 why.append("Kind run"); score += 1
+            blanks = blank_gws[n].get(r["team_id"], 0)
+            doubles = double_gws[n].get(r["team_id"], 0)
+            if blanks:
+                why.append(f"{blanks} blank GW" + ("s" if blanks > 1 else "")); score -= 2 * blanks
+            if doubles:
+                why.append(f"{doubles} double GW" + ("s" if doubles > 1 else "")); score += 2 * doubles
             if r["intel_target"]:
                 why.append("News/X backed"); score += 1
             if r["intel_fade"]:
@@ -2503,13 +2622,30 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
 def main(team_id=TEAM_ID, out_path=None):
     data_file = Path(out_path) if out_path else ROOT / "data.js"
     existing = {}
-    if data_file.exists():
+    if data_file.exists() and data_file.read_text().strip():
         raw = data_file.read_text(); s, e = raw.find("{"), raw.rfind("}")
-        if s != -1 and e != -1:
-            try:
-                existing = json.loads(raw[s:e+1])
-            except Exception:
-                existing = {}
+        try:
+            existing = json.loads(raw[s:e+1])
+        except Exception as ex:
+            # Starting from {} would silently wipe the carried state (AI team, track record, price trend):
+            # stop instead and let the previous good file stay in place.
+            raise RuntimeError(f"{data_file.name} exists but cannot be parsed ({ex}); refusing to rebuild it from scratch")
+    health = {}
+
+    def section(name, fn, *args, key=None, fallback=None, **kw):
+        """Run one builder. If it raises, keep the previous value for that section (so one broken source cannot
+        take the whole refresh down) and record it in data["_health"] so the failure is visible and check_data
+        can fail the run."""
+        key = key or name
+        try:
+            val = fn(*args, **kw)
+            health[name] = {"ok": True}
+            return val
+        except Exception as ex:
+            _warn(f"section '{name}' failed, keeping its previous value: {type(ex).__name__}: {ex}")
+            prev = (existing.get("_health") or {}).get(name) or {}
+            health[name] = {"ok": False, "error": f"{type(ex).__name__}: {str(ex)[:160]}", "since": prev.get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
+            return existing.get(key) if existing.get(key) is not None else fallback
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
     entry = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/")
     hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
@@ -2546,7 +2682,7 @@ def main(team_id=TEAM_ID, out_path=None):
         team_recovery = {"fetched_at": None, "teams": {}}
     recovery_cache["team_recovery"] = team_recovery
     recovery_cache_path.write_text(json.dumps(recovery_cache, indent=2))
-    chips_used = {c["name"]: c["event"] for c in hist.get("chips", [])}
+    chips_used = chips_by_half(hist)
     gws = []
     for row in hist.get("current", []):
         gw = row["event"]
@@ -2554,8 +2690,9 @@ def main(team_id=TEAM_ID, out_path=None):
         fa = (avg.get(gw) or field_avg.get(gw)) if gw in settled else (avg.get(gw) or None)
         if fa and gw in settled:
             field_avg[gw] = fa
-        gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((n for n, ev in chips_used.items() if ev == gw), None)})
-    plan = build_plan(boot, team_id, hist, chips_used)
+        gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((chip_base(n) for n, ev in chips_used.items() if ev == gw), None)})
+    inputs = model_inputs(boot, (team_recovery or {}).get("teams"))
+    plan = build_plan(boot, team_id, hist, chips_used, inputs)
     ds = deadline_state(boot)
     live = build_live_value(boot, team_id, plan.get("squad_from_gw"), hist, entry, ds.get("locked_gw"))
     last_fin = max((e["id"] for e in boot["events"] if e.get("finished")), default=None)
@@ -2572,20 +2709,21 @@ def main(team_id=TEAM_ID, out_path=None):
     # Recomputed every run rather than cached off `existing`: both only cover finished
     # GWs (whose points never change), so recomputing is cheap and safe, whereas a
     # "skip if already present" cache would silently freeze once a new GW finishes.
-    data["transfers"] = add_roll_rows(build_transfers(boot, team_id), hist, chips_used)
-    data["bench_audit"] = build_bench_audit(boot, team_id)
-    data["captain_board"] = build_captain_board(boot, team_id)
+    data["transfers"] = section("transfers", lambda: add_roll_rows(build_transfers(boot, team_id), hist, chips_used), fallback=[])
+    data["bench_audit"] = section("bench_audit", build_bench_audit, boot, team_id, fallback={})
+    data["captain_board"] = section("captain_board", build_captain_board, boot, team_id, fallback={})
     ft_rows, ft_next = free_transfer_ledger(hist or {})
     data["ft_ledger"] = {"rows": ft_rows, "next": ft_next, "next_gw": next((e["id"] for e in boot["events"] if not e.get("finished") and e["id"] > (ft_rows[-1]["gw"] if ft_rows else 0)), None)}
-    data["chip_net"] = build_chip_net(chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"], gws)
-    data["fh_audit"] = build_fh_audit(boot, team_id, chips_used)
-    data["strategy"] = build_strategy(boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"))
+    data["chip_net"] = section("chip_net", build_chip_net, chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"], gws, fallback={})
+    data["fh_audit"] = section("fh_audit", build_fh_audit, boot, team_id, chips_used)
+    data["strategy"] = section("strategy", build_strategy, boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"), fallback={})
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
-    data["xg_signal"] = build_xg_signal(boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map)
-    data["volume_log"] = update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), data["xg_signal"].get("imminent"), ds, boot)
-    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist)
-    data["defcon"] = build_defcon(boot, team_id, plan.get("squad_from_gw"), exclude=owned)
-    data["rotation_risk"] = build_rotation_risk(boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"))
+    data["xg_signal"] = section("xg_signal", build_xg_signal, boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map, fallback={})
+    data["volume_log"] = section("volume_log", lambda: update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), (data.get("xg_signal") or {}).get("imminent"), ds, boot), fallback={})
+    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs)
+    data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
+    data["defcon"] = section("defcon", build_defcon, boot, team_id, plan.get("squad_from_gw"), exclude=owned, fallback={})
+    data["rotation_risk"] = section("rotation_risk", build_rotation_risk, boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"), fallback={})
     try:
         _pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{plan.get('squad_from_gw')}/picks/") if plan.get("squad_from_gw") else {}
         data["daily_check"] = build_daily_check(data.get("daily_check"), boot, [p["element"] for p in _pk.get("picks", [])],
@@ -2594,10 +2732,10 @@ def main(team_id=TEAM_ID, out_path=None):
         _warn(f"daily_check failed: {e}")
     data["team_recovery"] = team_recovery
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
-    data["form_fdr"] = build_form_fdr(boot, next_fixture_map, exclude=owned)
-    data["value_board"] = build_value_board(boot, exclude=owned)
+    data["form_fdr"] = section("form_fdr", build_form_fdr, boot, next_fixture_map, exclude=owned, fallback={})
+    data["value_board"] = section("value_board", build_value_board, boot, exclude=owned, fallback={})
     squad_names = {r[1] for r in (plan.get("rows") or [])}
-    data["injury_watch"] = build_injury_watch(boot, squad_names=squad_names)
+    data["injury_watch"] = section("injury_watch", build_injury_watch, boot, squad_names=squad_names, fallback={"rows": []})
 
     # Injury tab's mini-league section: a niche differential 6 of your 13
     # ESL teams all specifically picked being suddenly doubtful is a much
@@ -2607,17 +2745,11 @@ def main(team_id=TEAM_ID, out_path=None):
     esl_counts_info = counts_by_league.get(125784) or {}
     esl_counts, esl_n = esl_counts_info.get("counts") or {}, esl_counts_info.get("n")
     esl_cap_by = esl_counts_info.get("cap_by") or {}
-    id_to_name = {e["id"]: e["web_name"] for e in boot["elements"]}
-    name_to_esl_count, name_to_esl_cap = {}, {}
-    for eid, c in esl_counts.items():
-        name_to_esl_count[id_to_name.get(eid, "?")] = c
-    for eid, c in esl_cap_by.items():
-        name_to_esl_cap[id_to_name.get(eid, "?")] = c
     league_rows = []
-    for r in data["injury_watch"]["rows"]:
-        c = name_to_esl_count.get(r["name"])
+    for r in data["injury_watch"].get("rows", []):
+        c = esl_counts.get(r["id"])   # keyed on the player's id: two players can share a web_name
         if c:  # only players at least 1 ESL team owns — 0-owned is noise here
-            cap = name_to_esl_cap.get(r["name"], 0)
+            cap = esl_cap_by.get(r["id"], 0)
             # True Effective Ownership (ownership % + captaincy %, since a
             # captained pick's points count double) — computable here, unlike
             # the global section above, because analyze_leagues already
@@ -2634,8 +2766,8 @@ def main(team_id=TEAM_ID, out_path=None):
         "top_n": 10, "rows": league_rows[:10],
     }
 
-    data["transfer_targets"] = build_transfer_targets(boot, team_id, plan.get("squad_from_gw"))
-    data["targets"] = build_targets(boot, exclude=owned)
+    data["transfer_targets"] = section("transfer_targets", build_transfer_targets, boot, team_id, plan.get("squad_from_gw"), fallback={})
+    data["targets"] = section("targets", build_targets, boot, exclude=owned, fallback={"horizons": {}})
 
     # Wildcard tab's "who the room barely owns" shortlist: top Target-6 names,
     # excluding your current squad, preferring names this ESL league's table
@@ -2657,8 +2789,8 @@ def main(team_id=TEAM_ID, out_path=None):
     watch = fpl_common.load_js_object(ROOT / watch_filename)
     watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
     watch_names |= {r["name"] for r in wc_top3}
-    data["price_radar"] = build_price_radar(boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned)
-    trend_rows = data["price_radar"]["squad"] + data["price_radar"]["watch"]
+    data["price_radar"] = section("price_radar", build_price_radar, boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned, fallback={"squad": [], "rising": [], "falling": [], "watch": []})
+    trend_rows = (data["price_radar"].get("squad") or []) + (data["price_radar"].get("watch") or [])
     data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
     now = datetime.now(timezone.utc)
     data.update({
@@ -2675,14 +2807,17 @@ def main(team_id=TEAM_ID, out_path=None):
         },
         "team": {**(existing.get("team") or {}), "id": entry["id"], "name": entry["name"], "manager": f"{entry.get('player_first_name','')} {entry.get('player_last_name','')}".strip(), "overall_points": entry.get("summary_overall_points"), "overall_rank": entry.get("summary_overall_rank"), "bank": (live["bank"] if live else entry.get("last_deadline_bank", 0) / 10), "value": entry.get("last_deadline_value", 0) / 10, "live_value": (live["squad_value"] if live else entry.get("last_deadline_value", 0) / 10)},
         "history": hist.get("past", []),
-        "chips_official": {"bboost": chips_used.get("bboost"), "3xc": chips_used.get("3xc"), "freehit": chips_used.get("freehit"), "wildcard": chips_used.get("wildcard")},
+        "chips_official": {k: chips_used.get(k) for k in CHIP_KEYS} | {k + "_h2": chips_used[k + "_h2"] for k in CHIP_KEYS if chips_used.get(k + "_h2")},
         "gameweeks": gws,
         "field_avg_known": field_avg,
         "plan": plan,
         "leagues": leagues,
         "captain_audit": caps,
     })
-    data_file.write_text("window.FPL_DATA = " + json.dumps(data, indent=2) + ";\n")
+    data["_health"] = health
+    tmp = data_file.with_name(data_file.name + ".tmp")
+    tmp.write_text("window.FPL_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")
+    os.replace(tmp, data_file)          # never leave a half-written data file behind
     print("Updated", data_file.name, entry.get("name"), [u["gw"] for u in plan.get("upcoming", [])])
 
 if __name__ == "__main__":

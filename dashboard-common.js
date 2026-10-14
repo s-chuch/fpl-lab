@@ -125,12 +125,11 @@ function startPriceCountdown(elId){
 }
 // Flags a chip active for the live/just-locked GW or already queued for the
 // next one, so a chip play surfaces as soon as it's visible instead of only
-// on the Chips tab. chips_official only keeps the latest use of each chip
-// name, which is exactly the one worth alerting on.
+// on the Chips tab. chips_official has a key per play (chip, and chip_h2 for the second half).
 function chipAlertBanner(D){
   const co=D.chips_official||{}, dl=D.deadline||{};
   const targets=new Set([dl.current_gw, dl.next_gw, dl.locked_gw].filter(x=>x!=null));
-  const hits=Object.keys(CHIP_LABELS).filter(k=>co[k]!=null && targets.has(co[k])).map(k=>({gw:co[k],label:CHIP_LABELS[k]}));
+  const hits=Object.keys(co).filter(k=>CHIP_LABELS[k.replace(/_h2$/,"")] && co[k]!=null && targets.has(co[k])).map(k=>({gw:co[k],label:CHIP_LABELS[k.replace(/_h2$/,"")]}));
   if(!hits.length) return "";
   const team=esc((D.team&&D.team.name)||"Team");
   const lines=hits.map(h=>`${team} played <b>${esc(h.label)}</b> in GW${h.gw}.`).join(" ");

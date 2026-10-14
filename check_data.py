@@ -6,6 +6,7 @@ anything - e.g. a chip you have played with no result, or an AI plan for the wro
     python check_data.py [data.js bacalhau-data.js]      exit 1 if anything is wrong"""
 from __future__ import annotations
 import json, sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -37,11 +38,88 @@ def check_watch(name, d):
     return problems
 
 
+MIN_ROWS = {"transfers": 1, "targets": 1, "injury_watch": 1}      # sections that must hold rows, not just exist
+
+
+def _age_hours(stamp):
+    """Hours since a 'YYYY-MM-DD HH:MM UTC' or ISO timestamp (None if unreadable)."""
+    try:
+        t = datetime.fromisoformat(str(stamp).replace(" UTC", "").replace("Z", "+00:00").replace(" ", "T", 1))
+        if t.tzinfo is None:
+            t = t.replace(tzinfo=timezone.utc)
+        return (datetime.now(timezone.utc) - t).total_seconds() / 3600
+    except Exception:
+        return None
+
+
+def check_ai_squad(name, d):
+    """The AI team must always hold a legal squad: 15 players in the right positions, at most 3 per club,
+    a bank that is not negative and a total that fits the budget."""
+    ai = d.get("ai_team") or {}
+    plan = ai.get("plan") or {}
+    squad = plan.get("squad") or []
+    out = []
+    if not squad:
+        return out
+    if len(squad) != 15:
+        out.append(f"{name}: AI team squad has {len(squad)} players")
+    per_pos = {}
+    per_club = {}
+    for p in squad:
+        per_pos[p["pos"]] = per_pos.get(p["pos"], 0) + 1
+        per_club[p["club"]] = per_club.get(p["club"], 0) + 1
+    if per_pos != {"GKP": 2, "DEF": 5, "MID": 5, "FWD": 3}:
+        out.append(f"{name}: AI team squad shape is {per_pos}")
+    over = [c for c, n in per_club.items() if n > 3]
+    if over:
+        out.append(f"{name}: AI team has more than 3 players from {', '.join(over)}")
+    if (plan.get("bank") or 0) < -0.001:
+        out.append(f"{name}: AI team bank is negative ({plan.get('bank')})")
+    budget = ai.get("budget")
+    # what the squad would sell for plus the bank can never exceed the money the AI started with
+    if budget is not None and plan.get("sell_value") is not None and round(plan["sell_value"] + (plan.get("bank") or 0), 1) > round(budget, 1) + 0.15:
+        out.append(f"{name}: AI team holds more money than it has ({plan['sell_value']} + {plan.get('bank')} > {budget})")
+    return out
+
+
 def check(name, d):
     problems = check_watch(name, d)
     for k in REQUIRED:
         if d.get(k) in (None, [], {}):
             problems.append(f"{name}: section '{k}' is missing or empty")
+    for k, n in MIN_ROWS.items():
+        v = d.get(k)
+        rows = v if isinstance(v, list) else ((v or {}).get("rows") or (v or {}).get("horizons") or [])
+        if len(rows) < n:
+            problems.append(f"{name}: section '{k}' has no rows")
+    age = _age_hours(d.get("generated_at"))
+    if age is not None and age > 30:
+        problems.append(f"{name}: data was generated {age:.0f}h ago - scheduled refreshes may have stopped")
+    for sec, h in (d.get("_health") or {}).items():
+        if not h.get("ok"):
+            problems.append(f"{name}: section '{sec}' failed since {h.get('since')}: {h.get('error')}")
+    problems += check_ai_squad(name, d)
+    # points reconciliation: the gameweek rows must add up to FPL's overall points (hits are taken off)
+    gws = d.get("gameweeks") or []
+    total = (d.get("team") or {}).get("overall_points")
+    if gws and total is not None:
+        net = sum(g["points"] - (g.get("hits") or 0) for g in gws)
+        if abs(net - total) > 2:
+            problems.append(f"{name}: gameweek points add up to {net} but FPL reports {total} overall")
+    # a finished gameweek must have a graded track record
+    vl = d.get("volume_log") or {}
+    fin_events = (d.get("deadline") or {}).get("locked_gw")
+    for k, e in vl.items():
+        if e.get("graded") is False and e.get("gw") is not None and fin_events and e["gw"] < fin_events - 1:
+            problems.append(f"{name}: xG/xA track record for GW{e['gw']} was never graded")
+    for hp in ((d.get("ai_team") or {}).get("history") or {}).values():
+        r = hp.get("result") or {}
+        if not r.get("final") and hp.get("gw") is not None and hp["gw"] < (fin_events or 0) - 1:
+            problems.append(f"{name}: AI result for GW{hp['gw']} is still not final")
+    for sec, maxh in (("team_recovery", 8),):
+        a = _age_hours((d.get(sec) or {}).get("fetched_at"))
+        if a is not None and a > maxh:
+            problems.append(f"{name}: '{sec}' was fetched {a:.0f}h ago")
     official, net = d.get("chips_official") or {}, d.get("chip_net") or {}
     audit = d.get("fh_audit") or {}
     for chip, gw in official.items():

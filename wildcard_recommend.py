@@ -29,7 +29,7 @@ from datetime import datetime
 from pathlib import Path
 
 from fpl_common import get, load_js_object
-from refresh import ET, deadline_state, fixture_scan, player_availability
+from refresh import ET, deadline_state, fixture_scan, model_inputs, player_availability
 import ai_team
 
 ROOT = Path(__file__).resolve().parent
@@ -147,7 +147,13 @@ def expected_points(boot, teams):
     finished = sum(1 for e in boot["events"] if e.get("finished"))
     locked = ds.get("locked_gw")
     played = max(1, finished + (1 if locked and not next((e for e in boot["events"] if e["id"] == locked), {}).get("finished") else 0))
-    return {"gw": target, "vals": ai_team.player_values(boot, fix1, fix2, played)}
+    # the same Understat/risk inputs the AI team and Plan tab use, so all three rank players alike
+    try:
+        recovery = json.loads((ROOT / "team_recovery_cache.json").read_text()).get("team_recovery", {}).get("teams")
+    except Exception:
+        recovery = None
+    uwins, risk, _live = model_inputs(boot, recovery)
+    return {"gw": target, "vals": ai_team.player_values(boot, fix1, fix2, played, uwins, risk)}
 
 
 def sync_confirmed_squad(watch, boot, teams):
@@ -163,12 +169,22 @@ def sync_confirmed_squad(watch, boot, teams):
     dl = parse_iso(ev.get("deadline_time"))
     if not dl or datetime.now(dl.tzinfo) < dl:
         return
+    # Follow the squad forward: once later gameweeks have locked, advise on the latest locked squad (transfers
+    # made since the wildcard included), not the wildcard week's.
+    latest = max(gw, deadline_state(boot).get("locked_gw") or 0)
     try:
-        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{latest}/picks/")
         hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
     except Exception as e:
         print(f"warn: could not sync {watch.get('team')} GW{gw} squad: {e}")
         return
+    while pk.get("active_chip") == "freehit" and latest > gw:     # a Free Hit squad is not the one carried on
+        latest -= 1
+        try:
+            pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{latest}/picks/")
+        except Exception as e:
+            print(f"warn: could not step back past a Free Hit week for {watch.get('team')}: {e}")
+            return
     picks = sorted(pk.get("picks") or [], key=lambda p: p.get("position") or 99)
     if len(picks) != 15:
         return
@@ -181,12 +197,13 @@ def sync_confirmed_squad(watch, boot, teams):
     watch["bench"] = [row(p) for p in picks if p["position"] > 11]
     watch["status"] = "confirmed"
     watch["captured_at"] = datetime.now(ET).strftime("%Y-%m-%d")
-    watch["note"] = f"Confirmed GW{gw} squad — the GW{gw} deadline has passed and this matches the lineup FPL locked in (synced from {watch.get('team')}'s picks every refresh)."
-    chips = {}
-    for c in hist.get("chips", []):
-        chips[c["name"]] = f"played_gw{c['event']}"
-    if chips:
-        watch["chips"] = {k: chips.get(k, "available") for k in ("bboost", "3xc", "wildcard", "freehit")}
+    watch["squad_gw"] = latest
+    watch["note"] = f"Confirmed GW{latest} squad — the GW{latest} deadline has passed and this matches the lineup FPL locked in (synced from {watch.get('team')}'s picks every refresh)."
+    from refresh import chips_by_half, chip_for_gw
+    played = chips_by_half(hist)
+    nxt = deadline_state(boot).get("next_gw") or latest + 1
+    watch["chips"] = {k: (f"played_gw{chip_for_gw(played, k, nxt)}" if chip_for_gw(played, k, nxt) else "available")
+                      for k in ("bboost", "3xc", "wildcard", "freehit")}
 
 
 def main(watch_path=DEFAULT_WATCH_PATH):
