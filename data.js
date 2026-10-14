@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:17 UTC",
-  "generated_at_et": "2026-10-14 4:17 PM ET",
+  "generated_at": "2026-10-14 20:19 UTC",
+  "generated_at_et": "2026-10-14 4:19 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -352,8 +352,8 @@ window.FPL_DATA = {
       "transfers": 0,
       "hits": 0,
       "rank": 775958,
-      "field_avg": 37,
-      "delta": 29,
+      "field_avg": 58,
+      "delta": 8,
       "chip": "wildcard"
     }
   ],
@@ -363,7 +363,7 @@ window.FPL_DATA = {
     "3": 51,
     "4": 69,
     "5": 48,
-    "6": 37
+    "6": 58
   },
   "plan": {
     "note": "GW6 squad. Last finished 6.",
@@ -3769,15 +3769,23 @@ window.FPL_DATA = {
   "chip_net": {
     "bboost": {
       "net": 12,
-      "note": "Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
+      "label": "from the bench",
+      "note": "Bench points that counted: Kinsky 2 + Gro\u00df 2 + Davis 2 + Rodon 6"
     },
     "3xc": {
       "net": 9,
+      "label": "from the 3rd multiple",
       "note": "Haaland 9 raw. Triple gave 27 instead of 18."
     },
+    "freehit": {
+      "net": 21,
+      "label": "vs field average",
+      "note": "GW4: 90 pts vs 69 field average. Overall rank 1,516,623 \u2192 820,064. Estimate only: your unchanged squad (same XI, captain, auto-subs) would have scored about 102 (-12 for the chip) \u2014 what you'd have done without the chip isn't known, so treat that as a guide, not an exact figure."
+    },
     "wildcard": {
-      "net": 3,
-      "note": "WC scored 66 vs 63 for the previous squad (same XI, captain and auto-subs) \u2014 net +3. 18 moves rebuilt the squad for free."
+      "net": 8,
+      "label": "vs field average",
+      "note": "GW6: 66 pts vs 58 field average. Overall rank 686,560 \u2192 775,958. 18 moves rebuilt the squad for free. Estimate only: your unchanged squad (same XI, captain, auto-subs) would have scored about 63 (+3 for the chip) \u2014 what you'd have done without the chip isn't known, so treat that as a guide, not an exact figure."
     }
   },
   "fh_audit": {
@@ -12672,7 +12680,7 @@ window.FPL_DATA = {
   },
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T19:48:52.063244+00:00",
+    "fetched_at": "2026-10-14T20:19:06.630816+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -14318,7 +14326,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:17:14.511596+00:00",
+      "computed_at": "2026-10-14T20:19:14.798189+00:00",
       "initial": false,
       "squad": [
         {
@@ -14643,12 +14651,12 @@ window.FPL_DATA = {
     "season_points": 417,
     "user_season": 417,
     "chips_available": [],
-    "last_check": "2026-10-14T20:17:14.511596+00:00",
-    "generated_at": "2026-10-14T20:17:14.511596+00:00"
+    "last_check": "2026-10-14T20:19:14.798189+00:00",
+    "generated_at": "2026-10-14T20:19:14.798189+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:17:14.585374+00:00",
-    "previous_check": "2026-10-14T20:06:08.804092+00:00",
+    "checked_at": "2026-10-14T20:19:14.854848+00:00",
+    "previous_check": "2026-10-14T20:17:14.585374+00:00",
     "watching": 17,
     "changes": [],
     "history": [],

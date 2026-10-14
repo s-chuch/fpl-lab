@@ -246,8 +246,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:17 UTC",
-  "generated_at_et": "2026-10-14 4:17 PM ET",
+  "generated_at": "2026-10-14 20:19 UTC",
+  "generated_at_et": "2026-10-14 4:19 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -350,8 +350,8 @@ window.FPL_DATA = {
       "transfers": 0,
       "hits": 0,
       "rank": 1319300,
-      "field_avg": 37,
-      "delta": 27,
+      "field_avg": 58,
+      "delta": 6,
       "chip": "wildcard"
     }
   ],
@@ -361,7 +361,7 @@ window.FPL_DATA = {
     "3": 51,
     "4": 69,
     "5": 48,
-    "6": 37
+    "6": 58
   },
   "plan": {
     "note": "GW6 squad. Last finished 6.",
@@ -3788,11 +3788,13 @@ window.FPL_DATA = {
   "chip_net": {
     "3xc": {
       "net": 9,
+      "label": "from the 3rd multiple",
       "note": "Haaland 9 raw. Triple gave 27 instead of 18."
     },
     "wildcard": {
-      "net": 5,
-      "note": "WC scored 64 vs 59 for the previous squad (same XI, captain and auto-subs) \u2014 net +5. 8 moves rebuilt the squad for free."
+      "net": 6,
+      "label": "vs field average",
+      "note": "GW6: 64 pts vs 58 field average. Overall rank 1,187,975 \u2192 1,319,300. 8 moves rebuilt the squad for free. Estimate only: your unchanged squad (same XI, captain, auto-subs) would have scored about 59 (+5 for the chip) \u2014 what you'd have done without the chip isn't known, so treat that as a guide, not an exact figure."
     }
   },
   "fh_audit": null,
@@ -12590,7 +12592,7 @@ window.FPL_DATA = {
   },
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T19:48:52.063244+00:00",
+    "fetched_at": "2026-10-14T20:19:06.630816+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -14234,7 +14236,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:17:18.472961+00:00",
+      "computed_at": "2026-10-14T20:19:21.706688+00:00",
       "initial": false,
       "squad": [
         {
@@ -14556,12 +14558,12 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:17:18.472961+00:00",
-    "generated_at": "2026-10-14T20:17:18.472961+00:00"
+    "last_check": "2026-10-14T20:19:21.706688+00:00",
+    "generated_at": "2026-10-14T20:19:21.706688+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:17:18.549567+00:00",
-    "previous_check": "2026-10-14T20:06:14.322006+00:00",
+    "checked_at": "2026-10-14T20:19:21.767323+00:00",
+    "previous_check": "2026-10-14T20:17:18.549567+00:00",
     "watching": 16,
     "changes": [],
     "history": [],
