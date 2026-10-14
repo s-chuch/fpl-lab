@@ -1,27 +1,13 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-14 13:26 UTC",
+  "generated_at": "2026-10-14 19:49 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Cherki (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 4/5 sites. Tags: fade/sell.",
+      "text": "De Cuyper (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 4/4 sites. Tags: captain talk, fade/sell.",
       "sources": [
         "AAFPL",
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Cherki",
-      "club": "MCI",
-      "tags": [
-        "fade/sell"
-      ]
-    },
-    {
-      "text": "De Cuyper (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 4/5 sites. Tags: fade/sell.",
-      "sources": [
-        "Fix",
         "Hub",
         "Ingenuity",
         "Scout"
@@ -29,14 +15,135 @@ window.FPL_NEWS = {
       "player": "De Cuyper",
       "club": "BHA",
       "tags": [
+        "captain talk",
         "fade/sell"
       ]
     },
     {
-      "text": "White (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 4/5 sites. Tags: fade/sell.",
+      "text": "Haaland (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 4/4 sites. Tags: captain talk, differential.",
       "sources": [
         "AAFPL",
-        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Haaland",
+      "club": "MCI",
+      "tags": [
+        "captain talk",
+        "differential"
+      ]
+    },
+    {
+      "text": "Barry (EVE) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Calafiori (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Calafiori",
+      "club": "ARS",
+      "tags": []
+    },
+    {
+      "text": "Cherki (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites. Tags: differential, fade/sell.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Cherki",
+      "club": "MCI",
+      "tags": [
+        "differential",
+        "fade/sell"
+      ]
+    },
+    {
+      "text": "David (BHA) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "David",
+      "club": "BHA",
+      "tags": []
+    },
+    {
+      "text": "Fernandes (TOT) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Fernandes",
+      "club": "TOT",
+      "tags": []
+    },
+    {
+      "text": "Gabriel (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Gabriel",
+      "club": "ARS",
+      "tags": []
+    },
+    {
+      "text": "Jo\u00e3o Pedro (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites. Tags: captain talk.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Jo\u00e3o Pedro",
+      "club": "CHE",
+      "tags": [
+        "captain talk"
+      ]
+    },
+    {
+      "text": "Palmer (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites. Tags: injury/doubt.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Rogers (CHE) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Rogers",
+      "club": "CHE",
+      "tags": []
+    },
+    {
+      "text": "White (ARS) is heavily featured in GW7 coverage \u2014 mentioned by 3/4 sites. Tags: fade/sell.",
+      "sources": [
+        "AAFPL",
         "Ingenuity",
         "Scout"
       ],
@@ -45,22 +152,12 @@ window.FPL_NEWS = {
       "tags": [
         "fade/sell"
       ]
-    },
+    }
+  ],
+  "split": [
     {
-      "text": "Barry (EVE) is heavily featured in GW7 coverage \u2014 mentioned by 3/5 sites.",
+      "text": "Gibbs-White (NFO) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites. Tags: fade/sell.",
       "sources": [
-        "AAFPL",
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": []
-    },
-    {
-      "text": "Gibbs-White (NFO) is heavily featured in GW7 coverage \u2014 mentioned by 3/5 sites. Tags: fade/sell.",
-      "sources": [
-        "Fix",
         "Ingenuity",
         "Scout"
       ],
@@ -71,73 +168,17 @@ window.FPL_NEWS = {
       ]
     },
     {
-      "text": "Gonzalo (FUL) is heavily featured in GW7 coverage \u2014 mentioned by 3/5 sites.",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Gonzalo",
-      "club": "FUL",
-      "tags": []
-    },
-    {
-      "text": "Haaland (MCI) is heavily featured in GW7 coverage \u2014 mentioned by 3/5 sites.",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": []
-    },
-    {
-      "text": "GW7 coverage is talking about a wildcard window \u2014 mentioned by 3/5 sites.",
-      "sources": [
-        "AAFPL",
-        "Ingenuity",
-        "Scout"
-      ]
-    }
-  ],
-  "split": [
-    {
-      "text": "Calafiori (ARS) is starting to come up in GW7 coverage \u2014 mentioned by 2/5 sites.",
-      "sources": [
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": []
-    },
-    {
-      "text": "Mitoma (BHA) is starting to come up in GW7 coverage \u2014 mentioned by 2/5 sites. Tags: injury/doubt.",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Mitoma",
-      "club": "BHA",
-      "tags": [
-        "injury/doubt"
-      ]
-    },
-    {
-      "text": "Palmer (CHE) is starting to come up in GW7 coverage \u2014 mentioned by 2/5 sites. Tags: injury/doubt.",
+      "text": "James (CHE) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites.",
       "sources": [
         "AAFPL",
         "Ingenuity"
       ],
-      "player": "Palmer",
+      "player": "James",
       "club": "CHE",
-      "tags": [
-        "injury/doubt"
-      ]
+      "tags": []
     },
     {
-      "text": "Rayan (BOU) is starting to come up in GW7 coverage \u2014 mentioned by 2/5 sites.",
+      "text": "Rayan (BOU) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites.",
       "sources": [
         "AAFPL",
         "Ingenuity"
@@ -147,7 +188,42 @@ window.FPL_NEWS = {
       "tags": []
     },
     {
-      "text": "Thomas (COV) is starting to come up in GW7 coverage \u2014 mentioned by 2/5 sites.",
+      "text": "Schade (BRE) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites. Tags: fade/sell, injury/doubt.",
+      "sources": [
+        "AAFPL",
+        "Scout"
+      ],
+      "player": "Schade",
+      "club": "BRE",
+      "tags": [
+        "fade/sell",
+        "injury/doubt"
+      ]
+    },
+    {
+      "text": "Semenyo (MCI) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites. Tags: captain talk.",
+      "sources": [
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Semenyo",
+      "club": "MCI",
+      "tags": [
+        "captain talk"
+      ]
+    },
+    {
+      "text": "Tarkowski (EVE) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Tarkowski",
+      "club": "EVE",
+      "tags": []
+    },
+    {
+      "text": "Thomas (COV) is starting to come up in GW7 coverage \u2014 mentioned by 2/4 sites.",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -155,6 +231,13 @@ window.FPL_NEWS = {
       "player": "Thomas",
       "club": "COV",
       "tags": []
+    },
+    {
+      "text": "GW7 coverage is talking about a wildcard window \u2014 mentioned by 2/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ]
     }
   ],
   "links": [
@@ -185,34 +268,39 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best FPL Players for Gameweek 7: Top Five Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-top-5-players-2026-27/"
-    },
-    {
       "source": "Hub",
-      "title": "Best FPL players for Gameweek 7",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-7-article-26-27"
+      "title": "FPL GW7 fixtures: Goal, clean-sheet odds and hidden gems",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-7-article-26-27"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: Calafiori rested, Saka sub impact + Bruno on the right",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/fpl-notes-calafiori-rested-saka-nets-again-bruno-on-the-right"
+      "title": "Best Schade replacements, keep or sell Wissa + Thiaw? FPL Q&A",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/best-schade-replacements-keep-or-sell-wissa-thiaw-fpl-qa"
     },
     {
       "source": "Scout",
-      "title": "What\u2019s new on Fantasy Football Scout? Our latest tools + features",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/whats-new-on-fantasy-football-scout-our-latest-tools-features"
+      "title": "Fantasy EFL Gameweek 10: Scout Picks",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/fantasy-efl-gameweek-10-scout-picks-3"
     },
     {
       "source": "Scout",
-      "title": "FPL Gameweek 7 differentials: 3 low-owned picks to consider",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/fpl-gameweek-7-differentials-3-low-owned-picks-to-consider"
+      "title": "FPL Challenge best picks + team reveal \u2013 Gameweek 7",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/13/fpl-challenge-best-picks-team-reveal-gameweek-7"
     },
     {
-      "source": "Scout",
-      "title": "De Cuyper, Pedro, Cherki, Gibbs-White: Buy, keep or sell in Gameweek 7?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/de-cuyper-pedro-cherki-gibbs-white-buy-keep-or-sell-in-gameweek-7"
+      "source": "AAFPL",
+      "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold",
+      "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "The Best FPL Gameweek 7 Differentials",
+      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-differentials/"
+    },
+    {
+      "source": "Ingenuity",
+      "title": "The Best FPL Gameweek 7 Captains",
+      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-captains/"
     }
   ],
   "no_new": false,
@@ -300,6 +388,13 @@ window.FPL_NEWS = {
     "https://www.fantasyfootballscout.co.uk/2026/10/14/fpl-notes-calafiori-rested-saka-nets-again-bruno-on-the-right",
     "https://www.fantasyfootballscout.co.uk/2026/10/14/whats-new-on-fantasy-football-scout-our-latest-tools-features",
     "https://www.fantasyfootballscout.co.uk/2026/10/14/fpl-gameweek-7-differentials-3-low-owned-picks-to-consider",
-    "https://www.fantasyfootballscout.co.uk/2026/10/14/de-cuyper-pedro-cherki-gibbs-white-buy-keep-or-sell-in-gameweek-7"
+    "https://www.fantasyfootballscout.co.uk/2026/10/14/de-cuyper-pedro-cherki-gibbs-white-buy-keep-or-sell-in-gameweek-7",
+    "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-7-article-26-27",
+    "https://www.fantasyfootballscout.co.uk/2026/10/14/best-schade-replacements-keep-or-sell-wissa-thiaw-fpl-qa",
+    "https://www.fantasyfootballscout.co.uk/2026/10/13/fantasy-efl-gameweek-10-scout-picks-3",
+    "https://www.fantasyfootballscout.co.uk/2026/10/13/fpl-challenge-best-picks-team-reveal-gameweek-7",
+    "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
+    "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-differentials/",
+    "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-captains/"
   ]
 };
