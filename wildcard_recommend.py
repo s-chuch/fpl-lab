@@ -8,11 +8,12 @@ recommendation on top of it is computed fresh every refresh cycle from
 real bootstrap-static data, so captain/bench advice stays current as
 form, fixtures and injury status change before the deadline.
 
-Uses FPL's own ep_next field ("expected points next gameweek" — the
-platform's own form+fixture-blended prediction) rather than re-deriving
-a competing points model: captain = highest ep_next among the fit
-starters; bench-swap suggestions flag a benched player whose ep_next
-beats a starter in the same position group. Injury/doubt flags reuse
+Expected points come from the program's own model (ai_team.player_values: xG/xA
+rates, minutes security, the next gameweek's fixture, availability) - NOT FPL's
+ep_next, which currently just repeats a player's last-week form (a defender
+with one big week showed as the best captain). Captain = highest expected points
+among the fit starters; bench-swap suggestions flag a benched player who
+out-projects a starter in the same position group. Injury/doubt flags reuse
 refresh.py's player_availability so the same status rules apply
 everywhere in the app.
 
@@ -28,9 +29,11 @@ from datetime import datetime
 from pathlib import Path
 
 from fpl_common import get, load_js_object
-from refresh import ET, player_availability
+from refresh import ET, deadline_state, fixture_scan, player_availability
+import ai_team
 
 ROOT = Path(__file__).resolve().parent
+TEAM_IDS = {"Shaaland": 1360999, "Bacalhau": 1360920}
 DEFAULT_WATCH_PATH = ROOT / "bacalhau-wildcard.js"
 
 
@@ -131,6 +134,61 @@ def build_worth_tracker(watch, squad, today):
     }
 
 
+def expected_points(boot, teams):
+    """Model expected points for the next open gameweek, per player (same model as the AI team)."""
+    ds = deadline_state(boot)
+    target = ds.get("next_gw")
+    if not target:
+        return {"gw": None, "vals": {}}
+    team_objs = {t["id"]: t for t in boot["teams"]}
+    ids = {e["id"] for e in boot["events"]}
+    fix1 = fixture_scan(target, team_objs)
+    fix2 = fixture_scan(target + 1, team_objs) if target + 1 in ids else {}
+    finished = sum(1 for e in boot["events"] if e.get("finished"))
+    locked = ds.get("locked_gw")
+    played = max(1, finished + (1 if locked and not next((e for e in boot["events"] if e["id"] == locked), {}).get("finished") else 0))
+    return {"gw": target, "vals": ai_team.player_values(boot, fix1, fix2, played)}
+
+
+def sync_confirmed_squad(watch, boot, teams):
+    """The squad in a watch file is hand-captured while a wildcard is still a draft. Once that gameweek's
+    deadline has passed FPL publishes the locked squad, so replace the draft with it (XI, bench order,
+    chips played) - otherwise a stale 'provisional' draft sits here forever."""
+    team_id = TEAM_IDS.get(watch.get("team"))
+    gw = watch.get("gw")
+    ev = next((e for e in boot["events"] if e["id"] == gw), None)
+    if not (team_id and ev):
+        return
+    from fpl_common import parse_iso
+    dl = parse_iso(ev.get("deadline_time"))
+    if not dl or datetime.now(dl.tzinfo) < dl:
+        return
+    try:
+        pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
+        hist = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/history/")
+    except Exception as e:
+        print(f"warn: could not sync {watch.get('team')} GW{gw} squad: {e}")
+        return
+    picks = sorted(pk.get("picks") or [], key=lambda p: p.get("position") or 99)
+    if len(picks) != 15:
+        return
+    els = {e["id"]: e for e in boot["elements"]}
+    def row(p):
+        el = els[p["element"]]
+        return {"pos": ai_team.POS[el["element_type"]], "name": el["web_name"], "club": teams[el["team"]],
+                "fixture": "", **({"captain": True} if p.get("is_captain") else {}), **({"vice": True} if p.get("is_vice_captain") else {})}
+    watch["xi"] = [row(p) for p in picks if p["position"] <= 11]
+    watch["bench"] = [row(p) for p in picks if p["position"] > 11]
+    watch["status"] = "confirmed"
+    watch["captured_at"] = datetime.now(ET).strftime("%Y-%m-%d")
+    watch["note"] = f"Confirmed GW{gw} squad — the GW{gw} deadline has passed and this matches the lineup FPL locked in (synced from {watch.get('team')}'s picks every refresh)."
+    chips = {}
+    for c in hist.get("chips", []):
+        chips[c["name"]] = f"played_gw{c['event']}"
+    if chips:
+        watch["chips"] = {k: chips.get(k, "available") for k in ("bboost", "3xc", "wildcard", "freehit")}
+
+
 def main(watch_path=DEFAULT_WATCH_PATH):
     watch_path = Path(watch_path)
     watch = load_js_object(watch_path)
@@ -140,6 +198,8 @@ def main(watch_path=DEFAULT_WATCH_PATH):
 
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
+    sync_confirmed_squad(watch, boot, teams)
+    model = expected_points(boot, teams)
     by_name_club, by_name = {}, {}
     for el in boot["elements"]:
         name = el.get("web_name")
@@ -152,10 +212,17 @@ def main(watch_path=DEFAULT_WATCH_PATH):
         if not el:
             return {**p, "ep_next": None, "status": "unmatched", "chance": None, "unmatched": True, "cost": None}
         avail = player_availability(el)
-        return {**p, "ep_next": to_float(el.get("ep_next")), "status": avail["kind"], "avail_label": avail["label"], "chance": avail["chance"], "cost": el["now_cost"] / 10}
+        m = model["vals"].get(el["id"]) or {}
+        return {**p, "ep_next": m.get("xp"), "fixture": m.get("fixture") or p.get("fixture"), "status": avail["kind"],
+                "avail_label": avail["label"], "chance": avail["chance"], "cost": el["now_cost"] / 10}
 
     xi = [enrich(p) for p in watch.get("xi", [])]
     bench = [enrich(p) for p in watch.get("bench", [])]
+
+    # show next gameweek's fixture for each player (the saved ones are from whenever the squad was captured)
+    for saved, enriched in list(zip(watch.get("xi", []), xi)) + list(zip(watch.get("bench", []), bench)):
+        if enriched.get("fixture"):
+            saved["fixture"] = enriched["fixture"]
 
     fit_xi = [p for p in xi if p["ep_next"] is not None and p["status"] != "out"]
     # A real doubt (<75% to play) shouldn't wear the armband: FPL's ep_next only

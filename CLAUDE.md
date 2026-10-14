@@ -63,3 +63,12 @@
   refresh itself is never blocked): it fails the run — red + email — if a required section is missing,
   a played chip has no result line, or the AI team's plan is not for the next open gameweek. Add a
   check there whenever a new section could go quietly stale.
+
+## Wildcard watch files (`shaaland-wildcard.js`, `bacalhau-wildcard.js`)
+
+- The squad in them is hand-captured while a wildcard is still a draft. Once that gameweek's deadline
+  passes, `wildcard_recommend.py` (`sync_confirmed_squad`) replaces it with the locked picks every
+  refresh and marks it `confirmed`, so a stale "provisional" draft can no longer linger (Bacalhau's sat
+  at the 20 Sep draft after GW6). `check_data.py` fails the run if that ever happens again.
+- Captain / bench advice uses the program's own expected points (`ai_team.player_values`, next open
+  gameweek), not FPL's `ep_next` — which currently just repeats last week's form.

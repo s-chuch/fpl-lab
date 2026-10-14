@@ -18,8 +18,27 @@ def load(path):
     return json.loads(raw[raw.index("{"): raw.rindex("}") + 1])
 
 
-def check(name, d):
+WATCH = {"data.js": "shaaland-wildcard.js", "bacalhau-data.js": "bacalhau-wildcard.js"}
+
+
+def check_watch(name, d):
+    """The wildcard watch file is a hand-captured draft until its gameweek locks; after that it must have
+    been replaced by the confirmed squad (wildcard_recommend.sync_confirmed_squad)."""
+    path = ROOT / WATCH.get(name, "")
+    if not path.is_file():
+        return []
+    w = load(path)
+    locked = (d.get("deadline") or {}).get("locked_gw") or 0
     problems = []
+    if w.get("gw") and w["gw"] <= locked and w.get("status") != "confirmed":
+        problems.append(f"{path.name}: GW{w['gw']} has locked but the squad is still '{w.get('status')}' (captured {w.get('captured_at')})")
+    if not (w.get("recommend") or {}).get("captain"):
+        problems.append(f"{path.name}: no captain recommendation")
+    return problems
+
+
+def check(name, d):
+    problems = check_watch(name, d)
     for k in REQUIRED:
         if d.get(k) in (None, [], {}):
             problems.append(f"{name}: section '{k}' is missing or empty")
