@@ -790,19 +790,12 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
             except Exception as e:
                 _warn(f"build_chip_net: {label} comparison unavailable: {e}")
         if not f or f.get("points") is None:
-            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet"}
+            out[key] = {"net": None, "label": "", "note": f"GW{gw} result not available yet", "compare": None}
             continue
         avg = f.get("avg")
         net = (f["points"] - avg) if avg else None
-        sgn = lambda n: f"{'+' if n >= 0 else '−'}{abs(n)}"
-        parts = [f"GW{gw}: {f['points']}" + (f" vs {avg} avg" if avg else "")]
-        if f.get("rank") and f.get("prev_rank"):
-            parts.append(f"rank {f['prev_rank']:,} → {f['rank']:,}")
-        if audit:
-            parts.append(f"15 players {audit['all15_new']} vs {audit['all15_old']} ({sgn(audit['all15_new'] - audit['all15_old'])})")
-            parts.append(f"best XI {audit['best_new']} vs {audit['best_old']} ({sgn(audit['best_new'] - audit['best_old'])})")
-        text = " · ".join(parts)
-        out[key] = {"net": net, "label": "vs avg", "note": text}
+        text = ""
+        out[key] = {"net": net, "label": "vs avg", "note": text, "compare": (audit or {}).get("compare")}
     return out
 
 
@@ -822,6 +815,27 @@ def _best_xi_hindsight(players):
                     continue
                 best = max(best, sum(by["GKP"][:1] + by["DEF"][:d] + by["MID"][:m] + by["FWD"][:f]))
     return best
+
+
+def _pair_squads(old, new):
+    """Rows for a player-for-player list: per position, players in BOTH squads side by side first, then the
+    rest paired off by points (highest with highest). Each side is {"name","pts"} or None."""
+    rows = []
+    for pos in ("GKP", "DEF", "MID", "FWD"):
+        o = sorted([p for p in old if p["pos"] == pos], key=lambda p: -p["pts"])
+        n = sorted([p for p in new if p["pos"] == pos], key=lambda p: -p["pts"])
+        new_names = {p["name"] for p in n}
+        kept = [p for p in o if p["name"] in new_names]
+        by_new = {p["name"]: p for p in n}
+        for p in kept:
+            rows.append({"pos": pos, "old": {"name": p["name"], "pts": p["pts"]}, "new": {"name": p["name"], "pts": by_new[p["name"]]["pts"]}, "kept": True})
+        kept_names = {p["name"] for p in kept}
+        ro = [p for p in o if p["name"] not in kept_names]
+        rn = [p for p in n if p["name"] not in kept_names]
+        for i in range(max(len(ro), len(rn))):
+            side = lambda lst: {"name": lst[i]["name"], "pts": lst[i]["pts"]} if i < len(lst) else None
+            rows.append({"pos": pos, "old": side(ro), "new": side(rn), "kept": False})
+    return rows
 
 
 def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", prior_label="reverted squad"):
@@ -929,6 +943,8 @@ def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", pr
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
         "all15_new": all15_new, "all15_old": all15_old, "best_new": best_new, "best_old": best_old,
+        "compare": {"rows": _pair_squads(old_sq, new_sq), "old_total": all15_old, "new_total": all15_new,
+                    "old_best": best_old, "new_best": best_new},
         "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label} (same XI, captain and auto-subs) — net {'+' if net >= 0 else ''}{net}.",
     }
 

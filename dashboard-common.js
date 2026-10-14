@@ -369,3 +369,12 @@ function aiChangesCard(A){
   const rows=ch.map(c=>`<li><span class="who">GW${c.gw} · ${esc(aiWhen(c.at))}</span><div class="detail">${icon[c.kind]||""} ${esc(c.text)}</div></li>`).join("");
   return `<div class="card"><h2>AI team · daily check</h2><ul class="note-list"><li>Re-checks every refresh (at least twice a day) for new injuries, doubts, reported rotation, fixture congestion and minutes that are falling, and re-picks if it helps — until it locks 12h before the deadline</li><li>Last checked ${esc(aiWhen(A.last_check))}. After the lock it can't change anything, but still flags news on locked players</li></ul>${rows?`<ul class="chiplist">${rows}</ul>`:`<p class="note">No changes to the plan yet.</p>`}</div>`;
 }
+
+// Chips tab: Free Hit / Wildcard player-for-player points, previous squad vs new squad (collapsed by default).
+function chipCompareFold(c){
+  if(!c||!(c.rows||[]).length) return "";
+  const cell=x=>x?`${esc(x.name)} <b>${x.pts}</b>`:"–";
+  const rows=c.rows.map(r=>`<tr class="${r.kept?"kept":""}"><td>${esc(r.pos)}</td><td>${cell(r.old)}</td><td>${cell(r.new)}</td></tr>`).join("");
+  const d=c.new_total-c.old_total, b=c.new_best-c.old_best;
+  return `<details class="fold"><summary><span class="foldsum">Player for player · ${c.old_total} vs ${c.new_total} (${sign(d)})</span></summary><table class="table-compact"><thead><tr><th style="width:16%">Pos</th><th style="width:42%">Before</th><th style="width:42%">After</th></tr></thead><tbody>${rows}<tr><td><b>All 15</b></td><td><b>${c.old_total}</b></td><td><b>${c.new_total}</b></td></tr><tr><td><b>Best XI</b></td><td><b>${c.old_best}</b></td><td><b>${c.new_best}</b></td></tr></tbody></table></details>`;
+}

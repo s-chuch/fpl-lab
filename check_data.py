@@ -48,7 +48,7 @@ def check(name, d):
         if not gw:
             continue
         have = net.get(chip) or ({"net": audit.get("net"), "note": audit.get("why")} if chip == "freehit" else None)
-        if not have or not have.get("note"):
+        if not have or not (have.get("note") or have.get("compare")):
             problems.append(f"{name}: chip '{chip}' was played in GW{gw} but has no result line")
         elif have.get("net") is None:
             problems.append(f"{name}: chip '{chip}' (GW{gw}) has no points result")

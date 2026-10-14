@@ -100,3 +100,5 @@ details.fold[open]>summary::after{content:"\2212"}
 details.fold>summary h2{margin:0}
 details.fold .foldsum{font-size:12px;color:var(--muted)}
 details.fold[open]>summary{margin-bottom:10px}
+
+.table-compact tr.kept td{color:var(--muted)}
