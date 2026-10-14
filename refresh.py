@@ -1677,7 +1677,7 @@ def update_pred_log(log, ds, boot, plan, ai):
     ids = {}
     for e in boot["elements"]:
         ids.setdefault(e["web_name"], []).append(e["id"])
-    if gw and not ds.get("deadline_passed"):
+    if gw:     # next_gw is by definition a gameweek whose deadline has not passed
         entry = {"gw": gw, "graded": False}
         xi = ((plan or {}).get("xis") or {}).get(f"gw{gw}", {}).get("xi") or []
         cap = next((bare(x) for x in xi if x.endswith(" (C)")), None)

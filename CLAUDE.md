@@ -100,3 +100,6 @@
   passed and score blank (-2) / double (+2) gameweeks. Price radar projects a move only for a strong swing.
 - `data["pred_log"]` records each GW's Plan/AI captain and grades it against actual points after `data_checked`.
 - xG/xA track record baseline = attacking starters (MID/FWD, 60+ mins), `baseline_att`.
+- Plan tab opens with `thisGwCard` (captain/vice, like-for-like transfer, XI fitness flags, chip advice, AI lock time);
+  Captain tab opens with `predLogCard` (the `pred_log` scorecard). The Free Hit tab headline is the same
+  all-15 player-for-player figure as the Chips tab. Bench bars: You teal, Process yellow, Hindsight red.

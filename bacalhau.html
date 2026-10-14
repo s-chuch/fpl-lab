@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Bacalhau · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=495dd628">
+<link rel="stylesheet" href="dashboard.css?v=fe536401">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Bacalhau</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="xtab"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=b059c53b"></script>
+<script src="dashboard-common.js?v=14bd8601"></script>
 <script src="bacalhau-data.js?v=c2a41fb4"></script>
 <script src="news.js?v=2ab439f6"></script>
 <script src="bacalhau-wildcard.js?v=f210e1dd"></script>
@@ -65,7 +65,7 @@ function benchBlock(key,title,open){
   // particular Hindsight is pure outcome (unknowable in advance), so coloring
   // it "bad" would imply they should have hit an unhittable target.
   const theyKls=b.you>=b.process?"good":"bad";
-  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${theyKls==="good"?"pos":"neg"}">They ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar("They",b.you,max,theyKls)}${bar("Process",b.process,max)}${bar("Hindsight",b.hindsight,max)}<p class="note">Their bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></details>`;
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${theyKls==="good"?"pos":"neg"}">They ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar("They",b.you,max,"you")}${bar("Process",b.process,max,"proc")}${bar("Hindsight",b.hindsight,max,"hind")}<p class="note">Their bench</p><div class="xi">${yours}</div><p class="note">Should have benched</p><div class="xi">${should}</div></details>`;
 }
 const benchKeys=Object.keys(D.bench_audit||{}).sort((a,b)=>Number(String(b).replace(/\D/g,""))-Number(String(a).replace(/\D/g,"")));  // newest GW first
 document.getElementById("bench").innerHTML=(benchKeys.length?benchKeys.map((k,i)=>benchBlock(k,k.toUpperCase(),i===0)).join(""):`<div class="card"><h2>Bench audit</h2><p class="note">No finished GW bench audit yet.</p></div>`)+`<ul class="note-list"><li>Green They = matched or beat the process benchmark; red They = fell short of it</li><li>Process/Hindsight are reference lines, not verdicts</li><li>Chips: green = correct sit, red = process miss, yellow = variance</li></ul>`;
@@ -132,7 +132,7 @@ function renderPlan(){
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players Bacalhau doesn't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit their squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
   const W=window.FPL_WILDCARD_WATCH;
   const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">Bacalhau has Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad.</div>`:"";
-  document.getElementById("plan").innerHTML=`${wildcardNote}${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
+  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${wildcardNote}${transferCard}${newsCard("News + X vs Bacalhau",vs)}${benches}<div class="card"><h2>Fixtures</h2>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
 function renderWildcardWatch(){
@@ -461,6 +461,11 @@ function renderX(){
 // kept intact below for whenever ingest comes back; just add ["xtab","X"] and a <script src="x-posts.js"> tag (x-posts.js is no longer loaded: it is stale)
 // back into the Intel tab group and uncomment this call to restore it.
 // renderX();
+function fhHead(A){
+  const cn=(D.chip_net||{}).freehit;
+  if(cn&&cn.net!=null) return `<p class="note">Net <b class="${cls(cn.net)}">${sign(cn.net)}</b> · the Free Hit squad against the one before it, player for player, bench included, no captain multiplier (same as the Chips tab)</p>${cn.compare?chipCompareFold(cn.compare):""}<p class="note">Lineups as actually played, with captain and auto-subs:</p>`;
+  return `<p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b></p><p class="note">${esc(A.why||"")}</p>`;
+}
 function renderFh(){
   const used=(D.chips_official||{}).freehit;
   const A=D.fh_audit||null;
@@ -470,7 +475,7 @@ function renderFh(){
       const isCap=p.captain||p.mult>1;
       return `<div class="chip ${isCap?"ok":""}">${p.pos?esc(p.pos)+" · ":""}${esc(p.name)}${p.got!=null?" · "+p.got:""}${isCap?" (C)":""}</div>`;
     }).join("")||`<p class="note">No XI recorded.</p>`;
-    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2><p class="note">Net <b class="${cls(A.net)}">${sign(A.net)}</b> · Process ${esc(A.process||"?")}</p><p class="note">${esc(A.why||"")}</p><div class="compare2"><div><h3>Original · same XI, captain and auto-subs · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${xiChips(A.original_xi)}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${xiChips(A.fh_xi)}</div></div></div></div>`;
+    document.getElementById("fh").innerHTML=`<div class="warn">GW${A.gw||used||""} Free Hit is done.</div><div class="card"><h2>FH vs original</h2>${fhHead(A)}<div class="compare2"><div><h3>Original · same XI, captain and auto-subs · ${A.original_points??"?"} pts${A.original_cap?" · C "+esc(A.original_cap):""}</h3><div class="xi">${xiChips(A.original_xi)}</div></div><div><h3>Free Hit · played · ${A.fh_points??"?"} pts${A.fh_cap?" · C "+esc(A.fh_cap):""}</h3><div class="xi">${xiChips(A.fh_xi)}</div></div></div></div>`;
     return;
   }
   if(used!=null){

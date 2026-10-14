@@ -300,10 +300,46 @@ function captainBlock(key,title,open,D){
     `Hindsight: <b>${esc(b.best[0])}</b> (${b.best[1]} pts) was the top scorer in your XI`].map(x=>`<li>${x}</li>`).join("")+eff;
   return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${good?"pos":"neg"}">You ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${row("You",b.you,good?"good":"bad")}${row("Process",b.process)}${row("Hindsight",b.hindsight)}<ul class="why">${why}</ul><p class="note">Top scorers in your XI (C = captain, VC = vice, P = process pick)</p><div class="xi">${opts}</div></details>`;
 }
+// Prediction scorecard (refresh.py update_pred_log): what the program said its captain would be each gameweek,
+// and what that player actually scored once FPL had checked the data.
+function predLogCard(D){
+  const L=D.pred_log||{};
+  const rows=Object.values(L).sort((a,b)=>b.gw-a.gw);
+  if(!rows.length) return "";
+  const body=rows.map(e=>{
+    const done=e.graded;
+    const cell=(name,pts)=>name?`${esc(name)}${done&&pts!=null?` <b>${pts}</b>`:""}`:"–";
+    return `<tr><td>GW${e.gw}${done?"":` <span class="pill free">open</span>`}</td><td>${cell(e.plan_captain,e.plan_captain_points)}</td><td>${cell(e.ai_captain,e.ai_captain_points)}</td><td>${done?e.best_player_points:"–"}</td></tr>`;
+  }).join("");
+  const g=rows.filter(e=>e.graded&&e.plan_captain_points!=null);
+  const avg=g.length?(g.reduce((s,e)=>s+e.plan_captain_points,0)/g.length).toFixed(1):null;
+  const bestAvg=g.length?(g.reduce((s,e)=>s+e.best_player_points,0)/g.length).toFixed(1):null;
+  return `<div class="card"><h2>Captain scorecard</h2><ul class="note-list"><li>The captain the program picked before each deadline, and the raw points that player scored (before the armband multiple)</li><li>Best player = the top scorer in the whole league that week, for scale${avg?` · graded gameweeks: Plan captain averaged <b>${avg}</b> vs <b>${bestAvg}</b> for the best player`:" · no gameweek graded yet"}</li></ul><table class="table-compact"><thead><tr><th>GW</th><th>Plan captain</th><th>AI captain</th><th>Best player</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+// "This GW" card: the answer to "what do I do before the deadline" in one place, built from what the Plan,
+// Chips and AI team already know (one captain, like-for-like transfer advice, fitness flags, chips).
+function thisGwCard(D){
+  try{
+    const P=D.plan||{}, up=(P.upcoming||[]).filter(u=>!u.deadline_passed);
+    const u=up[0]; if(!u) return "";
+    const key="gw"+u.gw, xi=(((P.xis||{})[key]||{}).xi)||[];
+    const bare=n=>String(n).split(" (")[0];
+    const cap=xi.find(n=>/ \(C\)$/.test(n)), vice=xi.find(n=>/ \(VC\)$/.test(n));
+    const I=(window.planIntel&&window.planIntel(D))||{};
+    const transfer=(I.action&&!I.cleared)?`${esc(I.moveLine||"")} <span class="note">(${esc(I.ft!=null?I.ft+" FT":"")}${D.team&&D.team.bank!=null?" · bank £"+Number(D.team.bank).toFixed(1):""})</span>`:esc(((P.transfer||{}).action==="TRANSFER"&&(P.transfer||{}).move)?`${P.transfer.move.out} → ${P.transfer.move.inn}`:"Roll the free transfer");
+    const av=P.availability||{};
+    const flags=xi.map(bare).filter(n=>av[n]&&(av[n].kind==="out"||av[n].kind==="doubt")).map(n=>`<span class="pill used">${esc(n)} ${esc(av[n].label||av[n].kind)}</span>`).join(" ");
+    const chipRecs=(I.chipRows||[]).filter(c=>c.rec==="CONSIDER").map(c=>esc(c.label)+" (GW"+c.gw+")");
+    const ai=D.ai_team&&D.ai_team.plan;
+    const aiLine=ai?`AI team ${ai.locked?"locked its GW"+ai.gw+" plan":"locks its GW"+ai.gw+" plan "+esc(aiWhen(ai.lock_at))}`:"";
+    const when=u.deadline||(u.deadline_utc?toToronto(u.deadline_utc):"");
+    return `<div class="card"><h2>This gameweek · GW${u.gw}</h2><p class="note">Deadline ${esc(when)}</p><ul class="chiplist"><li><span class="who">Captain</span><span><b>${esc(cap?bare(cap):"–")}</b>${vice?` · vice ${esc(bare(vice))}`:""}</span></li><li><span class="who">Transfer</span><span>${transfer}</span></li><li><span class="who">XI fitness</span><span>${flags||"No injury or doubt flags in the XI"}</span></li><li><span class="who">Chips</span><span>${chipRecs.length?chipRecs.join(", "):"No chip play recommended"}</span></li>${aiLine?`<li><span class="who">AI team</span><span>${aiLine}</span></li>`:""}</ul></div>`;
+  }catch(e){ return ""; }
+}
 function renderCaptain(D){
   const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
-  document.getElementById("captain").innerHTML=(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
+  document.getElementById("captain").innerHTML=predLogCard(D)+(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
 }
 
 // AI team (ai_team.py): a squad the program picks and plays itself, from GW7, with your money and
