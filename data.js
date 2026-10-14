@@ -242,8 +242,8 @@ window.FPL_DATA = {
       }
     }
   },
-  "generated_at": "2026-10-14 20:38 UTC",
-  "generated_at_et": "2026-10-14 4:38 PM ET",
+  "generated_at": "2026-10-14 20:39 UTC",
+  "generated_at_et": "2026-10-14 4:39 PM ET",
   "timezone": "America/Toronto",
   "deadline": {
     "passed": true,
@@ -3780,12 +3780,12 @@ window.FPL_DATA = {
     "freehit": {
       "net": 21,
       "label": "vs field average",
-      "note": "GW4: 90 pts vs 69 field average. Overall rank 1,516,623 \u2192 820,064. Squad comparison (bench counted too, since you could have swapped them): all 15 players scored 94 vs 103 for your previous squad (-9); best XI with perfect swaps and Haaland as captain in both: 98 vs 104 (-6). An estimate - what you'd have done without the chip isn't known."
+      "note": "GW4: 90 pts vs 69 field average. Overall rank 1,516,623 \u2192 820,064. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 94 vs 103 for your previous squad (-9); best XI with perfect swaps 89 vs 95 (-6). An estimate - what you'd have done without the chip isn't known."
     },
     "wildcard": {
       "net": 8,
       "label": "vs field average",
-      "note": "GW6: 66 pts vs 58 field average. Overall rank 686,560 \u2192 775,958. 18 moves rebuilt the squad for free. Squad comparison (bench counted too, since you could have swapped them): all 15 players scored 65 vs 78 for your previous squad (-13); best XI with perfect swaps and Haaland as captain in both: 67 vs 80 (-13). An estimate - what you'd have done without the chip isn't known."
+      "note": "GW6: 66 pts vs 58 field average. Overall rank 686,560 \u2192 775,958. 18 moves rebuilt the squad for free. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 65 vs 78 for your previous squad (-13); best XI with perfect swaps 61 vs 74 (-13). An estimate - what you'd have done without the chip isn't known."
     }
   },
   "fh_audit": {
@@ -3917,9 +3917,8 @@ window.FPL_DATA = {
     ],
     "all15_new": 94,
     "all15_old": 103,
-    "best_new": 98,
-    "best_old": 104,
-    "shared_captain": "Haaland",
+    "best_new": 89,
+    "best_old": 95,
     "why": "FH scored 90 vs 102 for the reverted squad (same XI, captain and auto-subs) \u2014 net -12."
   },
   "strategy": {
@@ -14331,7 +14330,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:38:55.999236+00:00",
+      "computed_at": "2026-10-14T20:39:36.092954+00:00",
       "initial": false,
       "squad": [
         {
@@ -14656,11 +14655,11 @@ window.FPL_DATA = {
     "season_points": 417,
     "user_season": 417,
     "chips_available": [],
-    "last_check": "2026-10-14T20:38:55.999236+00:00",
-    "generated_at": "2026-10-14T20:38:55.999236+00:00"
+    "last_check": "2026-10-14T20:39:36.092954+00:00",
+    "generated_at": "2026-10-14T20:39:36.092954+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:38:56.063087+00:00",
+    "checked_at": "2026-10-14T20:39:36.171883+00:00",
     "previous_check": "2026-10-14T20:35:08.150815+00:00",
     "watching": 17,
     "changes": [],

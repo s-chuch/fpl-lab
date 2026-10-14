@@ -3794,7 +3794,7 @@ window.FPL_DATA = {
     "wildcard": {
       "net": 6,
       "label": "vs field average",
-      "note": "GW6: 64 pts vs 58 field average. Overall rank 1,187,975 \u2192 1,319,300. 8 moves rebuilt the squad for free. Squad comparison (bench counted too, since you could have swapped them): all 15 players scored 63 vs 54 for your previous squad (+9); best XI with perfect swaps and Haaland as captain in both: 65 vs 59 (+6). An estimate - what you'd have done without the chip isn't known."
+      "note": "GW6: 64 pts vs 58 field average. Overall rank 1,187,975 \u2192 1,319,300. 8 moves rebuilt the squad for free. Squad comparison, player for player (no captain multiplier; bench counted too, since you could have swapped them): all 15 players scored 63 vs 54 for your previous squad (+9); best XI with perfect swaps 59 vs 53 (+6). An estimate - what you'd have done without the chip isn't known."
     }
   },
   "fh_audit": null,
@@ -14236,7 +14236,7 @@ window.FPL_DATA = {
       "lock_at": "2026-10-16T22:00:00+00:00",
       "locked": false,
       "locked_at": null,
-      "computed_at": "2026-10-14T20:39:00.287984+00:00",
+      "computed_at": "2026-10-14T20:39:39.637458+00:00",
       "initial": false,
       "squad": [
         {
@@ -14558,11 +14558,11 @@ window.FPL_DATA = {
       "freehit",
       "bboost"
     ],
-    "last_check": "2026-10-14T20:39:00.287984+00:00",
-    "generated_at": "2026-10-14T20:39:00.287984+00:00"
+    "last_check": "2026-10-14T20:39:39.637458+00:00",
+    "generated_at": "2026-10-14T20:39:39.637458+00:00"
   },
   "daily_check": {
-    "checked_at": "2026-10-14T20:39:00.355131+00:00",
+    "checked_at": "2026-10-14T20:39:39.722957+00:00",
     "previous_check": "2026-10-14T20:35:12.814810+00:00",
     "watching": 16,
     "changes": [],
