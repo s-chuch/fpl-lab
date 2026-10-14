@@ -52,3 +52,14 @@
 - `fpl_common.get` reuses one keep-alive HTTPS connection per host per thread and does not retry
   4xx (e.g. the expected 404 for a GW that has not locked); fixtures come from one whole-season
   request (`_fixtures_for`); league members' picks are prefetched in parallel (`_prefetch_picks`).
+
+## Guarding against silent staleness
+
+- Every chip you have played must show a result on Review > Chips (`build_chip_net` in `refresh.py`:
+  Bench Boost = bench points, Triple Captain = captain's extra multiple, Free Hit and Wildcard =
+  `build_fh_audit` — the squad actually played vs the best XI of the squad you would have carried).
+  The card shows when the data was generated.
+- `check_data.py` runs as the **last** step of `refresh.yml` (after the data is committed, so the
+  refresh itself is never blocked): it fails the run — red + email — if a required section is missing,
+  a played chip has no result line, or the AI team's plan is not for the next open gameweek. Add a
+  check there whenever a new section could go quietly stale.

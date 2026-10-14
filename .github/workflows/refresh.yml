@@ -87,7 +87,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py
 
       - name: Pull live FPL data
         if: steps.gate.outputs.run != 'false'
@@ -149,3 +149,9 @@ jobs:
             echo "Push failed after 3 attempts"
             exit 1
           fi
+
+      # Last on purpose: the data above is already committed, so a failure here turns the run red
+      # (and emails you) without blocking the refresh.
+      - name: Sanity-check the generated data
+        if: steps.gate.outputs.run != 'false'
+        run: python check_data.py

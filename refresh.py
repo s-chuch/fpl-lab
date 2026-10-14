@@ -766,11 +766,23 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
     wc_gw = chips_used.get("wildcard")
     if wc_gw:
         moves = next((t for t in (transfers or []) if t.get("chip") == "wildcard"), None)
-        out["wildcard"] = {"net": None, "note": f"{moves['inn']} rebuilt the squad for free" if moves else "Squad rebuilt for free"}
+        built = f"{moves['inn']} rebuilt the squad for free" if moves else "Squad rebuilt for free"
+        audit = None
+        if boot and team_id:
+            try:
+                audit = build_fh_audit(boot, team_id, chips_used, "wildcard", "WC", "previous squad")
+            except Exception as e:
+                _warn(f"build_chip_net: Wildcard result unavailable: {e}")
+        if audit:
+            # Same yardstick as the Free Hit: the squad you actually played vs the best XI the squad
+            # you would have carried could have fielded in that gameweek (updates live until it ends).
+            out["wildcard"] = {"net": audit["net"], "note": f"{audit['why']} {built}."}
+        else:
+            out["wildcard"] = {"net": None, "note": f"{built}. Result not available yet — retried every refresh."}
     return out
 
 
-def build_fh_audit(boot, team_id, chips_used):
+def build_fh_audit(boot, team_id, chips_used, chip_key="freehit", label="FH", prior_label="reverted squad"):
     """Auto-compute the Free Hit process/outcome audit: the FH XI that was
     actually played vs. the best process-based XI from the squad you'd have
     had if you'd rolled instead (FPL guarantees the squad reverts exactly, so
@@ -778,7 +790,7 @@ def build_fh_audit(boot, team_id, chips_used):
     score_original_squad for why it's re-optimized rather than replayed
     as-started). Replaces the one-off hand-written fh.js, which only ever
     covers whichever GW someone last wrote it for."""
-    fh_gw = chips_used.get("freehit")
+    fh_gw = chips_used.get(chip_key)
     if not fh_gw:
         return None
     elements = {e["id"]: e for e in boot["elements"]}
@@ -872,7 +884,7 @@ def build_fh_audit(boot, team_id, chips_used):
         "fh_cap": fh_cap,
         "original_xi": orig_xi,
         "fh_xi": fh_xi,
-        "why": f"FH scored {fh_points} vs {orig_points} for the reverted squad's best process XI — net {'+' if net >= 0 else ''}{net}.",
+        "why": f"{label} scored {fh_points} vs {orig_points} for the {prior_label}'s best process XI — net {'+' if net >= 0 else ''}{net}.",
     }
 
 
