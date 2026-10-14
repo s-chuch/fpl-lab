@@ -139,6 +139,32 @@ def pick_lineup(players, gw_key):
     rest_of = [p["name"] for _s, p in sorted([(_s, p) for pos in ("DEF", "MID", "FWD") for _s, p in ranked[pos] if p["name"] not in started()], key=lambda x: x[0], reverse=True)]
     return picked[:11], (rest_gk + rest_of)[:4]
 
+def _lineup_by_xp(boot, gw, players, teams, inputs=None):
+    """The XI, bench order, captain and vice for a gameweek, all from the program's expected-points model
+    (ai_team.player_values with the same Understat / rotation / congestion inputs the AI team uses): the best legal XI
+    by this gameweek's expected points, so a blank or doubtful player drops out and the lineup, armband and AI team
+    all agree. Returns None if the model cannot run."""
+    try:
+        import ai_team
+        uwins, risk, _live = inputs or ({}, {}, None)
+        played = max(1, sum(1 for e in boot["events"] if e.get("finished")))
+        vals = ai_team.player_values(boot, fixture_scan(gw, teams), {}, played, uwins, risk)
+        ids = [p["id"] for p in players]
+        if len(ids) != 15 or any(i not in vals for i in ids):
+            return None
+        xi, bench = ai_team.pick_xi(ids, vals, "xp")
+        ranked = sorted(xi, key=lambda i: -vals[i]["xp"])
+        cap, vice = ranked[0], ranked[1]
+        name = {p["id"]: p["name"] for p in players}
+        tag = lambda i: name[i] + (" (C)" if i == cap else " (VC)" if i == vice else "")
+        order = {"GKP": 0, "DEF": 1, "MID": 2, "FWD": 3}
+        xi_sorted = sorted(xi, key=lambda i: (order[vals[i]["pos"]], -vals[i]["xp"]))
+        return [tag(i) for i in xi_sorted], [name[i] for i in bench]
+    except Exception as e:
+        _warn(f"build_plan: lineup by expected points unavailable: {e}")
+        return None
+
+
 def _armband_by_xp(boot, gw, xi, players, teams, inputs=None):
     """Captain and vice-captain = the two highest expected-points players in the XI for that gameweek, from the
     same model (ai_team.player_values, with the same Understat/risk inputs) the AI team and Wildcard watch use,
@@ -232,8 +258,10 @@ def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
     xis = {}
     for ev in upcoming:
         key = f"gw{ev['id']}"
-        xi, bn = pick_lineup(players, key)
-        xi = _armband_by_xp(boot, ev["id"], xi, players, teams, inputs)
+        xi, bn = _lineup_by_xp(boot, ev["id"], players, teams, inputs) or (None, None)
+        if xi is None:                       # model unavailable: the older fixture/form heuristic
+            xi, bn = pick_lineup(players, key)
+            xi = _armband_by_xp(boot, ev["id"], xi, players, teams, inputs)
         xis[key] = {"xi": xi, "bench": bn}
     for i, ev in enumerate(upcoming):
         started = {bare(n) for n in xis[f"gw{ev['id']}"]["xi"]}
@@ -300,7 +328,12 @@ def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
     # Intel targets the next GW whose deadline has not passed (not stale locked GW themes)
     ds = deadline_state(boot, now)
     intel_gw = ds["intel_gw"]
-    # Clear signal for UI: after GW N deadline, do not treat GW N news/X as current Plan advice
+    # Intel is clear once the news themes are for the gameweek we are planning (or later)
+    try:
+        _news_gw = fpl_common.load_js_object(ROOT / "news.js").get("gw")
+    except Exception:
+        _news_gw = None
+    intel_clear = bool(intel_gw and _news_gw is not None and int(_news_gw) >= int(intel_gw))
     return {
         "note": note,
         "last_finished": (last_fin or {}).get("id"),
@@ -316,10 +349,10 @@ def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
         "next_gw": ds["next_gw"],
         "intel_gw": intel_gw,
         # UI clears Plan themes when news/x gw < intel_gw (locked-GW consensus is stale)
-        "intel_clear": False,
+        "intel_clear": intel_clear,
         "intel_note": (
             f"Waiting for GW{intel_gw} intel — GW{ds['locked_gw']} deadline has passed."
-            if ds["deadline_passed"] and ds["locked_gw"] and intel_gw
+            if (not intel_clear) and ds["deadline_passed"] and ds["locked_gw"] and intel_gw
             else None
         ),
     }
@@ -1318,17 +1351,8 @@ def main(team_id=TEAM_ID, out_path=None):
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = section("xg_signal", build_xg_signal, boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map, fallback={})
     data["volume_log"] = section("volume_log", lambda: update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), (data.get("xg_signal") or {}).get("imminent"), ds, boot), fallback={})
-    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs)
-    data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
-    data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, fallback={})
     data["defcon"] = section("defcon", build_defcon, boot, team_id, plan.get("squad_from_gw"), exclude=owned, fallback={})
     data["rotation_risk"] = section("rotation_risk", build_rotation_risk, boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"), fallback={})
-    try:
-        _pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{plan.get('squad_from_gw')}/picks/") if plan.get("squad_from_gw") else {}
-        data["daily_check"] = build_daily_check(data.get("daily_check"), boot, [p["element"] for p in _pk.get("picks", [])],
-                                                (data.get("ai_team") or {}).get("plan"), data.get("rotation_risk"), datetime.now(timezone.utc))
-    except Exception as e:
-        _warn(f"daily_check failed: {e}")
     data["team_recovery"] = team_recovery
     # name -> position for every player (None where two players share a name in different positions): lets the
     # Plan tab's transfer advice only ever swap like for like
@@ -1400,8 +1424,9 @@ def main(team_id=TEAM_ID, out_path=None):
     _elite = data["elite"] or {}
     for _h in ((data["targets"].get("horizons") or {}).values()):
         for _r in _h.get("top") or []:
-            if _elite.get("n") and _r.get("id") is not None:
-                _r["elite_pct"] = round(100 * (_elite["own"].get(str(_r["id"])) or _elite["own"].get(_r["id"]) or 0) / _elite["n"])
+            _eid = _r.get("id") if _r.get("id") is not None else _by_key.get((_r.get("name"), _r.get("club")))
+            if _elite.get("n") and _eid is not None:
+                _r["elite_pct"] = round(100 * (_elite["own"].get(str(_eid)) or _elite["own"].get(_eid) or 0) / _elite["n"])
 
     watch_filename = "bacalhau-wildcard.js" if "bacalhau" in data_file.name else "shaaland-wildcard.js"
     watch = fpl_common.load_js_object(ROOT / watch_filename)
@@ -1410,6 +1435,41 @@ def main(team_id=TEAM_ID, out_path=None):
     data["price_radar"] = section("price_radar", build_price_radar, boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned, fallback={"squad": [], "rising": [], "falling": [], "watch": []})
     trend_rows = (data["price_radar"].get("squad") or []) + (data["price_radar"].get("watch") or [])
     data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
+    # --- everything below needs every signal above: news, elite ownership, price momentum, set pieces, rivals ---
+    _mode = "chase"
+    _rank = tac.get("you_rank")
+    if _rank == 1 or (tac.get("gap_to_first") is not None and tac.get("gap_to_first") <= 0):
+        _mode = "defend"
+    elif _rank is not None and _rank > 3:
+        _mode = "climb"
+    _lc = counts_by_league.get(125784) or {}
+    signals = section("transfer_signals", build_transfer_signals, boot, fpl_common.load_js_object(ROOT / "news.js"), data.get("elite"),
+                      {"counts": _lc.get("counts") or {}, "n": _lc.get("n"), "mode": _mode}, data.get("set_pieces"), fallback={}) or {}
+    data["transfer_signals"] = {"mode": _mode, "players": len(signals)}
+    try:
+        enrich_with_model(data, boot, ds, teams_by_id, inputs, signals)
+    except Exception as e:
+        _warn(f"enrich_with_model failed: {e}")
+    data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs, signals)
+    data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
+    data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, signals, fallback={})
+    _pl = data.get("planner") or {}
+    if _pl.get("steps") and plan.get("transfer") is not None:
+        # the Plan tab's transfer line is the model plan (all data the program has), not a separate rule
+        _first = _pl["steps"][0]
+        _mv = (_first.get("moves") or [])
+        _follow = _pl.get("recommend") == "follow" and bool(_mv)
+        _why = (f"Model plan for GW{_pl['gws'][0]}-{_pl['gws'][-1]}: " + ", ".join(f"{m['out']} -> {m['in']}" for m in _mv)
+                + f" (+{_pl.get('gain')} expected points over rolling, of which {_pl.get('gain_extra')} from news, price, ownership and rivals)") if _follow else \
+               f"Rolling is as good as any plan (best found {_pl.get('gain'):+} over rolling). Keep the free transfer."
+        plan["transfer"].update({"action": "TRANSFER" if _follow else "ROLL", "reason": _why, "source": "planner",
+                                 "move": ({"out": _mv[0]["out"], "inn": _mv[0]["in"]} if _follow else None)})
+    try:
+        _pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{plan.get('squad_from_gw')}/picks/") if plan.get("squad_from_gw") else {}
+        data["daily_check"] = build_daily_check(data.get("daily_check"), boot, [p["element"] for p in _pk.get("picks", [])],
+                                                (data.get("ai_team") or {}).get("plan"), data.get("rotation_risk"), datetime.now(timezone.utc))
+    except Exception as e:
+        _warn(f"daily_check failed: {e}")
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

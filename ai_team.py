@@ -308,12 +308,14 @@ def build_squad(vals, budget):
     return squad
 
 
-def plan_transfers(squad, buys, bank, ft, vals):
+def plan_transfers(squad, buys, bank, ft, vals, signals=None):
     """Best set of swaps from the current squad: free transfers must add MIN_FREE_GAIN each, hits
     must add MIN_HIT_GAIN each. Prices: sell at FPL sell value, buy at today's price."""
     squad = list(squad)
     moves, bank_now = [], bank
     hits = 0
+    signals = signals or {}      # {id: {"adj", "reasons"}}: news, elite ownership, price momentum, set pieces (see ai_run)
+    adj = lambda i: (signals.get(i) or {}).get("adj_ai", 0.0)
     for n in range(ft + MAX_HITS):
         cur = squad_score(squad, vals)
         top = (0.0, None, None, 0.0)
@@ -322,11 +324,11 @@ def plan_transfers(squad, buys, bank, ft, vals):
             for v in vals.values():
                 if v["pos"] != vals[out]["pos"] or v["id"] in squad or v["avail"] <= 0:
                     continue
-                if v["value"] <= vals[out]["value"] or v["cost"] > bank_now + sell + 1e-9:
+                if v["value"] + adj(v["id"]) <= vals[out]["value"] + adj(out) or v["cost"] > bank_now + sell + 1e-9:
                     continue
                 if not _club_ok(squad, vals, v["id"], out):
                     continue
-                gain = squad_score([v["id"] if i == out else i for i in squad], vals) - cur
+                gain = squad_score([v["id"] if i == out else i for i in squad], vals) - cur + adj(v["id"]) - adj(out)
                 if gain > top[0]:
                     top = (gain, out, v["id"], sell)
         need = MIN_FREE_GAIN if n < ft else MIN_HIT_GAIN
@@ -334,7 +336,9 @@ def plan_transfers(squad, buys, bank, ft, vals):
             break
         gain, out, inn, sell = top
         moves.append({"out": out, "in": inn, "gain": round(gain, 2), "hit": n >= ft, "sell": sell,
-                      "bought_at": buys.get(out, vals[out]["cost"]), "cost_in": vals[inn]["cost"]})
+                      "bought_at": buys.get(out, vals[out]["cost"]), "cost_in": vals[inn]["cost"],
+                      "adj": round(adj(inn) - adj(out), 2), "reasons_in": (signals.get(inn) or {}).get("reasons", []),
+                      "reasons_out": (signals.get(out) or {}).get("reasons", [])})
         bank_now = round((tenths(bank_now) + tenths(sell) - tenths(vals[inn]["cost"])) / 10, 1)
         buys = dict(buys); buys[inn] = vals[inn]["cost"]
         squad = [inn if i == out else i for i in squad]
@@ -354,7 +358,7 @@ def _why(v, uwin, role):
     return " · ".join(bits)
 
 
-def make_plan(gw, deadline, vals, state, uwins, now):
+def make_plan(gw, deadline, vals, state, uwins, now, signals=None):
     """Compute (not lock) the plan for `gw` from the carried squad (or build the initial one)."""
     initial = not state.get("squad")
     plan = {"gw": gw, "deadline": deadline.isoformat(), "lock_at": (deadline - timedelta(hours=LOCK_HOURS)).isoformat(),
@@ -367,7 +371,7 @@ def make_plan(gw, deadline, vals, state, uwins, now):
     else:
         ft_before = state["ft"]
         buys = {int(k): v for k, v in state["buys"].items()}
-        squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals)
+        squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals, signals)
     xi, bench = pick_xi(squad, vals, "xp")          # the lineup played is chosen on this gameweek's expected points
     ranked = sorted(xi, key=lambda i: -vals[i]["xp"])
     captain = ranked[0]
@@ -379,7 +383,8 @@ def make_plan(gw, deadline, vals, state, uwins, now):
                    "buy": buys.get(i, vals[i]["cost"]), "why": _why(vals[i], (uwins or {}).get(i), "")} for i in xi + bench],
         "xi": xi, "bench": bench, "captain": captain, "vice": vice, "formation": formation(xi, vals),
         "transfers": [{"out": vals[m["out"]]["name"], "out_id": m["out"], "in": vals[m["in"]]["name"], "in_id": m["in"],
-                       "gain": m["gain"], "hit": m["hit"], "sell": m["sell"], "bought_at": m["bought_at"], "cost_in": m["cost_in"]} for m in moves],
+                       "gain": m["gain"], "hit": m["hit"], "sell": m["sell"], "bought_at": m["bought_at"], "cost_in": m["cost_in"],
+                       "adj": m.get("adj", 0), "reasons_in": m.get("reasons_in", []), "reasons_out": m.get("reasons_out", [])} for m in moves],
         "hits": hits, "hit_cost": hits * HIT_COST, "ft_before": ft_before, "ft_after": ft_after, "bank": bank,
         "squad_cost": round(sum(vals[i]["cost"] for i in squad), 1),
         # what the squad would sell for today (FPL profit-share rule) - the money that really counts
@@ -534,7 +539,7 @@ def update(state, ctx):
         vals = player_values(boot, fix1, fix2, gws_played, ctx.get("uwins"), ctx.get("risk"))
         if not (plan and plan["locked"]):
             prev = plan
-            plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now)
+            plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"))
             if now >= lock_at:
                 plan["locked"], plan["locked_at"] = True, now.isoformat()
             state["plan"] = plan

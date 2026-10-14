@@ -35,7 +35,7 @@ def _future(ids, V, k):
     return sum(squad_gw_score(ids, V[j]) for j in range(k, len(V)))
 
 
-def _swaps(state, V, k, cands):
+def _swaps(state, V, k, cands, adj):
     """Best single swaps for this state at gameweek k, ranked by the squad's value from k onwards."""
     squad, bank, buys = state["squad"], state["bank"], state["buys"]
     base = _future(squad, V, k)
@@ -52,9 +52,10 @@ def _swaps(state, V, k, cands):
             new = [inn if i == out else i for i in squad]
             if not _club_ok(new, vals0):
                 continue
-            gain = _future(new, V, k) - base
+            extra = adj.get(inn, 0.0) - adj.get(out, 0.0)      # what the model does not contain (news, price, rivals ...)
+            gain = _future(new, V, k) - base + extra
             if gain > 0.05:
-                res.append((gain, out, inn, sell, cost))
+                res.append((gain, out, inn, sell, cost, extra))
     res.sort(key=lambda r: -r[0])
     return res[:SWAPS_PER_STATE]
 
@@ -67,10 +68,11 @@ def _apply(state, out, inn, sell, cost, V, k):
     return {**state, "squad": squad, "bank": state["bank"] + sell - cost, "buys": buys}
 
 
-def plan_path(squad, buys, bank, ft, V, beam=BEAM):
+def plan_path(squad, buys, bank, ft, V, beam=BEAM, adj=None):
     """V: [vals for gameweek 0, 1, ...] (each {id: player values with 'xp'}). Returns the best path and the
     do-nothing baseline. bank is in tenths of a million."""
     H = len(V)
+    adj = adj or {}
     start = {"squad": list(squad), "bank": bank, "buys": dict(buys), "ft": ft, "banked": 0.0, "steps": []}
     cands_for = {}
     states = [start]
@@ -80,23 +82,23 @@ def plan_path(squad, buys, bank, ft, V, beam=BEAM):
             cands = {}
             for pos in ("GKP", "DEF", "MID", "FWD"):
                 ids = [i for i in V[k] if V[k][i]["pos"] == pos and V[k][i]["avail"] > 0.5]
-                cands[pos] = sorted(ids, key=lambda i: -horizon_sum[i])[:CANDIDATES_PER_POS]
+                cands[pos] = sorted(ids, key=lambda i: -(horizon_sum[i] + adj.get(i, 0.0)))[:CANDIDATES_PER_POS]
             cands_for[k] = cands
         nxt = []
         for st in states:
             options = [(st, [], 0)]
-            swaps = _swaps(st, V, k, cands_for[k])
-            for gain, out, inn, sell, cost in swaps:
+            swaps = _swaps(st, V, k, cands_for[k], adj)
+            for gain, out, inn, sell, cost, ex1 in swaps:
                 s1 = _apply(st, out, inn, sell, cost, V, k)
-                mv1 = {"out": out, "in": inn, "sell": sell / 10, "cost": cost / 10}
+                mv1 = {"out": out, "in": inn, "sell": sell / 10, "cost": cost / 10, "adj": round(ex1, 2)}
                 options.append((s1, [mv1], 1))
                 # a second move on top of the first
-                for g2, o2, i2, sl2, c2 in _swaps(s1, V, k, cands_for[k])[:1]:
+                for g2, o2, i2, sl2, c2, ex2 in _swaps(s1, V, k, cands_for[k], adj)[:1]:
                     s2 = _apply(s1, o2, i2, sl2, c2, V, k)
-                    options.append((s2, [mv1, {"out": o2, "in": i2, "sell": sl2 / 10, "cost": c2 / 10}], 2))
+                    options.append((s2, [mv1, {"out": o2, "in": i2, "sell": sl2 / 10, "cost": c2 / 10, "adj": round(ex2, 2)}], 2))
             for s, moves, n in options:
                 hits = max(0, n - st["ft"])
-                score_now = squad_gw_score(s["squad"], V[k]) - HIT_COST * hits
+                score_now = squad_gw_score(s["squad"], V[k]) - HIT_COST * hits + sum(m["adj"] for m in moves)
                 ft_left = max(0, st["ft"] - n)
                 new = {**s, "ft": min(5, ft_left + 1), "banked": st["banked"] + score_now,
                        "steps": st["steps"] + [{"k": k, "moves": moves, "hits": hits, "ft_before": st["ft"],
@@ -123,7 +125,7 @@ def plan_path(squad, buys, bank, ft, V, beam=BEAM):
     return best, base_total
 
 
-def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5):
+def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5, signals=None):
     """Plan the next `horizon` open gameweeks for the user's squad. `clone` is refresh's snapshot of the locked
     squad ({"squad", "buys", "bank", "ft", ...}); `fix_scan(gw)` gives every fixture per team."""
     if not clone:
@@ -147,10 +149,14 @@ def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5):
         V.append(vals)
     squad = [int(i) for i in clone["squad"]]
     buys = {int(k): float(v) for k, v in clone["buys"].items()}
-    best, base_total = plan_path(squad, buys, tenths(clone["bank"]), int(clone["ft"]), V)
+    signals = signals or {}
+    adj = {i: s["adj"] for i, s in signals.items()}
+    best, base_total = plan_path(squad, buys, tenths(clone["bank"]), int(clone["ft"]), V, adj=adj)
     names = V[0]
+    H = len(V)
     total = best["banked"]
     gain = total - base_total
+    total_adj = sum(m.get("adj", 0) for st in best["steps"] for m in st["moves"])
     steps = []
     for st in best["steps"]:
         xi, bench = pick_xi(st["squad"], V[st["k"]], "xp")
@@ -158,7 +164,11 @@ def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5):
         steps.append({"gw": gws[st["k"]], "xp": st["xp"], "hits": st["hits"], "ft_before": st["ft_before"], "ft_after": st["ft_after"],
                       "bank": round(st["bank"], 1), "captain": names[cap]["name"],
                       "moves": [{"out": names[m["out"]]["name"], "in": names[m["in"]]["name"], "out_club": names[m["out"]]["club"],
-                                 "in_club": names[m["in"]]["club"], "pos": names[m["in"]]["pos"], "sell": m["sell"], "cost": m["cost"]} for m in st["moves"]]})
+                                 "in_club": names[m["in"]]["club"], "pos": names[m["in"]]["pos"], "sell": m["sell"], "cost": m["cost"],
+                                 "adj": m.get("adj", 0), "xp_in": [round(V[j][m["in"]]["xp"], 1) for j in range(st["k"], H)],
+                                 "xp_out": [round(V[j][m["out"]]["xp"], 1) for j in range(st["k"], H)],
+                                 "fix_in": V[st["k"]][m["in"]]["fixture"], "fix_out": V[st["k"]][m["out"]]["fixture"],
+                                 "reasons_in": (signals.get(m["in"]) or {}).get("reasons", []), "reasons_out": (signals.get(m["out"]) or {}).get("reasons", [])} for m in st["moves"]]})
     follow = gain >= MIN_PLAN_GAIN
     if not follow:
         # not worth chasing noise: present rolling every week as the plan
@@ -169,7 +179,7 @@ def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5):
             steps.append({"gw": g, "xp": round(squad_gw_score(squad, V[k]), 1), "hits": 0, "ft_before": ft_run,
                           "ft_after": min(5, ft_run + 1), "bank": float(clone["bank"]), "captain": names[cap]["name"], "moves": []})
             ft_run = min(5, ft_run + 1)
-    return {"gws": gws, "steps": steps, "plan_xp": round(total if follow else base_total, 1), "roll_xp": round(base_total, 1),
-            "gain": round(gain, 1), "recommend": "follow" if follow else "roll",
+    return {"xp0": {names[i]["name"]: round(names[i]["xp"], 2) for i in squad}, "gws": gws, "steps": steps, "plan_xp": round(total if follow else base_total, 1), "roll_xp": round(base_total, 1),
+            "gain": round(gain, 1), "gain_model": round(gain - total_adj, 1), "gain_extra": round(total_adj, 1), "recommend": "follow" if follow else "roll",
             "first": steps[0] if steps else None, "ft": int(clone["ft"]), "bank": float(clone["bank"]),
             "note": "Expected points from the program's own model, summed over the horizon with hits (-4) included. Chips are not planned. Treat gains under about 1 point as noise."}

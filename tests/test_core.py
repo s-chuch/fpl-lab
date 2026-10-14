@@ -228,5 +228,46 @@ class NewsLlm(unittest.TestCase):
         self.assertEqual(news_llm.summarise(self.ITEMS, [], {}, key="k", caller=boom), {})
 
 
+class TransferSignals(unittest.TestCase):
+    BOOT = {"total_players": 1000000, "teams": [{"id": 1, "short_name": "AAA"}],
+            "elements": [{"id": 1, "web_name": "Buy", "team": 1, "selected_by_percent": "10", "transfers_in_event": 60000, "transfers_out_event": 0},
+                         {"id": 2, "web_name": "Sell", "team": 1, "selected_by_percent": "10", "transfers_in_event": 0, "transfers_out_event": 60000}]}
+
+    def test_signals_combine_and_are_capped(self):
+        import ai_run
+        news = {"agreed": [{"id": 1, "sources": ["a", "b", "c"], "llm": {"verdict": "buy", "confidence": "high"}},
+                           {"id": 2, "sources": ["a", "b", "c"], "verdict": "Leaning sell / avoid"}], "split": []}
+        elite = {"n": 50, "own": {1: 40, 2: 1}}
+        league = {"counts": {1: 1, 2: 12}, "n": 13, "mode": "chase"}
+        sig = ai_run.build_transfer_signals(self.BOOT, news, elite, league, {"rows": []})
+        self.assertGreater(sig[1]["adj"], 0.8)                 # news buy + top-50 + rising price + differential
+        self.assertLess(sig[2]["adj"], 0)                      # sell verdict + falling price
+        self.assertLessEqual(sig[1]["adj"], ai_run.ADJ_CAP)
+        self.assertTrue(any("News" in r for r in sig[1]["reasons"]))
+        self.assertEqual(sig[1]["adj"], ai_run.ADJ_CAP)         # 1.45 uncapped
+        self.assertEqual(sig[1]["adj_ai"], round(sum(v for k, v in sig[1]["parts"].items() if k != "league"), 2))   # the AI ignores your rivals
+
+    def test_defending_a_lead_prefers_the_template(self):
+        import ai_run
+        league = {"counts": {1: 12, 2: 0}, "n": 13, "mode": "defend"}
+        sig = ai_run.build_transfer_signals(self.BOOT, None, None, league, None)
+        self.assertGreater(sig[1]["parts"]["league"], 0)
+        self.assertLess(sig[2]["parts"]["league"], 0)
+
+
+class PlannerSignals(unittest.TestCase):
+    def test_a_signal_can_tip_an_otherwise_equal_swap(self):
+        import planner
+        base = Planner()
+        V = [base.vals(4.0) for _ in range(3)]          # the "upgrade" is 4.0 xP, the weak starter is 1.0
+        ids = [p["id"] for p in squad()]
+        buys = {i: 5.0 for i in ids}
+        for k in range(3):
+            V[k][7] = {**V[k][8], "id": 7, "name": "Other", "team": 77}      # a second identical candidate, not in the squad
+        V[0][8]["xp"] = V[1][8]["xp"] = V[2][8]["xp"] = 1.0
+        best, _ = planner.plan_path(ids, buys, 0, 1, V, adj={99: 0.5})
+        self.assertIn(99, best["steps"][0]["squad"])        # the signalled player wins the tie
+
+
 if __name__ == "__main__":
     unittest.main()

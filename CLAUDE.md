@@ -137,3 +137,10 @@
   risks / confidence as `llm` on the theme (unchanged excerpts are not re-sent). It only runs when the `ANTHROPIC_API_KEY` repo secret
   exists (the workflow passes it to the "Pull live FPL data" step); without it, or on any error, the rule-based verdicts stay.
   Article text is treated as untrusted in the prompt and the output is bounded before it is stored.
+- **One transfer brain.** Every transfer suggestion uses all the data the program has. `ai_run.build_transfer_signals` turns news verdicts
+  (Claude's read when present), top-50 ownership, price momentum, set-piece duties and your mini-league position (defend a lead with the
+  template, chase with differentials; AI team ignores this one) into small capped bonuses in expected points (`ADJ_CAP` 1.2, reasons
+  listed). They feed `ai_team.plan_transfers` (AI team) and `planner.py` (Plan tab planner); the Plan tab's transfer line is the
+  planner's first step (`plan["transfer"].source = "planner"`), the news-rule idea survives only as an advisory line with its xP cost, and
+  the Plan XI/bench/captain come from `refresh._lineup_by_xp`. Target 1/3/6 and the transfer-target tables carry `xp` and `sig`
+  (`ai_run.enrich_with_model`). In `main()` everything that needs these signals (AI team, pred_log, planner, daily check) runs last.

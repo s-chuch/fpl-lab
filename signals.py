@@ -830,7 +830,7 @@ def build_elite_ownership(boot, gw, top_n=50):
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     keep = sorted(own, key=lambda i: -own[i])[:60]
     return {"gw": gw, "n": len(got), "label": f"top {len(got)} of the overall table",
-            "own": {i: own[i] for i in keep}, "cap": cap,
+            "own": dict(own), "cap": cap,
             "names": {i: [els[i]["web_name"], teams[els[i]["team"]], POS[els[i]["element_type"]]] for i in set(keep) | set(cap) if i in els}}
 
 

@@ -110,7 +110,7 @@ def model_inputs(boot, team_recovery=None):
         _warn(f"model_inputs: reported rotation unavailable: {e}")
     return uwins, risk, live
 
-def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None, inputs=None):
+def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery=None, hist=None, inputs=None, signals=None):
     """Advance the AI team (ai_team.py) one refresh. It gets the same money (your squad's sell
     value + bank) and the same chip availability as you, and Understat chance volume as an extra
     signal when reachable. Never lets a failure here break the rest of the refresh."""
@@ -127,14 +127,14 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
                 scan_cache[gw] = fixture_scan(gw, teams_by_id)
             return scan_cache[gw]
         ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
-               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins}
+               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins, "signals": signals}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")
         return data.get("ai_team")
 
 
-def run_planner(boot, team_id, ds, hist, chips_used, team, teams_by_id, inputs):
+def run_planner(boot, team_id, ds, hist, chips_used, team, teams_by_id, inputs, signals=None):
     """Multi-gameweek transfer plan for your locked squad (planner.py), on the same model inputs as the AI team."""
     import planner
     clone = _clone_user_team(boot, team_id, ds, hist, chips_used, team)
@@ -144,7 +144,7 @@ def run_planner(boot, team_id, ds, hist, chips_used, team, teams_by_id, inputs):
         if gw not in cache:
             cache[gw] = fixture_scan(gw, teams_by_id)
         return cache[gw]
-    return planner.build_planner(boot, clone, ds, fix_scan, uwins, risk)
+    return planner.build_planner(boot, clone, ds, fix_scan, uwins, risk, signals=signals)
 
 
 def build_news_players(boot, ds, teams_by_id, inputs, news, they_share=(), mine=()):
@@ -172,3 +172,130 @@ def build_news_players(boot, ds, teams_by_id, inputs, news, they_share=(), mine=
                          "fixture": v["fixture"], "status": v["status"], "chance": int(v["avail"] * 100), "news": v["news"],
                          "yours": eid in mine, "top2": v["name"] in set(they_share)}
     return out
+
+
+# --- everything the program knows, folded into transfer decisions ---------------------------------------------
+# The expected-points model (xG/xA, minutes, fixtures, rotation, congestion, availability, DEFCON, Understat) already
+# does the heavy lifting. These are the signals it does not contain. Each is a small, capped bonus in expected points,
+# applied to the player being bought and (with the sign reversed) to the one being sold. They are judgement priors, not
+# fitted values: every one is listed as a reason beside the move so you can see what tipped it.
+ADJ_CAP = 1.2
+NEWS_W = {"buy": 0.35, "captain": 0.30, "keep": 0.10, "monitor": 0.0, "mixed": 0.0, "sell": -0.35, "avoid": -0.35, "doubt": -0.25}
+RULE_VERDICT = {"Leaning buy": "buy", "Captain candidate": "captain", "Leaning sell / avoid": "sell", "Leaning keep / hold": "keep",
+                "Fitness or rotation doubts": "doubt"}
+
+
+def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=None):
+    """{player id: {"adj": total, "adj_ai": total without the rivals component, "reasons": [...], "parts": {...}}}.
+    news: news.js themes (with ids); elite: data["elite"]; league: {"counts": {id: n}, "n": members, "mode": defend|chase|climb};
+    set_pieces: data["set_pieces"]."""
+    sig = {}
+    def put(eid, part, pts, reason):
+        s = sig.setdefault(int(eid), {"parts": {}, "reasons": []})
+        s["parts"][part] = round(pts, 2)
+        s["reasons"].append(reason)
+    # 1. what the articles recommend (Claude's read when present, else the rule-based verdict)
+    for it in (news or {}).get("agreed", []) + (news or {}).get("split", []):
+        if it.get("id") is None:
+            continue
+        llm = it.get("llm") or {}
+        verdict = llm.get("verdict") or RULE_VERDICT.get(str(it.get("verdict", "")).split(" (")[0], ("mixed" if str(it.get("verdict", "")).startswith("Mixed") else None))
+        if verdict == "no_view":
+            verdict = None
+        w = NEWS_W.get(verdict)
+        if not w:
+            continue
+        sites = len(it.get("sources") or [])
+        conf = {"high": 1.0, "medium": 0.8, "low": 0.5}.get(llm.get("confidence"), 0.7)
+        scale = (1.0 if sites >= 3 else 0.6) * conf
+        label = ("Claude: " if llm else "") + verdict
+        put(it["id"], "news", w * scale, f"News ({sites} sites): {label}")
+    # 2. what the best managers hold
+    if (elite or {}).get("n"):
+        for eid, c in (elite.get("own") or {}).items():
+            pct = 100 * c / elite["n"]
+            if pct >= 10:
+                put(eid, "elite", 0.4 * min(1.0, pct / 50), f"Top-{elite['n']} own {round(pct)}%")
+    # 3. price momentum: buy before a rise, sell before a fall
+    total = boot.get("total_players") or 0
+    for el in boot["elements"]:
+        net = int(el.get("transfers_in_event") or 0) - int(el.get("transfers_out_event") or 0)
+        owners = float(el.get("selected_by_percent") or 0) / 100 * total
+        mom = net / owners * 100 if owners >= 1 else 0
+        if abs(mom) >= 5 and abs(net) >= 5000:
+            put(el["id"], "price", 0.3 if net > 0 else -0.3, f"Price {'rising' if net > 0 else 'falling'} ({net:+,} net transfers)")
+    # 4. set-piece duties
+    by_name = {}
+    for el in boot["elements"]:
+        by_name.setdefault((el["web_name"], el["team"]), el["id"])
+    teams = {t["short_name"]: t["id"] for t in boot["teams"]}
+    for row in (set_pieces or {}).get("rows", []):
+        tid = teams.get(row["club"])
+        for p in row.get("pens", []):
+            eid = by_name.get((p["name"], tid))
+            if eid:
+                put(eid, "setpiece", 0.25, "Takes penalties")
+        for kind, lbl in (("fks", "free kicks"), ("corners", "corners")):
+            for p in row.get(kind, []):
+                eid = by_name.get((p["name"], tid))
+                if eid and "setpiece" not in sig.get(eid, {}).get("parts", {}):
+                    put(eid, "setpiece", 0.1, f"Takes {lbl}")
+    # 5. your rivals (you only): defend a lead with the template, chase with differentials
+    if league and league.get("n"):
+        n, mode = league["n"], league.get("mode")
+        for el in boot["elements"]:
+            c = (league.get("counts") or {}).get(el["id"], 0)
+            share = c / n
+            if mode == "defend":
+                if share >= 0.4:
+                    put(el["id"], "league", 0.3, f"{c}/{n} rivals own him (covers a lead)")
+                elif share <= 0.1:
+                    put(el["id"], "league", -0.2, "differential adds risk while you lead")
+            else:
+                if c <= 3 and share <= 0.25:
+                    put(el["id"], "league", 0.4, f"only {c}/{n} rivals own him (differential)")
+                elif share >= 0.5:
+                    put(el["id"], "league", -0.1, f"{c}/{n} rivals own him (no gain on them)")
+    for eid, s in sig.items():
+        total_adj = sum(s["parts"].values())
+        s["adj"] = round(max(-ADJ_CAP, min(ADJ_CAP, total_adj)), 2)
+        s["adj_ai"] = round(max(-ADJ_CAP, min(ADJ_CAP, total_adj - s["parts"].get("league", 0))), 2)
+    return sig
+
+
+def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
+    """Put the expected-points model and the extra signals beside every scouting list (Target 1/3/6, transfer targets):
+    each row gets `xp` (expected points over its horizon, or the next gameweek) and `sig` (the reasons behind its
+    signal adjustment), so no list recommends a player the model and the other data disagree with unseen."""
+    import ai_team
+    uwins, risk, _live = inputs
+    nxt = ds.get("next_gw")
+    if not nxt:
+        return
+    events = {e["id"]: e for e in boot["events"]}
+    gws = [g for g in range(nxt, nxt + 6) if g in events]
+    finished = sum(1 for e in boot["events"] if e.get("finished"))
+    locked = ds.get("locked_gw")
+    played = max(1, finished + (1 if locked and not events.get(locked, {}).get("finished") else 0))
+    per_gw = [ai_team.player_values(boot, fixture_scan(g, teams_by_id), {}, played, uwins, risk) for g in gws]
+    by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
+    def xp_sum(eid, n):
+        return round(sum((v.get(eid) or {}).get("xp", 0) for v in per_gw[:n]), 1)
+    def annotate(row, n):
+        eid = row.get("id") or by_key.get((row.get("name"), row.get("club")))
+        if eid is None:
+            return
+        row["xp"] = xp_sum(eid, n)
+        row["xp_n"] = min(n, len(per_gw))
+        s = (signals or {}).get(eid)
+        if s:
+            row["sig"] = s["reasons"][:4]
+            row["adj"] = s["adj"]
+    for key, h in ((data.get("targets") or {}).get("horizons") or {}).items():
+        for r in h.get("top") or []:
+            annotate(r, int(h.get("horizon") or key))
+    for r in (data.get("targets") or {}).get("wc_top3") or []:
+        annotate(r, 6)
+    tt = data.get("transfer_targets") or {}
+    for r in (tt.get("xg") or []) + (tt.get("defcon") or []):
+        annotate(r, 1)

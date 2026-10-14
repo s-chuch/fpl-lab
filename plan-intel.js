@@ -215,6 +215,22 @@ window.planIntel = function(D){
   if(fadeUnited && (have.has("B.Fernandes")||have.has("Shaw"))) optional.push("News fade United. Shaw is already a sit. Do not fire Fernandes this week to match a fade.");
   const they=(Tac.they_share||[]).map(x=>x.name);
   if(they.length) optional.push("Do not buy "+they.join(", ")+" this week. 1st and 2nd already own them — that is insurance, not a differential.");
+  // The transfer line is the model plan (planner.py: expected points plus news, ownership, price and rivals), so Plan,
+  // AI team and Planner agree. The news-driven idea above stays as an advisory line with its expected-points cost.
+  const PL=D.planner||{};
+  if((PL.steps||[]).length){
+    const mv=(PL.steps[0].moves||[]);
+    const follow=PL.recommend==="follow" && mv.length>0;
+    const xpBuy=((Object.values(D.news_players||{}).find(p=>chosen && p.name===chosen.buy))||{}).xp;
+    const xpSell=(PL.xp0||{})[chosen&&chosen.sell];
+    if(chosen && xpBuy!=null && xpSell!=null){
+      const d=Math.round((xpBuy-xpSell)*100)/100;
+      optional.unshift("News pick: "+chosen.sell+" → "+chosen.buy+" ("+(d>=0?"+":"")+d+" xP this GW) — advisory only, the model plan above decides.");
+    }
+    action=follow?"CONSIDER":"ROLL";
+    moveLine=follow?("Model pick: "+mv.map(m=>m.out+" → "+m.in).join(", ")+"."):"Roll. The model finds no move worth making.";
+    reason=follow?("+"+PL.gain+" expected points over rolling across GW"+PL.gws[0]+"-"+PL.gws[PL.gws.length-1]+" ("+PL.gain_extra+" of it from news, price, ownership and rivals). Only pull the trigger if you still like the buy after team news."):("Best plan found is "+(PL.gain>=0?"+":"")+PL.gain+" over rolling. Keep the free transfer.");
+  }
   return {
     cleared:false,
     waiting:false,
