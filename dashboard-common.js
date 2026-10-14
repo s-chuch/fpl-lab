@@ -391,10 +391,16 @@ function loadLive(team){
   const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
   load(); setInterval(load,5*60*1000);
 }
+// Backtest of the expected-points model (calibrate.py): fitted on last season, graded on a later one it never saw.
+function modelAccuracyCard(D){
+  const M=D.model_accuracy||{}; const m=M.metrics||{}; if(!m.uncalibrated) return "";
+  const row=(l,x)=>`<tr><td>${l}</td><td>${x.mae.toFixed(2)}</td><td>${x.rmse.toFixed(2)}</td><td>${x.pearson.toFixed(2)}</td><td>${x.spearman.toFixed(2)}</td></tr>`;
+  return `<div class="card"><h2>How accurate is the model?</h2><ul class="note-list"><li>Expected points per player per gameweek vs what they scored: ${m.uncalibrated.n.toLocaleString()} player-gameweeks, ${esc(M.holdout||"")} (the model never saw them; fitted on ${esc(M.fitted_on||"")})</li><li>Lower error (MAE, RMSE) and higher correlation is better. Football is noisy: even a good model explains only a small part of one week's points</li></ul><table class="table-compact"><thead><tr><th style="width:40%">Predictor</th><th>MAE</th><th>RMSE</th><th>Pearson</th><th>Rank</th></tr></thead><tbody>${row("This model",m.uncalibrated)}${row("Season form (points per game)",m.form_baseline)}${row("Model + linear correction",m.calibrated)}</tbody></table><p class="note">The model is level with or slightly better than plain form. The linear correction barely helps, so it is not applied. Games with bookmaker odds also use the market's clean-sheet and goal expectations.</p></div>`;
+}
 function renderCaptain(D){
   const keys=Object.keys(D.captain_board||{}).sort((a,b)=>Number(a.replace(/\D/g,""))-Number(b.replace(/\D/g,""))).reverse();
   const legend=`<ul class="note-list"><li>You = the armband's actual return (captain points × multiplier; the vice if the captain didn't play)</li><li>Process = the starter with the best points per appearance over the previous 3 GWs — knowable at the deadline</li><li>Hindsight = the top scorer in your XI, which nobody can know in advance</li><li>Green You = matched or beat the process pick; red = fell short of it</li></ul>`;
-  document.getElementById("captain").innerHTML=predLogCard(D)+eliteCard(D)+(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
+  document.getElementById("captain").innerHTML=predLogCard(D)+modelAccuracyCard(D)+eliteCard(D)+(keys.length?keys.map((k,i)=>captainBlock(k,k.toUpperCase(),i===0,D)).join(""):`<div class="card"><h2>Captain audit</h2><p class="note">No finished GW captain audit yet.</p></div>`)+legend;
 }
 
 // AI team (ai_team.py): a squad the program picks and plays itself, from GW7, with your money and

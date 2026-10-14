@@ -22,6 +22,8 @@ on:
       - "planner.py"
       - "fixture_swing.py"
       - "elo.py"
+      - "odds.py"
+      - "calibration.json"
       - "live_update.py"
       - "fixtures_external.py"
       - "ai_team.py"
@@ -120,7 +122,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
           python -m unittest discover -s tests
 
       - name: Pull live FPL data
@@ -146,7 +148,7 @@ jobs:
           # fully computed here — Actions committing them just keeps that
           # recommendation current.
           python stamp_versions.py
-          git add data.js bacalhau-data.js news.js news_seen.json elo_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html
+          git add data.js bacalhau-data.js news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html
           if git diff --staged --quiet; then
             echo "No data change"
           else

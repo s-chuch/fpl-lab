@@ -269,5 +269,33 @@ class PlannerSignals(unittest.TestCase):
         self.assertIn(99, best["steps"][0]["squad"])        # the signalled player wins the tie
 
 
+class ModelOdds(unittest.TestCase):
+    EL = {"element_type": 2, "minutes": 900, "expected_goals_per_90": 0.05, "expected_assists_per_90": 0.05, "clean_sheets_per_90": 0.3,
+          "expected_goals_conceded_per_90": 1.0, "bonus": 0, "saves_per_90": 0, "defensive_contribution_per_90": 8}
+
+    def test_a_clean_sheet_favourite_raises_a_defenders_expectation(self):
+        base = {"fdr": 3, "opp": "X", "side": "H"}
+        plain = ai_team.model_xp(self.EL, [base], 10)
+        fav = ai_team.model_xp(self.EL, [{**base, "cs": 0.6, "xg_against": 0.5, "xg_for": 2.0}], 10)
+        dog = ai_team.model_xp(self.EL, [{**base, "cs": 0.1, "xg_against": 2.2, "xg_for": 0.7}], 10)
+        self.assertGreater(fav, plain)
+        self.assertLess(dog, plain)
+
+    def test_fixture_scan_merges_registered_odds_and_nothing_without_them(self):
+        import fplbase
+        teams = {1: {"short_name": "AAA"}, 2: {"short_name": "BBB"}}
+        fplbase._fixtures_cache["all"] = [{"event": 9, "team_h": 1, "team_a": 2, "team_h_difficulty": 2, "team_a_difficulty": 4}]
+        try:
+            fplbase.set_odds({})
+            self.assertNotIn("cs", fplbase.fixture_scan(9, teams)[1][0])
+            fplbase.set_odds({9: {1: [{"opp": "BBB", "side": "H", "xg_for": 1.8, "xg_against": 0.9, "cs": 0.4, "p_win": 0.6}]}})
+            fx = fplbase.fixture_scan(9, teams)
+            self.assertEqual(fx[1][0]["cs"], 0.4)
+            self.assertNotIn("cs", fx[2][0])
+        finally:
+            fplbase.set_odds({})
+            fplbase._fixtures_cache["all"] = None
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -161,3 +161,12 @@
   model tweak cannot flip a near-tie. The daily-check log is transfer-level (`kind: "transfer"`, with `cause`, `cause_ref` = git sha from
   `ai_run._model_ref`), reversals are merged away (`merge_changes`), and `aiChangesCard` groups lines by check time. Old `swap` entries
   from before this change may still appear in the log.
+- **Free data sources.** `odds.py` (football-data.co.uk `fixtures.csv`): bookmaker odds -> margin-free probabilities -> Poisson goal
+  expectations and clean-sheet chances; `ai_run.setup_odds` registers them in `fplbase.ODDS` and `fixture_scan` merges them into the
+  fixtures, so `ai_team.model_xp` blends the market's clean-sheet / goal expectations with the FDR guess whenever a match is priced
+  (usually only the next matchweek; nothing during an international break, as now). `calibrate.py` + `calibration.json` backtest the
+  xP model on vaastav's FPL history (fit 2024-25, graded on 2025-26 GW6-38, 11.5k player-gameweeks): the model is level with or slightly
+  better than plain form (MAE 1.97 vs 2.09) and far better than FPL's own xP column; slopes are 0.75-0.95 (NOT compressed: the earlier
+  117-regular in-sample audit was a selection effect), so the linear correction is not applied (it is shown as a row on the accuracy card,
+  `data["model_accuracy"]`). Re-run `python calibrate.py` to refresh it. Club Elo (`elo.py`) returns 502 from both the dev sandbox and
+  Actions, so it is skipped silently.

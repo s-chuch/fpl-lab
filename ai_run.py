@@ -365,3 +365,25 @@ def _team_form(boot):
     k = 3
     return {teams[t]: {"gf": (gf.get(t, 0) + mean * k) / (n.get(t, 0) + k), "ga": (ga.get(t, 0) + mean * k) / (n.get(t, 0) + k)} for t in teams}
 
+
+
+def setup_odds(boot, ds, teams_by_id, horizon=8):
+    """Fetch bookmaker odds (odds.py, football-data.co.uk) and register them for fixture_scan. Free odds cover only the next
+    matchweek or so (and nothing during an international break), so most fixtures stay on the difficulty rating.
+    Returns a small summary for data["odds"]."""
+    import fplbase, odds
+    fplbase.set_odds({})
+    nxt = ds.get("next_gw")
+    res = odds.fetch_odds(boot, cache_path=ROOT / "odds_cache.json")
+    matches = res.get("matches") or []
+    summary = {"matches": len(matches), "fetched_at": res.get("fetched_at"), "error": res.get("error"), "matched_fixtures": 0}
+    if not matches or not nxt:
+        return summary
+    events = {e["id"] for e in boot["events"]}
+    scan = {g: fplbase.fixture_scan(g, teams_by_id) for g in range(nxt, nxt + horizon) if g in events}
+    by_gw = odds.by_team(res, scan, boot)
+    fplbase.set_odds(by_gw)
+    summary["matched_fixtures"] = sum(len(v) for g in by_gw.values() for v in g.values())
+    summary["first"] = [{"home": m["home"], "away": m["away"], "date": m.get("date"), "p_home": m["p_home"], "p_draw": m["p_draw"], "p_away": m["p_away"],
+                         "xg_home": m["xg_home"], "xg_away": m["xg_away"]} for m in matches[:12]]
+    return summary

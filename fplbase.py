@@ -141,6 +141,17 @@ def fixture_map(event_id, teams):
                     **({"double": True} if len(fl) > 1 else {})}
     return out
 
+# Bookmaker odds per upcoming fixture ({gw: {team_id: [{opp, side, xg_for, xg_against, cs, p_win}]}}, odds.by_team), registered
+# once per run by ai_run.setup_odds. fixture_scan merges them into the fixtures it returns, so every consumer of fixtures
+# (the xP model, the planner, the AI team, the Plan XI) sees them; with no odds the fixtures are exactly as before.
+ODDS = {}
+
+
+def set_odds(by_gw):
+    ODDS.clear()
+    ODDS.update(by_gw or {})
+
+
 def fixture_scan(event_id, teams):
     """Like fixture_map, but keeps EVERY fixture per team instead of one —
     fixture_map's dict overwrites a team's earlier entry on a double gameweek,
@@ -152,6 +163,11 @@ def fixture_scan(event_id, teams):
         h, a = f["team_h"], f["team_a"]
         out.setdefault(h, []).append({"side": "H", "opp": teams[a]["short_name"], "fdr": f.get("team_h_difficulty")})
         out.setdefault(a, []).append({"side": "A", "opp": teams[h]["short_name"], "fdr": f.get("team_a_difficulty")})
+    for tid, fxs in out.items():
+        for entry in (ODDS.get(event_id) or {}).get(tid, []):
+            for fx in fxs:
+                if fx["opp"] == entry["opp"] and fx["side"] == entry["side"]:
+                    fx.update({k: entry[k] for k in ("xg_for", "xg_against", "cs", "p_win") if entry.get(k) is not None})
     return out
 
 def fmt_fix(info):

@@ -33,6 +33,7 @@ KEEP_FLOOR = MIN_FREE_GAIN / 2   # kept moves that have decayed below this gain 
 KEEP_AVAIL = 0.75          # a kept "in" player below this fitness forces a re-plan
 MIN_HIT_GAIN = HIT_COST + 1.5
 MAX_HITS = 2
+LEAGUE_AVG_TEAM_XG = 1.4   # goals per team per match, for scaling bookmaker goal expectations
 HALF_SPLIT = 20            # chips reset at GW20
 
 
@@ -108,9 +109,19 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     total = 0.0
     for fx in fixtures:
         fdr = fx.get("fdr") or 3
-        cs = 0.5 * cs90 + 0.5 * max(0.08, min(0.6, 0.40 - 0.07 * (fdr - 3)))
+        fdr_cs = max(0.08, min(0.6, 0.40 - 0.07 * (fdr - 3)))
+        fdr_att = 1.12 - 0.06 * fdr         # easier fixture -> a few more attacking returns
+        # With bookmaker odds for this match (fplbase.ODDS) the market's clean-sheet chance and goal expectations replace
+        # half of the difficulty-rating guess; without them (most fixtures) it is the rating alone, as before.
+        if fx.get("cs") is not None:
+            fdr_cs = 0.5 * fdr_cs + 0.5 * max(0.05, min(0.75, fx["cs"]))
+        if fx.get("xg_for") is not None:
+            fdr_att = 0.5 * fdr_att + 0.5 * max(0.6, min(1.6, fx["xg_for"] / LEAGUE_AVG_TEAM_XG))
+        cs = 0.5 * cs90 + 0.5 * fdr_cs
         concede = xgc90 / 2 if pos in ("GKP", "DEF") else 0.0
-        att = attack * (1.12 - 0.06 * fdr)  # easier fixture -> a few more attacking returns
+        if fx.get("xg_against") is not None and pos in ("GKP", "DEF"):
+            concede = 0.5 * concede + 0.5 * fx["xg_against"] / 2
+        att = attack * fdr_att
         total += 1 + mp + att + cs * CS_PTS[pos] + saves - concede + bonus + defcon
     return total * mp
 

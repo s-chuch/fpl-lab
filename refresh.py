@@ -1322,6 +1322,8 @@ def main(team_id=TEAM_ID, out_path=None):
         if fa and gw in settled:
             field_avg[gw] = fa
         gws.append({"gw": gw, "points": row["points"], "bench": row["points_on_bench"], "transfers": row["event_transfers"], "hits": row["event_transfers_cost"], "rank": row["overall_rank"], "field_avg": fa, "delta": (row["points"] - fa) if fa else None, "chip": next((chip_base(n) for n, ev in chips_used.items() if ev == gw), None)})
+    _teams_by_id0 = {t["id"]: t for t in boot["teams"]}
+    data_odds = section("odds", setup_odds, boot, deadline_state(boot), _teams_by_id0, fallback={"matches": 0})
     inputs = model_inputs(boot, (team_recovery or {}).get("teams"))
     plan = build_plan(boot, team_id, hist, chips_used, inputs)
     ds = deadline_state(boot)
@@ -1337,6 +1339,12 @@ def main(team_id=TEAM_ID, out_path=None):
     counts_by_league = leagues.pop("_counts_by_league", {})  # transient, not serialized into data.js
     caps = captain_audit(boot, team_id)
     data = existing or {}
+    data["odds"] = data_odds
+    def _model_accuracy():
+        cal = json.loads((ROOT / "calibration.json").read_text())
+        return {"fitted_on": cal["fitted_on"], "holdout": cal["holdout"], "generated": cal.get("generated"),
+                "metrics": {k: cal["metrics"]["holdout"][k] for k in ("uncalibrated", "calibrated", "form_baseline")}}
+    data["model_accuracy"] = section("model_accuracy", _model_accuracy, fallback={})
     # Recomputed every run rather than cached off `existing`: both only cover finished
     # GWs (whose points never change), so recomputing is cheap and safe, whereas a
     # "skip if already present" cache would silently freeze once a new GW finishes.
