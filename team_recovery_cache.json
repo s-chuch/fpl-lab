@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T21:25:13.222840+00:00",
+    "fetched_at": "2026-10-14T22:03:46.965184+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -315,13 +315,7 @@
           "opponent": "Viking",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-14",
-            "competition": "Champions League",
-            "opponent": "Fenerbah\u00e7e"
-          }
-        ]
+        "between": []
       },
       "MCI": {
         "rest_days": 3,
@@ -342,13 +336,7 @@
           "opponent": "AEK Athens",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-14",
-            "competition": "Champions League",
-            "opponent": "Paris"
-          }
-        ]
+        "between": []
       },
       "BOU": {
         "rest_days": 3,
