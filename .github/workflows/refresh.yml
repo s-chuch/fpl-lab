@@ -15,6 +15,10 @@ on:
     branches: [main]
     paths:
       - "refresh.py"
+      - "fplbase.py"
+      - "chips.py"
+      - "signals.py"
+      - "ai_run.py"
       - "fixtures_external.py"
       - "ai_team.py"
       - "understat.py"
@@ -112,7 +116,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py
+          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py x_scrape.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py
           python -m unittest discover -s tests
 
       - name: Pull live FPL data

@@ -103,3 +103,13 @@
 - Plan tab opens with `thisGwCard` (captain/vice, like-for-like transfer, XI fitness flags, chip advice, AI lock time);
   Captain tab opens with `predLogCard` (the `pred_log` scorecard). The Free Hit tab headline is the same
   all-15 player-for-player figure as the Chips tab. Bench bars: You teal, Process yellow, Hindsight red.
+
+## Code layout
+- `refresh.py` is the orchestrator (`main`, plan, captain/bench audits, transfers, targets, leagues). Builders live in
+  modules that import only from `fplbase.py`, never from `refresh.py`: `fplbase.py` (logging, constants, memoised GET,
+  deadline state, fixtures), `chips.py` (per-half chips, chip results, Free Hit/Wildcard audit, free-transfer ledger,
+  chip strategy), `signals.py` (xG/xA + track record, form, DEFCON, rotation/congestion, value, injuries, price radar),
+  `ai_run.py` (model inputs, clone of your team, running the AI team, daily check). `refresh.py` re-exports all of them,
+  so `refresh.chips_by_half` etc. still work for tests and `wildcard_recommend.py`.
+- Shared page code lives in `dashboard-common.js`; per-team wording for shared renderers is the `W` table at the top of
+  each page's script.
