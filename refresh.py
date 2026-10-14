@@ -1312,7 +1312,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["captain_board"] = section("captain_board", build_captain_board, boot, team_id, fallback={})
     ft_rows, ft_next = free_transfer_ledger(hist or {})
     data["ft_ledger"] = {"rows": ft_rows, "next": ft_next, "next_gw": next((e["id"] for e in boot["events"] if not e.get("finished") and e["id"] > (ft_rows[-1]["gw"] if ft_rows else 0)), None)}
-    data["chip_net"] = section("chip_net", build_chip_net, chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"], gws, fallback={})
+    data["chip_net"] = section("chip_net", build_chip_net, chips_used, caps, data["bench_audit"], boot, team_id, data["transfers"], gws, hist=hist, fallback={})
     data["fh_audit"] = section("fh_audit", build_fh_audit, boot, team_id, chips_used)
     data["strategy"] = section("strategy", build_strategy, boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"), fallback={})
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out

@@ -80,7 +80,45 @@ def _rank_text(f):
         return f" Overall rank {f['prev_rank']:,} → {f['rank']:,}."
     return ""
 
-def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, transfers=None, gws=None):
+def wildcard_running(boot, team_id, chips_used, hist, wc_key):
+    """A Wildcard is permanent, so one gameweek is not its whole story. For every finished gameweek since it
+    was played (Free Hit weeks skipped): the 15 players you held just before the Wildcard, kept unchanged, against
+    the 15 you actually held that week - raw points, bench included, no captain multiplier, same rule as the
+    single-week comparison. Hits taken since are listed separately. Measured facts only: it does not claim what
+    you would have done instead."""
+    wc_gw = chips_used.get(wc_key)
+    if not wc_gw:
+        return None
+    fh = {v for k, v in chips_used.items() if chip_base(k) == "freehit"}
+    prev = wc_gw - 1
+    while prev in fh and prev >= 1:
+        prev -= 1
+    if prev < 1:
+        return None
+    finished = sorted(e["id"] for e in boot["events"] if e.get("finished") and e["id"] >= wc_gw and e["id"] not in fh)
+    # a second-half Wildcard must not run into a later reset; a first-half one stops at the reset
+    end = HALF_SPLIT - 1 if wc_key == "wildcard" else 10**6
+    finished = [g for g in finished if g <= end]
+    if not finished:
+        return None
+    els = {e["id"]: e["web_name"] for e in boot["elements"]}
+    old_ids = [p["element"] for p in get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{prev}/picks/").get("picks") or []]
+    costs = {r["event"]: r.get("event_transfers_cost") or 0 for r in (hist or {}).get("current", [])}
+    rows, old_total, new_total = [], 0, 0
+    for g in finished:
+        live = {el["id"]: el["stats"]["total_points"] for el in get(f"https://fantasy.premierleague.com/api/event/{g}/live/").get("elements", [])}
+        new_ids = [p["element"] for p in get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{g}/picks/").get("picks") or []]
+        old = sum(live.get(i, 0) for i in old_ids)
+        new = sum(live.get(i, 0) for i in new_ids)
+        old_total += old
+        new_total += new
+        rows.append({"gw": g, "old": old, "new": new, "diff": new - old, "hits": costs.get(g, 0)})
+    hits = sum(r["hits"] for r in rows)
+    return {"since_gw": wc_gw, "kept_gw": prev, "rows": rows, "old_total": old_total, "new_total": new_total,
+            "diff": new_total - old_total, "hits": hits}
+
+
+def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, transfers=None, gws=None, hist=None):
     """Each played chip's result, using only things that can actually be measured:
       * Bench Boost = the bench's points that week (exactly what the chip added).
       * Triple Captain = the captain's third multiple (exactly what the chip added).
@@ -133,6 +171,11 @@ def build_chip_net(chips_used, caps, bench_audit, boot=None, team_id=None, trans
             net = (audit["all15_new"] - audit["all15_old"]) if audit else None
             text = "" if audit else f"GW{gw} comparison not available yet"
             out[key] = {"net": net, "label": "vs before", "note": text, "compare": (audit or {}).get("compare")}
+            if base == "wildcard" and boot and team_id:
+                try:
+                    out[key]["running"] = wildcard_running(boot, team_id, chips_used, hist, key)
+                except Exception as e:
+                    _warn(f"build_chip_net: Wildcard running comparison unavailable: {e}")
     return out
 
 def _best_xi_hindsight(players):
