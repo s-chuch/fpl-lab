@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 21:01 UTC",
+  "generated_at": "2026-10-15 21:03 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -64,14 +64,6 @@ window.FPL_NEWS = {
       ],
       "facts": [
         {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "The biggest question surrounding De Cuyper is: have non-owners missed the boat?",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/who-are-the-best-attacking-fpl-defenders-right-now",
-          "title": "Who are the best attacking FPL defenders right now?"
-        },
-        {
           "topic": "role",
           "tone": "bad",
           "text": "There\u2019s a solid argument to say that De Cuyper will simply be the starting left winger over Mitoma, who was benched frequently last season.",
@@ -97,14 +89,6 @@ window.FPL_NEWS = {
         },
         {
           "topic": "fixture",
-          "tone": "bad",
-          "text": "There were two main concerns facing Gross and De Cuyper coming into the last few gameweeks.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-7/",
-          "title": "Key Tips for FPL Gameweek 7"
-        },
-        {
-          "topic": "fixture",
           "tone": "good",
           "text": "Brighton have a great fixture this week for both attacking and defensive purposes, which makes De Cuyper one of the best options this week.",
           "source": "Hub",
@@ -126,9 +110,25 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-top-5-players-2026-27/",
           "title": "Best FPL Players for Gameweek 7: Top Five Picks"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "And who better to capitalise on this than Pascal Gro\u00df and Maxim De Cuyper, who have combined for an impressive 13 goal involvements?",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Here are my top five attacking defenders\u2026 MAXIM DE CUYPER How could I start with anyone other than Maxim De Cuyper (\u00a35.1m)?",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/who-are-the-best-attacking-fpl-defenders-right-now",
+          "title": "Who are the best attacking FPL defenders right now?"
         }
       ],
-      "tone": "mixed"
+      "tone": "good"
     },
     {
       "text": "Schade (BRE) \u2014 Fitness or rotation doubts (1 sell/avoid, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
@@ -342,14 +342,6 @@ window.FPL_NEWS = {
         }
       ],
       "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "And Barry(despite scoring) continued to miss Big chances.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        },
         {
           "topic": "fixture",
           "tone": "good",
@@ -1394,17 +1386,8 @@ window.FPL_NEWS = {
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Hull\u2019s John Egan missed out again, taking his overall hit rate to 50%.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-defcon-points-watch",
-          "title": "FPL defensive contributions: Gameweek and overall totals"
-        }
-      ],
-      "tone": "bad"
+      "facts": [],
+      "tone": "neutral"
     },
     {
       "text": "Gakpo (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
@@ -1446,6 +1429,14 @@ window.FPL_NEWS = {
         {
           "topic": "fitness",
           "tone": "bad",
+          "text": "At the other end of the market, Liverpool trio Alexander Isak, Dominik Szoboszlai and Cody Gakpo are being sold in droves after missing out through injury.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "fitness",
+          "tone": "neutral",
           "text": "The popular Liverpool trio of Dominic Szoboszlai, Cody Gakpo and Alexander Isak missed out entirely through injury, while Jo\u00e3o Pedro reminded FPL managers of his quality with a brace after missing Gameweek 5.",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
