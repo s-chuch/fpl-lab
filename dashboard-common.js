@@ -614,3 +614,28 @@ function renderSetPieces(){
 
 // Scouting rows carry the model's xP and the extra signals behind them (ai_run.enrich_with_model).
 function sigNote(r){ return r&&r.xp!=null?`<div class="note">xP ${r.xp}${(r.sig||[]).length?" · "+esc(r.sig.join(" · ")):""}</div>`:""; }
+
+// Keep notes out of the way: explanatory lists and long notes sit behind a small "i" toggle (idempotent, runs after every render).
+(function(){
+  let busy=false;
+  const LONG=70;
+  function wrap(el){
+    const d=document.createElement("details");d.className="more";
+    const s=document.createElement("summary");s.textContent="ⓘ";d.appendChild(s);
+    el.parentNode.insertBefore(d,el);d.appendChild(el);
+  }
+  function minimize(){
+    if(busy)return;busy=true;
+    try{
+      document.querySelectorAll("section .legend-list, section .note-list, section p.note").forEach(el=>{
+        if(el.closest("details.more")||el.closest("table")||el.dataset.keep!==undefined)return;
+        const isList=el.matches(".legend-list,.note-list");
+        if(!isList&&(el.textContent||"").trim().length<LONG)return;
+        wrap(el);
+      });
+    }catch(e){}
+    busy=false;
+  }
+  function start(){minimize();new MutationObserver(minimize).observe(document.body,{childList:true,subtree:true});}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
+})();
