@@ -258,7 +258,7 @@ function rivalsCard(tac,leagueName,pronoun){
     const extra=[tn,c.fixture?c.fixture.label.toLowerCase()+" fixtures ("+c.fixture.avg_fdr+")":null].filter(Boolean);
     return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><div class="detail">${left}${used}${extra.length?` · ${esc(extra.join(", "))}`:""}</div></li>`;
   }).join("");
-  return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to you on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week you cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
+  return `<div class="card"><h2>Rivals that matter · ${esc(leagueName||"league")}</h2><ul class="note-list"><li>The managers closest to ${W.you==="they"?"them":"you"} on points (within 25, at least 3) — not simply 2nd, 3rd and last</li><li>"Chips left" = unused in the current half-season window; each chip comes back once per half</li></ul><ul class="chiplist">${rows}</ul>${tac.you_rank===1?`<p class="note">They can still chip a week ${W.you} cannot match. A −4 this half is a gift unless the incoming player is out for weeks.</p>`:""}</div>`;
 }
 
 
@@ -295,10 +295,10 @@ function captainBlock(key,title,open,D){
     return `<div class="${k}">${esc(n)} · ${p}${tags?` (${tags})`:""}</div>`;
   }).join("");
   const effName=(b.effective&&b.effective!==b.captain[0])?b.effective:b.captain[0], effPts=(b.effective&&b.effective!==b.captain[0]&&b.mult)?Math.round(b.you/b.mult):b.captain[1];
-  const why=[`Your captain: <b>${esc(effName)}</b> (${effPts} pts × ${b.mult} = ${b.you})${chipTag}`,
+  const why=[`${W.Your} captain: <b>${esc(effName)}</b> (${effPts} pts × ${b.mult} = ${b.you})${chipTag}`,
     `Process pick: <b>${esc(b.process_pick[0])}</b> — best points per appearance over the previous GWs${b.process_pick[2]>=0?` (${b.process_pick[2]})`:""}`,
-    `Hindsight: <b>${esc(b.best[0])}</b> (${b.best[1]} pts) was the top scorer in your XI`].map(x=>`<li>${x}</li>`).join("")+eff;
-  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${good?"pos":"neg"}">You ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${row("You",b.you,good?"good":"bad")}${row("Process",b.process)}${row("Hindsight",b.hindsight)}<ul class="why">${why}</ul><p class="note">Top scorers in your XI (C = captain, VC = vice, P = process pick)</p><div class="xi">${opts}</div></details>`;
+    `Hindsight: <b>${esc(b.best[0])}</b> (${b.best[1]} pts) was the top scorer in ${W.Your.toLowerCase()} XI`].map(x=>`<li>${x}</li>`).join("")+eff;
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${good?"pos":"neg"}">${W.You} ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${row("You",b.you,good?"good":"bad")}${row("Process",b.process)}${row("Hindsight",b.hindsight)}<ul class="why">${why}</ul><p class="note">Top scorers in your XI (C = captain, VC = vice, P = process pick)</p><div class="xi">${opts}</div></details>`;
 }
 // Prediction scorecard (refresh.py update_pred_log): what the program said its captain would be each gameweek,
 // and what that player actually scored once FPL had checked the data.
@@ -346,10 +346,10 @@ function eliteCard(D){
   const ownRows=Object.keys(E.own||{}).sort((a,b)=>E.own[b]-E.own[a]).slice(0,12).map(id=>{
     const [name,club,pos]=(E.names||{})[id]||["?","",""];
     const pct=Math.round(100*E.own[id]/E.n);
-    return `<tr><td>${esc(name)} <span class="note">${esc(club)}</span></td><td>${esc(pos)}</td><td><b>${pct}%</b></td><td>${mine.has(name)?'<span class="pill used">You own</span>':'<span class="note">–</span>'}</td></tr>`;
+    return `<tr><td>${esc(name)} <span class="note">${esc(club)}</span></td><td>${esc(pos)}</td><td><b>${pct}%</b></td><td>${mine.has(name)?`<span class="pill used">${W.You} own</span>`:'<span class="note">–</span>'}</td></tr>`;
   }).join("");
   const caps=Object.keys(E.cap||{}).sort((a,b)=>E.cap[b]-E.cap[a]).slice(0,5).map(id=>`${esc(((E.names||{})[id]||["?"])[0])} <b>${Math.round(100*E.cap[id]/E.n)}%</b>`).join(" · ");
-  return `<div class="card"><h2>Elite ownership · ${esc(E.label||"")}</h2><ul class="note-list"><li>GW${E.gw} squads of the best managers in the overall table (FPL only publishes the first 50, so this is a small, elite sample)</li><li>Captains: ${caps||"–"}</li></ul><table class="table-compact"><thead><tr><th>Player</th><th>Pos</th><th>Top 50</th><th>You</th></tr></thead><tbody>${ownRows}</tbody></table></div>`;
+  return `<div class="card"><h2>Elite ownership · ${esc(E.label||"")}</h2><ul class="note-list"><li>GW${E.gw} squads of the best managers in the overall table (FPL only publishes the first 50, so this is a small, elite sample)</li><li>Captains: ${caps||"–"}</li></ul><table class="table-compact"><thead><tr><th>Player</th><th>Pos</th><th>Top 50</th><th>${W.You}</th></tr></thead><tbody>${ownRows}</tbody></table></div>`;
 }
 // Multi-gameweek transfer plan (planner.py): the transfer path with the most expected points over the next few
 // gameweeks, hits included, against simply rolling every week.
@@ -378,7 +378,7 @@ function plannerCard(D){
   const head=P.recommend==="follow"
     ?`Plan beats rolling by <b class="pos">+${P.gain}</b> expected points (model ${P.gain_model>=0?"+":""}${P.gain_model}, other signals ${P.gain_extra>=0?"+":""}${P.gain_extra})`
     :`Rolling is as good as any plan (best found ${sign(P.gain)}) - nothing is worth a move yet`;
-  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}.`:"This week: roll.";
+  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${P.steps[0].hits?` (−${4*P.steps[0].hits} hit)`:""}.`:"This week: roll.";
   return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)}</li></ul><table class="table-compact"><thead><tr><th style="width:12%">GW</th><th style="width:46%">Move</th><th style="width:16%">xP</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 // Matchday snapshot (live_update.py -> live-data.js, written every ~10 min while matches are in play). The browser
@@ -583,7 +583,7 @@ function newsThemeRow(x,NP){
   const p=(NP||{})[String(x.id)]||null;
   const TONE={good:{i:"🟢",l:"Good news",c:"pos"},bad:{i:"🔴",l:"Bad news",c:"neg"},mixed:{i:"🟠",l:"Mixed",c:""},neutral:{i:"⚪",l:"Neutral",c:""}};
   const T=TONE[x.tone]||TONE.neutral;
-  const pills=p?`${p.yours?'<span class="pill used">Yours</span> ':''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
+  const pills=p?`${p.yours?`<span class="pill used">${W.You==="You"?"Yours":"Theirs"}</span> `:''}${p.top2?'<span class="pill free">1st &amp; 2nd own</span> ':''}${p.status&&p.status!=="a"?`<span class="pill used">${esc(p.chance)}% fit</span> `:""}`:"";
   const nums=p?`<div class="detail note">${p.owned}% owned · £${Number(p.cost).toFixed(1)} · xP ${p.xp} · ${esc(p.fixture)}${p.news?` · ${esc(p.news)}`:""}</div>`:"";
   const L=x.llm; const VL={buy:"Buy",keep:"Keep",sell:"Sell",captain:"Captain",avoid:"Avoid",monitor:"Monitor",no_view:"No clear view"};
   const llmBlock=L?`<div class="detail"><span class="pill ${L.verdict==="buy"||L.verdict==="captain"?"used":"free"}">Claude: ${esc(VL[L.verdict]||L.verdict)}</span> <span class="note">${esc(L.confidence)} confidence</span><div>${esc(L.summary)}</div>${L.risks?`<div class="note">Risk: ${esc(L.risks)}</div>`:""}</div>`:"";
@@ -609,13 +609,13 @@ function renderNews(){
   const rawCap=8;
   const newBlock=fresh.length?fresh.slice(0,rawCap).map(x=>`<li><span class="who">${esc(x.title)}</span><div class="detail"><span class="pill free">${esc(x.source)}</span> <a href="${safeHref(x.url)}" target="_blank" rel="noopener">open</a></div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape - already folded into the themes above.</span></li>`:""):`<li><span class="note">No new articles this scrape.</span></li>`;
   const sites=N.sites_checked?` · ${N.sites_with_articles??"?"} of ${N.sites_checked} sites had fresh articles`:"";
-  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. Your players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
+  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. ${W.Your} players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
 }
 function renderSetPieces(){
   const S=D.set_pieces||{rows:[]};
   const cell=l=>(l||[]).map(p=>`${esc(p.name)}${p.yours?" ★":""}`).join(", ")||"–";
   const rows=(S.rows||[]).map(r=>`<tr><td>${esc(r.club)}</td><td>${cell(r.pens)}</td><td>${cell(r.fks)}</td><td>${cell(r.corners)}</td></tr>`).join("");
-  document.getElementById("setPieces").innerHTML=`<div class="card"><h2>Set-piece takers</h2><ul class="note-list"><li>First-choice taker per club from FPL's own order fields (★ = in your squad)</li></ul><table class="table-compact"><thead><tr><th style="width:12%">Club</th><th style="width:30%">Penalties</th><th style="width:29%">Free kicks</th><th style="width:29%">Corners</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  document.getElementById("setPieces").innerHTML=`<div class="card"><h2>Set-piece takers</h2><ul class="note-list"><li>First-choice taker per club from FPL's own order fields (★ = in ${W.Your.toLowerCase()} squad)</li></ul><table class="table-compact"><thead><tr><th style="width:12%">Club</th><th style="width:30%">Penalties</th><th style="width:29%">Free kicks</th><th style="width:29%">Corners</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // Scouting rows carry the model's xP and the extra signals behind them (ai_run.enrich_with_model).

@@ -140,7 +140,9 @@ def build_planner(boot, clone, ds, fix_scan, uwins=None, risk=None, horizon=5, s
     played = max(1, finished + (1 if locked and not events.get(locked, {}).get("finished") else 0))
     V = []
     for idx, g in enumerate(gws):
-        vals = ai_team.player_values(boot, fix_scan(g), {}, played, uwins, risk)
+        # next-match rest and reported rotation only describe the coming gameweek: later gameweeks keep the minutes trend only
+        risk_g = risk if (idx == 0 or not risk) else {**risk, "club_rest": {}, "rot_names": {}}
+        vals = ai_team.player_values(boot, fix_scan(g), {}, played, uwins, risk_g)
         if idx >= 2:      # injuries/doubts fade with distance: pull availability back towards fit
             for p in vals.values():
                 a = p["avail"]

@@ -20,7 +20,8 @@
       const nearV=[],laterV=[];
       cells.forEach((x,i)=>(x.fixtures||[]).forEach(f=>{const v=val(f,kind);if(v==null)return;(i<near?nearV:laterV).push(v);}));
       const run=mean(all),a=mean(nearV),b=mean(laterV);
-      return {c,cells,run,swing:(a!=null&&b!=null)?a-b:null,dgw:cells.some(x=>x.double||(x.fixtures||[]).length>1),own:c.own||0};
+      const ease=all.reduce((t,v)=>t+(4-v),0)/Math.max(1,cells.length);   // per gameweek: a double counts twice, a blank counts nothing
+      return {c,cells,run,ease,swing:(a!=null&&b!=null)?a-b:null,dgw:cells.some(x=>x.double||(x.fixtures||[]).length>1),own:c.own||0};
     });
   }
 
@@ -60,7 +61,7 @@
     let W=parseInt(opts.w,10);if(!(ws.indexOf(W)>=0))W=ws.indexOf(6)>=0?6:maxW;
     const kind=KINDS.some(k=>k[0]===opts.k)?opts.k:"fdr";
     const rows=compute(S,W,kind).filter(r=>r.run!=null);
-    const sorted=rows.slice().sort((a,b)=>a.run-b.run);
+    const sorted=rows.slice().sort((a,b)=>b.ease-a.ease||a.run-b.run);
     const easy=sorted.slice(0,5),hard=sorted.slice().reverse().slice(0,5).filter(r=>!easy.includes(r));
     const ownRisk=rows.filter(r=>r.own&&r.swing!=null&&r.swing<=-0.75&&!hard.includes(r)&&!easy.includes(r));
     const btn=(attr,v,label,on)=>`<button type="button" data-${attr}="${E(v)}" aria-pressed="${on}" style="font:inherit;font-size:12px;padding:5px 11px;margin:0 4px 4px 0;border-radius:999px;cursor:pointer;border:1px solid ${on?"var(--teal)":"var(--line)"};background:${on?"var(--teal)":"transparent"};color:${on?"#fff":"var(--ink)"}">${E(label)}</button>`;
