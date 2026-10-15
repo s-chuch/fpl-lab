@@ -223,8 +223,8 @@ function renderStrategy(){
   };
   const xgDiffCls=r=>r.tag==="overperforming"?"neg":r.tag==="underperforming"?"pos":"";
   const xgHead=`<thead><tr><th style="width:30%">Player</th><th style="width:9%">Pos</th><th style="width:19%">G+A/xGI</th><th style="width:13%">Diff</th><th style="width:29%">Tag</th></tr></thead>`;
-  const xgNext=r=>{const b=[];if(r.next)b.push("next "+esc(r.next));if(r.fdr!=null)b.push("FDR "+esc(r.fdr));if(r.owned_pct!=null&&r.owned_pct!=="")b.push(esc(r.owned_pct)+"% owned");return b.length?`<div class="note" style="font-size:11px;line-height:1.3">${b.join(" · ")}</div>`:"";};
-  const xgRow=r=>`<tr><td>${nameCell(r.name,r.club)}${xgNext(r)}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="wrap ${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
+  const xgNext=r=>{const b=[];if(r.fdr!=null)b.push("FDR "+esc(r.fdr));if(r.next)b.push("next "+esc(r.next));if(r.owned_pct!=null&&r.owned_pct!=="")b.push(esc(r.owned_pct)+"% owned");return b.length?`<div class="note" style="font-size:11px;line-height:1.3">${b.join(" · ")}</div>`:"";};
+  const xgRow=r=>`<tr><td class="wrap">${nameCell(r.name,r.club)}${xgNext(r)}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="wrap ${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
   const xgRows=(XG.rows||[]).map(xgRow).join("")||`<tr><td colspan="5"><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></td></tr>`;
   const xgTopHead=`<thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead>`;
   const xgTopRow=r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${Number(r.xgi_p90).toFixed(2)}</td><td>${r.goals}+${r.assists}</td></tr>`;
@@ -253,10 +253,10 @@ function renderStrategy(){
   const imCard=`<h3>High chance volume · goals (players you don't own)</h3><p class="note">Source: Understat, last 4 appearances</p><table class="table-compact">${imHead("goal")}<tbody>${imRows("goal")}</tbody></table><h3>High chance volume · assists (players you don't own)</h3><p class="note">Source: Understat, last 4 appearances</p><table class="table-compact">${imHead("assist")}<tbody>${imRows("assist")}</tbody></table><ul class="legend-list">${imLegend}<li>Your own players show "Shot volume" / "Chance volume" in the squad table's Tag column</li></ul>${vlCard}`;
   const xgRegHead=`<thead><tr><th style="width:38%">Player</th><th style="width:10%">Pos</th><th style="width:26%">G+A/xGI</th><th style="width:26%">Diff</th></tr></thead>`;
   const xgRegRow=r=>{
-    const ctx=[r.next?`next ${esc(r.next)}`:"",r.fdr!=null?`FDR ${r.fdr}`:"",r.owned_pct!=null?`${r.owned_pct}% owned`:"",r.gi_p90!=null?`${Number(r.gi_p90).toFixed(2)} G+A/90`:""].filter(Boolean).join(" · ");
+    const ctx=[r.fdr!=null?`FDR ${r.fdr}`:"",r.next?`next ${esc(r.next)}`:"",r.owned_pct!=null?`${r.owned_pct}% owned`:"",r.gi_p90!=null?`${Number(r.gi_p90).toFixed(2)} G+A/90`:""].filter(Boolean).join(" · ");
     const watch=(r.tag==="overperforming"&&r.fdr!=null&&r.fdr<=2)?` <span class="pill free">hold / watch</span>`:"";
-    return `<tr><td>${nameCell(r.name,r.club)}${watch}${ctx?`<div class="note">${ctx}</div>`:""}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td></tr>`;};
-  const xgDefRow=r=>`<tr><td>${nameCell(r.name,r.club)}${r.next?`<div class="note">next ${esc(r.next)}${r.fdr!=null?` · FDR ${r.fdr}`:""} · ${r.owned_pct}% owned</div>`:""}</td><td>${esc(r.pos)}</td><td>${r.goals_conceded}/${r.xgc}</td><td class="pos">${sign(-(r.gc_diff||0))}</td></tr>`;
+    return `<tr><td class="wrap">${nameCell(r.name,r.club)}${watch}${ctx?`<div class="note">${ctx}</div>`:""}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td></tr>`;};
+  const xgDefRow=r=>`<tr><td class="wrap">${nameCell(r.name,r.club)}${r.next?`<div class="note">${r.fdr!=null?`FDR ${r.fdr} · `:""}next ${esc(r.next)} · ${r.owned_pct}% owned</div>`:""}</td><td>${esc(r.pos)}</td><td>${r.goals_conceded}/${r.xgc}</td><td class="pos">${sign(-(r.gc_diff||0))}</td></tr>`;
   const xgDefRows=(XG.top_def_lucky||[]).map(xgDefRow).join("")||`<tr><td colspan="4"><span class="note">No qualifying defenders or keepers.</span></td></tr>`;
   const earlyNote=(XG.finished_gws!=null&&XG.finished_gws<10)?`<p class="note">Only ${XG.finished_gws} gameweeks played: treat these as a watch list, not a sell list.</p>`:"";
   const xgOverRows=(XG.top_over||[]).map(xgRegRow).join("")||`<tr><td colspan="4"><span class="note">No qualifying players yet.</span></td></tr>`;
