@@ -190,3 +190,13 @@ details.plrow[open]>summary::after{content:"\2212"}
   .tgt-card{padding:14px}
   .kpis{grid-template-columns:1fr 1fr}
 }
+
+.do-this h2{letter-spacing:.04em}
+.do-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+.do-tile{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px}
+.do-tile .do-k{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.do-tile b{display:block;font-size:15px}
+.do-tile span{color:var(--muted);font-size:12px}
+.do-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+.do-row b{font-size:12px;letter-spacing:.06em}
+.do-row span{color:var(--muted);font-size:12px}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=51fcaf98">
+<link rel="stylesheet" href="dashboard.css?v=df639ac0">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -12,8 +12,8 @@
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=62618ed2"></script>
 <script src="swing.js?v=a8206ab1"></script>
-<script src="data.js?v=5d117d8c"></script>
-<script src="news.js?v=ac9715a8"></script>
+<script src="data.js?v=64452010"></script>
+<script src="news.js?v=5f21646c"></script>
 <script src="fh.js?v=138865b2"></script>
 <script src="plan-intel.js?v=da9120ac"></script>
 <script src="shaaland-wildcard.js?v=b3b3cdf5"></script>
@@ -138,7 +138,20 @@ function renderPlan(){
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players you don't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit your own squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
   const W=window.FPL_WILDCARD_WATCH;
   const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">You have Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad and captain call.</div>`:"";
-  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${plannerCardCompact(D)}${wildcardNote}${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
+  document.getElementById("
+function doThisCard(D){
+  const step=((D.planner||{}).steps||[])[0]||{};
+  const tr=(D.plan&&D.plan.transfer&&D.plan.transfer.move)||null;
+  const cap=step.captain||"—";
+  const vice=step.vice||"";
+  const ft=(D.plan&&D.plan.transfer&&D.plan.transfer.ft_available)||0;
+  const move=tr?esc(tr.out)+" → "+esc(tr.inn):"No transfer";
+  const chips='<div class="do-row"><b>CHIPS</b><span>All four already used</span></div>';
+  const league='<div class="do-row"><b>LEAGUE</b><span>2nd · −2 vs 1st</span></div>';
+  const news='<div class="do-row"><b>FPL NEWS</b><span>Open Intel for injuries and flags</span></div>';
+  return `<div class="card do-this"><h2>Do this</h2><div class="do-grid"><div class="do-tile"><span class="do-k">Captain</span><b>${esc(cap)}</b><span>${vice?"vice "+esc(vice):"this gameweek"}</span></div><div class="do-tile"><span class="do-k">Transfer</span><b>${move}</b><span>${ft} free transfer${ft===1?"":"s"}</span></div></div>${chips}${league}${news}</div>`;
+}
+plan").innerHTML=`${doThisCard(D)}${thisGwCard(D)}${plannerCardCompact(D)}${wildcardNote}${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
 function renderWildcardWatch(){
