@@ -676,3 +676,236 @@ function sigNote(r){ return r&&r.xp!=null?`<div class="note">xP ${r.xp}${(r.sig|
   function start(){minimize();new MutationObserver(minimize).observe(document.body,{childList:true,subtree:true});}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
+
+// ============================================================================================
+// FPL Lab app shell (2026-10 redesign): PLAN / TARGET / MORE. Shared by index.html and bacalhau.html.
+// The existing renderers still fill their <section>s exactly as before; the shell builds the two new
+// views from the same data and moves every old section, untouched, into MORE so no feature is lost.
+// ============================================================================================
+const LAB_CLUB={ARS:"Arsenal",AVL:"Aston Villa",BHA:"Brighton",BOU:"Bournemouth",BRE:"Brentford",BUR:"Burnley",CHE:"Chelsea",COV:"Coventry",CRY:"Crystal Palace",EVE:"Everton",FUL:"Fulham",HUL:"Hull",IPS:"Ipswich",LEE:"Leeds",LEI:"Leicester",LIV:"Liverpool",MCI:"Man City",MUN:"Man Utd",NEW:"Newcastle",NFO:"Nott'm Forest",SOU:"Southampton",SUN:"Sunderland",TOT:"Spurs",WHU:"West Ham",WOL:"Wolves"};
+const LAB_SVG={
+  flask:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7.5 15h9"/></svg>',
+  info:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></svg>',
+  plan:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>',
+  target:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="3"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg>',
+  more:'<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/><text x="12" y="15.6" text-anchor="middle" font-size="9" font-weight="700" fill="currentColor" stroke="none" font-family="-apple-system,sans-serif">C</text></svg>',
+  swap:'<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 3.5V8h4.5"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20.5V16h-4.5"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>',
+  left:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg>',
+  right:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg>',
+  cal:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>',
+  refresh:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 3.5V8h4.5M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20.5V16h-4.5"/></svg>',
+  dots:'<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg>',
+  bolt:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>',
+  aim:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg>',
+  star:'<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></svg>',
+  guard:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.5 4 5.5v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10v-6z"/></svg>',
+  pound:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 20H7c2-2 2.5-4 2.5-6.5V8.5a3.5 3.5 0 0 1 6.6-1.6M6.5 13h7"/></svg>',
+  flag:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>'
+};
+const LAB_POSC={GKP:"#f5b83d",DEF:"#a78bfa",MID:"#4ade80",FWD:"#fb923c"};
+function labNum(v,d){return v==null||v===""||isNaN(Number(v))?"–":Number(v).toFixed(d);}
+// "Today, 7:03 PM" / "Yesterday, ..." / "Wed, Oct 14, ..." in Toronto time
+function labWhen(s){
+  const m=String(s||"").match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2}:\d{2})/); if(!m) return esc(s||"–");
+  const d=new Date(m[1]+"T"+m[2]+":00Z"); if(isNaN(+d)) return esc(s);
+  const day=x=>new Intl.DateTimeFormat("en-CA",{timeZone:TZ}).format(x);
+  const t=new Intl.DateTimeFormat("en-US",{timeZone:TZ,hour:"numeric",minute:"2-digit",hour12:true}).format(d);
+  const now=new Date(), y=new Date(Date.now()-864e5);
+  if(day(d)===day(now)) return "Today, "+t;
+  if(day(d)===day(y)) return "Yesterday, "+t;
+  return new Intl.DateTimeFormat("en-US",{timeZone:TZ,weekday:"short",month:"short",day:"numeric"}).format(d)+", "+t;
+}
+function labMyNames(D){return new Set(((D.plan||{}).rows||[]).map(r=>r[1]));}
+// ---------------------------------------------------------------- PLAN view
+function labCaptainPanel(D,they){
+  const xi=((D.plan||{}).xis||{})["gw"+((D.deadline||{}).next_gw)]||{};
+  const strip=n=>String(n||"").replace(/\s*\((?:C|VC)\)$/,"");
+  const cap=strip((xi.xi||[]).find(n=>/\(C\)$/.test(n)))||((D.planner||{}).steps||[{}])[0].captain||"–";
+  const vc=strip((xi.xi||[]).find(n=>/\(VC\)$/.test(n)))||"–";
+  const fx={}; ((D.plan||{}).rows||[]).forEach(r=>{fx[r[1]]=r[3];});
+  const xp0=(D.planner||{}).xp0||{};
+  const starters=new Set((xi.xi||[]).map(strip));
+  const ranked=Object.keys(xp0).filter(n=>!starters.size||starters.has(n)).sort((a,b)=>xp0[b]-xp0[a]).slice(0,5);
+  const rows=ranked.map((n,i)=>`<tr><td>${i+1}. ${esc(n)}${n===cap?' <span class="lab-pill c">C</span>':n===vc?' <span class="lab-pill vc">VC</span>':""}</td><td class="note">${esc(fx[n]||"")}</td><td><b>${labNum(xp0[n],1)}</b></td></tr>`).join("");
+  const ai=(D.ai_team||{}).plan||{}; const aiName=id=>((ai.squad||[]).find(p=>p.id===id)||{}).name;
+  return {cap,vc,html:`<p class="note">Captain = the highest expected points (xP) in ${they?"their":"your"} starting XI this gameweek; the vice is the next best from a different club.</p><table class="lab-tbl"><thead><tr><th>Player</th><th>Next</th><th>xP</th></tr></thead><tbody>${rows||'<tr><td colspan="3" class="note">No expected points yet.</td></tr>'}</tbody></table>${ai.captain?`<p class="note">AI team (plays on its own): C ${esc(aiName(ai.captain)||"?")} · VC ${esc(aiName(ai.vice)||"?")}</p>`:""}`};
+}
+function labTransfer(D){
+  const P=D.planner||{}, s0=(P.steps||[])[0]||{}, mv=s0.moves||[];
+  const ft=P.ft??(D.strategy||{}).free_transfers??"?";
+  const names=mv.length?mv.map(m=>`${esc(m.out)} → <strong>${esc(m.in)}</strong>`).join("<br>")+(s0.hits?` <span class="neg">−${4*s0.hits}</span>`:""):"Roll: bank the transfer";
+  return {ft,names};
+}
+function labChips(D,they){
+  const S=(D.strategy||{}).chips||[]; const nxt=(D.deadline||{}).next_gw||0;
+  const rows=S.map(c=>{
+    const w=(c.windows||[]); const cur=w.find(x=>nxt>=x.start&&nxt<=x.stop)||w[0]||{}; const later=w.find(x=>x.start>nxt);
+    let st;
+    if(cur.used_gw) st=`<span class="lab-pill used">Used GW${cur.used_gw}</span>${later?` <span class="note">next from GW${later.start}</span>`:""}`;
+    else st=`<span class="lab-pill ok">Available</span> <span class="note">until GW${cur.stop}</span>`;
+    return `<li><b>${esc(c.label||c.chip)}</b><span>${st}</span></li>`;
+  }).join("");
+  return `<ul class="lab-list">${rows||'<li class="note">No chip data.</li>'}</ul><p class="note">Full chip history and strategy: More › Review › Chips and More › Strategy › Chips &amp; Hits.</p>`;
+}
+function labLeague(D,they){
+  const L=D.leagues||{}, out=[];
+  for(const lg of (L.mini||[])){
+    const t=lg.table||[]; const me=t.find(r=>r.me);
+    const keep=t.filter((r,i)=>i<5||r.me);
+    const rows=keep.map(r=>`<tr class="${r.me?"lab-me":""}"><td>${r.rank}</td><td>${esc(r.team)}${r.me?(they?" · them":" · you"):""}</td><td><b>${r.pts}</b></td></tr>`).join("");
+    const T=lg.tactics||{};
+    const rk=(x,d)=>x&&x.rank?"P"+x.rank:d;
+    const diffs=(T.you_unique||[]).map(x=>`<span class="chip ok">${esc(x.name)} · ${x.own}%${x.vs_a?" vs "+rk(T.first,"1st"):""}${x.vs_b?" vs "+rk(T.second,"2nd"):""}</span>`).join("");
+    const share=(T.they_share||[]).map(x=>`<span class="chip sit">${esc(x.name)} · ${x.count}/${x.n}</span>`).join("");
+    const gap=T.gap_to_first;
+    out.push(`<div class="lab-lg"><h3>${esc(lg.name)} <span class="note">· ${me?"P"+me.rank:"–"} of ${lg.size||t.length}${gap!=null&&gap>0?" · "+gap+" behind P1":gap!=null&&gap<0?" · "+(-gap)+" ahead":""}</span></h3><table class="lab-tbl"><thead><tr><th>#</th><th>Team</th><th>Pts</th></tr></thead><tbody>${rows}</tbody></table>${T.first?`<p class="note">${rk(T.first,"1st")}: <b>${esc(T.first.name)}</b> ${T.first.pts}${rivalExtra(T.first,they?"they":"you")}<br>${T.second?`${rk(T.second,"2nd")}: <b>${esc(T.second.name)}</b> ${T.second.pts}${rivalExtra(T.second,they?"they":"you")}`:""}</p>`:""}${diffs?`<p class="note">${they?"Their":"Your"} differentials vs the rivals above</p><div class="xi">${diffs}</div>`:""}${share?`<p class="note">Both rivals own, ${they?"they don't":"you don't"}</p><div class="xi">${share}</div>`:""}</div>`);
+  }
+  return (out.join("")||'<p class="note">No mini-league data yet.</p>')+'<p class="note">Locked squads, ownership and the full rival breakdown: More › Leagues.</p>';
+}
+function labNews(D,they){
+  const mine=labMyNames(D); const av=(D.plan||{}).availability||{};
+  const flags=Object.keys(av).map(n=>`<li><b>${esc(n)}</b> <span class="lab-pill ${av[n].kind==="out"?"bad":"warn"}">${esc(av[n].label||av[n].status)}</span><div class="note">${esc(av[n].news||"")}</div></li>`).join("");
+  const tn=((D.team_news||{}).rows||[]).slice(0,6).map(r=>`<li><b>${esc(r.name)}</b> <span class="note">${esc(r.club)}</span> <span class="lab-pill ${r.status==="d"?"warn":"bad"}">${r.status==="d"?"DOUBT "+(r.chance??""):r.status==="s"?"SUS":r.status==="u"?"OUT":"INJ"}</span>${mine.has(r.name)?' <span class="lab-pill used">'+(they?"theirs":"yours")+'</span>':""}<div class="note">${esc(r.news||"")}</div></li>`).join("");
+  const N=window.FPL_NEWS||{};
+  const ag=(N.agreed||[]).slice(0,6).map(x=>`<li><b>${esc(x.player||"")}</b> <span class="note">${esc(x.club||"")}</span> · ${esc(x.verdict||"")}<div class="note">${(x.sources||[]).length} sites: ${esc((x.sources||[]).join(", "))}</div></li>`).join("");
+  return `<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New FPL flags · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
+}
+function labAcc(id,title,sub,body){
+  return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
+}
+// ---------------------------------------------------------------- TARGET view
+function labPool(D,h){
+  const mine=labMyNames(D), out=new Set();
+  ((D.injury_watch||{}).rows||[]).forEach(r=>{if(/INJ|SUS|OUT|LEFT/.test(r.label||"")) out.add(r.name+"|"+r.club);});
+  ((D.team_news||{}).rows||[]).forEach(r=>{if(r.status!=="d") out.add(r.name+"|"+r.club);});
+  Object.values(D.news_players||{}).forEach(r=>{if(["i","s","u"].includes(r.status)) out.add(r.name+"|"+r.club);});
+  const M=new Map();
+  const add=(r,f)=>{ if(!r||!r.name) return; const k=r.name+"|"+(r.club||""); if(mine.has(r.name)||out.has(k)) return;
+    const p=M.get(k)||{name:r.name,club:r.club,pos:r.pos||(D.pos_by_name||{})[r.name]};
+    f(p,r); if(r.cost!=null) p.cost=r.cost; if(r.owned_pct!=null) p.owned=r.owned_pct; if(!p.pos&&r.pos) p.pos=r.pos; M.set(k,p); };
+  const H=(D.targets||{}).horizons||{};
+  Object.keys(H).forEach(k=>(H[k].top||[]).forEach(r=>add(r,(p,r)=>{p.form=r.form; p.xgi90=r.xgi_p90; if(k===String(h)){p.xp=r.xp; p.fdr=r.fdr; p.why=r.why; p.sig=r.sig; p.ov=true;}})));
+  const T=(H[String(h)]||{}).top||[];
+  const X=D.xg_signal||{};
+  ["top","top_over","top_under","notable"].forEach(k=>(X[k]||[]).forEach(r=>add(r,(p,r)=>{p.xg=r.xg; p.xgi=r.xgi; p.xgi90=r.xgi_p90; p.goals=r.goals; p.assists=r.assists; p.next=r.next; if(p.fdr==null&&h===1) p.fdr=r.fdr;})));
+  (X.top_def_lucky||[]).forEach(r=>add(r,(p,r)=>{p.xgc=r.xgc; p.gc=r.goals_conceded; p.next=r.next; p.mins=r.minutes;}));
+  ((D.defcon||{}).top||[]).forEach(r=>add(r,(p,r)=>{p.dc90=r.per90; p.dcthr=r.threshold;}));
+  const byPos=(o,f)=>Object.values((o||{}).by_pos||{}).forEach(list=>(list||[]).forEach(r=>add(r,f)));
+  byPos(D.form_fdr,(p,r)=>{p.form=p.form??r.form; p.next=p.next||r.fixture; if(h===1&&p.fdr==null) p.fdr=r.fdr;});
+  byPos(D.value_board,(p,r)=>{p.vpm=r.value_per_1m; p.pts=r.points;});
+  Object.values((D.form_fdr||{}).by_pos||{}).forEach(()=>{});
+  const tt=D.transfer_targets||{}; ["xg","defcon"].forEach(k=>(tt[k]||[]).forEach(r=>add(r,(p,r)=>{if(p.xp==null&&h===1) p.xp=r.xp; p.sig=p.sig||r.sig;})));
+  ((D.set_pieces||{}).rows||[]).forEach(c=>{[["pens","Pens"],["fks","FKs"],["corners","Corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t=>{ if(t.yours) return; add({name:t.name,club:c.club,owned_pct:t.owned},(p)=>{p.sp=(p.sp||[]); if(!p.sp.includes(l)) p.sp.push(l);}); }));});
+  const order=new Map(T.map((r,i)=>[r.name+"|"+r.club,i]));
+  const list=[...M.values()]; list.forEach(p=>{p.ord=order.has(p.name+"|"+p.club)?order.get(p.name+"|"+p.club):999;});
+  return list;
+}
+const LAB_FILTERS=[
+  {id:"overview",label:"Overview",note:"The Target shortlist for this horizon: form, xGI, value, fixtures and news combined, best first.",pick:p=>p.ov,sort:(a,b)=>a.ord-b.ord,head:(p,n)=>[LAB_SVG.bolt,`${labNum(p.xp,1)} xP next ${n} GW${n>1?"s":""}`]},
+  {id:"attack",label:"Attack",note:"Forwards by expected goals this season.",pick:p=>p.pos==="FWD"&&(p.xg!=null||p.xgi90!=null),sort:(a,b)=>(b.xg??b.xgi90??0)-(a.xg??a.xgi90??0),head:p=>[LAB_SVG.aim,p.xg!=null?`${labNum(p.xg,1)} xG this season`:`${labNum(p.xgi90,2)} xGI per 90`]},
+  {id:"midfield",label:"Midfield",note:"Midfielders by expected goal involvement per 90.",pick:p=>p.pos==="MID"&&p.xgi90!=null,sort:(a,b)=>b.xgi90-a.xgi90,head:p=>[LAB_SVG.star,`${labNum(p.xgi90,2)} xGI per 90`]},
+  {id:"defence",label:"Defence",note:"Defenders and keepers: defensive contributions per 90 (DEFCON) and expected points.",pick:p=>p.pos==="DEF"||p.pos==="GKP",sort:(a,b)=>(b.dc90??-1)-(a.dc90??-1)||(b.xp??0)-(a.xp??0),head:p=>[LAB_SVG.guard,p.dc90!=null?`${labNum(p.dc90,1)} def. actions per 90 (needs ${p.dcthr})`:p.xgc!=null?`${labNum(p.xgc,1)} xGC this season`:`${labNum(p.xp,1)} xP`]},
+  {id:"setpieces",label:"Set Pieces",note:"First-choice penalty, free-kick and corner takers (FPL's own order).",pick:p=>(p.sp||[]).length,sort:(a,b)=>(b.sp.includes("Pens")-a.sp.includes("Pens"))||(b.xgi90??0)-(a.xgi90??0),head:p=>[LAB_SVG.flag,p.sp.join(" · ")]},
+  {id:"form",label:"Form",note:"FPL form: average points over the last 30 days.",pick:p=>p.form!=null,sort:(a,b)=>b.form-a.form,head:p=>[LAB_SVG.bolt,`${labNum(p.form,1)} form (pts per game, 30 days)`]},
+  {id:"xgi",label:"xGI",note:"Expected goal involvement per 90 minutes, this season.",pick:p=>p.xgi90!=null&&p.pos!=="GKP",sort:(a,b)=>b.xgi90-a.xgi90,head:p=>[LAB_SVG.star,`${labNum(p.xgi90,2)} xGI per 90`]},
+  {id:"xgc",label:"xGC",note:"Defences conceding fewer goals than their expected goals conceded (xGC): good so far, but luck can turn.",pick:p=>p.xgc!=null,sort:(a,b)=>(b.xgc-b.gc)-(a.xgc-a.gc),head:p=>[LAB_SVG.guard,`${labNum(p.xgc,1)} xGC · ${p.gc} conceded`]},
+  {id:"bonus",label:"Bonus",note:"The site's data has no bonus-point totals yet, so this sorts by expected points (xP), which already includes expected bonus.",pick:p=>p.xp!=null,sort:(a,b)=>b.xp-a.xp,head:(p,n)=>[LAB_SVG.star,`${labNum(p.xp,1)} xP next ${n} GW${n>1?"s":""}`]},
+  {id:"fixtures",label:"Fixtures",note:"Easiest fixtures first: average FPL difficulty (FDR) over the horizon.",pick:p=>p.fdr!=null,sort:(a,b)=>a.fdr-b.fdr||(b.xp??0)-(a.xp??0),head:(p,n)=>[LAB_SVG.cal,`FDR ${labNum(p.fdr,1)} next ${n} GW${n>1?"s":""}`]},
+  {id:"value",label:"Value",note:"Season points per £1m, best in each position.",pick:p=>p.vpm!=null,sort:(a,b)=>b.vpm-a.vpm,head:p=>[LAB_SVG.pound,`${labNum(p.vpm,1)} pts per £1m (${p.pts} pts)`]}
+];
+function labCard(p,f,n,i){
+  const [ic,txt]=f.head(p,n); const pc=LAB_POSC[p.pos]||"#8b95a1";
+  const big=p.pos==="FWD"&&p.xg!=null?["xG (season)",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
+  const more=[...(p.why||[]),...(p.sig||[]).map(s=>typeof shortReason==="function"?shortReason(s):s)];
+  return `<div class="lab-pc"><div class="lab-pc-h"><i class="dot" style="background:${pc}"></i><b>${esc(p.name)}</b><button class="lab-dots" aria-label="More about ${esc(p.name)}" data-i="${i}">${LAB_SVG.dots}</button></div><div class="lab-pc-c">${esc(LAB_CLUB[p.club]||p.club||"")} • <span style="color:${pc};font-weight:700">${esc(p.pos||"")}</span></div><div class="lab-pc-s"><span style="color:${pc}">${ic}</span>${esc(txt)}</div><div class="lab-pc-g"><div><span>Form</span><b>${labNum(p.form,1)}</b></div><div><span>xP</span><b>${labNum(p.xp,1)}</b></div><div><span>${big[0]}</span><b>${big[1]}</b></div><div><span>Price</span><b class="lab-green">£${labNum(p.cost,1)}m</b></div></div><div class="lab-pc-x" hidden>${p.next?`<div>Next: ${esc(p.next)}</div>`:""}${p.owned!=null?`<div>Owned ${p.owned}% overall</div>`:""}${more.length?`<div>${esc(more.join(" · "))}</div>`:""}</div></div>`;
+}
+function labTargetView(D,el,they){
+  const H=Object.keys((D.targets||{}).horizons||{}).map(Number).sort((a,b)=>a-b); if(!H.length){el.innerHTML='<div class="card"><p class="note">No target data yet.</p></div>';return;}
+  let hi=0, fid="overview";
+  const g0=(D.deadline||{}).next_gw||1;
+  const paint=()=>{
+    const n=H[hi], f=LAB_FILTERS.find(x=>x.id===fid);
+    const pool=labPool(D,n).filter(f.pick).sort(f.sort).slice(0,20);
+    const label=n===1?`GW ${g0}`:`GW ${g0}–${g0+n-1}`;
+    el.innerHTML=`<div class="lab-gw"><button data-d="-1" ${hi===0?"disabled":""} aria-label="Shorter horizon">${LAB_SVG.left}</button><div><b><span class="lab-blue">${LAB_SVG.cal}</span>${label}</b><span>Next ${n} gameweek${n>1?"s":""} · 2026/27 season</span></div><button data-d="1" ${hi===H.length-1?"disabled":""} aria-label="Longer horizon">${LAB_SVG.right}</button></div><div class="lab-filters">${LAB_FILTERS.map(x=>`<button class="${x.id===fid?"on":""}" data-f="${x.id}">${x.label}</button>`).join("")}</div><p class="note lab-fnote">${esc(f.note)} Players ${they?"Bacalhau owns":"you own"} and injured players are left out.</p><div class="lab-grid">${pool.map((p,i)=>labCard(p,f,n,i)).join("")||'<p class="note">No players for this filter.</p>'}</div><div class="lab-end"><span>–</span> End of targets</div>`;
+  };
+  el.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    if(b.dataset.d){hi=Math.max(0,Math.min(H.length-1,hi+Number(b.dataset.d))); paint();}
+    else if(b.dataset.f){fid=b.dataset.f; paint();}
+    else if(b.classList.contains("lab-dots")){const x=b.closest(".lab-pc").querySelector(".lab-pc-x"); x.hidden=!x.hidden; b.classList.toggle("on",!x.hidden);}
+  });
+  paint();
+}
+// ---------------------------------------------------------------- shell
+function labShell(D,opt){
+  opt=opt||{}; const they=!!opt.they;
+  const KEY="fpl-lab:view:"+(opt.key||"x");
+  document.body.classList.add("lab"); document.documentElement.classList.add("lab-html");
+  const root=document.createElement("div"); root.id="lab";
+  const tabs=[["plan","Plan",LAB_SVG.plan],["target","Target",LAB_SVG.target],["more","More",LAB_SVG.more]];
+  const C=labCaptainPanel(D,they), Tr=labTransfer(D);
+  const gw=(D.deadline||{}).next_gw;
+  root.innerHTML=`<header class="lab-head"><div class="lab-brand"><span>FPL Lab</span>${LAB_SVG.flask}</div><div class="lab-team">${esc((D.team||{}).name||opt.team||"")}</div><button class="lab-ibtn" aria-label="About this page" aria-expanded="false">${LAB_SVG.info}</button></header>
+<div class="lab-info" hidden></div>
+<nav class="lab-tabs">${tabs.map(([id,l])=>`<button data-v="${id}">${l.toUpperCase()}</button>`).join("")}</nav>
+<main class="lab-main">
+<div class="lab-view" id="labPlan"><div class="lab-top"></div>
+<div class="lab-do card"><h2>DO THIS${gw?` <span class="note">· GW${gw}</span>`:""}</h2><div class="lab-tiles">
+<button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
+<button class="lab-tile tr" data-p="labTr" aria-expanded="false"><span class="lab-ic">${LAB_SVG.swap}</span><span class="lab-tx"><b class="lab-tt">TRANSFER</b><em>Make up to ${esc(String(Tr.ft))} free transfer${Tr.ft===1?"":"s"}:<br>${Tr.names}</em></span></button></div>
+<div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div></div>
+${labAcc("labChips","CHIPS","View chip status and strategy",labChips(D,they))}
+${labAcc("labLeague","LEAGUE","Current standings and rivals",labLeague(D,they))}
+${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(D,they))}
+</div>
+<div class="lab-view" id="labTarget"></div>
+<div class="lab-view" id="labMore"></div>
+<div class="lab-foot"><i>All times are in ET (Toronto)</i><div>${LAB_SVG.refresh} Last updated: ${labWhen(D.generated_at)}</div></div>
+</main>
+<nav class="lab-bottom">${tabs.map(([id,l,ic])=>`<button data-v="${id}">${ic}<span>${l.toUpperCase()}</span></button>`).join("")}</nav>`;
+  document.body.insertBefore(root,document.body.firstChild);
+  // PLAN: live/deadline/chip banners stay at the top
+  const top=root.querySelector(".lab-top");
+  ["deadlineBanner","liveBar","chipAlert"].forEach(id=>{const e=document.getElementById(id); if(e) top.appendChild(e);});
+  // info panel: the old header line, KPIs and links
+  const info=root.querySelector(".lab-info");
+  ["meta","kpis"].forEach(id=>{const e=document.getElementById(id); if(e) info.appendChild(e);});
+  const foot=document.getElementById("foot"); if(foot) info.appendChild(foot);
+  info.insertAdjacentHTML("afterbegin",`<p class="note">FPL Lab for ${esc((D.team||{}).name||"")}: Plan = what to do before the next deadline, Target = players worth buying, More = every other tool (review, AI team, strategy, intel, leagues). Data refreshes automatically from FPL's public API.</p>`);
+  // TARGET
+  labTargetView(D,root.querySelector("#labTarget"),they);
+  // MORE: every old section, grouped like the old tabs
+  const more=root.querySelector("#labMore");
+  const groups=(typeof TAB_GROUPS!=="undefined"?TAB_GROUPS:[]);
+  more.innerHTML=`<p class="note lab-fnote">Everything else on the site, grouped as before. Tap a section to open it.</p>`;
+  groups.forEach(g=>{
+    const d=document.createElement("details"); d.className="lab-acc"; d.id="more-"+g.id;
+    d.innerHTML=`<summary><div><b>${esc(g.label.toUpperCase())}</b><span>${esc(g.tabs.map(t=>t[1]).join(" · "))}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body"></div>`;
+    const body=d.querySelector(".lab-acc-body");
+    g.tabs.forEach(([id,label])=>{
+      const s=document.getElementById(id); if(!s) return;
+      if(g.tabs.length===1){ body.appendChild(s); return; }
+      const sd=document.createElement("details"); sd.className="lab-sub"; sd.innerHTML=`<summary>${esc(label)}<i>${LAB_SVG.chev}</i></summary>`;
+      sd.appendChild(s); body.appendChild(sd);
+    });
+    more.appendChild(d);
+  });
+  // any section not in a group (future additions) still shows
+  document.querySelectorAll("body > section").forEach(s=>{ if(!s.innerHTML.trim()) return; const d=document.createElement("details"); d.className="lab-acc"; d.innerHTML=`<summary><div><b>${esc(s.id.toUpperCase())}</b><span></span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body"></div>`; d.querySelector(".lab-acc-body").appendChild(s); more.appendChild(d);});
+  // view switching (top tabs and bottom nav)
+  const show=v=>{ if(!["plan","target","more"].includes(v)) v="plan";
+    root.querySelectorAll(".lab-view").forEach(x=>x.classList.toggle("on",x.id==="lab"+v[0].toUpperCase()+v.slice(1)));
+    root.querySelectorAll("[data-v]").forEach(b=>{b.classList.toggle("on",b.dataset.v===v); b.setAttribute("aria-current",b.dataset.v===v?"page":"false");});
+    try{localStorage.setItem(KEY,v);}catch(e){} };
+  root.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b||!root.contains(b)) return;
+    if(b.dataset.v){ show(b.dataset.v); window.scrollTo(0,0); }
+    else if(b.dataset.p){ const p=root.querySelector("#"+b.dataset.p); const open=p.hidden; root.querySelectorAll(".lab-panel").forEach(x=>x.hidden=true); root.querySelectorAll(".lab-tile").forEach(x=>x.setAttribute("aria-expanded","false")); p.hidden=!open; b.setAttribute("aria-expanded",String(open)); }
+    else if(b.classList.contains("lab-ibtn")){ info.hidden=!info.hidden; b.setAttribute("aria-expanded",String(!info.hidden)); }
+  });
+  let v="plan"; try{v=localStorage.getItem(KEY)||"plan";}catch(e){}
+  show(v);
+}
