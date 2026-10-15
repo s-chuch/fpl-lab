@@ -237,13 +237,13 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
         if proj is not None and pct not in (None, ""):
             lk = proj.get("likelihood") or 0
             if lk >= 3:
-                put(el["id"], "price", 0.3, f"Price likely to rise (FPL: {pct}% to the threshold)")
+                put(el["id"], "price", 0.3, "Price likely to rise")
             elif lk == 2:
-                put(el["id"], "price", 0.12, f"Price may rise (FPL: {pct}%)")
+                put(el["id"], "price", 0.12, "Price may rise")
             elif lk <= -3:
-                put(el["id"], "price", -0.3, f"Price likely to fall (FPL: {pct}%)")
+                put(el["id"], "price", -0.3, "Price likely to fall")
             elif lk == -2:
-                put(el["id"], "price", -0.12, f"Price may fall (FPL: {pct}%)")
+                put(el["id"], "price", -0.12, "Price may fall")
             continue
         net = int(el.get("transfers_in_event") or 0) - int(el.get("transfers_out_event") or 0)
         owners = float(el.get("selected_by_percent") or 0) / 100 * total

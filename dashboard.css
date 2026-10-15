@@ -110,3 +110,7 @@ details.more>summary{cursor:pointer;list-style:none;display:inline-flex;align-it
 details.more>summary::-webkit-details-marker{display:none}
 details.more[open]>summary{background:var(--gold);color:var(--bg)}
 details.more>*:not(summary){margin-top:6px}
+
+.table-compact td .note,.table-compact td.wrap .note{font-size:inherit;line-height:1.3;opacity:.85}
+.table-compact td:has(.note),.table-compact td:has(.detail){white-space:normal;text-overflow:clip;line-height:1.3}
+.table-compact td.rr-tag,.table-compact td[class*="neg"],.table-compact td[class*="pos"]{text-overflow:clip}
