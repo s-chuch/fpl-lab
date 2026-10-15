@@ -6,9 +6,12 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 import fpl_common
 
+_log = fpl_common.get_logger("refresh.py")
+
+
 def _warn(msg):
     """Surface a skipped-item failure in the Action log instead of swallowing it."""
-    print(f"[refresh.py] WARNING: {msg}", file=sys.stderr)
+    _log.warning(msg)
 
 ET = ZoneInfo("America/Toronto")
 

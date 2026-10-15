@@ -31,6 +31,7 @@ can't be fetched — this is optional enrichment on a pipeline that must keep
 working without it.
 """
 from __future__ import annotations
+import fpl_common
 import json, re, sys, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
@@ -57,8 +58,11 @@ NAME_HINTS = {
 }
 
 
+_log = fpl_common.get_logger("fixtures_external.py")
+
+
 def _warn(msg):
-    print(f"[fixtures_external.py] WARNING: {msg}", file=sys.stderr)
+    _log.warning(msg)
 
 
 def _norm(s):
@@ -262,7 +266,7 @@ def get_team_recovery(boot, existing, now=None):
             continue
         pl_ok = pl_ok or slug == "epl"
         got = matches_from_feed(rows, competition, idx)
-        print(f"[fixtures_external.py] {slug}: {len(rows)} rows, {len(got)} PL-club matches", file=sys.stderr)
+        _log.info(f"{slug}: {len(rows)} rows, {len(got)} PL-club matches")
         for sn, m in got:
             per_club.setdefault(sn, []).append(m)
             if slug == "epl":
@@ -276,7 +280,7 @@ def get_team_recovery(boot, existing, now=None):
             _warn(f"{competition} wikipedia page failed: {e}")
             continue
         got = matches_from_wikitext(text, competition, idx)
-        print(f"[fixtures_external.py] {competition} (wikipedia): {len(got)} PL-club matches", file=sys.stderr)
+        _log.info(f"{competition} (wikipedia): {len(got)} PL-club matches")
         for sn, m in got:
             per_club.setdefault(sn, []).append(m)
     if not pl_ok:

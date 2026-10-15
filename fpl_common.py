@@ -5,8 +5,22 @@ trend discovery used by news_scrape.py so a name only has
 to actually be talked about somewhere to surface as a theme — never a fixed,
 hand-maintained watchlist."""
 from __future__ import annotations
-import http.client, json, re, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request
+import http.client, json, logging, re, sys, threading, time, unicodedata, urllib.error, urllib.parse, urllib.request
 from datetime import datetime, timezone
+
+def get_logger(tag):
+    """One logger per script, printing `[tag] LEVEL: message` to stderr (the format the Actions logs have always had)."""
+    lg = logging.getLogger(tag)
+    if not lg.handlers:
+        h = logging.StreamHandler(sys.stderr)
+        h.setFormatter(logging.Formatter("[%(name)s] %(levelname)s: %(message)s"))
+        lg.addHandler(h)
+        lg.setLevel(logging.INFO)
+        lg.propagate = False
+    return lg
+
+
+_log = get_logger("fpl_common.py")
 
 USER_AGENT = "ShaalandFPLLab/1.0"
 
@@ -71,7 +85,7 @@ def get(url, timeout=20, retries=3, backoff=1.5):
             _drop(parts.netloc)
             last_err = e.args[0] if isinstance(e, _Transient) else e
             if attempt < retries - 1:
-                print(f"get() retry {attempt + 1}/{retries - 1} after {last_err} — {url}")
+                _log.info(f"get() retry {attempt + 1}/{retries - 1} after {last_err} — {url}")
                 time.sleep(backoff ** attempt)
     raise last_err
 
@@ -139,9 +153,9 @@ def event_window(prev=None):
             prev_cut = parse_iso(((prev or {}).get("cutoff") or "").replace(" UTC", "+00:00").replace(" ", "T", 1))
             if prev_cut:
                 cutoff = prev_cut
-                print(f"warn: event_window bootstrap failed ({e}) — reusing previous cutoff {prev['cutoff']}")
+                _log.warning(f"event_window bootstrap failed ({e}) — reusing previous cutoff {prev['cutoff']}")
             else:
-                print(f"warn: event_window bootstrap failed ({e}) and no previous cutoff — every dated article will count as new")
+                _log.warning(f"event_window bootstrap failed ({e}) and no previous cutoff — every dated article will count as new")
     return gw, cutoff
 
 

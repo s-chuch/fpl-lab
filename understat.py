@@ -6,9 +6,12 @@ in a match with its player, assist-maker, result and xG. Finished matches never 
 one is fetched once and kept in understat_cache.json; later runs only fetch new matches.
 Everything here fails soft: on any error the caller falls back to FPL's xG/xA."""
 from __future__ import annotations
+import fpl_common
 import difflib, gzip, json, re, unicodedata, urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+
+_log = fpl_common.get_logger("understat.py")
 
 BASE = "https://understat.com"
 CACHE = Path(__file__).with_name("understat_cache.json")
@@ -66,7 +69,7 @@ def fetch_matches(season):
         try:
             d = _get(f"/getMatchData/{mid}", f"/match/{mid}")
         except Exception as e:
-            print(f"[understat.py] match {mid}: {e}")
+            _log.warning(f"match {mid}: {e}")
             return mid, None
         shots = [[s["player"], s.get("player_assisted") or "", s["result"], round(float(s["xG"]), 3), s["h_a"]]
                  for side in ("h", "a") for s in (d.get("shots", {}).get(side) or [])]
@@ -84,7 +87,7 @@ def fetch_matches(season):
     try:
         CACHE.write_text(json.dumps(cache, separators=(",", ":")))
     except Exception as e:
-        print(f"[understat.py] could not write cache: {e}")
+        _log.warning(f"could not write cache: {e}")
     return played, cache["matches"]
 
 
