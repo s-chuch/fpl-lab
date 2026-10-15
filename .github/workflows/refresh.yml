@@ -161,6 +161,8 @@ jobs:
             echo "No data change"
           else
             git commit -m "Refresh FPL data $(date -u +%Y-%m-%dT%H:%MZ)"
+            # Why this rebase looks odd: data.js etc. are fully regenerated every run, so on a conflict THIS run's files win (-X theirs).
+            # The two wildcard files are the exception (hand-edited on main): take main's copy and recompute their generated blocks. See docs/decisions.md.
             WILD="bacalhau-wildcard.js shaaland-wildcard.js"
             for attempt in 1 2 3; do
               echo "push attempt $attempt/3"
