@@ -1,6 +1,6 @@
 """Shared base for the refresh: logging, constants, the memoised FPL GET, deadline state, fixtures."""
 from __future__ import annotations
-import copy, sys
+import copy, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -182,6 +182,8 @@ def player_availability(el):
     news = (el.get("news") or "").strip()
     if status in ("i", "s", "u") or chance == 0:
         label = {"i": "INJ", "s": "SUS", "u": "OUT"}.get(status, "OUT")
+        if status == "u" and re.search(r"\b(?:join(?:ed)?|loan(?:ed)?|left|transfer(?:red)?|moved|signed)\b", news, re.I):
+            label = "LEFT"          # no longer at the club: not an injury
         return {"status": status, "chance": chance, "news": news, "kind": "out", "label": label}
     if status == "d" or (chance is not None and chance < 100):
         label = f"DOUBT {chance}%" if chance is not None else "DOUBT"

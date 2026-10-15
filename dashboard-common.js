@@ -27,24 +27,25 @@ function trNet(t){const n=Number(String(t&&t.net!=null?t.net:0).replace("+",""))
 // Rival gap-trend/chip/fixture note for the Leagues tab. pronoun="you" (index.html,
 // your own decisions) or "they" (bacalhau.html, auditing someone else's squad) —
 // same underlying refresh.py data (build_tactics' rival_ctx), just the wording.
-function trendNote(gt, pronoun){
+function trendNote(gt, pronoun, gap){
   const subj=pronoun==="they"?"they":"you", obj=pronoun==="they"?"them":"you";
   if(gt==null) return null;
-  if(gt>0) return subj+" closed "+gt+" last GW";
-  if(gt<0) return "gained "+(-gt)+" on "+obj+" last GW";
-  return "even with "+obj+" last GW";
+  if(gt===0) return "even with "+obj+" last GW";
+  // gt = our last-GW points minus the rival's; gap > 0 = the rival is ahead, gap < 0 = the rival is behind
+  if(gap!=null&&gap<0) return gt>0?subj+" stretched the lead by "+gt+" last GW":"they closed "+(-gt)+" last GW";
+  return gt>0?subj+" closed "+gt+" last GW":"they gained "+(-gt)+" on "+obj+" last GW";
 }
 function rivalExtra(card, pronoun){
   if(!card) return "";
   const bits=[];
-  const tn=trendNote(card.gap_trend, pronoun); if(tn) bits.push(tn);
+  const tn=trendNote(card.gap_trend, pronoun, card.gap); if(tn) bits.push(tn);
   if(card.chips_used&&card.chips_used.length) bits.push("used "+card.chips_used.join(", "));
   if(card.fixture) bits.push(card.fixture.label.toLowerCase()+" fixtures ("+card.fixture.avg_fdr+")");
   return bits.length?` <span class="note">— ${esc(bits.join(", "))}</span>`:"";
 }
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-function agreedPool(){const N=window.FPL_NEWS||{}; return (N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources}));}
+function agreedPool(){const N=window.FPL_NEWS||{}; return (N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources,verdict:String(x.verdict||"").split(" (")[0],llm:(x.llm||{}).verdict}));}
 function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
 // news_scrape.py now discovers trending players dynamically and tags each theme
 // with the exact player it found (it.player), rather than the page having to
@@ -158,7 +159,11 @@ function newsVsSquad(squadNames, startedNames, clubsByName){
   const have=new Set((squadNames||[]).map(n=>n)); const start=new Set(startedNames||[]); const owned=[], missing=[], fade=[], caps=[];
   for(const it of agreedPool()){
     const t=normTxt(it.text); const names=it.player?[it.player]:namesInText(it.text);
-    const isFade=/fade|sell into|sell /.test(t); const isCap=/captain/.test(t); const isIn=it.player?true:/transfer in|to target|popular forward|priority/.test(t);
+    // classify on the structured verdict, not the text line (its count suffix says "1 captain, 1 fitness/rotation mentions")
+    const v=it.llm||({"Leaning buy":"buy","Captain candidate":"captain","Leaning sell / avoid":"sell"})[it.verdict]||null;
+    const isFade=it.player?(v==="sell"||v==="avoid"):/fade|sell into|sell /.test(t);
+    const isCap=it.player?v==="captain":/captain/.test(t);
+    const isIn=it.player?(v==="buy"||v==="captain"):/transfer in|to target|popular forward|priority/.test(t);
     if(isCap) caps.push(it.text);
     if(isFade){ const aboutUnited=it.club==="MUN"||/\bman(?:chester)? (?:utd|united)\b|\bmun\b/.test(t); const startedUnited=aboutUnited?(startedNames||[]).filter(n=>(clubsByName[n]||"")==="MUN"):[]; const hit=names.filter(n=>start.has(n)).concat(startedUnited); const uniq=[...new Set(hit)]; if(uniq.length) fade.push(uniq.join(", ")+" · "+it.text); continue; }
     // Structured fields (it.sources/it.tags) let the Plan-tab card render a
@@ -249,7 +254,7 @@ function rivalsCard(tac,leagueName,pronoun){
     const gap=c.gap==null?"?":(c.gap>0?`${c.gap} ahead`:c.gap<0?`${-c.gap} behind`:"level");
     const left=c.chips_left==null?`<span class="note">chips: unknown</span>`:(c.chips_left.length?`chips left: <b>${esc(chipNames(c.chips_left))}</b>`:`<span class="note">no chips left this half</span>`);
     const used=(c.chips_used&&c.chips_used.length)?` · used: ${esc(chipNames(c.chips_used))}`:"";
-    const tn=trendNote(c.gap_trend,pronoun||"you");
+    const tn=trendNote(c.gap_trend,pronoun||"you",c.gap);
     const extra=[tn,c.fixture?c.fixture.label.toLowerCase()+" fixtures ("+c.fixture.avg_fdr+")":null].filter(Boolean);
     return `<li><span class="who">P${c.rank} · ${esc(c.name||"?")} · ${c.pts??"?"} (${gap})</span><div class="detail">${left}${used}${extra.length?` · ${esc(extra.join(", "))}`:""}</div></li>`;
   }).join("");
@@ -289,7 +294,8 @@ function captainBlock(key,title,open,D){
     const k=n===b.captain[0]?(good?"chip ok":"chip process"):"chip sit";
     return `<div class="${k}">${esc(n)} · ${p}${tags?` (${tags})`:""}</div>`;
   }).join("");
-  const why=[`Your captain: <b>${esc(b.captain[0])}</b> (${b.captain[1]} pts × ${b.mult} = ${b.you})${chipTag}`,
+  const effName=(b.effective&&b.effective!==b.captain[0])?b.effective:b.captain[0], effPts=(b.effective&&b.effective!==b.captain[0]&&b.mult)?Math.round(b.you/b.mult):b.captain[1];
+  const why=[`Your captain: <b>${esc(effName)}</b> (${effPts} pts × ${b.mult} = ${b.you})${chipTag}`,
     `Process pick: <b>${esc(b.process_pick[0])}</b> — best points per appearance over the previous GWs${b.process_pick[2]>=0?` (${b.process_pick[2]})`:""}`,
     `Hindsight: <b>${esc(b.best[0])}</b> (${b.best[1]} pts) was the top scorer in your XI`].map(x=>`<li>${x}</li>`).join("")+eff;
   return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${good?"pos":"neg"}">You ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${row("You",b.you,good?"good":"bad")}${row("Process",b.process)}${row("Hindsight",b.hindsight)}<ul class="why">${why}</ul><p class="note">Top scorers in your XI (C = captain, VC = vice, P = process pick)</p><div class="xi">${opts}</div></details>`;

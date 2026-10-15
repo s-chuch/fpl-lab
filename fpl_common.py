@@ -414,7 +414,7 @@ def stance_quotes(raw_text, key, window=80):
 
 
 TOPICS = [
-    ("fitness", r"\b(?:injur\w*|knock|doubt\w*|fitness|ruled out|suspend\w*|illness|hamstring|ankle|calf|groin|thigh|muscle|(?:return|back) from|miss(?:es|ed|ing)?)\b"),
+    ("fitness", r"\b(?:injur\w*|knock|doubt\w*|fitness|ruled out|suspend\w*|illness|hamstring|ankle|calf|groin|thigh|muscle|(?:return|back) from|miss(?:es|ed|ing)?\s+(?:\w+\s+){0,3}(?:match(?:es)?|games?|gameweeks?|gws?|weeks?|training|fixtures?|start))\b"),
     ("role", r"\b(?:penalt\w*|set[- ]pieces?|corners?|free[- ]kicks?|minutes|rotat\w*|rested|benched|bench|subbed?|wing[- ]?back|plays? (?:as|on|up)|starting (?:xi|eleven|lineup)|starter)\b"),
     ("fixture", r"\b(?:fixtures?|against|facing|faces?|vs\.?|home|away|double gameweek|blank gameweek|dgw|bgw|opponents?|run of)\b|\([HA]\)"),
     ("form", r"\b(?:xgi?|xa|goals?|assists?|shots?|big chances?|hauls?|clean sheets?|bonus|in form|form)\b"),
@@ -454,10 +454,10 @@ _GOOD = re.compile(r"\b(?:great|excellent|easy|favourable|favorable|good|strong|
                    r"essential|bargain|value|differential|penalty taker|takes? penalties|on penalties|set[- ]pieces?|clean sheet|haul|brace|hat[- ]trick|"
                    r"scored|assist(?:s|ed)?|returns?|back (?:in|from)|available|fit again|passed (?:a )?fitness|cleared|starts?|nailed|safe|"
                    r"most[- ]captained|standout|top pick|best (?:option|pick|buy)|recommend\w*|target|priority|upgrade|bring (?:him )?in)\b", re.I)
-_BAD = re.compile(r"\b(?:injur\w*|knock|doubt\w*|fitness test|ruled out|miss(?:es|ed|ing)?|suspend\w*|ban(?:ned)?|illness|hamstring|ankle|calf|groin|"
+_BAD = re.compile(r"\b(?:injur\w*|knock|doubt\w*|fitness test|ruled out|miss(?:es|ed|ing)?\s+(?:\w+\s+){0,3}(?:match(?:es)?|games?|gameweeks?|gws?|weeks?|training|fixtures?|start)|suspend\w*|ban(?:ned)?|illness|hamstring|ankle|calf|groin|"
                   r"rotat\w*|rested|benched|bench|dropped|out of the (?:team|squad)|sub(?:bed)? off|tough|difficult|hard|poor|struggl\w*|"
                   r"avoid|sell|fade|dump|overpriced|overrated|not worth|stay away|lacklustre|blank(?:ed|s)?|no returns?|dry|slump|price fall|"
-                  r"unwanted|risk(?:y)?|worry|concern\w*)\b", re.I)
+                  r"unwanted|risk(?:y)?|worry|(?:injury|fitness) concerns?)\b", re.I)
 _TONE_NEG = re.compile(r"(?:\bnot|n't|\bnever|\bno|\bwithout)\s+(?:\w+\s+){0,2}$", re.I)
 
 

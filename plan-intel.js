@@ -47,7 +47,9 @@ window.planIntel = function(D){
   const POSMAP=D.pos_by_name||{};
   const posOf=n=>{const r=(P.rows||[]).find(x=>x[1]===n); return (r&&r[0])||POSMAP[n]||null;};
   const samePos=(a,b)=>{const pa=posOf(a), pb=posOf(b); return !!pa && pa===pb;};
-  const chips=D.chips_official||{};
+  // chips are per half: from GW20 only the second-half plays (key_h2) count as used
+  const _co=D.chips_official||{}, _nx=((D.deadline||{}).next_gw)||0, chips={};
+  Object.keys(_co).filter(k=>!k.endsWith("_h2")).forEach(k=>{chips[k]=_nx>=20?(_co[k+"_h2"]??null):_co[k];});
   const bank=Number((D.team||{}).bank||0);
   const ft=(P.transfer||{}).ft_available;
   const pool=[].concat(N.agreed||[], N.split||[]);

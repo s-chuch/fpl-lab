@@ -70,13 +70,13 @@
     const body=sorted.map(r=>`<tr style="${r.own?OWNBG:""}"><td style="text-align:left;font-weight:700"${r.own?` title="${E("You own: "+(r.c.players||[]).join(", "))}"`:""}>${E(r.c.club)}${r.own?` <span style="color:var(--teal)">&bull;${r.own}</span>`:""}</td>${gws.map((g,i)=>cell(r.cells[i],kind)).join("")}<td><b>${f1(r.run)}</b></td><td class="wrap" style="font-size:9px;line-height:1.15">${swingLabel(r.swing)}</td></tr>`).join("");
     const wc=D.chips_official||{},nx=D.deadline&&D.deadline.next_gw;
     const wcUsed=(nx!=null&&nx>=20)?wc.wildcard_h2:wc.wildcard;
-    const chip=(S.show_chip_hint&&wcUsed==null&&(D.chips_official||{}).hasOwnProperty("wildcard"))?`<p class="note" style="margin:8px 0 0">Wildcard available: a swing like this is the kind of run to plan one around.</p>`:"";
+    const chip=(wcUsed==null&&(D.chips_official||{}).hasOwnProperty("wildcard"))?`<p class="note" style="margin:8px 0 0">Wildcard available: a swing like this is the kind of run to plan one around.</p>`:"";
     const list=(t,a,extra)=>`<h3>${t}</h3><ul class="chiplist">${a.map(r=>row(r,kind)).join("")}${(extra||[]).map(r=>row(r,kind)).join("")}</ul>`;
     return `<div class="card" data-fswing="1"><h2>Fixture swing</h2>${ctr}
 ${list("Clubs to target",easy)}${list("Clubs to sell / avoid",hard,ownRisk)}
 <h3>All clubs, next ${W} GWs (${E((KINDS.find(k=>k[0]===kind)||[])[1])})</h3>
 <div class="table-scroll"><table class="table-compact" style="min-width:${Math.max(330,70+W*44)}px">${head}${body}</table></div>
-<p class="note" style="margin-top:8px">Difficulty is FPL's own rating; Attack/Defence use the opponent's defensive/attacking strength. Clubs you own are highlighted. Swing = fixtures now minus later: "easier later" means hard now, easy later.</p>${chip}</div>`;
+<p class="note" style="margin-top:8px">Difficulty is FPL's own rating; Attack/Defence come from each club's goals for and against this season. Clubs you own are highlighted. Swing = fixtures now minus later: "easier later" means hard now, easy later.</p>${chip}</div>`;
   };
 
   window.initFixtureSwing=function(root,D){
