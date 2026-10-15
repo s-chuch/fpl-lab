@@ -12,8 +12,8 @@
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=62618ed2"></script>
 <script src="swing.js?v=a8206ab1"></script>
-<script src="data.js?v=4a54294f"></script>
-<script src="news.js?v=8b14de85"></script>
+<script src="data.js?v=64452010"></script>
+<script src="news.js?v=5f21646c"></script>
 <script src="fh.js?v=138865b2"></script>
 <script src="plan-intel.js?v=da9120ac"></script>
 <script src="shaaland-wildcard.js?v=b3b3cdf5"></script>
@@ -83,62 +83,6 @@ renderTransfers();
 function renderPlan(){
   const P=D.plan||{},up=P.upcoming||[];
   if(!up.length){document.getElementById("plan").innerHTML=`<div class="warn">Waiting for refresh.</div>`;return;}
-  const heads=up.map(u=>`<th>GW${u.gw}</th>`).join("");
-  const avail=P.availability||{};
-  const rows=(P.rows||[]).map(r=>{
-    const a=avail[r[1]]||null;
-    const badge=a&&a.label?` <span class="pill used">${esc(a.label)}</span>`:"";
-    let c=`<td>${esc(r[1])}${badge}</td><td>${esc(r[0])}</td>`;
-    for(let i=0;i<up.length;i++){
-      const xi=((P.xis||{})["gw"+up[i].gw]||{}).xi||[];
-      const started=new Set(xi.map(n=>String(n).split(" (")[0]));
-      let call=String(r[3+i*3])==="Blank"?"BLANK":(started.has(r[1])?"START":"SIT");
-      c+=`<td>${esc(r[3+i*3])} <b class="${call==="START"?"pos":"neg"}">${call}</b></td>`;
-    }
-    return `<tr>${c}</tr>`;
-  }).join("");
-  const T=P.transfer||{}; const move=T.move;
-  const actionLine=T.action==="TRANSFER"&&move?`${esc(move.out)} → ${esc(move.inn)}`:"Roll the free transfer";
-  const squad=(P.rows||[]).map(r=>r[1]); const clubs={}; (P.rows||[]).forEach(r=>clubs[r[1]]=r[2]);
-  const gw0=up[0]&&up[0].gw; const started=((((P.xis||{})["gw"+gw0]||{}).xi)||[]).map(n=>String(n).split(" (")[0]);
-  const vs=newsVsSquad(squad, started, clubs);
-  const benches=(P.bench_calls||[]).map(b=>`<div class="card"><h2>GW${b.gw} bench</h2><p class="note">Sit first: <b>${esc(b.worst||"-")}</b> · ${esc(b.why||"")}</p><div class="xi">${(b.sit||[]).map(x=>`<div class="chip sit">${esc(x)}</div>`).join("")}</div></div>`).join("");
-  const I=(window.planIntel&&window.planIntel(D))||{};
-  const dlHeads=up.map(u=>{
-    const when=u.deadline?u.deadline:(u.deadline_utc?toToronto(u.deadline_utc):"");
-    const lock=u.deadline_passed?` <span class="pill used">locked</span>`:"";
-    return `<span class="note">GW${u.gw}${when?": "+when:""}${lock}</span>`;
-  }).join(" · ");
-  let intel="", vsLead="", newsBlock="";
-  if(I.cleared||I.waiting){
-    const wait=I.intelGw||(D.deadline&&D.deadline.intel_gw)||"?";
-    intel=`<div class="warn">Waiting for GW${wait} intel — locked-GW News themes are cleared from Plan.</div><div class="card"><h2>Plan intel · GW${wait}</h2><p class="note"><b>${esc(I.moveLine||("Waiting for GW"+wait+" intel"))}</b></p><p class="note">${esc(I.reason||"")}</p><p class="note">Fixtures and bench below still cover the live/upcoming matchweeks. Chip and transfer consensus will refill when GW${wait} scrapes land.</p></div>`;
-    vsLead=""; newsBlock="";
-  } else {
-    const chipAllUsed=(I.chipRows||[]).length>0&&(I.chipRows||[]).every(r=>r.used);
-    const chipLis=chipAllUsed?`<li><span class="note">All chips for this half are used. They reset at GW20.</span></li>`:(I.chipRows||[]).map(r=>`<li><span class="who">GW${r.gw} · ${esc(r.label)}</span><span class="pill ${r.rec==="HOLD"||r.used?"used":"free"}">${esc(r.rec)}</span><div class="detail">${esc(r.why)}</div></li>`).join("");
-    const opt=(I.optional||[]).map(x=>`<li><span class="note">${esc(x)}</span></li>`).join("");
-    intel=`<div class="card"><h2>Chips · next 2 GWs</h2><p class="note">Calls use News plus chips you have already played.</p><ul class="chiplist">${chipLis||"<li><span class=note>Waiting for news.js.</span></li>"}</ul></div><div class="card"><h2>Transfers · ${esc(I.action||T.action||"ROLL")} · ${I.ft??T.ft_available??"?"} FT · bank £${(I.bank||0).toFixed?(I.bank||0).toFixed(1):I.bank}</h2><p class="note"><b>${esc(I.moveLine||actionLine)}</b></p><p class="note">${esc(I.reason||T.reason||"")}</p>${I.targets&&I.targets.length?`<p class="note">Agreed and missing: ${esc(I.targets.join(", "))}</p>`:""}${opt?`<ul class="chiplist">${opt}</ul>`:""}</div>`;
-    const Ltac=I.league||{};
-    const HEADING_BY_MODE={defend:"Defend the lead",climb:"Climb the table",chase:"Vs 1st & 2nd"};
-    const heading=HEADING_BY_MODE[Ltac.mode]||"Vs 1st & 2nd";
-    let threatBlock="";
-    if(Ltac.mode==="defend"&&(Ltac.threat||[]).length){
-      threatBlock=`<ul class="note-list">${Ltac.threat.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><p class="note">They can still use their remaining chips — you can't match a Free Hit, Bench Boost, or Triple Captain again this half.</p>`;
-    } else if(Ltac.mode==="climb"&&(Ltac.threat||[]).length){
-      threatBlock=`<ul class="note-list">${Ltac.threat.map(t=>`<li>${esc(t)}</li>`).join("")}</ul><p class="note">1st and 2nd aren't this week's problem — closing the gap to the team right above you is.</p>`;
-    }
-    vsLead=`<div class="card"><h2>${esc(heading)}${Ltac.league?" · "+esc(Ltac.league):""}</h2>${threatBlock}<p class="note"><b>${esc(Ltac.cap||"Captain Haaland if the room owns him.")}</b></p><p class="note">${esc(Ltac.transfer||"")}</p>${(Ltac.start||[]).length?`<p class="note">Start these league diffs</p><div class="xi">${Ltac.start.map(x=>`<div class="chip ok">${esc(x)}</div>`).join("")}</div>`:""}${(Ltac.bench||[]).length?`<p class="note">Owned diffs that are sits — not tactics</p><div class="xi">${Ltac.bench.map(x=>`<div class="chip sit">${esc(x)}</div>`).join("")}</div>`:""}${(Ltac.wc||[]).length?`<p class="note">WC names this league barely owns</p><div class="xi">${Ltac.wc.map(x=>`<div class="chip">${esc(x)}</div>`).join("")}</div>`:""}</div>`;
-    newsBlock=newsCard("News vs this squad",vs);
-  }
-  const injuryNote=Object.keys(avail).length?`<p class="note">Availability from FPL: ${esc(Object.entries(avail).map(([n,a])=>n+" "+(a.label||a.kind)).join(" · "))}</p>`:"";
-  const TT=D.transfer_targets||{};
-  const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${Number(r.xgi_p90).toFixed(2)}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
-  const ttDcRows=(TT.defcon||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.per90}/${r.threshold}</td></tr>`).join("")||`<tr><td colspan="4"><span class="note">No non-owned players reliably hitting the threshold yet.</span></td></tr>`;
-  const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players you don't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit your own squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
-  const W=window.FPL_WILDCARD_WATCH;
-  const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">You have Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad and captain call.</div>`:"";
-  document.getElementById("plan").innerHTML=`<div class="warn">Waiting for refresh.</div>`;return;}
   const heads=up.map(u=>`<th>GW${u.gw}</th>`).join("");
   const avail=P.availability||{};
   const rows=(P.rows||[]).map(r=>{
