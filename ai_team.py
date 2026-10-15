@@ -161,7 +161,7 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
         ep = _f(el.get("ep_next"), None) if el.get("ep_next") not in (None, "") else None
         # ep_next mirrors recent form this season (a light recency nudge) and is per fixture, so it is scaled
         # by fitness and by the number of fixtures like the model's own figure
-        xp1 = (0.8 * m1 + 0.2 * ep * factor * av * len(f1)) if ep is not None and f1 else m1
+        xp1 = (0.8 * m1 + 0.2 * ep * factor * len(f1)) if ep is not None and f1 else m1      # FPL's ep_next already includes its own chance-of-playing
         if av == 0:
             xp1 = 0.0
         xp2 = model_xp(el, f2, gws_played, uw, recent) * (1.0 if av > 0.5 else av) * factor
