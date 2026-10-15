@@ -44,7 +44,7 @@ def _load_cache():
         c = json.loads(CACHE.read_text())
         if c.get("schema") == SCHEMA:
             return c
-    except Exception:
+    except (OSError, ValueError, AttributeError):    # missing/corrupt cache file or a non-dict payload: start empty
         pass
     return {"schema": SCHEMA, "matches": {}}
 

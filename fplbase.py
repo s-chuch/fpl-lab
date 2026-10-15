@@ -1,6 +1,6 @@
 """Shared base for the refresh: logging, constants, the memoised FPL GET, deadline state, fixtures."""
 from __future__ import annotations
-import copy, re, sys
+import copy, http.client, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -42,13 +42,17 @@ def get(url):
         return copy.deepcopy(_memo[url])  # callers may mutate what they get
     return fpl_common.get(url, timeout=30)
 
+# what a failed FPL request can raise (see fpl_common.get): network/HTTP errors, a bad JSON body, exhausted retries
+FETCH_ERRORS = (OSError, ValueError, http.client.HTTPException, fpl_common._Transient)
+
+
 def parse_deadline(raw):
     """Parse FPL deadline_time (UTC ISO) to aware datetime, or None."""
     if not raw:
         return None
     try:
         return datetime.fromisoformat(str(raw).replace("Z", "+00:00")).astimezone(timezone.utc)
-    except Exception:
+    except (ValueError, TypeError, OverflowError):
         return None
 
 def fmt_deadline_et(raw):
@@ -121,7 +125,7 @@ def _fixtures_for(event_id):
     if "all" not in _fixtures_cache:
         try:
             _fixtures_cache["all"] = get("https://fantasy.premierleague.com/api/fixtures/")
-        except Exception as e:
+        except FETCH_ERRORS as e:
             _warn(f"fixtures: whole-season request failed, using per-gameweek requests: {e}")
             _fixtures_cache["all"] = None
     allfx = _fixtures_cache["all"]
