@@ -12,8 +12,8 @@
 <footer id="foot"></footer>
 <script src="dashboard-common.js?v=1be1e595"></script>
 <script src="swing.js?v=a8206ab1"></script>
-<script src="data.js?v=ddc7d699"></script>
-<script src="news.js?v=24831f50"></script>
+<script src="data.js?v=f0c7a6e1"></script>
+<script src="news.js?v=d976decd"></script>
 <script src="fh.js?v=138865b2"></script>
 <script src="plan-intel.js?v=da9120ac"></script>
 <script src="shaaland-wildcard.js?v=b3b3cdf5"></script>
@@ -389,7 +389,8 @@ function renderStrategy(){
   const dcTopHead=`<thead><tr><th style="width:34%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:22%">P90/Thr</th><th style="width:20%">Hits it</th></tr></thead>`;
   const dcTopRow=r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.per90}/${r.threshold}</td><td class="${dcTagCls(r)}">${dcTagLabel(r)}</td></tr>`;
   const dcTopRows=(DC.top||[]).map(dcTopRow).join("")||`<tr><td colspan="5"><span class="note">No qualifying players yet.</span></td></tr>`;
-  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><ul class="note-list"><li>Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold</li><li>"Hits it" = Yes/Close/No — green reliably clears it most matches</li><li>A real differentiator most casual managers ignore</li></ul><h3>Your squad</h3><table class="table-compact">${dcHead}<tbody>${dcRows}</tbody></table><h3>Top ${DC.top_n??"?"} · players you don't own</h3><table class="table-compact">${dcTopHead}<tbody>${dcTopRows}</tbody></table><ul class="legend-list"><li>P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD)</li></ul></div>`;
+  const dcCards=(DC.top||[]).map(r=>`<div class="tgt-card"><div class="tgt-main"><b>${esc(r.name)}</b><div class="tgt-meta"><span class="club">${esc(r.club)}</span> · ${esc(r.pos)}</div></div><div class="tgt-price">£${r.cost.toFixed(1)}</div><div class="tgt-stat"><span>p90</span><b>${r.per90}</b></div><div class="tgt-stat"><span>hit</span><b class="${dcTagCls(r)}">${dcTagLabel(r)}</b></div></div>`).join("")||`<div class="note">No qualifying players yet.</div>`;
+  const dcCard=`<div class="card"><h2>Defensive Contribution (DEFCON)</h2><ul class="note-list"><li>Squad outfield players (${DC.min_minutes??"?"}+ mins) vs the 2-pt defensive-actions threshold</li><li>"Hits it" = Yes/Close/No — green reliably clears it most matches</li><li>A real differentiator most casual managers ignore</li></ul><h3>Your squad</h3><table class="table-compact">${dcHead}<tbody>${dcRows}</tbody></table><h3>Top ${DC.top_n??"?"} · players you don't own</h3><div class="tgt-cards">${dcCards}</div><table class="table-compact tgt-table">${dcTopHead}<tbody>${dcTopRows}</tbody></table><ul class="legend-list"><li>P90/Thr = combined defensive actions per 90 min vs the threshold needed (10 for DEF, 12 for MID/FWD — clearances+blocks+interceptions+tackles, plus recoveries for MID/FWD)</li></ul></div>`;
   const RR=D.rotation_risk||{};
   const rrGws=RR.gws||[];
   const rrTagLabel={falling:"Falling",declining:"Fading",rising:"Rising",starter:"Starter",fringe:"Fringe",mixed:"Mixed"};
