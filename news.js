@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 20:03 UTC",
+  "generated_at": "2026-10-15 20:04 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1529,69 +1529,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 7 Wildcard: Tom Dollimore\u2019s Key Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-wildcard-tom-dollimore/"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL Wildcard and team of the week for Gameweek 7",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-7-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL captain for GW7: Triple Captain Haaland?",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-captain-gameweek-7-article-26-27"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7 Wildcard best team + pros/cons of using",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-gameweek-7-wildcard-best-team-pros-cons-of-using"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Barcola hat-trick, Cherki subbed + Jackson \u201cfantastic\u201d",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-notes-barcola-hat-trick-cherki-subbed-fantastic-jackson"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7 team news: Thursday\u2019s live injury updates",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-gameweek-7-team-news-thursdays-live-injury-updates-3"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7: Best clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-gameweek-7-best-clean-sheet-odds"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7: Which players are predicted to get goals + assists?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-gameweek-7-which-players-are-predicted-to-get-goals-assists"
-    },
-    {
-      "source": "Scout",
-      "title": "Saudi Fantasy: Round 9 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/saudi-fantasy-round-9-team-reveals-2"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7: Which teams are projected to score the most goals?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/14/fpl-gameweek-7-which-teams-are-projected-to-score-the-most-goals"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Top FPL GW7 Differential Picks to Target Ahead of GW7 Deadline",
-      "url": "https://allaboutfpl.com/2026/10/top-fpl-gw7-differential-picks-to-target-ahead-of-gw7-deadline/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 6,
   "sites_with_articles": 5
 };
