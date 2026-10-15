@@ -89,7 +89,7 @@ function renderPlan(){
   const transferCard=`<div class="card"><h2>Transfer · ${esc(T.action||"ROLL")} · ${T.ft_available??"?"} FT · bank £${Number(D.team.bank).toFixed(1)}</h2><p class="note"><b>${esc(actionLine)}</b></p><p class="note">${esc(T.reason||"")}</p></div>`;
   const injuryNote=Object.keys(avail).length?`<p class="note">Availability from FPL: ${esc(Object.entries(avail).map(([n,a])=>n+" "+(a.label||a.kind)).join(" · "))}</p>`:`<p class="note">No injury flags in current Bacalhau plan data.</p>`;
   const TT=D.transfer_targets||{};
-  const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
+  const ttXgRows=(TT.xg||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${Number(r.xgi_p90).toFixed(2)}</td><td>${r.goals}+${r.assists}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No qualifying non-owned players yet.</span></td></tr>`;
   const ttDcRows=(TT.defcon||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.per90}/${r.threshold}</td></tr>`).join("")||`<tr><td colspan="4"><span class="note">No non-owned players reliably hitting the threshold yet.</span></td></tr>`;
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players Bacalhau doesn't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit their squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
   const W=window.FPL_WILDCARD_WATCH;
@@ -227,7 +227,7 @@ function renderStrategy(){
   const xgRow=r=>`<tr><td>${nameCell(r.name,r.club)}${xgNext(r)}</td><td>${esc(r.pos)}</td><td>${r.gi}/${r.xgi}</td><td class="${xgDiffCls(r)}">${sign(r.diff)}</td><td class="wrap ${xgTagCls(r)}">${xgTagText(r)}</td></tr>`;
   const xgRows=(XG.rows||[]).map(xgRow).join("")||`<tr><td colspan="5"><span class="note">No squad players with ${XG.min_minutes??"?"}+ minutes yet.</span></td></tr>`;
   const xgTopHead=`<thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead>`;
-  const xgTopRow=r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.xgi_p90}</td><td>${r.goals}+${r.assists}</td></tr>`;
+  const xgTopRow=r=>`<tr><td>${nameCell(r.name,r.club)}${sigNote(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${Number(r.xgi_p90).toFixed(2)}</td><td>${r.goals}+${r.assists}</td></tr>`;
   const xgTopRows=(XG.top||[]).map(xgTopRow).join("")||`<tr><td colspan="5"><span class="note">No qualifying players yet.</span></td></tr>`;
   const IM=XG.imminent||{};
   const imUS=IM.source==="understat";

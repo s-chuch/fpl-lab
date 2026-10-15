@@ -105,5 +105,17 @@ class SquadRows(unittest.TestCase):
         self.assertEqual((by["P2"]["next"], by["P2"]["fdr"]), ("Blank", None))
 
 
+class ScoutingFilter(unittest.TestCase):
+    def test_injured_and_low_minute_players_are_not_suggestions(self):
+        from signals import scouting_ok
+        ok = {"minutes": 540, "status": "a", "chance_of_playing_next_round": None}
+        self.assertTrue(scouting_ok(ok, 6))
+        self.assertFalse(scouting_ok({**ok, "minutes": 200}, 6))                   # under 270
+        self.assertFalse(scouting_ok({**ok, "minutes": 270}, 8))                   # under 45% of the minutes so far (324)
+        self.assertFalse(scouting_ok({**ok, "status": "i"}, 6))
+        self.assertFalse(scouting_ok({**ok, "chance_of_playing_next_round": 50}, 6))
+        self.assertTrue(scouting_ok({**ok, "chance_of_playing_next_round": 75}, 6))
+
+
 if __name__ == "__main__":
     unittest.main()

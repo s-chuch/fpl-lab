@@ -816,12 +816,13 @@ def build_transfer_targets(boot, team_id, picks_gw, top_n=8, min_minutes=180):
         except Exception as e:
             _warn(f"build_transfer_targets: could not load GW{picks_gw} squad: {e}")
 
+    finished_gws = sum(1 for e in boot["events"] if e.get("finished"))
     xg_rows, defcon_rows = [], []
     for el in elements.values():
         if el["id"] in squad_ids:
             continue
         mins = int(el.get("minutes") or 0)
-        if mins < min_minutes:
+        if mins < min_minutes or not scouting_ok(el, finished_gws):
             continue
         pos = POS[el["element_type"]]
         club = teams[el["team"]]["short_name"]

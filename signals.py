@@ -5,6 +5,18 @@ from datetime import datetime, timedelta, timezone
 from fplbase import *
 from fplbase import _warn, _fixtures_for
 
+def scouting_ok(el, finished_gws):
+    """Is a player a sensible scouting suggestion? A real sample (at least 270 minutes and 45% of the minutes available so far),
+    fit (FPL status available, chance of playing 75%+ when given), so injured or barely-playing players do not top a list."""
+    mins = int(el.get("minutes") or 0)
+    if mins < max(270, 0.45 * 90 * finished_gws):
+        return False
+    if el.get("status") not in (None, "a"):
+        return False
+    ch = el.get("chance_of_playing_next_round")
+    return ch is None or ch >= 75
+
+
 def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10, exclude=None, next_fixture_map=None):
     """Flag your own squad's players as over/underperforming their underlying
     numbers — a concrete "due for a dry patch" (sell-high) or "still getting
@@ -61,15 +73,18 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
                             "gc_tag": "riding_luck" if gc_diff >= threshold else ("unlucky" if gc_diff <= -threshold else "on_track")})
         return row
 
-    all_rows = []
+    finished_gws = sum(1 for e in boot["events"] if e.get("finished"))
+    all_rows, scout_ok = [], set()
     for el in elements.values():
         r = row_of(el)
         if r:
             all_rows.append(r)
+            if scouting_ok(el, finished_gws):
+                scout_ok.add((r["name"], r["club"]))
     # The league-wide leaderboards are scouting lists: only players you don't already own
     # (`exclude` = your squad as (name, club) pairs). Your own players stay in `rows` below.
-    pool = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ())]
-    top = sorted(pool, key=lambda r: -r["xgi_p90"])[:top_n]
+    pool = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ()) and (r["name"], r["club"]) in scout_ok]
+    top = sorted((r for r in pool if r["pos"] != "GKP"), key=lambda r: -r["xgi_p90"])[:top_n]
     top_over = sorted((r for r in pool if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
     top_under = sorted((r for r in pool if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
 
