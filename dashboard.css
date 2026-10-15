@@ -140,3 +140,20 @@ details.plrow[open]>summary::after{content:"\2212"}
 .plmove{margin-bottom:6px}
 @media(max-width:420px){.plbody{padding-left:0}
 }
+
+/* Target cards: phone layout */
+.tgt-cards{display:none}
+.tgt-card{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.tgt-card:last-child{border-bottom:0}
+.tgt-main{min-width:0}
+.tgt-main b{font-size:14px}
+.tgt-why{color:var(--muted);font-size:12px;margin-top:2px}
+.tgt-score{text-align:right;flex:0 0 auto}
+.tgt-score b{display:block;font-size:18px}
+.tgt-score span{color:var(--muted);font-size:11px}
+@media(max-width:720px){
+  .tgt-cards{display:block}
+  .tgt-table{display:none}
+  .card:has(.tgt-cards) .note-list{display:none}
+  .deadline-bar{position:sticky;top:0;z-index:6}
+}
