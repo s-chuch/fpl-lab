@@ -180,3 +180,4 @@
   the next fixture is easy; defenders and keepers are read separately (goals conceded vs xGC, `top_def_lucky`); under 10 played gameweeks a
   one-line note says to treat it as a watch list, not a sell list. Scouting lists use `signals.scouting_ok` (270+ mins and 45% of minutes so
   far, available, 75%+ chance of playing).
+- **xG/xA follow-ups (GrokDoor 111):** Overperforming rows show minutes; Top xGI/90 rows show next fixture, FDR, ownership and minutes; the Underperforming list uses a softer bar (`UNDER_SOFT` 1.5, squad tag still 2.0); assist volume needs 7+ chances created (defenders 14) in 3+ of the last 4 appearances; Understat-based squad tags say "(Understat)".

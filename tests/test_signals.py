@@ -51,13 +51,17 @@ class Volume(unittest.TestCase):
 
     def test_assist_thresholds(self):
         els = [el(i, 3, 540) for i in (1, 2, 3, 4)]
-        res = run(els, {1: win(cc=5, big_cc=2), 2: win(cc=6), 3: win(cc=1, big_cc=3), 4: win(cc=5, big_cc=2, assists=1)})
+        res = run(els, {1: win(cc=5, big_cc=2), 2: win(cc=7), 3: win(cc=1, big_cc=3), 4: win(cc=5, big_cc=2, assists=1)})
         self.assertEqual({x["eid"] for x in res["assist"]}, {2, 3})
-        self.assertIn("6+", res["assist_rule"]); self.assertIn("3+", res["assist_rule"])
+        self.assertIn("7+", res["assist_rule"]); self.assertIn("3+", res["assist_rule"])
 
     def test_defender_assist_needs_double(self):
-        res = run([el(1, 2, 540), el(2, 2, 540), el(3, 2, 540)], {1: win(cc=6), 2: win(cc=12), 3: win(big_cc=6)})
+        res = run([el(1, 2, 540), el(2, 2, 540), el(3, 2, 540)], {1: win(cc=7), 2: win(cc=14), 3: win(big_cc=6)})
         self.assertEqual({x["eid"] for x in res["assist"]}, {2, 3})
+
+    def test_assist_needs_three_appearances(self):
+        res = run([el(1, 3, 540), el(2, 3, 540)], {1: win(cc=9, apps=2), 2: win(cc=9, apps=3)})
+        self.assertEqual({x["eid"] for x in res["assist"]}, {2})
 
     def test_flags_carry_pos(self):
         res = run([el(1, 3, 540)], {1: win(sot=4, cc=7)})

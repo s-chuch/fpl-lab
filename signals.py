@@ -17,6 +17,9 @@ def scouting_ok(el, finished_gws):
     return ch is None or ch >= 75
 
 
+UNDER_SOFT = 1.5            # watch-list bar for 'due a return' (the squad tag still needs the full threshold)
+
+
 def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top_n=10, exclude=None, next_fixture_map=None):
     """Flag your own squad's players as over/underperforming their underlying
     numbers — a concrete "due for a dry patch" (sell-high) or "still getting
@@ -90,7 +93,8 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     # their luck is read from goals conceded vs xGC instead (top_def_lucky).
     att = [r for r in pool if r["pos"] in ("MID", "FWD")]
     top_over = sorted((r for r in att if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
-    top_under = sorted((r for r in att if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
+    # the underperforming list uses a softer bar (-1.5) so it is not near-empty early in the season; rows past -2 keep the full tag
+    top_under = sorted((r for r in att if r["diff"] <= -UNDER_SOFT), key=lambda r: r["diff"])[:top_n]
     top_def_lucky = sorted((r for r in pool if r["pos"] in ("DEF", "GKP") and r.get("gc_tag") == "riding_luck"), key=lambda r: -r.get("gc_diff", 0))[:top_n]
 
     rows = []
@@ -108,7 +112,7 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     notable = [r for r in rows if r["tag"] != "on_track" or r.get("gc_tag") not in (None, "on_track")]
     imminent = _imminent_returns(boot, all_rows, rows, pool, top_n, next_fixture_map)
     return {
-        "threshold": threshold, "min_minutes": min_minutes, "top_n": top_n,
+        "threshold": threshold, "under_soft": UNDER_SOFT, "min_minutes": min_minutes, "top_n": top_n,
         "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under, "top_def_lucky": top_def_lucky,
         "finished_gws": finished_gws,
         "imminent": imminent,
@@ -135,7 +139,7 @@ UNDERSTAT_GOAL_SOT = 3      # shots on target over the window with no goal => go
 
 UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
 
-UNDERSTAT_ASSIST_CC = 6     # chances created (shots the player set up) with no assist => assist due
+UNDERSTAT_ASSIST_CC = 7     # chances created (shots the player set up) with no assist => assist due
 
 UNDERSTAT_ASSIST_BIG = 3    # ...or this many big chances created
 
@@ -188,7 +192,7 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
         mult = ASSIST_DEF_FACTOR if el["element_type"] == 2 else 1
         if el["element_type"] != 2 and w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
             due.append("goal"); goal.append(item)
-        if w["assists"] == 0 and (w["cc"] >= UNDERSTAT_ASSIST_CC * mult or w["big_cc"] >= UNDERSTAT_ASSIST_BIG * mult):
+        if w["assists"] == 0 and w["apps"] >= 3 and (w["cc"] >= UNDERSTAT_ASSIST_CC * mult or w["big_cc"] >= UNDERSTAT_ASSIST_BIG * mult):
             due.append("assist"); assist.append(item)
         due_by[key] = due
     for r in squad_rows:
@@ -196,7 +200,7 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
     goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"] + x["bonus"]))
     assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"] + x["bonus"]))
     return {"source": "understat", "window": understat.WINDOW, "goal_rule": f"{UNDERSTAT_GOAL_SOT}+ shots on target or {UNDERSTAT_GOAL_BIG}+ big chances",
-            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created (defenders: double)",
+            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created, in 3+ of the last {understat.WINDOW} appearances (defenders: double)",
             "starter_rule": f"regular starters only ({round(STARTER_SHARE * 100)}%+ of available minutes); goal list is midfielders and forwards",
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned][:top_n]}
