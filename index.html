@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
-<link rel="stylesheet" href="dashboard.css?v=cb196826">
+<link rel="stylesheet" href="dashboard.css?v=61a6cf3e">
 <style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="setPieces"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=1be1e595"></script>
+<script src="dashboard-common.js?v=fd8e4ccf"></script>
 <script src="swing.js?v=a8206ab1"></script>
 <script src="data.js?v=64452010"></script>
 <script src="news.js?v=5f21646c"></script>
@@ -37,6 +37,23 @@ const TAB_GROUPS=[
   {id:"league",label:"Leagues",tabs:[["leagues","Leagues"]]}
 ];
 let activeGroup="review", activeTab="season";
+// Phone: Plan / Target / More. More reveals the other groups.
+if(matchMedia("(max-width:720px)").matches){
+  const bar=document.getElementById("tabs");
+  const simple=document.createElement("div");
+  simple.className="phone-nav";
+  simple.innerHTML=`<button data-go="plan">Plan</button><button data-go="target">Target</button><button data-go="more">More</button>`;
+  bar.parentNode.insertBefore(simple, bar);
+  simple.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    const go=b.dataset.go;
+    simple.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
+    if(go==="more"){ bar.classList.toggle("phone-open"); return; }
+    bar.classList.remove("phone-open");
+    const g=TAB_GROUPS.find(x=>x.id===go);
+    if(g){ activeGroup=g.id; activeTab=g.tabs[0][0]; if(typeof paintTabs==="function") paintTabs(); }
+  });
+}
 const TAB_KEY="fpl-lab:tab:shaaland";
 {const r=restoreTab(TAB_GROUPS,TAB_KEY,activeGroup,activeTab); activeGroup=r.group; activeTab=r.tab;}
 document.getElementById("tabs").onclick=e=>{const b=e.target.closest("button"); if(!b) return;

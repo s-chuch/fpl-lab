@@ -82,9 +82,15 @@ function startDeadlineBanner(D, elId){
   let timer=null;
   const tick=()=>{
     const ms=nd.ts-Date.now();
-    const tr=(D.plan&&D.plan.transfer&&D.plan.transfer.move)||null;
-    const move=tr?` · ${esc(tr.out)} → ${esc(tr.inn)}`:"";
-    el.innerHTML=`<span>GW${nd.gw}${move}</span><b>${esc(fmtCountdown(ms))}</b>`;
+    const p=D.plan||{};
+    const tr=p.transfer&&p.transfer.move;
+    const move=tr?esc(tr.out)+" → "+esc(tr.inn):"";
+    const cap=(p.rows||[]).find(r=>Array.isArray(r)&&String(r[5]||"").toUpperCase()!=="SIT");
+    const capName=cap?esc(cap[1]):"";
+    const bits=["GW"+nd.gw];
+    if(capName) bits.push("C "+capName);
+    if(move) bits.push(move);
+    el.innerHTML=`<span>${bits.join(" · ")}</span><b>${esc(fmtCountdown(ms))}</b>`;
     if(ms<=0 && timer) clearInterval(timer);
   };
   tick();

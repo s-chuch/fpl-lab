@@ -141,22 +141,44 @@ details.plrow[open]>summary::after{content:"\2212"}
 @media(max-width:420px){.plbody{padding-left:0}
 }
 
-/* Phone: every compact table becomes a stack of cards */
+/* Phone layout */
+.tgt-cards{display:none}
+.tgt-card{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 8px}
+.tgt-main{flex:1;min-width:0}
+.tgt-main b{display:block;font-size:15px}
+.tgt-meta{font-size:12px;margin-top:2px;color:var(--muted)}
+.tgt-meta .club{color:var(--gold);font-weight:600}
+.tgt-why{color:var(--muted);font-size:11px;margin-top:4px}
+.tgt-price{font-weight:600;flex:0 0 auto}
+.tgt-stat{text-align:center;min-width:40px}
+.tgt-stat span{display:block;color:var(--muted);font-size:10px}
+.tgt-stat b{display:block;font-size:16px}
+.tgt-stat b.pos{color:#3dd68c}
+
 @media(max-width:720px){
+  .tabs button,.tabs button.group{min-height:44px;padding:10px 14px}
+  .tgt-cards{display:block}
+  .tgt-table{display:none}
   .table-compact thead{display:none}
-  .table-compact, .table-compact tbody{display:block;width:100%}
+  .table-compact,.table-compact tbody{display:block;width:100%}
   .table-compact tr{
     display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;
     background:rgba(255,255,255,.04);border:1px solid var(--line);
     border-radius:12px;padding:10px 12px;margin:0 0 8px;
   }
-  .table-compact td{
-    border:0;padding:1px 0;font-size:13px;
-  }
+  .table-compact td{border:0;padding:1px 0;font-size:13px}
   .table-compact td:first-child{flex:1 0 100%;font-size:14px}
   .table-compact td:first-child br{display:none}
-  .table-compact td:first-child span{margin-left:6px}
-  .card:has(.tgt-cards)>.note-list{display:none}
+  .card>.note-list{display:none}
   .deadline-bar{position:sticky;top:0;z-index:6}
-  .tgt-cards{display:none}
+  body{padding-bottom:env(safe-area-inset-bottom)}
+}
+
+.phone-nav{display:none}
+@media(max-width:720px){
+  .phone-nav{display:flex;gap:8px;margin:0 0 8px}
+  .phone-nav button{flex:1;min-height:44px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:inherit;font-weight:600}
+  .phone-nav button.on{background:var(--gold);color:#111;border-color:var(--gold)}
+  #tabs{display:none}
+  #tabs.phone-open{display:block}
 }
