@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import json, re, time, urllib.request
+import json
+import os, re, time, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -560,8 +561,10 @@ def main():
         "sites_checked": len(by_source),
         "sites_with_articles": len(blobs),
     }
-    SEEN_PATH.write_text(json.dumps(list(seen_set)[-200:]))
-    NEWS_PATH.write_text("window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")
+    for path, text in ((SEEN_PATH, json.dumps(list(seen_set)[-200:])), (NEWS_PATH, "window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")):
+        tmp = path.with_name(path.name + ".tmp")      # atomic: a killed run must not leave a truncated file to be committed
+        tmp.write_text(text)
+        os.replace(tmp, path)
     print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set), "agreed", len(agreed), "split", len(split))
 
 

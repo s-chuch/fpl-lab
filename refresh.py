@@ -1458,8 +1458,10 @@ def main(team_id=TEAM_ID, out_path=None):
     data["transfer_signals"] = {"mode": _mode, "players": len(signals)}
     try:
         enrich_with_model(data, boot, ds, teams_by_id, inputs, signals)
+        health["enrich_model"] = {"ok": True}
     except Exception as e:
         _warn(f"enrich_with_model failed: {e}")
+        health["enrich_model"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("enrich_model") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
     data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs, signals)
     data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
     data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, signals, fallback={})
@@ -1478,8 +1480,10 @@ def main(team_id=TEAM_ID, out_path=None):
         _pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{plan.get('squad_from_gw')}/picks/") if plan.get("squad_from_gw") else {}
         data["daily_check"] = build_daily_check(data.get("daily_check"), boot, [p["element"] for p in _pk.get("picks", [])],
                                                 (data.get("ai_team") or {}).get("plan"), data.get("rotation_risk"), datetime.now(timezone.utc))
+        health["daily_check"] = {"ok": True}
     except Exception as e:
         _warn(f"daily_check failed: {e}")
+        health["daily_check"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("daily_check") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
     now = datetime.now(timezone.utc)
     data.update({
         "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"),

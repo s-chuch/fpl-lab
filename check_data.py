@@ -118,7 +118,9 @@ def check(name, d):
             problems.append(f"{name}: AI result for GW{hp['gw']} is still not final")
     for sec, maxh in (("team_recovery", 8),):
         a = _age_hours((d.get(sec) or {}).get("fetched_at"))
-        if a is not None and a > maxh:
+        if a is None:
+            problems.append(f"{name}: '{sec}' has no fetch time (the feed has never answered)")
+        elif a > maxh:
             problems.append(f"{name}: '{sec}' was fetched {a:.0f}h ago")
     official, net = d.get("chips_official") or {}, d.get("chip_net") or {}
     audit = d.get("fh_audit") or {}
@@ -134,12 +136,33 @@ def check(name, d):
     plan = ai.get("plan") or {}
     if nxt and plan.get("gw") != nxt:
         problems.append(f"{name}: AI team plan is for GW{plan.get('gw')} but the next open gameweek is GW{nxt}")
+    pa = _age_hours(plan.get("computed_at")) if plan and not plan.get("locked") else None
+    if pa is not None and pa > 12:
+        problems.append(f"{name}: the unlocked AI plan was last computed {pa:.0f}h ago")
     if plan and len(plan.get("xi", [])) != 11:
         problems.append(f"{name}: AI team XI has {len(plan.get('xi', []))} players")
     return problems
 
 
+def check_age_only(files):
+    """Watchdog: runs on its own schedule, so it still fires when the refresh workflow itself has stopped."""
+    problems = []
+    for f in files:
+        try:
+            a = _age_hours(load(ROOT / f).get("generated_at"))
+        except Exception as e:
+            problems.append(f"{f}: could not be read ({e})"); continue
+        if a is None or a > 30:
+            problems.append(f"{f}: data is {'of unknown age' if a is None else f'{a:.0f}h old'} - scheduled refreshes have stopped")
+    for p in problems:
+        print("::error::" + p)
+    print("age check:", "OK" if not problems else f"{len(problems)} problem(s)")
+    return 1 if problems else 0
+
+
 def main(argv):
+    if argv and argv[0] == "--age-only":
+        return check_age_only(argv[1:] or ["data.js", "bacalhau-data.js"])
     files = argv or ["data.js", "bacalhau-data.js"]
     problems = []
     for f in files:

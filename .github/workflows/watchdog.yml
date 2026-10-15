@@ -1,0 +1,23 @@
+name: Data age watchdog
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  age:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # A separate schedule on purpose: if refresh.yml stops (disabled, skipped, failing before its checks), this still turns red and emails.
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python check_data.py --age-only

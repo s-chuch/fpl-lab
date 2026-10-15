@@ -21,6 +21,7 @@ on:
       - "ai_run.py"
       - "planner.py"
       - "fixture_swing.py"
+      - "swing.js"
       - "elo.py"
       - "odds.py"
       - "calibration.json"
@@ -122,10 +123,10 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
-          python -m unittest discover -s tests
+          python -m py_compile news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
 
       - name: Pull live FPL data
+        id: pull
         if: steps.gate.outputs.run != 'false'
         env:
           # optional: with this repo secret the News tab gets a Claude summary per player (see news_llm.py)
@@ -133,10 +134,13 @@ jobs:
         run: |
           # a broken news site must not stop the FPL data refresh (the news themes just stay as they were)
           python news_scrape.py || echo "::warning::news_scrape.py failed - keeping the previous news themes"
-          python refresh.py
-          python refresh.py --team 1360920 --out bacalhau-data.js
-          python wildcard_recommend.py bacalhau-wildcard.js
-          python wildcard_recommend.py shaaland-wildcard.js
+          # One failing builder must not throw away the others' output: record it, still commit, and fail the run at the end.
+          failed=""
+          python refresh.py || failed="$failed refresh.py"
+          python refresh.py --team 1360920 --out bacalhau-data.js || failed="$failed refresh.py(bacalhau)"
+          python wildcard_recommend.py bacalhau-wildcard.js || failed="$failed wildcard(bacalhau)"
+          python wildcard_recommend.py shaaland-wildcard.js || failed="$failed wildcard(shaaland)"
+          echo "failed=$failed" >> "$GITHUB_OUTPUT"
 
       - name: Commit data files if they changed
         if: steps.gate.outputs.run != 'false'
@@ -194,6 +198,17 @@ jobs:
 
       # Last on purpose: the data above is already committed, so a failure here turns the run red
       # (and emails you) without blocking the refresh.
+      - name: Fail the run if a builder failed
+        if: steps.gate.outputs.run != 'false' && steps.pull.outputs.failed != ''
+        run: |
+          echo "::error::failed: ${{ steps.pull.outputs.failed }}"
+          exit 1
+
       - name: Sanity-check the generated data
         if: steps.gate.outputs.run != 'false'
         run: python check_data.py
+
+      # After the commit on purpose: a red unit test emails you but never stops the data from refreshing.
+      - name: Unit tests
+        if: always() && steps.gate.outputs.run != 'false'
+        run: python -m unittest discover -s tests

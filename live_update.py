@@ -6,7 +6,8 @@ changes on match days. The browser cannot read FPL's API itself (no CORS), hence
 
     python live_update.py          # writes live-data.js only if a gameweek is live"""
 from __future__ import annotations
-import json, os, sys
+import json
+import re, os, sys
 from datetime import datetime, timezone
 from pathlib import Path
 from fplbase import ROOT, get, parse_deadline, POS, _warn
@@ -73,6 +74,13 @@ def main(argv):
         except Exception as e:
             _warn(f"live: {name}: {e}")
     text = "window.FPL_LIVE = " + json.dumps(snap, separators=(",", ":")) + ";\n"
+    try:    # nothing but the timestamp moved: do not write (the workflow would commit an identical snapshot every 10 minutes)
+        strip = lambda t: re.sub(r'"generated_at":"[^"]*"', "", t)
+        if out.exists() and strip(out.read_text()) == strip(text):
+            print(f"live-data.js unchanged for GW{gw}")
+            return 0
+    except OSError:
+        pass
     tmp = out.with_name(out.name + ".tmp")
     tmp.write_text(text)
     os.replace(tmp, out)
@@ -81,4 +89,8 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:]))
+    try:
+        sys.exit(main(sys.argv[1:]))
+    except Exception as ex:      # an FPL outage must not email a red run every 10 minutes: the next tick retries
+        _warn(f"live_update: {ex}")
+        sys.exit(0)
