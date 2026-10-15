@@ -125,3 +125,18 @@ details.more>*:not(summary){margin-top:6px}
 .tmove{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
 .tm-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:15px}
 .tm-why{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+
+/* compact transfer planner (plannerCardCompact): one line per GW, details on tap */
+.plrows{margin-top:6px}
+details.plrow{border-top:1px solid rgba(255,255,255,.08)}
+details.plrow>summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline;padding:8px 22px 8px 0;position:relative;font-size:13px;line-height:1.4}
+details.plrow>summary::-webkit-details-marker{display:none}
+details.plrow>summary::after{content:"+";position:absolute;right:2px;top:5px;color:var(--muted);font-size:17px}
+details.plrow[open]>summary::after{content:"\2212"}
+.plgw{flex:0 0 42px;color:var(--muted);font-weight:700}
+.plline{flex:1;min-width:0;overflow-wrap:anywhere}
+.plcap{color:var(--muted);white-space:nowrap}
+.plbody{padding:0 0 10px 52px;font-size:12px}
+.plmove{margin-bottom:6px}
+@media(max-width:420px){.plbody{padding-left:0}
+}

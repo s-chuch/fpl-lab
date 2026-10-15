@@ -381,6 +381,22 @@ function plannerCard(D){
   const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${P.steps[0].hits?` (−${4*P.steps[0].hits} hit)`:""}.`:"This week: roll.";
   return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)}</li></ul><table class="table-compact"><thead><tr><th style="width:12%">GW</th><th style="width:46%">Move</th><th style="width:16%">xP</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
+// Plan tab (both pages): one compact line per gameweek (moves + captain); prices, xP, reasons and team xP behind a per-row tap.
+function plannerCardCompact(D){
+  const P=D.planner||{}; if(!(P.steps||[]).length) return "";
+  const rows=P.steps.map(s=>{
+    const mv=(s.moves||[]);
+    const line=mv.length?mv.map(m=>`${esc(m.out)} → <b>${esc(m.in)}</b>`).join(", "):`<span class="note">Roll${s.ft_after!=null?" · "+s.ft_after+" FT banked":""}</span>`;
+    const hit=s.hits?` <b class="neg">−${s.hits*4}</b>`:"";
+    const det=mv.map(m=>`<div class="plmove"><b>${esc(m.out)} → ${esc(m.in)}</b> <span class="note">${esc(m.pos)} · £${Number(m.sell).toFixed(1)}→£${Number(m.cost).toFixed(1)} · xP ${(m.xp_out||[])[0]??"–"}→${(m.xp_in||[])[0]??"–"}</span>${transferReasons({reasons_in:m.reasons_in,reasons_out:m.reasons_out,adj:m.adj})}</div>`).join("");
+    return `<details class="plrow"><summary><span class="plgw">GW${s.gw}</span><span class="plline">${line}${hit} <span class="plcap">· C ${esc(s.captain)}</span></span></summary><div class="plbody">${det}<div class="note">Team xP ${s.xp}${s.ft_after!=null?" · "+s.ft_after+" FT after":""}${s.bank!=null?" · bank £"+Number(s.bank).toFixed(1):""}</div></div></details>`;
+  }).join("");
+  const head=P.recommend==="follow"
+    ?`Plan beats rolling by <b class="pos">+${P.gain}</b> expected points (model ${P.gain_model>=0?"+":""}${P.gain_model}, other signals ${P.gain_extra>=0?"+":""}${P.gain_extra})`
+    :`Rolling is as good as any plan (best found ${sign(P.gain)}) - nothing is worth a move yet`;
+  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${P.steps[0].hits?` (−${4*P.steps[0].hits} hit)`:""}.`:"This week: roll.";
+  return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)}</li><li>Tap a gameweek for positions, prices, xP and the reasons behind each move.</li></ul><div class="plrows">${rows}</div></div>`;
+}
 // Matchday snapshot (live_update.py -> live-data.js, written every ~10 min while matches are in play). The browser
 // cannot call FPL's API itself (no CORS), so the page reads that snapshot and refreshes it while it is open.
 function liveBar(L,team){

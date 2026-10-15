@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
 <link rel="stylesheet" href="dashboard.css?v=a760b2b0">
-<style>footer a{color:var(--gold)}.plrows{margin-top:6px}details.plrow{border-top:1px solid rgba(255,255,255,.08)}details.plrow>summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline;padding:8px 22px 8px 0;position:relative;font-size:13px;line-height:1.4}details.plrow>summary::-webkit-details-marker{display:none}details.plrow>summary::after{content:"+";position:absolute;right:2px;top:5px;color:var(--muted);font-size:17px}details.plrow[open]>summary::after{content:"\2212"}.plgw{flex:0 0 42px;color:var(--muted);font-weight:700}.plline{flex:1;min-width:0;overflow-wrap:anywhere}.plcap{color:var(--muted);white-space:nowrap}.plbody{padding:0 0 10px 52px;font-size:12px}.plmove{margin-bottom:6px}@media(max-width:420px){.plbody{padding-left:0}}</style></head><body>
+<style>footer a{color:var(--gold)}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div><div id="liveBar"></div>
@@ -18,22 +18,6 @@
 <script src="plan-intel.js?v=da9120ac"></script>
 <script src="shaaland-wildcard.js?v=b3b3cdf5"></script>
 <script>
-// Shaaland's Plan tab: one compact line per gameweek (moves + captain); prices, xP, reasons and team xP behind a per-row tap.
-function plannerCardCompact(D){
-  const P=D.planner||{}; if(!(P.steps||[]).length) return "";
-  const rows=P.steps.map(s=>{
-    const mv=(s.moves||[]);
-    const line=mv.length?mv.map(m=>`${esc(m.out)} → <b>${esc(m.in)}</b>`).join(", "):`<span class="note">Roll${s.ft_after!=null?" · "+s.ft_after+" FT banked":""}</span>`;
-    const hit=s.hits?` <b class="neg">−${s.hits*4}</b>`:"";
-    const det=mv.map(m=>`<div class="plmove"><b>${esc(m.out)} → ${esc(m.in)}</b> <span class="note">${esc(m.pos)} · £${Number(m.sell).toFixed(1)}→£${Number(m.cost).toFixed(1)} · xP ${(m.xp_out||[])[0]??"–"}→${(m.xp_in||[])[0]??"–"}</span>${transferReasons({reasons_in:m.reasons_in,reasons_out:m.reasons_out,adj:m.adj})}</div>`).join("");
-    return `<details class="plrow"><summary><span class="plgw">GW${s.gw}</span><span class="plline">${line}${hit} <span class="plcap">· C ${esc(s.captain)}</span></span></summary><div class="plbody">${det}<div class="note">Team xP ${s.xp}${s.ft_after!=null?" · "+s.ft_after+" FT after":""}${s.bank!=null?" · bank £"+Number(s.bank).toFixed(1):""}</div></div></details>`;
-  }).join("");
-  const head=P.recommend==="follow"
-    ?`Plan beats rolling by <b class="pos">+${P.gain}</b> expected points (model ${P.gain_model>=0?"+":""}${P.gain_model}, other signals ${P.gain_extra>=0?"+":""}${P.gain_extra})`
-    :`Rolling is as good as any plan (best found ${sign(P.gain)}) - nothing is worth a move yet`;
-  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${P.steps[0].hits?` (−${4*P.steps[0].hits} hit)`:""}.`:"This week: roll.";
-  return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)}</li><li>Tap a gameweek for positions, prices, xP and the reasons behind each move.</li></ul><div class="plrows">${rows}</div></div>`;
-}
 const W={"You":"You","you":"you","Your":"Your","own":"you don't own"}; // wording for the shared renderers in dashboard-common.js
 
 const D=window.FPL_DATA;
