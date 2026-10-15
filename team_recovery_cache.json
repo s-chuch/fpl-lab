@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-14T22:48:51.582328+00:00",
+    "fetched_at": "2026-10-15T20:03:30.174280+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -129,13 +129,7 @@
           "opponent": "Besiktas",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-15",
-            "competition": "Europa League",
-            "opponent": "Lyon"
-          }
-        ]
+        "between": []
       },
       "IPS": {
         "rest_days": 7,
@@ -177,13 +171,7 @@
           "opponent": "Lech Poznan",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-15",
-            "competition": "Europa League",
-            "opponent": "Torreense"
-          }
-        ]
+        "between": []
       },
       "NFO": {
         "rest_days": 7,
@@ -302,7 +290,7 @@
           "date": "2026-10-14",
           "competition": "Champions League",
           "opponent": "Fenerbah\u00e7e",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -323,7 +311,7 @@
           "date": "2026-10-14",
           "competition": "Champions League",
           "opponent": "Paris",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
@@ -392,7 +380,7 @@
           "date": "2026-10-14",
           "competition": "Champions League",
           "opponent": "LASK",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-17",
