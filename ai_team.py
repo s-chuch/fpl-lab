@@ -36,6 +36,18 @@ MAX_HITS = 2
 LEAGUE_AVG_TEAM_XG = 1.4   # goals per team per match, for scaling bookmaker goal expectations
 HALF_SPLIT = 20            # chips reset at GW20
 
+# Expected-points model knobs (values unchanged; each is a judgement call, backtested by calibrate.py)
+MINUTES_FALLING_FACTOR = 0.85   # a regular whose recent minutes fell well below his season share
+MINUTES_FALLING_SHARE = 0.6     # ...recent share of minutes below this fraction of his season share
+MINUTES_REGULAR_SEASON = 0.5    # ...only judged for players who have played at least this share of the season
+MINUTES_BENCHED_BELOW = 45      # ...or whose last appearance was shorter than this
+REST_FACTOR = 0.93              # next match is within CONGESTION_DAYS of the last one, or followed by another soon
+CONGESTION_DAYS = 3
+ROTATION_REPORTED_FACTOR = 0.8  # news says he is being rotated
+EP_NEXT_WEIGHT = 0.2            # FPL's ep_next mostly repeats form, so it only gets a light weight
+FDR_CS_BASE, FDR_CS_SLOPE, FDR_CS_RANGE = 0.40, 0.07, (0.08, 0.6)   # clean-sheet chance by difficulty rating
+FDR_ATT_BASE, FDR_ATT_SLOPE = 1.12, 0.06                            # attacking returns by difficulty rating
+
 
 def _f(v, d=0.0):
     try:
@@ -109,8 +121,8 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     total = 0.0
     for fx in fixtures:
         fdr = fx.get("fdr") or 3
-        fdr_cs = max(0.08, min(0.6, 0.40 - 0.07 * (fdr - 3)))
-        fdr_att = 1.12 - 0.06 * fdr         # easier fixture -> a few more attacking returns
+        fdr_cs = max(FDR_CS_RANGE[0], min(FDR_CS_RANGE[1], FDR_CS_BASE - FDR_CS_SLOPE * (fdr - 3)))
+        fdr_att = FDR_ATT_BASE - FDR_ATT_SLOPE * fdr         # easier fixture -> a few more attacking returns
         # With bookmaker odds for this match (fplbase.ODDS) the market's clean-sheet chance and goal expectations replace
         # half of the difficulty-rating guess; without them (most fixtures) it is the rating alone, as before.
         if fx.get("cs") is not None:
@@ -141,27 +153,27 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
         if recent and len(recent) >= 2:
             season = min(1.0, _f(el.get("minutes")) / (90.0 * max(1, gws_played)))
             share = sum(min(90, m) for m in recent) / (90.0 * len(recent))
-            if season >= 0.5 and (share < 0.6 * season or recent[-1] < 45):
-                flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); factor *= 0.85
-                adjf.append({"why": flags[-1], "factor": 0.85, "label": "minutes"})
+            if season >= MINUTES_REGULAR_SEASON and (share < MINUTES_FALLING_SHARE * season or recent[-1] < MINUTES_BENCHED_BELOW):
+                flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); factor *= MINUTES_FALLING_FACTOR
+                adjf.append({"why": flags[-1], "factor": MINUTES_FALLING_FACTOR, "label": "minutes"})
         cr = club_rest.get(el["team"]) or {}
-        if cr.get("rest_days") is not None and cr["rest_days"] <= 3:
-            flags.append(f"only {cr['rest_days']}d rest before its next match"); factor *= 0.93
-            adjf.append({"why": flags[-1], "factor": 0.93, "label": "rest"})
-        if cr.get("turnaround") is not None and cr["turnaround"] <= 3:
-            flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= 0.93
-            adjf.append({"why": flags[-1], "factor": 0.93, "label": "rest"})
+        if cr.get("rest_days") is not None and cr["rest_days"] <= CONGESTION_DAYS:
+            flags.append(f"only {cr['rest_days']}d rest before its next match"); factor *= REST_FACTOR
+            adjf.append({"why": flags[-1], "factor": REST_FACTOR, "label": "rest"})
+        if cr.get("turnaround") is not None and cr["turnaround"] <= CONGESTION_DAYS:
+            flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= REST_FACTOR
+            adjf.append({"why": flags[-1], "factor": REST_FACTOR, "label": "rest"})
         rot_txt = rot_names.get(f"id:{el['id']}") or rot_names.get(el["web_name"])
         if rot_txt:
-            flags.append(f"rotation reported: {str(rot_txt)[:90]}"); factor *= 0.8
-            adjf.append({"why": flags[-1], "factor": 0.8, "label": "rotation"})
+            flags.append(f"rotation reported: {str(rot_txt)[:90]}"); factor *= ROTATION_REPORTED_FACTOR
+            adjf.append({"why": flags[-1], "factor": ROTATION_REPORTED_FACTOR, "label": "rotation"})
         f1, f2 = fix_next.get(el["team"], []), fix_after.get(el["team"], [])
         uw = (uwins or {}).get(el["id"])
         m1 = model_xp(el, f1, gws_played, uw, recent) * av * factor
         ep = _f(el.get("ep_next"), None) if el.get("ep_next") not in (None, "") else None
         # ep_next mirrors recent form this season (a light recency nudge) and is per fixture, so it is scaled
         # by fitness and by the number of fixtures like the model's own figure
-        xp1 = (0.8 * m1 + 0.2 * ep * factor * len(f1)) if ep is not None and f1 else m1      # FPL's ep_next already includes its own chance-of-playing
+        xp1 = ((1 - EP_NEXT_WEIGHT) * m1 + EP_NEXT_WEIGHT * ep * factor * len(f1)) if ep is not None and f1 else m1      # FPL's ep_next already includes its own chance-of-playing
         if av == 0:
             xp1 = 0.0
         xp2 = model_xp(el, f2, gws_played, uw, recent) * (1.0 if av > 0.5 else av) * factor
