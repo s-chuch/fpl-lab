@@ -143,17 +143,20 @@ details.plrow[open]>summary::after{content:"\2212"}
 
 /* Target cards: phone layout */
 .tgt-cards{display:none}
-.tgt-card{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
-.tgt-card:last-child{border-bottom:0}
-.tgt-main{min-width:0}
-.tgt-main b{font-size:14px}
-.tgt-why{color:var(--muted);font-size:12px;margin-top:2px}
-.tgt-score{text-align:right;flex:0 0 auto}
-.tgt-score b{display:block;font-size:18px}
-.tgt-score span{color:var(--muted);font-size:11px}
+.tgt-card{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:12px;margin:0 0 8px}
+.tgt-main{flex:1;min-width:0}
+.tgt-main b{display:block;font-size:15px}
+.tgt-meta{color:var(--muted);font-size:12px;margin-top:2px}
+.tgt-meta .club{color:var(--gold);font-weight:600}
+.tgt-why{color:var(--muted);font-size:11px;margin-top:4px}
+.tgt-price{font-size:14px;font-weight:600;flex:0 0 auto}
+.tgt-stat{text-align:center;flex:0 0 44px}
+.tgt-stat span{display:block;color:var(--muted);font-size:10px;text-transform:lowercase}
+.tgt-stat b{display:block;font-size:16px}
+.tgt-stat b.pos{color:var(--pos,#3dd68c)}
 @media(max-width:720px){
   .tgt-cards{display:block}
   .tgt-table{display:none}
-  .card:has(.tgt-cards) .note-list{display:none}
+  .card:has(.tgt-cards)>.note-list{display:none}
   .deadline-bar{position:sticky;top:0;z-index:6}
 }
