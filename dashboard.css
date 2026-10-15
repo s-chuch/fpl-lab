@@ -182,3 +182,11 @@ details.plrow[open]>summary::after{content:"\2212"}
   #tabs{display:none}
   #tabs.phone-open{display:block}
 }
+
+@media(max-width:720px){
+  .phone-nav{position:sticky;top:52px;z-index:5;background:var(--bg);padding:4px 0}
+  .deadline-bar{font-size:13px}
+  .deadline-bar span{font-weight:600}
+  .tgt-card{padding:14px}
+  .kpis{grid-template-columns:1fr 1fr}
+}

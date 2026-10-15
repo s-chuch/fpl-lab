@@ -85,8 +85,8 @@ function startDeadlineBanner(D, elId){
     const p=D.plan||{};
     const tr=p.transfer&&p.transfer.move;
     const move=tr?esc(tr.out)+" → "+esc(tr.inn):"";
-    const cap=(p.rows||[]).find(r=>Array.isArray(r)&&String(r[5]||"").toUpperCase()!=="SIT");
-    const capName=cap?esc(cap[1]):"";
+    const step=((D.planner||{}).steps||[])[0]||{};
+    const capName=step.captain?esc(step.captain):"";
     const bits=["GW"+nd.gw];
     if(capName) bits.push("C "+capName);
     if(move) bits.push(move);
