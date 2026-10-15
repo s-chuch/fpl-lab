@@ -186,13 +186,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.96,
+        "ep_next": 3.97,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.46,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
