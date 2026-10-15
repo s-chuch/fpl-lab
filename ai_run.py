@@ -92,9 +92,13 @@ def model_inputs(boot, team_recovery=None):
     risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
     try:
         fin = sorted(e["id"] for e in boot["events"] if e.get("finished"))[-3:]
+        team_of = {e["id"]: e["team"] for e in boot["elements"]}
         for g in fin:
-            for eid, st in live(g).items():
-                risk["recent_minutes"].setdefault(eid, []).append(st["minutes"])
+            lv = live(g)
+            played = {team_of[eid] for eid, st in lv.items() if st["minutes"] and eid in team_of}
+            for eid, st in lv.items():
+                if team_of.get(eid) in played:      # a club's blank gameweek is not a rest
+                    risk["recent_minutes"].setdefault(eid, []).append(min(90, st["minutes"]))
     except Exception as e:
         _warn(f"model_inputs: recent minutes unavailable: {e}")
     try:

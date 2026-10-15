@@ -399,9 +399,11 @@ def update_pred_log(log, ds, boot, plan, ai):
         entry["best_player_points"] = best
         if entry.get("ai_captain_id") is not None:
             entry["ai_captain_points"] = (live.get(entry["ai_captain_id"]) or {}).get("total_points")
-        cands = [i for i in ids.get(entry.get("plan_captain"), []) if (live.get(i) or {}).get("minutes")]
+        # a Plan captain who did not play scored 0 and still counts (the AI captain is graded the same way)
+        cands = [i for i in ids.get(entry.get("plan_captain"), []) if live.get(i)]
+        cands.sort(key=lambda i: -((live.get(i) or {}).get("minutes") or 0))
         if entry.get("plan_captain") and cands:
-            entry["plan_captain_points"] = (live.get(cands[0]) or {}).get("total_points")
+            entry["plan_captain_points"] = (live.get(cands[0]) or {}).get("total_points") or 0
         entry["graded"] = True
     return log
 
@@ -545,8 +547,14 @@ def _rotation_flagged_players(root):
             continue
         for item in (data.get("agreed") or []) + (data.get("split") or []):
             if item.get("player") and "rotation risk" in (item.get("tags") or []):
-                flagged.setdefault(item["player"], item.get("text"))
+                # keyed on the element id when the theme carries one (two players can share a web_name), else on the name
+                flagged.setdefault(f"id:{item['id']}" if item.get("id") is not None else item["player"], item.get("text"))
     return flagged
+
+
+def rotation_flag(flagged, el):
+    """The reported-rotation text for this FPL element, or None."""
+    return flagged.get(f"id:{el['id']}") or flagged.get(el["web_name"])
 
 CONGESTION_DAYS = 3  # rest before the next match at or under this = fatigue risk (a Sat->Tue turnaround is 3)
 
@@ -613,12 +621,22 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
 
     rotation_flagged = _rotation_flagged_players(ROOT)
 
+    club_played = {gw: {} for gw in recent_gws}
+    for gw in recent_gws:
+        for eid, m in minutes_by_gw[gw].items():
+            e = elements.get(eid)
+            if e and m:
+                club_played[gw][e["team"]] = True
+
     rows = []
     for p in pk.get("picks") or []:
         el = elements.get(p["element"])
         if not el:
             continue
-        mins = [minutes_by_gw[gw].get(el["id"], 0) for gw in recent_gws]
+        # capped at 90 (a double gameweek is not a 180-minute "starter"); a gameweek in which no one at the club played is a blank, not a rest
+        mins = [min(90, minutes_by_gw[gw].get(el["id"], 0)) for gw in recent_gws if club_played[gw].get(el["team"])]
+        if len(mins) < 2:
+            continue
         first, last = mins[0], mins[-1]
         earlier_avg = sum(mins[:-1]) / len(mins[:-1])
         if last < start_mins and earlier_avg >= start_mins:
@@ -636,8 +654,8 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         rotation_note = None
         if OTHER_COMP_RE.search(avail["news"] or ""):
             rotation_note = avail["news"]
-        elif el["web_name"] in rotation_flagged:
-            rotation_note = rotation_flagged[el["web_name"]]
+        elif rotation_flag(rotation_flagged, el):
+            rotation_note = rotation_flag(rotation_flagged, el)
         reason = None
         if tag in ("falling", "declining"):
             if avail["kind"] in ("out", "doubt"):

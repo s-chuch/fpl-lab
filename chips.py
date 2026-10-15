@@ -361,7 +361,9 @@ def build_strategy(boot, team_id, hist, gameweeks, transfers, picks_gw, horizon=
         for i, w in enumerate(ws, start=1):
             w["number"] = i
 
-    current_gw = max((e["id"] for e in boot["events"] if e.get("finished")), default=1)
+    # the last gameweek whose deadline has passed (a locked, live gameweek counts: its chips can no longer be played)
+    _now = datetime.now(timezone.utc)
+    current_gw = max((e["id"] for e in boot["events"] if e.get("finished") or (parse_deadline(e.get("deadline_time")) or _now + timedelta(days=1)) <= _now), default=1)
     chip_status = []
     for name, windows in windows_by_chip.items():
         entry = {"chip": name, "label": CHIP_LABEL.get(name, name), "windows": []}

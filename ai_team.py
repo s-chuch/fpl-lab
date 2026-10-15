@@ -151,8 +151,9 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
         if cr.get("turnaround") is not None and cr["turnaround"] <= 3:
             flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= 0.93
             adjf.append({"why": flags[-1], "factor": 0.93, "label": "rest"})
-        if el["web_name"] in rot_names:
-            flags.append(f"rotation reported: {str(rot_names[el['web_name']])[:90]}"); factor *= 0.8
+        rot_txt = rot_names.get(f"id:{el['id']}") or rot_names.get(el["web_name"])
+        if rot_txt:
+            flags.append(f"rotation reported: {str(rot_txt)[:90]}"); factor *= 0.8
             adjf.append({"why": flags[-1], "factor": 0.8, "label": "rotation"})
         f1, f2 = fix_next.get(el["team"], []), fix_after.get(el["team"], [])
         uw = (uwins or {}).get(el["id"])
@@ -385,7 +386,7 @@ def rescore_transfers(state, vals, prev_moves, signals=None):
             return None
         cur = squad_score(squad, vals)
         gain = squad_score([inn if i == out else i for i in squad], vals) - cur + adj(inn) - adj(out)
-        if gain < KEEP_FLOOR:
+        if gain < KEEP_FLOOR + (HIT_COST if n >= ft else 0):     # a kept -4 hit must still pay for itself
             return None
         moves.append({"out": out, "in": inn, "gain": round(gain, 2), "hit": n >= ft, "sell": sell,
                       "bought_at": buys.get(out, vals[out]["cost"]), "cost_in": vals[inn]["cost"],
