@@ -116,3 +116,12 @@ details.more>*:not(summary){margin-top:6px}
 .table-compact td.rr-tag,.table-compact td[class*="neg"],.table-compact td[class*="pos"]{text-overflow:clip}
 .table-compact td,.table-compact th{white-space:normal;text-overflow:clip;overflow-wrap:anywhere;line-height:1.25}
 .table-compact .pill{white-space:nowrap}
+
+.aistats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.aistats div{background:#0C141C;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.aistats span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.aistats b{display:block;font-size:14px;margin:2px 0}
+.aistats small{display:block;font-size:11px;color:var(--muted)}
+.tmove{border:1px solid var(--line);border-radius:10px;padding:10px;margin:8px 0}
+.tm-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;font-size:15px}
+.tm-why{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
