@@ -434,7 +434,7 @@ function aiPlanCard(D,who){
 function aiResultsCard(D,who){
   const A=D.ai_team; if(!A) return `<div class="card"><h2>AI team results</h2><p class="note">Nothing yet.</p></div>`;
   const H=Object.values(A.history||{}).sort((a,b)=>b.gw-a.gw);
-  if(!H.length) return `<div class="card"><h2>AI team results</h2><p class="note">It starts with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. GW${A.plan?A.plan.gw:7} is the first gameweek it plays on its own; points appear once that deadline passes.</p></div>`;
+  if(!H.length) return `<div class="card"><h2>AI team results</h2><p class="note" data-keep>It starts with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. GW${A.plan?A.plan.gw:7} is the first gameweek it plays on its own; points appear once that deadline passes.</p></div>`;
   const tot=A.total_points||0, you=A.user_total||0;
   const rows=H.map(p=>{const r=p.result||{};return `<tr><td>GW${p.gw}${r.final?"":` <span class="pill free">live</span>`}</td><td><b>${r.points??"–"}</b></td><td>${p.user_points??"–"}</td><td class="${cls((r.points??0)-(p.user_points??0))}">${p.user_points==null||r.points==null?"–":sign(r.points-p.user_points)}</td><td>${esc(r.captain||"–")}</td></tr>`;}).join("");
   const blocks=H.map((p,i)=>{const r=p.result||{};const L=(r.lines||[]).map(l=>`<tr><td>${esc(l.name)}${l.mult>1?` <span class="pill free">C×${l.mult}</span>`:""}</td><td>${esc(l.pos)}</td><td>${l.played?"":`<span class="note">DNP</span> `}<b>${l.pts*l.mult}</b></td></tr>`).join("");const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";

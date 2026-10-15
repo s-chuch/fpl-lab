@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="setPieces"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=d07aae4f"></script>
+<script src="dashboard-common.js?v=b1186259"></script>
 <script src="swing.js?v=93387a04"></script>
 <script src="bacalhau-data.js?v=5455baa5"></script>
 <script src="news.js?v=d59b0f8f"></script>
@@ -21,7 +21,7 @@ const W={"You":"They","you":"they","Your":"Their","own":"Bacalhau doesn't own"};
 const D=window.FPL_DATA;
 document.getElementById("teamName").textContent=D.team.name;
 document.getElementById("meta").textContent=D.team.manager+" · ID "+D.team.id+" · updated "+toToronto(D.generated_at);
-document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],["Squad value","£"+Number(D.team.live_value??D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
+document.getElementById("kpis").innerHTML=[["Season points",D.team.overall_points],["Overall rank",fmt(D.team.overall_rank)],[(D.team.live_value!=null?"Sell value":"Squad value"),"£"+Number(D.team.live_value??D.team.value).toFixed(1)+"m"],["Bank","£"+Number(D.team.bank).toFixed(1)+"m"]].map(([k,v])=>`<div class="kpi"><span>${k}</span><b>${v}</b></div>`).join("");
 startDeadlineBanner(D,"deadlineBanner");
 document.getElementById("chipAlert").innerHTML=chipAlertBanner(D);
 loadLive("Bacalhau");
@@ -162,7 +162,8 @@ function renderWildcardWatch(){
   }
 
   const wc3=(D.targets&&D.targets.wc_top3)||[];
-  const wc3Card=wc3.length?`<div class="card"><h2>WC names the room barely owns</h2><ul class="chiplist">${wc3.map(r=>`<li><span class="who">${esc(r.name)} · £${r.cost.toFixed(1)}</span><div class="detail">${esc((r.why||[]).join(" · ")||"–")}${r.esl_own!=null?" · ESL own "+r.esl_own+"/"+(r.esl_n??"?"):""}</div></li>`).join("")}</ul></div>`:"";
+  const wcUsedNow=!!(D.chips_official&&D.chips_official.wildcard)&&(((D.deadline||{}).next_gw)||0)<20;
+  const wc3Card=(wc3.length&&!wcUsedNow)?`<div class="card"><h2>WC names the room barely owns</h2><ul class="chiplist">${wc3.map(r=>`<li><span class="who">${esc(r.name)} · £${r.cost.toFixed(1)}</span><div class="detail">${esc((r.why||[]).join(" · ")||"–")}${r.esl_own!=null?" · ESL own "+r.esl_own+"/"+(r.esl_n??"?"):""}</div></li>`).join("")}</ul></div>`:"";
 
   document.getElementById("wildcard").innerHTML=`<div class="warn">${esc(W.note||"Provisional squad — hand-captured from Bacalhau's own Pick Team screen, not the FPL API. Can still change before the deadline.")}</div><div class="card"><h2>${esc(W.team)}'s Wildcard · GW${W.gw}</h2><p class="note">Deadline <b>${esc(W.deadline)}</b> · Captured ${esc(W.captured_at)} · Status: <b>${esc(W.status)}</b></p><p class="note">Starting XI</p><table class="table-compact">${head}<tbody>${xiRows}</tbody></table><p class="note">Bench</p><table class="table-compact">${head}<tbody>${benchRows}</tbody></table></div>${recCard}${worthCard}${wc3Card}${eslWildcardCard(W,D,W.team)}`;
 }
