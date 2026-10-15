@@ -10,7 +10,7 @@
 <section id="season" class="on"></section><section id="bench"></section><section id="captain"></section><section id="aiPlan"></section><section id="aiResults"></section><section id="transfers"></section>
 <section id="plan"></section><section id="wildcard"></section><section id="strategy"></section><section id="stratFixtures"></section><section id="stratPlayers"></section><section id="stratDefcon"></section><section id="stratRotation"></section><section id="stratFormFdr"></section><section id="stratValue"></section><section id="stratPrice"></section><section id="stratInjury"></section><section id="target1"></section><section id="target3"></section><section id="target6"></section><section id="leagues"></section><section id="news"></section><section id="setPieces"></section><section id="fh"></section><section id="chips"></section>
 <footer id="foot"></footer>
-<script src="dashboard-common.js?v=62ed3900"></script>
+<script src="dashboard-common.js?v=d38decca"></script>
 <script src="swing.js?v=a8206ab1"></script>
 <script src="data.js?v=6c8285ca"></script>
 <script src="news.js?v=e1f0b402"></script>
@@ -148,7 +148,7 @@ function renderWildcardWatch(){
     const yourCapEp=yourCap&&epByName[yourCap.name]?epByName[yourCap.name].ep_next:null;
     const capDiffers=yourCap&&R.captain&&yourCap.name!==R.captain;
     const capLine=capDiffers
-      ?`<p class="note">You captained <b>${esc(yourCap.name)}</b>${yourCapEp!=null?` (${yourCapEp} EP)`:""} — <b>${esc(R.captain)}</b> projects higher at <b>${R.captain_ep??"?"}</b> EP.</p>`
+      ?`<p class="note">Your captain: <b>${esc(yourCap.name)}</b>${yourCapEp!=null?` (${yourCapEp} EP)`:""} · model pick: <b>${esc(R.captain)}</b> (${R.captain_ep??"?"} EP).</p>`
       :`<p class="note">Recommended captain matches your pick: <b>${esc(R.captain||"?")}</b> (${R.captain_ep??"?"} EP).</p>`;
     const yourVice=(W.xi||[]).find(p=>p.vice);
     const viceDiffers=yourVice&&R.vice&&yourVice.name!==R.vice;
