@@ -342,5 +342,23 @@ class NewsTone(unittest.TestCase):
         self.assertEqual(fpl_common.overall_tone(f("neutral")), "neutral")
 
 
+
+class RivalEffectiveOwnership(unittest.TestCase):
+    """League EO is over RIVALS only, weighted by FPL's pick multiplier (bench 0, start 1, C 2, TC 3)."""
+    def test_multiplier_weighted_and_own_team_excluded(self):
+        pk = lambda *pm: {"picks": [{"element": e, "multiplier": m} for e, m in pm]}
+        picks = {1: pk((10, 0), (11, 2)),            # me: benched 10, captained 11 -> ignored
+                 2: pk((10, 1), (11, 1)),            # rival starts both
+                 3: pk((10, 0), (11, 3)),            # rival benches 10, triple-captains 11
+                 4: None}                            # no picks available -> not counted
+        eo, owners, n = refresh.rival_effective_ownership(picks, my_entry=1)
+        self.assertEqual(n, 2)
+        self.assertEqual(eo[10], 50.0)               # (1 + 0) / 2 rivals
+        self.assertEqual(eo[11], 200.0)              # (1 + 3) / 2 rivals
+        self.assertEqual(owners, {10: 2, 11: 2})
+
+    def test_no_rivals(self):
+        self.assertEqual(refresh.rival_effective_ownership({1: {"picks": [{"element": 5, "multiplier": 1}]}}, 1), ({}, {}, 0))
+
 if __name__ == "__main__":
     unittest.main()

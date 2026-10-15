@@ -2,7 +2,7 @@
 <html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Shaaland · FPL Lab</title>
 <link rel="stylesheet" href="dashboard.css?v=a760b2b0">
-<style>footer a{color:var(--gold)}</style></head><body>
+<style>footer a{color:var(--gold)}.plrows{margin-top:6px}details.plrow{border-top:1px solid rgba(255,255,255,.08)}details.plrow>summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline;padding:8px 22px 8px 0;position:relative;font-size:13px;line-height:1.4}details.plrow>summary::-webkit-details-marker{display:none}details.plrow>summary::after{content:"+";position:absolute;right:2px;top:5px;color:var(--muted);font-size:17px}details.plrow[open]>summary::after{content:"\2212"}.plgw{flex:0 0 42px;color:var(--muted);font-weight:700}.plline{flex:1;min-width:0;overflow-wrap:anywhere}.plcap{color:var(--muted);white-space:nowrap}.plbody{padding:0 0 10px 52px;font-size:12px}.plmove{margin-bottom:6px}@media(max-width:420px){.plbody{padding-left:0}}</style></head><body>
 <header><div class="eyebrow">FPL Performance Lab</div><h1 id="teamName">Shaaland</h1><div class="sub" id="meta"></div></header>
 <div class="kpis" id="kpis"></div>
 <div class="deadline-bar" id="deadlineBanner"></div><div id="chipAlert"></div><div id="liveBar"></div>
@@ -18,6 +18,22 @@
 <script src="plan-intel.js?v=da9120ac"></script>
 <script src="shaaland-wildcard.js?v=b3b3cdf5"></script>
 <script>
+// Shaaland's Plan tab: one compact line per gameweek (moves + captain); prices, xP, reasons and team xP behind a per-row tap.
+function plannerCardCompact(D){
+  const P=D.planner||{}; if(!(P.steps||[]).length) return "";
+  const rows=P.steps.map(s=>{
+    const mv=(s.moves||[]);
+    const line=mv.length?mv.map(m=>`${esc(m.out)} → <b>${esc(m.in)}</b>`).join(", "):`<span class="note">Roll${s.ft_after!=null?" · "+s.ft_after+" FT banked":""}</span>`;
+    const hit=s.hits?` <b class="neg">−${s.hits*4}</b>`:"";
+    const det=mv.map(m=>`<div class="plmove"><b>${esc(m.out)} → ${esc(m.in)}</b> <span class="note">${esc(m.pos)} · £${Number(m.sell).toFixed(1)}→£${Number(m.cost).toFixed(1)} · xP ${(m.xp_out||[])[0]??"–"}→${(m.xp_in||[])[0]??"–"}</span>${transferReasons({reasons_in:m.reasons_in,reasons_out:m.reasons_out,adj:m.adj})}</div>`).join("");
+    return `<details class="plrow"><summary><span class="plgw">GW${s.gw}</span><span class="plline">${line}${hit} <span class="plcap">· C ${esc(s.captain)}</span></span></summary><div class="plbody">${det}<div class="note">Team xP ${s.xp}${s.ft_after!=null?" · "+s.ft_after+" FT after":""}${s.bank!=null?" · bank £"+Number(s.bank).toFixed(1):""}</div></div></details>`;
+  }).join("");
+  const head=P.recommend==="follow"
+    ?`Plan beats rolling by <b class="pos">+${P.gain}</b> expected points (model ${P.gain_model>=0?"+":""}${P.gain_model}, other signals ${P.gain_extra>=0?"+":""}${P.gain_extra})`
+    :`Rolling is as good as any plan (best found ${sign(P.gain)}) - nothing is worth a move yet`;
+  const first=(P.steps[0].moves||[]).length?`This week: ${P.steps[0].moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${P.steps[0].hits?` (−${4*P.steps[0].hits} hit)`:""}.`:"This week: roll.";
+  return `<div class="card"><h2>Transfer planner · GW${P.gws[0]}-${P.gws[P.gws.length-1]}</h2><ul class="note-list"><li>${head}</li><li>${first} ${P.ft} FT, bank £${Number(P.bank).toFixed(1)}</li><li>Tap a gameweek for positions, prices, xP and the reasons behind each move.</li></ul><div class="plrows">${rows}</div></div>`;
+}
 const W={"You":"You","you":"you","Your":"Your","own":"you don't own"}; // wording for the shared renderers in dashboard-common.js
 
 const D=window.FPL_DATA;
@@ -121,7 +137,7 @@ function renderPlan(){
   const targetsCard=`<div class="card"><h2>Transfer targets · not owned</h2><ul class="note-list"><li>Players you don't own yet (${TT.min_minutes??"?"}+ mins)</li><li>Same signals used to audit your own squad, scouted league-wide</li></ul><h3>Strong underlying (xGI per 90)</h3><table class="table-compact"><thead><tr><th style="width:36%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:20%">xGI/90</th><th style="width:20%">G+A</th></tr></thead><tbody>${ttXgRows}</tbody></table><h3>Reliable DEFCON</h3><table class="table-compact"><thead><tr><th style="width:38%">Player</th><th style="width:12%">Pos</th><th style="width:16%">Cost</th><th style="width:34%">P90/Thr</th></tr></thead><tbody>${ttDcRows}</tbody></table></div>`;
   const W=window.FPL_WILDCARD_WATCH;
   const wildcardNote=(W&&W.chips&&W.chips.wildcard==="active")?`<div class="warn">You have Wildcard <b>active</b> for GW${W.gw} (${esc(W.status)} — captured ${esc(W.captured_at)}). See the Wildcard tab for the squad and captain call.</div>`:"";
-  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${plannerCard(D)}${wildcardNote}${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
+  document.getElementById("plan").innerHTML=`${thisGwCard(D)}${plannerCardCompact(D)}${wildcardNote}${intel}${vsLead}${newsBlock}${benches}<div class="card"><h2>Fixtures</h2><p class="note">${dlHeads}</p>${injuryNote}<table><thead><tr><th>Player</th><th>Pos</th>${heads}</tr></thead><tbody>${rows}</tbody></table></div>${targetsCard}`;
 }
 renderPlan();
 function renderWildcardWatch(){
@@ -224,7 +240,7 @@ function renderLeagues(){
     const templ=(lg.template||[]).map(x=>`<div class="chip">${esc(x.name)} · ${esc(x.club)} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">You own the league template.</p>`;
     const diffs=(lg.diffs||[]).map(x=>`<div class="chip">${esc(x.name)} · ${esc(x.club)} · ${x.count}/${x.n} (${x.own}%)</div>`).join("")||`<p class="note">No low-owned picks here.</p>`;
     const T=lg.tactics||{};
-    const startDiffs=(T.you_unique||[]).map(x=>`<div class="chip ok">${esc(x.name)} · ${x.own}% owned${x.vs_a?" vs 1st":""}${x.vs_b?" vs 2nd":""}</div>`).join("")||`<p class="note">Nothing rare enough to call a real diff vs 1st/2nd right now.</p>`;
+    const startDiffs=(T.you_unique||[]).map(x=>`<div class="chip ok">${esc(x.name)} · ${x.own}% owned${x.vs_a?" vs "+(T.first&&T.first.rank?"P"+T.first.rank:"1st"):""}${x.vs_b?" vs "+(T.second&&T.second.rank?"P"+T.second.rank:"2nd"):""}</div>`).join("")||`<p class="note">Nothing rare enough to call a real diff vs 1st/2nd right now.</p>`;
     const copy=(T.they_share||[]).map(x=>`<div class="chip sit">${esc(x.name)} · ${x.count}/${x.n}</div>`).join("")||`<p class="note">1st and 2nd do not share a name you lack.</p>`;
     const caps=esc((T.cap_last||[]).map(x=>x.name+" "+x.count).join(" · ")||"—");
     const gap=T.gap_to_first==null?"":` · ${T.gap_to_first>0?"-"+T.gap_to_first:"+"+(-T.gap_to_first)} vs 1st`;
@@ -495,8 +511,8 @@ function renderStrategy(){
   const globalRows=(IW.rows||[]).slice(0, IW.top_n??15);
   const injRows=globalRows.map(r=>`<tr><td>${nameCell(r.name,r.club)}${yoursTag(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td>${r.owned_pct}%</td><td class="${injStatusCls(r)}">${esc(r.label||r.status)}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No high-ownership injury/doubt flags right now.</span></td></tr>`;
   const LW=IW.league||null;
-  const leagueRows=((LW&&LW.rows)||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${yoursTag(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td title="${r.league_own}/${LW.n??"?"} teams own">${r.league_eo!=null?r.league_eo+"%":"–"}</td><td class="${injStatusCls(r)}">${esc(r.label||r.status)}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No out/doubtful players currently owned in ${esc((LW&&LW.name)||"your league")}.</span></td></tr>`;
-  const injuryCard=`<div class="card"><h2>Injury watch</h2><h3>Highest ownership · league-wide</h3><ul class="note-list"><li>Top ${IW.top_n??"?"} most-owned players league-wide currently flagged out or doubtful by FPL</li><li>Ownership % — not true Effective Ownership, FPL doesn't publish global captaincy rates to weight it by</li><li>A widely-owned player's injury swings a lot of teams' gameweeks, possibly yours too</li></ul><table class="table-compact"><thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">Owned%</th><th style="width:26%">Status</th></tr></thead><tbody>${injRows}</tbody></table><h3>${esc((LW&&LW.name)||"Your mini-league")}</h3><ul class="note-list"><li>Out/doubtful players at least one team in ${esc((LW&&LW.name)||"your league")} currently owns, ranked by Effective Ownership (EO)</li><li>EO = ownership % + captaincy % — a captained pick's points count double, so a niche name several teams captain outranks a widely-owned name nobody captains</li><li>Hover a percentage for the raw team count behind it</li></ul><table class="table-compact"><thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">EO%</th><th style="width:26%">Status</th></tr></thead><tbody>${leagueRows}</tbody></table></div>`;
+  const leagueRows=((LW&&LW.rows)||[]).map(r=>`<tr><td>${nameCell(r.name,r.club)}${yoursTag(r)}</td><td>${esc(r.pos)}</td><td>£${r.cost.toFixed(1)}</td><td title="${r.league_own}/${LW.n??"?"} rivals own">${r.league_eo!=null?r.league_eo+"%":"–"}</td><td class="${injStatusCls(r)}">${esc(r.label||r.status)}</td></tr>`).join("")||`<tr><td colspan="5"><span class="note">No out/doubtful players currently owned in ${esc((LW&&LW.name)||"your league")}.</span></td></tr>`;
+  const injuryCard=`<div class="card"><h2>Injury watch</h2><h3>Highest ownership · league-wide</h3><ul class="note-list"><li>Top ${IW.top_n??"?"} most-owned players league-wide currently flagged out or doubtful by FPL</li><li>Ownership % — not true Effective Ownership, FPL doesn't publish global captaincy rates to weight it by</li><li>A widely-owned player's injury swings a lot of teams' gameweeks, possibly yours too</li></ul><table class="table-compact"><thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">Owned%</th><th style="width:26%">Status</th></tr></thead><tbody>${injRows}</tbody></table><h3>${esc((LW&&LW.name)||"Your mini-league")}</h3><ul class="note-list"><li>Out/doubtful players at least one rival in ${esc((LW&&LW.name)||"your league")} owns, ranked by Effective Ownership (EO) among your ${LW&&LW.n?LW.n+" ":""}rivals — your own team is left out</li><li>EO = how many of their points the average rival squad collects, from rivals' squads at the last deadline: benched 0, starting 1×, captain 2×, triple captain 3×</li><li>Hover a percentage for the number of rival teams that own him</li></ul><table class="table-compact"><thead><tr><th style="width:32%">Player</th><th style="width:10%">Pos</th><th style="width:14%">Cost</th><th style="width:18%">EO%</th><th style="width:26%">Status</th></tr></thead><tbody>${leagueRows}</tbody></table></div>`;
   document.getElementById("stratInjury").innerHTML=injuryCard;
 }
 renderStrategy();

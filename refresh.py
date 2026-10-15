@@ -1061,6 +1061,24 @@ def target_rival_entries(rows, team_id, limit_top=2, limit_bottom=0, spread=1):
 
 
 
+def rival_effective_ownership(picks_by_entry, my_entry):
+    """True effective ownership among the RIVAL teams of a league (your own team left out): for each player the
+    sum of FPL's pick multiplier over rival squads (0 benched, 1 starting, 2 captain, 3 triple captain), divided by
+    the number of rival teams with picks. Returns ({id: eo %}, {id: rival teams owning him}, rival team count)."""
+    mult, owners, n = {}, {}, 0
+    for eid, pk in picks_by_entry.items():
+        picks = (pk or {}).get("picks") or []
+        if eid == my_entry or not picks:
+            continue
+        n += 1
+        for p in picks:
+            pid = p["element"]
+            mult[pid] = mult.get(pid, 0) + int(p.get("multiplier") or 0)
+            owners[pid] = owners.get(pid, 0) + 1
+    eo = {pid: round(100 * m / n, 1) for pid, m in mult.items()} if n else {}
+    return eo, owners, n
+
+
 def rival_context(entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map, chip_windows=None):
     """Small, targeted extra fetches (season history only, no per-GW picks) for a
     bounded set of rivals: chips used this season, how much ground moved last GW,
@@ -1201,7 +1219,10 @@ def analyze_leagues(boot, entry, team_id, picks_gw, deadline_passed=False, my_la
         target_entries = target_rival_entries(rows, team_id)
         rival_ctx = rival_context(target_entries, last_fin_gw, my_last_gw_pts, member_squads_by_entry, elements, next_fixture_map, current_half_chip_windows(boot)) if target_entries else {}
         tactics = build_tactics(rows, team_id, L, n, counts, owned_by, cap_by, my_picks, elements, teams, rival_ctx=rival_ctx)
-        counts_by_league[L["id"]] = {"counts": dict(counts), "cap_by": dict(cap_by), "n": n}
+        rival_eo, rival_owners, rival_n = rival_effective_ownership(
+            {r["entry"]: picks_by_entry.get(r["entry"]) for r in rows} if len(rows) >= 2 else {}, team_id)
+        counts_by_league[L["id"]] = {"counts": dict(counts), "cap_by": dict(cap_by), "n": n,
+                                     "rival_eo": rival_eo, "rival_owners": rival_owners, "rival_n": rival_n}
         league_obj = {
             "id": L["id"],
             "name": L.get("name"),
@@ -1384,23 +1405,17 @@ def main(team_id=TEAM_ID, out_path=None):
     # would suggest — the global top-N list above would likely miss it
     # entirely. Same hardcoded-ESL-id convention as wc_top3 below.
     esl_counts_info = counts_by_league.get(125784) or {}
-    esl_counts, esl_n = esl_counts_info.get("counts") or {}, esl_counts_info.get("n")
-    esl_cap_by = esl_counts_info.get("cap_by") or {}
+    # True EO among your RIVALS (your own team left out): pick multipliers from their latest locked squads, so a
+    # benched pick counts 0, a starter 1, a captain 2 and a triple captain 3 (rival_effective_ownership).
+    esl_n = esl_counts_info.get("rival_n")
+    esl_eo = esl_counts_info.get("rival_eo") or {}
+    esl_owners = esl_counts_info.get("rival_owners") or {}
     league_rows = []
     for r in data["injury_watch"].get("rows", []):
-        c = esl_counts.get(r["id"])   # keyed on the player's id: two players can share a web_name
-        if c:  # only players at least 1 ESL team owns — 0-owned is noise here
-            cap = esl_cap_by.get(r["id"], 0)
-            # True Effective Ownership (ownership % + captaincy %, since a
-            # captained pick's points count double) — computable here, unlike
-            # the global section above, because analyze_leagues already
-            # fetches every ESL member's captain pick in the same loop that
-            # produces `counts`. Sorted by this, not the raw count, so a
-            # heavily-captained lower-owned player outranks a widely-owned
-            # never-captained one — that's the whole point of using EO.
-            eo = round(100 * c / esl_n + 100 * cap / esl_n, 1) if esl_n else None
-            league_rows.append({**r, "league_own": c, "league_eo": eo})
-    league_rows.sort(key=lambda r: -(r["league_eo"] or 0))
+        c = esl_owners.get(r["id"])   # keyed on the player's id: two players can share a web_name
+        if c:  # only players at least 1 rival owns — 0-owned is noise here
+            league_rows.append({**r, "league_own": c, "league_eo": esl_eo.get(r["id"], 0.0)})
+    league_rows.sort(key=lambda r: (-(r["league_eo"] or 0), -r["league_own"]))
     esl_league_obj = next((lg for lg in (leagues.get("mini") or []) if lg.get("id") == 125784), None)
     data["injury_watch"]["league"] = {
         "id": 125784, "name": (esl_league_obj or {}).get("name"), "n": esl_n,
