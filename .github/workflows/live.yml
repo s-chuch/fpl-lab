@@ -4,10 +4,11 @@ name: Matchday live snapshot
 # exits without writing anything when no gameweek is live, so the repo only changes on match days. Kick-off
 # windows are generous on purpose (weekend afternoons/evenings, weekday evenings, UTC); a run outside a match
 # costs a few seconds.
+# PAUSED (by request): the schedule is switched off. To turn the live layer back on, restore the two cron lines below.
+#   schedule:
+#     - cron: "*/10 11-22 * * 0,6"
+#     - cron: "*/10 18-22 * * 1,2,3,4,5"
 on:
-  schedule:
-    - cron: "*/10 11-22 * * 0,6"
-    - cron: "*/10 18-22 * * 1,2,3,4,5"
   workflow_dispatch:
 
 concurrency:
