@@ -56,7 +56,9 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
             xgi = xg + xa
         gi = goals + assists
         diff = round(gi - xgi, 2)
-        tag = "overperforming" if diff >= threshold else ("underperforming" if diff <= -threshold else "on_track")
+        # goals + assists say little about keepers and defenders (their goals are mostly luck): keepers never get the attacking tag, defenders need double
+        thr = {"GKP": float("inf"), "DEF": threshold * 2}.get(pos, threshold)
+        tag = "overperforming" if diff >= thr else ("underperforming" if diff <= -thr else "on_track")
         p90 = mins / 90
         row = {
             "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
@@ -95,7 +97,12 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     top_over = sorted((r for r in att if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
     # the underperforming list uses a softer bar (-1.5) so it is not near-empty early in the season; rows past -2 keep the full tag
     top_under = sorted((r for r in att if r["diff"] <= -UNDER_SOFT), key=lambda r: r["diff"])[:top_n]
-    top_def_lucky = sorted((r for r in pool if r["pos"] in ("DEF", "GKP") and r.get("gc_tag") == "riding_luck"), key=lambda r: -r.get("gc_diff", 0))[:top_n]
+    top_def_lucky, per_club = [], {}
+    for r in sorted((r for r in pool if r["pos"] in ("DEF", "GKP") and r.get("gc_tag") == "riding_luck"), key=lambda r: -r.get("gc_diff", 0)):
+        if per_club.get(r["club"], 0) < 2:      # one club's whole back line is one signal, not five
+            per_club[r["club"]] = per_club.get(r["club"], 0) + 1
+            top_def_lucky.append(r)
+    top_def_lucky = top_def_lucky[:top_n]
 
     rows = []
     if picks_gw:
