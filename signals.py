@@ -562,7 +562,7 @@ COMPETITION_ABBREV = {
 def _comp_abbrev(name):
     return COMPETITION_ABBREV.get((name or "").strip().lower(), name or "?")
 
-def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=60, target_gw=None):
+def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=45, target_gw=None):
     """Minutes trend over the last few finished GWs for each squad player —
     catches a player sliding out of the XI while it's still happening,
     instead of only after the fact via a bench-audit miss the week it costs

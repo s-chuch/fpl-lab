@@ -1341,6 +1341,8 @@ def main(team_id=TEAM_ID, out_path=None):
     caps = captain_audit(boot, team_id)
     data = existing or {}
     data["odds"] = data_odds
+    if not (data_odds or {}).get("matches") and health.get("odds", {}).get("ok"):
+        health["odds"] = {"ok": True, "empty": True, "note": (data_odds or {}).get("error") or "no priced matches"}
     def _model_accuracy():
         cal = json.loads((ROOT / "calibration.json").read_text())
         return {"fitted_on": cal["fitted_on"], "holdout": cal["holdout"], "generated": cal.get("generated"),
@@ -1454,6 +1456,8 @@ def main(team_id=TEAM_ID, out_path=None):
     signals = section("transfer_signals", build_transfer_signals, boot, fpl_common.load_js_object(ROOT / "news.js"), data.get("elite"),
                       {"counts": _lc.get("counts") or {}, "n": _lc.get("n"), "mode": _mode}, data.get("set_pieces"), fallback={}) or {}
     data["elo_ratings"] = section("elo", lambda: __import__("elo").fetch_ratings(boot, cache_path=ROOT / "elo_cache.json").get("ratings") or {}, fallback={})
+    if not data["elo_ratings"] and health.get("elo", {}).get("ok"):
+        health["elo"] = {"ok": True, "empty": True, "note": "source returned no ratings"}      # optional source: honest, but not a failed run
     data["swing"] = section("swing", build_swing_data, boot, ds, teams_by_id, plan, data.get("elo_ratings"), fallback={})
     data["transfer_signals"] = {"mode": _mode, "players": len(signals)}
     try:
