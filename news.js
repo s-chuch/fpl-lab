@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 21:38 UTC",
+  "generated_at": "2026-10-15 21:44 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1476,14 +1476,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "AAFPL",
-      "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics",
-      "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
