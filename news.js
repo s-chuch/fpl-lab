@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 21:35 UTC",
+  "generated_at": "2026-10-15 21:38 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -114,10 +114,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "And who better to capitalise on this than Pascal Gro\u00df and Maxim De Cuyper, who have combined for an impressive 13 goal involvements?",
+          "text": "De Cuyper stands 4th with an xG of 1.80 , managing 6 shots inside the box and 3 big chances .",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "price",
@@ -559,26 +559,26 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Ipswich rank 17 th for Big Chances Conceded 17 th for Shots Conceded 17 th for NPxGC 17 th for Goals Conceded 19 th for xGC 0 Clean Sheets Put Haaland\u2019s relentless consistency alongside Cherki\u2019s underlying numbers and the prospect of facing this Ipswich defenc...",
+          "text": "Cherki is third with 4.7 projected points this Gameweek vs Ipswich (H).",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "form",
           "tone": "good",
-          "text": "Among midfielders, Cherki ranks: 1 st for Goals scored 1 st for BPS 2 nd for Goal Involvements 2 nd for xA 2 nd for FPL points 3 rd for Bonus Points Those are some seriously impressive numbers, and they suggest that Cherki is doing far more than simply passing...",
+          "text": "In-form Joao Pedro and Rayan Cherki are joint-fourth with 7 votes each.",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "FACT: Cherki has already equaled his goal tally of last season (4)!",
+          "text": "Finally, Rayan Cherki stands 5th with an xG of 1.30 , managing 10 shots inside the box and 2 big chances in total.",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "price",
@@ -718,18 +718,18 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Now managers are looking at players such as Pascal Gro\u00df \u2014 and, elsewhere, Hull\u2019s Mohamed Belloumi \u2014 despite the instinct to be cautious about the fixture list and xGI figures.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/fpl-is-the-wild-west-right-now-do-fixtures-even-matter/",
-          "title": "FPL is the Wild West Right Now: Do Fixtures Even Matter?"
+          "text": "Pascal Gross is second with a 4.9 points projection in FPL Gameweek 7 vs Crystal Palace (H).",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "And who better to capitalise on this than Pascal Gro\u00df and Maxim De Cuyper, who have combined for an impressive 13 goal involvements?",
+          "text": "Pascal Gross is 3rd with an xG of 2.02 in the season so far.",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "price",
@@ -751,7 +751,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 8 captain mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 10 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -766,7 +766,7 @@ window.FPL_NEWS = {
       "id": 411,
       "verdict": "Captain candidate",
       "stance": {
-        "captain": 8,
+        "captain": 10,
         "buy": 1
       },
       "quotes": [
@@ -781,12 +781,12 @@ window.FPL_NEWS = {
         },
         {
           "source": "AAFPL",
-          "text": "Direct move from Gonzalo after he has played HUL and COV Captaincy: The Captaincy is an easy decision this week with Haaland up against Ipswich at Home.",
+          "text": "Pedro and De Cuyper are joint-fourth with a projection of 4.4 points each Further Read: Top FPL GW7 Differential Picks to Target Ahead of GW7 Deadline Conclusion \u2013 Final Rank from our FPL Gameweek 7 Captaincy metrics Erling Haalan...",
           "stance": [
             "captain"
           ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "source": "Ingenuity",
@@ -799,12 +799,12 @@ window.FPL_NEWS = {
         },
         {
           "source": "AAFPL",
-          "text": "Haaland may be the essential pick, but Cherki could be the differential that takes your City investment to the next level.",
+          "text": "Direct move from Gonzalo after he has played HUL and COV Captaincy: The Captaincy is an easy decision this week with Haaland up against Ipswich at Home.",
           "stance": [
-            "buy"
+            "captain"
           ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
         }
       ],
       "facts": [
@@ -835,10 +835,10 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Haaland got 2 goals vs European Champions but that could have been easily more than that and you will know it if you watched the game.",
+          "text": "Erling Haaland is first with a points projection of 7.5 in FPL Gameweek 7 vs Ipswich(H).",
           "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/",
+          "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
           "topic": "form",
@@ -1476,8 +1476,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "AAFPL",
+      "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics",
+      "url": "https://allaboutfpl.com/2026/10/top-fpl-gameweek-7-captain-picks-based-on-analysis-metrics/"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
