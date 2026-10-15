@@ -28,6 +28,7 @@ on:
       - "live_update.py"
       - "fixtures_external.py"
       - "ai_team.py"
+      - "ai_changes.py"
       - "understat.py"
       - "stamp_versions.py"
       - "fpl_common.py"
@@ -123,7 +124,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
+          python -m py_compile ai_changes.py news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
 
       - name: Pull live FPL data
         id: pull
