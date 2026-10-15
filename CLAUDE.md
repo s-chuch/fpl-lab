@@ -176,3 +176,7 @@
 - **Good / bad / neutral news.** Every news fact has a `tone` (`fpl_common.tone_of`: cue words with negation flipping; reads wording, not
   meaning) and each theme an `overall_tone`; the News card is point form: 🔴 bad first, then 🟢 good, neutral folded, each bullet a short
   sentence with its topic and linked source.
+- **Overperforming list** (xG/xA tab): MID/FWD only, each row shows next fixture, FDR, ownership and G+A per 90, plus a "hold / watch" pill when
+  the next fixture is easy; defenders and keepers are read separately (goals conceded vs xGC, `top_def_lucky`); under 10 played gameweeks a
+  one-line note says to treat it as a watch list, not a sell list. Scouting lists use `signals.scouting_ok` (270+ mins and 45% of minutes so
+  far, available, 75%+ chance of playing).

@@ -57,6 +57,7 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
         p90 = mins / 90
         row = {
             "name": el["web_name"], "pos": pos, "club": teams[el["team"]]["short_name"], "minutes": mins,
+            "gi_p90": round(gi / p90, 2) if p90 else 0.0,
             "cost": el["now_cost"] / 10, "owned_pct": to_float(el.get("selected_by_percent")) or 0.0,
             "goals": goals, "assists": assists, "xg": round(xg, 2), "xa": round(xa, 2),
             "xgi": round(xgi, 2), "xgi_p90": round(xgi / p90, 2) if p90 else 0.0, "gi": gi, "diff": diff, "tag": tag,
@@ -85,8 +86,12 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     # (`exclude` = your squad as (name, club) pairs). Your own players stay in `rows` below.
     pool = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ()) and (r["name"], r["club"]) in scout_ok]
     top = sorted((r for r in pool if r["pos"] != "GKP"), key=lambda r: -r["xgi_p90"])[:top_n]
-    top_over = sorted((r for r in pool if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
-    top_under = sorted((r for r in pool if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
+    # Defenders and keepers score few goals, so a goals+assists gap says little about them: the attacking lists are MID/FWD only and
+    # their luck is read from goals conceded vs xGC instead (top_def_lucky).
+    att = [r for r in pool if r["pos"] in ("MID", "FWD")]
+    top_over = sorted((r for r in att if r["tag"] == "overperforming"), key=lambda r: -r["diff"])[:top_n]
+    top_under = sorted((r for r in att if r["tag"] == "underperforming"), key=lambda r: r["diff"])[:top_n]
+    top_def_lucky = sorted((r for r in pool if r["pos"] in ("DEF", "GKP") and r.get("gc_tag") == "riding_luck"), key=lambda r: -r.get("gc_diff", 0))[:top_n]
 
     rows = []
     if picks_gw:
@@ -104,7 +109,8 @@ def build_xg_signal(boot, team_id, picks_gw, min_minutes=180, threshold=2.0, top
     imminent = _imminent_returns(boot, all_rows, rows, pool, top_n, next_fixture_map)
     return {
         "threshold": threshold, "min_minutes": min_minutes, "top_n": top_n,
-        "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under,
+        "rows": rows, "notable": notable, "top": top, "top_over": top_over, "top_under": top_under, "top_def_lucky": top_def_lucky,
+        "finished_gws": finished_gws,
         "imminent": imminent,
     }
 
