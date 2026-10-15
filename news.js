@@ -1,11 +1,11 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 20:57 UTC",
+  "generated_at": "2026-10-15 20:58 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "De Cuyper (BHA) \u2014 Fitness or rotation doubts (1 buy, 3 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles (6 checked)",
+      "text": "De Cuyper (BHA) \u2014 Fitness or rotation doubts (1 buy, 3 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -131,7 +131,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Schade (BRE) \u2014 Fitness or rotation doubts (1 sell/avoid, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles (6 checked)",
+      "text": "Schade (BRE) \u2014 Fitness or rotation doubts (1 sell/avoid, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -210,7 +210,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "A.Garc\u00eda (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "A.Garc\u00eda (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -265,7 +265,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -302,7 +302,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Barry (EVE) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -386,7 +386,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Calafiori (ARS) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Calafiori (ARS) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Hub",
@@ -475,7 +475,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Cherki (MCI) \u2014 Leaning buy (4 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Cherki (MCI) \u2014 Leaning buy (4 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -600,7 +600,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Foden (MCI) \u2014 Leaning buy (1 buy mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Foden (MCI) \u2014 Leaning buy (1 buy mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -630,7 +630,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Gonzalo (FUL) \u2014 Mentioned, no clear view (1 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Gonzalo (FUL) \u2014 Mentioned, no clear view (1 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -698,7 +698,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Gro\u00df (BHA) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Gro\u00df (BHA) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -759,7 +759,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 8 captain mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 8 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -884,7 +884,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Konsa (ARS) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Konsa (ARS) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -911,7 +911,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Mu\u00f1oz (NFO) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Mu\u00f1oz (NFO) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -946,7 +946,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -1005,7 +1005,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Rogers (CHE) \u2014 Mixed: some say buy, some say sell (1 buy, 1 sell/avoid mentions) \u00b7 4/5 sites with fresh articles (6 checked)",
+      "text": "Rogers (CHE) \u2014 Mixed: some say buy, some say sell (1 buy, 1 sell/avoid mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -1104,7 +1104,7 @@ window.FPL_NEWS = {
   ],
   "split": [
     {
-      "text": "Barcola (LIV) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Barcola (LIV) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -1129,7 +1129,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Botman (NEW) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Botman (NEW) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub"
@@ -1154,7 +1154,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Brobbey (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Brobbey (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -1193,7 +1193,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub"
@@ -1230,7 +1230,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Davis (IPS) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Davis (IPS) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Scout"
@@ -1275,7 +1275,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Dewsbury-Hall (EVE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Dewsbury-Hall (EVE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Ingenuity"
@@ -1300,7 +1300,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Doku (MCI) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Doku (MCI) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Ingenuity"
@@ -1327,7 +1327,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "E.Le F\u00e9e (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "E.Le F\u00e9e (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Ingenuity"
@@ -1382,7 +1382,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Egan (HUL) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Egan (HUL) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub"
@@ -1407,7 +1407,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Gakpo (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles (6 checked)",
+      "text": "Gakpo (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Ingenuity"
@@ -1481,16 +1481,12 @@ window.FPL_NEWS = {
       "url": "https://allaboutfpl.com/"
     },
     {
-      "name": "FPL Page",
-      "url": "https://fpl.page/"
-    },
-    {
       "name": "Ingenuity",
       "url": "https://ingenuityfantasy.com/"
     }
   ],
   "new_articles": [],
   "no_new": true,
-  "sites_checked": 6,
+  "sites_checked": 5,
   "sites_with_articles": 5
 };
