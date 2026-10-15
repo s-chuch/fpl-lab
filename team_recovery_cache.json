@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-15T21:44:50.684822+00:00",
+    "fetched_at": "2026-10-15T22:21:42.750410+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -276,13 +276,7 @@
           "opponent": "Jablonec",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-15",
-            "competition": "Conference League",
-            "opponent": "Kauno \u017dalgiris"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 3,
@@ -345,13 +339,7 @@
           "opponent": "Milan",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-15",
-            "competition": "Europa League",
-            "opponent": "Sturm Graz"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 5,
