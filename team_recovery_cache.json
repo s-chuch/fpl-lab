@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-16T13:06:26.361747+00:00",
+    "fetched_at": "2026-10-16T22:32:13.516705+00:00",
     "target_gw": 7,
     "anchor": "2026-10-17T10:00:00+00:00",
     "teams": {
@@ -116,7 +116,7 @@
           "date": "2026-10-15",
           "competition": "Europa League",
           "opponent": "Lyon",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -158,7 +158,7 @@
           "date": "2026-10-15",
           "competition": "Europa League",
           "opponent": "Torreense",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -263,7 +263,7 @@
           "date": "2026-10-15",
           "competition": "Conference League",
           "opponent": "Kauno \u017dalgiris",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
@@ -326,7 +326,7 @@
           "date": "2026-10-15",
           "competition": "Europa League",
           "opponent": "Sturm Graz",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-18",
