@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-15",
+  "captured_at": "2026-10-16",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -204,7 +204,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.37,
+        "ep_next": 5.46,
         "status": "ok"
       },
       {
@@ -264,7 +264,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-15",
+      "date": "2026-10-16",
       "total_cost": 93.8,
       "prices": {
         "Raya": 6.1,

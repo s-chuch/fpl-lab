@@ -1,17 +1,16 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-15 23:15 UTC",
+  "generated_at": "2026-10-16 13:06 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "A.Garc\u00eda (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "A.Garc\u00eda (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "A.Garc\u00eda",
       "club": "AVL",
@@ -61,13 +60,58 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
+      ],
+      "player": "B.Fernandes",
+      "club": "MUN",
+      "tags": [
+        "captain talk",
+        "fade/sell"
+      ],
+      "id": 426,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "They are 19th for their fixture run - and it\u2019s getting harder to justify holding on to their players, particularly the premium-priced Bruno Fernandes , who has not looked himself in recent games.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-7-article-26-27",
+          "title": "Best FPL Wildcard and team of the week for Gameweek 7"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "His price is \u00a34.0m below Fernandes\u2019, potentially allowing a substantial upgrade elsewhere.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Cherki (\u00a37.9m) matches Fernandes on 5.5 predicted points while costing \u00a34.0m less.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Barry (EVE) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
       ],
       "player": "Barry",
       "club": "EVE",
@@ -138,13 +182,138 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "De Cuyper (BHA) \u2014 Fitness or rotation doubts (1 buy, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Cherki (MCI) \u2014 Leaning buy (6 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Cherki",
+      "club": "MCI",
+      "tags": [
+        "captain talk",
+        "rotation risk"
+      ],
+      "id": 399,
+      "verdict": "Leaning buy",
+      "stance": {
+        "risk": 1,
+        "buy": 6
+      },
+      "quotes": [
+        {
+          "source": "AAFPL",
+          "text": "Cherki comes into the side for FPL GW7 in spite of some minutes concerns and rotation risk\u2026 As with Gvardiol, Cherki presents some rotation risk having started the game in mid-week against Man City.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+        },
+        {
+          "source": "Fix",
+          "text": "Verdict: Should You Buy Cherki or Semenyo for Gameweek 7?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Haaland may be the essential pick, but Cherki could be the differential that takes your City investment to the next level.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "source": "Fix",
+          "text": "Our approach would be: Buying a City midfielder: favour Cherki if you are comfortable with the minutes risk.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Cherki comes into the side for FPL GW7 in spite of some minutes concerns and rotation risk\u2026 As with Gvardiol, Cherki presents some rotation risk having started the game in mid-week against Man City.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+        },
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "FPL notes: Barcola hat-trick, Cherki subbed + Jackson \u201cfantastic\u201d  Three Premier League teams were in UCL action on Wednesday",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fpl-notes-barcola-hat-trick-cherki-subbed-fantastic-jackson",
+          "title": "FPL notes: Barcola hat-trick, Cherki subbed + Jackson \u201cfantastic\u201d"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Cherki has played 396 minutes, with a starting percentage of 83%, compared with Semenyo\u2019s 100%.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "The second is the inclusion of Bukayo Saka: Cherki & Tarkowski > Saka & \u00a34.5m Defender (Affengruber?) Arsenal also have great fixtures, and Saka currently leads all midfielders in both total xGI and xGI per 90.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
+          "title": "The Best FPL Gameweek 7 Wildcard Team"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Login here Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Cherki leads for expected assists (2.02 to 1.90) and attempted assists (14 to 11).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "However, Cherki clearly has the higher ceiling on the evidence so far, combining greater goal threat with stronger creativity per 90 minutes.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Haaland may be the essential pick, but Cherki could be the differential that takes your City investment to the next level.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-7-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 7 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "De Cuyper (BHA) \u2014 Fitness or rotation doubts (1 buy, 2 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "De Cuyper",
       "club": "BHA",
@@ -255,53 +424,12 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Foden (MCI) \u2014 Leaning buy (1 buy mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Gonzalo (FUL) \u2014 Mentioned, no clear view (1 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Foden",
-      "club": "MCI",
-      "tags": [],
-      "id": 398,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "AAFPL",
-          "text": "The Tractor boys have conceded in every single one of their 6 games so far this season and sit third from bottom for expected goals against \u2013 this is certainly one to target from a Man City perspective\u2026 While Foden was touted as t...",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "Identifying the best Man City triple-up is extremely difficult this week, with one of Antoine Semenyo, Jeremy Doku and Iliman Ndiaye set to miss out on the flanks, and plenty of competition in the \u201810\u2019, particularly with Phil Foden back from suspension.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Gonzalo (FUL) \u2014 Mentioned, no clear view (1 captain, 1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Gonzalo",
       "club": "FUL",
@@ -364,13 +492,12 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Gro\u00df (BHA) \u2014 Mentioned, no clear view \u00b7 5/5 sites with fresh articles",
+      "text": "Gro\u00df (BHA) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Gro\u00df",
       "club": "BHA",
@@ -401,10 +528,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "good",
-          "text": "Further forward, Pascal Gross is in confident mood, with three goals and five assists in six matches.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "text": "Pascal Gro\u00df (CRY) \u2014 The High-Ownership Alternative Pascal Gro\u00df has registered eight FPL attacking returns this season (three goals and five assists).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-captaincy-2026/",
+          "title": "Best FPL Captain for Gameweek 7: Top 3 Picks"
         },
         {
           "topic": "form",
@@ -434,24 +561,22 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 11 captain mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 10 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Haaland",
       "club": "MCI",
       "tags": [
-        "captain talk",
-        "rotation risk"
+        "captain talk"
       ],
       "id": 411,
       "verdict": "Captain candidate",
       "stance": {
-        "captain": 11,
+        "captain": 10,
         "buy": 1
       },
       "quotes": [
@@ -474,15 +599,6 @@ window.FPL_NEWS = {
           "title": "Top FPL Gameweek 7 Captain Picks Based on Analysis & Metrics"
         },
         {
-          "source": "Scout",
-          "text": "If I still had my Triple Captain chip, I would play it on Haaland this week, on the back of his two goals in the Champions League defeat to PSG, where he could easily have scored three or four.",
-          "stance": [
-            "captain"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
-        },
-        {
           "source": "Ingenuity",
           "text": "NOTE: If you have your TRIPLE CAPTAIN chip, this is week to use it on Haaland!",
           "stance": [
@@ -490,6 +606,15 @@ window.FPL_NEWS = {
           ],
           "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-captains/",
           "title": "The Best FPL Gameweek 7 Captains"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Direct move from Gonzalo after he has played HUL and COV Captaincy: The Captaincy is an easy decision this week with Haaland up against Ipswich at Home.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
         }
       ],
       "facts": [
@@ -561,13 +686,39 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 5/5 sites with fresh articles",
+      "text": "Konsa (ARS) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [],
+      "id": 31,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "The decision on GW6 Wildcard was between Gabriel + Gross vs Konsa + Saka.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        }
+      ],
+      "tone": "neutral"
+    },
+    {
+      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
       ],
       "player": "Palmer",
       "club": "CHE",
@@ -586,6 +737,30 @@ window.FPL_NEWS = {
           "title": "The Best FPL Gameweek 7 Wildcard Team"
         },
         {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Palmer remains appealing for his creativity and penalties, but Rogers\u2019 underlying goal threat makes the cheaper option difficult to dismiss.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "Palmer is our strongest all-round replacement, combining attacking returns, penalty appeal and a competitive four-Gameweek projection.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Saka has played 508 minutes, slightly fewer than Palmer and Gibbs-White, but his goal threat makes him an attractive option for managers seeking an explosive premium replacement.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
           "topic": "fixture",
           "tone": "good",
           "text": "Let\u2019s take a look at their attacking numbers for the season so far\u2026 Rogers Vs Palmer Attacking Numbers (1.89xG) 4 \u2013 Goals \u2013 2 (1.32xG) (1.86xA) 1 \u2013 Assists 4 (0.86xA) 2.94 \u2013 Shots/90 \u2013 2.86 1.9 \u2013 KeyPass/90 \u2013 2.21 (29.66xPTS) 38 \u2013 FPL Points \u2013 36 (25.11xPTS) A...",
@@ -596,38 +771,37 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Joao Pedro is another obvious inclusion up front for our scout picks team, joining teammates Palmer and Rogers for their fixture against Everton.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+          "text": "Palmer vs Saka vs Gibbs-White: What Do the Opta Stats Show?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         },
         {
-          "topic": "price",
+          "topic": "form",
           "tone": "good",
-          "text": "Cole Palmer \u2013 \u00a39.7m 6 returns in 6 games sand it still feels like Palmer has barely got going.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-          "title": "The Best FPL Gameweek 7 Wildcard Team"
+          "text": "He has played all 540 available minutes, leads this comparison for expected assists at approximately three, and has collected six bonus points, more than either Palmer or Saka.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         },
         {
-          "topic": "price",
+          "topic": "form",
           "tone": "neutral",
-          "text": "Alex Palmer \u2013 \u00a34.0m This can be any \u00a34.0m keeper to be honest.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-          "title": "The Best FPL Gameweek 7 Wildcard Team"
+          "text": "Palmer looks the more straightforward purchase across the full run, while Saka appeals for his goal threat and Gameweek 10 fixture.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         }
       ],
       "tone": "good"
     },
     {
-      "text": "Rogers (CHE) \u2014 Mixed: some say buy, some say sell (1 buy, 1 sell/avoid mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Rogers (CHE) \u2014 Mixed: some say buy, some say sell (1 buy, 2 sell/avoid mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Rogers",
       "club": "CHE",
@@ -635,18 +809,18 @@ window.FPL_NEWS = {
       "id": 40,
       "verdict": "Mixed: some say buy, some say sell",
       "stance": {
-        "buy": 1,
-        "sell": 1
+        "sell": 2,
+        "buy": 1
       },
       "quotes": [
         {
           "source": "Fix",
-          "text": "Meanwhile, Rayan Cherki and Morgan Rogers remain popular targets after finding the back of the net in Gameweek 6.",
+          "text": "If selling Bruno is primarily about freeing up money, Rogers deserves serious consideration.",
           "stance": [
-            "buy"
+            "sell"
           ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         },
         {
           "source": "AAFPL",
@@ -656,9 +830,26 @@ window.FPL_NEWS = {
           ],
           "url": "https://allaboutfpl.com/2026/10/fpl-gw7-team-selection-drafts-transfer-plans-and-chip-strategy/",
           "title": "FPL GW7 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        },
+        {
+          "source": "Fix",
+          "text": "Meanwhile, Rayan Cherki and Morgan Rogers remain popular targets after finding the back of the net in Gameweek 6.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
         }
       ],
       "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Palmer remains appealing for his creativity and penalties, but Rogers\u2019 underlying goal threat makes the cheaper option difficult to dismiss.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
         {
           "topic": "role",
           "tone": "neutral",
@@ -686,10 +877,10 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Despite a tricky-looking fixture on paper away to Everton, Joao Pedro and Morgan Rogers have enjoyed stellar campaigns thus far, with both players demonstrating remarkable consistency.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "text": "Joao Pedro is another obvious inclusion up front for our scout picks team, joining teammates Palmer and Rogers for their fixture against Everton.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
         },
         {
           "topic": "form",
@@ -702,10 +893,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "The former has three double-digit hauls in five starts, while Rogers has blanked just once.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "text": "Interestingly, Rogers\u2019 combined 4.20 expected goal involvements exceed Palmer\u2019s 3.73, strengthening the argument that he offers more than simply a cheaper route into Chelsea\u2019s attack.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         },
         {
           "topic": "price",
@@ -719,45 +910,37 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Saka (ARS) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Saka (ARS) \u2014 Leaning buy (1 buy, 1 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Saka",
       "club": "ARS",
       "tags": [
-        "captain talk",
-        "rotation risk"
+        "captain talk"
       ],
       "id": 12,
-      "verdict": "Mentioned, no clear view",
+      "verdict": "Leaning buy",
       "stance": {
-        "risk": 1
+        "buy": 1,
+        "captain": 1
       },
       "quotes": [
         {
-          "source": "Scout",
-          "text": "I\u2019ve chosen Riccardo Calafiori as my Arsenal defender, as well as Bukayo Saka in midfield, both of whom were benched in midweek.",
+          "source": "Fix",
+          "text": "Bukayo Saka (nfo) \u2014 The Differential Captain Saka continued his strong start to the season with a goal and an assist off the bench for Arsenal against Lille in midweek.",
           "stance": [
-            "risk"
+            "buy",
+            "captain"
           ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-captaincy-2026/",
+          "title": "Best FPL Captain for Gameweek 7: Top 3 Picks"
         }
       ],
       "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "I\u2019ve chosen Riccardo Calafiori as my Arsenal defender, as well as Bukayo Saka in midfield, both of whom were benched in midweek.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
-        },
         {
           "topic": "role",
           "tone": "good",
@@ -775,6 +958,22 @@ window.FPL_NEWS = {
           "title": "The Best FPL Gameweek 7 Wildcard Team"
         },
         {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "We use Fantasy Football Fix\u2019s Predicted Points & Stats tool, Comparison Matrix and Fixture Planner to assess Cole Palmer, Bukayo Saka and Morgan Gibbs-White, plus alternatives from Manchester City and Chelsea.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Bukayo Saka: The Standout for Goal Threat Price: \u00a39.6m | Predicted points, GW7\u201310: 19.9 Saka has the strongest goalscoring profile in the Comparison Matrix.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
           "topic": "price",
           "tone": "neutral",
           "text": "Bukayo Saka (\u00a39.6m): a player Tom considers an optimal long-term pick, with an important captaincy opportunity ahead.",
@@ -783,16 +982,15 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 7 Wildcard: Tom Dollimore\u2019s Key Picks"
         }
       ],
-      "tone": "mixed"
+      "tone": "good"
     },
     {
-      "text": "Schade (BRE) \u2014 Fitness or rotation doubts (1 sell/avoid, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Schade (BRE) \u2014 Fitness or rotation doubts (1 sell/avoid, 2 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Schade",
       "club": "BRE",
@@ -865,25 +1063,35 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Semenyo (MCI) \u2014 Leaning keep / hold (1 keep mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Semenyo (MCI) \u2014 Leaning buy (1 buy, 1 keep mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
-        "Ingenuity",
-        "Scout"
+        "Ingenuity"
       ],
       "player": "Semenyo",
       "club": "MCI",
       "tags": [
-        "captain talk"
+        "captain talk",
+        "differential"
       ],
       "id": 397,
-      "verdict": "Leaning keep / hold",
+      "verdict": "Leaning buy",
       "stance": {
+        "buy": 1,
         "hold": 1
       },
       "quotes": [
+        {
+          "source": "Fix",
+          "text": "Verdict: Should You Buy Cherki or Semenyo for Gameweek 7?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
         {
           "source": "Hub",
           "text": "City\u2019s fixtures keep Semenyo in the top five, tied with highest-placed defender Gabriel .",
@@ -897,11 +1105,19 @@ window.FPL_NEWS = {
       "facts": [
         {
           "topic": "role",
+          "tone": "good",
+          "text": "A higher ceiling does not necessarily mean a higher average projection: Cherki can offer greater potential for a big haul when given substantial minutes while still ranking below Semenyo in the model.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
+        },
+        {
+          "topic": "role",
           "tone": "neutral",
-          "text": "Minutes are unlikely to be of a concern as City\u2019s back-up forward option (Semenyo) also played 90 against PSG.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+          "text": "Semenyo has started every match and completed 540 minutes.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
         },
         {
           "topic": "fixture",
@@ -914,165 +1130,92 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "City\u2019s fixtures keep Semenyo in the top five, tied with highest-placed defender Gabriel .",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-7-article-26-27",
-          "title": "Best FPL Wildcard and team of the week for Gameweek 7"
+          "text": "Login here Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         },
         {
           "topic": "form",
           "tone": "good",
-          "text": "While Semenyo is still a more \u2018nailed\u2019 option for City, Cherki offers explosive attacking potential and huge haul potential.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+          "text": "Adding expected goals and expected assists together, Cherki has produced approximately 0.88 expected goal involvements per 90, compared with 0.38 for Semenyo.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "His average of 7.3 points per game also beats Semenyo\u2019s 6.0, while he leads for bonus points by seven to two.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/",
+          "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?"
         },
         {
           "topic": "price",
           "tone": "neutral",
-          "text": "Rayan Cherki and Antoine Semenyo may offer higher ceilings, but both cost more and already exceed our 10% ownership limit.",
+          "text": "Semenyo (\u00a38.3m) has the highest Gameweek 7 projection in our six-player shortlist at 5.8 points, slightly ahead of Bruno\u2019s 5.5.",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-differentials/",
-          "title": "FPL Gameweek 7 Differentials: 5 Overlooked Picks"
+          "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/",
+          "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7"
         }
       ],
       "tone": "mixed"
     },
     {
-      "text": "Affengruber (FUL) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Affengruber",
-      "club": "FUL",
-      "tags": [],
-      "id": 650,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "The second is the inclusion of Bukayo Saka: Cherki & Tarkowski > Saka & \u00a34.5m Defender (Affengruber?) Arsenal also have great fixtures, and Saka currently leads all midfielders in both total xGI and xGI per 90.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-          "title": "The Best FPL Gameweek 7 Wildcard Team"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Elsewhere, Fulham\u2019s David Affengruber secured DefCons against Ipswich, keeping up his 100% record when starting.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-defcon-points-watch",
-          "title": "FPL defensive contributions: Gameweek and overall totals"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Although naturally the team above is the one which is likely to save more transfers down the line, as we will not want to be starting any \u00a34.5m defender like Affengruber long term.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-          "title": "The Best FPL Gameweek 7 Wildcard Team"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
+      "text": "S\u00e1vio (TOT) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
         "Hub",
         "Ingenuity"
       ],
-      "player": "B.Fernandes",
-      "club": "MUN",
+      "player": "S\u00e1vio",
+      "club": "TOT",
       "tags": [
-        "captain talk"
+        "differential",
+        "rotation risk"
       ],
-      "id": 426,
+      "id": 403,
       "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
         {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "They are 19th for their fixture run - and it\u2019s getting harder to justify holding on to their players, particularly the premium-priced Bruno Fernandes , who has not looked himself in recent games.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-7-article-26-27",
-          "title": "Best FPL Wildcard and team of the week for Gameweek 7"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Bruno Fernandes, Dominic Szoboszlai, Cody Gakpo and Martin \u00d8degaard are the other midfielders being sold.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
+          "source": "Ingenuity",
+          "text": "Everyone not named Tonali or Savio seems to be getting frequently rotated.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-7/",
+          "title": "Key Tips for FPL Gameweek 7"
         }
       ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Calafiori (ARS) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": [],
-      "id": 8,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
       "facts": [
         {
           "topic": "role",
           "tone": "bad",
-          "text": "I\u2019ve chosen Riccardo Calafiori as my Arsenal defender, as well as Bukayo Saka in midfield, both of whom were benched in midweek.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
-        },
-        {
-          "topic": "fixture",
-          "tone": "bad",
-          "text": "If their poor finishing looks set to continue, then a fixture against the best defence in the league is perfect for Calafiori.",
+          "text": "Everyone not named Tonali or Savio seems to be getting frequently rotated.",
           "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-captains/",
-          "title": "The Best FPL Gameweek 7 Captains"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "FPL GW7 fixtures: Goal, clean-sheet odds and hidden gems FPL GW7 fixtures: Goal, clean-sheet odds and hidden gems Chris\u2019s picks continue to deliver, with Riccardo Calafiori rewarding our faith in Gameweek 6.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-7-article-26-27",
-          "title": "FPL GW7 fixtures: Goal, clean-sheet odds and hidden gems"
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-7/",
+          "title": "Key Tips for FPL Gameweek 7"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "Riccardo Calafiori really doesn\u2019t need any justification at the moment, with the defender in outstanding attacking form.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "text": "Savio is another Spurs pick who has passed the eye test and leads the way for expected goal involvements (xGI) on 1.49.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 7"
         },
         {
           "topic": "price",
           "tone": "neutral",
-          "text": "Defence: Riccardo Calafiori \u2013 \u00a35.9m An absolute FPL cheat code.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-wildcard-team/",
-          "title": "The Best FPL Gameweek 7 Wildcard Team"
+          "text": "At just 0.7% ownership, S\u00e1vio offers a bold way to back a Spurs improvement before the wider FPL market takes notice.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-differentials/",
+          "title": "FPL Gameweek 7 Differentials: 5 Overlooked Picks"
         }
       ],
       "tone": "bad"
@@ -1177,90 +1320,41 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Brobbey (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
+      "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "Fix",
+        "Hub"
       ],
-      "player": "Brobbey",
-      "club": "SUN",
+      "player": "Calvert-Lewin",
+      "club": "LEE",
       "tags": [],
-      "id": 552,
-      "verdict": "Leaning buy",
+      "id": 346,
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "buy": 1,
         "risk": 1
       },
       "quotes": [
         {
-          "source": "Ingenuity",
-          "text": "Enzo Le Fee \u2013 \u00a35.7m Ownership: 3.1% Goals: 1 Assists: 1 XGI per 90: 0.64 Sunderland\u2019s recent poor form and Brobbey\u2019s injury have resulted in Enzo Le Fee and indeed all Sunderland assets flying seriously under the radar.",
+          "source": "Fix",
+          "text": "Alexander Isak sales are understandable given his injury but the sales of Dominic Calvert-Lewin and Gonzalo Garcia less so given their impressive numbers recently.",
           "stance": [
-            "buy",
             "risk"
           ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-differentials/",
-          "title": "The Best FPL Gameweek 7 Differentials"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
         }
       ],
       "facts": [
         {
           "topic": "fitness",
-          "tone": "neutral",
-          "text": "Enzo Le Fee \u2013 \u00a35.7m Ownership: 3.1% Goals: 1 Assists: 1 XGI per 90: 0.64 Sunderland\u2019s recent poor form and Brobbey\u2019s injury have resulted in Enzo Le Fee and indeed all Sunderland assets flying seriously under the radar.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-differentials/",
-          "title": "The Best FPL Gameweek 7 Differentials"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Davis (IPS) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Davis",
-      "club": "IPS",
-      "tags": [
-        "differential"
-      ],
-      "id": 305,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "I like Nunes a lot as a differential, as I think he could exploit the space in behind the advanced Leif Davis.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "He also ranks second only to Leif Davis (1.61) for xG (1.52) among defenders.",
+          "tone": "bad",
+          "text": "Alexander Isak sales are understandable given his injury but the sales of Dominic Calvert-Lewin and Gonzalo Garcia less so given their impressive numbers recently.",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 7: Top Five Picks"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "I like Nunes a lot as a differential, as I think he could exploit the space in behind the advanced Leif Davis.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw7-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 7 Transfer Tips 2026/27: Who to Target"
         }
       ],
-      "tone": "good"
+      "tone": "bad"
     },
     {
       "text": "Dewsbury-Hall (EVE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
@@ -1288,32 +1382,31 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Donnarumma (MCI) \u2014 Leaning sell / avoid (1 sell/avoid mentions) \u00b7 2/5 sites with fresh articles",
+      "text": "Doku (MCI) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
-        "Ingenuity",
-        "Scout"
+        "AAFPL",
+        "Ingenuity"
       ],
-      "player": "Donnarumma",
+      "player": "Doku",
       "club": "MCI",
-      "tags": [],
-      "id": 384,
-      "verdict": "Leaning sell / avoid",
-      "stance": {
-        "sell": 1
-      },
-      "quotes": [
+      "tags": [
+        "differential"
+      ],
+      "id": 400,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
         {
-          "source": "Scout",
-          "text": "I\u2019ve subsequently decided to avoid the midfield picks altogether, instead preferring Gianluigi Donnarumma and Matheus Nunes , plus Erling Haaland for obvious reasons.",
-          "stance": [
-            "sell"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3",
-          "title": "The Scout Squad: Our top picks for FPL Gameweek 7"
+          "topic": "form",
+          "tone": "good",
+          "text": "Jeremy Doku \u2013 \u00a37.4m Ownership: 1.2% Goals: 1 Assists: 1 XGI per 90: 1.26 Doku\u2019s 1.26 xGI per 90 is not the thing to focus on here as the sample size is so small.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-7-differentials/",
+          "title": "The Best FPL Gameweek 7 Differentials"
         }
       ],
-      "facts": [],
-      "tone": "neutral"
+      "tone": "good"
     },
     {
       "text": "E.Le F\u00e9e (SUN) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
@@ -1449,6 +1542,51 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
+    },
+    {
+      "text": "Gravenberch (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Ingenuity"
+      ],
+      "player": "Gravenberch",
+      "club": "LIV",
+      "tags": [],
+      "id": 371,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Ingenuity",
+          "text": "Were Gravenberch not suspended, we could potentially read more into this, but Szoboszlai needing to fill in that spot will likely mean Wirtz keeps his place.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-7/",
+          "title": "Key Tips for FPL Gameweek 7"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "Were Gravenberch not suspended, we could potentially read more into this, but Szoboszlai needing to fill in that spot will likely mean Wirtz keeps his place.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-7/",
+          "title": "Key Tips for FPL Gameweek 7"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "City came away victors with a 3-0 win over Liverpool in GW6 in spite of a sub-par performance prior to Gravenberch\u2019s red card.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw7-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW7 Scout Picks Based on Stats, Analysis and Matchups"
+        }
+      ],
+      "tone": "good"
     }
   ],
   "links": [
@@ -1475,9 +1613,54 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
+      "source": "Fix",
+      "title": "Best Bruno Fernandes Replacements for FPL Gameweek 7",
+      "url": "https://www.fantasyfootballfix.com/blog-index/bruno-fernandes-replacements-fpl-gameweek-7/"
+    },
+    {
+      "source": "Fix",
+      "title": "Cherki vs Semenyo: Best FPL Midfielder for Gameweek 7?",
+      "url": "https://www.fantasyfootballfix.com/blog-index/cherki-vs-semenyo-fpl-gameweek-7/"
+    },
+    {
+      "source": "Fix",
+      "title": "Best FPL Captain for Gameweek 7: Top 3 Picks",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-captaincy-2026/"
+    },
+    {
       "source": "Scout",
-      "title": "The Scout Squad: Our top picks for FPL Gameweek 7",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/the-scout-squad-our-top-picks-for-fpl-gameweek-7-3"
+      "title": "FPL Gameweek 7 team news: Friday\u2019s live injury updates",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/fpl-gameweek-7-team-news-fridays-live-injury-updates-4"
+    },
+    {
+      "source": "Scout",
+      "title": "Who is the best captain for FPL Gameweek 7?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/who-is-the-best-captain-for-fpl-gameweek-7-5"
+    },
+    {
+      "source": "Scout",
+      "title": "The importance of the third forward spot in FPL",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/the-importance-of-the-third-forward-spot-in-fpl"
+    },
+    {
+      "source": "Scout",
+      "title": "Fantasy Bundesliga Matchday 6 team reveals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/fantasy-bundesliga-matchday-6-team-reveals"
+    },
+    {
+      "source": "Scout",
+      "title": "Eliteserien Fantasy Gameweek 24: Team reveals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/eliteserien-fantasy-gameweek-24-team-reveals"
+    },
+    {
+      "source": "Scout",
+      "title": "Tattico Fantasy Serie A Gameweek 7: Expert team reveals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/tattico-fantasy-serie-a-gameweek-7-expert-team-reveals"
+    },
+    {
+      "source": "Scout",
+      "title": "WSL Fantasy 2026/27: Expert team reveal for Matchweek 6",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/15/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-6"
     }
   ],
   "no_new": false,
