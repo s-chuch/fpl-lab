@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 7,
   "cutoff": "2026-10-10 10:00 UTC",
-  "generated_at": "2026-10-16 22:32 UTC",
+  "generated_at": "2026-10-16 22:42 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1644,34 +1644,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 7 Tips: Transfers, Captain & Team News",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-7-tips/"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL GW7 Q&A: Saka, De Cuyper, Triple Captain Haaland?",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-gameweek-7-questions-26-27-article"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL General\u2019s Gameweek 7 team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/fpl-generals-gameweek-7-team-reveal-2"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 7 Scout Picks: Three double-ups",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/fpl-gameweek-7-scout-picks-three-double-ups"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Rate My Team surgery with five-time top 1k finisher Tom Freeman",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/16/fpl-rate-my-team-surgery-with-five-time-top-1k-finisher-tom-freeman-100"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
