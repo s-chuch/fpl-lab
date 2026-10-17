@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Haaland",
     "captain_ep": 6.13,
     "vice": "Dewsbury-Hall",
-    "vice_ep": 5.08,
+    "vice_ep": 5.01,
     "bench_swaps": [
       {
         "bench": "Bogle",
@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 5.08,
+        "ep_next": 5.01,
         "status": "ok"
       },
       {

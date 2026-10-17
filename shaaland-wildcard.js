@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.72,
+        "ep_next": 3.46,
         "status": "ok"
       },
       {
