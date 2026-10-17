@@ -468,3 +468,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-trend.up{background:rgba(46,160,67,.2);color:#3fb950}
 .lab-trend.down{background:rgba(248,81,73,.2);color:#f85149}
 .lab-pc-t{margin:2px 0 0}.lab-pc-t .lab-trend{margin-left:0}
+.lab-trend.flat{background:rgba(139,149,161,.18);color:var(--muted)}
