@@ -7,6 +7,7 @@ defensive-contribution threshold). Stored in its own committed file (prediction_
 Pure functions take their inputs; only grade() talks to FPL (through the `get` it is given)."""
 from __future__ import annotations
 import json, os
+from datetime import datetime, timedelta
 from pathlib import Path
 
 CATS = ("goals", "assists", "gi", "clean_sheets", "defcon")
@@ -143,7 +144,42 @@ def grade_pick(cat, pick, live, fixtures, boot_el):
     return {"hit": False, "why": ""}
 
 
-def grade(log, boot, get):
+def near_miss(cat, proc):
+    """A pick that missed on the result but still got the chances: shots on target / a big chance for a goal, a big chance created
+    or two chances created for an assist. proc = {shots, sot, big, cc, big_cc} for the gameweek."""
+    if not proc:
+        return False
+    g = proc.get("sot", 0) >= 1 or proc.get("big", 0) >= 1
+    a = proc.get("big_cc", 0) >= 1 or proc.get("cc", 0) >= 2
+    return g if cat == "goals" else a if cat == "assists" else (g or a)
+
+
+def proc_text(proc):
+    bits = []
+    if proc.get("shots"):
+        bits.append(f"{proc['shots']} shot{'s' if proc['shots'] != 1 else ''} ({proc.get('sot', 0)} on target)")
+    if proc.get("big"):
+        bits.append(f"{proc['big']} big chance{'s' if proc['big'] != 1 else ''}")
+    if proc.get("cc"):
+        bits.append(f"{proc['cc']} chance{'s' if proc['cc'] != 1 else ''} created")
+    if proc.get("big_cc"):
+        bits.append(f"{proc['big_cc']} big chance{'s' if proc['big_cc'] != 1 else ''} created")
+    return ", ".join(bits)
+
+
+def add_process(cat, pick, res, process):
+    """Attach the shots / chances he had (Understat) to a graded result; flag a miss that was a near miss."""
+    proc = (process or {}).get(pick.get("id"))
+    if proc is None or cat not in ("goals", "assists", "gi", "ap", TARGET):
+        return res
+    res["proc"] = proc
+    if not res.get("hit") and near_miss(cat, proc):
+        res["near"] = True
+        res["why"] = f"{res.get('why', '')} · but {proc_text(proc)}".strip(" ·")
+    return res
+
+
+def grade(log, boot, get, process=None):
     """Grade every finished, data-checked gameweek that has a frozen prediction and no grade yet."""
     done = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
     boot_el = {e["id"]: e for e in boot["elements"]}
@@ -155,10 +191,20 @@ def grade(log, boot, get):
             fixtures = [f for f in get(f"https://fantasy.premierleague.com/api/fixtures/?event={g['gw']}") if f.get("finished") or f.get("finished_provisional")]
         except Exception:
             continue
-        g["results"] = {c: [grade_pick(c, p, live, fixtures, boot_el) for p in g["picks"].get(c, [])] for c in CATS}
-        g["results"][TARGET] = [grade_target(p, live, boot_el) for p in g["picks"].get(TARGET, [])]
+        proc = None
+        if process and fixtures:
+            try:
+                ks = sorted(f["kickoff_time"] for f in fixtures if f.get("kickoff_time"))
+                if ks:
+                    t0 = datetime.fromisoformat(ks[0].replace("Z", "+00:00")) - timedelta(hours=2)
+                    t1 = datetime.fromisoformat(ks[-1].replace("Z", "+00:00")) + timedelta(hours=1)
+                    proc = process(t0.strftime("%Y-%m-%d %H:%M:%S"), t1.strftime("%Y-%m-%d %H:%M:%S"))
+            except Exception:        # Understat is optional: grade on results alone
+                proc = None
+        g["results"] = {c: [add_process(c, p, grade_pick(c, p, live, fixtures, boot_el), proc) for p in g["picks"].get(c, [])] for c in CATS}
+        g["results"][TARGET] = [add_process(TARGET, p, grade_target(p, live, boot_el), proc) for p in g["picks"].get(TARGET, [])]
         g["results"]["rotation"] = [grade_rotation(p, live) for p in g["picks"].get("rotation", [])]
-        g["results"]["ap"] = [grade_pick("ap", p, live, fixtures, boot_el) for p in g["picks"].get("ap", [])]
+        g["results"]["ap"] = [add_process("ap", p, grade_pick("ap", p, live, fixtures, boot_el), proc) for p in g["picks"].get("ap", [])]
         g["graded"] = True
     return log
 
@@ -183,7 +229,7 @@ def grade_target(pick, live, boot_el=None):
 
 # ---------------------------------------------------------------- per-player snapshot (training data)
 PLAYER_FILE = Path(__file__).resolve().parent / "player_log.json"
-PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score"]
+PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score", "sh4", "sot4", "big4", "cc4", "bcc4"]
 OUTCOME_COLS = ["o_min", "o_goals", "o_assists", "o_dc", "o_pts"]
 
 
@@ -210,7 +256,7 @@ def player_grade(plog, boot, get):
         for r in g["rows"]:
             st = live.get(r[0]) or {}
             r.extend([int(st.get("minutes") or 0), int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("defensive_contribution") or 0), int(st.get("total_points") or 0)])
-        g["cols"] = PLAYER_COLS + OUTCOME_COLS
+        g["cols"] = list(g.get("cols") or PLAYER_COLS) + OUTCOME_COLS
         g["graded"] = True
     return plog
 
@@ -279,6 +325,14 @@ def view(log, boot_players=None):
         per_gw.append(row)
     total = {c: [cal[c]["hits"], cal[c]["n"]] for c in CATS}
     n_all = sum(t[1] for t in total.values()); h_all = sum(t[0] for t in total.values())
+    near = {}
+    for c in list(CATS) + [TARGET]:
+        miss = nr = 0
+        for g in graded:
+            for r in g["results"].get(c, []):
+                if not r.get("hit") and "proc" in r:
+                    miss += 1; nr += 1 if r.get("near") else 0
+        near[c] = [nr, miss]
     why = {}
     for c in CATS:
         cnt = {}
@@ -325,4 +379,4 @@ def view(log, boot_players=None):
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
     return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
-            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "points": pts}
+            "overall": [h_all, n_all], "calibration": cal, "near": near, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "points": pts}

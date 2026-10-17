@@ -365,7 +365,8 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
                      "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"],
                      "cost": v["cost"], "own": float(el.get("selected_by_percent") or 0), "form": float(el.get("form") or 0), "minutes": int(el.get("minutes") or 0),
                      "xg90": float(el.get("expected_goals_per_90") or 0), "xa90": float(el.get("expected_assists_per_90") or 0),
-                     "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0})
+                     "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0,
+                     "vol": {k: int(((uwins or {}).get(el["id"]) or {}).get(k, 0)) for k in ("apps", "shots", "sot", "big", "cc", "big_cc")}})
         if pos in ("GKP", "DEF") and playing:
             club_cs.setdefault(v["club"], {"team": el["team"], "fixture": v["fixture"], "cs": [], "who": []})
             club_cs[v["club"]]["cs"].append(o["cs"])
@@ -375,7 +376,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
     def raw(x):
         return round(100 * (1 - math.exp(-x)))
     def item(r, cat, val, extra):
-        return {"id": r["id"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "p": pct(val, cat), "raw": raw(val), **extra}
+        return {"id": r["id"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "p": pct(val, cat), "raw": raw(val), "vol": r.get("vol"), **extra}
     gpts = ai_team.GOAL_PTS
     for x in rows:
         x["ap"] = x["goals"] * gpts.get(x["pos"], 4) + x["assists"] * 3          # expected attacking points: goals x 4-6 + assists x 3

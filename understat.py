@@ -126,6 +126,27 @@ def player_windows(season=2026, before=None, fetched=None):
     return out
 
 
+def gw_process(boot, kick_from, kick_to, season=2026, fetched=None):
+    """{fpl element id: {shots, sot, big, cc, big_cc}} summed over the matches kicked off between kick_from and kick_to
+    ("YYYY-MM-DD HH:MM:SS" UTC): what each player did in one gameweek, for grading picks on process as well as result.
+    Only the last TEAM_MATCHES matches per club are cached, so this must run soon after the gameweek ends."""
+    played, matches = fetched or fetch_matches(season)
+    agg = {}
+    for m in played:
+        if not (kick_from <= m["datetime"] <= kick_to) or m["id"] not in matches:
+            continue
+        rec = matches[m["id"]]
+        for name, side in rec["mins"].items():
+            agg.setdefault(name, {"shots": 0, "sot": 0, "big": 0, "cc": 0, "big_cc": 0, "team": m[side]["title"]})
+        for player, assist, result, xg, ha in rec["shots"]:
+            if player in agg:
+                agg[player]["shots"] += 1; agg[player]["sot"] += result in ON_TARGET; agg[player]["big"] += xg >= BIG_CHANCE_XG
+            if assist in agg:
+                agg[assist]["cc"] += 1; agg[assist]["big_cc"] += xg >= BIG_CHANCE_XG
+    matched, _ = match_to_fpl(agg, boot)
+    return {i: {k: v for k, v in w.items() if k != "team"} for i, w in matched.items()}
+
+
 def _close(a, b, cutoff=0.8):
     """Last-resort spelling tolerance (Yarmolyuk/Yarmoliuk, Yeremi/Yéremy): every part of the Understat
     name has a near-identical part in the FPL name. Used only when exactly one player at the club fits."""

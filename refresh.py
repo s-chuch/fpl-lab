@@ -1486,11 +1486,11 @@ def main(team_id=TEAM_ID, out_path=None):
     def _predictions():
         import pred_track
         path = pred_track.log_path(data_file)
-        plog = pred_track.grade(pred_track.load(path), boot, get)          # settle any finished gameweek first
+        plog = pred_track.grade(pred_track.load(path), boot, get, process=lambda a, b: __import__('understat').gw_process(boot, a, b))          # settle any finished gameweek first
         preds = build_predictions(boot, ds, teams_by_id, inputs, scale=pred_track.scales(plog))
         rows = preds.pop("_rows", [])
         if preds.get("gw"):
-            picks = {c: [{k: p[k] for k in ("id", "team", "name", "club", "pos", "p", "raw", "fixture") if k in p} for p in preds.get(c, [])] for c in pred_track.CATS}
+            picks = {c: [{k: p[k] for k in ("id", "team", "name", "club", "pos", "p", "raw", "fixture", "vol") if k in p} for p in preds.get(c, [])] for c in pred_track.CATS}
             # the Target tab's 1-GW top 10, saved beside the model's lists so the two can be graded the same way
             short = {t["id"]: t["short_name"] for t in boot["teams"]}
             ids = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
@@ -1506,7 +1506,8 @@ def main(team_id=TEAM_ID, out_path=None):
                 tr = trank.get((r["name"], r["club"]), (None, None))
                 pcols.append([r["id"], r["team"], r["pos"], r["cost"], r["own"], r["form"], r["minutes"], round(r["xg90"], 2), round(r["xa90"], 2), r["fdr"], r["home"],
                               round(r["mp"], 2), round(r["avail"], 2), r["xp"], round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
-                              round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1]])
+                              round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1],
+                              r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"]])
             pl = pred_track.load(pred_track.PLAYER_FILE)
             pred_track.player_record(pl, preds["gw"], pcols, datetime.now(timezone.utc))
             pred_track.player_grade(pl, boot, get)

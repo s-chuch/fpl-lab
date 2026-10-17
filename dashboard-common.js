@@ -865,6 +865,7 @@ function labPred(D){
   const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
   const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   const pc=(h,n)=>n?Math.round(100*h/n):null;
+  const vol=(r,k)=>{const v=r.vol; if(!v||!v.apps) return ""; const g=`${v.shots} shots (${v.sot} on target)${v.big?`, ${v.big} big`:""}`, a=`${v.cc} chances created${v.big_cc?` (${v.big_cc} big)`:""}`; return ` · last ${v.apps}: ${k==="a"?a:k==="g"?g:g+", "+a}`;};
   // track record
   let rec="";
   if(R.graded){
@@ -877,6 +878,7 @@ function labPred(D){
     rec=`<div class="lab-rec"><h3 class="lab-ph3">Track record · ${R.graded} gameweek${R.graded===1?"":"s"} graded</h3>
       <div class="lab-rbig"><b>${pc(h,n)}%</b><span>of ${n} top-10 picks came off (${h})</span></div>
       <div class="lab-rcs">${cats}${(R.rotation&&R.rotation[1])?`<div class="lab-rc"><span>Rotation</span><b>${pc(R.rotation[0],R.rotation[1])}%</b><em>${R.rotation[0]}/${R.rotation[1]}</em></div>`:""}</div>
+      ${(()=>{const nm=R.near||{}; const m=CAT.filter(([k])=>k!=="clean_sheets"&&k!=="defcon").map(([k,l])=>[l,nm[k]||[0,0]]).filter(([,x])=>x[1]); return m.length?`<p class="lab-rl2"><b>Missed but created chances</b>: ${m.map(([l,x])=>`${l} ${x[0]} of ${x[1]} misses had shots on target, big chances or chances created`).join(" · ")}</p>`:"";})()}
       ${(R.points&&R.points.ap&&R.points.ap[1])?`<p class="lab-rl2"><b>Attacking points</b>: expected ${R.points.ap_expected!=null?labNum(R.points.ap_expected,1):"–"} per pick, actual ${labNum(R.points.ap[0],1)} (${R.points.ap[1]} picks)</p>`:""}
       <table class="lab-rtab"><thead><tr><th>GW</th>${CAT.map(([,l])=>`<th>${l.replace("Clean sheets","CS").replace("Goal or assist","G/A")}</th>`).join("")}</tr></thead><tbody>${gwRows}</tbody></table>
       ${calLines?`<h4 class="lab-ph4">Recalibration</h4><ul class="lab-rl">${calLines}</ul>`:""}
@@ -897,10 +899,10 @@ function labPred(D){
       <table class="lab-rtab"><thead><tr><th>GW</th><th>Goals</th><th>Assists</th><th>DEFCON</th></tr></thead><tbody>${gws.map(g=>`<tr><td>GW${g}${ga[g]&&ga[g].rebuilt?"*":""}</td><td>${cell((ga[g]||{}).goals)}</td><td>${cell((ga[g]||{}).assists)}</td><td>${cell((dc[g]||{}).defcon)}</td></tr>`).join("")}</tbody></table>
       <p class="note">The old chance-volume goal and assist lists and the DEFCON top-10s the program saved (only players who played count). * the goal and assist lists for that week were rebuilt afterwards, not saved at the time. Kept apart from the new hit rate and from the recalibration.${(LG.pending||[]).length?` GW${LG.pending.join(", GW")} will be graded when settled.`:""}</p></div>`;
   }
-  const lists=sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA`)),"Chance of at least one goal or assist")
+  const lists=sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA${esc(vol(r,"b"))}`)),"Chance of at least one goal or assist")
    +sec("Attacking points",(P.ap||[]).map(r=>row(r.name,r.club,`<b>${labNum(r.ap,1)} pts</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} goals + ${labNum(r.xa,2)} assists`)),"Expected FPL points from goals (4-6 each) and assists (3 each)")
-   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
-   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)),"Chance of at least one assist")
+   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG${esc(vol(r,"g"))}`)),"Chance of at least one goal")
+   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA${esc(vol(r,"a"))}`)),"Chance of at least one assist")
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
    +sec("DEFCON",(P.defcon||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc(r.pos)}`)),"Chance of reaching the defensive-contribution bonus")
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
