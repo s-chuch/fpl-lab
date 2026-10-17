@@ -996,19 +996,19 @@
    1,
    68,
    286,
-   321
+   138
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "70db2f0a5248",
+  "code_sha": "f42c598dd204",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T14:21:15+00:00",
-  "saved_at_et": "2026-10-17 10:21 AM ET",
+  "saved_at": "2026-10-17T15:00:27+00:00",
+  "saved_at_et": "2026-10-17 11:00 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1016,7 +1016,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.01
+    "xp": 4.11
    },
    {
     "club": "EVE",
@@ -1024,6 +1024,13 @@
     "name": "Tarkowski",
     "pos": "DEF",
     "xp": 4.78
+   },
+   {
+    "club": "COV",
+    "id": 173,
+    "name": "Thomas",
+    "pos": "DEF",
+    "xp": 4.7
    },
    {
     "club": "BHA",
@@ -1038,13 +1045,6 @@
     "name": "Bogle",
     "pos": "DEF",
     "xp": 4.23
-   },
-   {
-    "club": "BHA",
-    "id": 504,
-    "name": "Vuskovic",
-    "pos": "DEF",
-    "xp": 4.1
    },
    {
     "club": "NEW",
@@ -1079,7 +1079,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.34
+    "xp": 6.12
    },
    {
     "club": "EVE",
@@ -1107,14 +1107,14 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 2.4
+    "xp": 2.48
    },
    {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 0.11
+    "xp": 2.26
    }
   ],
   "status": "pending",
@@ -1122,12 +1122,12 @@
    {
     "in": "Barry",
     "in_id": 249,
-    "out": "Kostoulas",
-    "out_id": 138
+    "out": "Walle Egeli",
+    "out_id": 321
    },
    {
-    "in": "Vuskovic",
-    "in_id": 504,
+    "in": "Thomas",
+    "in_id": 173,
     "out": "Gvardiol",
     "out_id": 391
    }
@@ -1137,9 +1137,9 @@
   "xi": [
    572,
    229,
+   173,
    115,
    330,
-   504,
    449,
    236,
    124,
@@ -1147,6 +1147,6 @@
    411,
    249
   ],
-  "xp": 53.9
+  "xp": 56.2
  }
 }
