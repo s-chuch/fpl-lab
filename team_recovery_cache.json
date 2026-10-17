@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-17T16:58:41.189029+00:00",
+    "fetched_at": "2026-10-17T17:28:55.268613+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -83,13 +83,7 @@
           "opponent": "Ipswich",
           "days_after": 6
         },
-        "between": [
-          {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Fulham"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 4,
@@ -195,13 +189,7 @@
           "opponent": "Hull",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Man City"
-          }
-        ]
+        "between": []
       },
       "SUN": {
         "rest_days": 3,
@@ -308,13 +296,7 @@
           "opponent": "Sunderland",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Liverpool"
-          }
-        ]
+        "between": []
       },
       "TOT": {
         "rest_days": 5,
@@ -428,11 +410,6 @@
         },
         "between": [
           {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Ipswich"
-          },
-          {
             "date": "2026-10-20",
             "competition": "Champions League",
             "opponent": "AEK Athens"
@@ -519,11 +496,6 @@
         },
         "between": [
           {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Brentford"
-          },
-          {
             "date": "2026-10-20",
             "competition": "Champions League",
             "opponent": "Villarreal"
@@ -549,13 +521,7 @@
           "opponent": "Crystal Palace",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          }
-        ]
+        "between": []
       },
       "CHE": {
         "rest_days": 7,
