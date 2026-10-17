@@ -253,11 +253,11 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-17",
-      "total_cost": 100.2,
+      "total_cost": 100.3,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.2,
-        "Calafiori": 5.9,
+        "Calafiori": 6.0,
         "Hall": 5.3,
         "Barnes": 6.1,
         "King": 5.6,
@@ -277,7 +277,7 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Saka": 9.6
     },
-    "total_delta": 1.4,
+    "total_delta": 1.5,
     "players": [
       {
         "name": "De Cuyper",
@@ -300,8 +300,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "baseline_cost": 5.8,
-        "current_cost": 5.9,
-        "delta": 0.1,
+        "current_cost": 6.0,
+        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -655,6 +655,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Haaland",
         "from": 15.6,
         "to": 15.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-17",
+        "event": "price_change",
+        "player": "Calafiori",
+        "from": 5.9,
+        "to": 6.0,
         "delta": 0.1
       }
     ]
