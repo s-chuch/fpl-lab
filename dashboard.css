@@ -406,3 +406,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-stabs button{border:1px solid var(--line);background:#0d1626;color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
 .lab-stabs button.on{background:#2a2350;border-color:var(--purple);color:#cbbcff}
 .lab-mbody section{display:block}
+.lab-menu[hidden],.lab-mpage[hidden],.lab-spane[hidden]{display:none!important}
