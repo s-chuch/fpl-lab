@@ -469,3 +469,15 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-trend.down{background:rgba(248,81,73,.2);color:#f85149}
 .lab-pc-t{margin:2px 0 0}.lab-pc-t .lab-trend{margin-left:0}
 .lab-trend.flat{background:rgba(139,149,161,.18);color:var(--muted)}
+
+/* uniform player cards: every row sits at the same height on every card */
+.lab-pc{display:flex;flex-direction:column}
+.lab-pc-h{align-items:center}.lab-pc-h .dot{margin-top:0}
+.lab-pc-h b{display:block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-line-clamp:unset;line-height:1.25}
+.lab-pc-c{height:1.3em;line-height:1.3em}
+.lab-pc-t{height:17px;line-height:15px;overflow:hidden}
+.lab-pc-s{height:2.6em;overflow:hidden;align-items:flex-start;margin:4px 0}
+.lab-pc-g{margin-top:auto}
+.lab-pc-g>div{display:flex;flex-direction:column;justify-content:flex-start;min-height:2.9em}
+.lab-pc-g b{display:block;line-height:1.25;white-space:nowrap}
+.lab-grid.nohead .lab-pc-s{display:none}
