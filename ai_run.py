@@ -376,6 +376,10 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         return round(100 * (1 - math.exp(-x)))
     def item(r, cat, val, extra):
         return {"id": r["id"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "p": pct(val, cat), "raw": raw(val), **extra}
+    gpts = ai_team.GOAL_PTS
+    for x in rows:
+        x["ap"] = x["goals"] * gpts.get(x["pos"], 4) + x["assists"] * 3          # expected attacking points: goals x 4-6 + assists x 3
+    aps = sorted((x for x in rows if x["playing"] and x["pos"] != "GKP"), key=lambda x: -x["ap"])[:top_n]
     gis = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -(r["goals"] + r["assists"]))[:top_n]
     # every player's chances for the Target cards and the saved snapshot
     chances = {}
@@ -405,6 +409,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         "gw": nxt,
         "goals": [item(r, "goals", r["goals"], {"xg": round(r["goals"], 2)}) for r in scorers],
         "assists": [item(r, "assists", r["assists"], {"xa": round(r["assists"], 2)}) for r in assisters],
+        "ap": [{"id": x["id"], "name": x["name"], "club": x["club"], "pos": x["pos"], "fixture": x["fixture"], "ap": round(x["ap"], 2), "xg": round(x["goals"], 2), "xa": round(x["assists"], 2)} for x in aps],
         "gi": [item(r, "gi", r["goals"] + r["assists"], {"xg": round(r["goals"], 2), "xa": round(r["assists"], 2)}) for r in gis],
         "defcon": [item(r, "defcon", -math.log(max(1e-9, 1 - min(0.999, r["defcon"]))), {}) for r in dcs],
         "chances": chances,

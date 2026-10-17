@@ -88,5 +88,14 @@ class Rotation(unittest.TestCase):
         self.assertFalse(pt.grade_rotation({"id": 1}, {1: {"starts": 1, "minutes": 90}})["hit"])
 
 
+class AttackPoints(unittest.TestCase):
+    def test_points_by_position_and_grading(self):
+        self.assertEqual(pt.atk_pts({"goals_scored": 1, "assists": 1}, {"element_type": 3}), 8)      # MID goal 5 + assist 3
+        self.assertEqual(pt.atk_pts({"goals_scored": 1}, {"element_type": 4}), 4)                    # FWD goal 4
+        self.assertEqual(pt.atk_pts({"goals_scored": 1}, {"element_type": 2}), 6)                    # DEF goal 6
+        r = pt.grade_pick("ap", {"id": 1, "ap": 2.5}, {1: {"minutes": 90, "goals_scored": 1, "assists": 0}}, FX, EL)
+        self.assertEqual((r["hit"], r["pts"], r["exp"]), (True, 5, 2.5))
+
+
 if __name__ == "__main__":
     unittest.main()

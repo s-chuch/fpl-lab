@@ -12,7 +12,9 @@ from pathlib import Path
 CATS = ("goals", "assists", "gi", "clean_sheets", "defcon")
 LABEL = {"goals": "Goals", "assists": "Assists", "gi": "Goal or assist", "clean_sheets": "Clean sheets", "defcon": "DEFCON"}
 TARGET = "target"          # the Target tab's 1-GW top 10, saved beside the predictions and graded on goals / assists / either
-DEFCON_THR = {2: 10, 3: 12, 4: 12}          # element_type -> defensive contributions needed for the +2
+DEFCON_THR = {2: 10, 3: 12, 4: 12}
+GOAL_PTS = {1: 6, 2: 6, 3: 5, 4: 4}          # FPL points per goal by element_type
+ASSIST_PTS = 3          # element_type -> defensive contributions needed for the +2
 MIN_FOR_SCALE = 30                          # graded picks before a category's probabilities are rescaled
 SCALE_RANGE = (0.6, 1.4)
 SHRINK = 40                                 # pseudo-picks pulling the scale towards 1
@@ -79,6 +81,11 @@ def record(log, gw, picks, now):
 
 
 # ---------------------------------------------------------------- grading
+def atk_pts(st, el):
+    """Attacking points a player made: goals x (6/6/5/4) + assists x 3."""
+    return int(st.get("goals_scored") or 0) * GOAL_PTS.get((el or {}).get("element_type"), 4) + int(st.get("assists") or 0) * ASSIST_PTS
+
+
 def grade_pick(cat, pick, live, fixtures, boot_el):
     """-> {hit, why} for one pick. live = {element id: stats}; fixtures = this gameweek's finished fixtures; boot_el = {id: element}."""
     if cat == "clean_sheets":
@@ -96,20 +103,24 @@ def grade_pick(cat, pick, live, fixtures, boot_el):
     tid = el.get("team")
     mine = [f for f in fixtures if tid in (f["team_h"], f["team_a"])]
     scored = sum((f["team_h_score"] if f["team_h"] == tid else f["team_a_score"]) or 0 for f in mine)
+    if cat == "ap":
+        pts = atk_pts(st, el)
+        g, a = int(st.get("goals_scored") or 0), int(st.get("assists") or 0)
+        return {"hit": pts > 0, "pts": pts, "exp": pick.get("ap"), "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''} = {pts} pts" if pts else ("did not play" if mins == 0 else f"{mins} min, no goal or assist")}
     if cat == "gi":
         g, a = int(st.get("goals_scored") or 0), int(st.get("assists") or 0)
         if g + a > 0:
-            return {"hit": True, "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}"}
+            return {"hit": True, "pts": atk_pts(st, el), "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}"}
         if mins == 0:
             return {"hit": False, "why": "did not play"}
         if mins < 60:
             return {"hit": False, "why": f"only {mins} minutes"}
-        return {"hit": False, "why": "team did not score" if scored == 0 else f"played {mins} min, team scored {scored}, no goal or assist"}
+        return {"hit": False, "pts": 0, "why": "team did not score" if scored == 0 else f"played {mins} min, team scored {scored}, no goal or assist"}
     if cat in ("goals", "assists"):
         n = int(st.get("goals_scored" if cat == "goals" else "assists") or 0)
         word = "goal" if cat == "goals" else "assist"
         if n > 0:
-            return {"hit": True, "why": f"{n} {word}{'s' if n > 1 else ''}"}
+            return {"hit": True, "pts": atk_pts(st, el), "why": f"{n} {word}{'s' if n > 1 else ''}"}
         if mins == 0:
             return {"hit": False, "why": "did not play"}
         if mins < 60:
@@ -141,8 +152,9 @@ def grade(log, boot, get):
         except Exception:
             continue
         g["results"] = {c: [grade_pick(c, p, live, fixtures, boot_el) for p in g["picks"].get(c, [])] for c in CATS}
-        g["results"][TARGET] = [grade_target(p, live) for p in g["picks"].get(TARGET, [])]
+        g["results"][TARGET] = [grade_target(p, live, boot_el) for p in g["picks"].get(TARGET, [])]
         g["results"]["rotation"] = [grade_rotation(p, live) for p in g["picks"].get("rotation", [])]
+        g["results"]["ap"] = [grade_pick("ap", p, live, fixtures, boot_el) for p in g["picks"].get("ap", [])]
         g["graded"] = True
     return log
 
@@ -158,11 +170,11 @@ def grade_rotation(pick, live):
     return {"hit": False, "why": f"played {m} min" + (" (full game)" if m >= 85 else " (reduced minutes)")}
 
 
-def grade_target(pick, live):
-    """A Target pick graded three ways: scored, assisted, either."""
+def grade_target(pick, live, boot_el=None):
+    """A Target pick graded three ways: scored, assisted, either (plus the attacking points he made)."""
     st = live.get(pick.get("id")) or {}
     g, a, m = int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("minutes") or 0)
-    return {"hit": g + a > 0, "goal": g > 0, "assist": a > 0, "min": m, "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}" if g + a else ("did not play" if m == 0 else f"{m} min, no goal or assist")}
+    return {"hit": g + a > 0, "goal": g > 0, "assist": a > 0, "min": m, "pts": atk_pts(st, (boot_el or {}).get(pick.get("id"))), "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}" if g + a else ("did not play" if m == 0 else f"{m} min, no goal or assist")}
 
 
 # ---------------------------------------------------------------- per-player snapshot (training data)
@@ -287,6 +299,19 @@ def view(log, boot_players=None):
         for c in ("goals", "assists", "gi"):       # the model's list for the same gameweeks, only where Target was saved too
             rs = g["results"].get(c, [])
             cmp_[c][0] += sum(1 for r in rs if r["hit"]); cmp_[c][1] += len(rs)
+    # mean attacking points per pick, for each list over the same gameweeks (where Target was saved too)
+    pts = {}
+    for key in ("ap", "gi", "goals", "assists", TARGET):
+        n_ = s_ = 0
+        for g in graded:
+            if not g["results"].get(TARGET):
+                continue
+            for r in g["results"].get(key, []):
+                if "pts" in r:
+                    n_ += 1; s_ += r["pts"]
+        pts[key] = [round(s_ / n_, 2) if n_ else None, n_]
+    exp_ap = [pk.get("ap") for g in graded if g["results"].get(TARGET) for pk in g["picks"].get("ap", []) if pk.get("ap") is not None]
+    pts["ap_expected"] = round(sum(exp_ap) / len(exp_ap), 2) if exp_ap else None
     rot = [0, 0]
     for g in graded:
         rs = g["results"].get("rotation", [])
@@ -296,4 +321,4 @@ def view(log, boot_players=None):
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
     return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
-            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot}
+            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "points": pts}

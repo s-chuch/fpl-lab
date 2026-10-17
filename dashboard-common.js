@@ -820,24 +820,25 @@ function labScorecard(D){
   const snap=P.snapshot?`<p class="note">Player snapshots: ${P.snapshot.players} players saved for GW${P.snapshot.gw} (${P.snapshot.saved_gws} gameweek${P.snapshot.saved_gws===1?"":"s"} so far). Each holds the inputs, the model's chances and Target's rank at the deadline, and what the player then did, so the model can be tuned on this season's own data.</p>`:"";
   if(!T.n) return `<p class="note" data-keep>Starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw||""))} is settled. At every deadline the model's top 10 (goals, assists, goal or assist) and the Target tab's top 10 are saved, then both are marked against what players actually did: scored, assisted, or either. After a few gameweeks this shows which one finds scorers better, and whether the two should be blended.</p>${snap}`;
   const pc=(h,n)=>n?Math.round(100*h/n):null, fmt=(h,n)=>n?`${h}/${n} · ${pc(h,n)}%`:"–";
-  const rows=[["Scores a goal",M.goals,[T.goal,T.n]],["Makes an assist",M.assists,[T.assist,T.n]],["Goal or assist",M.gi,[T.gi,T.n]]];
+  const rows=[["Goal or assist",M.gi,[T.gi,T.n]],["Scores a goal",M.goals,[T.goal,T.n]],["Makes an assist",M.assists,[T.assist,T.n]]];
+  const PT=R.points||{}, ptsRow=(PT.target&&PT.target[1])?`<tr><td>Attacking pts per pick</td><td class="${(PT.ap[0]??0)>(PT.target[0]??0)?"lab-win":""}">${PT.ap[0]!=null?labNum(PT.ap[0],2):"–"}${PT.ap[1]?" (points list)":""}</td><td class="${(PT.target[0]??0)>(PT.ap[0]??0)?"lab-win":""}">${labNum(PT.target[0],2)}</td></tr>`:"";
   const body=rows.map(([l,m,t])=>{const mp=m&&m[1]?pc(m[0],m[1]):null, tp=pc(t[0],t[1]); const win=mp!=null&&tp!=null&&mp!==tp?(mp>tp?"m":"t"):""; return `<tr><td>${l}</td><td class="${win==="m"?"lab-win":""}">${m?fmt(m[0],m[1]):"–"}</td><td class="${win==="t"?"lab-win":""}">${fmt(t[0],t[1])}</td></tr>`;}).join("");
   const mg=Object.fromEntries((R.per_gw||[]).map(r=>[r.gw,r]));
   const gws=(T.per_gw||[]).slice().reverse().map(t=>{const m=mg[t.gw]||{}; const c=v=>v&&v[1]!=null?`${v[0]}`:"–"; return `<tr><td>GW${t.gw}</td><td>${c(m.goals)} / ${c(m.assists)} / ${c(m.gi)}</td><td>${t.goal} / ${t.assist} / ${t.gi}</td></tr>`;}).join("");
   const gm=pc(T.gi,T.n), mm=M.gi&&M.gi[1]?pc(M.gi[0],M.gi[1]):null;
   const verdict=(T.n<30)?`Only ${T.n} picks each so far: too few to call a winner.`:(mm==null?"":(gm>mm?"Target is ahead on goal or assist.":gm<mm?"The model is ahead on goal or assist.":"Level on goal or assist."));
   return `<p class="note" data-keep>Same gameweeks, same marking, top 10 each. ${verdict}</p>
-    <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}</tbody></table>
+    <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}${ptsRow}</tbody></table>
     <h4 class="lab-ph4">By gameweek (goal / assist / either)</h4>
     <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}`;
 }
 // ---------------------------------------------------------------- PREDICTIONS: the live gameweek (live-data.js .pred, live_update.pred_live)
 function labPredLiveHtml(){
   const L=window.FPL_LIVE; if(!L||!L.pred) return "";
-  const CAT=[["goals","Goals"],["assists","Assists"],["gi","Goal or assist"],["clean_sheets","Clean sheets"],["defcon","DEFCON"],["target","Target top 10 (goal or assist)"],["rotation","Predicted rotations"]];
+  const CAT=[["gi","Goal or assist"],["ap","Attacking points"],["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"],["target","Target top 10 (goal or assist)"],["rotation","Predicted rotations"]];
   const shown=CAT.filter(([k])=>(L.pred.cats[k]||[]).length);
   const mark=r=>r.hit?`<i class="lab-ok y">✓</i>`:r.state==="done"?`<i class="lab-ok n">✗</i>`:r.state==="live"?`<i class="lab-ok w">●</i>`:`<i class="lab-ok z">–</i>`;
-  const what=(k,r)=>k==="rotation"?(r.state==="yet"?"not started":(r.starts===0?(r.mins>0?`benched, on for ${r.mins}'`:"benched"):`started · ${r.mins}'${r.state==="done"&&r.mins<60?" (off early)":r.state==="done"?(r.mins>=85?" (full game)":" (reduced)"):""}`)):(k==="gi"||k==="target")?(r.state==="yet"?"not started":`${r.g||0} goal${(r.g||0)===1?"":"s"}, ${r.a||0} assist${(r.a||0)===1?"":"s"}`):k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
+  const what=(k,r)=>k==="ap"?(r.state==="yet"?"not started":`${r.pts||0} pts (exp ${r.exp!=null?Number(r.exp).toFixed(1):"–"})`):k==="rotation"?(r.state==="yet"?"not started":(r.starts===0?(r.mins>0?`benched, on for ${r.mins}'`:"benched"):`started · ${r.mins}'${r.state==="done"&&r.mins<60?" (off early)":r.state==="done"?(r.mins>=85?" (full game)":" (reduced)"):""}`)):(k==="gi"||k==="target")?(r.state==="yet"?"not started":`${r.g||0} goal${(r.g||0)===1?"":"s"}, ${r.a||0} assist${(r.a||0)===1?"":"s"}`):k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
   // minutes in brackets after the club: what he has played, or why there is nothing yet
   const mins=(k,r)=>{ if(k==="clean_sheets"||k==="rotation"||r.state==="yet"||r.state==="none") return ""; if(r.mins<=0&&r.state!=="done") return ""; const t=r.mins>0?`${r.mins}'`:"did not start"; return ` <em class="lab-mn">(${t})</em>`; };
   const sec=([k,l])=>{const rows=L.pred.cats[k]; const hits=rows.filter(r=>r.hit).length, done=rows.filter(r=>r.state==="done").length;
@@ -848,7 +849,7 @@ function labPredLiveHtml(){
 }
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
-  const R=P.record||{}, CAT=[["goals","Goals"],["assists","Assists"],["gi","Goal or assist"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
+  const R=P.record||{}, CAT=[["gi","Goal or assist"],["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
   const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
   const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   const pc=(h,n)=>n?Math.round(100*h/n):null;
@@ -864,6 +865,7 @@ function labPred(D){
     rec=`<div class="lab-rec"><h3 class="lab-ph3">Track record · ${R.graded} gameweek${R.graded===1?"":"s"} graded</h3>
       <div class="lab-rbig"><b>${pc(h,n)}%</b><span>of ${n} top-10 picks came off (${h})</span></div>
       <div class="lab-rcs">${cats}${(R.rotation&&R.rotation[1])?`<div class="lab-rc"><span>Rotation</span><b>${pc(R.rotation[0],R.rotation[1])}%</b><em>${R.rotation[0]}/${R.rotation[1]}</em></div>`:""}</div>
+      ${(R.points&&R.points.ap&&R.points.ap[1])?`<p class="lab-rl2"><b>Attacking points</b>: expected ${R.points.ap_expected!=null?labNum(R.points.ap_expected,1):"–"} per pick, actual ${labNum(R.points.ap[0],1)} (${R.points.ap[1]} picks)</p>`:""}
       <table class="lab-rtab"><thead><tr><th>GW</th>${CAT.map(([,l])=>`<th>${l.replace("Clean sheets","CS").replace("Goal or assist","G/A")}</th>`).join("")}</tr></thead><tbody>${gwRows}</tbody></table>
       ${calLines?`<h4 class="lab-ph4">Recalibration</h4><ul class="lab-rl">${calLines}</ul>`:""}
       ${whyLines?`<h4 class="lab-ph4">Why picks missed</h4><ul class="lab-rl">${whyLines}</ul>`:""}</div>`;
@@ -883,9 +885,10 @@ function labPred(D){
       <table class="lab-rtab"><thead><tr><th>GW</th><th>Goals</th><th>Assists</th><th>DEFCON</th></tr></thead><tbody>${gws.map(g=>`<tr><td>GW${g}${ga[g]&&ga[g].rebuilt?"*":""}</td><td>${cell((ga[g]||{}).goals)}</td><td>${cell((ga[g]||{}).assists)}</td><td>${cell((dc[g]||{}).defcon)}</td></tr>`).join("")}</tbody></table>
       <p class="note">The old chance-volume goal and assist lists and the DEFCON top-10s the program saved (only players who played count). * the goal and assist lists for that week were rebuilt afterwards, not saved at the time. Kept apart from the new hit rate and from the recalibration.${(LG.pending||[]).length?` GW${LG.pending.join(", GW")} will be graded when settled.`:""}</p></div>`;
   }
-  const lists=sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
+  const lists=sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA`)),"Chance of at least one goal or assist")
+   +sec("Attacking points",(P.ap||[]).map(r=>row(r.name,r.club,`<b>${labNum(r.ap,1)} pts</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} goals + ${labNum(r.xa,2)} assists`)),"Expected FPL points from goals (4-6 each) and assists (3 each)")
+   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
    +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)),"Chance of at least one assist")
-   +sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA`)),"Chance of at least one goal or assist")
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
    +sec("DEFCON",(P.defcon||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc(r.pos)}`)),"Chance of reaching the defensive-contribution bonus")
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");

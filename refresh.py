@@ -1495,6 +1495,7 @@ def main(team_id=TEAM_ID, out_path=None):
             short = {t["id"]: t["short_name"] for t in boot["teams"]}
             ids = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
             tgt = ((((data.get("targets") or {}).get("horizons") or {}).get("1") or {}).get("top") or [])[:10]
+            picks["ap"] = [{k: x[k] for k in ("id", "name", "club", "pos", "ap", "fixture") if k in x} for x in preds.get("ap", [])]
             picks["rotation"] = [{k: x[k] for k in ("id", "team", "name", "club", "pos", "rotate", "fixture") if k in x} for x in preds.get("rotation", [])]
             picks[pred_track.TARGET] = [{"id": ids.get((t["name"], t["club"])), "name": t["name"], "club": t["club"], "pos": t.get("pos"), "score": t.get("score"), "xp": t.get("xp")} for t in tgt]
             pred_track.record(plog, preds["gw"], picks, datetime.now(timezone.utc))
