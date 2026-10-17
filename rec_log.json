@@ -1044,21 +1044,21 @@
   "backfilled": false,
   "bench": [
    1,
+   449,
    165,
-   268,
    305
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "26187458ef4b",
+  "code_sha": "9c142c43435c",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T15:14:36+00:00",
-  "saved_at_et": "2026-10-17 11:14 AM ET",
+  "saved_at": "2026-10-17T16:26:55+00:00",
+  "saved_at_et": "2026-10-17 12:26 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1066,7 +1066,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.13
+    "xp": 4.4
    },
    {
     "club": "EVE",
@@ -1090,18 +1090,11 @@
     "xp": 3.85
    },
    {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
-    "pos": "DEF",
-    "xp": 3.73
-   },
-   {
     "club": "EVE",
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 5.1
+    "xp": 5.0
    },
    {
     "club": "BHA",
@@ -1118,6 +1111,13 @@
     "xp": 4.12
    },
    {
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.79
+   },
+   {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
@@ -1129,7 +1129,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.13
+    "xp": 6.73
    },
    {
     "club": "EVE",
@@ -1146,40 +1146,40 @@
     "xp": 2.97
    },
    {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.73
+   },
+   {
     "club": "CHE",
     "id": 165,
     "name": "João Pedro",
     "pos": "FWD",
-    "xp": 3.72
-   },
-   {
-    "club": "FUL",
-    "id": 268,
-    "name": "King",
-    "pos": "MID",
-    "xp": 3.61
+    "xp": 3.46
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 3.18
+    "xp": 3.17
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Dewsbury-Hall",
-    "in_id": 236,
-    "out": "Schade",
-    "out_id": 94
-   },
-   {
     "in": "Barry",
     "in_id": 249,
     "out": "Kostoulas",
     "out_id": 138
+   },
+   {
+    "in": "Dewsbury-Hall",
+    "in_id": 236,
+    "out": "Schade",
+    "out_id": 94
    }
   ],
   "vice": 124,
@@ -1189,14 +1189,14 @@
    229,
    115,
    8,
-   449,
    236,
    124,
    12,
+   268,
    453,
    411,
    249
   ],
-  "xp": 55.6
+  "xp": 57.0
  }
 }
