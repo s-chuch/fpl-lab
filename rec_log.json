@@ -1045,20 +1045,20 @@
   "bench": [
    1,
    165,
-   94,
+   268,
    305
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "83ed73e18a40",
+  "code_sha": "851e083304d1",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T15:02:05+00:00",
-  "saved_at_et": "2026-10-17 11:02 AM ET",
+  "saved_at": "2026-10-17T15:11:08+00:00",
+  "saved_at_et": "2026-10-17 11:11 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1066,7 +1066,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.11
+    "xp": 4.13
    },
    {
     "club": "EVE",
@@ -1129,7 +1129,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.12
+    "xp": 6.13
    },
    {
     "club": "EVE",
@@ -1153,18 +1153,18 @@
     "xp": 3.72
    },
    {
-    "club": "BRE",
-    "id": 94,
-    "name": "Schade",
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
     "pos": "MID",
-    "xp": 3.44
+    "xp": 3.61
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 3.15
+    "xp": 3.18
    }
   ],
   "status": "pending",
@@ -1172,8 +1172,8 @@
    {
     "in": "Dewsbury-Hall",
     "in_id": 236,
-    "out": "King",
-    "out_id": 268
+    "out": "Schade",
+    "out_id": 94
    },
    {
     "in": "Barry",
@@ -1197,6 +1197,6 @@
    411,
    249
   ],
-  "xp": 55.5
+  "xp": 55.6
  }
 }
