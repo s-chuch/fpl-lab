@@ -210,7 +210,7 @@ jobs:
           exit 1
 
       - name: Sanity-check the generated data
-        if: steps.gate.outputs.run != 'false'
+        if: always() && steps.gate.outputs.run != 'false'
         run: python check_data.py
 
       # After the commit on purpose: a red unit test emails you but never stops the data from refreshing.

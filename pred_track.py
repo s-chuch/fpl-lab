@@ -29,9 +29,9 @@ def log_path(data_file):
 def load(path):
     try:
         d = json.loads(Path(path).read_text())
-        return d if isinstance(d, dict) else {}
-    except Exception:
+    except FileNotFoundError:
         return {}
+    return d if isinstance(d, dict) else {}      # a corrupt file raises: section() records it instead of the history being reset
 
 
 def save(path, log):
@@ -55,8 +55,12 @@ def calibration(log):
             for pick, res in zip((g.get("picks") or {}).get(c, []), (g.get("results") or {}).get(c, [])):
                 n += 1
                 hits += 1 if res.get("hit") else 0
-                sp += pick.get("raw", pick.get("p", 0)) / 100.0
-        row = {"n": n, "mean_p": round(100 * sp / n) if n else None, "hit_rate": round(100 * hits / n) if n else None, "scale": 1.0}
+                if "raw" not in pick:
+                    n -= 1
+                    hits -= 1 if res.get("hit") else 0
+                    continue
+                sp += pick["raw"] / 100.0
+        row = {"n": n, "hits": hits, "mean_p": round(100 * sp / n) if n else None, "hit_rate": round(100 * hits / n) if n else None, "scale": 1.0}
         if n >= MIN_FOR_SCALE and sp > 0:
             raw = (hits / n) / (sp / n)
             row["scale"] = round(max(SCALE_RANGE[0], min(SCALE_RANGE[1], 1 + (raw - 1) * n / (n + SHRINK))), 3)
@@ -273,7 +277,7 @@ def view(log, boot_players=None):
             rs = g["results"].get(c, [])
             row[c] = [sum(1 for r in rs if r["hit"]), len(rs)]
         per_gw.append(row)
-    total = {c: [cal[c]["n"] and round(cal[c]["n"] * cal[c]["hit_rate"] / 100), cal[c]["n"]] for c in CATS}
+    total = {c: [cal[c]["hits"], cal[c]["n"]] for c in CATS}
     n_all = sum(t[1] for t in total.values()); h_all = sum(t[0] for t in total.values())
     why = {}
     for c in CATS:

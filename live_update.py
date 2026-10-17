@@ -121,7 +121,7 @@ def pred_live(gw, boot, live, fixtures, els):
                 team = p.get("team")
                 st, mine = state(team)
                 conceded = sum((f["team_a_score"] if f["team_h"] == team else f["team_h_score"]) or 0 for f in (mine or []))
-                rows.append({"name": p.get("club"), "club": "", "state": st, "val": conceded, "need": 0, "hit": st != "yet" and conceded == 0,
+                rows.append({"name": p.get("club"), "club": "", "state": st, "val": conceded, "need": 0, "hit": any(f.get("finished_provisional") or f.get("finished") for f in (mine or [])) and any(((f["team_a_score"] if f["team_h"] == team else f["team_h_score"]) or 0) == 0 and (f.get("finished_provisional") or f.get("finished")) for f in (mine or [])) or (st == "live" and len(mine or []) == 1 and conceded == 0),
                              "mins": max([f.get("minutes") or 0 for f in (mine or [])] or [0])})
                 continue
             el = els.get(p.get("id")) or {}
@@ -130,7 +130,7 @@ def pred_live(gw, boot, live, fixtures, els):
             extra = {}
             if cat == "rotation":
                 starts, m = int(s.get("starts") or 0), int(s.get("minutes") or 0)
-                benched = st != "yet" and starts == 0                      # the match has begun and he is not in the starting XI
+                benched = st != "none" and starts == 0 and (st == "done" or (st == "live" and len(mine or []) == 1))                     # the match has begun and he is not in the starting XI
                 short = st == "done" and starts == 1 and m < 60            # started but was off early
                 rows.append({"name": p.get("name") or el.get("web_name"), "club": p.get("club", ""), "state": st, "val": 1 if (benched or short) else 0, "need": 1,
                              "hit": bool(benched or short), "mins": m, "starts": starts, "rot": p.get("rotate")})

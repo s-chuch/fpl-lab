@@ -269,7 +269,7 @@ def fetch_odds(boot, getter=None, cache_path=None):
         _log(f"{len(matches)} Premier League matches priced")
         if cache_path:
             try:
-                tmp = cache_path + ".tmp"
+                tmp = str(cache_path) + ".tmp"
                 with open(tmp, "w", encoding="utf-8") as f:
                     json.dump(out, f, separators=(",", ":"))
                 os.replace(tmp, cache_path)
