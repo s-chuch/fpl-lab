@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.25,
+    "captain_ep": 5.33,
     "vice": "Dewsbury-Hall",
     "vice_ep": 5.08,
     "bench_swaps": [
@@ -121,7 +121,7 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "bench": "Tzolakis",
-        "bench_ep": 3.93,
+        "bench_ep": 4.01,
         "starter": "Raya",
         "starter_ep": 2.97
       },
@@ -129,7 +129,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tavernier",
         "bench_ep": 2.89,
         "starter": "Belloumi",
-        "starter_ep": 2.3
+        "starter_ep": 2.39
       }
     ],
     "bench_order": [
@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.3,
+        "ep_next": 2.39,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.25,
+        "ep_next": 5.33,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.93,
+        "ep_next": 4.01,
         "status": "ok"
       },
       {

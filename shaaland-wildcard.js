@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.25,
+    "captain_ep": 5.33,
     "vice": "Groß",
     "vice_ep": 4.84,
     "bench_swaps": [
@@ -121,7 +121,7 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "bench": "Tzolakis",
-        "bench_ep": 3.93,
+        "bench_ep": 4.01,
         "starter": "Raya",
         "starter_ep": 2.97
       },
@@ -129,7 +129,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Schade",
         "bench_ep": 3.44,
         "starter": "King",
-        "starter_ep": 3.33
+        "starter_ep": 3.43
       }
     ],
     "bench_order": [
@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.33,
+        "ep_next": 3.43,
         "status": "ok"
       },
       {
@@ -192,13 +192,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.25,
+        "ep_next": 5.33,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.71,
+        "ep_next": 3.72,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.93,
+        "ep_next": 4.01,
         "status": "ok"
       },
       {
@@ -230,7 +230,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 3.07,
+        "ep_next": 3.17,
         "status": "ok"
       }
     ]
