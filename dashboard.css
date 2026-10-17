@@ -416,3 +416,15 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-pr .n em{font-style:normal;font-weight:400;color:var(--muted);font-size:11px}
 .lab-pr .v{font-size:14px;text-align:right}
 .lab-pr .s{grid-column:1/3;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.lab-pnote2{margin:0 0 4px;font-size:12px}
+.lab-ph4{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:10px 0 3px}
+.lab-ok{font-style:normal;font-weight:700}.lab-ok.y{color:var(--green)}.lab-ok.n{color:var(--red)}
+.lab-rec{background:#0d1626;border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0 4px}
+.lab-rec .lab-ph3{margin-top:2px}
+.lab-rbig{display:flex;align-items:baseline;gap:8px}.lab-rbig b{font-size:30px}.lab-rbig span{color:var(--muted);font-size:13px}
+.lab-rcs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}
+.lab-rc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;text-align:center}
+.lab-rc span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase}.lab-rc b{display:block;font-size:16px}.lab-rc em{font-style:normal;font-size:11px;color:var(--muted)}
+.lab-rtab{width:100%;border-collapse:collapse;font-size:12px}.lab-rtab th,.lab-rtab td{padding:3px 4px;text-align:center;border-bottom:1px solid var(--line)}.lab-rtab th:first-child,.lab-rtab td:first-child{text-align:left}
+.lab-rl{margin:0;padding-left:16px;font-size:12px;line-height:1.4;color:var(--ink)}.lab-rl li{margin:2px 0}

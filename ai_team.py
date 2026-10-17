@@ -158,6 +158,12 @@ def model_outlook(el, fixtures, gws_played, uwin=None, recent=None):
     cs90 = w * _f(el.get("clean_sheets_per_90")) + (1 - w) * pr["cs"]
     goals = assists = 0.0
     p_cs_none = 1.0
+    thr = DEFCON_THRESHOLD.get(pos)
+    p_dc = 0.0
+    if thr:     # chance of reaching the defensive-contribution threshold in a match he plays (same curve as model_xp)
+        mu = w * _f(el.get("defensive_contribution_per_90")) + (1 - w) * pr["dc"]
+        p_dc = 1.0 / (1.0 + math.exp(-(mu - thr) / (0.18 * thr)))
+    p_dc_none = 1.0
     for fx in fixtures:
         fdr = fx.get("fdr") or 3
         fdr_cs = max(FDR_CS_RANGE[0], min(FDR_CS_RANGE[1], FDR_CS_BASE - FDR_CS_SLOPE * (fdr - 3)))
@@ -169,7 +175,8 @@ def model_outlook(el, fixtures, gws_played, uwin=None, recent=None):
         goals += xg90 * fdr_att * mp
         assists += xa90 * fdr_att * mp
         p_cs_none *= 1 - (0.5 * cs90 + 0.5 * fdr_cs)
-    return {"mp": mp, "goals": goals, "assists": assists, "cs": 1 - p_cs_none}
+        p_dc_none *= 1 - p_dc * mp
+    return {"mp": mp, "goals": goals, "assists": assists, "cs": 1 - p_cs_none, "defcon": 1 - p_dc_none}
 
 
 def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):

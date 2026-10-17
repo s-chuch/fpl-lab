@@ -1483,7 +1483,18 @@ def main(team_id=TEAM_ID, out_path=None):
     except Exception as e:
         _warn(f"enrich_with_model failed: {e}")
         health["enrich_model"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("enrich_model") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
-    data["predictions"] = section("predictions", build_predictions, boot, ds, teams_by_id, inputs, fallback={})
+    def _predictions():
+        import pred_track
+        path = pred_track.log_path(data_file)
+        plog = pred_track.grade(pred_track.load(path), boot, get)          # settle any finished gameweek first
+        preds = build_predictions(boot, ds, teams_by_id, inputs, scale=pred_track.scales(plog))
+        if preds.get("gw"):
+            picks = {c: [{k: p[k] for k in ("id", "team", "name", "club", "pos", "p", "raw", "fixture") if k in p} for p in preds.get(c, [])] for c in pred_track.CATS}
+            pred_track.record(plog, preds["gw"], picks, datetime.now(timezone.utc))
+        pred_track.save(path, plog)
+        preds["record"] = pred_track.view(plog)
+        return preds
+    data["predictions"] = section("predictions", _predictions, fallback={})
     data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs, signals)
     data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
     data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, signals, fallback={})

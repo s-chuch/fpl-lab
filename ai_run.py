@@ -331,11 +331,13 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
         annotate(r, 1)
 
 
-def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
-    """Next-gameweek predictions for the Predictions card: who is most likely to score and assist (expected goals / assists and the
-    chance of at least one), which clubs are likeliest to keep a clean sheet, and who is a rotation risk. Same inputs as the
-    expected-points model; players who are out or unlikely to play are left out."""
+def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
+    """Next-gameweek predictions: the top `top_n` players likeliest to score, to assist and to reach the DEFCON threshold, the clubs
+    likeliest to keep a clean sheet, plus rotation risks. Same inputs as the expected-points model; players who are out or unlikely
+    to play are left out. `scale` ({category: factor}, from pred_track.calibration) corrects the probabilities for how the earlier
+    predictions actually performed; `raw` keeps the uncorrected value so the correction can be judged later."""
     import ai_team, math
+    scale = scale or {}
     uwins, risk, _live = inputs
     nxt = ds.get("next_gw")
     if not nxt:
@@ -357,20 +359,29 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
         if not o:
             continue
         pos = v["pos"]
-        base = {"name": v["name"], "club": v["club"], "pos": pos, "cost": v["cost"], "fixture": v["fixture"], "avail": v["avail"]}
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
-        rows.append({**base, "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "mp": o["mp"], "playing": playing,
-                     "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"], "eid": el["id"]})
+        rows.append({"id": el["id"], "team": el["team"], "name": v["name"], "club": v["club"], "pos": pos, "fixture": v["fixture"], "avail": v["avail"],
+                     "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "defcon": o["defcon"] * v["avail"],
+                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"]})
         if pos in ("GKP", "DEF") and playing:
-            club_cs.setdefault(v["club"], {"fixture": v["fixture"], "cs": [], "who": []})
+            club_cs.setdefault(v["club"], {"team": el["team"], "fixture": v["fixture"], "cs": [], "who": []})
             club_cs[v["club"]]["cs"].append(o["cs"])
             club_cs[v["club"]]["who"].append((v["xp"], v["name"]))
-    def pct(x):
+    def pct(x, cat):
+        return round(100 * min(0.97, (1 - math.exp(-x)) * scale.get(cat, 1.0)))
+    def raw(x):
         return round(100 * (1 - math.exp(-x)))
+    def item(r, cat, val, extra):
+        return {"id": r["id"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "p": pct(val, cat), "raw": raw(val), **extra}
     scorers = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["goals"])[:top_n]
     assisters = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["assists"])[:top_n]
-    sheets = sorted(({"club": c, "fixture": d["fixture"], "cs": round(100 * sum(d["cs"]) / len(d["cs"])), "who": [n for _x, n in sorted(d["who"], reverse=True)[:2]]}
-                     for c, d in club_cs.items()), key=lambda r: -r["cs"])[:top_n]
+    dcs = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["defcon"])[:top_n]
+    sheets = []
+    for c, d in club_cs.items():
+        p = sum(d["cs"]) / len(d["cs"])
+        sheets.append({"team": d["team"], "club": c, "fixture": d["fixture"], "p": round(100 * min(0.97, p * scale.get("clean_sheets", 1.0))), "raw": round(100 * p),
+                       "who": [n for _x, n in sorted(d["who"], reverse=True)[:2]]})
+    sheets = sorted(sheets, key=lambda r: -r["raw"])[:top_n]
     # rotation: players who matter (decent expected points) ranked by how likely they are NOT to play a full part this gameweek:
     # 1 - (share of minutes he normally plays x fitness x the rest / minutes-falling / reported-rotation factors the model applies)
     def start_prob(r):
@@ -383,10 +394,13 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
     rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
     return {
         "gw": nxt,
-        "goals": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xg": round(r["goals"], 2), "p": pct(r["goals"])} for r in scorers],
-        "assists": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xa": round(r["assists"], 2), "p": pct(r["assists"])} for r in assisters],
+        "goals": [item(r, "goals", r["goals"], {"xg": round(r["goals"], 2)}) for r in scorers],
+        "assists": [item(r, "assists", r["assists"], {"xa": round(r["assists"], 2)}) for r in assisters],
+        "defcon": [item(r, "defcon", -math.log(max(1e-9, 1 - min(0.999, r["defcon"]))), {}) for r in dcs],
         "clean_sheets": sheets,
-        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]), "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],
+        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
+                      "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],
+        "scale": {c: s for c, s in scale.items() if s != 1.0},
     }
 
 

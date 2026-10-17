@@ -775,13 +775,36 @@ function labNews(D,they){
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
-  const row=(name,club,val,sub)=>`<div class="lab-pr"><span class="n">${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
-  const sec=(t,items)=>`<h3 class="lab-ph3">${t}</h3><div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
-  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news). "Chance" = at least one.</p>`
-   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)))
-   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)))
-   +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.cs}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)))
-   +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))));
+  const R=P.record||{}, CAT=[["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
+  const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
+  const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
+  const pc=(h,n)=>n?Math.round(100*h/n):null;
+  // track record
+  let rec="";
+  if(R.graded){
+    const [h,n]=R.overall||[0,0];
+    const cal=R.calibration||{};
+    const cats=CAT.map(([k,l])=>{const t=(R.total||{})[k]||[0,0]; return `<div class="lab-rc"><span>${l}</span><b>${pc(t[0],t[1])??"–"}%</b><em>${t[0]}/${t[1]}</em></div>`;}).join("");
+    const gwRows=(R.per_gw||[]).slice().reverse().map(r=>`<tr><td>GW${r.gw}</td>${CAT.map(([k])=>`<td>${r[k][0]}/${r[k][1]}</td>`).join("")}</tr>`).join("");
+    const calLines=CAT.map(([k,l])=>{const c=cal[k]||{}; if(!c.n) return ""; const s=c.scale; return `<li><b>${l}</b>: predicted ${c.mean_p}% on average, came in at ${c.hit_rate}% (${c.n} picks) · ${c.n>=30?(s===1?"no correction needed":`probabilities now ×${s}`):"collecting data before correcting"}</li>`;}).join("");
+    const whyLines=CAT.map(([k,l])=>{const w=(R.why||{})[k]||[]; if(!w.length) return ""; return `<li><b>${l}</b> misses: ${w.slice(0,3).map(([t,c])=>`${esc(t)} (${c})`).join(" · ")}</li>`;}).join("");
+    rec=`<div class="lab-rec"><h3 class="lab-ph3">Track record · ${R.graded} gameweek${R.graded===1?"":"s"} graded</h3>
+      <div class="lab-rbig"><b>${pc(h,n)}%</b><span>of ${n} top-10 picks came off (${h})</span></div>
+      <div class="lab-rcs">${cats}</div>
+      <table class="lab-rtab"><thead><tr><th>GW</th>${CAT.map(([,l])=>`<th>${l.replace("Clean sheets","CS")}</th>`).join("")}</tr></thead><tbody>${gwRows}</tbody></table>
+      ${calLines?`<h4 class="lab-ph4">Recalibration</h4><ul class="lab-rl">${calLines}</ul>`:""}
+      ${whyLines?`<h4 class="lab-ph4">Why picks missed</h4><ul class="lab-rl">${whyLines}</ul>`:""}</div>`;
+  } else {
+    rec=`<p class="note" data-keep>Track record starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw))} is settled: each top-10 is saved before the deadline, marked right or wrong against FPL's final stats, and any bias is corrected in later predictions.</p>`;
+  }
+  const lists=sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
+   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)),"Chance of at least one assist")
+   +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
+   +sec("DEFCON",(P.defcon||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc(r.pos)}`)),"Chance of reaching the defensive-contribution bonus")
+   +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
+  const L=R.last;
+  const lastBlock=L?`<h3 class="lab-ph3">How GW${L.gw} went</h3>`+CAT.map(([k,l])=>`<h4 class="lab-ph4">${l}</h4><div class="lab-prs">${((L.picks||{})[k]||[]).map(p=>row(p.name||p.club,p.name?p.club:"",`<b>${p.p}%</b>`,esc(p.why||""),p.hit?"y":"n")).join("")}</div>`).join(""):"";
+  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+lists+lastBlock;
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
