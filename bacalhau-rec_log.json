@@ -1002,13 +1002,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "9c142c43435c",
+  "code_sha": "431e18633103",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T16:27:16+00:00",
-  "saved_at_et": "2026-10-17 12:27 PM ET",
+  "saved_at": "2026-10-17T16:39:17+00:00",
+  "saved_at_et": "2026-10-17 12:39 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1044,7 +1044,14 @@
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 3.73
+    "xp": 3.79
+   },
+   {
+    "club": "FUL",
+    "id": 261,
+    "name": "Iwobi",
+    "pos": "MID",
+    "xp": 5.2
    },
    {
     "club": "EVE",
@@ -1061,25 +1068,18 @@
     "xp": 4.84
    },
    {
-    "club": "FUL",
-    "id": 261,
-    "name": "Iwobi",
-    "pos": "MID",
-    "xp": 4.8
-   },
-   {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 3.55
+    "xp": 3.54
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.73
+    "xp": 6.94
    },
    {
     "club": "EVE",
@@ -1107,7 +1107,7 @@
     "id": 391,
     "name": "Gvardiol",
     "pos": "DEF",
-    "xp": 2.61
+    "xp": 2.6
    },
    {
     "club": "BHA",
@@ -1140,13 +1140,13 @@
    115,
    330,
    449,
+   261,
    236,
    124,
-   261,
    94,
    411,
    249
   ],
-  "xp": 57.8
+  "xp": 58.7
  }
 }
