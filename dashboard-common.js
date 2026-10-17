@@ -903,7 +903,7 @@ function labPCard(D,p,team,star,label){
   const tip=[p.name,p.club,p.fix,"xP "+labNum(p.xp,1),a&&a.news?a.news:(a&&ch!=null?ch+"% chance":"")].filter(Boolean).join(" · ");
   const bl=[p.name===team.cap?'<i class="b c">C</i>':p.name===team.vc?'<i class="b v">V</i>':"",p.inn?'<i class="b in">IN</i>':""].join("");
   const br=[out?`<i class="b warn out" title="${esc(a.news||"Out")}">✕</i>`:doubt?`<i class="b warn" title="${esc(a.news||"Doubtful")}">⚠</i>`:"",star?'<i class="b star" title="Top-3 expected points in the XI">★</i>':""].join("");
-  return `<div class="lab-pc${cls}" title="${esc(tip)}">${label?`<span class="lab-pl">${esc(label)}</span>`:""}<span class="lab-bl">${bl}</span><span class="lab-br">${br}</span>${labShirt(D,p)}<span class="lab-pn${p.name.length>10?" long":""}">${esc(p.name)}</span><span class="lab-pf">${esc(p.fix||"–")}${ch!=null&&ch<100?` · ${ch}%`:""}</span></div>`;
+  return `<div class="lab-pk${cls}" title="${esc(tip)}">${label?`<span class="lab-pl">${esc(label)}</span>`:""}<span class="lab-bl">${bl}</span><span class="lab-br">${br}</span>${labShirt(D,p)}<span class="lab-pn${p.name.length>10?" long":""}">${esc(p.name)}</span><span class="lab-pf">${esc(p.fix||"–")}${ch!=null&&ch<100?` · ${ch}%`:""}</span></div>`;
 }
 function labPitchHtml(D,team,they){
   if(!team) return `<p class="note">No lineup yet.</p>`;

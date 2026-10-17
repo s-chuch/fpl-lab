@@ -278,17 +278,17 @@ tr.lab-me td{color:var(--blue);font-weight:700}
 .lab-filters button{border:1px solid var(--line);background:#0d1626;color:var(--ink);border-radius:999px;padding:7px 12px;font-size:14px;cursor:pointer}
 .lab-filters button.on{background:#2a2350;border-color:var(--purple);color:#cbbcff}
 .lab-fnote{margin:2px 2px 10px}
-.lab-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.lab-pc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0}
+.lab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+.lab-pc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;min-width:0;width:auto;max-width:none;box-sizing:border-box;overflow:hidden}
 .lab-pc-h{display:flex;align-items:center;gap:7px}
 .lab-pc-h .dot{flex:0 0 10px;height:10px;border-radius:50%}
-.lab-pc-h b{flex:1;min-width:0;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lab-pc-h{align-items:flex-start}.lab-pc-h .dot{margin-top:5px}.lab-pc-h b{flex:1;min-width:0;font-size:16px;line-height:1.25;white-space:normal;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow-wrap:break-word}
 .lab-dots{background:none;border:0;color:var(--muted);padding:0 2px;line-height:0;cursor:pointer}.lab-dots.on{color:var(--blue)}
 .lab-pc-c{color:var(--muted);font-size:13px;margin:3px 0 0 17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lab-pc-s{display:flex;gap:6px;align-items:center;font-size:13px;margin:6px 0 6px;line-height:1.3}
+.lab-pc-s{display:flex;gap:6px;align-items:center;font-size:13px;margin:6px 0 6px;line-height:1.3;min-width:0}
 .lab-pc-s>span{line-height:0;flex:0 0 auto}
-.lab-pc-g{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px}
-.lab-pc-g span{display:block;color:var(--muted);font-size:12px}
+.lab-pc-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 8px}.lab-pc-g>div{min-width:0}
+.lab-pc-g span{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .lab-pc-g b{font-size:16px}
 .lab-green{color:var(--green)}
 .lab-pc-x{margin-top:8px;border-top:1px solid var(--line);padding-top:6px;color:var(--muted);font-size:12px;line-height:1.4}
@@ -316,7 +316,7 @@ body.lab .lab-lines .half{left:-2px;right:-2px;top:66%;height:0;border-width:2px
 body.lab .lab-lines .circ{left:50%;top:66%;width:28%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%}
 body.lab .lab-prow{position:relative;display:flex;justify-content:center;gap:5px;margin:0 0 12px}
 body.lab .lab-prow:last-child{margin-bottom:2px}
-body.lab .lab-pc{position:relative;flex:0 1 66px;min-width:0;max-width:76px;display:flex;flex-direction:column;align-items:center;
+body.lab .lab-pk{position:relative;flex:0 1 66px;min-width:0;max-width:76px;display:flex;flex-direction:column;align-items:center;
   background:rgba(13,60,28,.35);border-radius:6px;padding:6px 0 0;cursor:default}
 body.lab .lab-shirt{display:block;width:44px;height:44px;margin-bottom:3px}
 body.lab .lab-shirt img{width:100%;height:100%;object-fit:contain;display:block}
@@ -325,25 +325,25 @@ body.lab .lab-shirt.noimg{background:var(--kit);-webkit-mask:linear-gradient(#00
 body.lab .lab-pn,body.lab .lab-pf{display:block;width:100%;box-sizing:border-box;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:2px 2px}
 body.lab .lab-pn{background:#fff;color:#1e0a3c;font-weight:700;font-size:.68rem;border-radius:4px 4px 0 0}
 body.lab .lab-pf{background:#ece9f3;color:#37003c;font-size:.62rem;border-radius:0 0 4px 4px}
-body.lab .lab-pc.doubt .lab-pn{background:#fde68a}
-body.lab .lab-pc.out .lab-pn{background:#fca5a5}
+body.lab .lab-pk.doubt .lab-pn{background:#fde68a}
+body.lab .lab-pk.out .lab-pn{background:#fca5a5}
 body.lab .lab-bl,body.lab .lab-br{position:absolute;top:3px;display:flex;flex-direction:column;gap:2px;z-index:1}
 body.lab .lab-bl{left:3px}body.lab .lab-br{right:3px}
-body.lab .lab-pc .b,body.lab .lab-legend .b{font-style:normal;display:inline-grid;place-items:center;min-width:15px;height:15px;padding:0 2px;box-sizing:border-box;border-radius:999px;font-size:.58rem;font-weight:800;line-height:1}
-body.lab .b.c,body.lab .b.v{background:#1e0a3c;color:#fff}
-body.lab .b.in{background:#22c55e;color:#04220f;border-radius:4px}
-body.lab .b.star{background:#1e0a3c;color:#4ade80}
-body.lab .b.warn{background:#facc15;color:#3b2f00}
-body.lab .b.warn.out{background:#ef4444;color:#fff}
+body.lab .lab-pk .b,body.lab .lab-legend .b{font-style:normal;display:inline-grid;place-items:center;min-width:15px;height:15px;padding:0 2px;box-sizing:border-box;border-radius:999px;font-size:.58rem;font-weight:800;line-height:1}
+body.lab .lab-pitchcard .b.c,body.lab .lab-pitchcard .b.v{background:#1e0a3c;color:#fff}
+body.lab .lab-pitchcard .b.in{background:#22c55e;color:#04220f;border-radius:4px}
+body.lab .lab-pitchcard .b.star{background:#1e0a3c;color:#4ade80}
+body.lab .lab-pitchcard .b.warn{background:#facc15;color:#3b2f00}
+body.lab .lab-pitchcard .b.warn.out{background:#ef4444;color:#fff}
 body.lab .lab-bench{display:flex;justify-content:center;gap:6px;margin-top:8px;padding:8px 4px 8px;border-radius:12px;background:linear-gradient(180deg,#5fae80,#bfe3cc)}
-body.lab .lab-bench .lab-pc{background:rgba(255,255,255,.18);padding-top:18px}
+body.lab .lab-bench .lab-pk{background:rgba(255,255,255,.18);padding-top:18px}
 body.lab .lab-pl{position:absolute;top:2px;left:0;right:0;text-align:center;font-size:.62rem;font-weight:800;color:#12301f}
 body.lab .lab-bench .lab-bl,body.lab .lab-bench .lab-br{top:16px}
 body.lab .lab-pnote{margin:8px 2px 2px;font-size:.78rem}
 body.lab .lab-legend{margin:6px 2px 0;font-size:.74rem;line-height:1.9}
 body.lab .lab-legend .b{margin:0 2px 0 6px;vertical-align:middle}
 body.lab .lab-legend .b:first-child{margin-left:0}
-@media (min-width:600px){body.lab .lab-pc{flex-basis:84px;max-width:96px}body.lab .lab-shirt{width:58px;height:58px}body.lab .lab-pn{font-size:.78rem}body.lab .lab-pf{font-size:.7rem}body.lab .lab-prow{gap:10px;margin-bottom:16px}}
+@media (min-width:600px){body.lab .lab-pk{flex-basis:84px;max-width:96px}body.lab .lab-shirt{width:58px;height:58px}body.lab .lab-pn{font-size:.78rem}body.lab .lab-pf{font-size:.7rem}body.lab .lab-prow{gap:10px;margin-bottom:16px}}
 @media (max-width:359px){body.lab .lab-shirt{width:36px;height:36px}body.lab .lab-prow{gap:3px}body.lab .lab-pn{font-size:.62rem}}
 body.lab .lab-pn.long{font-size:.58rem;letter-spacing:-.02em}
 @media (min-width:600px){body.lab .lab-pn.long{font-size:.68rem}}
