@@ -481,3 +481,12 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-pc-g>div{display:flex;flex-direction:column;justify-content:flex-start;min-height:2.9em}
 .lab-pc-g b{display:block;line-height:1.25;white-space:nowrap}
 .lab-grid.nohead .lab-pc-s{display:none}
+/* tighter, evenly spaced Target cards */
+.lab-pc{padding:8px 8px 7px}
+.lab-pc-c{margin-top:2px}
+.lab-pc-t{margin:6px 0 0}
+.lab-pc-s{margin:5px 0 0}
+.lab-pc-g{margin-top:7px;gap:5px 8px}
+.lab-pc-g>div{min-height:0}
+.lab-pc-g span{line-height:1.2}
+.lab-pc-g b{line-height:1.2}
