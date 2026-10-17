@@ -410,7 +410,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         "chances": chances,
         "_rows": [r for r in rows if r["xp"] >= 1.0],
         "clean_sheets": sheets,
-        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
+        "rotation": [{"id": r["id"], "team": r["team"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
                       "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],
         "scale": {c: s for c, s in scale.items() if s != 1.0},
     }

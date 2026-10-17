@@ -77,7 +77,7 @@ def pred_picks(gw, boot):
     saved lists (chance-volume goal / assist flags in data.js and the stored DEFCON top-10). Returns (source, {cat: [{id|team, name, club}]})."""
     log = (_load(ROOT / "prediction_log.json").get("gws") or {}).get(str(gw))
     if log and log.get("picks"):
-        return "Top 10 predictions", {c: log["picks"].get(c, []) for c in ("goals", "assists", "gi", "defcon", "clean_sheets", "target")}
+        return "Top 10 predictions", {c: log["picks"].get(c, []) for c in ("goals", "assists", "gi", "defcon", "clean_sheets", "target", "rotation")}
     short = {t["id"]: t["short_name"] for t in boot["teams"]}
     by_key = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
     picks = {"goals": [], "assists": [], "gi": [], "defcon": [], "clean_sheets": [], "target": []}
@@ -122,6 +122,13 @@ def pred_live(gw, boot, live, fixtures, els):
             st, mine = state(el.get("team"))
             s = live.get(p.get("id")) or {}
             extra = {}
+            if cat == "rotation":
+                starts, m = int(s.get("starts") or 0), int(s.get("minutes") or 0)
+                benched = st != "yet" and starts == 0                      # the match has begun and he is not in the starting XI
+                short = st == "done" and starts == 1 and m < 60            # started but was off early
+                rows.append({"name": p.get("name") or el.get("web_name"), "club": p.get("club", ""), "state": st, "val": 1 if (benched or short) else 0, "need": 1,
+                             "hit": bool(benched or short), "mins": m, "starts": starts, "rot": p.get("rotate")})
+                continue
             if cat in ("gi", "target"):
                 g, a = int(s.get("goals_scored") or 0), int(s.get("assists") or 0)
                 val, need, extra = g + a, 1, {"g": g, "a": a}

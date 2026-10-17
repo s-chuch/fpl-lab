@@ -142,8 +142,20 @@ def grade(log, boot, get):
             continue
         g["results"] = {c: [grade_pick(c, p, live, fixtures, boot_el) for p in g["picks"].get(c, [])] for c in CATS}
         g["results"][TARGET] = [grade_target(p, live) for p in g["picks"].get(TARGET, [])]
+        g["results"]["rotation"] = [grade_rotation(p, live) for p in g["picks"].get("rotation", [])]
         g["graded"] = True
     return log
+
+
+def grade_rotation(pick, live):
+    """A predicted rotation came off when he did not start, or played under an hour."""
+    st = live.get(pick.get("id")) or {}
+    starts, m = int(st.get("starts") or 0), int(st.get("minutes") or 0)
+    if starts == 0:
+        return {"hit": True, "why": "benched" if m == 0 else f"started on the bench, came on for {m} min"}
+    if m < 60:
+        return {"hit": True, "why": f"started but off after {m} min"}
+    return {"hit": False, "why": f"played {m} min" + (" (full game)" if m >= 85 else " (reduced minutes)")}
 
 
 def grade_target(pick, live):
@@ -275,9 +287,13 @@ def view(log, boot_players=None):
         for c in ("goals", "assists", "gi"):       # the model's list for the same gameweeks, only where Target was saved too
             rs = g["results"].get(c, [])
             cmp_[c][0] += sum(1 for r in rs if r["hit"]); cmp_[c][1] += len(rs)
+    rot = [0, 0]
+    for g in graded:
+        rs = g["results"].get("rotation", [])
+        rot[0] += sum(1 for r in rs if r["hit"]); rot[1] += len(rs)
     last = None
     if graded:
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
     return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
-            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_}
+            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot}

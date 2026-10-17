@@ -81,5 +81,12 @@ class TargetAndGi(unittest.TestCase):
         self.assertEqual(v["model_same_weeks"]["goals"], [1, 1])
 
 
+class Rotation(unittest.TestCase):
+    def test_grade_rotation(self):
+        self.assertTrue(pt.grade_rotation({"id": 1}, {1: {"starts": 0, "minutes": 0}})["hit"])
+        self.assertTrue(pt.grade_rotation({"id": 1}, {1: {"starts": 1, "minutes": 55}})["hit"])
+        self.assertFalse(pt.grade_rotation({"id": 1}, {1: {"starts": 1, "minutes": 90}})["hit"])
+
+
 if __name__ == "__main__":
     unittest.main()

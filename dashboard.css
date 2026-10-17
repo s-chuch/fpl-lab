@@ -446,3 +446,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-win{color:#7ee2a8;font-weight:700}
 .lab-games{display:flex;flex-wrap:wrap;gap:4px;margin:2px 0 8px}.lab-gm{font-size:11px;background:#0d1626;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:var(--muted)}.lab-gm.on{color:var(--ink);border-color:#2f6b4f}
 .lab-livecard .lab-ph{display:flex;align-items:center;justify-content:space-between;gap:8px}.lab-livecard h2{margin:0}
+.lab-rcs{grid-template-columns:repeat(auto-fit,minmax(64px,1fr))}
