@@ -928,6 +928,40 @@ function labPitch(D,they,KEY){
   },0);
   return html;
 }
+// ---------------------------------------------------------------- Decision log (rec_log.py)
+function labSigned(n){n=Number(n)||0; return n>0?"+"+n:n<0?"−"+(-n):"0";}
+function labVerdict(s,they){ if(!s) return ""; const d=s.diff; const who=they?"They":"You";
+  return d>0?`<span class="lab-v you">${who} +${d}</span>`:d<0?`<span class="lab-v model">Model +${-d}</span>`:`<span class="lab-v same">Same</span>`; }
+const LAB_CHIPN={wildcard:"Wildcard",freehit:"Free Hit",bboost:"Bench Boost","3xc":"Triple Captain",manager:"Assistant Manager"};
+function labDecLast(D,they){
+  const L=D.decision_log||{}; const r=(L.rows||[]).find(x=>x.status==="scored"); if(!r) return "";
+  const s=r.score, ok=s.diff>=0;
+  return `<button class="lab-last" data-declog="gw${r.gw}"><span>Last GW${r.gw}: <b>${they?"They":"You"} ${s.you}</b> vs <b>Model ${s.model}</b> ${ok?'<i class="ok">✓</i>':'<i class="bad">✗</i>'}</span><span class="note">Decision log ›</span></button>`;
+}
+function labDecRow(r,they){
+  const Y=they?"They":"You", y=they?"their":"your";
+  const mv=t=>(t||[]).length?(t||[]).map(m=>`${esc(m.out)} → ${esc(m.in)}`).join(", "):"Roll";
+  const meta=`<p class="note">Saved ${esc(r.saved_at_et||"?")}${r.code_sha?` · code ${esc(String(r.code_sha).slice(0,7))}`:""}${r.backfilled?` · <b>backfilled</b>: ${esc(r.backfill_note||"")}`:""}</p>`;
+  if(r.status!=="scored"){
+    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li></ul>${meta}`;
+    return `<details class="lab-drow pending" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><b>${r.status==="frozen"?"Recommendation frozen at the deadline":"Recommendation saved"}</b><span class="note">scored after GW finishes · C ${esc(r.captain_name||"–")} · ${mv(r.transfers)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
+  }
+  const s=r.score, C=s.captain||{}, T=s.transfers||{}, Ln=s.lineup||{};
+  const tl=(arr,hits)=>((arr||[]).length?(arr||[]).map(t=>`<li><span>${esc(t.out)} (${t.out_pts}) → ${esc(t.in)} (${t.in_pts})</span><b class="${t.net>0?"pos":t.net<0?"neg":""}">${labSigned(t.net)}</b></li>`).join(""):`<li><span class="note">No transfers</span><b>0</b></li>`)+(hits?`<li><span>Hits</span><b class="neg">−${hits}</b></li>`:"");
+  const subs=a=>(a||[]).length?(a||[]).map(x=>`${esc(x.out)}→${esc(x.in)}`).join(", "):"none";
+  const chipY=(s.chip||{}).you;
+  const body=`<div class="lab-dsec"><h4>Captain <span>${labSigned(C.diff)}</span></h4><ul class="lab-dl"><li><span>${Y}: ${esc(C.you||"–")} ${C.you_pts}×${C.you_mult}</span><b>${C.you_pts*C.you_mult}</b></li><li><span>Model: ${esc(C.model||"–")} ${C.model_pts}×${C.model_mult}</span><b>${C.model_pts*C.model_mult}</b></li></ul></div>
+<div class="lab-dsec"><h4>Transfers <span>${labSigned(T.diff)}</span></h4><p class="note">${Y} (in − out this GW, net of hits: ${labSigned(T.you_net)})${chipY&&/wildcard|freehit/.test(chipY)?` · ${esc(LAB_CHIPN[chipY])} week: net change from the previous squad`:""}</p><ul class="lab-dl">${tl(T.you,T.you_hits)}</ul><p class="note">Model (net ${labSigned(T.model_net)})</p><ul class="lab-dl">${tl(T.model,T.model_hits)}</ul></div>
+<div class="lab-dsec"><h4>Lineup, bench &amp; chips <span>${labSigned(Ln.diff)}</span></h4><p class="note">The rest of the gap: XI and bench picks, autosubs${chipY?`, ${y} ${esc(LAB_CHIPN[chipY]||chipY)}`:""}. Bench points: ${Y.toLowerCase()} ${Ln.you_bench_pts} · model ${Ln.model_bench_pts}. Model autosubs: ${subs(Ln.model_autosubs)}.</p></div>${meta}`;
+  return `<details class="lab-drow" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><span class="lab-dsc">${Y} <b>${s.you}</b> · Model <b>${s.model}</b> ${labVerdict(s,they)}${r.backfilled?' <span class="lab-pill used">backfilled</span>':""}</span><span class="note">C ${esc(C.you||"–")} / ${esc(C.model||"–")} · T ${(T.you||[]).length?(T.you.length>2?T.you.length+" moves":mv(T.you)):"roll"}${chipY?" ("+esc(LAB_CHIPN[chipY]||chipY)+")":""} / ${mv(T.model)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
+}
+function labDecLog(D,they){
+  const L=D.decision_log||{}, rows=L.rows||[], t=L.totals||{}; const Y=they?"They":"You";
+  if(!rows.length) return `<p class="note">No recommendations saved yet. The next refresh before a deadline saves one.</p>`;
+  const dc=t.decisions||{}; const dl=k=>{const x=dc[k]||{};return `<li><span>${k[0].toUpperCase()+k.slice(1)}</span><b>${x.you||0} / ${x.model||0} / ${x.same||0}</b></li>`;};
+  const top=t.gws?`<div class="lab-dtot"><div><span class="note">Season · ${t.gws} GW${t.gws===1?"":"s"} scored</span><b>${Y} ${t.you} · Model ${t.model}</b>${labVerdict({diff:t.diff},they)}</div><p class="note">Gameweeks won: ${Y.toLowerCase()} ${t.you_wins} · model ${t.model_wins} · same ${t.same}</p><ul class="lab-dl"><li><span class="note">Decisions won (${Y.toLowerCase()} / model / same)</span><b></b></li>${dl("captain")}${dl("transfers")}${dl("lineup")}</ul></div>`:"";
+  return `${top}<p class="note">Each gameweek the lab saves its final pre-deadline recommendation (the Plan tab's transfers, XI, bench, captain), freezes it at the deadline and scores it once FPL finishes the gameweek: the recommended 15 with FPL autosub and captain rules, minus its hits, against ${they?"their":"your"} real points net of hits.</p>${rows.map(r=>labDecRow(r,they)).join("")}`;
+}
 // ---------------------------------------------------------------- shell
 function labShell(D,opt){
   opt=opt||{}; const they=!!opt.they;
@@ -945,7 +979,7 @@ function labShell(D,opt){
 <div class="lab-do card"><h2>DO THIS${gw?` <span class="note">· GW${gw}</span>`:""}</h2><div class="lab-tiles">
 <button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
 <button class="lab-tile tr" data-p="labTr" aria-expanded="false"><span class="lab-ic">${LAB_SVG.swap}</span><span class="lab-tx"><b class="lab-tt">TRANSFER</b><em>Make up to ${esc(String(Tr.ft))} free transfer${Tr.ft===1?"":"s"}:<br>${Tr.names}</em></span></button></div>
-<div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div></div>
+<div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div>${labDecLast(D,they)}</div>
 ${labPitch(D,they,KEY)}
 ${labAcc("labChips","CHIPS","View chip status and strategy",labChips(D,they))}
 ${labAcc("labLeague","LEAGUE","Current standings and rivals",labLeague(D,they))}
@@ -971,6 +1005,8 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
   const more=root.querySelector("#labMore");
   const groups=(typeof TAB_GROUPS!=="undefined"?TAB_GROUPS:[]);
   more.innerHTML=`<p class="note lab-fnote">Everything else on the site, grouped as before. Tap a section to open it.</p>`;
+  if(D.decision_log){ const d=document.createElement("details"); d.className="lab-acc"; d.id="more-declog";
+    d.innerHTML=`<summary><div><b>DECISION LOG</b><span>${they?"Their":"Your"} moves vs the model's, scored each GW</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${labDecLog(D,they)}</div>`; more.appendChild(d); }
   groups.forEach(g=>{
     const d=document.createElement("details"); d.className="lab-acc"; d.id="more-"+g.id;
     d.innerHTML=`<summary><div><b>${esc(g.label.toUpperCase())}</b><span>${esc(g.tabs.map(t=>t[1]).join(" · "))}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body"></div>`;
@@ -994,6 +1030,7 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
     const b=e.target.closest("button"); if(!b||!root.contains(b)) return;
     if(b.dataset.v){ show(b.dataset.v); window.scrollTo(0,0); }
     else if(b.dataset.p){ const p=root.querySelector("#"+b.dataset.p); const open=p.hidden; root.querySelectorAll(".lab-panel").forEach(x=>x.hidden=true); root.querySelectorAll(".lab-tile").forEach(x=>x.setAttribute("aria-expanded","false")); p.hidden=!open; b.setAttribute("aria-expanded",String(open)); }
+    else if(b.dataset.declog){ show("more"); const d=document.getElementById("more-declog"); if(d){ d.open=true; const r=document.getElementById("declog-"+b.dataset.declog); if(r) r.open=true; setTimeout(()=>(r||d).scrollIntoView({block:"start"}),30);} }
     else if(b.classList.contains("lab-ibtn")){ info.hidden=!info.hidden; b.setAttribute("aria-expanded",String(!info.hidden)); }
   });
   let v="plan"; try{v=localStorage.getItem(KEY)||"plan";}catch(e){}

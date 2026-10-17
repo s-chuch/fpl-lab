@@ -115,153 +115,6 @@
     "model_net": 0,
     "you": [
      {
-      "in": "Hughes",
-      "in_pts": 1,
-      "net": -16,
-      "out": "Groß",
-      "out_pts": 17
-     },
-     {
-      "in": "Raya",
-      "in_pts": 14,
-      "net": 6,
-      "out": "Verbruggen",
-      "out_pts": 8
-     },
-     {
-      "in": "Konsa",
-      "in_pts": 6,
-      "net": 5,
-      "out": "Mendy",
-      "out_pts": 1
-     },
-     {
-      "in": "Khalaili",
-      "in_pts": 7,
-      "net": 6,
-      "out": "Mitchell",
-      "out_pts": 1
-     },
-     {
-      "in": "Verbruggen",
-      "in_pts": 8,
-      "net": -6,
-      "out": "Raya",
-      "out_pts": 14
-     },
-     {
-      "in": "Calafiori",
-      "in_pts": 6,
-      "net": 0,
-      "out": "Konsa",
-      "out_pts": 6
-     },
-     {
-      "in": "Konsa",
-      "in_pts": 6,
-      "net": 0,
-      "out": "Calafiori",
-      "out_pts": 6
-     },
-     {
-      "in": "Raya",
-      "in_pts": 14,
-      "net": 6,
-      "out": "Verbruggen",
-      "out_pts": 8
-     },
-     {
-      "in": "Mitchell",
-      "in_pts": 1,
-      "net": -6,
-      "out": "Khalaili",
-      "out_pts": 7
-     },
-     {
-      "in": "Verbruggen",
-      "in_pts": 8,
-      "net": -6,
-      "out": "Raya",
-      "out_pts": 14
-     },
-     {
-      "in": "Khalaili",
-      "in_pts": 7,
-      "net": -7,
-      "out": "Davis",
-      "out_pts": 14
-     },
-     {
-      "in": "Van Hecke",
-      "in_pts": 8,
-      "net": 8,
-      "out": "Thomas",
-      "out_pts": 0
-     },
-     {
-      "in": "Groß",
-      "in_pts": 17,
-      "net": 16,
-      "out": "Gakpo",
-      "out_pts": 1
-     },
-     {
-      "in": "Thomas",
-      "in_pts": 0,
-      "net": -6,
-      "out": "Konsa",
-      "out_pts": 6
-     },
-     {
-      "in": "Davis",
-      "in_pts": 14,
-      "net": 13,
-      "out": "Mitchell",
-      "out_pts": 1
-     },
-     {
-      "in": "Slater",
-      "in_pts": 2,
-      "net": -1,
-      "out": "Gomez",
-      "out_pts": 3
-     },
-     {
-      "in": "Gakpo",
-      "in_pts": 1,
-      "net": -16,
-      "out": "Groß",
-      "out_pts": 17
-     },
-     {
-      "in": "Konsa",
-      "in_pts": 6,
-      "net": -8,
-      "out": "Davis",
-      "out_pts": 14
-     },
-     {
-      "in": "Rogers",
-      "in_pts": 8,
-      "net": 5,
-      "out": "Tzolis",
-      "out_pts": 3
-     },
-     {
-      "in": "Mitchell",
-      "in_pts": 1,
-      "net": 1,
-      "out": "Shaw",
-      "out_pts": 0
-     },
-     {
-      "in": "Mendy",
-      "in_pts": 1,
-      "net": 1,
-      "out": "Hume",
-      "out_pts": 0
-     },
-     {
       "in": "Raya",
       "in_pts": 14,
       "net": 6,
@@ -276,11 +129,32 @@
       "out_pts": 7
      },
      {
-      "in": "Gomez",
-      "in_pts": 3,
-      "net": 1,
-      "out": "B.Fernandes",
-      "out_pts": 2
+      "in": "Konsa",
+      "in_pts": 6,
+      "net": -8,
+      "out": "Davis",
+      "out_pts": 14
+     },
+     {
+      "in": "Van Hecke",
+      "in_pts": 8,
+      "net": 8,
+      "out": "Shaw",
+      "out_pts": 0
+     },
+     {
+      "in": "Khalaili",
+      "in_pts": 7,
+      "net": 7,
+      "out": "Hume",
+      "out_pts": 0
+     },
+     {
+      "in": "Rogers",
+      "in_pts": 8,
+      "net": -9,
+      "out": "Groß",
+      "out_pts": 17
      },
      {
       "in": "Palmer",
@@ -288,6 +162,20 @@
       "net": 4,
       "out": "Cherki",
       "out_pts": 1
+     },
+     {
+      "in": "Hughes",
+      "in_pts": 1,
+      "net": -1,
+      "out": "B.Fernandes",
+      "out_pts": 2
+     },
+     {
+      "in": "Slater",
+      "in_pts": 2,
+      "net": -1,
+      "out": "Tzolis",
+      "out_pts": 3
      },
      {
       "in": "Isak",
@@ -303,7 +191,7 @@
    "verdict": "Model +15",
    "you": 90
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {
@@ -552,7 +440,7 @@
    "verdict": "Same",
    "you": 53
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {
@@ -796,39 +684,11 @@
     "model_net": 0,
     "you": [
      {
-      "in": "Saka",
-      "in_pts": 2,
-      "net": 1,
-      "out": "B.Fernandes",
-      "out_pts": 1
-     },
-     {
-      "in": "B.Fernandes",
-      "in_pts": 1,
-      "net": -9,
-      "out": "Cherki",
-      "out_pts": 10
-     },
-     {
-      "in": "Davis",
-      "in_pts": 1,
-      "net": -3,
-      "out": "Konsa",
-      "out_pts": 4
-     },
-     {
-      "in": "João Pedro",
-      "in_pts": 12,
-      "net": 6,
-      "out": "Barry",
-      "out_pts": 6
-     },
-     {
-      "in": "Barry",
-      "in_pts": 6,
-      "net": 6,
-      "out": "Isak",
-      "out_pts": 0
+      "in": "Raya",
+      "in_pts": 3,
+      "net": -6,
+      "out": "Verbruggen",
+      "out_pts": 9
      },
      {
       "in": "Tzolakis",
@@ -838,88 +698,53 @@
       "out_pts": 3
      },
      {
-      "in": "Schade",
-      "in_pts": 1,
-      "net": 0,
-      "out": "Tavernier",
-      "out_pts": 1
-     },
-     {
-      "in": "Raya",
+      "in": "Tarkowski",
       "in_pts": 3,
-      "net": -6,
-      "out": "Verbruggen",
-      "out_pts": 9
-     },
-     {
-      "in": "Kostoulas",
-      "in_pts": 1,
-      "net": -11,
-      "out": "João Pedro",
-      "out_pts": 12
-     },
-     {
-      "in": "Tavernier",
-      "in_pts": 1,
-      "net": -12,
-      "out": "Dewsbury-Hall",
-      "out_pts": 13
+      "net": 0,
+      "out": "Shaw",
+      "out_pts": 3
      },
      {
       "in": "Hall",
       "in_pts": 0,
       "net": -1,
-      "out": "Davis",
+      "out": "Hume",
       "out_pts": 1
      },
      {
-      "in": "Tarkowski",
-      "in_pts": 3,
-      "net": 3,
-      "out": "Mykolenko",
-      "out_pts": 0
-     },
-     {
-      "in": "Isak",
-      "in_pts": 0,
-      "net": -2,
-      "out": "Calvert-Lewin",
-      "out_pts": 2
-     },
-     {
-      "in": "King",
+      "in": "Saka",
       "in_pts": 2,
       "net": 2,
       "out": "Szoboszlai",
       "out_pts": 0
      },
      {
-      "in": "Barnes",
+      "in": "Schade",
+      "in_pts": 1,
+      "net": -9,
+      "out": "Cherki",
+      "out_pts": 10
+     },
+     {
+      "in": "King",
       "in_pts": 2,
       "net": 1,
       "out": "B.Fernandes",
       "out_pts": 1
      },
      {
-      "in": "Dewsbury-Hall",
-      "in_pts": 13,
-      "net": 13,
+      "in": "Barnes",
+      "in_pts": 2,
+      "net": 2,
       "out": "Tzolis",
       "out_pts": 0
      },
      {
-      "in": "Konsa",
-      "in_pts": 4,
-      "net": 3,
-      "out": "Hume",
-      "out_pts": 1
-     },
-     {
-      "in": "Mykolenko",
-      "in_pts": 0,
-      "net": -3,
-      "out": "Shaw",
-      "out_pts": 3
+      "in": "Kostoulas",
+      "in_pts": 1,
+      "net": -1,
+      "out": "Calvert-Lewin",
+      "out_pts": 2
      }
     ],
     "you_hits": 0,
@@ -928,7 +753,7 @@
    "verdict": "Model +14",
    "you": 66
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {

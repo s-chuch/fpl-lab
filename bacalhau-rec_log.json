@@ -115,14 +115,14 @@
     "model_net": 0,
     "you": [
      {
-      "in": "Ajayi",
+      "in": "Mitchell",
       "in_pts": 1,
       "net": -8,
       "out": "Gabriel",
       "out_pts": 9
      },
      {
-      "in": "Mitchell",
+      "in": "Ajayi",
       "in_pts": 1,
       "net": 0,
       "out": "Kayode",
@@ -135,7 +135,7 @@
    "verdict": "Model +8",
    "you": 74
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {
@@ -392,7 +392,7 @@
    "verdict": "Model +3",
    "you": 56
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {
@@ -641,52 +641,45 @@
     "model_net": 0,
     "you": [
      {
-      "in": "Tavernier",
-      "in_pts": 1,
-      "net": 1,
-      "out": "Szoboszlai",
+      "in": "Tzolakis",
+      "in_pts": 2,
+      "net": 2,
+      "out": "Dubravka",
       "out_pts": 0
      },
      {
-      "in": "Hall",
-      "in_pts": 0,
-      "net": -1,
-      "out": "Ajayi",
-      "out_pts": 1
+      "in": "De Cuyper",
+      "in_pts": 15,
+      "net": 6,
+      "out": "Calafiori",
+      "out_pts": 9
+     },
+     {
+      "in": "Bogle",
+      "in_pts": 1,
+      "net": -3,
+      "out": "Mitchell",
+      "out_pts": 4
      },
      {
       "in": "Gvardiol",
       "in_pts": 4,
       "net": 3,
+      "out": "Ajayi",
+      "out_pts": 1
+     },
+     {
+      "in": "Hall",
+      "in_pts": 0,
+      "net": -1,
       "out": "N.Williams",
       "out_pts": 1
      },
      {
-      "in": "De Cuyper",
-      "in_pts": 15,
-      "net": 11,
-      "out": "Mitchell",
-      "out_pts": 4
-     },
-     {
-      "in": "Kostoulas",
+      "in": "Tavernier",
       "in_pts": 1,
       "net": 1,
-      "out": "Kusi-Asare",
-      "out_pts": 0
-     },
-     {
-      "in": "Bogle",
-      "in_pts": 1,
-      "net": -8,
-      "out": "Calafiori",
-      "out_pts": 9
-     },
-     {
-      "in": "Tzolakis",
-      "in_pts": 2,
-      "net": 2,
-      "out": "Dubravka",
+      "out": "Szoboszlai",
       "out_pts": 0
      },
      {
@@ -695,6 +688,13 @@
       "net": 0,
       "out": "B.Fernandes",
       "out_pts": 1
+     },
+     {
+      "in": "Kostoulas",
+      "in_pts": 1,
+      "net": 1,
+      "out": "Kusi-Asare",
+      "out_pts": 0
      }
     ],
     "you_hits": 0,
@@ -703,7 +703,7 @@
    "verdict": "You +5",
    "you": 64
   },
-  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "scored_at_et": "2026-10-17 12:12 AM ET",
   "source": "plan (backfilled)",
   "squad": [
    {

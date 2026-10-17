@@ -222,15 +222,33 @@ def _actual(get, boot, team_id, gw):
     name = {e["id"]: e["web_name"] for e in boot["elements"]}
     pk = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw}/picks/")
     eh = pk.get("entry_history") or {}
-    try:
-        tr = [t for t in get(f"https://fantasy.premierleague.com/api/entry/{team_id}/transfers/") if t.get("event") == gw]
-    except Exception:
-        tr = []
-    # a Free Hit / Wildcard week lists every swap; pair them as FPL does
-    transfers = [{"out": name.get(t["element_out"]), "out_id": t["element_out"], "in": name.get(t["element_in"]), "in_id": t["element_in"]} for t in tr]
+    # the net change from last gameweek's 15 (a Wildcard / Free Hit week can list dozens of swaps and undos):
+    # players who left vs players who arrived, paired position by position
+    transfers = []
+    if gw > 1:
+        try:
+            prev = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw - 1}/picks/")
+            if prev.get("active_chip") == "freehit" and gw > 2:     # a Free Hit squad reverts: compare with the week before
+                prev = get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{gw - 2}/picks/")
+            before = {p["element"] for p in (prev.get("picks") or [])}
+        except Exception:
+            before = set()
+        now_ids = {p["element"] for p in pk.get("picks") or []}
+        if before:
+            transfers = net_moves(before, now_ids, pos, name)
     picks = [{**p, "pos": pos.get(p["element"]), "name": name.get(p["element"])} for p in pk.get("picks") or []]
     return {"picks": picks, "chip": pk.get("active_chip"), "points": eh.get("points"), "hit_cost": eh.get("event_transfers_cost") or 0,
             "transfers": transfers}
+
+
+def net_moves(before, after, pos, name):
+    """Pair the players who left with the ones who arrived, same position, in id order."""
+    out_ids, in_ids = sorted(set(before) - set(after)), sorted(set(after) - set(before))
+    moves = []
+    for p in ("GKP", "DEF", "MID", "FWD"):
+        o = [i for i in out_ids if pos.get(i) == p]; n = [i for i in in_ids if pos.get(i) == p]
+        moves += [{"out": name.get(a), "out_id": a, "in": name.get(b), "in_id": b} for a, b in zip(o, n)]
+    return moves
 
 
 def _live(get, gw):
