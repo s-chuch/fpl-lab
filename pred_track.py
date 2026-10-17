@@ -135,6 +135,56 @@ def grade(log, boot, get):
     return log
 
 
+# ---------------------------------------------------------------- earlier method (before the Predictions box)
+LEGACY_FILE = Path(__file__).resolve().parent / "legacy_predictions.json"
+
+
+def grade_legacy(leg, boot, get):
+    """Grade the stored DEFCON top-10 lists (name + club) of earlier gameweeks once FPL has settled them."""
+    done = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
+    short = {t["id"]: t["short_name"] for t in boot["teams"]}
+    by_key = {(e["web_name"], short[e["team"]]): e for e in boot["elements"]}
+    boot_el = {e["id"]: e for e in boot["elements"]}
+    for g in (leg.get("gws") or {}).values():
+        if g.get("graded") or g["gw"] not in done:
+            continue
+        try:
+            live = {x["id"]: x["stats"] for x in get(f"https://fantasy.premierleague.com/api/event/{g['gw']}/live/").get("elements", [])}
+        except Exception:
+            continue
+        res = []
+        for p in g["picks"]:
+            el = by_key.get((p["name"], p["club"]))
+            res.append(grade_pick("defcon", {"id": el["id"]}, live, [], boot_el) if el else {"hit": False, "why": "player not found"})
+        g["results"] = {"defcon": res}
+        g["graded"] = True
+    return leg
+
+
+def legacy_view(leg, volume_log):
+    """Earlier-method scorecard: the old chance-volume goal / assist lists (volume_log, only players who played count) and the stored
+    DEFCON top-10s."""
+    ga = []
+    for k in sorted((volume_log or {}), key=lambda x: int(x[2:])):
+        e = volume_log[k] or {}
+        if not e.get("graded"):
+            continue
+        row = {"gw": e["gw"], "rebuilt": bool(e.get("backfilled"))}
+        for kind, name in (("goal", "goals"), ("assist", "assists")):
+            pl = [f for f in e.get("flags", []) if f["kind"] == kind and f.get("played")]
+            row[name] = [sum(1 for f in pl if (f.get("got") or 0) > 0), len(pl)]
+        ga.append(row)
+    dc = []
+    for g in sorted((leg.get("gws") or {}).values(), key=lambda g: g["gw"]):
+        if g.get("graded"):
+            rs = g["results"]["defcon"]
+            dc.append({"gw": g["gw"], "defcon": [sum(1 for r in rs if r["hit"]), len(rs)]})
+    def tot(rows, k):
+        return [sum(r[k][0] for r in rows), sum(r[k][1] for r in rows)] if rows else [0, 0]
+    return {"goals_assists": ga, "defcon": dc, "total": {"goals": tot(ga, "goals"), "assists": tot(ga, "assists"), "defcon": tot(dc, "defcon")},
+            "pending": [g["gw"] for g in (leg.get("gws") or {}).values() if not g.get("graded")]}
+
+
 # ---------------------------------------------------------------- what the page shows
 def view(log, boot_players=None):
     gws = sorted((log.get("gws") or {}).values(), key=lambda g: g["gw"])

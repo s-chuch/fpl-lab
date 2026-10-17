@@ -53,5 +53,17 @@ class Calibration(unittest.TestCase):
         self.assertIn(("did not play or played under an hour", 1), v["why"]["goals"])
 
 
+class Legacy(unittest.TestCase):
+    def test_legacy_view_totals_played_only(self):
+        vl = {"gw3": {"gw": 3, "graded": True, "backfilled": True, "flags": [
+            {"kind": "goal", "played": True, "got": 1}, {"kind": "goal", "played": True, "got": 0}, {"kind": "goal", "played": False, "got": 0},
+            {"kind": "assist", "played": True, "got": 0}]}}
+        leg = {"gws": {"6": {"gw": 6, "graded": True, "results": {"defcon": [{"hit": True}, {"hit": False}]}}, "7": {"gw": 7, "graded": False}}}
+        v = pt.legacy_view(leg, vl)
+        self.assertEqual(v["total"], {"goals": [1, 2], "assists": [0, 1], "defcon": [1, 2]})
+        self.assertEqual(v["pending"], [7])
+        self.assertTrue(v["goals_assists"][0]["rebuilt"])
+
+
 if __name__ == "__main__":
     unittest.main()

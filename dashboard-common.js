@@ -797,6 +797,19 @@ function labPred(D){
   } else {
     rec=`<p class="note" data-keep>Track record starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw))} is settled: each top-10 is saved before the deadline, marked right or wrong against FPL's final stats, and any bias is corrected in later predictions.</p>`;
   }
+  // earlier method: the saved chance-volume goal / assist lists and DEFCON top-10s from before this box existed
+  let leg="";
+  const LG=R.legacy;
+  if(LG&&((LG.goals_assists||[]).length||(LG.defcon||[]).length)){
+    const gws=[...new Set([...(LG.goals_assists||[]).map(r=>r.gw),...(LG.defcon||[]).map(r=>r.gw)])].sort((x,y)=>y-x);
+    const ga=Object.fromEntries((LG.goals_assists||[]).map(r=>[r.gw,r])), dc=Object.fromEntries((LG.defcon||[]).map(r=>[r.gw,r]));
+    const cell=v=>v&&v[1]?`${v[0]}/${v[1]}`:"–";
+    const T=LG.total||{}, tp=v=>v&&v[1]?`${v[0]}/${v[1]} (${Math.round(100*v[0]/v[1])}%)`:"–";
+    leg=`<div class="lab-rec"><h3 class="lab-ph3">Earlier method · saved before these predictions</h3>
+      <p class="lab-rl2"><b>Goals</b> ${tp(T.goals)} · <b>Assists</b> ${tp(T.assists)} · <b>DEFCON</b> ${tp(T.defcon)}</p>
+      <table class="lab-rtab"><thead><tr><th>GW</th><th>Goals</th><th>Assists</th><th>DEFCON</th></tr></thead><tbody>${gws.map(g=>`<tr><td>GW${g}${ga[g]&&ga[g].rebuilt?"*":""}</td><td>${cell((ga[g]||{}).goals)}</td><td>${cell((ga[g]||{}).assists)}</td><td>${cell((dc[g]||{}).defcon)}</td></tr>`).join("")}</tbody></table>
+      <p class="note">The old chance-volume goal and assist lists and the DEFCON top-10s the program saved (only players who played count). * the goal and assist lists for that week were rebuilt afterwards, not saved at the time. Kept apart from the new hit rate and from the recalibration.${(LG.pending||[]).length?` GW${LG.pending.join(", GW")} will be graded when settled.`:""}</p></div>`;
+  }
   const lists=sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
    +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)),"Chance of at least one assist")
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
@@ -804,7 +817,7 @@ function labPred(D){
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
   const L=R.last;
   const lastBlock=L?`<h3 class="lab-ph3">How GW${L.gw} went</h3>`+CAT.map(([k,l])=>`<h4 class="lab-ph4">${l}</h4><div class="lab-prs">${((L.picks||{})[k]||[]).map(p=>row(p.name||p.club,p.name?p.club:"",`<b>${p.p}%</b>`,esc(p.why||""),p.hit?"y":"n")).join("")}</div>`).join(""):"";
-  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+lists+lastBlock;
+  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+leg+lists+lastBlock;
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;

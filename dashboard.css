@@ -428,3 +428,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-rc span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase}.lab-rc b{display:block;font-size:16px}.lab-rc em{font-style:normal;font-size:11px;color:var(--muted)}
 .lab-rtab{width:100%;border-collapse:collapse;font-size:12px}.lab-rtab th,.lab-rtab td{padding:3px 4px;text-align:center;border-bottom:1px solid var(--line)}.lab-rtab th:first-child,.lab-rtab td:first-child{text-align:left}
 .lab-rl{margin:0;padding-left:16px;font-size:12px;line-height:1.4;color:var(--ink)}.lab-rl li{margin:2px 0}
+.lab-rl2{font-size:13px;margin:4px 0 8px;line-height:1.5}

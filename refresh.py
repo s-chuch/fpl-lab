@@ -1493,6 +1493,9 @@ def main(team_id=TEAM_ID, out_path=None):
             pred_track.record(plog, preds["gw"], picks, datetime.now(timezone.utc))
         pred_track.save(path, plog)
         preds["record"] = pred_track.view(plog)
+        leg = pred_track.grade_legacy(pred_track.load(pred_track.LEGACY_FILE), boot, get)     # earlier-method lists, graded once settled
+        pred_track.save(pred_track.LEGACY_FILE, leg)
+        preds["record"]["legacy"] = pred_track.legacy_view(leg, data.get("volume_log"))
         return preds
     data["predictions"] = section("predictions", _predictions, fallback={})
     data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs, signals)
