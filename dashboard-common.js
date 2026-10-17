@@ -859,7 +859,7 @@ function labPredLiveHtml(){
   return `<div class="lab-rec lab-live"><h3 class="lab-ph3">Gameweek ${L.gw} live${L.in_play?` <span class="pill free">${L.in_play} match${L.in_play===1?"":"es"} in play</span>`:""}</h3>
     <p class="note" data-keep>${esc(L.pred.source)}. ${when?`Updated ${when}; `:""}this page re-checks every 5 minutes. A pick turns ✓ the moment it happens and ✗ once his match is over.</p>${shown.map(sec).join("")}</div>`;
 }
-document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-inf]"); if(!b) return; const r=b.closest(".lab-pr"), s=r&&r.querySelector(".s"); if(!s) return; s.hidden=!s.hidden; b.setAttribute("aria-expanded",String(!s.hidden)); r.classList.toggle("open",!s.hidden);});
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-inf]"); if(!b) return; const tr=b.closest("tr"); if(tr&&tr.nextElementSibling&&tr.nextElementSibling.classList.contains("lab-det")){const n=tr.nextElementSibling; n.hidden=!n.hidden; b.setAttribute("aria-expanded",String(!n.hidden)); return;} const r=b.closest(".lab-pr"), s=r&&r.querySelector(".s"); if(!s) return; s.hidden=!s.hidden; b.setAttribute("aria-expanded",String(!s.hidden)); r.classList.toggle("open",!s.hidden);});
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
   const R=P.record||{}, CAT=[["gi","Goal or assist"],["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
@@ -900,10 +900,21 @@ function labPred(D){
       <table class="lab-rtab"><thead><tr><th>GW</th><th>Goals</th><th>Assists</th><th>DEFCON</th></tr></thead><tbody>${gws.map(g=>`<tr><td>GW${g}${ga[g]&&ga[g].rebuilt?"*":""}</td><td>${cell((ga[g]||{}).goals)}</td><td>${cell((ga[g]||{}).assists)}</td><td>${cell((dc[g]||{}).defcon)}</td></tr>`).join("")}</tbody></table>
       <p class="note">The old chance-volume goal and assist lists and the DEFCON top-10s the program saved (only players who played count). * the goal and assist lists for that week were rebuilt afterwards, not saved at the time. Kept apart from the new hit rate and from the recalibration.${(LG.pending||[]).length?` GW${LG.pending.join(", GW")} will be graded when settled.`:""}</p></div>`;
   }
-  const lists=sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA${esc(vol(r,"b"))}`)),"Chance of at least one goal or assist")
-   +sec("Attacking points",(P.ap||[]).map(r=>row(r.name,r.club,`<b>${labNum(r.ap,1)} pts</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} goals + ${labNum(r.xa,2)} assists`)),"Expected FPL points from goals (4-6 each) and assists (3 each)")
-   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG${esc(vol(r,"g"))}`)),"Chance of at least one goal")
-   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA${esc(vol(r,"a"))}`)),"Chance of at least one assist")
+  // one table for every attacking list: the union of the top 10s, sorted by the chance of a goal or an assist
+  const atkTable=(()=>{
+    const m={}; const GP={GKP:6,DEF:6,MID:5,FWD:4};
+    ["gi","ap","goals","assists"].forEach(k=>(P[k]||[]).forEach(r=>{const o=m[r.id]=m[r.id]||{id:r.id,name:r.name,club:r.club,pos:r.pos,fixture:r.fixture}; ["xg","xa","vol"].forEach(f=>{if(r[f]!=null&&o[f]==null) o[f]=r[f];}); (o.in=o.in||[]).push(k);}));
+    const ch=P.chances||{}, cap=x=>Math.min(97,Math.round(x)), pr=x=>100*(1-Math.exp(-x));
+    const rows=Object.values(m).map(o=>{
+      const c=ch[o.name+"|"+o.club];
+      const xg=o.xg!=null?o.xg:c?-Math.log(Math.max(1e-6,1-c[0]/100)):0, xa=o.xa!=null?o.xa:c?-Math.log(Math.max(1e-6,1-c[1]/100)):0;
+      return {...o,xg,xa,g:cap(c?c[0]:pr(xg)),a:cap(c?c[1]:pr(xa)),e:cap(c?c[2]:pr(xg+xa)),ap:xg*(GP[o.pos]||4)+xa*3};
+    }).sort((x,y)=>y.e-x.e||y.ap-x.ap);
+    if(!rows.length) return `<h3 class="lab-ph3">Goals and assists <span class="lab-gwtag">GW${P.gw}</span></h3><p class="note">Nothing to show yet.</p>`;
+    const body=rows.map(r=>`<tr><td class="n"><b>${esc(r.name)}</b> <em>${esc(r.club)}</em> <button type="button" class="lab-inf" data-inf="1" aria-label="Show details" aria-expanded="false">i</button></td><td>${r.g}%</td><td>${r.a}%</td><td>${labNum(r.ap,1)}</td><td><b>${r.e}%</b></td></tr><tr class="lab-det" hidden><td colspan="5">${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA${esc(vol(r,"b"))}</td></tr>`).join("");
+    return `<h3 class="lab-ph3">Goals and assists <span class="lab-gwtag">GW${P.gw}</span></h3><table class="lab-atk"><thead><tr><th>Player</th><th>G</th><th>A</th><th>AP</th><th>G/A</th></tr></thead><tbody>${body}</tbody></table><p class="note" data-keep><b>G</b> chance of scoring · <b>A</b> chance of an assist · <b>AP</b> expected attacking points (goals ×4-6, assists ×3) · <b>G/A</b> chance of a goal or an assist (sorted by this). Players are the top 10 of any of these lists. Tap <b>i</b> for the fixture, xG/xA and recent shots.</p>`;
+  })();
+  const lists=atkTable
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
    +sec("DEFCON",(P.defcon||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc(r.pos)}`)),"Chance of reaching the defensive-contribution bonus")
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
