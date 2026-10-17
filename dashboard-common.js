@@ -775,14 +775,13 @@ function labNews(D,they){
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
-  const row=(a,b,c)=>`<li><span class="who">${a}</span><span>${b}</span>${c?`<div class="detail note">${c}</div>`:""}</li>`;
-  const nm=r=>`${esc(r.name)} <span class="note">${esc(r.club)}</span>`;
-  const sec=(t,items)=>`<h3>${t}</h3><ul class="chiplist">${items.join("")||'<li><span class="note">Nothing to show yet.</span></li>'}</ul>`;
+  const row=(name,club,val,sub)=>`<div class="lab-pr"><span class="n">${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
+  const sec=(t,items)=>`<h3 class="lab-ph3">${t}</h3><div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news). "Chance" = at least one.</p>`
-   +sec("Goals",(P.goals||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xg,2)} expected goals`)))
-   +sec("Assists",(P.assists||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xa,2)} expected assists`)))
-   +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(esc(r.club),`<b>${r.cs}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)))
-   +sec("Rotation risk",(P.rotation||[]).map(r=>row(nm(r),`<b>${r.rotate??(100-r.start)}%</b> chance of rotation`,esc((r.why||[]).join("; ")||"plays fewer minutes than a full starter"))));
+   +sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)))
+   +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)))
+   +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.cs}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)))
+   +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))));
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
