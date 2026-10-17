@@ -407,8 +407,17 @@ function plannerCardCompact(D){
 }
 // Matchday snapshot (live_update.py -> live-data.js, written every ~10 min while matches are in play). The browser
 // cannot call FPL's API itself (no CORS), so the page reads that snapshot and refreshes it while it is open.
+// The Plan tab's live card is only for a gameweek that is under way: at least one match has kicked off and at least one has not finished.
+// Once the last match is over it hides, and it comes back when the next gameweek's first match starts (live-data.js is then rewritten).
+function labLiveOn(L){
+  if(!L||!(L.games||[]).length) return false;
+  const lg=((window.FPL_DATA||{}).deadline||{}).locked_gw;
+  if(lg!=null&&L.gw<lg) return false;                 // a snapshot of an earlier gameweek
+  return L.games.some(g=>g.started)&&L.games.some(g=>!g.finished);
+}
 function liveBar(L,team){
   try{
+    if(!labLiveOn(L)) return "";
     const T=L&&L.teams&&L.teams[team]; if(!T) return "";
     const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
     if(!(ageMin<360)) return "";           // a stale snapshot (match day long over) is not shown as live

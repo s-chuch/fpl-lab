@@ -35,5 +35,24 @@ class PredLive(unittest.TestCase):
         self.assertEqual([r["hit"] for r in mid], [True, False, False])      # benched is known once the match is on; the others are still playing
 
 
+class LiveGw(unittest.TestCase):
+    NOW = lu.datetime(2026, 10, 25, 12, 0, tzinfo=lu.timezone.utc)
+
+    def boot(self):
+        ev = lambda i, fin, chk, dl: {"id": i, "finished": fin, "data_checked": chk, "deadline_time": dl}
+        return {"events": [ev(7, True, False, "2026-10-17T10:00:00Z"), ev(8, False, False, "2026-10-23T17:30:00Z"), ev(9, False, False, "2026-11-01T10:00:00Z")]}
+
+    def test_new_gameweek_takes_over_from_an_unsettled_one(self):
+        fx = [{"event": 7, "started": True, "finished": True}, {"event": 8, "started": True, "finished": False}]
+        self.assertEqual(lu.live_gameweek(self.boot(), fx, self.NOW), 8)
+
+    def test_unsettled_finished_gameweek_stays_until_settled(self):
+        fx = [{"event": 7, "started": True, "finished": True}, {"event": 8, "started": False, "finished": False}]
+        self.assertEqual(lu.live_gameweek(self.boot(), fx, self.NOW), 7)
+
+    def test_nothing_started_is_none(self):
+        self.assertIsNone(lu.live_gameweek({"events": [{"id": 9, "finished": False, "data_checked": False, "deadline_time": "2026-11-01T10:00:00Z"}]}, [], self.NOW))
+
+
 if __name__ == "__main__":
     unittest.main()

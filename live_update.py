@@ -18,17 +18,23 @@ OUT = ROOT / "live-data.js"
 
 
 def live_gameweek(boot, fixtures, now):
-    """The gameweek with a match in play or just finished but not yet settled, else None."""
+    """The gameweek that is live: one with a match in play wins (so a new gameweek takes over from one that FPL has not settled
+    yet); otherwise the first unsettled gameweek whose matches have started (every match over but FPL's checks not done: totals
+    still move until then); else None."""
+    cands = []
     for e in sorted(boot["events"], key=lambda e: e["id"]):
         if e.get("finished") and e.get("data_checked"):
             continue
         dl = parse_deadline(e.get("deadline_time"))
         if not dl or now < dl:
-            return None
-        # the first unsettled gameweek is the live one if any of its matches has kicked off (including when every
-        # match is over but FPL has not finished its checks: totals still move until then)
-        return e["id"] if any(f.get("started") for f in fixtures if f.get("event") == e["id"]) else None
-    return None
+            break
+        fx = [f for f in fixtures if f.get("event") == e["id"]]
+        if any(f.get("started") for f in fx):
+            cands.append((e["id"], any(f.get("started") and not (f.get("finished") or f.get("finished_provisional")) for f in fx)))
+    playing = [g for g, on in cands if on]
+    if playing:
+        return max(playing)
+    return cands[0][0] if cands else None
 
 
 def team_snapshot(boot, team_id, gw, live, els):
