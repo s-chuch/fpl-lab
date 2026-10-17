@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-17T18:32:23.036426+00:00",
+    "fetched_at": "2026-10-17T22:05:01.000599+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -378,11 +378,6 @@
         },
         "between": [
           {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Newcastle"
-          },
-          {
             "date": "2026-10-21",
             "competition": "Champions League",
             "opponent": "Viking"
@@ -467,13 +462,7 @@
           "opponent": "Everton",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-17",
-            "competition": "Premier League",
-            "opponent": "Aston Villa"
-          }
-        ]
+        "between": []
       },
       "LIV": {
         "rest_days": 5,
