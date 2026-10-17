@@ -1,0 +1,1218 @@
+{
+ "gw4": {
+  "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   496,
+   557,
+   534,
+   423
+  ],
+  "captain": 165,
+  "captain_name": "João Pedro",
+  "chip": null,
+  "code_sha": "c31d02d",
+  "gw": 4,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-09-12 12:01 UTC",
+  "saved_at_et": "2026-09-12 8:01 AM ET",
+  "score": {
+   "captain": {
+    "diff": -7,
+    "model": "João Pedro",
+    "model_mult": 2,
+    "model_pts": 12,
+    "you": "Palmer",
+    "you_mult": 2,
+    "you_pts": 5
+   },
+   "chip": {
+    "model": null,
+    "you": "freehit"
+   },
+   "diff": -15,
+   "lineup": {
+    "diff": 1,
+    "model_autosubs": [],
+    "model_bench_pts": 10,
+    "you_autosubs": [],
+    "you_bench_pts": 9
+   },
+   "model": 105,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Verbruggen",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 11
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Davis",
+     "played": true,
+     "pts": 14
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Cherki",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 2,
+     "name": "João Pedro",
+     "played": true,
+     "pts": 12
+    },
+    {
+     "mult": 1,
+     "name": "Haaland",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 17
+    },
+    {
+     "mult": 1,
+     "name": "Szoboszlai",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Calvert-Lewin",
+     "played": true,
+     "pts": 10
+    }
+   ],
+   "transfers": {
+    "diff": -9,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [
+     {
+      "in": "Hughes",
+      "in_pts": 1,
+      "net": -16,
+      "out": "Groß",
+      "out_pts": 17
+     },
+     {
+      "in": "Raya",
+      "in_pts": 14,
+      "net": 6,
+      "out": "Verbruggen",
+      "out_pts": 8
+     },
+     {
+      "in": "Konsa",
+      "in_pts": 6,
+      "net": 5,
+      "out": "Mendy",
+      "out_pts": 1
+     },
+     {
+      "in": "Khalaili",
+      "in_pts": 7,
+      "net": 6,
+      "out": "Mitchell",
+      "out_pts": 1
+     },
+     {
+      "in": "Verbruggen",
+      "in_pts": 8,
+      "net": -6,
+      "out": "Raya",
+      "out_pts": 14
+     },
+     {
+      "in": "Calafiori",
+      "in_pts": 6,
+      "net": 0,
+      "out": "Konsa",
+      "out_pts": 6
+     },
+     {
+      "in": "Konsa",
+      "in_pts": 6,
+      "net": 0,
+      "out": "Calafiori",
+      "out_pts": 6
+     },
+     {
+      "in": "Raya",
+      "in_pts": 14,
+      "net": 6,
+      "out": "Verbruggen",
+      "out_pts": 8
+     },
+     {
+      "in": "Mitchell",
+      "in_pts": 1,
+      "net": -6,
+      "out": "Khalaili",
+      "out_pts": 7
+     },
+     {
+      "in": "Verbruggen",
+      "in_pts": 8,
+      "net": -6,
+      "out": "Raya",
+      "out_pts": 14
+     },
+     {
+      "in": "Khalaili",
+      "in_pts": 7,
+      "net": -7,
+      "out": "Davis",
+      "out_pts": 14
+     },
+     {
+      "in": "Van Hecke",
+      "in_pts": 8,
+      "net": 8,
+      "out": "Thomas",
+      "out_pts": 0
+     },
+     {
+      "in": "Groß",
+      "in_pts": 17,
+      "net": 16,
+      "out": "Gakpo",
+      "out_pts": 1
+     },
+     {
+      "in": "Thomas",
+      "in_pts": 0,
+      "net": -6,
+      "out": "Konsa",
+      "out_pts": 6
+     },
+     {
+      "in": "Davis",
+      "in_pts": 14,
+      "net": 13,
+      "out": "Mitchell",
+      "out_pts": 1
+     },
+     {
+      "in": "Slater",
+      "in_pts": 2,
+      "net": -1,
+      "out": "Gomez",
+      "out_pts": 3
+     },
+     {
+      "in": "Gakpo",
+      "in_pts": 1,
+      "net": -16,
+      "out": "Groß",
+      "out_pts": 17
+     },
+     {
+      "in": "Konsa",
+      "in_pts": 6,
+      "net": -8,
+      "out": "Davis",
+      "out_pts": 14
+     },
+     {
+      "in": "Rogers",
+      "in_pts": 8,
+      "net": 5,
+      "out": "Tzolis",
+      "out_pts": 3
+     },
+     {
+      "in": "Mitchell",
+      "in_pts": 1,
+      "net": 1,
+      "out": "Shaw",
+      "out_pts": 0
+     },
+     {
+      "in": "Mendy",
+      "in_pts": 1,
+      "net": 1,
+      "out": "Hume",
+      "out_pts": 0
+     },
+     {
+      "in": "Raya",
+      "in_pts": 14,
+      "net": 6,
+      "out": "Verbruggen",
+      "out_pts": 8
+     },
+     {
+      "in": "Dubravka",
+      "in_pts": 0,
+      "net": -7,
+      "out": "Kinsky",
+      "out_pts": 7
+     },
+     {
+      "in": "Gomez",
+      "in_pts": 3,
+      "net": 1,
+      "out": "B.Fernandes",
+      "out_pts": 2
+     },
+     {
+      "in": "Palmer",
+      "in_pts": 5,
+      "net": 4,
+      "out": "Cherki",
+      "out_pts": 1
+     },
+     {
+      "in": "Isak",
+      "in_pts": 2,
+      "net": -8,
+      "out": "Calvert-Lewin",
+      "out_pts": 10
+     }
+    ],
+    "you_hits": 0,
+    "you_net": -9
+   },
+   "verdict": "Model +15",
+   "you": 90
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "BHA",
+    "id": 109,
+    "name": "Verbruggen",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 399,
+    "name": "Cherki",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "LEE",
+    "id": 346,
+    "name": "Calvert-Lewin",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "TOT",
+    "id": 496,
+    "name": "Kinsky",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 557,
+    "name": "Tzolis",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "SUN",
+    "id": 534,
+    "name": "Hume",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 423,
+    "name": "Shaw",
+    "pos": "DEF",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 109,
+  "vice_name": "Verbruggen",
+  "xi": [
+   109,
+   115,
+   8,
+   305,
+   426,
+   399,
+   165,
+   411,
+   124,
+   368,
+   346
+  ],
+  "xp": null
+ },
+ "gw5": {
+  "backfill_note": "Rebuilt from data.js at 13169ec: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   109,
+   165,
+   534,
+   423
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "code_sha": "13169ec",
+  "gw": 5,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-09-18 15:34 UTC",
+  "saved_at_et": "2026-09-18 11:34 AM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 6,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 6
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": 0,
+   "lineup": {
+    "diff": 0,
+    "model_autosubs": [],
+    "model_bench_pts": 9,
+    "you_autosubs": [],
+    "you_bench_pts": 9
+   },
+   "model": 53,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Kinsky",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Davis",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Cherki",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 14
+    },
+    {
+     "mult": 1,
+     "name": "Calvert-Lewin",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Szoboszlai",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Tzolis",
+     "played": true,
+     "pts": 2
+    }
+   ],
+   "transfers": {
+    "diff": 0,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [],
+    "you_hits": 0,
+    "you_net": 0
+   },
+   "verdict": "Same",
+   "you": 53
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "TOT",
+    "id": 496,
+    "name": "Kinsky",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 399,
+    "name": "Cherki",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "LEE",
+    "id": 346,
+    "name": "Calvert-Lewin",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 557,
+    "name": "Tzolis",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 109,
+    "name": "Verbruggen",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "SUN",
+    "id": 534,
+    "name": "Hume",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 423,
+    "name": "Shaw",
+    "pos": "DEF",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 496,
+  "vice_name": "Kinsky",
+  "xi": [
+   496,
+   8,
+   115,
+   305,
+   426,
+   399,
+   411,
+   124,
+   346,
+   368,
+   557
+  ],
+  "xp": null
+ },
+ "gw6": {
+  "backfill_note": "Rebuilt from data.js at adf84ef: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   496,
+   368,
+   534,
+   557
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "code_sha": "adf84ef",
+  "gw": 6,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-10 05:49 UTC",
+  "saved_at_et": "2026-10-10 1:49 AM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 6,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 6
+   },
+   "chip": {
+    "model": null,
+    "you": "wildcard"
+   },
+   "diff": -14,
+   "lineup": {
+    "diff": -1,
+    "model_autosubs": [],
+    "model_bench_pts": 4,
+    "you_autosubs": [],
+    "you_bench_pts": 5
+   },
+   "model": 80,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Verbruggen",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Davis",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 15
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Cherki",
+     "played": true,
+     "pts": 10
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "João Pedro",
+     "played": true,
+     "pts": 12
+    },
+    {
+     "mult": 1,
+     "name": "Calvert-Lewin",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Shaw",
+     "played": true,
+     "pts": 3
+    }
+   ],
+   "transfers": {
+    "diff": -13,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [
+     {
+      "in": "Saka",
+      "in_pts": 2,
+      "net": 1,
+      "out": "B.Fernandes",
+      "out_pts": 1
+     },
+     {
+      "in": "B.Fernandes",
+      "in_pts": 1,
+      "net": -9,
+      "out": "Cherki",
+      "out_pts": 10
+     },
+     {
+      "in": "Davis",
+      "in_pts": 1,
+      "net": -3,
+      "out": "Konsa",
+      "out_pts": 4
+     },
+     {
+      "in": "João Pedro",
+      "in_pts": 12,
+      "net": 6,
+      "out": "Barry",
+      "out_pts": 6
+     },
+     {
+      "in": "Barry",
+      "in_pts": 6,
+      "net": 6,
+      "out": "Isak",
+      "out_pts": 0
+     },
+     {
+      "in": "Tzolakis",
+      "in_pts": 2,
+      "net": -1,
+      "out": "Kinsky",
+      "out_pts": 3
+     },
+     {
+      "in": "Schade",
+      "in_pts": 1,
+      "net": 0,
+      "out": "Tavernier",
+      "out_pts": 1
+     },
+     {
+      "in": "Raya",
+      "in_pts": 3,
+      "net": -6,
+      "out": "Verbruggen",
+      "out_pts": 9
+     },
+     {
+      "in": "Kostoulas",
+      "in_pts": 1,
+      "net": -11,
+      "out": "João Pedro",
+      "out_pts": 12
+     },
+     {
+      "in": "Tavernier",
+      "in_pts": 1,
+      "net": -12,
+      "out": "Dewsbury-Hall",
+      "out_pts": 13
+     },
+     {
+      "in": "Hall",
+      "in_pts": 0,
+      "net": -1,
+      "out": "Davis",
+      "out_pts": 1
+     },
+     {
+      "in": "Tarkowski",
+      "in_pts": 3,
+      "net": 3,
+      "out": "Mykolenko",
+      "out_pts": 0
+     },
+     {
+      "in": "Isak",
+      "in_pts": 0,
+      "net": -2,
+      "out": "Calvert-Lewin",
+      "out_pts": 2
+     },
+     {
+      "in": "King",
+      "in_pts": 2,
+      "net": 2,
+      "out": "Szoboszlai",
+      "out_pts": 0
+     },
+     {
+      "in": "Barnes",
+      "in_pts": 2,
+      "net": 1,
+      "out": "B.Fernandes",
+      "out_pts": 1
+     },
+     {
+      "in": "Dewsbury-Hall",
+      "in_pts": 13,
+      "net": 13,
+      "out": "Tzolis",
+      "out_pts": 0
+     },
+     {
+      "in": "Konsa",
+      "in_pts": 4,
+      "net": 3,
+      "out": "Hume",
+      "out_pts": 1
+     },
+     {
+      "in": "Mykolenko",
+      "in_pts": 0,
+      "net": -3,
+      "out": "Shaw",
+      "out_pts": 3
+     }
+    ],
+    "you_hits": 0,
+    "you_net": -13
+   },
+   "verdict": "Model +14",
+   "you": 66
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "BHA",
+    "id": 109,
+    "name": "Verbruggen",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 399,
+    "name": "Cherki",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "LEE",
+    "id": 346,
+    "name": "Calvert-Lewin",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 423,
+    "name": "Shaw",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "TOT",
+    "id": 496,
+    "name": "Kinsky",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "SUN",
+    "id": 534,
+    "name": "Hume",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 557,
+    "name": "Tzolis",
+    "pos": "MID",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 109,
+  "vice_name": "Verbruggen",
+  "xi": [
+   109,
+   305,
+   115,
+   8,
+   124,
+   399,
+   411,
+   165,
+   346,
+   426,
+   423
+  ],
+  "xp": null
+ },
+ "gw7": {
+  "backfilled": false,
+  "bench": [
+   1,
+   165,
+   268,
+   305
+  ],
+  "captain": 124,
+  "captain_name": "Groß",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "b568ecd59dfa",
+  "ft": 2,
+  "gw": 7,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-17T04:09:21+00:00",
+  "saved_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 4.57
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 6.02
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 5.8
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": 4.8
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 4.5
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 6.56
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 5.8
+   },
+   {
+    "club": "ARS",
+    "id": 12,
+    "name": "Saka",
+    "pos": "MID",
+    "xp": 4.96
+   },
+   {
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 4.41
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.2
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 4.37
+   },
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 3.63
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": 3.87
+   },
+   {
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.78
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": 3.04
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Dewsbury-Hall",
+    "in_id": 236,
+    "out": "Schade",
+    "out_id": 94
+   },
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Kostoulas",
+    "out_id": 138
+   }
+  ],
+  "vice": 115,
+  "vice_name": "De Cuyper",
+  "xi": [
+   572,
+   115,
+   229,
+   8,
+   449,
+   124,
+   236,
+   12,
+   453,
+   249,
+   411
+  ],
+  "xp": 63.6
+ }
+}

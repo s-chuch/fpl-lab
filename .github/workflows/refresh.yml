@@ -46,6 +46,7 @@ on:
       - "lab_audit.py"
       - "league_tactics.py"
       - "wildcard_recommend.py"
+      - "rec_log.py"
       - ".github/workflows/refresh.yml"
 
 concurrency:
@@ -124,7 +125,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile ai_changes.py news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
+          python -m py_compile ai_changes.py news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py rec_log.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
 
       - name: Pull live FPL data
         id: pull
@@ -155,7 +156,7 @@ jobs:
           python stamp_versions.py
           # Optional caches (written only when their source answered) may not exist: add only files that do, since
           # `git add` aborts on a missing pathspec and would commit nothing at all.
-          for f in data.js bacalhau-data.js news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
+          for f in data.js bacalhau-data.js rec_log.json bacalhau-rec_log.json news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --staged --quiet; then

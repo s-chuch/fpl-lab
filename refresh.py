@@ -1527,6 +1527,18 @@ def main(team_id=TEAM_ID, out_path=None):
         "leagues": leagues,
         "captain_audit": caps,
     })
+    # Decision log: freeze this gameweek's recommendation before the deadline, score finished ones (rec_log.py).
+    # The committed rec_log*.json is the record; data.js only carries the page's view of it.
+    try:
+        import rec_log
+        _rl_path = rec_log.log_path(data_file)
+        _rl = rec_log.update(rec_log.load(_rl_path), data, boot, team_id, get)
+        rec_log.save(_rl_path, _rl)
+        data["decision_log"] = rec_log.view(_rl)
+        health["decision_log"] = {"ok": True}
+    except Exception as e:
+        _warn(f"decision_log failed: {type(e).__name__}: {e}")
+        health["decision_log"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("decision_log") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
     data["_health"] = health
     tmp = data_file.with_name(data_file.name + ".tmp")
     tmp.write_text("window.FPL_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")

@@ -1,0 +1,993 @@
+{
+ "gw4": {
+  "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   497,
+   212,
+   321,
+   272
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "code_sha": "c31d02d",
+  "gw": 4,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-09-12 12:01 UTC",
+  "saved_at_et": "2026-09-12 8:01 AM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 9,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 9
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": -8,
+   "lineup": {
+    "diff": 0,
+    "model_autosubs": [],
+    "model_bench_pts": 1,
+    "you_autosubs": [],
+    "you_bench_pts": 1
+   },
+   "model": 82,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 14
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "Gabriel",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 17
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Szoboszlai",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Kayode",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "N.Williams",
+     "played": true,
+     "pts": 2
+    }
+   ],
+   "transfers": {
+    "diff": -8,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [
+     {
+      "in": "Ajayi",
+      "in_pts": 1,
+      "net": -8,
+      "out": "Gabriel",
+      "out_pts": 9
+     },
+     {
+      "in": "Mitchell",
+      "in_pts": 1,
+      "net": 0,
+      "out": "Kayode",
+      "out_pts": 1
+     }
+    ],
+    "you_hits": 0,
+    "you_net": -8
+   },
+   "verdict": "Model +8",
+   "you": 74
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "BRE",
+    "id": 88,
+    "name": "Kayode",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "NFO",
+    "id": 469,
+    "name": "N.Williams",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "TOT",
+    "id": 497,
+    "name": "Dubravka",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "CRY",
+    "id": 212,
+    "name": "Hughes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "FUL",
+    "id": 272,
+    "name": "Kusi-Asare",
+    "pos": "FWD",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 1,
+  "vice_name": "Raya",
+  "xi": [
+   1,
+   8,
+   229,
+   4,
+   426,
+   124,
+   411,
+   368,
+   236,
+   88,
+   469
+  ],
+  "xp": null
+ },
+ "gw5": {
+  "backfill_note": "Rebuilt from data.js at 13169ec: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   497,
+   212,
+   321,
+   272
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "code_sha": "13169ec",
+  "gw": 5,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-09-18 15:34 UTC",
+  "saved_at_et": "2026-09-18 11:34 AM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 6,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 6
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": -3,
+   "lineup": {
+    "diff": -7,
+    "model_autosubs": [],
+    "model_bench_pts": 0,
+    "you_autosubs": [],
+    "you_bench_pts": 7
+   },
+   "model": 59,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 14
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Ajayi",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 14
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "N.Williams",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Szoboszlai",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Mitchell",
+     "played": true,
+     "pts": 7
+    }
+   ],
+   "transfers": {
+    "diff": 4,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [
+     {
+      "in": "Belloumi",
+      "in_pts": 4,
+      "net": 4,
+      "out": "Hughes",
+      "out_pts": 0
+     }
+    ],
+    "you_hits": 0,
+    "you_net": 4
+   },
+   "verdict": "Model +3",
+   "you": 56
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "HUL",
+    "id": 279,
+    "name": "Ajayi",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "NFO",
+    "id": 469,
+    "name": "N.Williams",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "CRY",
+    "id": 204,
+    "name": "Mitchell",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "TOT",
+    "id": 497,
+    "name": "Dubravka",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "CRY",
+    "id": 212,
+    "name": "Hughes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "FUL",
+    "id": 272,
+    "name": "Kusi-Asare",
+    "pos": "FWD",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 1,
+  "vice_name": "Raya",
+  "xi": [
+   1,
+   229,
+   8,
+   279,
+   426,
+   124,
+   411,
+   469,
+   236,
+   368,
+   204
+  ],
+  "xp": null
+ },
+ "gw6": {
+  "backfill_note": "Rebuilt from data.js at adf84ef: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
+  "backfilled": true,
+  "bench": [
+   497,
+   469,
+   272,
+   321
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "code_sha": "adf84ef",
+  "gw": 6,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-10 05:49 UTC",
+  "saved_at_et": "2026-10-10 1:49 AM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 6,
+    "you": "Groß",
+    "you_mult": 2,
+    "you_pts": 6
+   },
+   "chip": {
+    "model": null,
+    "you": "wildcard"
+   },
+   "diff": 5,
+   "lineup": {
+    "diff": -4,
+    "model_autosubs": [
+     {
+      "in": "N.Williams",
+      "out": "Szoboszlai"
+     }
+    ],
+    "model_bench_pts": 1,
+    "you_autosubs": [],
+    "you_bench_pts": 5
+   },
+   "model": 59,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Mitchell",
+     "played": true,
+     "pts": 4
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Belloumi",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 13
+    },
+    {
+     "mult": 1,
+     "name": "B.Fernandes",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "N.Williams",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Ajayi",
+     "played": true,
+     "pts": 1
+    }
+   ],
+   "transfers": {
+    "diff": 9,
+    "model": [],
+    "model_hits": 0,
+    "model_net": 0,
+    "you": [
+     {
+      "in": "Tavernier",
+      "in_pts": 1,
+      "net": 1,
+      "out": "Szoboszlai",
+      "out_pts": 0
+     },
+     {
+      "in": "Hall",
+      "in_pts": 0,
+      "net": -1,
+      "out": "Ajayi",
+      "out_pts": 1
+     },
+     {
+      "in": "Gvardiol",
+      "in_pts": 4,
+      "net": 3,
+      "out": "N.Williams",
+      "out_pts": 1
+     },
+     {
+      "in": "De Cuyper",
+      "in_pts": 15,
+      "net": 11,
+      "out": "Mitchell",
+      "out_pts": 4
+     },
+     {
+      "in": "Kostoulas",
+      "in_pts": 1,
+      "net": 1,
+      "out": "Kusi-Asare",
+      "out_pts": 0
+     },
+     {
+      "in": "Bogle",
+      "in_pts": 1,
+      "net": -8,
+      "out": "Calafiori",
+      "out_pts": 9
+     },
+     {
+      "in": "Tzolakis",
+      "in_pts": 2,
+      "net": 2,
+      "out": "Dubravka",
+      "out_pts": 0
+     },
+     {
+      "in": "Schade",
+      "in_pts": 1,
+      "net": 0,
+      "out": "B.Fernandes",
+      "out_pts": 1
+     }
+    ],
+    "you_hits": 0,
+    "you_net": 9
+   },
+   "verdict": "You +5",
+   "you": 64
+  },
+  "scored_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan (backfilled)",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "CRY",
+    "id": 204,
+    "name": "Mitchell",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "MUN",
+    "id": 426,
+    "name": "B.Fernandes",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "LIV",
+    "id": 368,
+    "name": "Szoboszlai",
+    "pos": "MID",
+    "xp": null
+   },
+   {
+    "club": "HUL",
+    "id": 279,
+    "name": "Ajayi",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "TOT",
+    "id": 497,
+    "name": "Dubravka",
+    "pos": "GKP",
+    "xp": null
+   },
+   {
+    "club": "NFO",
+    "id": 469,
+    "name": "N.Williams",
+    "pos": "DEF",
+    "xp": null
+   },
+   {
+    "club": "FUL",
+    "id": 272,
+    "name": "Kusi-Asare",
+    "pos": "FWD",
+    "xp": null
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": null
+   }
+  ],
+  "status": "scored",
+  "transfers": [],
+  "vice": 1,
+  "vice_name": "Raya",
+  "xi": [
+   1,
+   229,
+   204,
+   8,
+   124,
+   286,
+   411,
+   236,
+   426,
+   368,
+   279
+  ],
+  "xp": null
+ },
+ "gw7": {
+  "backfilled": false,
+  "bench": [
+   1,
+   94,
+   138,
+   286
+  ],
+  "captain": 124,
+  "captain_name": "Groß",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "b568ecd59dfa",
+  "ft": 1,
+  "gw": 7,
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-10-17T04:09:23+00:00",
+  "saved_at_et": "2026-10-17 12:09 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 4.57
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 6.02
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 5.8
+   },
+   {
+    "club": "COV",
+    "id": 173,
+    "name": "Thomas",
+    "pos": "DEF",
+    "xp": 5.4
+   },
+   {
+    "club": "LEE",
+    "id": 330,
+    "name": "Bogle",
+    "pos": "DEF",
+    "xp": 4.62
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 4.5
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 6.56
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 5.79
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 3.66
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.2
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 4.37
+   },
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 3.63
+   },
+   {
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 3.14
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 3.03
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.77
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
+   },
+   {
+    "in": "Thomas",
+    "in_id": 173,
+    "out": "Gvardiol",
+    "out_id": 391
+   }
+  ],
+  "vice": 115,
+  "vice_name": "De Cuyper",
+  "xi": [
+   572,
+   115,
+   229,
+   173,
+   330,
+   449,
+   124,
+   236,
+   68,
+   249,
+   411
+  ],
+  "xp": 59.1
+ }
+}
