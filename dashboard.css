@@ -391,3 +391,18 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-pc-g b{font-size:13px}
 .lab-pc-x{font-size:10.5px}
 @media(max-width:359px){.lab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* More: a menu of buttons, each opening its own page */
+.lab-menu{display:flex;flex-direction:column;gap:8px;margin:2px 0 12px}
+.lab-mi{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;width:100%;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;cursor:pointer}
+.lab-mi>span{flex:1;min-width:0}.lab-mi b{display:block;font-size:16px;letter-spacing:.03em;text-transform:uppercase}
+.lab-mi em{display:block;font-style:normal;color:var(--muted);font-size:13px;margin-top:3px}
+.lab-mi>i{color:var(--muted);line-height:0;transform:rotate(-90deg)}
+.lab-mi:active{background:#16202e}
+.lab-mhead{display:flex;align-items:center;gap:10px;margin:0 0 10px}
+.lab-mhead h2{margin:0;font-size:18px;text-transform:uppercase;letter-spacing:.03em}
+.lab-back{all:unset;cursor:pointer;color:var(--blue);font-size:14px;font-weight:600;padding:6px 10px;border:1px solid var(--line);border-radius:999px}
+.lab-stabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.lab-stabs button{border:1px solid var(--line);background:#0d1626;color:var(--ink);border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.lab-stabs button.on{background:#2a2350;border-color:var(--purple);color:#cbbcff}
+.lab-mbody section{display:block}

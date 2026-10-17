@@ -1029,25 +1029,34 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
   // MORE: every old section, grouped like the old tabs
   const more=root.querySelector("#labMore");
   const groups=(typeof TAB_GROUPS!=="undefined"?TAB_GROUPS:[]);
-  more.innerHTML=`<p class="note lab-fnote">Everything else on the site, grouped as before. Tap a section to open it.</p>`;
-  { const d=document.createElement("details"); d.className="lab-acc"; d.id="more-pred";
-    d.innerHTML=`<summary><div><b>PREDICTIONS</b><span>Goals, assists, clean sheets &amp; rotation for GW${esc(String((D.predictions||{}).gw||""))}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${labPred(D)}</div>`; more.appendChild(d); }
-  if(D.decision_log){ const d=document.createElement("details"); d.className="lab-acc"; d.id="more-declog";
-    d.innerHTML=`<summary><div><b>DECISION LOG</b><span>${they?"Their":"Your"} moves vs the model's, scored each GW</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${labDecLog(D,they)}</div>`; more.appendChild(d); }
+  more.innerHTML=`<div class="lab-menu" id="labMenu"></div><div id="labPages"></div>`;
+  const menu=more.querySelector("#labMenu"), pages=more.querySelector("#labPages");
+  // every More entry is a button that opens its own page (no dropdowns); `subs` = [[label, element]] become pill tabs inside the page
+  const addPage=(id,title,sub,build)=>{
+    const btn=document.createElement("button"); btn.type="button"; btn.className="lab-mi"; btn.dataset.page=id;
+    btn.innerHTML=`<span><b>${esc(title)}</b><em>${sub}</em></span><i>${LAB_SVG.chev}</i>`; menu.appendChild(btn);
+    const pg=document.createElement("div"); pg.className="lab-mpage"; pg.id=id; pg.hidden=true;
+    pg.innerHTML=`<div class="lab-mhead"><button type="button" class="lab-back" data-back="1">&#8592; More</button><h2>${esc(title)}</h2></div><div class="lab-mbody"></div>`;
+    build(pg.querySelector(".lab-mbody")); pages.appendChild(pg);
+  };
+  addPage("more-pred","Predictions",`Goals, assists, clean sheets &amp; rotation for GW${esc(String((D.predictions||{}).gw||""))}`,body=>{ body.innerHTML=labPred(D); });
+  if(D.decision_log) addPage("more-declog","Decision log",`${they?"Their":"Your"} moves vs the model's, scored each GW`,body=>{ body.innerHTML=labDecLog(D,they); });
   groups.forEach(g=>{
-    const d=document.createElement("details"); d.className="lab-acc"; d.id="more-"+g.id;
-    d.innerHTML=`<summary><div><b>${esc(g.label.toUpperCase())}</b><span>${esc(g.tabs.map(t=>t[1]).join(" · "))}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body"></div>`;
-    const body=d.querySelector(".lab-acc-body");
-    g.tabs.forEach(([id,label])=>{
-      const s=document.getElementById(id); if(!s) return;
-      if(g.tabs.length===1){ body.appendChild(s); return; }
-      const sd=document.createElement("details"); sd.className="lab-sub"; sd.innerHTML=`<summary>${esc(label)}<i>${LAB_SVG.chev}</i></summary>`;
-      sd.appendChild(s); body.appendChild(sd);
+    addPage("more-"+g.id,g.label,esc(g.tabs.map(t=>t[1]).join(" · ")),body=>{
+      const subs=g.tabs.map(([id,label])=>[label,document.getElementById(id)]).filter(x=>x[1]);
+      if(subs.length===1){ body.appendChild(subs[0][1]); return; }
+      const bar=document.createElement("div"); bar.className="lab-stabs";
+      const panes=subs.map(([label,s],i)=>{ const pane=document.createElement("div"); pane.className="lab-spane"; pane.hidden=i>0; pane.appendChild(s);
+        const bt=document.createElement("button"); bt.type="button"; bt.textContent=label; bt.dataset.sub=String(i); if(i===0) bt.className="on"; bar.appendChild(bt); return pane; });
+      bar.addEventListener("click",e=>{ const bt=e.target.closest("button[data-sub]"); if(!bt) return; e.stopPropagation();
+        bar.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===bt)); panes.forEach((p,i)=>{p.hidden=String(i)!==bt.dataset.sub;}); });
+      body.appendChild(bar); panes.forEach(p=>body.appendChild(p));
     });
-    more.appendChild(d);
   });
   // any section not in a group (future additions) still shows
-  document.querySelectorAll("body > section").forEach(s=>{ if(!s.innerHTML.trim()) return; const d=document.createElement("details"); d.className="lab-acc"; d.innerHTML=`<summary><div><b>${esc(s.id.toUpperCase())}</b><span></span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body"></div>`; d.querySelector(".lab-acc-body").appendChild(s); more.appendChild(d);});
+  document.querySelectorAll("body > section").forEach(s=>{ if(!s.innerHTML.trim()) return; addPage("more-"+s.id,s.id.toUpperCase(),"",body=>body.appendChild(s)); });
+  const openPage=id=>{ const pg=document.getElementById(id); if(!pg) return; menu.hidden=true; pages.querySelectorAll(".lab-mpage").forEach(x=>x.hidden=x!==pg); window.scrollTo(0,0); };
+  const closePage=()=>{ pages.querySelectorAll(".lab-mpage").forEach(x=>x.hidden=true); menu.hidden=false; window.scrollTo(0,0); };
   // view switching (top tabs and bottom nav)
   const show=v=>{ if(!["plan","target","more"].includes(v)) v="plan";
     root.querySelectorAll(".lab-view").forEach(x=>x.classList.toggle("on",x.id==="lab"+v[0].toUpperCase()+v.slice(1)));
@@ -1055,9 +1064,11 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
     try{localStorage.setItem(KEY,v);}catch(e){} };
   root.addEventListener("click",e=>{
     const b=e.target.closest("button"); if(!b||!root.contains(b)) return;
-    if(b.dataset.v){ show(b.dataset.v); window.scrollTo(0,0); }
+    if(b.dataset.page){ openPage(b.dataset.page); }
+    else if(b.dataset.back){ closePage(); }
+    else if(b.dataset.v){ if(b.dataset.v==="more"&&more.classList.contains("on")) closePage(); show(b.dataset.v); window.scrollTo(0,0); }
     else if(b.dataset.p){ const p=root.querySelector("#"+b.dataset.p); const open=p.hidden; root.querySelectorAll(".lab-panel").forEach(x=>x.hidden=true); root.querySelectorAll(".lab-tile").forEach(x=>x.setAttribute("aria-expanded","false")); p.hidden=!open; b.setAttribute("aria-expanded",String(open)); }
-    else if(b.dataset.declog){ show("more"); const d=document.getElementById("more-declog"); if(d){ d.open=true; const r=document.getElementById("declog-"+b.dataset.declog); if(r) r.open=true; setTimeout(()=>(r||d).scrollIntoView({block:"start"}),30);} }
+    else if(b.dataset.declog){ show("more"); openPage("more-declog"); const r=document.getElementById("declog-"+b.dataset.declog); if(r){ r.open=true; setTimeout(()=>r.scrollIntoView({block:"start"}),30);} }
     else if(b.classList.contains("lab-ibtn")){ info.hidden=!info.hidden; b.setAttribute("aria-expanded",String(!info.hidden)); }
   });
   let v="plan"; try{v=localStorage.getItem(KEY)||"plan";}catch(e){}
