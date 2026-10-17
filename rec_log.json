@@ -1052,13 +1052,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "5c100ea0b4b8",
+  "code_sha": "fb91c9835a56",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T17:38:55+00:00",
-  "saved_at_et": "2026-10-17 1:38 PM ET",
+  "saved_at": "2026-10-17T17:41:06+00:00",
+  "saved_at_et": "2026-10-17 1:41 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1087,7 +1087,7 @@
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 4.02
+    "xp": 3.92
    },
    {
     "club": "EVE",
@@ -1197,6 +1197,6 @@
    411,
    249
   ],
-  "xp": 57.9
+  "xp": 57.8
  }
 }

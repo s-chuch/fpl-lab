@@ -156,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 4.02,
+        "ep_next": 3.92,
         "status": "ok"
       },
       {
