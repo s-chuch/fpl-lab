@@ -809,8 +809,10 @@ function labPredLiveHtml(){
   const shown=CAT.filter(([k])=>(L.pred.cats[k]||[]).length);
   const mark=r=>r.hit?`<i class="lab-ok y">✓</i>`:r.state==="done"?`<i class="lab-ok n">✗</i>`:r.state==="live"?`<i class="lab-ok w">●</i>`:`<i class="lab-ok z">–</i>`;
   const what=(k,r)=>k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
+  // minutes in brackets after the club: what he has played, or why there is nothing yet
+  const mins=(k,r)=>{ if(k==="clean_sheets"||r.state==="yet"||r.state==="none") return ""; const t=r.mins>0?`${r.mins}'`:(r.state==="done"?"did not play":"not on yet"); return ` <em class="lab-mn">(${t})</em>`; };
   const sec=([k,l])=>{const rows=L.pred.cats[k]; const hits=rows.filter(r=>r.hit).length, done=rows.filter(r=>r.state==="done").length;
-    return `<h4 class="lab-ph4">${l} · ${hits} of ${rows.length}${done<rows.length?` so far (${done} finished)`:""}</h4><div class="lab-prs">${rows.map(r=>`<div class="lab-pr"><span class="n">${mark(r)} ${esc(r.name)}${r.club?` <em>${esc(r.club)}</em>`:""}</span><span class="v ${r.hit?"lab-hitv":""}">${esc(what(k,r))}</span></div>`).join("")}</div>`;};
+    return `<h4 class="lab-ph4">${l} · ${hits} of ${rows.length}${done<rows.length?` so far (${done} finished)`:""}</h4><div class="lab-prs">${rows.map(r=>`<div class="lab-pr"><span class="n">${mark(r)} ${esc(r.name)}${r.club?` <em>${esc(r.club)}</em>`:""}${mins(k,r)}</span><span class="v ${r.hit?"lab-hitv":""}">${esc(what(k,r))}</span></div>`).join("")}</div>`;};
   const when=L.generated_at?new Date(L.generated_at.replace(" UTC","Z").replace(" ","T")).toLocaleTimeString("en-CA",{timeZone:"America/Toronto",hour:"2-digit",minute:"2-digit",hour12:false})+" ET":"";
   return `<div class="lab-rec lab-live"><h3 class="lab-ph3">Gameweek ${L.gw} live${L.in_play?` <span class="pill free">${L.in_play} match${L.in_play===1?"":"es"} in play</span>`:""}</h3>
     <p class="note" data-keep>${esc(L.pred.source)}. ${when?`Updated ${when}; `:""}this page re-checks every 5 minutes. A pick turns ✓ the moment it happens and ✗ once his match is over.</p>${shown.map(sec).join("")}</div>`;
