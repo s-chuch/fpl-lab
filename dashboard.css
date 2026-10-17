@@ -452,3 +452,5 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-pr .lab-inf[aria-expanded="true"]{background:var(--muted);color:var(--bg,#fff)}
 .lab-pr .s[hidden]{display:none!important}
 .lab-pr.open .s{white-space:normal;overflow:visible}
+
+.lab-gwtag{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;background:var(--line);color:var(--muted);font-size:11px;font-weight:600;vertical-align:middle}

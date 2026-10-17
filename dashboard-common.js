@@ -864,7 +864,7 @@ function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
   const R=P.record||{}, CAT=[["gi","Goal or assist"],["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
   const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}${sub&&!mark?` <button type="button" class="lab-inf" data-inf="1" aria-label="Show details" aria-expanded="false">i</button>`:""}</span><span class="v">${val}</span>${sub?`<span class="s"${mark?"":" hidden"}>${sub}</span>`:""}</div>`;
-  const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
+  const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t} <span class="lab-gwtag">GW${P.gw}</span></h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   const pc=(h,n)=>n?Math.round(100*h/n):null;
   const vol=(r,k)=>{const v=r.vol; if(!v||!v.apps) return ""; const g=`${v.shots} shots (${v.sot} on target)${v.big?`, ${v.big} big`:""}`, a=`${v.cc} chances created${v.big_cc?` (${v.big_cc} big)`:""}`; return ` · last ${v.apps}: ${k==="a"?a:k==="g"?g:g+", "+a}`;};
   // track record
@@ -909,7 +909,7 @@ function labPred(D){
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
   const L=R.last;
   const lastBlock=L?`<h3 class="lab-ph3">How GW${L.gw} went</h3>`+CAT.map(([k,l])=>`<h4 class="lab-ph4">${l}</h4><div class="lab-prs">${((L.picks||{})[k]||[]).map(p=>row(p.name||p.club,p.name?p.club:"",`<b>${p.p}%</b>`,esc(p.why||""),p.hit?"y":"n")).join("")}</div>`).join(""):"";
-  return `<div id="labPredLive">${labPredLiveHtml()}</div><p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+leg+lists+lastBlock;
+  return `<div id="labPredLive">${labPredLiveHtml()}</div><p class="note" data-keep>These lists are for GW${P.gw}, the next gameweek, from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+leg+lists+lastBlock;
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
