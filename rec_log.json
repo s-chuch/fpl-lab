@@ -1052,13 +1052,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ba9d9c3c3abf",
+  "code_sha": "6ee221c36de5",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T18:08:38+00:00",
-  "saved_at_et": "2026-10-17 2:08 PM ET",
+  "saved_at": "2026-10-17T18:11:15+00:00",
+  "saved_at_et": "2026-10-17 2:11 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1115,7 +1115,7 @@
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 4.05
+    "xp": 4.06
    },
    {
     "club": "FUL",

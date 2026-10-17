@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 4.05,
+        "ep_next": 4.06,
         "status": "ok"
       },
       {
