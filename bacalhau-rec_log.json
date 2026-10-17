@@ -843,13 +843,13 @@
   "captain_name": "Groß",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "b568ecd59dfa",
+  "code_sha": "a890a3ee8e64",
   "ft": 1,
   "gw": 7,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-10-17T04:09:23+00:00",
-  "saved_at_et": "2026-10-17 12:09 AM ET",
+  "saved_at": "2026-10-17T04:10:40+00:00",
+  "saved_at_et": "2026-10-17 12:10 AM ET",
   "source": "plan",
   "squad": [
    {
