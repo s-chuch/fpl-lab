@@ -810,7 +810,7 @@ function labPredLiveHtml(){
   const mark=r=>r.hit?`<i class="lab-ok y">✓</i>`:r.state==="done"?`<i class="lab-ok n">✗</i>`:r.state==="live"?`<i class="lab-ok w">●</i>`:`<i class="lab-ok z">–</i>`;
   const what=(k,r)=>k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
   // minutes in brackets after the club: what he has played, or why there is nothing yet
-  const mins=(k,r)=>{ if(k==="clean_sheets"||r.state==="yet"||r.state==="none") return ""; const t=r.mins>0?`${r.mins}'`:(r.state==="done"?"did not play":"not on yet"); return ` <em class="lab-mn">(${t})</em>`; };
+  const mins=(k,r)=>{ if(k==="clean_sheets"||r.state==="yet"||r.state==="none") return ""; if(r.mins<=0&&r.state!=="done") return ""; const t=r.mins>0?`${r.mins}'`:"did not start"; return ` <em class="lab-mn">(${t})</em>`; };
   const sec=([k,l])=>{const rows=L.pred.cats[k]; const hits=rows.filter(r=>r.hit).length, done=rows.filter(r=>r.state==="done").length;
     return `<h4 class="lab-ph4">${l} · ${hits} of ${rows.length}${done<rows.length?` so far (${done} finished)`:""}</h4><div class="lab-prs">${rows.map(r=>`<div class="lab-pr"><span class="n">${mark(r)} ${esc(r.name)}${r.club?` <em>${esc(r.club)}</em>`:""}${mins(k,r)}</span><span class="v ${r.hit?"lab-hitv":""}">${esc(what(k,r))}</span></div>`).join("")}</div>`;};
   const when=L.generated_at?new Date(L.generated_at.replace(" UTC","Z").replace(" ","T")).toLocaleTimeString("en-CA",{timeZone:"America/Toronto",hour:"2-digit",minute:"2-digit",hour12:false})+" ET":"";
