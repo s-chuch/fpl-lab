@@ -436,4 +436,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-rsum span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .lab-rsum b{display:block;font-size:20px;margin:1px 0}.lab-rsum small{display:block;font-size:11px;color:var(--muted)}.lab-rsum i{font-style:normal;font-weight:700}
 .lab-rk .lab-pts{font-weight:700;font-size:13px}.lab-rk .lab-pts small{font-size:10px;opacity:.8}
-.lab-rk.hot .lab-pts{color:var(--green)}.lab-rk.cold .lab-pts{color:var(--muted)}.lab-rk.yet{opacity:.75}
+.lab-rk.hot .lab-pts{color:#0a6b2f}.lab-rk.cold .lab-pts{color:#5b6472}.lab-rk.yet{opacity:.75}
