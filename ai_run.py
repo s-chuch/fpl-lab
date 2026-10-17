@@ -390,7 +390,8 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     finished = sum(1 for e in boot["events"] if e.get("finished"))
     locked = ds.get("locked_gw")
     played = max(1, finished + (1 if locked and not events.get(locked, {}).get("finished") else 0))
-    per_gw = [ai_team.player_values(boot, fixture_scan(g, teams_by_id), {}, played, uwins, risk) for g in gws]
+    fx_by_gw = [fixture_scan(g, teams_by_id) for g in gws]
+    per_gw = [ai_team.player_values(boot, fx, {}, played, uwins, risk) for fx in fx_by_gw]
     by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
     def xp_sum(eid, n):
         return round(sum((v.get(eid) or {}).get("xp", 0) for v in per_gw[:n]), 1)
@@ -445,6 +446,42 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     tt = data.get("transfer_targets") or {}
     for r in (tt.get("xg") or []) + (tt.get("defcon") or []):
         annotate(r, 1)
+    # Defence list: every defender and keeper ranked by expected points over the horizon (clean sheets, DEFCON, goal threat, minutes),
+    # with the same start gate and trend as the other lists. The page filters out players you own.
+    short = {t["id"]: t["short_name"] for t in boot["teams"]}
+    cand = [e for e in boot["elements"] if e["element_type"] in (1, 2) and int(e.get("minutes") or 0) >= 180 and (e.get("status") or "a") in ("a", "d")]
+    dtop = {}
+    for key in ((data.get("targets") or {}).get("horizons") or {}):
+        n = int(key)
+        rows = []
+        for e in cand:
+            eid = e["id"]
+            xp_n = xp_sum(eid, n)
+            if xp_n < 2.5 * min(n, len(per_gw)):
+                continue
+            r = {"id": eid, "name": e["web_name"], "club": short[e["team"]], "pos": POS[e["element_type"]], "cost": e["now_cost"] / 10,
+                 "form": float(e.get("form") or 0), "owned_pct": float(e.get("selected_by_percent") or 0), "xp": xp_n, "xp_n": min(n, len(per_gw)),
+                 "big": ["DC per 90", round(float(e.get("defensive_contribution_per_90") or 0), 1)] if e["element_type"] == 2 else ["Saves per 90", round(float(e.get("saves_per_90") or 0), 1)]}
+            s = starts_of(r)
+            if s is not None:
+                r["start"] = round(100 * s)
+                if s < START_FLOOR:
+                    continue
+                if s < START_WARN:
+                    r["why"] = [f"Rotation risk · starts ~{r['start']}%"]
+            t_ = trend_of(e, rec_stats.get(eid), played)
+            if t_:
+                r["trend"] = t_
+            fl = [f for fx in fx_by_gw[:n] for f in fx.get(e["team"], [])]
+            fd = [f["fdr"] for f in fl if f.get("fdr") is not None]
+            r["fdr"] = round(sum(fd) / len(fd), 2) if fd else None
+            o = ai_team.model_outlook(e, fx_by_gw[0].get(e["team"], []), played, (uwins or {}).get(eid), rec_min.get(eid))
+            if o:
+                r["cs"] = round(100 * o["cs"]); r["dc"] = round(100 * o["defcon"]) if e["element_type"] == 2 else None
+            rows.append(r)
+        rows.sort(key=lambda r: -r["xp"])
+        dtop[key] = rows[:20]
+    (data.setdefault("targets", {}))["defence"] = dtop
 
 
 def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
