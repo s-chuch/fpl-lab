@@ -839,7 +839,7 @@ function labScorecard(D){
   const gm=pc(T.gi,T.n), mm=M.gi&&M.gi[1]?pc(M.gi[0],M.gi[1]):null;
   const verdict=(T.n<30)?`Only ${T.n} picks each so far: too few to call a winner.`:(mm==null?"":(gm>mm?"Target is ahead on goal or assist.":gm<mm?"The model is ahead on goal or assist.":"Level on goal or assist."));
   return `<p class="note" data-keep>Same gameweeks, same marking, top 10 each. ${verdict}</p>
-    <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}${ptsRow}</tbody></table>
+    <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}${ptsRow}${T.started!=null?`<tr><td>Target picks who started</td><td>–</td><td>${fmt(T.started,T.n)}</td></tr>`:""}</tbody></table>
     <h4 class="lab-ph4">By gameweek (goal / assist / either)</h4>
     <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}`;
 }

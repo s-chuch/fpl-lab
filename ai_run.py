@@ -300,6 +300,29 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
     return sig
 
 
+START_FLOOR = 0.50      # Target drops a player whose chance of starting is below this
+START_WARN = 0.75       # ...and tags one below this ("might not start")
+START_RECENT_W = (0.2, 0.3, 0.5)     # weights of his last three gameweeks, newest last
+
+
+def start_chance(el, recent, played, avail=1.0, factors=()):
+    """Chance he is in the starting XI next gameweek: 40% his season starts per gameweek, 60% his last three gameweeks
+    (a start = 60+ minutes; the latest counts most, so a game he did not play hurts), times his fitness and the
+    reported-rotation / rest factors the model already applies. Not the same as minutes share: a sub who plays 30 minutes every week scores low."""
+    season = min(1.0, (el.get("starts") or 0) / max(1, played))
+    if recent and len(recent) >= 2:
+        w = START_RECENT_W[-len(recent):]
+        rec = sum(wi * (1.0 if m >= 60 else 0.0) for wi, m in zip(w, recent)) / sum(w)
+        base = 0.4 * season + 0.6 * rec
+    else:
+        base = season
+    f = 1.0
+    for x in factors:
+        if x.get("label") in ("rotation", "rest"):
+            f *= x.get("factor", 1.0)
+    return max(0.0, min(1.0, base * avail * f))
+
+
 def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     """Put the expected-points model and the extra signals beside every scouting list (Target 1/3/6, transfer targets):
     each row gets `xp` (expected points over its horizon, or the next gameweek) and `sig` (the reasons behind its
@@ -328,9 +351,31 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
         if s:
             row["sig"] = s["reasons"][:4]
             row["adj"] = s["adj"]
+    els = {e["id"]: e for e in boot["elements"]}
+    rec_min = (risk or {}).get("recent_minutes") or {}
+    def starts_of(r):
+        eid = r.get("id") or by_key.get((r.get("name"), r.get("club")))
+        v = (per_gw[0] if per_gw else {}).get(eid) or {}
+        if eid not in els:
+            return None
+        return start_chance(els[eid], rec_min.get(eid), played, v.get("avail", 1.0), v.get("adj_factors") or [])
+    def gate(rows):
+        """Remove players unlikely to start and tag the doubtful ones, so Target does not recommend someone who sits on the bench."""
+        keep = []
+        for r in rows:
+            s = starts_of(r)
+            if s is not None:
+                r["start"] = round(100 * s)
+                if s < START_FLOOR:
+                    continue
+                if s < START_WARN:
+                    r["why"] = list(r.get("why") or []) + [f"Might not start ({r['start']}%)"]
+            keep.append(r)
+        return keep
     for key, h in ((data.get("targets") or {}).get("horizons") or {}).items():
         for r in h.get("top") or []:
             annotate(r, int(h.get("horizon") or key))
+        h["top"] = gate(h.get("top") or [])
     for r in (data.get("targets") or {}).get("wc_top3") or []:
         annotate(r, 6)
     tt = data.get("transfer_targets") or {}

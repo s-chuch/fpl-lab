@@ -224,7 +224,7 @@ def grade_target(pick, live, boot_el=None):
     """A Target pick graded three ways: scored, assisted, either (plus the attacking points he made)."""
     st = live.get(pick.get("id")) or {}
     g, a, m = int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("minutes") or 0)
-    return {"hit": g + a > 0, "goal": g > 0, "assist": a > 0, "min": m, "pts": atk_pts(st, (boot_el or {}).get(pick.get("id"))), "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}" if g + a else ("did not play" if m == 0 else f"{m} min, no goal or assist")}
+    return {"hit": g + a > 0, "goal": g > 0, "assist": a > 0, "min": m, "started": int(st.get("starts") or 0) > 0, "pts": atk_pts(st, (boot_el or {}).get(pick.get("id"))), "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}" if g + a else ("did not play" if m == 0 else f"{m} min, no goal or assist")}
 
 
 # ---------------------------------------------------------------- per-player snapshot (training data)
@@ -346,13 +346,13 @@ def view(log, boot_players=None):
                          "fell short of the threshold" if "contributions" in r["why"] else "other")
                     cnt[k] = cnt.get(k, 0) + 1
         why[c] = sorted(cnt.items(), key=lambda kv: -kv[1])
-    tgt = {"n": 0, "goal": 0, "assist": 0, "gi": 0, "per_gw": []}
+    tgt = {"n": 0, "goal": 0, "assist": 0, "gi": 0, "started": 0, "per_gw": []}
     cmp_ = {"goals": [0, 0], "assists": [0, 0], "gi": [0, 0]}
     for g in graded:
         ts = g["results"].get(TARGET, [])
         if not ts:
             continue
-        tgt["n"] += len(ts); tgt["goal"] += sum(1 for r in ts if r["goal"]); tgt["assist"] += sum(1 for r in ts if r["assist"]); tgt["gi"] += sum(1 for r in ts if r["hit"])
+        tgt["n"] += len(ts); tgt["goal"] += sum(1 for r in ts if r["goal"]); tgt["assist"] += sum(1 for r in ts if r["assist"]); tgt["gi"] += sum(1 for r in ts if r["hit"]); tgt["started"] += sum(1 for r in ts if r.get("started"))
         tgt["per_gw"].append({"gw": g["gw"], "goal": sum(1 for r in ts if r["goal"]), "assist": sum(1 for r in ts if r["assist"]), "gi": sum(1 for r in ts if r["hit"]), "n": len(ts)})
         for c in ("goals", "assists", "gi"):       # the model's list for the same gameweeks, only where Target was saved too
             rs = g["results"].get(c, [])
