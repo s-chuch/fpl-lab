@@ -331,6 +331,58 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
         annotate(r, 1)
 
 
+def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
+    """Next-gameweek predictions for the Predictions card: who is most likely to score and assist (expected goals / assists and the
+    chance of at least one), which clubs are likeliest to keep a clean sheet, and who is a rotation risk. Same inputs as the
+    expected-points model; players who are out or unlikely to play are left out."""
+    import ai_team, math
+    uwins, risk, _live = inputs
+    nxt = ds.get("next_gw")
+    if not nxt:
+        return {}
+    events = {e["id"]: e for e in boot["events"]}
+    finished = sum(1 for e in boot["events"] if e.get("finished"))
+    locked = ds.get("locked_gw")
+    played = max(1, finished + (1 if locked and not events.get(locked, {}).get("finished") else 0))
+    fixtures = fixture_scan(nxt, teams_by_id)
+    vals = ai_team.player_values(boot, fixtures, {}, played, uwins, risk)
+    rec = (risk or {}).get("recent_minutes") or {}
+    rows, club_cs = [], {}
+    for el in boot["elements"]:
+        v = vals.get(el["id"])
+        fx = fixtures.get(el["team"], [])
+        if not v or not fx:
+            continue
+        o = ai_team.model_outlook(el, fx, played, (uwins or {}).get(el["id"]), rec.get(el["id"]))
+        if not o:
+            continue
+        pos = v["pos"]
+        base = {"name": v["name"], "club": v["club"], "pos": pos, "cost": v["cost"], "fixture": v["fixture"], "avail": v["avail"]}
+        playing = v["avail"] > 0.5 and o["mp"] >= 0.5
+        rows.append({**base, "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "mp": o["mp"], "playing": playing,
+                     "risks": v["risks"], "xp": v["xp"], "eid": el["id"]})
+        if pos in ("GKP", "DEF") and playing:
+            club_cs.setdefault(v["club"], {"fixture": v["fixture"], "cs": [], "who": []})
+            club_cs[v["club"]]["cs"].append(o["cs"])
+            club_cs[v["club"]]["who"].append((v["xp"], v["name"]))
+    def pct(x):
+        return round(100 * (1 - math.exp(-x)))
+    scorers = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["goals"])[:top_n]
+    assisters = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["assists"])[:top_n]
+    sheets = sorted(({"club": c, "fixture": d["fixture"], "cs": round(100 * sum(d["cs"]) / len(d["cs"])), "who": [n for _x, n in sorted(d["who"], reverse=True)[:2]]}
+                     for c, d in club_cs.items()), key=lambda r: -r["cs"])[:top_n]
+    # rotation: players who matter (decent expected points) and carry a rest / minutes / reported-rotation flag
+    rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and any(("rest" in x or "minutes" in x or "rotation" in x or "again" in x) for x in r["risks"])),
+                 key=lambda r: -r["xp"])[:top_n]
+    return {
+        "gw": nxt,
+        "goals": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xg": round(r["goals"], 2), "p": pct(r["goals"])} for r in scorers],
+        "assists": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xa": round(r["assists"], 2), "p": pct(r["assists"])} for r in assisters],
+        "clean_sheets": sheets,
+        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "start": round(100 * min(1.0, r["mp"]) * r["avail"]), "why": r["risks"][:2]} for r in rot],
+    }
+
+
 def build_swing_data(boot, ds, teams_by_id, plan, elo=None, horizon=8):
     """Club-by-club fixture swing for the next `horizon` open gameweeks (fixture_swing.py), highlighting the clubs your
     squad owns. `elo` is {club short name: rating} when Club Elo was reachable."""

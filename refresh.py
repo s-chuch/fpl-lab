@@ -1483,6 +1483,7 @@ def main(team_id=TEAM_ID, out_path=None):
     except Exception as e:
         _warn(f"enrich_with_model failed: {e}")
         health["enrich_model"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("enrich_model") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
+    data["predictions"] = section("predictions", build_predictions, boot, ds, teams_by_id, inputs, fallback={})
     data["ai_team"] = run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_recovery.get("teams"), hist, inputs, signals)
     data["pred_log"] = section("pred_log", update_pred_log, data.get("pred_log"), ds, boot, plan, data.get("ai_team"), fallback={})
     data["planner"] = section("planner", run_planner, boot, team_id, ds, hist, chips_used, data.get("team") or {}, teams_by_id, inputs, signals, fallback={})

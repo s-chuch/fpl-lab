@@ -772,6 +772,18 @@ function labNews(D,they){
   const ag=(N.agreed||[]).slice(0,6).map(x=>`<li><b>${esc(x.player||"")}</b> <span class="note">${esc(x.club||"")}</span> · ${esc(x.verdict||"")}<div class="note">${(x.sources||[]).length} sites: ${esc((x.sources||[]).join(", "))}</div></li>`).join("");
   return `<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New FPL flags · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
 }
+// ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
+function labPred(D){
+  const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
+  const row=(a,b,c)=>`<li><span class="who">${a}</span><span>${b}</span>${c?`<div class="detail note">${c}</div>`:""}</li>`;
+  const nm=r=>`${esc(r.name)} <span class="note">${esc(r.club)}</span>`;
+  const sec=(t,items)=>`<h3>${t}</h3><ul class="chiplist">${items.join("")||'<li><span class="note">Nothing to show yet.</span></li>'}</ul>`;
+  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news). "Chance" = at least one.</p>`
+   +sec("Goals",(P.goals||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xg,2)} expected goals`)))
+   +sec("Assists",(P.assists||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xa,2)} expected assists`)))
+   +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(esc(r.club),`<b>${r.cs}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)))
+   +sec("Rotation risk",(P.rotation||[]).map(r=>row(nm(r),`<b>${r.start}%</b> to start`,esc((r.why||[]).join("; ")))));
+}
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
 }
@@ -1019,6 +1031,8 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
   const more=root.querySelector("#labMore");
   const groups=(typeof TAB_GROUPS!=="undefined"?TAB_GROUPS:[]);
   more.innerHTML=`<p class="note lab-fnote">Everything else on the site, grouped as before. Tap a section to open it.</p>`;
+  { const d=document.createElement("details"); d.className="lab-acc"; d.id="more-pred";
+    d.innerHTML=`<summary><div><b>PREDICTIONS</b><span>Goals, assists, clean sheets &amp; rotation for GW${esc(String((D.predictions||{}).gw||""))}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${labPred(D)}</div>`; more.appendChild(d); }
   if(D.decision_log){ const d=document.createElement("details"); d.className="lab-acc"; d.id="more-declog";
     d.innerHTML=`<summary><div><b>DECISION LOG</b><span>${they?"Their":"Your"} moves vs the model's, scored each GW</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${labDecLog(D,they)}</div>`; more.appendChild(d); }
   groups.forEach(g=>{

@@ -138,6 +138,40 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     return total * mp
 
 
+def model_outlook(el, fixtures, gws_played, uwin=None, recent=None):
+    """The same ingredients as model_xp, kept apart: {mp, goals, assists, cs} for the fixtures given (expected goals and assists
+    this gameweek, chance of a clean sheet, share of the game he is expected to play). Used for the Predictions card."""
+    if not fixtures:
+        return None
+    pos = POS[el["element_type"]]
+    mins = _f(el.get("minutes"))
+    mp = min(1.0, mins / (90.0 * max(1, gws_played)))
+    if recent and len(recent) >= 2:
+        mp = 0.5 * mp + 0.5 * min(1.0, sum(min(90, m) for m in recent) / (90.0 * len(recent)))
+    w = min(1.0, mins / SHRINK_MINUTES)
+    pr = PRIOR[pos]
+    xg90 = w * _f(el.get("expected_goals_per_90")) + (1 - w) * pr["xg"]
+    xa90 = w * _f(el.get("expected_assists_per_90")) + (1 - w) * pr["xa"]
+    if uwin and uwin.get("apps"):
+        xg90 = 0.55 * xg90 + 0.45 * (uwin["xg"] / uwin["apps"])
+        xa90 = 0.55 * xa90 + 0.45 * (uwin["xa"] / uwin["apps"])
+    cs90 = w * _f(el.get("clean_sheets_per_90")) + (1 - w) * pr["cs"]
+    goals = assists = 0.0
+    p_cs_none = 1.0
+    for fx in fixtures:
+        fdr = fx.get("fdr") or 3
+        fdr_cs = max(FDR_CS_RANGE[0], min(FDR_CS_RANGE[1], FDR_CS_BASE - FDR_CS_SLOPE * (fdr - 3)))
+        fdr_att = FDR_ATT_BASE - FDR_ATT_SLOPE * fdr
+        if fx.get("cs") is not None:
+            fdr_cs = 0.5 * fdr_cs + 0.5 * max(0.05, min(0.75, fx["cs"]))
+        if fx.get("xg_for") is not None:
+            fdr_att = 0.5 * fdr_att + 0.5 * max(0.6, min(1.6, fx["xg_for"] / LEAGUE_AVG_TEAM_XG))
+        goals += xg90 * fdr_att * mp
+        assists += xa90 * fdr_att * mp
+        p_cs_none *= 1 - (0.5 * cs90 + 0.5 * fdr_cs)
+    return {"mp": mp, "goals": goals, "assists": assists, "cs": 1 - p_cs_none}
+
+
 def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
     """{element id: {xp, xp2, value, fixture label...}} for everyone; value = xp + weight * xp2."""
     out = {}

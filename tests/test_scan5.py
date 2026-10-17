@@ -25,5 +25,24 @@ class RotationFromNews(unittest.TestCase):
         self.assertIn("id:2", got)
 
 
+class Outlook(unittest.TestCase):
+    EL = {"element_type": 4, "minutes": 540, "expected_goals_per_90": 0.6, "expected_assists_per_90": 0.2, "clean_sheets_per_90": 0.0}
+
+    def test_outlook_values_are_sane(self):
+        import ai_team
+        fx = [{"fdr": 2}]
+        o = ai_team.model_outlook(self.EL, fx, 6)
+        self.assertTrue(0 < o["goals"] < 1.5 and 0 <= o["cs"] <= 1 and 0 < o["mp"] <= 1)
+        self.assertIsNone(ai_team.model_outlook(self.EL, [], 6))
+
+    def test_easier_fixture_and_double_gameweek_raise_goals(self):
+        import ai_team
+        easy = ai_team.model_outlook(self.EL, [{"fdr": 2}], 6)["goals"]
+        hard = ai_team.model_outlook(self.EL, [{"fdr": 5}], 6)["goals"]
+        dgw = ai_team.model_outlook(self.EL, [{"fdr": 2}, {"fdr": 2}], 6)["goals"]
+        self.assertGreater(easy, hard)
+        self.assertAlmostEqual(dgw, 2 * easy, places=6)
+
+
 if __name__ == "__main__":
     unittest.main()
