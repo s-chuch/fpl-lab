@@ -446,11 +446,12 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     tt = data.get("transfer_targets") or {}
     for r in (tt.get("xg") or []) + (tt.get("defcon") or []):
         annotate(r, 1)
-    # Defence list: every defender and keeper ranked by expected points over the horizon (clean sheets, DEFCON, goal threat, minutes),
-    # with the same start gate and trend as the other lists. The page filters out players you own.
+    # Target pool: every outfield player and keeper with 180+ minutes and a fit status, ranked by expected points over the horizon
+    # (the model already combines minutes, rotation, fitness, fixtures, odds, xG/xA, clean sheets, DEFCON and the capped news / ownership /
+    # price signals), after the start gate, with the trend badge. Every Target filter is a view of this one ordering.
     short = {t["id"]: t["short_name"] for t in boot["teams"]}
-    cand = [e for e in boot["elements"] if e["element_type"] in (1, 2) and int(e.get("minutes") or 0) >= 180 and (e.get("status") or "a") in ("a", "d")]
-    dtop = {}
+    cand = [e for e in boot["elements"] if int(e.get("minutes") or 0) >= 180 and (e.get("status") or "a") in ("a", "d")]
+    pool = {}
     for key in ((data.get("targets") or {}).get("horizons") or {}):
         n = int(key)
         rows = []
@@ -459,9 +460,14 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
             xp_n = xp_sum(eid, n)
             if xp_n < 2.5 * min(n, len(per_gw)):
                 continue
-            r = {"id": eid, "name": e["web_name"], "club": short[e["team"]], "pos": POS[e["element_type"]], "cost": e["now_cost"] / 10,
+            et = e["element_type"]
+            big = (["DC per 90", round(float(e.get("defensive_contribution_per_90") or 0), 1)] if et == 2 else
+                   ["Saves per 90", round(float(e.get("saves_per_90") or 0), 1)] if et == 1 else
+                   ["xG", round(float(e.get("expected_goals") or 0), 1)] if et == 4 else
+                   ["xGI per 90", round(float(e.get("expected_goal_involvements_per_90") or 0), 2)])
+            r = {"id": eid, "name": e["web_name"], "club": short[e["team"]], "pos": POS[et], "cost": e["now_cost"] / 10,
                  "form": float(e.get("form") or 0), "owned_pct": float(e.get("selected_by_percent") or 0), "xp": xp_n, "xp_n": min(n, len(per_gw)),
-                 "big": ["DC per 90", round(float(e.get("defensive_contribution_per_90") or 0), 1)] if e["element_type"] == 2 else ["Saves per 90", round(float(e.get("saves_per_90") or 0), 1)]}
+                 "xgi90": round(float(e.get("expected_goal_involvements_per_90") or 0), 2), "big": big}
             s = starts_of(r)
             if s is not None:
                 r["start"] = round(100 * s)
@@ -475,13 +481,14 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
             fl = [f for fx in fx_by_gw[:n] for f in fx.get(e["team"], [])]
             fd = [f["fdr"] for f in fl if f.get("fdr") is not None]
             r["fdr"] = round(sum(fd) / len(fd), 2) if fd else None
-            o = ai_team.model_outlook(e, fx_by_gw[0].get(e["team"], []), played, (uwins or {}).get(eid), rec_min.get(eid))
-            if o:
-                r["cs"] = round(100 * o["cs"]); r["dc"] = round(100 * o["defcon"]) if e["element_type"] == 2 else None
+            if et in (1, 2):
+                o = ai_team.model_outlook(e, fx_by_gw[0].get(e["team"], []), played, (uwins or {}).get(eid), rec_min.get(eid))
+                if o:
+                    r["cs"] = round(100 * o["cs"]); r["dc"] = round(100 * o["defcon"]) if et == 2 else None
             rows.append(r)
         rows.sort(key=lambda r: -r["xp"])
-        dtop[key] = rows[:20]
-    (data.setdefault("targets", {}))["defence"] = dtop
+        pool[key] = rows[:80]
+    (data.setdefault("targets", {}))["pool"] = pool
 
 
 def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
