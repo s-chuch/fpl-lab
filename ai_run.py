@@ -389,7 +389,7 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
     for key, h in ((data.get("targets") or {}).get("horizons") or {}).items():
         for r in h.get("top") or []:
             annotate(r, int(h.get("horizon") or key))
-        h["top"] = gate(h.get("top") or [])
+        h["top"] = sorted(gate(h.get("top") or []), key=lambda r: (-(r.get("xp") or 0), -(r.get("score") or 0)))     # best expected points first; the rule score breaks ties
     for r in (data.get("targets") or {}).get("wc_top3") or []:
         annotate(r, 6)
     tt = data.get("transfer_targets") or {}
