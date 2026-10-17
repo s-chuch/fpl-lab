@@ -468,16 +468,42 @@ function aiResultsCard(D,who){
   const A=D.ai_team; if(!A) return `<div class="card"><h2>AI team results</h2><p class="note">Nothing yet.</p></div>`;
   const H=Object.values(A.history||{}).sort((a,b)=>b.gw-a.gw);
   if(!H.length) return `<div class="card"><h2>AI team results</h2><p class="note" data-keep>It starts with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. GW${A.plan?A.plan.gw:7} is the first gameweek it plays on its own; points appear once that deadline passes.</p></div>`;
-  const tot=A.total_points||0, you=A.user_total||0;
-  const rows=H.map(p=>{const r=p.result||{};return `<tr><td>GW${p.gw}${r.final?"":` <span class="pill free">live</span>`}</td><td><b>${r.points??"–"}</b></td><td>${p.user_points??"–"}</td><td class="${cls((r.points??0)-(p.user_points??0))}">${p.user_points==null||r.points==null?"–":sign(r.points-p.user_points)}</td><td>${esc(r.captain||"–")}</td></tr>`;}).join("");
-  const blocks=H.map((p,i)=>{const r=p.result||{};const L=(r.lines||[]).map(l=>`<tr><td>${esc(l.name)}${l.mult>1?` <span class="pill free">C×${l.mult}</span>`:""}</td><td>${esc(l.pos)}</td><td>${l.played?"":`<span class="note">DNP</span> `}<b>${l.pts*l.mult}</b></td></tr>`).join("");const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";
-    return `<details class="card fold"${i===0?" open":""}><summary><h2>GW${p.gw}</h2><span class="foldsum"><b>${r.points??"–"}</b> pts${r.hits?` (−${r.hits} hit)`:""} · ${esc(who||"you")} ${p.user_points??"–"}</span></summary><table class="table-compact"><thead><tr><th style="width:55%">Player</th><th style="width:20%">Pos</th><th style="width:25%">Pts</th></tr></thead><tbody>${L}</tbody></table>${subs}<p class="note">Bench left unused: ${r.bench_pts??0} pts${r.final?"":" · gameweek still in progress"}</p></details>`;}).join("");
-  return `<div class="card"><h2>AI team results</h2><ul class="chiplist"><li><span class="who">Season points</span><span>AI <b>${A.season_points??tot}</b> · ${esc(who||"You")} <b>${A.user_season??you}</b></span><div class="detail">The AI started with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"} · gap <b class="${cls((A.season_points??tot)-(A.user_season??you))}">${sign((A.season_points??tot)-(A.user_season??you))}</b></div></li><li><span class="who">Since it went independent</span><span>AI <b>${tot}</b> · ${esc(who||"You")} <b>${you}</b></span><div class="detail">GW${A.start_gw??"?"} onwards · <b class="${cls(tot-you)}">${sign(tot-you)}</b></div></li></ul><table class="table-compact"><thead><tr><th style="width:22%">GW</th><th style="width:18%">AI</th><th style="width:18%">${esc(who||"You")}</th><th style="width:16%">Diff</th><th style="width:26%">Captain</th></tr></thead><tbody>${rows}</tbody></table><ul class="legend-list"><li>AI points use FPL's live scoring: captain doubled (vice if the captain doesn't play), auto-subs in bench order, −4 per extra transfer</li></ul></div>${blocks}`;
+  const tot=A.season_points??A.total_points??0, you=A.user_season??A.user_total??0, W2=who||"You";
+  let sel=H[0].gw; try{const k=Number(sessionStorage.getItem("lab:aigw")); if(H.some(h=>h.gw===k)) sel=k;}catch(e){}
+  const p=H.find(h=>h.gw===sel)||H[0], r=p.result||{};
+  const sq=Object.fromEntries((p.squad||[]).map(x=>[x.id,x]));
+  const diff=(r.points??0)-(p.user_points??0);
+  const when=A.generated_at?new Date(A.generated_at).toLocaleString("en-CA",{timeZone:"America/Toronto",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false})+" ET":"";
+  const pills=H.map(h=>`<button type="button" data-aigw="${h.gw}" class="${h.gw===p.gw?"on":""}">GW${h.gw}${(h.result||{}).final?"":" ●"}</button>`).join("");
+  const card=(l,isBench)=>{const x=sq[l.id]||{name:l.name,pos:l.pos,club:""};
+    const isC=!isBench&&l.mult>1, isV=!isBench&&p.vice===l.id&&!isC&&r.captain&&r.captain!==l.name&&false;
+    const pts=l.played?String(l.pts*(l.mult||1)):"–";
+    const cls=!l.played?" yet":(l.pts>=6?" hot":l.pts<=1?" cold":"");
+    return `<div class="lab-pk lab-rk${cls}" title="${esc(x.name)} ${esc(x.club||"")}: ${l.played?l.pts+" pts"+(l.mult>1?" ×"+l.mult:""):"yet to play / did not play"}"><span class="lab-bl">${isC?`<i class="b c">C</i>`:p.vice===l.id&&!isBench?`<i class="b v">V</i>`:""}</span>${labShirt(D,{club:x.club,pos:x.pos})}<span class="lab-pn${x.name.length>10?" long":""}">${esc(x.name)}</span><span class="lab-pf lab-pts">${pts}${isC&&l.played?` <small>×${l.mult}</small>`:""}</span></div>`;};
+  const rows=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${(r.lines||[]).filter(l=>l.pos===pos).map(l=>card(l,false)).join("")}</div>`).join("");
+  const bench=(r.bench_lines||[]).map(l=>card(l,true)).join("");
+  const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";
+  const state=r.final?`<span class="pill used">Final</span>`:`<span class="pill free">Live · updating</span>`;
+  return `<div class="card lab-aires"><h2>AI team results</h2>
+    <div class="lab-rsum"><div><span>Season</span><b>AI ${tot}</b><small>${esc(W2)} ${you}</small></div><div><span>GW${p.gw}</span><b>${r.points??"–"}</b><small>${r.final&&p.user_points!=null?`${esc(W2)} ${p.user_points} · <i class="${diff>0?"pos":diff<0?"neg":""}">${(diff>0?"+":"")+diff}</i>`:`${esc(W2)} compared once settled`}</small></div><div><span>Bench</span><b>${r.bench_pts??0}</b><small>${r.hits?`−${r.hits} hit`:"no hit"}</small></div></div>
+    <p class="note" data-keep>The AI started with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. ${state} ${when?`Data as of ${when}.`:""}${r.final?"":" Points show as each match is played; auto-subs and a vice-captain swap are only applied once the gameweek is settled."}</p>
+    <div class="lab-stabs" id="labAiGw">${pills}</div>
+    <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${rows}</div>
+    <div class="lab-bench">${bench}</div>${subs}</div>`;
 }
 function renderAiTeam(D,who){
   const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults");
-  if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team);
-  if(r) r.innerHTML=aiResultsCard(D,who);
+  const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); };
+  paint();
+  if(r&&!r.dataset.wired){
+    r.dataset.wired="1";
+    r.addEventListener("click",e=>{const b=e.target.closest("[data-aigw]"); if(!b) return; try{sessionStorage.setItem("lab:aigw",b.dataset.aigw);}catch(_){} paint();});
+    // keep the results current while the page is open: re-read the data file every 5 minutes and repaint when the AI team moved
+    const src=(document.querySelector('script[src*="data.js"]')||{}).src;
+    if(src){ const url=src.split("?")[0]; let last=(D.ai_team||{}).generated_at;
+      setInterval(async()=>{ try{ const t=await (await fetch(url+"?t="+Date.now(),{cache:"no-store"})).text(); const j=JSON.parse(t.slice(t.indexOf("{"),t.lastIndexOf("}")+1));
+        if(j.ai_team&&j.ai_team.generated_at!==last){ last=j.ai_team.generated_at; D.ai_team=j.ai_team; if(j.generated_at) D.generated_at=j.generated_at; paint(); } }catch(_){} },5*60*1000); }
+  }
 }
 
 // Daily check (refresh.py build_daily_check): injuries, news, price moves and new rotation risks for

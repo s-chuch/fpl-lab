@@ -561,8 +561,9 @@ def score_plan(plan, live, final):
               "played": played(i)} for i in xi]
     gross = sum(l["pts"] * l["mult"] for l in lines)
     bench_pts = sum(got(b) for b in bench if b not in xi)
+    bench_lines = [{"id": b, "name": name_of[b], "pos": pos_of[b], "pts": got(b), "played": played(b)} for b in bench if b not in xi]
     return {"points": gross - plan.get("hit_cost", 0), "gross": gross, "hits": plan.get("hit_cost", 0),
-            "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "final": final,
+            "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "bench_lines": bench_lines, "final": final,
             "provisional": not final}
 
 

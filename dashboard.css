@@ -429,3 +429,11 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-rtab{width:100%;border-collapse:collapse;font-size:12px}.lab-rtab th,.lab-rtab td{padding:3px 4px;text-align:center;border-bottom:1px solid var(--line)}.lab-rtab th:first-child,.lab-rtab td:first-child{text-align:left}
 .lab-rl{margin:0;padding-left:16px;font-size:12px;line-height:1.4;color:var(--ink)}.lab-rl li{margin:2px 0}
 .lab-rl2{font-size:13px;margin:4px 0 8px;line-height:1.5}
+
+/* AI results as a squad view */
+.lab-rsum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0}
+.lab-rsum>div{background:#0d1626;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.lab-rsum span{display:block;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.lab-rsum b{display:block;font-size:20px;margin:1px 0}.lab-rsum small{display:block;font-size:11px;color:var(--muted)}.lab-rsum i{font-style:normal;font-weight:700}
+.lab-rk .lab-pts{font-weight:700;font-size:13px}.lab-rk .lab-pts small{font-size:10px;opacity:.8}
+.lab-rk.hot .lab-pts{color:var(--green)}.lab-rk.cold .lab-pts{color:var(--muted)}.lab-rk.yet{opacity:.75}

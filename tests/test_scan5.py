@@ -44,5 +44,16 @@ class Outlook(unittest.TestCase):
         self.assertAlmostEqual(dgw, 2 * easy, places=6)
 
 
+class BenchLines(unittest.TestCase):
+    def test_score_plan_reports_each_bench_player(self):
+        import ai_team
+        sq = [{"id": i, "name": f"P{i}", "pos": pos} for i, pos in enumerate(["GKP", "DEF", "DEF", "DEF", "DEF", "MID", "MID", "MID", "MID", "FWD", "FWD", "GKP", "DEF", "MID", "FWD"], 1)]
+        plan = {"squad": sq, "xi": list(range(1, 12)), "bench": [12, 13, 14, 15], "captain": 10, "vice": 11, "hit_cost": 0}
+        live = {i: {"minutes": 90, "points": i} for i in range(1, 16)}
+        r = ai_team.score_plan(plan, live, False)
+        self.assertEqual([b["id"] for b in r["bench_lines"]], [12, 13, 14, 15])
+        self.assertEqual(r["bench_pts"], sum(b["pts"] for b in r["bench_lines"]))
+
+
 if __name__ == "__main__":
     unittest.main()
