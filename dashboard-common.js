@@ -886,7 +886,16 @@ function labSquads(D){
     const vc=(current.vc&&current.vc!==cap&&k.xi.some(p=>p.name===current.vc))?current.vc:(r.find(p=>p.name!==cap)||{}).name;
     recommended={...k,cap,vc,moves,hits:s0.hits||0};
   }
-  return {gw,current,recommended};
+  // AI: the AI team's own plan for the same gameweek (ai_team.plan), shown the same way
+  let ai=null; const AP=(D.ai_team||{}).plan;
+  if(AP&&AP.gw===gw&&(AP.xi||[]).length===11){
+    const sq={}; (AP.squad||[]).forEach(p=>{sq[p.id]=p;});
+    const ins=new Set((AP.transfers||[]).map(t=>t.in));
+    const mk=id=>{const p=sq[id]; return p?{name:p.name,pos:p.pos,club:p.club,fix:labFix(p.fixture),xp:Number(p.xp||0),inn:ins.has(p.name)}:null;};
+    const xi=AP.xi.map(mk).filter(Boolean), bench=(AP.bench||[]).map(mk).filter(Boolean);
+    if(xi.length===11) ai={xi,bench,cap:(sq[AP.captain]||{}).name,vc:(sq[AP.vice]||{}).name,moves:(AP.transfers||[]).map(t=>({out:t.out,in:t.in})),hits:AP.hits||0,locked:!!AP.locked};
+  }
+  return {gw,current,recommended,ai};
 }
 function labShirt(D,p){
   const code=((D.team_codes||{})[p.club])??LAB_TCODE[p.club];
@@ -914,14 +923,19 @@ function labPitchHtml(D,team,they){
 }
 function labPitch(D,they,KEY){
   const S=labSquads(D); if(!S.current) return "";
+  const MODES=[["rec","Recommended",S.recommended],["cur","Current",S.current],["ai","AI",S.ai]].filter(m=>m[2]);
   const k=KEY+":pitch"; let mode=(()=>{try{return localStorage.getItem(k)}catch(e){return null}})()||"rec";
-  if(!S.recommended) mode="cur";
-  const sub=m=>m==="rec"?`${they?"Their":"Your"} squad after the planned move${(S.recommended.moves||[]).length===1?"":"s"} (${(S.recommended.moves||[]).map(x=>esc(x.out)+" → "+esc(x.in)).join(", ")||"none"}), XI, bench and armband by expected points.`:`${they?"Their":"Your"} squad as it stands now, with the Plan lineup and armband.`;
+  if(!MODES.some(m=>m[0]===mode)) mode=MODES[0][0];
+  const mv=t=>(t.moves||[]).map(x=>esc(x.out)+" → "+esc(x.in)).join(", ")||"none";
+  const sub=m=>m==="rec"?`${they?"Their":"Your"} squad after the planned move${(S.recommended.moves||[]).length===1?"":"s"} (${mv(S.recommended)}), XI, bench and armband by expected points.`
+    :m==="ai"?`The AI team's own plan (${mv(S.ai)}) ${S.ai.locked?"- locked.":"- can still change until it locks."}`
+    :`${they?"Their":"Your"} squad as it stands now, with the Plan lineup and armband.`;
+  const teamOf=m=>m==="rec"?S.recommended:m==="ai"?S.ai:S.current;
   const legend=`<p class="note lab-legend"><i class="b c">C</i> captain <i class="b v">V</i> vice <i class="b in">IN</i> planned transfer in <i class="b star">★</i> top-3 xP <i class="b warn">⚠</i> doubtful <i class="b warn out">✕</i> out</p>`;
-  const html=`<div class="lab-pitchcard card" id="labPitch"><div class="lab-ph"><h2>GW${S.gw} TEAM</h2>${S.recommended?`<div class="lab-seg" role="tablist"><button data-pm="rec">Recommended</button><button data-pm="cur">Current</button></div>`:""}</div><p class="note lab-psub"></p><div class="lab-pbody"></div>${legend}</div>`;
+  const html=`<div class="lab-pitchcard card" id="labPitch"><div class="lab-ph"><h2>GW${S.gw} TEAM</h2>${MODES.length>1?`<div class="lab-seg" role="tablist">${MODES.map(m=>`<button data-pm="${m[0]}">${m[1]}</button>`).join("")}</div>`:""}</div><p class="note lab-psub"></p><div class="lab-pbody"></div>${legend}</div>`;
   setTimeout(()=>{
     const el=document.getElementById("labPitch"); if(!el) return;
-    const paint=()=>{ el.querySelector(".lab-psub").innerHTML=sub(mode); el.querySelector(".lab-pbody").innerHTML=labPitchHtml(D,mode==="rec"?S.recommended:S.current,they);
+    const paint=()=>{ el.querySelector(".lab-psub").innerHTML=sub(mode); el.querySelector(".lab-pbody").innerHTML=labPitchHtml(D,teamOf(mode),they);
       el.querySelectorAll("[data-pm]").forEach(b=>{b.classList.toggle("on",b.dataset.pm===mode);b.setAttribute("aria-selected",b.dataset.pm===mode);}); };
     el.addEventListener("click",e=>{const b=e.target.closest("[data-pm]"); if(!b) return; mode=b.dataset.pm; try{localStorage.setItem(k,mode)}catch(_){} paint();});
     paint();
