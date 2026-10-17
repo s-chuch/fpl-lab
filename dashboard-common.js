@@ -418,7 +418,7 @@ function liveBar(L,team){
   }catch(e){ return ""; }
 }
 function loadLive(team){
-  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
+  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); const pl=document.getElementById("labPredLive"); if(pl) pl.innerHTML=labPredLiveHtml(); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
   load(); setInterval(load,5*60*1000);
 }
 // Backtest of the expected-points model (calibrate.py): fitted on last season, graded on a later one it never saw.
@@ -802,6 +802,19 @@ function labNews(D,they){
   return `<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New FPL flags · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
+// ---------------------------------------------------------------- PREDICTIONS: the live gameweek (live-data.js .pred, live_update.pred_live)
+function labPredLiveHtml(){
+  const L=window.FPL_LIVE; if(!L||!L.pred) return "";
+  const CAT=[["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
+  const shown=CAT.filter(([k])=>(L.pred.cats[k]||[]).length);
+  const mark=r=>r.hit?`<i class="lab-ok y">✓</i>`:r.state==="done"?`<i class="lab-ok n">✗</i>`:r.state==="live"?`<i class="lab-ok w">●</i>`:`<i class="lab-ok z">–</i>`;
+  const what=(k,r)=>k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
+  const sec=([k,l])=>{const rows=L.pred.cats[k]; const hits=rows.filter(r=>r.hit).length, done=rows.filter(r=>r.state==="done").length;
+    return `<h4 class="lab-ph4">${l} · ${hits} of ${rows.length}${done<rows.length?` so far (${done} finished)`:""}</h4><div class="lab-prs">${rows.map(r=>`<div class="lab-pr"><span class="n">${mark(r)} ${esc(r.name)}${r.club?` <em>${esc(r.club)}</em>`:""}</span><span class="v ${r.hit?"lab-hitv":""}">${esc(what(k,r))}</span></div>`).join("")}</div>`;};
+  const when=L.generated_at?new Date(L.generated_at.replace(" UTC","Z").replace(" ","T")).toLocaleTimeString("en-CA",{timeZone:"America/Toronto",hour:"2-digit",minute:"2-digit",hour12:false})+" ET":"";
+  return `<div class="lab-rec lab-live"><h3 class="lab-ph3">Gameweek ${L.gw} live${L.in_play?` <span class="pill free">${L.in_play} match${L.in_play===1?"":"es"} in play</span>`:""}</h3>
+    <p class="note" data-keep>${esc(L.pred.source)}. ${when?`Updated ${when}; `:""}this page re-checks every 5 minutes. A pick turns ✓ the moment it happens and ✗ once his match is over.</p>${shown.map(sec).join("")}</div>`;
+}
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
   const R=P.record||{}, CAT=[["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
@@ -846,7 +859,7 @@ function labPred(D){
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
   const L=R.last;
   const lastBlock=L?`<h3 class="lab-ph3">How GW${L.gw} went</h3>`+CAT.map(([k,l])=>`<h4 class="lab-ph4">${l}</h4><div class="lab-prs">${((L.picks||{})[k]||[]).map(p=>row(p.name||p.club,p.name?p.club:"",`<b>${p.p}%</b>`,esc(p.why||""),p.hit?"y":"n")).join("")}</div>`).join(""):"";
-  return `<p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+leg+lists+lastBlock;
+  return `<div id="labPredLive">${labPredLiveHtml()}</div><p class="note" data-keep>GW${P.gw} from the program's own model (xG/xA, minutes, fixtures, news).</p>`+rec+leg+lists+lastBlock;
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;

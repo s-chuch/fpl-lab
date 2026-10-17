@@ -51,6 +51,85 @@ def team_snapshot(boot, team_id, gw, live, els):
             "xi": lines, "bench": bench, "yet_to_play": sum(1 for l in lines if not l["played"])}
 
 
+DEFCON_THR = {2: 10, 3: 12, 4: 12}
+
+
+def _load(path):
+    try:
+        return json.loads(Path(path).read_text())
+    except Exception:
+        return {}
+
+
+def _data_js(name):
+    try:
+        raw = (ROOT / name).read_text()
+        return json.loads(raw[raw.index("{"): raw.rindex("}") + 1])
+    except Exception:
+        return {}
+
+
+def pred_picks(gw, boot):
+    """The predictions to follow live for this gameweek: the saved top-10s (prediction_log.json) when there are some, else the older
+    saved lists (chance-volume goal / assist flags in data.js and the stored DEFCON top-10). Returns (source, {cat: [{id|team, name, club}]})."""
+    log = (_load(ROOT / "prediction_log.json").get("gws") or {}).get(str(gw))
+    if log and log.get("picks"):
+        return "Top 10 predictions", {c: log["picks"].get(c, []) for c in ("goals", "assists", "defcon", "clean_sheets")}
+    short = {t["id"]: t["short_name"] for t in boot["teams"]}
+    by_key = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
+    picks = {"goals": [], "assists": [], "defcon": [], "clean_sheets": []}
+    for f in ((_data_js("data.js").get("volume_log") or {}).get(f"gw{gw}") or {}).get("flags", []):
+        cat = "goals" if f.get("kind") == "goal" else "assists"
+        picks[cat].append({"id": f.get("eid"), "name": f["name"], "club": f["club"]})
+    for p in ((_load(ROOT / "legacy_predictions.json").get("gws") or {}).get(str(gw)) or {}).get("picks", []):
+        eid = by_key.get((p["name"], p["club"]))
+        if eid:
+            picks["defcon"].append({"id": eid, "name": p["name"], "club": p["club"]})
+    if not any(picks.values()):
+        return None, {}
+    return "Earlier method (saved before the deadline)", picks
+
+
+def pred_live(gw, boot, live, fixtures, els):
+    """Where each followed prediction stands right now: not started / in play / done, and what he has so far."""
+    source, picks = pred_picks(gw, boot)
+    if not source:
+        return None
+    def state(team):
+        mine = [f for f in fixtures if team in (f["team_h"], f["team_a"])]
+        if not mine:
+            return "none", None
+        if all(f.get("finished_provisional") or f.get("finished") for f in mine):
+            return "done", mine
+        if any(f.get("started") for f in mine):
+            return "live", mine
+        return "yet", mine
+    out = {}
+    for cat, lst in picks.items():
+        rows = []
+        for p in lst:
+            if cat == "clean_sheets":
+                team = p.get("team")
+                st, mine = state(team)
+                conceded = sum((f["team_a_score"] if f["team_h"] == team else f["team_h_score"]) or 0 for f in (mine or []))
+                rows.append({"name": p.get("club"), "club": "", "state": st, "val": conceded, "need": 0, "hit": st != "yet" and conceded == 0,
+                             "mins": max([f.get("minutes") or 0 for f in (mine or [])] or [0])})
+                continue
+            el = els.get(p.get("id")) or {}
+            st, mine = state(el.get("team"))
+            s = live.get(p.get("id")) or {}
+            if cat == "goals":
+                val, need = int(s.get("goals_scored") or 0), 1
+            elif cat == "assists":
+                val, need = int(s.get("assists") or 0), 1
+            else:
+                val, need = int(s.get("defensive_contribution") or 0), DEFCON_THR.get(el.get("element_type"), 12)
+            rows.append({"name": p.get("name") or el.get("web_name"), "club": p.get("club", ""), "state": st, "val": val, "need": need,
+                         "hit": val >= need, "mins": int(s.get("minutes") or 0)})
+        out[cat] = rows
+    return {"source": source, "cats": out}
+
+
 def main(argv):
     now = datetime.now(timezone.utc)
     boot = get("https://fantasy.premierleague.com/api/bootstrap-static/")
@@ -68,6 +147,10 @@ def main(argv):
               "minutes": f.get("minutes"), "started": bool(f.get("started")), "finished": bool(f.get("finished_provisional") or f.get("finished"))} for f in fx]
     snap = {"gw": gw, "generated_at": now.strftime("%Y-%m-%d %H:%M UTC"), "games": games,
             "in_play": sum(1 for g in games if g["started"] and not g["finished"]), "teams": {}}
+    try:
+        snap["pred"] = pred_live(gw, boot, live, fx, els)
+    except Exception as e:
+        _warn(f"live: predictions: {e}")
     for name, tid in TEAMS.items():
         try:
             snap["teams"][name] = team_snapshot(boot, tid, gw, live, els)
