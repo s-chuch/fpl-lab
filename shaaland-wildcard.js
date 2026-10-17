@@ -123,7 +123,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tarkowski",
         "bench_ep": 4.82,
         "starter": "Calafiori",
-        "starter_ep": 3.85
+        "starter_ep": 3.82
       }
     ],
     "bench_order": [
@@ -144,13 +144,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.34,
+        "ep_next": 4.25,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.85,
+        "ep_next": 3.82,
         "status": "ok"
       },
       {
@@ -162,13 +162,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 4.04,
+        "ep_next": 4.05,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.86,
+        "ep_next": 3.87,
         "status": "ok"
       },
       {
@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.12,
+        "ep_next": 4.08,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.26,
+        "ep_next": 2.18,
         "status": "ok"
       }
     ],
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.54,
+        "ep_next": 3.21,
         "status": "ok"
       },
       {

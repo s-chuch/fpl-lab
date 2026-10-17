@@ -1052,13 +1052,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "f9da6711ba82",
+  "code_sha": "ba9d9c3c3abf",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T18:00:13+00:00",
-  "saved_at_et": "2026-10-17 2:00 PM ET",
+  "saved_at": "2026-10-17T18:08:38+00:00",
+  "saved_at_et": "2026-10-17 2:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1080,21 +1080,21 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.34
+    "xp": 4.25
    },
    {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 4.04
+    "xp": 4.08
    },
    {
-    "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
+    "club": "FUL",
+    "id": 261,
+    "name": "Iwobi",
     "pos": "MID",
-    "xp": 5.0
+    "xp": 5.3
    },
    {
     "club": "BHA",
@@ -1108,21 +1108,21 @@
     "id": 12,
     "name": "Saka",
     "pos": "MID",
-    "xp": 4.12
+    "xp": 4.08
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 4.01
+    "xp": 4.05
    },
    {
     "club": "FUL",
     "id": 268,
     "name": "King",
     "pos": "MID",
-    "xp": 3.86
+    "xp": 3.87
    },
    {
     "club": "MCI",
@@ -1150,7 +1150,7 @@
     "id": 8,
     "name": "Calafiori",
     "pos": "DEF",
-    "xp": 3.85
+    "xp": 3.82
    },
    {
     "club": "CHE",
@@ -1170,16 +1170,16 @@
   "status": "pending",
   "transfers": [
    {
+    "in": "Iwobi",
+    "in_id": 261,
+    "out": "Schade",
+    "out_id": 94
+   },
+   {
     "in": "Barry",
     "in_id": 249,
     "out": "Kostoulas",
     "out_id": 138
-   },
-   {
-    "in": "Dewsbury-Hall",
-    "in_id": 236,
-    "out": "Schade",
-    "out_id": 94
    }
   ],
   "vice": 124,
@@ -1189,7 +1189,7 @@
    229,
    115,
    449,
-   236,
+   261,
    124,
    12,
    453,
@@ -1197,6 +1197,6 @@
    411,
    249
   ],
-  "xp": 58.0
+  "xp": 58.3
  }
 }

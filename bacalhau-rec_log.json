@@ -996,19 +996,19 @@
    1,
    68,
    391,
-   138
+   321
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "f9da6711ba82",
+  "code_sha": "ba9d9c3c3abf",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T18:00:20+00:00",
-  "saved_at_et": "2026-10-17 2:00 PM ET",
+  "saved_at": "2026-10-17T18:08:43+00:00",
+  "saved_at_et": "2026-10-17 2:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1030,28 +1030,28 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.34
+    "xp": 4.25
    },
    {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
-    "xp": 4.23
+    "xp": 4.16
    },
    {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 4.04
+    "xp": 4.08
    },
    {
     "club": "FUL",
     "id": 261,
     "name": "Iwobi",
     "pos": "MID",
-    "xp": 5.2
+    "xp": 5.3
    },
    {
     "club": "EVE",
@@ -1068,11 +1068,11 @@
     "xp": 4.84
    },
    {
-    "club": "BRE",
-    "id": 94,
-    "name": "Schade",
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
     "pos": "MID",
-    "xp": 3.54
+    "xp": 3.29
    },
    {
     "club": "MCI",
@@ -1100,21 +1100,21 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 2.89
+    "xp": 2.83
    },
    {
     "club": "MCI",
     "id": 391,
     "name": "Gvardiol",
     "pos": "DEF",
-    "xp": 2.6
+    "xp": 2.24
    },
    {
-    "club": "BHA",
-    "id": 138,
-    "name": "Kostoulas",
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
     "pos": "FWD",
-    "xp": 2.26
+    "xp": 0.11
    }
   ],
   "status": "pending",
@@ -1122,14 +1122,14 @@
    {
     "in": "Barry",
     "in_id": 249,
-    "out": "Walle Egeli",
-    "out_id": 321
+    "out": "Kostoulas",
+    "out_id": 138
    },
    {
     "in": "Iwobi",
     "in_id": 261,
-    "out": "Belloumi",
-    "out_id": 286
+    "out": "Schade",
+    "out_id": 94
    }
   ],
   "vice": 124,
@@ -1143,10 +1143,10 @@
    261,
    236,
    124,
-   94,
+   286,
    411,
    249
   ],
-  "xp": 59.0
+  "xp": 58.7
  }
 }

@@ -115,21 +115,15 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Bogle",
-        "bench_ep": 4.23,
+        "bench_ep": 4.16,
         "starter": "Gvardiol",
-        "starter_ep": 2.6
+        "starter_ep": 2.24
       },
       {
         "bench": "Tzolakis",
         "bench_ep": 4.4,
         "starter": "Raya",
         "starter_ep": 2.97
-      },
-      {
-        "bench": "Tavernier",
-        "bench_ep": 2.89,
-        "starter": "Belloumi",
-        "starter_ep": 2.61
       }
     ],
     "bench_order": [
@@ -150,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 2.6,
+        "ep_next": 2.24,
         "status": "ok"
       },
       {
@@ -168,13 +162,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.34,
+        "ep_next": 4.25,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.61,
+        "ep_next": 3.29,
         "status": "ok"
       },
       {
@@ -192,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.54,
+        "ep_next": 3.21,
         "status": "ok"
       },
       {
@@ -204,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.26,
+        "ep_next": 2.18,
         "status": "ok"
       }
     ],
@@ -218,13 +212,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 2.89,
+        "ep_next": 2.83,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.23,
+        "ep_next": 4.16,
         "status": "ok"
       },
       {
