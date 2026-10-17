@@ -994,21 +994,21 @@
   "backfilled": false,
   "bench": [
    1,
-   94,
+   68,
    286,
    321
   ],
-  "captain": 229,
-  "captain_name": "Tarkowski",
+  "captain": 411,
+  "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "76c8cef2ed2e",
+  "code_sha": "a0730d3278ab",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T12:02:41+00:00",
-  "saved_at_et": "2026-10-17 8:02 AM ET",
+  "saved_at": "2026-10-17T13:33:36+00:00",
+  "saved_at_et": "2026-10-17 9:33 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1023,7 +1023,7 @@
     "id": 229,
     "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 5.27
+    "xp": 4.78
    },
    {
     "club": "BHA",
@@ -1058,7 +1058,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.86
+    "xp": 5.08
    },
    {
     "club": "BHA",
@@ -1068,11 +1068,11 @@
     "xp": 4.84
    },
    {
-    "club": "BOU",
-    "id": 68,
-    "name": "Tavernier",
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
     "pos": "MID",
-    "xp": 2.89
+    "xp": 3.44
    },
    {
     "club": "MCI",
@@ -1086,7 +1086,7 @@
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 4.5
+    "xp": 4.7
    },
    {
     "club": "ARS",
@@ -1096,11 +1096,11 @@
     "xp": 2.97
    },
    {
-    "club": "BRE",
-    "id": 94,
-    "name": "Schade",
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
     "pos": "MID",
-    "xp": 2.58
+    "xp": 2.89
    },
    {
     "club": "HUL",
@@ -1132,8 +1132,8 @@
     "out_id": 391
    }
   ],
-  "vice": 411,
-  "vice_name": "Haaland",
+  "vice": 124,
+  "vice_name": "Groß",
   "xi": [
    572,
    229,
@@ -1143,10 +1143,10 @@
    449,
    236,
    124,
-   68,
+   94,
    411,
    249
   ],
-  "xp": 53.2
+  "xp": 53.7
  }
 }

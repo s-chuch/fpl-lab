@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Tarkowski",
-        "bench_ep": 5.27,
+        "bench_ep": 4.78,
         "starter": "Hall",
         "starter_ep": 3.73
       },
@@ -124,22 +124,22 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 3.93,
         "starter": "Raya",
         "starter_ep": 2.97
+      },
+      {
+        "bench": "Schade",
+        "bench_ep": 3.44,
+        "starter": "King",
+        "starter_ep": 3.33
       }
     ],
     "bench_order": [
       "Tzolakis",
       "Tarkowski",
-      "Davis",
-      "Schade"
+      "Schade",
+      "Davis"
     ],
-    "bench_order_changed": true,
-    "availability_flags": [
-      {
-        "name": "Schade",
-        "label": "DOUBT 75%",
-        "chance": 75
-      }
-    ],
+    "bench_order_changed": false,
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.4,
+        "ep_next": 3.71,
         "status": "ok"
       },
       {
@@ -218,14 +218,14 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 5.27,
+        "ep_next": 4.78,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.58,
-        "status": "doubt"
+        "ep_next": 3.44,
+        "status": "ok"
       },
       {
         "name": "Davis",

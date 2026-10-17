@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
-    "captain": "Tarkowski",
-    "captain_ep": 5.27,
-    "vice": "Haaland",
-    "vice_ep": 5.25,
+    "captain": "Haaland",
+    "captain_ep": 5.25,
+    "vice": "Dewsbury-Hall",
+    "vice_ep": 5.08,
     "bench_swaps": [
       {
         "bench": "Bogle",
@@ -139,13 +139,7 @@ window.FPL_WILDCARD_WATCH = {
       "Walle Egeli"
     ],
     "bench_order_changed": true,
-    "availability_flags": [
-      {
-        "name": "Schade",
-        "label": "DOUBT 75%",
-        "chance": 75
-      }
-    ],
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
@@ -168,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 5.27,
+        "ep_next": 4.78,
         "status": "ok"
       },
       {
@@ -186,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.86,
+        "ep_next": 5.08,
         "status": "ok"
       },
       {
@@ -198,8 +192,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.58,
-        "status": "doubt"
+        "ep_next": 3.44,
+        "status": "ok"
       },
       {
         "name": "Haaland",
