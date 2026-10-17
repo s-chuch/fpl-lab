@@ -199,3 +199,4 @@
 - **Plan pitch view has three modes:** Current / Recommended / AI (`labSquads` builds `ai` from `data.ai_team.plan` when it is for the same gameweek; the choice is remembered per page). The AI view shows the AI team's own XI, bench, C/V and its transfers as IN badges.
 - **Target cards are three per row** (compact `.lab-pc` styles at the end of `dashboard.css`; two per row only under 360px).
 - **Predictions (More tab, first box):** `ai_run.build_predictions` -> `data["predictions"]` for the next gameweek: top scorers and assisters (expected goals / assists from `ai_team.model_outlook`, the same ingredients as `model_xp`, plus the chance of at least one), clubs likeliest to keep a clean sheet, and rotation risks (decent xP with a rest / minutes / reported-rotation flag). Rendered by `labPred` as the first accordion in More (above the Decision log).
+- **Navigation is the bottom bar only** (Plan / Target / More); the duplicate top tab bar is gone.

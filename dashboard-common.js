@@ -999,7 +999,6 @@ function labShell(D,opt){
   const gw=(D.deadline||{}).next_gw;
   root.innerHTML=`<header class="lab-head"><div class="lab-brand"><span>FPL Lab</span>${LAB_SVG.flask}</div><div class="lab-team">${esc((D.team||{}).name||opt.team||"")}</div><button class="lab-ibtn" aria-label="About this page" aria-expanded="false">${LAB_SVG.info}</button></header>
 <div class="lab-info" hidden></div>
-<nav class="lab-tabs">${tabs.map(([id,l])=>`<button data-v="${id}">${l.toUpperCase()}</button>`).join("")}</nav>
 <main class="lab-main">
 <div class="lab-view" id="labPlan"><div class="lab-top"></div>
 <div class="lab-do card"><h2>DO THIS${gw?` <span class="note">· GW${gw}</span>`:""}</h2><div class="lab-tiles">
