@@ -938,7 +938,7 @@ function labPool(D,h){
   const H=(D.targets||{}).horizons||{};
   Object.keys(H).forEach(k=>(H[k].top||[]).forEach(r=>add(r,(p,r)=>{p.form=r.form; p.xgi90=r.xgi_p90; if(r.trend&&(p.trend==null||k===String(h))) p.trend=r.trend; if(k===String(h)){p.xp=r.xp; p.fdr=r.fdr; p.why=r.why; p.sig=r.sig; p.ov=true;}})));
   const T=(H[String(h)]||{}).top||[];
-  (((D.targets||{}).pool||{})[String(h)]||[]).forEach((r,i)=>add(r,(p,r)=>{p.pool=true; p.pord=i; p.xp=r.xp; p.fdr=r.fdr; p.why=r.why; p.form=r.form; p.xgi90=r.xgi90; p.cs=r.cs; p.dc=r.dc; p.big=r.big; p.trend=r.trend||p.trend;}));
+  (((D.targets||{}).pool||{})[String(h)]||[]).forEach((r,i)=>add(r,(p,r)=>{p.pool=true; p.pord=i; p.xp=r.xp; p.fdr=r.fdr; p.why=r.why; p.form=r.form; p.xgi90=r.xgi90; p.cs=r.cs; p.dc=r.dc; p.big=r.big; p.vpm=r.vpm; p.pts=r.pts; p.start=r.start; p.trend=r.trend||p.trend;}));
   const X=D.xg_signal||{};
   ["top","top_over","top_under","notable"].forEach(k=>(X[k]||[]).forEach(r=>add(r,(p,r)=>{p.xg=r.xg; p.xgi=r.xgi; p.xgi90=r.xgi_p90; p.goals=r.goals; p.assists=r.assists; p.next=r.next; if(p.fdr==null&&h===1) p.fdr=r.fdr;})));
   (X.top_def_lucky||[]).forEach(r=>add(r,(p,r)=>{p.xgc=r.xgc; p.gc=r.goals_conceded; p.next=r.next; p.mins=r.minutes;}));
@@ -953,20 +953,20 @@ function labPool(D,h){
   const list=[...M.values()]; list.forEach(p=>{p.ord=order.has(p.name+"|"+p.club)?order.get(p.name+"|"+p.club):999;});
   return list;
 }
-const LAB_FILTERS=[   // every view is the same ranking (expected points over the horizon, after the start check); a filter only picks who is shown
-  {id:"overview",label:"Overview",note:"Everyone, best to worst by expected points (minutes, rotation, fitness, fixtures, odds, xG/xA, clean sheets, DEFCON, news and ownership all counted).",pick:p=>p.pool,sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.bolt,""]},
-  {id:"attack",label:"Attack",note:"Forwards, best to worst by expected points.",pick:p=>p.pool&&p.pos==="FWD",sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.aim,""]},
-  {id:"midfield",label:"Midfield",note:"Midfielders, best to worst by expected points.",pick:p=>p.pool&&p.pos==="MID",sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.star,""]},
-  {id:"defence",label:"Defence",note:"Defenders and keepers, best to worst by expected points. CS = next-gameweek clean-sheet chance, DC = DEFCON bonus chance.",pick:p=>p.pool&&(p.pos==="DEF"||p.pos==="GKP"),sort:(a,b)=>a.pord-b.pord,head:p=>[LAB_SVG.guard,p.cs!=null?`CS ${p.cs}%${p.dc!=null?` · DC ${p.dc}%`:""}`:""]},
-  {id:"setpieces",label:"Set Pieces",note:"Penalty, free-kick and corner takers (FPL's order), best to worst by expected points.",pick:p=>p.pool&&(p.sp||[]).length,sort:(a,b)=>a.pord-b.pord,head:p=>[LAB_SVG.flag,p.sp.join(" · ")]},
-  {id:"form",label:"Form",note:"Players in form (5+ points per game over 30 days), best to worst by expected points.",pick:p=>p.pool&&p.form>=5,sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.bolt,""]},
-  {id:"xgi",label:"xGI",note:"High expected goal involvement (0.4+ per 90), best to worst by expected points.",pick:p=>p.pool&&p.pos!=="GKP"&&(p.xgi90||0)>=0.4,sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.star,""]},
-  {id:"fixtures",label:"Fixtures",note:"Easy fixtures (average FDR 2.7 or lower over the horizon), best to worst by expected points.",pick:p=>p.pool&&p.fdr!=null&&p.fdr<=2.7,sort:(a,b)=>a.pord-b.pord,head:(p,n)=>[LAB_SVG.cal,`FDR ${labNum(p.fdr,1)} next ${n} GW${n>1?"s":""}`]},
-  {id:"value",label:"Value",note:"Expected points per £1m, best first.",pick:p=>p.pool&&p.cost>0,sort:(a,b)=>(b.xp/b.cost)-(a.xp/a.cost),head:p=>[LAB_SVG.pound,`${labNum(p.xp/p.cost,2)} xP per £1m`]}
+const LAB_FILTERS=[   // every filter shows the same players (the start-checked pool) and orders them by its own stat, best first
+  {id:"overview",label:"Overview",note:"Best to target: expected points over the horizon (minutes, rotation, fitness, fixtures, odds, xG/xA, clean sheets, DEFCON, news and ownership all counted).",pick:p=>p.pool,sort:(a,b)=>a.pord-b.pord,head:()=>[LAB_SVG.bolt,""]},
+  {id:"attack",label:"Attack",note:"Forwards, highest expected goals (xG) this season first.",pick:p=>p.pool&&p.pos==="FWD"&&p.big,sort:(a,b)=>(b.big[1]-a.big[1])||(a.pord-b.pord),head:()=>[LAB_SVG.aim,""]},
+  {id:"midfield",label:"Midfield",note:"Midfielders, highest expected goal involvement per 90 (xGI) first.",pick:p=>p.pool&&p.pos==="MID",sort:(a,b)=>((b.xgi90||0)-(a.xgi90||0))||(a.pord-b.pord),head:()=>[LAB_SVG.star,""]},
+  {id:"defence",label:"Defence",note:"Defenders and keepers, highest chance of a clean sheet next gameweek (CS) first. DC = chance of the DEFCON bonus.",pick:p=>p.pool&&(p.pos==="DEF"||p.pos==="GKP")&&p.cs!=null,sort:(a,b)=>((b.cs||0)-(a.cs||0))||((b.dc||0)-(a.dc||0))||(a.pord-b.pord),head:p=>[LAB_SVG.guard,`CS ${p.cs}%${p.dc!=null?` · DC ${p.dc}%`:""}`]},
+  {id:"setpieces",label:"Set Pieces",note:"Penalty, free-kick and corner takers (FPL's order): penalty takers first, then highest xGI per 90.",pick:p=>p.pool&&(p.sp||[]).length,sort:(a,b)=>((b.sp.includes("Pens")?1:0)-(a.sp.includes("Pens")?1:0))||((b.xgi90||0)-(a.xgi90||0))||(a.pord-b.pord),head:p=>[LAB_SVG.flag,p.sp.join(" · ")]},
+  {id:"form",label:"Form",note:"Highest FPL form first (average points per game over the last 30 days).",pick:p=>p.pool&&p.form!=null,sort:(a,b)=>(b.form-a.form)||(a.pord-b.pord),head:()=>[LAB_SVG.bolt,""]},
+  {id:"xgi",label:"xGI",note:"Highest expected goal involvement per 90 first (outfield players).",pick:p=>p.pool&&p.pos!=="GKP"&&p.xgi90!=null,sort:(a,b)=>((b.xgi90||0)-(a.xgi90||0))||(a.pord-b.pord),head:p=>[LAB_SVG.star,`${labNum(p.xgi90,2)} xGI per 90`]},
+  {id:"fixtures",label:"Fixtures",note:"Easiest fixtures first: lowest average FPL difficulty (FDR) over the horizon.",pick:p=>p.pool&&p.fdr!=null,sort:(a,b)=>(a.fdr-b.fdr)||(a.pord-b.pord),head:(p,n)=>[LAB_SVG.cal,`FDR ${labNum(p.fdr,2)} next ${n} GW${n>1?"s":""}`]},
+  {id:"value",label:"Value",note:"Best value first: season points per £1m.",pick:p=>p.pool&&p.vpm!=null,sort:(a,b)=>(b.vpm-a.vpm)||(a.pord-b.pord),head:p=>[LAB_SVG.pound,`${labNum(p.vpm,1)} pts per £1m (${p.pts} pts)`]}
 ];
 function labCard(p,f,n,i){
   const [ic,txt]=f.head(p,n); const pc=LAB_POSC[p.pos]||"#8b95a1";
-  const big=p.pool&&p.big?[p.big[0],labNum(p.big[1],1)]:p.pos==="FWD"&&p.xg!=null?["xG",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
+  const big=p.pool&&p.big?[p.big[0],labNum(p.big[1],/^xGI/.test(p.big[0])?2:1)]:p.pos==="FWD"&&p.xg!=null?["xG",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
   const more=[...(p.why||[]),...(p.sig||[]).map(s=>typeof shortReason==="function"?shortReason(s):s)];
   return `<div class="lab-pc"><div class="lab-pc-h"><i class="dot" style="background:${pc}"></i><b>${esc(p.name)}</b><button class="lab-dots" aria-label="More about ${esc(p.name)}" data-i="${i}">${LAB_SVG.dots}</button></div><div class="lab-pc-c">${esc(p.club||"")} • <span style="color:${pc};font-weight:700">${esc(p.pos||"")}</span></div><div class="lab-pc-t">${(()=>{const t=p.trend&&p.trend.dir; const c=t==="up"||t==="down"?t:"flat"; return `<span class="lab-trend ${c}" title="${esc(((p.trend||{}).why||[]).join(" · ")||"No clear change in the last gameweek")}">${c==="up"?"▲ Trending":c==="down"?"▼ Falling":"● Neutral"}</span>`;})()}</div><div class="lab-pc-s">${txt?`<span style="color:${pc}">${ic}</span>${esc(txt)}`:""}</div><div class="lab-pc-g"><div><span>Form</span><b>${labNum(p.form,1)}</b></div><div><span>xP${n>1?" · "+n+" GW":""}</span><b>${labNum(p.xp,1)}</b></div><div><span>${big[0]}</span><b>${big[1]}</b></div><div><span>Price</span><b class="lab-green">£${labNum(p.cost,1)}m</b></div></div><div class="lab-pc-x" hidden>${p.trend&&(p.trend.why||[]).length?`<div>${p.trend.dir==="up"?"Trending":p.trend.dir==="down"?"Falling":"Neutral"}: ${esc(p.trend.why.join(" · "))}</div>`:""}${p.next?`<div>Next: ${esc(p.next)}</div>`:""}${p.owned!=null?`<div>Owned ${p.owned}% overall</div>`:""}${more.length?`<div>${esc(more.join(" · "))}</div>`:""}</div></div>`;
 }

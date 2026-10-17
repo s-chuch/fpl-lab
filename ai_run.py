@@ -467,7 +467,8 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
                    ["xGI per 90", round(float(e.get("expected_goal_involvements_per_90") or 0), 2)])
             r = {"id": eid, "name": e["web_name"], "club": short[e["team"]], "pos": POS[et], "cost": e["now_cost"] / 10,
                  "form": float(e.get("form") or 0), "owned_pct": float(e.get("selected_by_percent") or 0), "xp": xp_n, "xp_n": min(n, len(per_gw)),
-                 "xgi90": round(float(e.get("expected_goal_involvements_per_90") or 0), 2), "big": big}
+                 "xgi90": round(float(e.get("expected_goal_involvements_per_90") or 0), 2), "big": big,
+                 "pts": int(e.get("total_points") or 0), "vpm": round((e.get("total_points") or 0) / (e["now_cost"] / 10), 2) if e["now_cost"] else 0}
             s = starts_of(r)
             if s is not None:
                 r["start"] = round(100 * s)
@@ -487,7 +488,7 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
                     r["cs"] = round(100 * o["cs"]); r["dc"] = round(100 * o["defcon"]) if et == 2 else None
             rows.append(r)
         rows.sort(key=lambda r: -r["xp"])
-        pool[key] = rows[:80]
+        pool[key] = rows[:150]
     (data.setdefault("targets", {}))["pool"] = pool
 
 
