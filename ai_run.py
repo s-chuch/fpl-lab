@@ -360,7 +360,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
         base = {"name": v["name"], "club": v["club"], "pos": pos, "cost": v["cost"], "fixture": v["fixture"], "avail": v["avail"]}
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
         rows.append({**base, "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "mp": o["mp"], "playing": playing,
-                     "risks": v["risks"], "xp": v["xp"], "eid": el["id"]})
+                     "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"], "eid": el["id"]})
         if pos in ("GKP", "DEF") and playing:
             club_cs.setdefault(v["club"], {"fixture": v["fixture"], "cs": [], "who": []})
             club_cs[v["club"]]["cs"].append(o["cs"])
@@ -371,15 +371,22 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=8):
     assisters = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["assists"])[:top_n]
     sheets = sorted(({"club": c, "fixture": d["fixture"], "cs": round(100 * sum(d["cs"]) / len(d["cs"])), "who": [n for _x, n in sorted(d["who"], reverse=True)[:2]]}
                      for c, d in club_cs.items()), key=lambda r: -r["cs"])[:top_n]
-    # rotation: players who matter (decent expected points) and carry a rest / minutes / reported-rotation flag
-    rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and any(("rest" in x or "minutes" in x or "rotation" in x or "again" in x) for x in r["risks"])),
-                 key=lambda r: -r["xp"])[:top_n]
+    # rotation: players who matter (decent expected points) ranked by how likely they are NOT to play a full part this gameweek:
+    # 1 - (share of minutes he normally plays x fitness x the rest / minutes-falling / reported-rotation factors the model applies)
+    def start_prob(r):
+        f = 1.0
+        for x in (r.get("factors") or []):
+            f *= x.get("factor", 1.0)
+        return min(1.0, r["mp"]) * r["avail"] * f
+    for r in rows:
+        r["start"] = start_prob(r)
+    rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
     return {
         "gw": nxt,
         "goals": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xg": round(r["goals"], 2), "p": pct(r["goals"])} for r in scorers],
         "assists": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "xa": round(r["assists"], 2), "p": pct(r["assists"])} for r in assisters],
         "clean_sheets": sheets,
-        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "start": round(100 * min(1.0, r["mp"]) * r["avail"]), "why": r["risks"][:2]} for r in rot],
+        "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]), "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],
     }
 
 

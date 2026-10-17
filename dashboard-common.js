@@ -782,7 +782,7 @@ function labPred(D){
    +sec("Goals",(P.goals||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xg,2)} expected goals`)))
    +sec("Assists",(P.assists||[]).map(r=>row(nm(r),`<b>${r.p}%</b> chance`,`${esc(r.fixture)} · ${labNum(r.xa,2)} expected assists`)))
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(esc(r.club),`<b>${r.cs}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)))
-   +sec("Rotation risk",(P.rotation||[]).map(r=>row(nm(r),`<b>${r.start}%</b> to start`,esc((r.why||[]).join("; ")))));
+   +sec("Rotation risk",(P.rotation||[]).map(r=>row(nm(r),`<b>${r.rotate??(100-r.start)}%</b> chance of rotation`,esc((r.why||[]).join("; ")||"plays fewer minutes than a full starter"))));
 }
 function labAcc(id,title,sub,body){
   return `<details class="lab-acc" id="${id}"><summary><div><b>${title}</b><span>${sub}</span></div><i>${LAB_SVG.chev}</i></summary><div class="lab-acc-body">${body}</div></details>`;
