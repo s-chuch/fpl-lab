@@ -253,18 +253,18 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-16",
-      "total_cost": 99.9,
+      "total_cost": 100.2,
       "prices": {
         "Raya": 6.1,
-        "De Cuyper": 5.1,
+        "De Cuyper": 5.2,
         "Calafiori": 5.9,
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "Barnes": 6.1,
         "King": 5.6,
-        "Groß": 6.0,
+        "Groß": 6.1,
         "Saka": 9.6,
-        "Haaland": 15.6,
+        "Haaland": 15.7,
         "João Pedro": 7.8,
         "Tzolakis": 4.7,
         "Kostoulas": 5.7,
@@ -277,13 +277,13 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Saka": 9.6
     },
-    "total_delta": 1.1,
+    "total_delta": 1.4,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.1,
-        "delta": 0.2,
+        "current_cost": 5.2,
+        "delta": 0.3,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -291,8 +291,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "baseline_cost": 5.8,
-        "current_cost": 6.0,
-        "delta": 0.2,
+        "current_cost": 6.1,
+        "delta": 0.3,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -301,6 +301,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 5.9,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -355,15 +364,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Barnes",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Haaland",
-        "baseline_cost": 15.6,
-        "current_cost": 15.6,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -631,6 +631,30 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Kostoulas",
         "from": 5.6,
         "to": 5.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-16",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.1,
+        "to": 5.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-16",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 6.0,
+        "to": 6.1,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-16",
+        "event": "price_change",
+        "player": "Haaland",
+        "from": 15.6,
+        "to": 15.7,
         "delta": 0.1
       }
     ]
