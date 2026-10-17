@@ -463,3 +463,8 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-atk td.n em{font-style:normal;font-size:11px;color:var(--muted)}
 .lab-atk .lab-det td{text-align:left;white-space:normal;font-size:11px;color:var(--muted);padding-top:0}
 .lab-atk .lab-det[hidden]{display:none!important}
+
+.lab-trend{display:inline-block;margin-left:2px;padding:0 6px;border-radius:8px;font-size:10px;font-weight:700;line-height:15px;white-space:nowrap}
+.lab-trend.up{background:rgba(46,160,67,.2);color:#3fb950}
+.lab-trend.down{background:rgba(248,81,73,.2);color:#f85149}
+.lab-pc-t{margin:2px 0 0}.lab-pc-t .lab-trend{margin-left:0}

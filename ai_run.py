@@ -87,9 +87,10 @@ def model_inputs(boot, team_recovery=None):
     except Exception as e:
         _warn(f"model_inputs: Understat unavailable, continuing without it: {e}")
     def live(gw):
-        return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0)}
+        return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0),
+                           "xgi": float(el["stats"].get("expected_goal_involvements") or 0), "ga": int(el["stats"].get("goals_scored") or 0) + int(el["stats"].get("assists") or 0)}
                 for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
-    risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
+    risk = {"recent_minutes": {}, "recent_stats": {}, "club_rest": {}, "rot_names": {}}
     try:
         allfx = get("https://fantasy.premierleague.com/api/fixtures/")
         def done(f):
@@ -106,6 +107,7 @@ def model_inputs(boot, team_recovery=None):
             for eid, st in lv.items():
                 if team_of.get(eid) in played:      # a club's blank gameweek is not a rest; a club whose match is not over yet is skipped
                     risk["recent_minutes"].setdefault(eid, []).append(min(90, st["minutes"]))
+                    risk["recent_stats"].setdefault(eid, []).append({"gw": g, "min": st["minutes"], "pts": st["points"], "xgi": st["xgi"], "ga": st["ga"]})
     except Exception as e:
         _warn(f"model_inputs: recent minutes unavailable: {e}")
     try:
@@ -302,6 +304,48 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
 
 START_FLOOR = 0.50      # Target drops a player whose chance of starting is below this
 START_WARN = 0.75       # ...and tags one below this ("might not start")
+def trend_of(el, stats, played):
+    """Did he do well or badly in the last gameweek(s) he was available for? -> {"dir": "up"|"down"|"flat", "why": [...]}.
+    Compares the latest gameweek with his own season norm (points per appearance, xGI per appearance, minutes) and FPL's form with his
+    points per game, so a defender's 6 and a striker's 6 are each read against what is normal for him. Needs two points of evidence."""
+    if not stats:
+        return None
+    last = stats[-1]
+    apps = max(1, int(el.get("starts") or 0) + 0)
+    ppg = (el.get("total_points") or 0) / max(1, played)
+    avg_min = (el.get("minutes") or 0) / max(1, played)
+    ppa = (el.get("total_points") or 0) / max(1, apps)
+    xgi_pa = float(el.get("expected_goal_involvements") or 0) / max(1, apps)
+    form = float(el.get("form") or 0)
+    pts = 0.0
+    why = []
+    gw = f"GW{last['gw']}"
+    if last["min"] <= 15 and avg_min >= 45:
+        pts -= 2; why.append(f"{gw}: {last['min']} min (usually ~{round(avg_min)})")
+    elif last["min"] >= 60 and avg_min >= 30 and last["min"] >= 1.2 * avg_min:
+        pts += 0.5
+    if last["min"] >= 30:
+        if last["pts"] >= ppa + 3:
+            pts += 1; why.append(f"{gw}: {last['pts']} pts (avg {ppa:.1f})")
+        elif last["pts"] <= ppa - 3 and last["pts"] <= 2:
+            pts -= 1; why.append(f"{gw}: {last['pts']} pts (avg {ppa:.1f})")
+        if last["xgi"] >= xgi_pa + 0.3:
+            pts += 1; why.append(f"{gw}: {last['xgi']:.2f} xGI (avg {xgi_pa:.2f})")
+        elif last["xgi"] <= xgi_pa - 0.3 and last["min"] >= 60:
+            pts -= 1; why.append(f"{gw}: {last['xgi']:.2f} xGI (avg {xgi_pa:.2f})")
+    if len(stats) >= 2 and stats[-2]["min"] >= 30 and last["min"] >= 30:      # two decent games in a row in the same direction
+        prev = stats[-2]
+        if prev["pts"] >= ppa + 3 and last["pts"] >= ppa + 3:
+            pts += 1; why.append("two big games in a row")
+        elif prev["pts"] <= ppa - 3 and last["pts"] <= ppa - 3:
+            pts -= 1; why.append("two poor games in a row")
+    if ppg > 0.5 and form >= 1.25 * ppg:
+        pts += 2 if form >= 1.6 * ppg else 1; why.append(f"form {form:.1f} vs {ppg:.1f} per game")
+    elif ppg > 0.5 and form <= 0.75 * ppg:
+        pts -= 2 if form <= 0.6 * ppg else 1; why.append(f"form {form:.1f} vs {ppg:.1f} per game")
+    return {"dir": "up" if pts >= 2 else "down" if pts <= -2 else "flat", "why": why[:3]}
+
+
 START_RECENT_W = (0.2, 0.3, 0.5)     # weights of his last three gameweeks, newest last
 
 
@@ -373,11 +417,17 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
         if not o:
             return s1
         return min(s1, rotation_start(o["mp"], v.get("avail", 1.0), v.get("adj_factors") or []))      # the rotation list's own number
+    rec_stats = (risk or {}).get("recent_stats") or {}
     def gate(rows):
         """Remove players unlikely to start and tag the doubtful ones, so Target does not recommend someone who sits on the bench."""
         keep = []
         for r in rows:
             s = starts_of(r)
+            eid_ = r.get("id") or by_key.get((r.get("name"), r.get("club")))
+            if eid_ in els:
+                t_ = trend_of(els[eid_], rec_stats.get(eid_), played)
+                if t_:
+                    r["trend"] = t_
             if s is not None:
                 r["start"] = round(100 * s)
                 if s < START_FLOOR:
