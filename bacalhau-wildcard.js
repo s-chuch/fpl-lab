@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.78,
+        "ep_next": 4.82,
         "status": "ok"
       },
       {
