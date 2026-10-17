@@ -839,6 +839,95 @@ function labTargetView(D,el,they){
   });
   paint();
 }
+// ---------------------------------------------------------------- PLAN: pitch view
+// FPL team codes (shirt images); data.js carries team_codes from refresh.py, this is the fallback
+const LAB_TCODE={ARS:3,AVL:7,BOU:91,BRE:94,BHA:36,CHE:8,COV:9,CRY:31,EVE:11,FUL:54,HUL:88,IPS:40,LEE:2,LIV:14,MCI:43,MUN:1,NEW:4,NFO:17,TOT:6,SUN:56,BUR:90,WHU:21,WOL:39,LEI:13,SOU:20};
+const LAB_KIT={ARS:"#db0007",AVL:"#7b003a",BOU:"#d71920",BRE:"#e30613",BHA:"#0057b8",CHE:"#034694",COV:"#5ab4e5",CRY:"#1b458f",EVE:"#003399",FUL:"#f2f2f2",HUL:"#f5a12d",IPS:"#0044a9",LEE:"#f2f2f2",LIV:"#c8102e",MCI:"#6cabdd",MUN:"#da291c",NEW:"#241f20",NFO:"#dd0000",TOT:"#f2f2f2",SUN:"#eb172b",BUR:"#6c1d45",WHU:"#7a263a",WOL:"#fdb913",LEI:"#003090",SOU:"#d71920"};
+function labFix(s){ // "A NFO" -> "NFO (A)"; "H EVE, A ARS" -> "EVE (H), ARS (A)"
+  s=String(s||"").trim(); if(!s) return "–";
+  return s.split(/\s*[,+&]\s*/).map(x=>{const m=x.match(/^([HA])\s+(\w+)$/); return m?`${m[2]} (${m[1]})`:x;}).join(", ");
+}
+function labAvail(D,name){
+  const a=((D.plan||{}).availability||{})[name]; if(a) return a;
+  const t=(((D.team_news||{}).rows)||[]).find(r=>r.name===name); if(t) return {status:t.status,chance:t.chance,news:t.news};
+  const w=(((D.injury_watch||{}).rows)||[]).find(r=>r.name===name); if(w) return {status:w.status,chance:w.chance,news:w.label};
+  return null;
+}
+// best legal XI (same rule as ai_team.pick_xi): 1 GK, 3 DEF / 2 MID / 1 FWD minimum, then best xP up to 5/5/3
+function labPickXI(players){
+  const MIN={DEF:3,MID:2,FWD:1}, MAX={DEF:5,MID:5,FWD:3};
+  const by=p=>players.filter(x=>x.pos===p).sort((a,b)=>b.xp-a.xp);
+  const xi=[by("GKP")[0]].filter(Boolean), cnt={DEF:0,MID:0,FWD:0};
+  for(const p of ["DEF","MID","FWD"]) by(p).slice(0,MIN[p]).forEach(x=>{xi.push(x);cnt[p]++;});
+  players.filter(x=>x.pos!=="GKP"&&!xi.includes(x)).sort((a,b)=>b.xp-a.xp).forEach(x=>{if(xi.length<11&&cnt[x.pos]<MAX[x.pos]){xi.push(x);cnt[x.pos]++;}});
+  const bench=by("GKP").slice(1).concat(players.filter(x=>x.pos!=="GKP"&&!xi.includes(x)).sort((a,b)=>b.xp-a.xp));
+  return {xi,bench};
+}
+function labSquads(D){
+  const P=D.plan||{}, PL=D.planner||{}, xp0=PL.xp0||{}, s0=(PL.steps||[])[0]||{};
+  const gw=(D.deadline||{}).next_gw||P.next_gw;
+  const strip=n=>String(n||"").replace(/\s*\((?:C|VC)\)$/,"");
+  const cur=(P.rows||[]).map(r=>({name:r[1],pos:r[0],club:r[2],fix:labFix(r[3]),xp:Number(xp0[r[1]]??0)}));
+  const lx=(P.xis||{})["gw"+gw]||{};
+  // CURRENT: the squad as it stands, lineup and armband as the Plan tab shows them
+  const byN=n=>cur.find(p=>p.name===n);
+  let current=null;
+  if((lx.xi||[]).length===11){
+    current={xi:lx.xi.map(strip).map(byN).filter(Boolean),bench:(lx.bench||[]).map(byN).filter(Boolean),
+      cap:strip(lx.xi.find(n=>/\(C\)$/.test(n))),vc:strip(lx.xi.find(n=>/\(VC\)$/.test(n)))};
+  } else { const k=labPickXI(cur); const r=k.xi.slice().sort((a,b)=>b.xp-a.xp); current={...k,cap:(r[0]||{}).name,vc:(r[1]||{}).name}; }
+  // RECOMMENDED: the planner's moves for this GW applied, XI and bench re-picked on expected points
+  const moves=s0.moves||[], outs=new Set(moves.map(m=>m.out));
+  const rec=cur.filter(p=>!outs.has(p.name)).concat(moves.map(m=>({name:m.in,pos:m.pos||(D.pos_by_name||{})[m.in],club:m.in_club,fix:m.fix_in||"–",xp:Number((m.xp_in||[])[0]??0),inn:true})));
+  let recommended=null;
+  if(rec.length===15){
+    const k=labPickXI(rec); const r=k.xi.slice().sort((a,b)=>b.xp-a.xp);
+    const cap=(s0.captain&&k.xi.some(p=>p.name===s0.captain))?s0.captain:(r[0]||{}).name;
+    const vc=(current.vc&&current.vc!==cap&&k.xi.some(p=>p.name===current.vc))?current.vc:(r.find(p=>p.name!==cap)||{}).name;
+    recommended={...k,cap,vc,moves,hits:s0.hits||0};
+  }
+  return {gw,current,recommended};
+}
+function labShirt(D,p){
+  const code=((D.team_codes||{})[p.club])??LAB_TCODE[p.club];
+  const kit=LAB_KIT[p.club]||"#64748b";
+  const img=code!=null?`<img src="https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_${code}${p.pos==="GKP"?"_1":""}-110.webp" alt="" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">`:"";
+  return `<span class="lab-shirt${img?"":" noimg"}" style="--kit:${kit}">${img}</span>`;
+}
+function labPCard(D,p,team,star,label){
+  const a=labAvail(D,p.name);
+  const ch=a&&a.chance!=null?Number(a.chance):null;
+  const out=a&&(ch===0||/^[isun]$/.test(a.status||"")||/^(out|inj|sus|left)/i.test(a.status||""));
+  const doubt=a&&!out&&(a.status==="d"||/doubt/i.test(a.status||"")||(ch!=null&&ch<100));
+  const cls=out?" out":doubt?" doubt":"";
+  const tip=[p.name,p.club,p.fix,"xP "+labNum(p.xp,1),a&&a.news?a.news:(a&&ch!=null?ch+"% chance":"")].filter(Boolean).join(" · ");
+  const bl=[p.name===team.cap?'<i class="b c">C</i>':p.name===team.vc?'<i class="b v">V</i>':"",p.inn?'<i class="b in">IN</i>':""].join("");
+  const br=[out?`<i class="b warn out" title="${esc(a.news||"Out")}">✕</i>`:doubt?`<i class="b warn" title="${esc(a.news||"Doubtful")}">⚠</i>`:"",star?'<i class="b star" title="Top-3 expected points in the XI">★</i>':""].join("");
+  return `<div class="lab-pc${cls}" title="${esc(tip)}">${label?`<span class="lab-pl">${esc(label)}</span>`:""}<span class="lab-bl">${bl}</span><span class="lab-br">${br}</span>${labShirt(D,p)}<span class="lab-pn${p.name.length>10?" long":""}">${esc(p.name)}</span><span class="lab-pf">${esc(p.fix||"–")}${ch!=null&&ch<100?` · ${ch}%`:""}</span></div>`;
+}
+function labPitchHtml(D,team,they){
+  if(!team) return `<p class="note">No lineup yet.</p>`;
+  const top3=new Set(team.xi.slice().sort((a,b)=>b.xp-a.xp).slice(0,3).map(p=>p.name));
+  const rows=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${team.xi.filter(p=>p.pos===pos).sort((a,b)=>b.xp-a.xp).map(p=>labPCard(D,p,team,top3.has(p.name))).join("")}</div>`).join("");
+  const bench=team.bench.map(p=>labPCard(D,p,team,false,p.pos)).join("");
+  return `<div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${rows}</div><div class="lab-bench">${bench}</div>${team.hits?`<p class="note lab-pnote">These moves cost a <span class="neg">−${4*team.hits}</span> hit.</p>`:""}`;
+}
+function labPitch(D,they,KEY){
+  const S=labSquads(D); if(!S.current) return "";
+  const k=KEY+":pitch"; let mode=(()=>{try{return localStorage.getItem(k)}catch(e){return null}})()||"rec";
+  if(!S.recommended) mode="cur";
+  const sub=m=>m==="rec"?`${they?"Their":"Your"} squad after the planned move${(S.recommended.moves||[]).length===1?"":"s"} (${(S.recommended.moves||[]).map(x=>esc(x.out)+" → "+esc(x.in)).join(", ")||"none"}), XI, bench and armband by expected points.`:`${they?"Their":"Your"} squad as it stands now, with the Plan lineup and armband.`;
+  const legend=`<p class="note lab-legend"><i class="b c">C</i> captain <i class="b v">V</i> vice <i class="b in">IN</i> planned transfer in <i class="b star">★</i> top-3 xP <i class="b warn">⚠</i> doubtful <i class="b warn out">✕</i> out</p>`;
+  const html=`<div class="lab-pitchcard card" id="labPitch"><div class="lab-ph"><h2>GW${S.gw} TEAM</h2>${S.recommended?`<div class="lab-seg" role="tablist"><button data-pm="rec">Recommended</button><button data-pm="cur">Current</button></div>`:""}</div><p class="note lab-psub"></p><div class="lab-pbody"></div>${legend}</div>`;
+  setTimeout(()=>{
+    const el=document.getElementById("labPitch"); if(!el) return;
+    const paint=()=>{ el.querySelector(".lab-psub").innerHTML=sub(mode); el.querySelector(".lab-pbody").innerHTML=labPitchHtml(D,mode==="rec"?S.recommended:S.current,they);
+      el.querySelectorAll("[data-pm]").forEach(b=>{b.classList.toggle("on",b.dataset.pm===mode);b.setAttribute("aria-selected",b.dataset.pm===mode);}); };
+    el.addEventListener("click",e=>{const b=e.target.closest("[data-pm]"); if(!b) return; mode=b.dataset.pm; try{localStorage.setItem(k,mode)}catch(_){} paint();});
+    paint();
+  },0);
+  return html;
+}
 // ---------------------------------------------------------------- shell
 function labShell(D,opt){
   opt=opt||{}; const they=!!opt.they;
@@ -857,6 +946,7 @@ function labShell(D,opt){
 <button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
 <button class="lab-tile tr" data-p="labTr" aria-expanded="false"><span class="lab-ic">${LAB_SVG.swap}</span><span class="lab-tx"><b class="lab-tt">TRANSFER</b><em>Make up to ${esc(String(Tr.ft))} free transfer${Tr.ft===1?"":"s"}:<br>${Tr.names}</em></span></button></div>
 <div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div></div>
+${labPitch(D,they,KEY)}
 ${labAcc("labChips","CHIPS","View chip status and strategy",labChips(D,they))}
 ${labAcc("labLeague","LEAGUE","Current standings and rivals",labLeague(D,they))}
 ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(D,they))}

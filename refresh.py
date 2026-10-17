@@ -1393,6 +1393,8 @@ def main(team_id=TEAM_ID, out_path=None):
         _p = POS[_e["element_type"]]
         _pos[_e["web_name"]] = _p if _pos.get(_e["web_name"], _p) == _p else None
     data["pos_by_name"] = _pos
+    # club short name -> FPL team code, for the Plan pitch view's shirt images
+    data["team_codes"] = {t["short_name"]: t["code"] for t in boot["teams"] if t.get("code") is not None}
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
     data["form_fdr"] = section("form_fdr", build_form_fdr, boot, next_fixture_map, exclude=owned, fallback={})
     data["value_board"] = section("value_board", build_value_board, boot, exclude=owned, fallback={})
