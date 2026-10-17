@@ -123,7 +123,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tarkowski",
         "bench_ep": 4.78,
         "starter": "Hall",
-        "starter_ep": 3.79
+        "starter_ep": 3.84
       }
     ],
     "bench_order": [
@@ -156,13 +156,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.79,
+        "ep_next": 3.84,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.81,
+        "ep_next": 3.82,
         "status": "ok"
       },
       {

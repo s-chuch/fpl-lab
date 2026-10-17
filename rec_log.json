@@ -1044,7 +1044,7 @@
   "backfilled": false,
   "bench": [
    1,
-   449,
+   453,
    165,
    305
   ],
@@ -1052,13 +1052,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "431e18633103",
+  "code_sha": "7f0d46387d4b",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-17T16:39:10+00:00",
-  "saved_at_et": "2026-10-17 12:39 PM ET",
+  "saved_at": "2026-10-17T16:49:51+00:00",
+  "saved_at_et": "2026-10-17 12:49 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1090,6 +1090,13 @@
     "xp": 3.85
    },
    {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.84
+   },
+   {
     "club": "EVE",
     "id": 236,
     "name": "Dewsbury-Hall",
@@ -1118,13 +1125,6 @@
     "xp": 3.86
    },
    {
-    "club": "NEW",
-    "id": 453,
-    "name": "Barnes",
-    "pos": "MID",
-    "xp": 3.81
-   },
-   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
@@ -1147,10 +1147,10 @@
    },
    {
     "club": "NEW",
-    "id": 449,
-    "name": "Hall",
-    "pos": "DEF",
-    "xp": 3.79
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 3.82
    },
    {
     "club": "CHE",
@@ -1189,11 +1189,11 @@
    229,
    115,
    8,
+   449,
    236,
    124,
    12,
    268,
-   453,
    411,
    249
   ],
