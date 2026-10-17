@@ -923,7 +923,7 @@ function labPitchHtml(D,team,they){
 }
 function labPitch(D,they,KEY){
   const S=labSquads(D); if(!S.current) return "";
-  const MODES=[["rec","Recommended",S.recommended],["cur","Current",S.current],["ai","AI",S.ai]].filter(m=>m[2]);
+  const MODES=[["cur","Current",S.current],["rec","Recommended",S.recommended],["ai","AI",S.ai]].filter(m=>m[2]);
   const k=KEY+":pitch"; let mode=(()=>{try{return localStorage.getItem(k)}catch(e){return null}})()||"rec";
   if(!MODES.some(m=>m[0]===mode)) mode=MODES[0][0];
   const mv=t=>(t.moves||[]).map(x=>esc(x.out)+" → "+esc(x.in)).join(", ")||"none";
