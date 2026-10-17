@@ -412,9 +412,21 @@ function liveBar(L,team){
     const T=L&&L.teams&&L.teams[team]; if(!T) return "";
     const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
     if(!(ageMin<360)) return "";           // a stale snapshot (match day long over) is not shown as live
-    const xi=T.xi.map(p=>`<tr><td>${esc(p.name)}${p.mult>1?" (C)":""}</td><td>${esc(p.pos)}</td><td class="${p.played?"":"note"}">${p.played?p.pts*p.mult+(p.bonus?` <span class="note">+${p.bonus}b</span>`:""):"yet to play"}</td></tr>`).join("");
-    const games=(L.games||[]).filter(g=>g.started).map(g=>`${esc(g.home)} ${g.hs??"-"}-${g.as??"-"} ${esc(g.away)}${g.finished?"":" ("+(g.minutes||"")+"')"}`).join(" · ");
-    return `<details class="card fold" open><summary><h2>Live · GW${L.gw}</h2><span class="foldsum"><b>${T.points}</b> pts · ${T.yet_to_play} yet to play · updated ${esc(toToronto(L.generated_at))}</span></summary><ul class="note-list"><li>${L.in_play} match${L.in_play===1?"":"es"} in play${games?" — "+games:""}</li><li>Provisional: FPL's live points with bonus so far. Auto-subs and a vice-captain taking over are only applied once the gameweek is settled${T.hits?`; includes -${T.hits} for hits`:""}${T.chip?` · ${esc(T.chip)} active`:""}</li></ul><table class="table-compact"><thead><tr><th style="width:50%">Player</th><th style="width:18%">Pos</th><th>Pts</th></tr></thead><tbody>${xi}</tbody></table><p class="note">Bench: ${T.bench.map(b=>esc(b.name)+" "+(b.played?b.pts:"–")).join(" · ")}</p></details>`;
+    const D=window.FPL_DATA||{}, rows=((D.plan||{}).rows)||[];
+    const clubOf=p=>p.club||((rows.find(r=>r[1]===p.name)||[])[2])||"";
+    const card=(p,isBench)=>{
+      const c=!isBench&&p.mult>1, v=!isBench&&p.vice&&!c, pts=p.played?p.pts*(p.mult||1):null;
+      const cls=!p.played?" yet":(p.pts>=6?" hot":p.pts<=1?" cold":"");
+      return `<div class="lab-pk lab-rk${cls}" title="${esc(p.name)}: ${p.played?p.pts+" pts"+(p.mult>1?" ×"+p.mult:"")+(p.bonus?" (+"+p.bonus+" bonus so far)":""):"yet to play"}"><span class="lab-bl">${c?'<i class="b c">C</i>':v?'<i class="b v">V</i>':""}</span>${labShirt(D,{club:clubOf(p),pos:p.pos})}<span class="lab-pn${p.name.length>10?" long":""}">${esc(p.name)}</span><span class="lab-pf lab-pts">${pts==null?"–":pts}${p.played&&p.bonus?` <small>+${p.bonus}b</small>`:""}</span></div>`;};
+    const pitch=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${T.xi.filter(p=>p.pos===pos).map(p=>card(p,false)).join("")}</div>`).join("");
+    const bench=(T.bench||[]).map(b=>card(b,true)).join("");
+    const games=(L.games||[]).filter(g=>g.started).map(g=>`<span class="lab-gm${g.finished?"":" on"}">${esc(g.home)} ${g.hs??"-"}-${g.as??"-"} ${esc(g.away)}${g.finished?"":" "+(g.minutes||"")+"'"}</span>`).join("");
+    return `<div class="card lab-livecard"><div class="lab-ph"><h2>Live · GW${L.gw}</h2><span class="pill free">${L.in_play} in play</span></div>
+      <div class="lab-rsum"><div><span>Points</span><b>${T.points}</b><small>${T.hits?`incl. −${T.hits} hit`:"provisional"}</small></div><div><span>Yet to play</span><b>${T.yet_to_play}</b><small>of the XI</small></div><div><span>Updated</span><b>${esc(new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).toLocaleTimeString("en-CA",{timeZone:"America/Toronto",hour:"2-digit",minute:"2-digit",hour12:false}))} ET</b><small>${T.chip?esc(T.chip)+" active":"refreshes every 5 min"}</small></div></div>
+      ${games?`<div class="lab-games">${games}</div>`:""}
+      <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${pitch}</div>
+      <div class="lab-bench">${bench}</div>
+      <p class="note lab-legend">Provisional: FPL's live points with bonus so far. Auto-subs and a vice-captain taking over are only applied once the gameweek is settled.</p></div>`;
   }catch(e){ return ""; }
 }
 function loadLive(team){

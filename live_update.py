@@ -45,8 +45,11 @@ def team_snapshot(boot, team_id, gw, live, els):
     chip = pk.get("active_chip")
     bench_boost = chip == "bboost"
     total = res["gross"] + (res["bench_pts"] if bench_boost else 0) - res["hits"]
-    lines = [{"name": l["name"], "pos": l["pos"], "pts": l["pts"], "mult": l["mult"], "played": l["played"], "bonus": stats[l["id"]]["bonus"]} for l in res["lines"]]
-    bench = [{"name": els[i]["web_name"], "pts": stats[i]["points"], "played": stats[i]["minutes"] > 0} for i in plan["bench"]]
+    short = {t["id"]: t["short_name"] for t in boot["teams"]}
+    lines = [{"id": l["id"], "name": l["name"], "pos": l["pos"], "club": short.get(els[l["id"]]["team"], ""), "pts": l["pts"], "mult": l["mult"], "played": l["played"],
+              "bonus": stats[l["id"]]["bonus"], "vice": l["id"] == plan["vice"]} for l in res["lines"]]
+    bench = [{"id": i, "name": els[i]["web_name"], "pos": POS[els[i]["element_type"]], "club": short.get(els[i]["team"], ""), "pts": stats[i]["points"],
+              "played": stats[i]["minutes"] > 0, "bonus": stats[i]["bonus"]} for i in plan["bench"]]
     return {"points": total, "gross": res["gross"], "hits": res["hits"], "captain": res["captain"], "chip": chip,
             "xi": lines, "bench": bench, "yet_to_play": sum(1 for l in lines if not l["played"])}
 
