@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.33,
+    "captain_ep": 5.34,
     "vice": "Groß",
     "vice_ep": 4.84,
     "bench_swaps": [
@@ -124,12 +124,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 4.01,
         "starter": "Raya",
         "starter_ep": 2.97
-      },
-      {
-        "bench": "Schade",
-        "bench_ep": 3.44,
-        "starter": "King",
-        "starter_ep": 3.43
       }
     ],
     "bench_order": [
@@ -174,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.43,
+        "ep_next": 3.45,
         "status": "ok"
       },
       {
@@ -192,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.33,
+        "ep_next": 5.34,
         "status": "ok"
       },
       {
