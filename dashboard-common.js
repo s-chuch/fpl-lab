@@ -859,10 +859,11 @@ function labPredLiveHtml(){
   return `<div class="lab-rec lab-live"><h3 class="lab-ph3">Gameweek ${L.gw} live${L.in_play?` <span class="pill free">${L.in_play} match${L.in_play===1?"":"es"} in play</span>`:""}</h3>
     <p class="note" data-keep>${esc(L.pred.source)}. ${when?`Updated ${when}; `:""}this page re-checks every 5 minutes. A pick turns ✓ the moment it happens and ✗ once his match is over.</p>${shown.map(sec).join("")}</div>`;
 }
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-inf]"); if(!b) return; const r=b.closest(".lab-pr"), s=r&&r.querySelector(".s"); if(!s) return; s.hidden=!s.hidden; b.setAttribute("aria-expanded",String(!s.hidden)); r.classList.toggle("open",!s.hidden);});
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
   const R=P.record||{}, CAT=[["gi","Goal or assist"],["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
-  const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
+  const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}${sub&&!mark?` <button type="button" class="lab-inf" data-inf="1" aria-label="Show details" aria-expanded="false">i</button>`:""}</span><span class="v">${val}</span>${sub?`<span class="s"${mark?"":" hidden"}>${sub}</span>`:""}</div>`;
   const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   const pc=(h,n)=>n?Math.round(100*h/n):null;
   const vol=(r,k)=>{const v=r.vol; if(!v||!v.apps) return ""; const g=`${v.shots} shots (${v.sot} on target)${v.big?`, ${v.big} big`:""}`, a=`${v.cc} chances created${v.big_cc?` (${v.big_cc} big)`:""}`; return ` · last ${v.apps}: ${k==="a"?a:k==="g"?g:g+", "+a}`;};
