@@ -91,13 +91,20 @@ def model_inputs(boot, team_recovery=None):
                 for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
     risk = {"recent_minutes": {}, "club_rest": {}, "rot_names": {}}
     try:
-        fin = sorted(e["id"] for e in boot["events"] if e.get("finished"))[-3:]
+        allfx = get("https://fantasy.premierleague.com/api/fixtures/")
+        def done(f):
+            return bool(f.get("finished") or f.get("finished_provisional"))
+        def clubs_over(gw):      # clubs whose every match in `gw` is over (FPL marks the whole gameweek finished only after its checks)
+            fx = [f for f in allfx if f.get("event") == gw]
+            return {t for f in fx for t in (f["team_h"], f["team_a"]) if all(done(x) for x in fx if t in (x["team_h"], x["team_a"]))}
+        started = sorted(e["id"] for e in boot["events"] if e.get("finished") or any(f.get("event") == e["id"] and done(f) for f in allfx))[-3:]
         team_of = {e["id"]: e["team"] for e in boot["elements"]}
-        for g in fin:
+        for g in started:
             lv = live(g)
-            played = {team_of[eid] for eid, st in lv.items() if st["minutes"] and eid in team_of}
+            over_ = clubs_over(g)
+            played = {team_of[eid] for eid, st in lv.items() if st["minutes"] and eid in team_of} & over_
             for eid, st in lv.items():
-                if team_of.get(eid) in played:      # a club's blank gameweek is not a rest
+                if team_of.get(eid) in played:      # a club's blank gameweek is not a rest; a club whose match is not over yet is skipped
                     risk["recent_minutes"].setdefault(eid, []).append(min(90, st["minutes"]))
     except Exception as e:
         _warn(f"model_inputs: recent minutes unavailable: {e}")
