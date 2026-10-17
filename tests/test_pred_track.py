@@ -65,5 +65,21 @@ class Legacy(unittest.TestCase):
         self.assertTrue(v["goals_assists"][0]["rebuilt"])
 
 
+class TargetAndGi(unittest.TestCase):
+    def test_gi_pick_hits_on_goal_or_assist(self):
+        live = {1: {"minutes": 90, "goals_scored": 0, "assists": 1}}
+        self.assertTrue(pt.grade_pick("gi", {"id": 1}, live, FX, EL)["hit"])
+        r = pt.grade_pick("gi", {"id": 1}, {1: {"minutes": 90}}, FX, EL)
+        self.assertFalse(r["hit"]); self.assertIn("no goal or assist", r["why"])
+
+    def test_target_is_graded_three_ways_and_compared(self):
+        log = {"gws": {"8": {"gw": 8, "graded": True, "picks": {"goals": [{"id": 1}], "target": [{"id": 1}, {"id": 2}]},
+                             "results": {"goals": [{"hit": True, "why": ""}], "target": [pt.grade_target({"id": 1}, {1: {"minutes": 90, "goals_scored": 1}}),
+                                                                                           pt.grade_target({"id": 2}, {2: {"minutes": 0}})]}}}}
+        v = pt.view(log)
+        self.assertEqual((v["target"]["n"], v["target"]["goal"], v["target"]["gi"]), (2, 1, 1))
+        self.assertEqual(v["model_same_weeks"]["goals"], [1, 1])
+
+
 if __name__ == "__main__":
     unittest.main()

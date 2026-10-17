@@ -442,3 +442,5 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-hitv{color:#7ee2a8;font-weight:700}
 .lab-live{border-color:#2f6b4f}
 .lab-pr .n em.lab-mn{color:#9fb0c8}
+.lab-pc-ch{font-size:10px;color:var(--muted);margin:3px 0 0 0;line-height:1.3}.lab-pc-ch b{color:var(--ink)}
+.lab-win{color:#7ee2a8;font-weight:700}

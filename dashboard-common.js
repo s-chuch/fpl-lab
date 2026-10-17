@@ -802,13 +802,30 @@ function labNews(D,they){
   return `<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New FPL flags · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
+// ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
+function labScorecard(D){
+  const P=D.predictions||{}, R=P.record||{}, T=R.target||{}, M=R.model_same_weeks||{};
+  const snap=P.snapshot?`<p class="note">Player snapshots: ${P.snapshot.players} players saved for GW${P.snapshot.gw} (${P.snapshot.saved_gws} gameweek${P.snapshot.saved_gws===1?"":"s"} so far). Each holds the inputs, the model's chances and Target's rank at the deadline, and what the player then did, so the model can be tuned on this season's own data.</p>`:"";
+  if(!T.n) return `<p class="note" data-keep>Starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw||""))} is settled. At every deadline the model's top 10 (goals, assists, goal or assist) and the Target tab's top 10 are saved, then both are marked against what players actually did: scored, assisted, or either. After a few gameweeks this shows which one finds scorers better, and whether the two should be blended.</p>${snap}`;
+  const pc=(h,n)=>n?Math.round(100*h/n):null, fmt=(h,n)=>n?`${h}/${n} · ${pc(h,n)}%`:"–";
+  const rows=[["Scores a goal",M.goals,[T.goal,T.n]],["Makes an assist",M.assists,[T.assist,T.n]],["Goal or assist",M.gi,[T.gi,T.n]]];
+  const body=rows.map(([l,m,t])=>{const mp=m&&m[1]?pc(m[0],m[1]):null, tp=pc(t[0],t[1]); const win=mp!=null&&tp!=null&&mp!==tp?(mp>tp?"m":"t"):""; return `<tr><td>${l}</td><td class="${win==="m"?"lab-win":""}">${m?fmt(m[0],m[1]):"–"}</td><td class="${win==="t"?"lab-win":""}">${fmt(t[0],t[1])}</td></tr>`;}).join("");
+  const mg=Object.fromEntries((R.per_gw||[]).map(r=>[r.gw,r]));
+  const gws=(T.per_gw||[]).slice().reverse().map(t=>{const m=mg[t.gw]||{}; const c=v=>v&&v[1]!=null?`${v[0]}`:"–"; return `<tr><td>GW${t.gw}</td><td>${c(m.goals)} / ${c(m.assists)} / ${c(m.gi)}</td><td>${t.goal} / ${t.assist} / ${t.gi}</td></tr>`;}).join("");
+  const gm=pc(T.gi,T.n), mm=M.gi&&M.gi[1]?pc(M.gi[0],M.gi[1]):null;
+  const verdict=(T.n<30)?`Only ${T.n} picks each so far: too few to call a winner.`:(mm==null?"":(gm>mm?"Target is ahead on goal or assist.":gm<mm?"The model is ahead on goal or assist.":"Level on goal or assist."));
+  return `<p class="note" data-keep>Same gameweeks, same marking, top 10 each. ${verdict}</p>
+    <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}</tbody></table>
+    <h4 class="lab-ph4">By gameweek (goal / assist / either)</h4>
+    <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}`;
+}
 // ---------------------------------------------------------------- PREDICTIONS: the live gameweek (live-data.js .pred, live_update.pred_live)
 function labPredLiveHtml(){
   const L=window.FPL_LIVE; if(!L||!L.pred) return "";
-  const CAT=[["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
+  const CAT=[["goals","Goals"],["assists","Assists"],["gi","Goal or assist"],["clean_sheets","Clean sheets"],["defcon","DEFCON"],["target","Target top 10 (goal or assist)"]];
   const shown=CAT.filter(([k])=>(L.pred.cats[k]||[]).length);
   const mark=r=>r.hit?`<i class="lab-ok y">✓</i>`:r.state==="done"?`<i class="lab-ok n">✗</i>`:r.state==="live"?`<i class="lab-ok w">●</i>`:`<i class="lab-ok z">–</i>`;
-  const what=(k,r)=>k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
+  const what=(k,r)=>(k==="gi"||k==="target")?(r.state==="yet"?"not started":`${r.g||0} goal${(r.g||0)===1?"":"s"}, ${r.a||0} assist${(r.a||0)===1?"":"s"}`):k==="clean_sheets"?(r.state==="yet"?"not started":`${r.val} conceded${r.state==="live"&&r.mins?` · ${r.mins}'`:""}`):k==="defcon"?(r.state==="yet"?"not started":`${r.val}/${r.need}`):(r.state==="yet"?"not started":`${r.val}`);
   // minutes in brackets after the club: what he has played, or why there is nothing yet
   const mins=(k,r)=>{ if(k==="clean_sheets"||r.state==="yet"||r.state==="none") return ""; if(r.mins<=0&&r.state!=="done") return ""; const t=r.mins>0?`${r.mins}'`:"did not start"; return ` <em class="lab-mn">(${t})</em>`; };
   const sec=([k,l])=>{const rows=L.pred.cats[k]; const hits=rows.filter(r=>r.hit).length, done=rows.filter(r=>r.state==="done").length;
@@ -819,7 +836,7 @@ function labPredLiveHtml(){
 }
 function labPred(D){
   const P=D.predictions||{}; if(!P.gw) return `<p class="note">Predictions appear on the next refresh.</p>`;
-  const R=P.record||{}, CAT=[["goals","Goals"],["assists","Assists"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
+  const R=P.record||{}, CAT=[["goals","Goals"],["assists","Assists"],["gi","Goal or assist"],["clean_sheets","Clean sheets"],["defcon","DEFCON"]];
   const row=(name,club,val,sub,mark)=>`<div class="lab-pr"><span class="n">${mark?`<i class="lab-ok ${mark}">${mark==="y"?"✓":"✗"}</i> `:""}${esc(name)}${club?` <em>${esc(club)}</em>`:""}</span><span class="v">${val}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
   const sec=(t,items,sub)=>`<h3 class="lab-ph3">${t}</h3>${sub?`<p class="note lab-pnote2">${sub}</p>`:""}<div class="lab-prs">${items.join("")||'<p class="note">Nothing to show yet.</p>'}</div>`;
   const pc=(h,n)=>n?Math.round(100*h/n):null;
@@ -835,7 +852,7 @@ function labPred(D){
     rec=`<div class="lab-rec"><h3 class="lab-ph3">Track record · ${R.graded} gameweek${R.graded===1?"":"s"} graded</h3>
       <div class="lab-rbig"><b>${pc(h,n)}%</b><span>of ${n} top-10 picks came off (${h})</span></div>
       <div class="lab-rcs">${cats}</div>
-      <table class="lab-rtab"><thead><tr><th>GW</th>${CAT.map(([,l])=>`<th>${l.replace("Clean sheets","CS")}</th>`).join("")}</tr></thead><tbody>${gwRows}</tbody></table>
+      <table class="lab-rtab"><thead><tr><th>GW</th>${CAT.map(([,l])=>`<th>${l.replace("Clean sheets","CS").replace("Goal or assist","G/A")}</th>`).join("")}</tr></thead><tbody>${gwRows}</tbody></table>
       ${calLines?`<h4 class="lab-ph4">Recalibration</h4><ul class="lab-rl">${calLines}</ul>`:""}
       ${whyLines?`<h4 class="lab-ph4">Why picks missed</h4><ul class="lab-rl">${whyLines}</ul>`:""}</div>`;
   } else {
@@ -856,6 +873,7 @@ function labPred(D){
   }
   const lists=sec("Goals",(P.goals||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG`)),"Chance of at least one goal")
    +sec("Assists",(P.assists||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xa,2)} xA`)),"Chance of at least one assist")
+   +sec("Goal or assist",(P.gi||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${labNum(r.xg,2)} xG + ${labNum(r.xa,2)} xA`)),"Chance of at least one goal or assist")
    +sec("Clean sheets",(P.clean_sheets||[]).map(r=>row(r.club,"",`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc((r.who||[]).join(", "))}`)),"Chance the club concedes none")
    +sec("DEFCON",(P.defcon||[]).map(r=>row(r.name,r.club,`<b>${r.p}%</b>`,`${esc(r.fixture)} · ${esc(r.pos)}`)),"Chance of reaching the defensive-contribution bonus")
    +sec("Rotation",(P.rotation||[]).map(r=>row(r.name,r.club,`<b>${r.rotate??(100-r.start)}%</b>`,esc((r.why||[])[0]||""))),"Chance of rotation (not graded)");
@@ -910,7 +928,7 @@ function labCard(p,f,n,i){
   const [ic,txt]=f.head(p,n); const pc=LAB_POSC[p.pos]||"#8b95a1";
   const big=p.pos==="FWD"&&p.xg!=null?["xG",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
   const more=[...(p.why||[]),...(p.sig||[]).map(s=>typeof shortReason==="function"?shortReason(s):s)];
-  return `<div class="lab-pc"><div class="lab-pc-h"><i class="dot" style="background:${pc}"></i><b>${esc(p.name)}</b><button class="lab-dots" aria-label="More about ${esc(p.name)}" data-i="${i}">${LAB_SVG.dots}</button></div><div class="lab-pc-c">${esc(LAB_CLUB[p.club]||p.club||"")} • <span style="color:${pc};font-weight:700">${esc(p.pos||"")}</span></div><div class="lab-pc-s"><span style="color:${pc}">${ic}</span>${esc(txt)}</div><div class="lab-pc-g"><div><span>Form</span><b>${labNum(p.form,1)}</b></div><div><span>xP</span><b>${labNum(p.xp,1)}</b></div><div><span>${big[0]}</span><b>${big[1]}</b></div><div><span>Price</span><b class="lab-green">£${labNum(p.cost,1)}m</b></div></div><div class="lab-pc-x" hidden>${p.next?`<div>Next: ${esc(p.next)}</div>`:""}${p.owned!=null?`<div>Owned ${p.owned}% overall</div>`:""}${more.length?`<div>${esc(more.join(" · "))}</div>`:""}</div></div>`;
+  return `<div class="lab-pc"><div class="lab-pc-h"><i class="dot" style="background:${pc}"></i><b>${esc(p.name)}</b><button class="lab-dots" aria-label="More about ${esc(p.name)}" data-i="${i}">${LAB_SVG.dots}</button></div><div class="lab-pc-c">${esc(LAB_CLUB[p.club]||p.club||"")} • <span style="color:${pc};font-weight:700">${esc(p.pos||"")}</span></div>${(()=>{const c=((window.FPL_DATA||{}).predictions||{}).chances||{}; const x=c[p.name+"|"+p.club]; return x?`<div class="lab-pc-ch">This GW: goal <b>${x[0]}%</b> · assist <b>${x[1]}%</b></div>`:"";})()}<div class="lab-pc-s"><span style="color:${pc}">${ic}</span>${esc(txt)}</div><div class="lab-pc-g"><div><span>Form</span><b>${labNum(p.form,1)}</b></div><div><span>xP</span><b>${labNum(p.xp,1)}</b></div><div><span>${big[0]}</span><b>${big[1]}</b></div><div><span>Price</span><b class="lab-green">£${labNum(p.cost,1)}m</b></div></div><div class="lab-pc-x" hidden>${p.next?`<div>Next: ${esc(p.next)}</div>`:""}${p.owned!=null?`<div>Owned ${p.owned}% overall</div>`:""}${more.length?`<div>${esc(more.join(" · "))}</div>`:""}</div></div>`;
 }
 function labTargetView(D,el,they){
   const H=Object.keys((D.targets||{}).horizons||{}).map(Number).sort((a,b)=>a-b); if(!H.length){el.innerHTML='<div class="card"><p class="note">No target data yet.</p></div>';return;}
@@ -1119,6 +1137,7 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
     build(pg.querySelector(".lab-mbody")); pages.appendChild(pg);
   };
   addPage("more-pred","Predictions",`Goals, assists, clean sheets &amp; rotation for GW${esc(String((D.predictions||{}).gw||""))}`,body=>{ body.innerHTML=labPred(D); });
+  addPage("more-score","Scorecard","Model vs Target: who finds scorers better",body=>{ body.innerHTML=labScorecard(D); });
   if(D.decision_log) addPage("more-declog","Decision log",`${they?"Their":"Your"} moves vs the model's, scored each GW`,body=>{ body.innerHTML=labDecLog(D,they); });
   groups.forEach(g=>{
     addPage("more-"+g.id,g.label,esc(g.tabs.map(t=>t[1]).join(" · ")),body=>{

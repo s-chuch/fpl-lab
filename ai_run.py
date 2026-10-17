@@ -362,7 +362,10 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
         rows.append({"id": el["id"], "team": el["team"], "name": v["name"], "club": v["club"], "pos": pos, "fixture": v["fixture"], "avail": v["avail"],
                      "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "defcon": o["defcon"] * v["avail"],
-                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"]})
+                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"],
+                     "cost": v["cost"], "own": float(el.get("selected_by_percent") or 0), "form": float(el.get("form") or 0), "minutes": int(el.get("minutes") or 0),
+                     "xg90": float(el.get("expected_goals_per_90") or 0), "xa90": float(el.get("expected_assists_per_90") or 0),
+                     "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0})
         if pos in ("GKP", "DEF") and playing:
             club_cs.setdefault(v["club"], {"team": el["team"], "fixture": v["fixture"], "cs": [], "who": []})
             club_cs[v["club"]]["cs"].append(o["cs"])
@@ -373,6 +376,12 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         return round(100 * (1 - math.exp(-x)))
     def item(r, cat, val, extra):
         return {"id": r["id"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "p": pct(val, cat), "raw": raw(val), **extra}
+    gis = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -(r["goals"] + r["assists"]))[:top_n]
+    # every player's chances for the Target cards and the saved snapshot
+    chances = {}
+    for r in rows:
+        if r["pos"] != "GKP" and r["xp"] >= 1.0:
+            chances[f"{r['name']}|{r['club']}"] = [raw(r["goals"]), raw(r["assists"]), raw(r["goals"] + r["assists"])]
     scorers = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["goals"])[:top_n]
     assisters = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["assists"])[:top_n]
     dcs = sorted((r for r in rows if r["playing"] and r["pos"] != "GKP"), key=lambda r: -r["defcon"])[:top_n]
@@ -396,7 +405,10 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         "gw": nxt,
         "goals": [item(r, "goals", r["goals"], {"xg": round(r["goals"], 2)}) for r in scorers],
         "assists": [item(r, "assists", r["assists"], {"xa": round(r["assists"], 2)}) for r in assisters],
+        "gi": [item(r, "gi", r["goals"] + r["assists"], {"xg": round(r["goals"], 2), "xa": round(r["assists"], 2)}) for r in gis],
         "defcon": [item(r, "defcon", -math.log(max(1e-9, 1 - min(0.999, r["defcon"]))), {}) for r in dcs],
+        "chances": chances,
+        "_rows": [r for r in rows if r["xp"] >= 1.0],
         "clean_sheets": sheets,
         "rotation": [{"name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
                       "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],

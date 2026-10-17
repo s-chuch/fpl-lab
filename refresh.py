@@ -1488,9 +1488,28 @@ def main(team_id=TEAM_ID, out_path=None):
         path = pred_track.log_path(data_file)
         plog = pred_track.grade(pred_track.load(path), boot, get)          # settle any finished gameweek first
         preds = build_predictions(boot, ds, teams_by_id, inputs, scale=pred_track.scales(plog))
+        rows = preds.pop("_rows", [])
         if preds.get("gw"):
             picks = {c: [{k: p[k] for k in ("id", "team", "name", "club", "pos", "p", "raw", "fixture") if k in p} for p in preds.get(c, [])] for c in pred_track.CATS}
+            # the Target tab's 1-GW top 10, saved beside the model's lists so the two can be graded the same way
+            short = {t["id"]: t["short_name"] for t in boot["teams"]}
+            ids = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
+            tgt = ((((data.get("targets") or {}).get("horizons") or {}).get("1") or {}).get("top") or [])[:10]
+            picks[pred_track.TARGET] = [{"id": ids.get((t["name"], t["club"])), "name": t["name"], "club": t["club"], "pos": t.get("pos"), "score": t.get("score"), "xp": t.get("xp")} for t in tgt]
             pred_track.record(plog, preds["gw"], picks, datetime.now(timezone.utc))
+            # per-player snapshot (inputs + chances + Target rank), the training data for tuning later
+            trank = {(t["name"], t["club"]): (i + 1, t.get("score")) for i, t in enumerate(tgt)}
+            pcols = []
+            for r in rows:
+                tr = trank.get((r["name"], r["club"]), (None, None))
+                pcols.append([r["id"], r["team"], r["pos"], r["cost"], r["own"], r["form"], r["minutes"], round(r["xg90"], 2), round(r["xa90"], 2), r["fdr"], r["home"],
+                              round(r["mp"], 2), round(r["avail"], 2), r["xp"], round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
+                              round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1]])
+            pl = pred_track.load(pred_track.PLAYER_FILE)
+            pred_track.player_record(pl, preds["gw"], pcols, datetime.now(timezone.utc))
+            pred_track.player_grade(pl, boot, get)
+            pred_track.save(pred_track.PLAYER_FILE, pl)
+            preds["snapshot"] = {"gw": preds["gw"], "players": len(pcols), "saved_gws": len(pl.get("gws") or {})}
         pred_track.save(path, plog)
         preds["record"] = pred_track.view(plog)
         leg = pred_track.grade_legacy(pred_track.load(pred_track.LEGACY_FILE), boot, get)     # earlier-method lists, graded once settled

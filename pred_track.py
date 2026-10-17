@@ -9,8 +9,9 @@ from __future__ import annotations
 import json, os
 from pathlib import Path
 
-CATS = ("goals", "assists", "clean_sheets", "defcon")
-LABEL = {"goals": "Goals", "assists": "Assists", "clean_sheets": "Clean sheets", "defcon": "DEFCON"}
+CATS = ("goals", "assists", "gi", "clean_sheets", "defcon")
+LABEL = {"goals": "Goals", "assists": "Assists", "gi": "Goal or assist", "clean_sheets": "Clean sheets", "defcon": "DEFCON"}
+TARGET = "target"          # the Target tab's 1-GW top 10, saved beside the predictions and graded on goals / assists / either
 DEFCON_THR = {2: 10, 3: 12, 4: 12}          # element_type -> defensive contributions needed for the +2
 MIN_FOR_SCALE = 30                          # graded picks before a category's probabilities are rescaled
 SCALE_RANGE = (0.6, 1.4)
@@ -95,6 +96,15 @@ def grade_pick(cat, pick, live, fixtures, boot_el):
     tid = el.get("team")
     mine = [f for f in fixtures if tid in (f["team_h"], f["team_a"])]
     scored = sum((f["team_h_score"] if f["team_h"] == tid else f["team_a_score"]) or 0 for f in mine)
+    if cat == "gi":
+        g, a = int(st.get("goals_scored") or 0), int(st.get("assists") or 0)
+        if g + a > 0:
+            return {"hit": True, "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}"}
+        if mins == 0:
+            return {"hit": False, "why": "did not play"}
+        if mins < 60:
+            return {"hit": False, "why": f"only {mins} minutes"}
+        return {"hit": False, "why": "team did not score" if scored == 0 else f"played {mins} min, team scored {scored}, no goal or assist"}
     if cat in ("goals", "assists"):
         n = int(st.get("goals_scored" if cat == "goals" else "assists") or 0)
         word = "goal" if cat == "goals" else "assist"
@@ -131,8 +141,50 @@ def grade(log, boot, get):
         except Exception:
             continue
         g["results"] = {c: [grade_pick(c, p, live, fixtures, boot_el) for p in g["picks"].get(c, [])] for c in CATS}
+        g["results"][TARGET] = [grade_target(p, live) for p in g["picks"].get(TARGET, [])]
         g["graded"] = True
     return log
+
+
+def grade_target(pick, live):
+    """A Target pick graded three ways: scored, assisted, either."""
+    st = live.get(pick.get("id")) or {}
+    g, a, m = int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("minutes") or 0)
+    return {"hit": g + a > 0, "goal": g > 0, "assist": a > 0, "min": m, "why": f"{g} goal{'s' if g != 1 else ''}, {a} assist{'s' if a != 1 else ''}" if g + a else ("did not play" if m == 0 else f"{m} min, no goal or assist")}
+
+
+# ---------------------------------------------------------------- per-player snapshot (training data)
+PLAYER_FILE = Path(__file__).resolve().parent / "player_log.json"
+PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score"]
+OUTCOME_COLS = ["o_min", "o_goals", "o_assists", "o_dc", "o_pts"]
+
+
+def player_record(plog, gw, rows, now):
+    """Save every relevant player's inputs and the model's chances for `gw` (refreshed until the deadline; never once graded)."""
+    gws = plog.setdefault("gws", {})
+    g = gws.get(str(gw))
+    if g and g.get("graded"):
+        return plog
+    gws[str(gw)] = {"gw": gw, "made_at": now.isoformat(), "cols": PLAYER_COLS, "rows": rows, "graded": False}
+    return plog
+
+
+def player_grade(plog, boot, get):
+    """Append what each saved player did (minutes, goals, assists, defensive contributions, points) once FPL has settled the gameweek."""
+    done = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
+    for g in (plog.get("gws") or {}).values():
+        if g.get("graded") or g["gw"] not in done:
+            continue
+        try:
+            live = {x["id"]: x["stats"] for x in get(f"https://fantasy.premierleague.com/api/event/{g['gw']}/live/").get("elements", [])}
+        except Exception:
+            continue
+        for r in g["rows"]:
+            st = live.get(r[0]) or {}
+            r.extend([int(st.get("minutes") or 0), int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("defensive_contribution") or 0), int(st.get("total_points") or 0)])
+        g["cols"] = PLAYER_COLS + OUTCOME_COLS
+        g["graded"] = True
+    return plog
 
 
 # ---------------------------------------------------------------- earlier method (before the Predictions box)
@@ -212,9 +264,20 @@ def view(log, boot_players=None):
                          "fell short of the threshold" if "contributions" in r["why"] else "other")
                     cnt[k] = cnt.get(k, 0) + 1
         why[c] = sorted(cnt.items(), key=lambda kv: -kv[1])
+    tgt = {"n": 0, "goal": 0, "assist": 0, "gi": 0, "per_gw": []}
+    cmp_ = {"goals": [0, 0], "assists": [0, 0], "gi": [0, 0]}
+    for g in graded:
+        ts = g["results"].get(TARGET, [])
+        if not ts:
+            continue
+        tgt["n"] += len(ts); tgt["goal"] += sum(1 for r in ts if r["goal"]); tgt["assist"] += sum(1 for r in ts if r["assist"]); tgt["gi"] += sum(1 for r in ts if r["hit"])
+        tgt["per_gw"].append({"gw": g["gw"], "goal": sum(1 for r in ts if r["goal"]), "assist": sum(1 for r in ts if r["assist"]), "gi": sum(1 for r in ts if r["hit"]), "n": len(ts)})
+        for c in ("goals", "assists", "gi"):       # the model's list for the same gameweeks, only where Target was saved too
+            rs = g["results"].get(c, [])
+            cmp_[c][0] += sum(1 for r in rs if r["hit"]); cmp_[c][1] += len(rs)
     last = None
     if graded:
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
     return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
-            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last}
+            "overall": [h_all, n_all], "calibration": cal, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_}

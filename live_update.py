@@ -74,10 +74,10 @@ def pred_picks(gw, boot):
     saved lists (chance-volume goal / assist flags in data.js and the stored DEFCON top-10). Returns (source, {cat: [{id|team, name, club}]})."""
     log = (_load(ROOT / "prediction_log.json").get("gws") or {}).get(str(gw))
     if log and log.get("picks"):
-        return "Top 10 predictions", {c: log["picks"].get(c, []) for c in ("goals", "assists", "defcon", "clean_sheets")}
+        return "Top 10 predictions", {c: log["picks"].get(c, []) for c in ("goals", "assists", "gi", "defcon", "clean_sheets", "target")}
     short = {t["id"]: t["short_name"] for t in boot["teams"]}
     by_key = {(e["web_name"], short[e["team"]]): e["id"] for e in boot["elements"]}
-    picks = {"goals": [], "assists": [], "defcon": [], "clean_sheets": []}
+    picks = {"goals": [], "assists": [], "gi": [], "defcon": [], "clean_sheets": [], "target": []}
     for f in ((_data_js("data.js").get("volume_log") or {}).get(f"gw{gw}") or {}).get("flags", []):
         cat = "goals" if f.get("kind") == "goal" else "assists"
         picks[cat].append({"id": f.get("eid"), "name": f["name"], "club": f["club"]})
@@ -118,14 +118,18 @@ def pred_live(gw, boot, live, fixtures, els):
             el = els.get(p.get("id")) or {}
             st, mine = state(el.get("team"))
             s = live.get(p.get("id")) or {}
-            if cat == "goals":
+            extra = {}
+            if cat in ("gi", "target"):
+                g, a = int(s.get("goals_scored") or 0), int(s.get("assists") or 0)
+                val, need, extra = g + a, 1, {"g": g, "a": a}
+            elif cat == "goals":
                 val, need = int(s.get("goals_scored") or 0), 1
             elif cat == "assists":
                 val, need = int(s.get("assists") or 0), 1
             else:
                 val, need = int(s.get("defensive_contribution") or 0), DEFCON_THR.get(el.get("element_type"), 12)
             rows.append({"name": p.get("name") or el.get("web_name"), "club": p.get("club", ""), "state": st, "val": val, "need": need,
-                         "hit": val >= need, "mins": int(s.get("minutes") or 0)})
+                         "hit": val >= need, "mins": int(s.get("minutes") or 0), **extra})
         out[cat] = rows
     return {"source": source, "cats": out}
 
