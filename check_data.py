@@ -76,8 +76,9 @@ def check_ai_squad(name, d):
     if (plan.get("bank") or 0) < -0.001:
         out.append(f"{name}: AI team bank is negative ({plan.get('bank')})")
     budget = ai.get("budget")
-    # what the squad would sell for plus the bank can never exceed the money the AI started with
-    if budget is not None and plan.get("sell_value") is not None and round(plan["sell_value"] + (plan.get("bank") or 0), 1) > round(budget, 1) + 0.15:
+    # Sell value plus bank can pass the starting money only by price rises (the AI keeps half of any profit), so allow a few percent of
+    # headroom; anything beyond that means the money was invented.
+    if budget is not None and plan.get("sell_value") is not None and round(plan["sell_value"] + (plan.get("bank") or 0), 1) > round(budget, 1) + max(0.15, 0.04 * budget):
         out.append(f"{name}: AI team holds more money than it has ({plan['sell_value']} + {plan.get('bank')} > {budget})")
     return out
 
@@ -104,7 +105,9 @@ def check(name, d):
     total = (d.get("team") or {}).get("overall_points")
     if gws and total is not None:
         net = sum(g["points"] - (g.get("hits") or 0) for g in gws)
-        if abs(net - total) > 2:
+        locked = (d.get("deadline") or {}).get("locked_gw")
+        live = bool(gws and gws[-1].get("gw") == locked and not gws[-1].get("points"))    # the gameweek in play is not in the rows yet
+        if (net - total > 2) if live else (abs(net - total) > 2):
             problems.append(f"{name}: gameweek points add up to {net} but FPL reports {total} overall")
     # a finished gameweek must have a graded track record
     vl = d.get("volume_log") or {}

@@ -546,7 +546,9 @@ def _rotation_flagged_players(root):
         if data is None:
             continue
         for item in (data.get("agreed") or []) + (data.get("split") or []):
-            if item.get("player") and "rotation risk" in (item.get("tags") or []):
+            # The "rotation risk" tag fires on any mention of Europe or a cup, so a captain pick written up for 11 sentences and
+            # mentioned once with the Champions League was being cut 20%. Only a theme whose verdict is fitness/rotation doubts counts.
+            if item.get("player") and "rotation risk" in (item.get("tags") or []) and str(item.get("verdict", "")).startswith("Fitness or rotation"):
                 # keyed on the element id when the theme carries one (two players can share a web_name), else on the name
                 flagged.setdefault(f"id:{item['id']}" if item.get("id") is not None else item["player"], item.get("text"))
     return flagged
