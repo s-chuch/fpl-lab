@@ -1008,7 +1008,7 @@
     "xp": 3.04
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Dewsbury-Hall",
@@ -1039,5 +1039,164 @@
    411
   ],
   "xp": 63.6
+ },
+ "gw8": {
+  "backfilled": false,
+  "bench": [
+   1,
+   165,
+   268,
+   305
+  ],
+  "captain": 229,
+  "captain_name": "Tarkowski",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "76c8cef2ed2e",
+  "ft": 3,
+  "gw": 8,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-17T12:02:34+00:00",
+  "saved_at_et": "2026-10-17 8:02 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.93
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 5.27
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.34
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": 3.85
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.73
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 4.9
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 4.84
+   },
+   {
+    "club": "ARS",
+    "id": 12,
+    "name": "Saka",
+    "pos": "MID",
+    "xp": 4.12
+   },
+   {
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 3.74
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.25
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 4.5
+   },
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 2.97
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": 3.4
+   },
+   {
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.33
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": 3.07
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Dewsbury-Hall",
+    "in_id": 236,
+    "out": "Schade",
+    "out_id": 94
+   },
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Kostoulas",
+    "out_id": 138
+   }
+  ],
+  "vice": 411,
+  "vice_name": "Haaland",
+  "xi": [
+   572,
+   229,
+   115,
+   8,
+   449,
+   236,
+   124,
+   12,
+   453,
+   411,
+   249
+  ],
+  "xp": 53.7
  }
 }

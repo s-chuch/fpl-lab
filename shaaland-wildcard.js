@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "NFO (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "CRY (H)"
+      "fixture": "LIV (A)"
     },
     {
       "pos": "DEF",
       "name": "Calafiori",
       "club": "ARS",
-      "fixture": "NFO (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "DEF",
       "name": "Hall",
       "club": "NEW",
-      "fixture": "AVL (H)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Tarkowski",
-      "club": "EVE",
-      "fixture": "CHE (H)"
+      "fixture": "CRY (A)"
     },
     {
       "pos": "MID",
       "name": "Barnes",
       "club": "NEW",
-      "fixture": "AVL (H)"
+      "fixture": "CRY (A)"
     },
     {
       "pos": "MID",
       "name": "King",
       "club": "FUL",
-      "fixture": "HUL (H)"
+      "fixture": "COV (A)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "CRY (H)"
+      "fixture": "LIV (A)"
     },
     {
       "pos": "MID",
       "name": "Saka",
       "club": "ARS",
-      "fixture": "NFO (A)",
+      "fixture": "EVE (H)",
       "vice": true
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "IPS (H)",
+      "fixture": "AVL (A)",
       "captain": true
     },
     {
       "pos": "FWD",
       "name": "João Pedro",
       "club": "CHE",
-      "fixture": "EVE (A)"
+      "fixture": "TOT (H)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "LIV (A)"
     }
   ],
   "bench": [
@@ -85,45 +85,51 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "FUL (A)"
+      "fixture": "BRE (H)"
     },
     {
-      "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "CRY (H)"
+      "pos": "DEF",
+      "name": "Tarkowski",
+      "club": "EVE",
+      "fixture": "ARS (A)"
     },
     {
       "pos": "MID",
       "name": "Schade",
       "club": "BRE",
-      "fixture": "LIV (H)"
+      "fixture": "HUL (A)"
     },
     {
       "pos": "DEF",
       "name": "Davis",
       "club": "IPS",
-      "fixture": "MCI (A)"
+      "fixture": "NFO (H)"
     }
   ],
-  "note": "Confirmed GW6 squad — the GW6 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
+  "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "Groß",
-    "captain_ep": 6.56,
-    "vice": "De Cuyper",
-    "vice_ep": 6.02,
+    "captain": "Haaland",
+    "captain_ep": 5.25,
+    "vice": "Groß",
+    "vice_ep": 4.84,
     "bench_swaps": [
       {
+        "bench": "Tarkowski",
+        "bench_ep": 5.27,
+        "starter": "Hall",
+        "starter_ep": 3.73
+      },
+      {
         "bench": "Tzolakis",
-        "bench_ep": 4.57,
+        "bench_ep": 3.93,
         "starter": "Raya",
-        "starter_ep": 3.63
+        "starter_ep": 2.97
       }
     ],
     "bench_order": [
       "Tzolakis",
+      "Tarkowski",
       "Davis",
-      "Kostoulas",
       "Schade"
     ],
     "bench_order_changed": true,
@@ -138,67 +144,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.63,
+        "ep_next": 2.97,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 6.02,
+        "ep_next": 4.34,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 4.8,
+        "ep_next": 3.85,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 4.5,
-        "status": "ok"
-      },
-      {
-        "name": "Tarkowski",
-        "pos": "DEF",
-        "ep_next": 5.8,
+        "ep_next": 3.73,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 4.41,
+        "ep_next": 3.74,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.78,
+        "ep_next": 3.33,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 6.56,
+        "ep_next": 4.84,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.96,
+        "ep_next": 4.12,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.37,
+        "ep_next": 5.25,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.87,
+        "ep_next": 3.4,
+        "status": "ok"
+      },
+      {
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "ep_next": 2.26,
         "status": "ok"
       }
     ],
@@ -206,25 +212,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.57,
+        "ep_next": 3.93,
         "status": "ok"
       },
       {
-        "name": "Kostoulas",
-        "pos": "FWD",
-        "ep_next": 3.03,
+        "name": "Tarkowski",
+        "pos": "DEF",
+        "ep_next": 5.27,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.14,
+        "ep_next": 2.58,
         "status": "doubt"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 3.04,
+        "ep_next": 3.07,
         "status": "ok"
       }
     ]
@@ -259,15 +265,15 @@ window.FPL_WILDCARD_WATCH = {
         "De Cuyper": 5.2,
         "Calafiori": 5.9,
         "Hall": 5.3,
-        "Tarkowski": 6.2,
         "Barnes": 6.1,
         "King": 5.6,
         "Groß": 6.1,
         "Saka": 9.6,
         "Haaland": 15.7,
         "João Pedro": 7.8,
-        "Tzolakis": 4.7,
         "Kostoulas": 5.7,
+        "Tzolakis": 4.7,
+        "Tarkowski": 6.2,
         "Schade": 6.2,
         "Davis": 4.0
       }
@@ -659,5 +665,5 @@ window.FPL_WILDCARD_WATCH = {
       }
     ]
   },
-  "squad_gw": 6
+  "squad_gw": 7
 };

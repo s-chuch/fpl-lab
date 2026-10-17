@@ -958,7 +958,7 @@
     "xp": 2.77
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Barry",
@@ -989,5 +989,164 @@
    411
   ],
   "xp": 59.1
+ },
+ "gw8": {
+  "backfilled": false,
+  "bench": [
+   1,
+   94,
+   286,
+   321
+  ],
+  "captain": 229,
+  "captain_name": "Tarkowski",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "76c8cef2ed2e",
+  "ft": 2,
+  "gw": 8,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-17T12:02:41+00:00",
+  "saved_at_et": "2026-10-17 8:02 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.93
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 5.27
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.34
+   },
+   {
+    "club": "LEE",
+    "id": 330,
+    "name": "Bogle",
+    "pos": "DEF",
+    "xp": 4.23
+   },
+   {
+    "club": "BHA",
+    "id": 504,
+    "name": "Vuskovic",
+    "pos": "DEF",
+    "xp": 4.1
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.73
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 4.86
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 4.84
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 2.89
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.25
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 4.5
+   },
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 2.97
+   },
+   {
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.58
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.3
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.11
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Kostoulas",
+    "out_id": 138
+   },
+   {
+    "in": "Vuskovic",
+    "in_id": 504,
+    "out": "Gvardiol",
+    "out_id": 391
+   }
+  ],
+  "vice": 411,
+  "vice_name": "Haaland",
+  "xi": [
+   572,
+   229,
+   115,
+   330,
+   504,
+   449,
+   236,
+   124,
+   68,
+   411,
+   249
+  ],
+  "xp": 53.2
  }
 }
