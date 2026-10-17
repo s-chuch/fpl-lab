@@ -376,3 +376,18 @@ body.lab .lab-drow.pending .lab-dgw{color:#fbbf24}
 body.lab .lab-drow>:not(summary){margin-left:10px;margin-right:10px}
 body.lab .lab-dsec h4{display:flex;justify-content:space-between;margin:8px 0 2px;font-size:.84rem;letter-spacing:.02em}
 body.lab .lab-dsec h4 span{font-weight:800}
+
+/* Target cards: three per row on a phone */
+.lab-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.lab-pc{padding:7px;border-radius:10px}
+.lab-pc-h{gap:4px}.lab-pc-h .dot{flex:0 0 8px;height:8px;margin-top:4px}
+.lab-pc-h b{font-size:13px;line-height:1.2}
+.lab-dots svg{width:14px;height:14px}
+.lab-pc-c{font-size:10.5px;margin:2px 0 0 12px}
+.lab-pc-s{font-size:10.5px;gap:4px;margin:4px 0;line-height:1.25;align-items:flex-start}
+.lab-pc-s>span svg{width:13px;height:13px}
+.lab-pc-g{gap:3px 6px}
+.lab-pc-g span{font-size:9.5px}
+.lab-pc-g b{font-size:13px}
+.lab-pc-x{font-size:10.5px}
+@media(max-width:359px){.lab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

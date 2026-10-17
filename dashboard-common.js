@@ -817,7 +817,7 @@ const LAB_FILTERS=[
 ];
 function labCard(p,f,n,i){
   const [ic,txt]=f.head(p,n); const pc=LAB_POSC[p.pos]||"#8b95a1";
-  const big=p.pos==="FWD"&&p.xg!=null?["xG (season)",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
+  const big=p.pos==="FWD"&&p.xg!=null?["xG",labNum(p.xg,1)]:["xGI per 90",labNum(p.xgi90,2)];
   const more=[...(p.why||[]),...(p.sig||[]).map(s=>typeof shortReason==="function"?shortReason(s):s)];
   return `<div class="lab-pc"><div class="lab-pc-h"><i class="dot" style="background:${pc}"></i><b>${esc(p.name)}</b><button class="lab-dots" aria-label="More about ${esc(p.name)}" data-i="${i}">${LAB_SVG.dots}</button></div><div class="lab-pc-c">${esc(LAB_CLUB[p.club]||p.club||"")} • <span style="color:${pc};font-weight:700">${esc(p.pos||"")}</span></div><div class="lab-pc-s"><span style="color:${pc}">${ic}</span>${esc(txt)}</div><div class="lab-pc-g"><div><span>Form</span><b>${labNum(p.form,1)}</b></div><div><span>xP</span><b>${labNum(p.xp,1)}</b></div><div><span>${big[0]}</span><b>${big[1]}</b></div><div><span>Price</span><b class="lab-green">£${labNum(p.cost,1)}m</b></div></div><div class="lab-pc-x" hidden>${p.next?`<div>Next: ${esc(p.next)}</div>`:""}${p.owned!=null?`<div>Owned ${p.owned}% overall</div>`:""}${more.length?`<div>${esc(more.join(" · "))}</div>`:""}</div></div>`;
 }
