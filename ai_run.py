@@ -305,6 +305,15 @@ START_WARN = 0.75       # ...and tags one below this ("might not start")
 START_RECENT_W = (0.2, 0.3, 0.5)     # weights of his last three gameweeks, newest last
 
 
+def rotation_start(mp, avail, factors):
+    """The Predictions rotation list's number: share of minutes he normally plays x fitness x every factor the model applies
+    (minutes falling, rest, reported rotation). Target uses the same figure, so the two pages agree."""
+    f = 1.0
+    for x in (factors or []):
+        f *= x.get("factor", 1.0)
+    return min(1.0, mp) * avail * f
+
+
 def start_chance(el, recent, played, avail=1.0, factors=()):
     """Chance he is in the starting XI next gameweek: 40% his season starts per gameweek, 60% his last three gameweeks
     (a start = 60+ minutes; the latest counts most, so a game he did not play hurts), times his fitness and the
@@ -352,13 +361,18 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
             row["sig"] = s["reasons"][:4]
             row["adj"] = s["adj"]
     els = {e["id"]: e for e in boot["elements"]}
+    fx_next = fixture_scan(nxt, teams_by_id)
     rec_min = (risk or {}).get("recent_minutes") or {}
     def starts_of(r):
         eid = r.get("id") or by_key.get((r.get("name"), r.get("club")))
         v = (per_gw[0] if per_gw else {}).get(eid) or {}
         if eid not in els:
             return None
-        return start_chance(els[eid], rec_min.get(eid), played, v.get("avail", 1.0), v.get("adj_factors") or [])
+        s1 = start_chance(els[eid], rec_min.get(eid), played, v.get("avail", 1.0), v.get("adj_factors") or [])
+        o = ai_team.model_outlook(els[eid], fx_next.get(els[eid]["team"], []), played, (uwins or {}).get(eid), rec_min.get(eid))
+        if not o:
+            return s1
+        return min(s1, rotation_start(o["mp"], v.get("avail", 1.0), v.get("adj_factors") or []))      # the rotation list's own number
     def gate(rows):
         """Remove players unlikely to start and tag the doubtful ones, so Target does not recommend someone who sits on the bench."""
         keep = []
@@ -369,7 +383,7 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
                 if s < START_FLOOR:
                     continue
                 if s < START_WARN:
-                    r["why"] = list(r.get("why") or []) + [f"Might not start ({r['start']}%)"]
+                    r["why"] = list(r.get("why") or []) + [f"Rotation risk · starts ~{r['start']}%"]
             keep.append(r)
         return keep
     for key, h in ((data.get("targets") or {}).get("horizons") or {}).items():
@@ -451,10 +465,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
     # rotation: players who matter (decent expected points) ranked by how likely they are NOT to play a full part this gameweek:
     # 1 - (share of minutes he normally plays x fitness x the rest / minutes-falling / reported-rotation factors the model applies)
     def start_prob(r):
-        f = 1.0
-        for x in (r.get("factors") or []):
-            f *= x.get("factor", 1.0)
-        return min(1.0, r["mp"]) * r["avail"] * f
+        return rotation_start(r["mp"], r["avail"], r.get("factors"))
     for r in rows:
         r["start"] = start_prob(r)
     rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
