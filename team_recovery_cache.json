@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-17T23:45:23.854672+00:00",
+    "fetched_at": "2026-10-18T12:30:36.044109+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -70,7 +70,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-25",
@@ -123,7 +123,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Chelsea",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-24",
@@ -176,7 +176,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Man City",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-23",
@@ -283,7 +283,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Liverpool",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-25",
@@ -449,7 +449,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Aston Villa",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-25",
@@ -497,7 +497,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Hull",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-24",
@@ -518,7 +518,7 @@
           "date": "2026-10-17",
           "competition": "Premier League",
           "opponent": "Everton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-24",
