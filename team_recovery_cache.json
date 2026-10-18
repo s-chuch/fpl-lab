@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-18T12:30:36.044109+00:00",
+    "fetched_at": "2026-10-18T22:19:21.616537+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -25,11 +25,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Nott'm Forest"
-          },
           {
             "date": "2026-10-21",
             "competition": "Champions League",
@@ -106,11 +101,6 @@
         },
         "between": [
           {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Leeds"
-          },
-          {
             "date": "2026-10-21",
             "competition": "Champions League",
             "opponent": "Como"
@@ -158,11 +148,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Brighton"
-          },
           {
             "date": "2026-10-22",
             "competition": "Europa League",
@@ -212,11 +197,6 @@
         },
         "between": [
           {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Bournemouth"
-          },
-          {
             "date": "2026-10-22",
             "competition": "Europa League",
             "opponent": "Lech Poznan"
@@ -242,13 +222,7 @@
           "opponent": "Brentford",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Arsenal"
-          }
-        ]
+        "between": []
       },
       "LEE": {
         "rest_days": 7,
@@ -269,13 +243,7 @@
           "opponent": "Bournemouth",
           "days_after": 6
         },
-        "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Man Utd"
-          }
-        ]
+        "between": []
       },
       "BRE": {
         "rest_days": 8,
@@ -345,11 +313,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Crystal Palace"
-          },
           {
             "date": "2026-10-22",
             "competition": "Conference League",
@@ -431,11 +394,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-18",
-            "competition": "Premier League",
-            "opponent": "Sunderland"
-          },
           {
             "date": "2026-10-22",
             "competition": "Europa League",

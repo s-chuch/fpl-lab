@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-18 12:30 UTC",
+  "generated_at": "2026-10-18 22:19 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -30,8 +30,13 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Szoboszlai + Frimpong injury latest, Thiago nears ban",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/18/fpl-notes-szoboszlai-frimpong-injury-latest-thiago-nears-ban"
+      "title": "Nottm Forest v Arsenal team news: No Gibbs-White",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/18/nottm-forest-v-arsenal-team-news-no-gibbs-white"
+    },
+    {
+      "source": "Scout",
+      "title": "3pm team news: No Brobbey, Cunha benched",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/18/3pm-team-news-no-brobbey-cunha-benched"
     }
   ],
   "no_new": false,

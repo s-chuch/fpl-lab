@@ -110,47 +110,47 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Haaland",
     "captain_ep": 6.94,
-    "vice": "Groß",
-    "vice_ep": 4.84,
+    "vice": "De Cuyper",
+    "vice_ep": 5.07,
     "bench_swaps": [
+      {
+        "bench": "Tarkowski",
+        "bench_ep": 4.82,
+        "starter": "Hall",
+        "starter_ep": 4.25
+      },
       {
         "bench": "Tzolakis",
         "bench_ep": 4.4,
         "starter": "Raya",
-        "starter_ep": 2.97
-      },
-      {
-        "bench": "Tarkowski",
-        "bench_ep": 4.82,
-        "starter": "Calafiori",
-        "starter_ep": 3.82
+        "starter_ep": 3.99
       }
     ],
     "bench_order": [
       "Tzolakis",
       "Tarkowski",
-      "Schade",
-      "Davis"
+      "Davis",
+      "Schade"
     ],
-    "bench_order_changed": false,
+    "bench_order_changed": true,
     "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.97,
+        "ep_next": 3.99,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.25,
+        "ep_next": 5.07,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.82,
+        "ep_next": 4.31,
         "status": "ok"
       },
       {
@@ -174,13 +174,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.84,
+        "ep_next": 4.95,
         "status": "ok"
       },
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.08,
+        "ep_next": 4.33,
         "status": "ok"
       },
       {
@@ -192,13 +192,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.46,
+        "ep_next": 3.92,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.18,
+        "ep_next": 3.35,
         "status": "ok"
       }
     ],
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.2,
+        "ep_next": 2.68,
         "status": "ok"
       },
       {

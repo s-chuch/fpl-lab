@@ -110,20 +110,26 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Haaland",
     "captain_ep": 6.94,
-    "vice": "Dewsbury-Hall",
-    "vice_ep": 5.01,
+    "vice": "De Cuyper",
+    "vice_ep": 5.07,
     "bench_swaps": [
       {
         "bench": "Bogle",
-        "bench_ep": 4.16,
+        "bench_ep": 4.39,
         "starter": "Gvardiol",
         "starter_ep": 2.24
+      },
+      {
+        "bench": "Tavernier",
+        "bench_ep": 4.07,
+        "starter": "Schade",
+        "starter_ep": 2.68
       },
       {
         "bench": "Tzolakis",
         "bench_ep": 4.4,
         "starter": "Raya",
-        "starter_ep": 2.97
+        "starter_ep": 3.99
       }
     ],
     "bench_order": [
@@ -138,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.97,
+        "ep_next": 3.99,
         "status": "ok"
       },
       {
@@ -162,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.25,
+        "ep_next": 5.07,
         "status": "ok"
       },
       {
@@ -180,13 +186,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.84,
+        "ep_next": 4.95,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 3.2,
+        "ep_next": 2.68,
         "status": "ok"
       },
       {
@@ -198,7 +204,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.18,
+        "ep_next": 3.35,
         "status": "ok"
       }
     ],
@@ -212,13 +218,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 2.83,
+        "ep_next": 4.07,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.16,
+        "ep_next": 4.39,
         "status": "ok"
       },
       {
