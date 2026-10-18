@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 4.31,
+        "ep_next": 4.33,
         "status": "ok"
       },
       {
@@ -253,7 +253,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-18",
-      "total_cost": 100.3,
+      "total_cost": 100.4,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.2,
@@ -264,7 +264,7 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 6.1,
         "Saka": 9.6,
         "Haaland": 15.7,
-        "João Pedro": 7.8,
+        "João Pedro": 7.9,
         "Kostoulas": 5.7,
         "Tzolakis": 4.7,
         "Tarkowski": 6.2,
@@ -277,7 +277,7 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Saka": 9.6
     },
-    "total_delta": 1.5,
+    "total_delta": 1.6,
     "players": [
       {
         "name": "De Cuyper",
@@ -408,10 +408,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "baseline_cost": null,
-        "current_cost": 7.8,
+        "current_cost": 7.9,
         "delta": null,
         "entry_cost": 7.7,
-        "delta_since_added": 0.1,
+        "delta_since_added": 0.2,
         "status": "added"
       },
       {
@@ -663,6 +663,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Calafiori",
         "from": 5.9,
         "to": 6.0,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-18",
+        "event": "price_change",
+        "player": "João Pedro",
+        "from": 7.8,
+        "to": 7.9,
         "delta": 0.1
       }
     ]
