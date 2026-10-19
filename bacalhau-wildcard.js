@@ -259,16 +259,16 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-19",
-      "total_cost": 94.2,
+      "total_cost": 94.4,
       "prices": {
         "Raya": 6.1,
         "Gvardiol": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.2,
-        "De Cuyper": 5.2,
+        "De Cuyper": 5.3,
         "Belloumi": 5.2,
         "Dewsbury-Hall": 6.6,
-        "Groß": 6.1,
+        "Groß": 6.2,
         "Schade": 6.2,
         "Haaland": 15.7,
         "Kostoulas": 5.7,
@@ -279,13 +279,13 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 1.6,
+    "total_delta": 1.8,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.2,
-        "delta": 0.3,
+        "current_cost": 5.3,
+        "delta": 0.4,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -293,8 +293,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "baseline_cost": 5.8,
-        "current_cost": 6.1,
-        "delta": 0.3,
+        "current_cost": 6.2,
+        "delta": 0.4,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -547,6 +547,22 @@ window.FPL_WILDCARD_WATCH = {
         "date": "2026-10-18",
         "event": "price_change",
         "player": "Tavernier",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-19",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.2,
+        "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-19",
+        "event": "price_change",
+        "player": "Groß",
         "from": 6.1,
         "to": 6.2,
         "delta": 0.1

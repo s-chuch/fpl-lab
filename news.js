@@ -1,12 +1,21 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-19 15:22 UTC",
+  "generated_at": "2026-10-19 23:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
-  "agreed": [],
+  "agreed": [
+    {
+      "text": "GW8 coverage is talking about a wildcard window \u2014 mentioned by 3/3 sites.",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ]
+    }
+  ],
   "split": [
     {
-      "text": "Haaland (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Haaland (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -54,7 +63,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Semenyo (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Semenyo (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -84,7 +93,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Szoboszlai (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Szoboszlai (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -95,9 +104,9 @@ window.FPL_NEWS = {
         "injury/doubt"
       ],
       "id": 368,
-      "verdict": "Mentioned, no clear view",
+      "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 1
+        "risk": 2
       },
       "quotes": [
         {
@@ -108,16 +117,34 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
           "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        },
+        {
+          "source": "Scout",
+          "text": "READ MORE: FPL notes \u2013 Szoboszlai + Frimpong injury latest, Thiago nears ban Here are our Fantasy Premier League (FPL) Scout Notes from Craven Cottage.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-iwobi-outdoes-garcia-and-king-are-hull-regressing",
+          "title": "FPL notes: Iwobi outdoes Garcia and King + are Hull regressing?"
         }
       ],
-      "facts": [],
-      "tone": "neutral"
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "READ MORE: FPL notes \u2013 Szoboszlai + Frimpong injury latest, Thiago nears ban Here are our Fantasy Premier League (FPL) Scout Notes from Craven Cottage.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-iwobi-outdoes-garcia-and-king-are-hull-regressing",
+          "title": "FPL notes: Iwobi outdoes Garcia and King + are Hull regressing?"
+        }
+      ],
+      "tone": "bad"
     },
     {
-      "text": "GW8 coverage is talking about a wildcard window \u2014 mentioned by 2/2 sites.",
+      "text": "GW8 coverage is talking about a free hit window \u2014 mentioned by 2/3 sites.",
       "sources": [
-        "Hub",
-        "Scout"
+        "AAFPL",
+        "Hub"
       ]
     }
   ],
@@ -146,56 +173,31 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Neto brace, Chelsea clean sheet + Martinez injury latest",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-neto-brace-chelsea-clean-sheet-martinez-injury-latest"
+      "title": "Who is close to a ban or suspended in FPL Gameweek 8?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-8-2"
     },
     {
       "source": "Scout",
-      "title": "Haaland, Semenyo, Szoboszlai: Latest FPL team news ahead of Gameweek 8",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/haaland-semenyo-latest-fpl-team-news-ahead-of-gameweek-8"
+      "title": "Spurs v Coventry team news: Maddison starts, Kulusevski a sub",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/spurs-v-coventry-team-news-maddison-starts-kulusevski-a-sub"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: Vuskovic furthers case + why didn\u2019t Gross get the goal?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-vuskovic-furthers-case-why-didnt-gross-get-the-goal"
+      "title": "FPL notes: Iwobi outdoes Garcia and King + are Hull regressing?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-iwobi-outdoes-garcia-and-king-are-hull-regressing"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: Gibbs-White injury latest + two solid defences",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-gibbs-white-injury-latest-two-solid-defences"
+      "title": "FPL notes: Manzambi + Wan-Bissaka injury latest, Wissa up front",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-manzambi-wan-bissaka-injury-latest-wissa-up-front"
     },
     {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 3 Best and worst fixtures",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-matchday-3-best-and-worst-fixtures"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 3: Best Wildcard team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-matchday-3-best-wildcard-team"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy Matchday 3: Best differentials",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-matchday-3-best-differentials"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 3 best captains",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-matchday-3-best-captains"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Matchday 3 clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-2026-27-matchday-3-clean-sheet-odds"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy 2026/27: Matchday 3 projected team goals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-2026-27-matchday-3-projected-team-goals"
+      "source": "AAFPL",
+      "title": "FPL GW8 Ultimate Guide: Tips, Captaincy, Differentials & More",
+      "url": "https://allaboutfpl.com/2026/10/fpl-gw8-ultimate-guide-tips-captaincy-differentials-more/"
     }
   ],
   "no_new": false,
   "sites_checked": 5,
-  "sites_with_articles": 2
+  "sites_with_articles": 3
 };
