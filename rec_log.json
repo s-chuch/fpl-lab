@@ -1043,58 +1043,51 @@
  "gw8": {
   "backfilled": false,
   "bench": [
-   1,
-   165,
+   572,
+   449,
    138,
    305
   ],
-  "captain": 411,
-  "captain_name": "Haaland",
+  "captain": 427,
+  "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "a6759a89eee7",
+  "code_sha": "46bd4c6dd73e",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-18T23:45:49+00:00",
-  "saved_at_et": "2026-10-18 7:45 PM ET",
+  "saved_at": "2026-10-19T15:22:37+00:00",
+  "saved_at_et": "2026-10-19 11:22 AM ET",
   "source": "plan",
   "squad": [
    {
-    "club": "HUL",
-    "id": 572,
-    "name": "Tzolakis",
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
     "pos": "GKP",
-    "xp": 4.4
+    "xp": 4.28
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.07
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 4.82
+    "xp": 5.33
    },
    {
     "club": "ARS",
     "id": 8,
     "name": "Calafiori",
     "pos": "DEF",
-    "xp": 4.33
+    "xp": 4.71
    },
    {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 4.25
+    "xp": 3.98
    },
    {
     "club": "MUN",
@@ -1104,9 +1097,9 @@
     "xp": 5.6
    },
    {
-    "club": "FUL",
-    "id": 261,
-    "name": "Iwobi",
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
     "pos": "MID",
     "xp": 5.3
    },
@@ -1115,35 +1108,28 @@
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.95
+    "xp": 4.47
    },
    {
     "club": "ARS",
     "id": 12,
     "name": "Saka",
     "pos": "MID",
-    "xp": 4.33
+    "xp": 4.36
    },
    {
-    "club": "NEW",
-    "id": 453,
-    "name": "Barnes",
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
     "pos": "MID",
-    "xp": 4.2
+    "xp": 3.87
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.94
-   },
-   {
-    "club": "ARS",
-    "id": 1,
-    "name": "Raya",
-    "pos": "GKP",
-    "xp": 3.99
+    "xp": 5.2
    },
    {
     "club": "CHE",
@@ -1153,18 +1139,32 @@
     "xp": 3.92
    },
    {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 4.16
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.51
+   },
+   {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 3.35
+    "xp": 3.14
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 3.16
+    "xp": 3.07
    }
   ],
   "status": "pending",
@@ -1176,27 +1176,27 @@
     "out_id": 94
    },
    {
-    "in": "Iwobi",
-    "in_id": 261,
-    "out": "King",
-    "out_id": 268
+    "in": "Dewsbury-Hall",
+    "in_id": 236,
+    "out": "Barnes",
+    "out_id": 453
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 411,
+  "vice_name": "Haaland",
   "xi": [
-   572,
+   1,
    115,
-   229,
    8,
-   449,
+   229,
    427,
-   261,
+   236,
    124,
    12,
-   453,
-   411
+   268,
+   411,
+   165
   ],
-  "xp": 61.1
+  "xp": 56.6
  }
 }

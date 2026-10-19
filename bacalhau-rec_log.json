@@ -993,44 +993,37 @@
  "gw8": {
   "backfilled": false,
   "bench": [
-   1,
-   138,
+   572,
    286,
+   138,
    391
   ],
-  "captain": 411,
-  "captain_name": "Haaland",
+  "captain": 427,
+  "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "a6759a89eee7",
+  "code_sha": "46bd4c6dd73e",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-18T23:45:56+00:00",
-  "saved_at_et": "2026-10-18 7:45 PM ET",
+  "saved_at": "2026-10-19T15:22:56+00:00",
+  "saved_at_et": "2026-10-19 11:22 AM ET",
   "source": "plan",
   "squad": [
    {
-    "club": "HUL",
-    "id": 572,
-    "name": "Tzolakis",
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
     "pos": "GKP",
-    "xp": 4.4
+    "xp": 4.28
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.07
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 4.82
+    "xp": 5.33
    },
    {
     "club": "LEE",
@@ -1040,11 +1033,18 @@
     "xp": 4.39
    },
    {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.98
+   },
+   {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 4.25
+    "xp": 3.51
    },
    {
     "club": "MUN",
@@ -1058,14 +1058,14 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 5.01
+    "xp": 5.31
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.95
+    "xp": 4.47
    },
    {
     "club": "BOU",
@@ -1079,28 +1079,21 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.94
+    "xp": 5.2
    },
    {
     "club": "EVE",
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 4.7
+    "xp": 4.5
    },
    {
-    "club": "ARS",
-    "id": 1,
-    "name": "Raya",
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.99
-   },
-   {
-    "club": "BHA",
-    "id": 138,
-    "name": "Kostoulas",
-    "pos": "FWD",
-    "xp": 3.35
+    "xp": 4.16
    },
    {
     "club": "HUL",
@@ -1108,6 +1101,13 @@
     "name": "Belloumi",
     "pos": "MID",
     "xp": 3.29
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 3.14
    },
    {
     "club": "MCI",
@@ -1132,13 +1132,13 @@
     "out_id": 321
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 236,
+  "vice_name": "Dewsbury-Hall",
   "xi": [
-   572,
+   1,
    115,
-   229,
    330,
+   229,
    449,
    427,
    236,
@@ -1147,6 +1147,6 @@
    411,
    249
   ],
-  "xp": 61.1
+  "xp": 56.2
  }
 }

@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-18",
+  "captured_at": "2026-10-19",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
-    "captain": "Haaland",
-    "captain_ep": 6.94,
-    "vice": "De Cuyper",
-    "vice_ep": 5.07,
+    "captain": "De Cuyper",
+    "captain_ep": 5.33,
+    "vice": "Dewsbury-Hall",
+    "vice_ep": 5.31,
     "bench_swaps": [
       {
         "bench": "Bogle",
@@ -124,12 +124,6 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 4.07,
         "starter": "Schade",
         "starter_ep": 2.68
-      },
-      {
-        "bench": "Tzolakis",
-        "bench_ep": 4.4,
-        "starter": "Raya",
-        "starter_ep": 3.99
       }
     ],
     "bench_order": [
@@ -139,12 +133,18 @@ window.FPL_WILDCARD_WATCH = {
       "Walle Egeli"
     ],
     "bench_order_changed": true,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Haaland",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.99,
+        "ep_next": 4.28,
         "status": "ok"
       },
       {
@@ -156,19 +156,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 4.25,
+        "ep_next": 3.51,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.82,
+        "ep_next": 3.98,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.07,
+        "ep_next": 5.33,
         "status": "ok"
       },
       {
@@ -180,13 +180,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 5.01,
+        "ep_next": 5.31,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.95,
+        "ep_next": 4.47,
         "status": "ok"
       },
       {
@@ -198,13 +198,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 6.94,
-        "status": "ok"
+        "ep_next": 5.2,
+        "status": "doubt"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.35,
+        "ep_next": 3.14,
         "status": "ok"
       }
     ],
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.4,
+        "ep_next": 4.16,
         "status": "ok"
       },
       {
@@ -230,7 +230,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.11,
+        "ep_next": 0.15,
         "status": "ok"
       }
     ]
@@ -258,7 +258,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-18",
+      "date": "2026-10-19",
       "total_cost": 94.2,
       "prices": {
         "Raya": 6.1,
