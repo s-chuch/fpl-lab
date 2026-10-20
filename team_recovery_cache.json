@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-20T13:25:44.065525+00:00",
+    "fetched_at": "2026-10-20T23:04:30.509835+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -354,13 +354,7 @@
           "opponent": "Brighton & Hove Albion",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-20",
-            "competition": "Champions League",
-            "opponent": "AEK Athens"
-          }
-        ]
+        "between": []
       },
       "BOU": {
         "rest_days": 3,
@@ -429,13 +423,7 @@
           "opponent": "Chelsea",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-20",
-            "competition": "Champions League",
-            "opponent": "Villarreal"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 7,

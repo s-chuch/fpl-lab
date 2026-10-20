@@ -900,6 +900,125 @@
   "hits": 0,
   "saved_at": "2026-10-17T04:24:42+00:00",
   "saved_at_et": "2026-10-17 12:24 AM ET",
+  "score": {
+   "captain": {
+    "diff": 8,
+    "model": "Groß",
+    "model_mult": 2,
+    "model_pts": 5,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 13
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": 26,
+   "lineup": {
+    "diff": 10,
+    "model_autosubs": [],
+    "model_bench_pts": 13,
+    "you_autosubs": [],
+    "you_bench_pts": 3
+   },
+   "model": 51,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Tzolakis",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 0
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Hall",
+     "played": true,
+     "pts": 4
+    },
+    {
+     "mult": 2,
+     "name": "Groß",
+     "played": true,
+     "pts": 5
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Saka",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Barnes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Barry",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Haaland",
+     "played": true,
+     "pts": 13
+    }
+   ],
+   "transfers": {
+    "diff": 8,
+    "model": [
+     {
+      "in": "Dewsbury-Hall",
+      "in_pts": 2,
+      "net": 2,
+      "out": "Schade",
+      "out_pts": 0
+     },
+     {
+      "in": "Barry",
+      "in_pts": 2,
+      "net": -10,
+      "out": "Kostoulas",
+      "out_pts": 12
+     }
+    ],
+    "model_hits": 0,
+    "model_net": -8,
+    "you": [],
+    "you_hits": 0,
+    "you_net": 0
+   },
+   "verdict": "You +26",
+   "you": 77
+  },
+  "scored_at_et": "2026-10-20 7:04 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1008,7 +1127,7 @@
     "xp": 3.04
    }
   ],
-  "status": "frozen",
+  "status": "scored",
   "transfers": [
    {
     "in": "Dewsbury-Hall",
@@ -1048,17 +1167,17 @@
    138,
    305
   ],
-  "captain": 427,
-  "captain_name": "Mbeumo",
+  "captain": 411,
+  "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "641c7bdadd13",
+  "code_sha": "64bf4efffbb9",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-20T13:26:01+00:00",
-  "saved_at_et": "2026-10-20 9:26 AM ET",
+  "saved_at": "2026-10-20T23:04:40+00:00",
+  "saved_at_et": "2026-10-20 7:04 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1094,14 +1213,14 @@
     "id": 427,
     "name": "Mbeumo",
     "pos": "MID",
-    "xp": 5.6
+    "xp": 6.0
    },
    {
     "club": "FUL",
     "id": 261,
     "name": "Iwobi",
     "pos": "MID",
-    "xp": 5.3
+    "xp": 5.4
    },
    {
     "club": "BHA",
@@ -1129,7 +1248,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.38
+    "xp": 7.18
    },
    {
     "club": "CHE",
@@ -1182,8 +1301,8 @@
     "out_id": 94
    }
   ],
-  "vice": 411,
-  "vice_name": "Haaland",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    115,
@@ -1197,6 +1316,6 @@
    411,
    165
   ],
-  "xp": 56.7
+  "xp": 60.5
  }
 }

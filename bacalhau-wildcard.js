@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.38,
+    "captain_ep": 7.18,
     "vice": "De Cuyper",
     "vice_ep": 5.33,
     "bench_swaps": [
@@ -133,13 +133,7 @@ window.FPL_WILDCARD_WATCH = {
       "Walle Egeli"
     ],
     "bench_order_changed": false,
-    "availability_flags": [
-      {
-        "name": "Haaland",
-        "label": "DOUBT 75%",
-        "chance": 75
-      }
-    ],
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
@@ -198,8 +192,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.38,
-        "status": "doubt"
+        "ep_next": 7.18,
+        "status": "ok"
       },
       {
         "name": "Kostoulas",
