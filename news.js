@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-19 23:29 UTC",
+  "generated_at": "2026-10-20 00:16 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -170,34 +170,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Who is close to a ban or suspended in FPL Gameweek 8?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-8-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Spurs v Coventry team news: Maddison starts, Kulusevski a sub",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/spurs-v-coventry-team-news-maddison-starts-kulusevski-a-sub"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Iwobi outdoes Garcia and King + are Hull regressing?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-iwobi-outdoes-garcia-and-king-are-hull-regressing"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Manzambi + Wan-Bissaka injury latest, Wissa up front",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/fpl-notes-manzambi-wan-bissaka-injury-latest-wissa-up-front"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL GW8 Ultimate Guide: Tips, Captaincy, Differentials & More",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gw8-ultimate-guide-tips-captaincy-differentials-more/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
