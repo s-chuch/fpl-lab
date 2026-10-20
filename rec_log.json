@@ -1052,13 +1052,13 @@
   "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "d9725c0c75ad",
+  "code_sha": "641c7bdadd13",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-20T00:38:17+00:00",
-  "saved_at_et": "2026-10-19 8:38 PM ET",
+  "saved_at": "2026-10-20T13:26:01+00:00",
+  "saved_at_et": "2026-10-20 9:26 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1097,9 +1097,9 @@
     "xp": 5.6
    },
    {
-    "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
+    "club": "FUL",
+    "id": 261,
+    "name": "Iwobi",
     "pos": "MID",
     "xp": 5.3
    },
@@ -1118,18 +1118,18 @@
     "xp": 4.36
    },
    {
-    "club": "FUL",
-    "id": 268,
-    "name": "King",
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
     "pos": "MID",
-    "xp": 3.87
+    "xp": 3.74
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.2
+    "xp": 5.38
    },
    {
     "club": "CHE",
@@ -1172,14 +1172,14 @@
    {
     "in": "Mbeumo",
     "in_id": 427,
-    "out": "Schade",
-    "out_id": 94
+    "out": "King",
+    "out_id": 268
    },
    {
-    "in": "Dewsbury-Hall",
-    "in_id": 236,
-    "out": "Barnes",
-    "out_id": 453
+    "in": "Iwobi",
+    "in_id": 261,
+    "out": "Schade",
+    "out_id": 94
    }
   ],
   "vice": 411,
@@ -1190,13 +1190,13 @@
    8,
    229,
    427,
-   236,
+   261,
    124,
    12,
-   268,
+   453,
    411,
    165
   ],
-  "xp": 56.6
+  "xp": 56.7
  }
 }

@@ -996,19 +996,19 @@
    572,
    286,
    138,
-   321
+   391
   ],
   "captain": 427,
   "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "d9725c0c75ad",
+  "code_sha": "641c7bdadd13",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-20T00:38:29+00:00",
-  "saved_at_et": "2026-10-19 8:38 PM ET",
+  "saved_at": "2026-10-20T13:26:15+00:00",
+  "saved_at_et": "2026-10-20 9:26 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1026,18 +1026,11 @@
     "xp": 5.33
    },
    {
-    "club": "ARS",
-    "id": 8,
-    "name": "Calafiori",
-    "pos": "DEF",
-    "xp": 4.7
-   },
-   {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
-    "xp": 4.39
+    "xp": 4.15
    },
    {
     "club": "EVE",
@@ -1079,14 +1072,21 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.07
+    "xp": 4.28
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.2
+    "xp": 5.38
+   },
+   {
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
+    "pos": "FWD",
+    "xp": 4.5
    },
    {
     "club": "HUL",
@@ -1110,11 +1110,11 @@
     "xp": 3.14
    },
    {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.15
+    "club": "MCI",
+    "id": 391,
+    "name": "Gvardiol",
+    "pos": "DEF",
+    "xp": 2.12
    }
   ],
   "status": "pending",
@@ -1126,18 +1126,17 @@
     "out_id": 94
    },
    {
-    "in": "Calafiori",
-    "in_id": 8,
-    "out": "Gvardiol",
-    "out_id": 391
+    "in": "Evanilson",
+    "in_id": 79,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
-  "vice": 236,
-  "vice_name": "Dewsbury-Hall",
+  "vice": 411,
+  "vice_name": "Haaland",
   "xi": [
    1,
    115,
-   8,
    330,
    229,
    449,
@@ -1145,7 +1144,8 @@
    236,
    124,
    68,
-   411
+   411,
+   79
   ],
   "xp": 56.4
  }

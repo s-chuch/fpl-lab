@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-19",
+  "captured_at": "2026-10-20",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -108,31 +108,31 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
-    "captain": "De Cuyper",
-    "captain_ep": 5.33,
-    "vice": "Dewsbury-Hall",
-    "vice_ep": 5.31,
+    "captain": "Haaland",
+    "captain_ep": 5.38,
+    "vice": "De Cuyper",
+    "vice_ep": 5.33,
     "bench_swaps": [
       {
         "bench": "Bogle",
-        "bench_ep": 4.39,
+        "bench_ep": 4.15,
         "starter": "Gvardiol",
-        "starter_ep": 2.24
+        "starter_ep": 2.12
       },
       {
         "bench": "Tavernier",
-        "bench_ep": 4.07,
+        "bench_ep": 4.28,
         "starter": "Schade",
         "starter_ep": 2.68
       }
     ],
     "bench_order": [
       "Tzolakis",
-      "Bogle",
       "Tavernier",
+      "Bogle",
       "Walle Egeli"
     ],
-    "bench_order_changed": true,
+    "bench_order_changed": false,
     "availability_flags": [
       {
         "name": "Haaland",
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 2.24,
+        "ep_next": 2.12,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.2,
+        "ep_next": 5.38,
         "status": "doubt"
       },
       {
@@ -218,13 +218,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.07,
+        "ep_next": 4.28,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.39,
+        "ep_next": 4.15,
         "status": "ok"
       },
       {
@@ -258,7 +258,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-19",
+      "date": "2026-10-20",
       "total_cost": 94.4,
       "prices": {
         "Raya": 6.1,

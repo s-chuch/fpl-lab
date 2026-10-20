@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-19",
+  "captured_at": "2026-10-20",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "De Cuyper",
-    "captain_ep": 5.33,
-    "vice": "Haaland",
-    "vice_ep": 5.2,
+    "captain": "Haaland",
+    "captain_ep": 5.38,
+    "vice": "De Cuyper",
+    "vice_ep": 5.33,
     "bench_swaps": [
       {
         "bench": "Tarkowski",
@@ -186,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.2,
+        "ep_next": 5.38,
         "status": "doubt"
       },
       {
@@ -252,7 +252,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-19",
+      "date": "2026-10-20",
       "total_cost": 100.6,
       "prices": {
         "Raya": 6.1,
