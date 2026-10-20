@@ -1136,6 +1136,30 @@ function labDecRow(r,they){
 <div class="lab-dsec"><h4>Lineup, bench &amp; chips <span>${labSigned(Ln.diff)}</span></h4><p class="note">The rest of the gap: XI and bench picks, autosubs${chipY?`, ${y} ${esc(LAB_CHIPN[chipY]||chipY)}`:""}. Bench points: ${Y.toLowerCase()} ${Ln.you_bench_pts} · model ${Ln.model_bench_pts}. Model autosubs: ${subs(Ln.model_autosubs)}.</p></div>${meta}`;
   return `<details class="lab-drow" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><span class="lab-dsc">${Y} <b>${s.you}</b> · Model <b>${s.model}</b> ${labVerdict(s,they)}${r.backfilled?' <span class="lab-pill used">backfilled</span>':""}</span><span class="note">C ${esc(C.you||"–")} / ${esc(C.model||"–")} · T ${(T.you||[]).length?(T.you.length>2?T.you.length+" moves":mv(T.you)):"roll"}${chipY?" ("+esc(LAB_CHIPN[chipY]||chipY)+")":""} / ${mv(T.model)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
 }
+// More > Plan > Log: every recommended transfer, and what following it would have scored against what was actually done
+function labTransferLog(D,they){
+  const rows=((D.decision_log||{}).rows||[]), Y=they?"They":"You", y=they?"they":"you";
+  if(!rows.length) return `<p class="note" data-keep>No recommendations saved yet. The next refresh before a deadline saves one.</p>`;
+  const sgn=n=>(n>0?"+":"")+n, cl=n=>n>0?"pos":n<0?"neg":"";
+  const mv=m=>`<li>${esc(m.out)} → ${esc(m.in)} <b class="${cl(m.net)}">${sgn(m.net)}</b> <small>${m.out_pts} → ${m.in_pts} pts</small></li>`;
+  const plain=m=>`<li>${esc(m.out)} → ${esc(m.in)}</li>`;
+  let rec=0, you=0, rw=0, yw=0, lv=0, n=0;
+  const cards=rows.map(r=>{
+    const T=r.score&&r.score.transfers;
+    const recL=(r.transfers||[]).length?null:`<li class="note">No transfer recommended</li>`;
+    if(!T){
+      return `<div class="lab-tl"><div class="lab-tlh"><b>GW${r.gw}</b><span class="note">${r.status==="frozen"?"waiting for the gameweek to finish":"saved before the deadline"}</span></div><div class="lab-tlc"><div><h5>Recommended</h5><ul>${recL||(r.transfers||[]).map(plain).join("")}</ul>${r.hit_cost?`<p class="note">hit −${r.hit_cost}</p>`:""}</div><div><h5>${Y} did</h5><p class="note">shown once the gameweek is settled</p></div></div></div>`;
+    }
+    const df=T.model_net-T.you_net, chipWk=["wildcard","freehit"].includes((r.score.chip||{}).you);
+    if(!chipWk){ n++; rec+=T.model_net; you+=T.you_net; if(df>0) rw++; else if(df<0) yw++; else lv++; }
+    const verdict=chipWk?`${r.score.chip.you==="wildcard"?"Wildcard":"Free Hit"} week · not counted`:df>0?`Recommended was better by ${df}`:df<0?`${Y} did better by ${-df}`:"Level";
+    return `<div class="lab-tl"><div class="lab-tlh"><b>GW${r.gw}</b><span class="${chipWk?"":cl(df)}">${verdict}</span></div><div class="lab-tlc">
+      <div><h5>Recommended</h5><ul>${(T.model||[]).map(mv).join("")||recL||'<li class="note">No transfer</li>'}</ul><p class="lab-tln">Net <b class="${cl(T.model_net)}">${sgn(T.model_net)}</b>${T.model_hits?` <small>after −${T.model_hits} hit</small>`:""}</p></div>
+      <div><h5>${Y} did</h5><ul>${(T.you||[]).map(mv).join("")||'<li class="note">No transfer</li>'}</ul><p class="lab-tln">Net <b class="${cl(T.you_net)}">${sgn(T.you_net)}</b>${T.you_hits?` <small>after −${T.you_hits} hit</small>`:""}</p></div></div>${r.backfilled?`<p class="note">Rebuilt from an earlier snapshot: the recommendation is that day's Plan transfer, if there was one.</p>`:""}</div>`;
+  }).join("");
+  const top=n?`<div class="lab-tlt"><div><span class="note">Followed every recommendation</span><b class="${cl(rec)}">${sgn(rec)}</b></div><div><span class="note">What ${y} did</span><b class="${cl(you)}">${sgn(you)}</b></div><div><span class="note">Difference</span><b class="${cl(rec-you)}">${sgn(rec-you)}</b></div></div><p class="note" data-keep>Over ${n} settled gameweek${n===1?"":"s"}: the recommendation did better in ${rw}, ${y} in ${yw}${lv?`, level in ${lv}`:""}. Each figure is the points scored that gameweek by the players brought in, minus the players taken out, after any hit.</p>`:`<p class="note" data-keep>Nothing settled yet: each recommendation is scored once its gameweek is finished.</p>`;
+  return top+cards;
+}
 function labDecLog(D,they){
   const L=D.decision_log||{}, rows=L.rows||[], t=L.totals||{}; const Y=they?"They":"You";
   if(!rows.length) return `<p class="note">No recommendations saved yet. The next refresh before a deadline saves one.</p>`;
@@ -1197,6 +1221,8 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
   addPage("more-pred","Predictions",`Goals, assists, clean sheets &amp; rotation for GW${esc(String((D.predictions||{}).gw||""))}`,body=>{ body.innerHTML=labPred(D); });
   addPage("more-score","Scorecard","Model vs Target: who finds scorers better",body=>{ body.innerHTML=labScorecard(D); });
   if(D.decision_log) addPage("more-declog","Decision log",`${they?"Their":"Your"} moves vs the model's, scored each GW`,body=>{ body.innerHTML=labDecLog(D,they); });
+  { const pg=groups.find(x=>x.id==="plan");      // a Log tab on the Plan page: recommended transfers against what was done
+    if(pg&&D.decision_log&&!pg.tabs.some(t=>t[0]==="planLog")){ const s=document.createElement("section"); s.id="planLog"; s.innerHTML=labTransferLog(D,they); document.body.appendChild(s); pg.tabs=[...pg.tabs,["planLog","Log"]]; } }
   groups.forEach(g=>{
     addPage("more-"+g.id,g.label,esc(g.tabs.map(t=>t[1]).join(" · ")),body=>{
       const subs=g.tabs.map(([id,label])=>[label,document.getElementById(id)]).filter(x=>x[1]);
