@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-20 00:25 UTC",
+  "generated_at": "2026-10-20 00:34 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -23,7 +23,6 @@ window.FPL_NEWS = {
       "player": "Haaland",
       "club": "MCI",
       "tags": [
-        "captain talk",
         "injury/doubt"
       ],
       "id": 411,
@@ -50,14 +49,6 @@ window.FPL_NEWS = {
           "source": "Hub",
           "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
           "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Haaland has been in relentless goalscoring form, netting an incredible 15 goals across all competitions this season.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/19/ucl-fantasy-matchday-3-best-captains",
-          "title": "UCL Fantasy: Matchday 3 best captains"
         }
       ],
       "tone": "bad"
@@ -141,6 +132,62 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
+      "text": "Tavernier (BOU) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": [
+        "differential"
+      ],
+      "id": 68,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table  Notes from Bournemouth 2-0 Sunderland",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table",
+          "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table",
+          "stance": [
+            "risk"
+          ],
+          "url": "",
+          "title": ""
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table  Notes from Bournemouth 2-0 Sunderland",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table",
+          "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Marcus Tavernier lived up to our backing with a 10-pointer, while Dominic Solanke plays on Monday.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        }
+      ],
+      "tone": "bad"
+    },
+    {
       "text": "GW8 coverage is talking about a free hit window \u2014 mentioned by 2/3 sites.",
       "sources": [
         "AAFPL",
@@ -170,8 +217,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
