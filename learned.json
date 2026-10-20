@@ -1,0 +1,34 @@
+{
+ "version": 1,
+ "updated": "2026-10-20T00:25:59+00:00",
+ "gws": [],
+ "per_position": {
+  "GKP": {
+   "n": 0,
+   "a": 0.0,
+   "b": 1.0,
+   "applied": false
+  },
+  "DEF": {
+   "n": 0,
+   "a": 0.0,
+   "b": 1.0,
+   "applied": false
+  },
+  "MID": {
+   "n": 0,
+   "a": 0.0,
+   "b": 1.0,
+   "applied": false
+  },
+  "FWD": {
+   "n": 0,
+   "a": 0.0,
+   "b": 1.0,
+   "applied": false
+  }
+ },
+ "mae_before": null,
+ "mae_after": null,
+ "applied": false
+}
