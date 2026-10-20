@@ -585,6 +585,8 @@ def score_plan(plan, live, final):
               "played": played(i)} for i in xi]
     gross = sum(l["pts"] * l["mult"] for l in lines)
     bench_pts = sum(got(b) for b in bench if b not in xi)
+    if plan.get("chip") == "bboost":
+        gross += bench_pts                       # Bench Boost: the bench scores too
     bench_lines = [{"id": b, "name": name_of[b], "pos": pos_of[b], "pts": got(b), "played": played(b)} for b in bench if b not in xi]
     return {"points": gross - plan.get("hit_cost", 0), "gross": gross, "hits": plan.get("hit_cost", 0),
             "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "bench_lines": bench_lines, "final": final,
@@ -605,6 +607,52 @@ def new_state(clone, start_gw, now):
 
 
 from ai_changes import _flag_text, _pairs, _move_text, _transfer_cause, diff_plans, _entry_pairs, merge_changes, watch_locked  # noqa: E402,F401  (split out; re-exported)
+
+
+def apply_chips(plan, state, gw, deadline, ctx, gws_played, now):
+    """Decide whether the AI plays a chip this gameweek (see ai_chips) and put it in the plan. Triple Captain and Bench Boost just
+    flag the plan; Free Hit and Wildcard replace the squad (the Free Hit squad is not carried forward, see update)."""
+    import ai_chips
+    plan["chip_watch"] = {}
+    if plan.get("initial"):
+        return plan
+    avail = ai_chips.available(state.get("chips_used"), gw)
+    if not avail:
+        return plan
+    boot = ctx["boot"]
+    events = {e["id"]: e for e in boot["events"]}
+    gws = [g for g in range(gw, ai_chips.window_end(gw) + 1) if g in events][:ai_chips.HORIZON]
+    vals_by_gw = [player_values(boot, ctx["fix_scan"](g), ctx["fix_scan"](g + 1) if g + 1 in events else {}, gws_played, ctx.get("uwins"), ctx.get("risk")) for g in gws]
+    squad = [p["id"] for p in plan["squad"]]
+    buys = {int(k): v for k, v in plan["buys"].items()}
+    dec = ai_chips.decide(squad, buys, plan["bank"], gw, state.get("chips_used"), vals_by_gw)
+    plan["chip_watch"] = dec["watch"]
+    chip, vals = dec["chip"], vals_by_gw[0]
+    if not chip:
+        return plan
+    info = {"name": ai_chips.NAMES[chip], "reason": dec["reason"]}
+    if chip in ("3xc", "bboost"):
+        plan["chip"], plan["chip_info"] = chip, info
+        plan["xp_xi"] = round(plan["xp_xi"] + (vals[plan["captain"]]["xp"] if chip == "3xc" else sum(vals[i]["xp"] for i in plan["bench"])), 1)
+        return plan
+    old = [int(i) for i in state["squad"]]
+    old_buys = {int(k): v for k, v in state["buys"].items()}
+    new = dec["squad"]
+    keep = [i for i in new if i in old]
+    spend = sum(T_sell(old_buys, vals, i) for i in keep) + sum(vals[i]["cost"] for i in new if i not in old)
+    bank = round(dec["money"] - spend, 1)
+    if bank < -1e-9:
+        return plan                                   # does not fit the money after all: keep the ordinary plan
+    new_buys = {i: (old_buys.get(i, vals[i]["cost"]) if i in old else vals[i]["cost"]) for i in new}
+    moves = ai_chips.moves_between(old, new, vals, old_buys)
+    ft_before = state["ft"]
+    newplan = make_plan(gw, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"), forced=(new, moves, bank, 0, new_buys))
+    newplan.update({"chip": chip, "chip_info": info, "chip_watch": dec["watch"], "ft_after": ft_before, "hits": 0, "hit_cost": 0})
+    return newplan
+
+
+def T_sell(buys, vals, i):
+    return sell_price(buys.get(i, vals[i]["cost"]), vals[i]["cost"])
 
 
 def update(state, ctx):
@@ -634,9 +682,13 @@ def update(state, ctx):
         if not plan["locked"]:
             plan["locked"], plan["locked_at"] = True, now.isoformat()   # missed the window: freeze what we had
         state["history"][f"gw{plan['gw']}"] = plan
-        state["squad"] = [p["id"] for p in plan["squad"]]
-        state["buys"] = plan["buys"]
-        state["bank"] = plan["bank"]
+        if plan.get("chip"):
+            import ai_chips
+            state.setdefault("chips_used", {})[ai_chips.used_key(plan["chip"], plan["gw"])] = plan["gw"]
+        if plan.get("chip") != "freehit":            # a Free Hit squad lasts one gameweek: the one before it comes back
+            state["squad"] = [p["id"] for p in plan["squad"]]
+            state["buys"] = plan["buys"]
+            state["bank"] = plan["bank"]
         left = plan["ft_after"] if plan["ft_after"] is not None else 0
         state["ft"] = min(5, left + 1)
         state["plan"] = plan = None
@@ -652,11 +704,18 @@ def update(state, ctx):
             prev = plan
             ref = ctx.get("model_ref")
             plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"))
-            if prev and prev["gw"] == target and not plan["initial"] and prev.get("transfers") is not None:
+            if prev and prev["gw"] == target and not plan["initial"] and prev.get("transfers") is not None and prev.get("chip") not in ("freehit", "wildcard"):
                 # hysteresis: keep the previous transfers (rescored on today's numbers) unless the fresh plan beats them
                 kept = keep_previous(state, vals, prev, plan, ctx.get("signals"))
                 if kept is not None:
                     plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"), forced=kept)
+            try:
+                plan = apply_chips(plan, state, target, deadline, ctx, gws_played, now)
+            except Exception as e:                    # chips are an add-on: a failure here keeps the ordinary plan
+                plan["chip_error"] = f"{type(e).__name__}: {str(e)[:120]}"
+            if prev and prev["gw"] == target and (prev.get("chip") or None) != (plan.get("chip") or None):
+                state["changes"].append({"at": now.isoformat(), "gw": target, "kind": "chip",
+                                         "text": (f"Chip: {plan['chip_info']['reason']}" if plan.get("chip") else f"Chip: no longer playing {prev.get('chip')} this gameweek")})
             plan["model_ref"] = ref
             if now >= lock_at:
                 plan["locked"], plan["locked_at"] = True, now.isoformat()

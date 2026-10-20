@@ -145,7 +145,7 @@ def _side(squad, xi, bench, captain, vice, chip, hit_cost, live, final=True):
     r = ai_team.score_plan(plan, live, final)
     got = lambda i: (live.get(i) or {}).get("points", 0)
     if chip == "bboost":       # bench boost: the four on the bench count too
-        r["gross"] += r["bench_pts"]; r["points"] += r["bench_pts"]; r["bench_pts"] = 0
+        r["bench_pts"] = 0     # score_plan already added them (Bench Boost)
     cap_line = next((l for l in r["lines"] if l["mult"] > 1), None)
     r["captain_id"] = cap_line["id"] if cap_line else None
     r["captain_pts"] = cap_line["pts"] if cap_line else 0
