@@ -1506,12 +1506,17 @@ def main(team_id=TEAM_ID, out_path=None):
             for r in rows:
                 tr = trank.get((r["name"], r["club"]), (None, None))
                 pcols.append([r["id"], r["team"], r["pos"], r["cost"], r["own"], r["form"], r["minutes"], round(r["xg90"], 2), round(r["xa90"], 2), r["fdr"], r["home"],
-                              round(r["mp"], 2), round(r["avail"], 2), r["xp"], round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
+                              round(r["mp"], 2), round(r["avail"], 2), r.get("xp_raw", r["xp"]), round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
                               round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1],
                               r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"]])
             pl = pred_track.load(pred_track.PLAYER_FILE)
             pred_track.player_record(pl, preds["gw"], pcols, datetime.now(timezone.utc))
             pred_track.player_grade(pl, boot, get)
+            try:
+                import learn
+                preds["learning"] = learn.update(pl)           # compare the model's expected points with what happened; used from the next run
+            except Exception as e:
+                _warn(f"learn: {type(e).__name__}: {e}")
             pred_track.save(pred_track.PLAYER_FILE, pl)
             preds["snapshot"] = {"gw": preds["gw"], "players": len(pcols), "saved_gws": len(pl.get("gws") or {})}
         pred_track.save(path, plog)

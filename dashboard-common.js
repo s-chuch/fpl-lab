@@ -835,10 +835,17 @@ function labNews(D,they){
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
+function labLearning(D){
+  const L=(D.predictions||{}).learning, snapN=((D.predictions||{}).snapshot||{}).players;
+  const head=`<h3 class="lab-ph3">Model learning</h3>`;
+  if(!L) return head+`<p class="note" data-keep>The model compares its expected points with the points players actually score, per position, once each gameweek settles. From 150 player-gameweeks per position it nudges its numbers towards reality (never more than ±30% and pulled towards no change). First data after GW8 settles.</p>`;
+  const rows=["GKP","DEF","MID","FWD"].map(pos=>{const r=(L.per_position||{})[pos]||{}; const st=r.applied?`<b>${r.b>=1?"×":"×"}${labNum(r.b,2)}${r.a?` ${r.a>0?"+":""}${labNum(r.a,2)}`:""}</b>`:`<span class="note">collecting (${r.n||0}/150)</span>`; const bias=(r.mean_xp!=null)?`${labNum(r.mean_xp,1)} → ${labNum(r.mean_actual,1)}`:"–"; return `<tr><td>${pos}</td><td>${bias}</td><td>${st}</td></tr>`;}).join("");
+  return head+`<table class="lab-rtab"><thead><tr><th>Position</th><th>Model → actual (avg pts)</th><th>Correction</th></tr></thead><tbody>${rows}</tbody></table><p class="note" data-keep>${L.applied?`In use from the next refresh: points error ${L.mae_before} → ${L.mae_after} on the gameweeks learned from (GW${(L.gws||[]).join(", GW")}). It re-fits every refresh.`:`Not applied yet: waiting for 150 player-gameweeks per position. Graded so far: GW${(L.gws||[]).join(", GW")||"–"}.`} The same corrected expected points feed the AI team, Target, Predictions and the Plan.</p>`;
+}
 function labScorecard(D){
   const P=D.predictions||{}, R=P.record||{}, T=R.target||{}, M=R.model_same_weeks||{};
   const snap=P.snapshot?`<p class="note">Player snapshots: ${P.snapshot.players} players saved for GW${P.snapshot.gw} (${P.snapshot.saved_gws} gameweek${P.snapshot.saved_gws===1?"":"s"} so far). Each holds the inputs, the model's chances and Target's rank at the deadline, and what the player then did, so the model can be tuned on this season's own data.</p>`:"";
-  if(!T.n) return `<p class="note" data-keep>Starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw||""))} is settled. At every deadline the model's top 10 (goals, assists, goal or assist) and the Target tab's top 10 are saved, then both are marked against what players actually did: scored, assisted, or either. After a few gameweeks this shows which one finds scorers better, and whether the two should be blended.</p>${snap}`;
+  if(!T.n) return `<p class="note" data-keep>Starts once GW${esc(String((R.pending||[P.gw])[0]||P.gw||""))} is settled. At every deadline the model's top 10 (goals, assists, goal or assist) and the Target tab's top 10 are saved, then both are marked against what players actually did: scored, assisted, or either. After a few gameweeks this shows which one finds scorers better, and whether the two should be blended.</p>${snap}${labLearning(D)}`;
   const pc=(h,n)=>n?Math.round(100*h/n):null, fmt=(h,n)=>n?`${h}/${n} · ${pc(h,n)}%`:"–";
   const rows=[["Goal or assist",M.gi,[T.gi,T.n]],["Scores a goal",M.goals,[T.goal,T.n]],["Makes an assist",M.assists,[T.assist,T.n]]];
   const PT=R.points||{}, ptsRow=(PT.target&&PT.target[1])?`<tr><td>Attacking pts per pick</td><td class="${((PT.ap||[])[0]??0)>(PT.target[0]??0)?"lab-win":""}">${(PT.ap||[])[0]!=null?labNum((PT.ap||[])[0],2):"–"}${PT.ap[1]?" (points list)":""}</td><td class="${(PT.target[0]??0)>((PT.ap||[])[0]??0)?"lab-win":""}">${labNum(PT.target[0],2)}</td></tr>`:"";
@@ -850,7 +857,7 @@ function labScorecard(D){
   return `<p class="note" data-keep>Same gameweeks, same marking, top 10 each. ${verdict}</p>
     <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}${ptsRow}${T.started!=null?`<tr><td>Target picks who started</td><td>–</td><td>${fmt(T.started,T.n)}</td></tr>`:""}</tbody></table>
     <h4 class="lab-ph4">By gameweek (goal / assist / either)</h4>
-    <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}`;
+    <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}${labLearning(D)}`;
 }
 // ---------------------------------------------------------------- PREDICTIONS: the live gameweek (live-data.js .pred, live_update.pred_live)
 function labPredLiveHtml(){

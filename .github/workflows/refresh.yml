@@ -157,7 +157,7 @@ jobs:
           python stamp_versions.py
           # Optional caches (written only when their source answered) may not exist: add only files that do, since
           # `git add` aborts on a missing pathspec and would commit nothing at all.
-          for f in data.js bacalhau-data.js rec_log.json bacalhau-rec_log.json prediction_log.json bacalhau-prediction_log.json player_log.json legacy_predictions.json news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
+          for f in data.js bacalhau-data.js rec_log.json bacalhau-rec_log.json prediction_log.json bacalhau-prediction_log.json player_log.json learned.json legacy_predictions.json news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --staged --quiet; then

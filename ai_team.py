@@ -49,6 +49,28 @@ FDR_CS_BASE, FDR_CS_SLOPE, FDR_CS_RANGE = 0.40, 0.07, (0.08, 0.6)   # clean-shee
 FDR_ATT_BASE, FDR_ATT_SLOPE = 1.12, 0.06                            # attacking returns by difficulty rating
 
 
+def _load_learned():
+    """The per-position correction learn.py wrote from this season's graded results (identity until there is enough evidence)."""
+    try:
+        import json
+        from pathlib import Path
+        doc = json.loads((Path(__file__).resolve().parent / "learned.json").read_text())
+        return {p: v for p, v in (doc.get("per_position") or {}).items() if v.get("applied")}
+    except (OSError, ValueError, AttributeError):
+        return {}
+
+
+LEARNED = _load_learned()
+
+
+def adjust_xp(pos, xp):
+    """Expected points nudged by what this season's graded gameweeks showed (see learn.py). 0 stays 0 (unavailable)."""
+    c = LEARNED.get(pos)
+    if not c or xp <= 0:
+        return xp
+    return max(0.0, c["a"] + c["b"] * xp)
+
+
 def _f(v, d=0.0):
     try:
         return float(v)
@@ -218,10 +240,12 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
         if av == 0:
             xp1 = 0.0
         xp2 = model_xp(el, f2, gws_played, uw, recent) * (1.0 if av > 0.5 else av) * factor
+        raw1 = xp1
+        xp1, xp2 = adjust_xp(POS[el["element_type"]], xp1), adjust_xp(POS[el["element_type"]], xp2)
         label = " + ".join(f"{fx['opp']} ({fx['side']})" for fx in f1) or "Blank"
         out[el["id"]] = {
             "id": el["id"], "name": el["web_name"], "pos": POS[el["element_type"]], "team": el["team"],
-            "club": teams[el["team"]], "cost": el["now_cost"] / 10, "xp": round(xp1, 2), "xp2": round(xp2, 2),
+            "club": teams[el["team"]], "cost": el["now_cost"] / 10, "xp": round(xp1, 2), "xp_raw": round(raw1, 2), "xp2": round(xp2, 2),
             "value": xp1 + NEXT_WEIGHT * xp2, "fixture": label, "fdr": (f1[0].get("fdr") if f1 else None),
             "avail": av, "status": el.get("status"), "news": el.get("news") or "", "owned": _f(el.get("selected_by_percent")),
             "risks": flags, "adj_factors": adjf,

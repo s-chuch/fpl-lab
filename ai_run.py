@@ -523,7 +523,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
         rows.append({"id": el["id"], "team": el["team"], "name": v["name"], "club": v["club"], "pos": pos, "fixture": v["fixture"], "avail": v["avail"],
                      "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "defcon": o["defcon"] * v["avail"],
-                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"],
+                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"], "xp_raw": v.get("xp_raw", v["xp"]),
                      "cost": v["cost"], "own": float(el.get("selected_by_percent") or 0), "form": float(el.get("form") or 0), "minutes": int(el.get("minutes") or 0),
                      "xg90": float(el.get("expected_goals_per_90") or 0), "xa90": float(el.get("expected_assists_per_90") or 0),
                      "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0,
