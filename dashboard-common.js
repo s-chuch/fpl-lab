@@ -507,10 +507,20 @@ function aiResultsCard(D,who){
   const rows=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${(r.lines||[]).filter(l=>l.pos===pos).map(l=>card(l,false)).join("")}</div>`).join("");
   const bench=(r.bench_lines||[]).map(l=>card(l,true)).join("");
   const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";
+  // gameweek-by-gameweek: the AI team against you (both net of hits); only settled gameweeks count towards the tally
+  const asc=[...H].reverse(), W2c=esc(W2);
+  let aiW=0, youW=0, lvl=0;
+  const crow=h=>{const a=(h.result||{}).points, u=h.user_points, fin=!!(h.result||{}).final; if(a==null||u==null) return "";
+    const df=a-u, who=df>0?"AI":df<0?W2c:"Level"; if(fin){ if(df>0) aiW++; else if(df<0) youW++; else lvl++; }
+    return `<tr class="${h.gw===p.gw?"on":""}"><td>GW${h.gw}${fin?"":" ●"}</td><td>${a}</td><td>${u}</td><td class="${df>0?"pos":df<0?"neg":""}">${df>0?"+":""}${df}</td><td>${fin?who:"live"}</td></tr>`;};
+  const crows=asc.map(crow).join("");
+  const sdiff=tot-you;
+  const cmp=crows?`<h3 class="lab-ph3">Week by week · AI vs ${W2c}</h3><table class="lab-tbl lab-cmp"><thead><tr><th>GW</th><th>AI</th><th>${W2c}</th><th>Diff</th><th>Better</th></tr></thead><tbody>${crows}<tr class="tot"><td>Season</td><td>${tot}</td><td>${you}</td><td class="${sdiff>0?"pos":sdiff<0?"neg":""}">${sdiff>0?"+":""}${sdiff}</td><td>${sdiff>0?"AI":sdiff<0?W2c:"Level"}</td></tr></tbody></table><p class="note" data-keep>Settled gameweeks: AI ${aiW} · ${W2c} ${youW}${lvl?` · level ${lvl}`:""}. Both net of transfer hits; season includes the ${A.baseline_points??0} points you had when the AI copied your team at GW${A.cloned_from_gw??"?"}. ● = still being played.</p>`:"";
   const state=r.final?`<span class="pill used">Final</span>`:`<span class="pill free">Live · updating</span>`;
   return `<div class="card lab-aires"><h2>AI team results</h2>
     <div class="lab-rsum"><div><span>Season</span><b>AI ${tot}</b><small>${esc(W2)} ${you}</small></div><div><span>GW${p.gw}</span><b>${r.points??"–"}</b><small>${r.final&&p.user_points!=null?`${esc(W2)} ${p.user_points} · <i class="${diff>0?"pos":diff<0?"neg":""}">${(diff>0?"+":"")+diff}</i>`:`${esc(W2)} compared once settled`}</small></div><div><span>Bench</span><b>${r.bench_pts??0}</b><small>${r.hits?`−${r.hits} hit`:"no hit"}</small></div></div>
     <p class="note" data-keep>The AI started with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. ${state} ${when?`Data as of ${when}.`:""}${r.final?"":" Points show as each match is played; auto-subs and a vice-captain swap are only applied once the gameweek is settled."}</p>
+    ${cmp}
     <div class="lab-stabs" id="labAiGw">${pills}</div>
     <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${rows}</div>
     <div class="lab-bench">${bench}</div>${subs}</div>`;

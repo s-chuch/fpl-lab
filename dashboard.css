@@ -490,3 +490,4 @@ body.lab .lab-dsec h4 span{font-weight:800}
 .lab-pc-g>div{min-height:0}
 .lab-pc-g span{line-height:1.2}
 .lab-pc-g b{line-height:1.2}
+.lab-cmp td,.lab-cmp th{text-align:right}.lab-cmp td:first-child,.lab-cmp th:first-child{text-align:left}.lab-cmp tr.on td{background:rgba(88,166,255,.08)}.lab-cmp tr.tot td{font-weight:700;border-top:1px solid var(--line)}.lab-cmp .pos{color:#3fb950}.lab-cmp .neg{color:#f85149}
