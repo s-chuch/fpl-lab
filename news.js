@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-20 00:34 UTC",
+  "generated_at": "2026-10-20 00:38 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -132,7 +132,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Tavernier (BOU) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "Tavernier (BOU) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -143,9 +143,9 @@ window.FPL_NEWS = {
         "differential"
       ],
       "id": 68,
-      "verdict": "Fitness or rotation doubts",
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "risk": 2
+        "risk": 1
       },
       "quotes": [
         {
@@ -156,15 +156,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table",
           "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table",
-          "stance": [
-            "risk"
-          ],
-          "url": "",
-          "title": ""
         }
       ],
       "facts": [
@@ -217,14 +208,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
