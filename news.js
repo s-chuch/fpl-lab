@@ -1,11 +1,11 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-20 23:04 UTC",
+  "generated_at": "2026-10-21 13:35 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Semenyo (MCI) \u2014 Fitness or rotation doubts (1 sell/avoid, 7 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Semenyo (MCI) \u2014 Fitness or rotation doubts (1 sell/avoid, 8 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -24,7 +24,7 @@ window.FPL_NEWS = {
       "id": 397,
       "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 7,
+        "risk": 8,
         "sell": 1
       },
       "quotes": [
@@ -83,6 +83,14 @@ window.FPL_NEWS = {
           "title": "UCL Fantasy 2026/27: Matchday 3 Scout Picks"
         },
         {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "With Antoine Semenyo facing a prolonged absence, there is an opportunity for the Belgian winger to earn more minutes and potentially become an integral part of City\u2019s attacking setup.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
+        },
+        {
           "topic": "price",
           "tone": "neutral",
           "text": "Antoine Semenyo (\u00a38.3m) \u2013 MID, Man City \u2013 12.8% TSB Antoine Semenyo is an easy sell heading into GW8 after Manchester City manager Enzo Maresca confirmed that the midfielder is expected to be out for around eight weeks with a knee injury.",
@@ -124,6 +132,22 @@ window.FPL_NEWS = {
         }
       ],
       "facts": [
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "Yoane Wissa scored from a corner in Newcastle\u2019s win, while Bryan Mbeumo found the net at Old Trafford.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-8-article-26-27",
+          "title": "FPL GW8 fixtures: Goal, clean-sheet odds and hidden gems"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "One of his corners has already led to a goal this season, with Wissa converting from Hall\u2019s delivery in the Spurs game.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-8-article-26-27",
+          "title": "FPL GW8 fixtures: Goal, clean-sheet odds and hidden gems"
+        },
         {
           "topic": "fixture",
           "tone": "good",
@@ -182,17 +206,9 @@ window.FPL_NEWS = {
           "source": "Ingenuity",
           "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
           "title": "The Best FPL Gameweek 8 Differentials"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Cherki has already produced five goals and two assists for his club this season, highlighting his explosive attacking potential.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-captains",
-          "title": "UCL Fantasy: Matchday 3 best captains"
         }
       ],
-      "tone": "good"
+      "tone": "neutral"
     },
     {
       "text": "De Cuyper (BHA) \u2014 Mixed: some say buy, some say sell (2 buy, 1 keep, 2 sell/avoid mentions) \u00b7 4/5 sites with fresh articles",
@@ -290,7 +306,314 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Tavernier (BOU) \u2014 Leaning buy (3 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Gvardiol (MCI) \u2014 Fitness or rotation doubts (1 buy, 2 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Gvardiol",
+      "club": "MCI",
+      "tags": [],
+      "id": 391,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2,
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update  Fantasy takeaways from Man City 5-1 AEK Athens",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-haaland-ok-to-start-key-rests-gvardiol-injury-update",
+          "title": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "Entirely plausible a high-flying Villa nicks a goal against City but Gvardiol still musters an assist.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
+          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update",
+          "stance": [
+            "risk"
+          ],
+          "url": "",
+          "title": ""
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update  Fantasy takeaways from Man City 5-1 AEK Athens",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-haaland-ok-to-start-key-rests-gvardiol-injury-update",
+          "title": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update"
+        },
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Josko Gvardiol owners suffered a similar fate, with the defender starting on the bench and returning nothing.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "Bruno Fernandes and Yoane Wissa are also being sold in droves following multiple blanks, while Jo\u0161ko Gvardiol is another popular departure after only featuring as a substitute against Ipswich.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Entirely plausible a high-flying Villa nicks a goal against City but Gvardiol still musters an assist.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
+          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Josko Gvardiol \u2013 4 assists already this year as a defender.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
+          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
+        }
+      ],
+      "tone": "mixed"
+    },
+    {
+      "text": "Haaland (MCI) \u2014 Fitness or rotation doubts (5 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Haaland",
+      "club": "MCI",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 411,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 5
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "FPL 2026/27: The key dates and info \ud83d\udea8 FPL Gameweek 8 deadline: Friday, October 23, 18:30 UK time \ud83e\udd15 Erling Haaland and Antoine Semenyo are among the injury doubts \ud83e\udd26\u200d\u2640\ufe0f Dominik Szoboszlai lasted just 32 minutes following his return ...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update  Fantasy takeaways from Man City 5-1 AEK Athens",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-haaland-ok-to-start-key-rests-gvardiol-injury-update",
+          "title": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update"
+        },
+        {
+          "source": "Hub",
+          "text": "While rotation makes City picks outside Haaland a risky bet, Foden could be a risk worth taking this week.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        },
+        {
+          "source": "Hub",
+          "text": "The Semenyo injury potentially increases his expected minutes, while he is a candidate to play as a false nine should Haaland be ruled out, despite Enzo Maresca\u2019s positivity over his readiness to start at the weekend.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Last week, there was a clear-cut case for Haaland - but it is set to be a closer battle in Gameweek 8, regardless of the Norwegian\u2019s injury status.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        },
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update  Fantasy takeaways from Man City 5-1 AEK Athens",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-haaland-ok-to-start-key-rests-gvardiol-injury-update",
+          "title": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update"
+        },
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Enzo Maresca did state post-match that Haaland said he was \u2018OK\u2019, so there is every chance he will be fine, although he may well be rested in midweek.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
+          "title": "Best FPL players for Gameweek 8"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Of his 17 shots, 16 have come from inside the penalty area, while only Thierno Barry (14) and Erling Haaland (12) have received more Opta-defined big chances than his seven among forwards, as shown in the Opta Stats Sandbox .",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Erling Haaland - Manchester City Fixture: Aston Villa (A) Haaland's brace in Gameweek 7 took his league tally to eight.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
+          "title": "Best FPL players for Gameweek 8"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "However, Haaland has the quality to score against any defence and his goal threat makes him one of the best captaincy candidates even away from home.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
+          "title": "Best FPL players for Gameweek 8"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Only Erling Haaland (eight) has scored more goals among forwards.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 8: Top Five Picks"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Only Haaland (12) and Isak (11) have earned more than his 10 bonus points.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
+        }
+      ],
+      "tone": "mixed"
+    },
+    {
+      "text": "Manzambi (AVL) \u2014 Leaning buy (2 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Manzambi",
+      "club": "AVL",
+      "tags": [
+        "differential",
+        "injury/doubt"
+      ],
+      "id": 53,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 2,
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Best Midfield Differential - Tavernier vs Manzambi Tavernier and Manzambi both scored in Gameweek 7 and are great differentials ahead of attractive fixture runs with both players currently under 10% ownership.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "Johan Manzambi \u2013 AVL \u2013 \u00a36.0m Ownership: 2.7% After injury held him back at the beginning of the season, Manzambi looks like he has finally arrived.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
+          "title": "The Best FPL Gameweek 8 Differentials"
+        },
+        {
+          "source": "Fix",
+          "text": "Marcus Tavernier, Johan Manzambi and Bryan Mbeumo are all popular targets after finding the back of the net in Gameweek 7.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Johan Manzambi \u2013 AVL \u2013 \u00a36.0m Ownership: 2.7% After injury held him back at the beginning of the season, Manzambi looks like he has finally arrived.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
+          "title": "The Best FPL Gameweek 8 Differentials"
+        },
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "The numbers indicate that Manzambi is the superior option but it remains to be seen how Unai Emery manages the youngster's minutes around European fixtures, while Tavernier is likely to start every game for the Cherries.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "As the Average Statistic per 90 mins numbers above show, Manzambi is ahead of Tavernier for shots (2.49 vs 5.48), shots in the box (1.56 vs 3.91) and attempted assists (1.87 vs 2.74).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Johan Manzambi finds the back of the net again Aston Villa\u2019s summer signing Johan Manzambi now has four attacking returns in his last three appearances (two goals and two assists) following his goal against Newcastle.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Manzambi himself is an excellent differential too but FPL managers will have to wait until later in the week to see if Unai Emery passes him fit.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Tavernier (BOU) \u2014 Leaning buy (4 buy mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -305,8 +628,7 @@ window.FPL_NEWS = {
       "id": 68,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 3,
-        "risk": 1
+        "buy": 4
       },
       "quotes": [
         {
@@ -328,13 +650,13 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
         },
         {
-          "source": "Scout",
-          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table  Notes from Bournemouth 2-0 Sunderland",
+          "source": "Fix",
+          "text": "For managers seeking a differential with both established returns and encouraging projections, Tavernier makes a compelling case.",
           "stance": [
-            "risk"
+            "buy"
           ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table",
-          "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
         },
         {
           "source": "Fix",
@@ -348,28 +670,12 @@ window.FPL_NEWS = {
       ],
       "facts": [
         {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table  Notes from Bournemouth 2-0 Sunderland",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-brobbey-injury-latest-tavernier-third-in-midfielder-table",
-          "title": "FPL notes: Brobbey injury latest + Tavernier third in midfielder table"
-        },
-        {
           "topic": "role",
           "tone": "good",
           "text": "The numbers indicate that Manzambi is the superior option but it remains to be seen how Unai Emery manages the youngster's minutes around European fixtures, while Tavernier is likely to start every game for the Cherries.",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
           "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "Marcus Tavernier lived up to our backing with a 10-pointer, while Dominic Solanke plays on Monday.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
         },
         {
           "topic": "fixture",
@@ -394,9 +700,25 @@ window.FPL_NEWS = {
           "source": "AAFPL",
           "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "price",
+          "tone": "bad",
+          "text": "Price: \u00a36.2m | Ownership: 9.2% | GW8 predicted points: 4.3 Tavernier makes another appearance in our weekly differentials article, and it is becoming increasingly difficult to understand why his ownership remains below 10%.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "For managers seeking a differential with both established returns and encouraging projections, Tavernier makes a compelling case.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
         }
       ],
-      "tone": "mixed"
+      "tone": "good"
     },
     {
       "text": "B.Fernandes (MUN) \u2014 Leaning sell / avoid (2 sell/avoid mentions) \u00b7 3/5 sites with fresh articles",
@@ -486,6 +808,14 @@ window.FPL_NEWS = {
       "facts": [
         {
           "topic": "form",
+          "tone": "good",
+          "text": "Pascal Gro\u00df (19) and Florian Wirtz (20) are the only midfielders who have attempted more assists than his 17.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 8: Top Five Picks"
+        },
+        {
+          "topic": "form",
           "tone": "neutral",
           "text": "The reason to avoid Brighton\u2019s two high-flying Seagulls, Maxim De Cuyper and Pascal Gro\u00df, is less about their form and more about what lies ahead.",
           "source": "AAFPL",
@@ -501,274 +831,41 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
         }
       ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Gvardiol (MCI) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Gvardiol",
-      "club": "MCI",
-      "tags": [],
-      "id": 391,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Ingenuity",
-          "text": "Entirely plausible a high-flying Villa nicks a goal against City but Gvardiol still musters an assist.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
-          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "Josko Gvardiol owners suffered a similar fate, with the defender starting on the bench and returning nothing.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "topic": "fixture",
-          "tone": "bad",
-          "text": "Bruno Fernandes and Yoane Wissa are also being sold in droves following multiple blanks, while Jo\u0161ko Gvardiol is another popular departure after only featuring as a substitute against Ipswich.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Entirely plausible a high-flying Villa nicks a goal against City but Gvardiol still musters an assist.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
-          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Josko Gvardiol \u2013 4 assists already this year as a defender.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
-          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
-      "text": "Haaland (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Haaland",
-      "club": "MCI",
-      "tags": [
-        "captain talk",
-        "rotation risk"
-      ],
-      "id": 411,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "FPL 2026/27: The key dates and info \ud83d\udea8 FPL Gameweek 8 deadline: Friday, October 23, 18:30 UK time \ud83e\udd15 Erling Haaland and Antoine Semenyo are among the injury doubts \ud83e\udd26\u200d\u2640\ufe0f Dominik Szoboszlai lasted just 32 minutes following his return ...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Last week, there was a clear-cut case for Haaland - but it is set to be a closer battle in Gameweek 8, regardless of the Norwegian\u2019s injury status.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
-        },
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "Enzo Maresca did state post-match that Haaland said he was \u2018OK\u2019, so there is every chance he will be fine, although he may well be rested in midweek.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
-          "title": "Best FPL players for Gameweek 8"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Erling Haaland - Manchester City Fixture: Aston Villa (A) Haaland's brace in Gameweek 7 took his league tally to eight.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
-          "title": "Best FPL players for Gameweek 8"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "However, Haaland has the quality to score against any defence and his goal threat makes him one of the best captaincy candidates even away from home.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
-          "title": "Best FPL players for Gameweek 8"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Haaland has been in relentless goalscoring form, netting an incredible 15 goals across all competitions this season.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-captains",
-          "title": "UCL Fantasy: Matchday 3 best captains"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Now yes, there is a slight template emerging right now, including triple Brighton, Arsenal defence, Haaland etc.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
-          "title": "The Best FPL Gameweek 8 Differentials"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
-      "text": "Manzambi (AVL) \u2014 Fitness or rotation doubts (2 buy, 2 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Manzambi",
-      "club": "AVL",
-      "tags": [
-        "differential",
-        "injury/doubt"
-      ],
-      "id": 53,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "buy": 2,
-        "risk": 2
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Best Midfield Differential - Tavernier vs Manzambi Tavernier and Manzambi both scored in Gameweek 7 and are great differentials ahead of attractive fixture runs with both players currently under 10% ownership.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "Johan Manzambi \u2013 AVL \u2013 \u00a36.0m Ownership: 2.7% After injury held him back at the beginning of the season, Manzambi looks like he has finally arrived.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
-          "title": "The Best FPL Gameweek 8 Differentials"
-        },
-        {
-          "source": "Scout",
-          "text": "With doubts surrounding Johan Manzambi , one of the most appealing alternatives is Nicolas Jackson .",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
-        },
-        {
-          "source": "Fix",
-          "text": "Marcus Tavernier, Johan Manzambi and Bryan Mbeumo are all popular targets after finding the back of the net in Gameweek 7.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Johan Manzambi \u2013 AVL \u2013 \u00a36.0m Ownership: 2.7% After injury held him back at the beginning of the season, Manzambi looks like he has finally arrived.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
-          "title": "The Best FPL Gameweek 8 Differentials"
-        },
-        {
-          "topic": "role",
-          "tone": "good",
-          "text": "The numbers indicate that Manzambi is the superior option but it remains to be seen how Unai Emery manages the youngster's minutes around European fixtures, while Tavernier is likely to start every game for the Cherries.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "As the Average Statistic per 90 mins numbers above show, Manzambi is ahead of Tavernier for shots (2.49 vs 5.48), shots in the box (1.56 vs 3.91) and attempted assists (1.87 vs 2.74).",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Johan Manzambi finds the back of the net again Aston Villa\u2019s summer signing Johan Manzambi now has four attacking returns in his last three appearances (two goals and two assists) following his goal against Newcastle.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
       "tone": "good"
     },
     {
-      "text": "N.Jackson (AVL) \u2014 Leaning buy (1 buy, 1 captain, 1 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
+      "text": "Muharemovi\u0107 (LEE) \u2014 Mentioned, no clear view \u00b7 3/5 sites with fresh articles",
       "sources": [
         "Fix",
-        "Ingenuity",
-        "Scout"
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [],
+      "id": 334,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "N.Jackson (AVL) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Ingenuity"
       ],
       "player": "N.Jackson",
       "club": "AVL",
-      "tags": [
-        "captain talk",
-        "rotation risk"
-      ],
+      "tags": [],
       "id": 166,
       "verdict": "Leaning buy",
       "stance": {
-        "captain": 1,
-        "risk": 1,
         "buy": 1
       },
       "quotes": [
-        {
-          "source": "Scout",
-          "text": "Aston Villa\u2019s attacking players should also be firmly in the captaincy conversation, particularly Nicolas Jackson (\u20ac7.0m).",
-          "stance": [
-            "captain"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-captains",
-          "title": "UCL Fantasy: Matchday 3 best captains"
-        },
         {
           "source": "Ingenuity",
           "text": "Nicolas Jackson \u2013 AVL \u2013 \u00a36.6m Ownership: 4.1% Even though we recommended him two weeks ago, he remains an excellent option this week, so we thought we\u2019d include him.",
@@ -777,34 +874,9 @@ window.FPL_NEWS = {
           ],
           "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
           "title": "The Best FPL Gameweek 8 Differentials"
-        },
-        {
-          "source": "Scout",
-          "text": "With doubts surrounding Johan Manzambi , one of the most appealing alternatives is Nicolas Jackson .",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
         }
       ],
       "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "With doubts surrounding Johan Manzambi , one of the most appealing alternatives is Nicolas Jackson .",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "At just 2% ownership, Jackson offers a way into one of the competition\u2019s most in-form attacks without following the crowd.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
-        },
         {
           "topic": "form",
           "tone": "neutral",
@@ -828,17 +900,9 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
           "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "captain",
-          "tone": "neutral",
-          "text": "Aston Villa\u2019s attacking players should also be firmly in the captaincy conversation, particularly Nicolas Jackson (\u20ac7.0m).",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-captains",
-          "title": "UCL Fantasy: Matchday 3 best captains"
         }
       ],
-      "tone": "mixed"
+      "tone": "good"
     },
     {
       "text": "Szoboszlai (LIV) \u2014 Fitness or rotation doubts (1 keep, 1 sell/avoid, 6 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
@@ -913,7 +977,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Wirtz (LIV) \u2014 Mentioned, no clear view \u00b7 3/5 sites with fresh articles",
+      "text": "Wirtz (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Ingenuity",
@@ -923,31 +987,80 @@ window.FPL_NEWS = {
       "club": "LIV",
       "tags": [],
       "id": 366,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury  FPL lessons from Liverpool's 4-3 win over Villarreal",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-why-isak-wirtz-barcola-were-benched-munoz-injury",
+          "title": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury",
+          "stance": [
+            "risk"
+          ],
+          "url": "",
+          "title": ""
+        }
+      ],
       "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury  FPL lessons from Liverpool's 4-3 win over Villarreal",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-why-isak-wirtz-barcola-were-benched-munoz-injury",
+          "title": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury"
+        },
         {
           "topic": "form",
           "tone": "good",
-          "text": "Florian Wirtz' creativity shines No player attempted more assists than Florian Wirtz (nine) this Gameweek, one of which was converted by V\u00edctor Mu\u00f1oz.",
+          "text": "Pascal Gro\u00df (19) and Florian Wirtz (20) are the only midfielders who have attempted more assists than his 17.",
           "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 8: Top Five Picks"
+        }
+      ],
+      "tone": "mixed"
+    }
+  ],
+  "split": [
+    {
+      "text": "A.Garc\u00eda (AVL) \u2014 Leaning sell / avoid (1 sell/avoid mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "A.Garc\u00eda",
+      "club": "AVL",
+      "tags": [],
+      "id": 38,
+      "verdict": "Leaning sell / avoid",
+      "stance": {
+        "sell": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "7 of the top 10 forward transfer combinations involve selling the DR Congo international with the other three selling Gonzalo Garc\u00eda.",
+          "stance": [
+            "sell"
+          ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
           "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
         }
       ],
-      "tone": "good"
+      "facts": [],
+      "tone": "neutral"
     },
-    {
-      "text": "GW8 coverage is talking about a wildcard window \u2014 mentioned by 3/5 sites.",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ]
-    }
-  ],
-  "split": [
     {
       "text": "Anderson (MCI) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
@@ -977,7 +1090,53 @@ window.FPL_NEWS = {
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Best Budget FPL Forward: Dominic Calvert-Lewin (sun) Dominic Calvert-Lewin scored his fourth goal of the season last weekend.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 8: Top Five Picks"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Doku (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Doku",
+      "club": "MCI",
+      "tags": [],
+      "id": 400,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "With Antoine Semenyo sidelined through injury, J\u00e9r\u00e9my Doku (\u20ac7.5m) looks likely to start on one of the wings.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-2026-27-matchday-3-scout-picks",
+          "title": "UCL Fantasy 2026/27: Matchday 3 Scout Picks"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "With Antoine Semenyo sidelined through injury, J\u00e9r\u00e9my Doku (\u20ac7.5m) looks likely to start on one of the wings.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-2026-27-matchday-3-scout-picks",
+          "title": "UCL Fantasy 2026/27: Matchday 3 Scout Picks"
+        }
+      ],
       "tone": "neutral"
     },
     {
@@ -1022,51 +1181,67 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
+      "text": "Foden (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
-        "Fix",
-        "Scout"
+        "Hub",
+        "Ingenuity"
       ],
-      "player": "Gibbs-White",
-      "club": "NFO",
+      "player": "Foden",
+      "club": "MCI",
       "tags": [
-        "injury/doubt"
+        "rotation risk"
       ],
-      "id": 480,
+      "id": 398,
       "verdict": "Mentioned, no clear view",
       "stance": {
         "risk": 1
       },
       "quotes": [
         {
-          "source": "Scout",
-          "text": "READ MORE: FPL notes: Gibbs-White injury latest + two solid defences READ MORE: FPL Gameweek 7: Sunday\u2019s goals, assists, bonus + DefCon points FLORIAN WIRTZ (\u20ac8.5M) \u2013 2% SELECTED Liverpool will be hoping to rack up the goals again...",
+          "source": "Hub",
+          "text": "While rotation makes City picks outside Haaland a risky bet, Foden could be a risk worth taking this week.",
           "stance": [
             "risk"
           ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
         }
       ],
       "facts": [
         {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "READ MORE: FPL notes: Gibbs-White injury latest + two solid defences READ MORE: FPL Gameweek 7: Sunday\u2019s goals, assists, bonus + DefCon points FLORIAN WIRTZ (\u20ac8.5M) \u2013 2% SELECTED Liverpool will be hoping to rack up the goals again this week after their thrilli...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/ucl-fantasy-matchday-3-best-differentials",
-          "title": "UCL Fantasy Matchday 3: Best differentials"
+          "topic": "role",
+          "tone": "bad",
+          "text": "While rotation makes City picks outside Haaland a risky bet, Foden could be a risk worth taking this week.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
         },
         {
-          "topic": "fixture",
+          "topic": "role",
+          "tone": "good",
+          "text": "Foden\u2019s form comes and goes - and improved expected minutes and a hot streak could make him an excellent short-term punt.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 8"
+        },
+        {
+          "topic": "role",
           "tone": "neutral",
-          "text": "Meanwhile, Morgan Gibbs-White is on the chopping block after missing out against Arsenal.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+          "text": "With Semenyo now confirmed out for around 8 weeks, the door is wide open for Foden to reestablish himself in the City starting lineup.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
+          "title": "The Best FPL Gameweek 8 Differentials"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Phil Foden \u2013 MCI \u2013 \u00a36.8m Ownership: 1.6% Anyone else ready to get hurt again?",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
+          "title": "The Best FPL Gameweek 8 Differentials"
         }
       ],
-      "tone": "neutral"
+      "tone": "mixed"
     },
     {
       "text": "Hall (NEW) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
@@ -1108,6 +1283,22 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Iwobi (FUL) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Iwobi",
+      "club": "FUL",
+      "tags": [],
+      "id": 261,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Jo\u00e3o Pedro (CHE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
@@ -1133,94 +1324,57 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [],
-      "id": 334,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
+      "text": "Mbeumo (MUN) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub"
       ],
-      "player": "Rogers",
-      "club": "CHE",
+      "player": "Mbeumo",
+      "club": "MUN",
       "tags": [],
-      "id": 40,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
+      "id": 427,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
         {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Marcus Tavernier is also a popular pick after scoring against Sunderland, while ownership of Maxim De Cuyper and Morgan Rogers continues to rise.",
           "source": "Fix",
+          "text": "Marcus Tavernier, Johan Manzambi and Bryan Mbeumo are all popular targets after finding the back of the net in Gameweek 7.",
+          "stance": [
+            "buy"
+          ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
           "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "Yoane Wissa scored from a corner in Newcastle\u2019s win, while Bryan Mbeumo found the net at Old Trafford.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-8-article-26-27",
+          "title": "FPL GW8 fixtures: Goal, clean-sheet odds and hidden gems"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "Also with Chelsea, the majority of the goals so far have seen Palmer, Pedro and Morgan Rogers involved and I see that largely continuing going forward.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-8-article-26-27",
-          "title": "Best FPL players for Gameweek 8"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Silva",
-      "club": "BOU",
-      "tags": [],
-      "id": 566,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
+          "text": "The German international has attempted 15 shots in the box this season, with only Bryan Mbeumo (19) registering more among midfielders.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 8: Top Five Picks"
+        },
         {
           "topic": "price",
-          "tone": "neutral",
-          "text": "Antonio Silva \u2013 BOU \u2013 \u00a35.0m Ownership: 0.6% Somehow still at only 0.6% ownership is Bournemouth\u2019s Antonio Silva.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/",
-          "title": "The Best FPL Gameweek 8 Differentials"
+          "tone": "good",
+          "text": "Bryan Mbeumo is projected to deliver a similar total but costs \u00a31.6m more, underlining the Bournemouth man\u2019s potential value.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/",
+          "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd"
         }
       ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Thomas",
-      "club": "COV",
-      "tags": [],
-      "id": 173,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
+      "tone": "good"
     }
   ],
   "links": [
@@ -1247,34 +1401,39 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Scout",
-      "title": "Which Man City players will benefit most from Semenyo\u2019s injury?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/which-man-city-players-will-benefit-most-from-semenyos-injury"
+      "source": "Fix",
+      "title": "Top 5 FPL Gameweek 8 Differentials: Get Ahead of the Crowd",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-8-differentials/"
+    },
+    {
+      "source": "Fix",
+      "title": "Best FPL Players for Gameweek 8: Top Five Picks",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-top-5-players-2026-27/"
+    },
+    {
+      "source": "Hub",
+      "title": "FPL GW8 fixtures: Goal, clean-sheet odds and hidden gems",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-8-article-26-27"
     },
     {
       "source": "Scout",
-      "title": "Manzambi, Hincapie, Shaw: Latest FPL team news ahead of Gameweek 8",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/manzambi-hincapie-shaw-latest-fpl-team-news-ahead-of-gameweek-8"
+      "title": "FPL notes: Why Isak, Wirtz + Barcola were benched, Munoz injury",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-why-isak-wirtz-barcola-were-benched-munoz-injury"
     },
     {
       "source": "Scout",
-      "title": "Tavernier, Bruno, Isak, Wissa: Buy, keep or sell in Gameweek 8?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/tavernier-bruno-isak-wissa-buy-keep-or-sell-in-gameweek-8"
+      "title": "FPL notes: Haaland \u201cOK to start\u201d, key rests + Gvardiol injury update",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-notes-haaland-ok-to-start-key-rests-gvardiol-injury-update"
     },
     {
       "source": "Scout",
-      "title": "FPL notes: Maddison returns, injury fears eased + van Hecke hits DefCon",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/20/fpl-notes-maddison-returns-injury-fears-eased-van-hecke-hits-defcon"
+      "title": "FPL Gameweek 8: Which players are predicted to get goals + assists?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-which-players-are-predicted-to-get-goals-assists"
     },
     {
-      "source": "AAFPL",
-      "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 8 Differentials",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-differentials/"
+      "source": "Scout",
+      "title": "FPL Gameweek 8: Best clean sheet odds",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-best-clean-sheet-odds"
     }
   ],
   "no_new": false,

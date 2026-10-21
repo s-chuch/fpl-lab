@@ -1117,17 +1117,17 @@
    138,
    391
   ],
-  "captain": 411,
-  "captain_name": "Haaland",
+  "captain": 427,
+  "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "64bf4efffbb9",
+  "code_sha": "02fb36e0ea4a",
   "ft": 2,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-20T23:04:51+00:00",
-  "saved_at_et": "2026-10-20 7:04 PM ET",
+  "saved_at": "2026-10-21T13:36:11+00:00",
+  "saved_at_et": "2026-10-21 9:36 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1198,7 +1198,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 7.18
+    "xp": 5.74
    },
    {
     "club": "BOU",
@@ -1266,6 +1266,6 @@
    411,
    79
   ],
-  "xp": 60.2
+  "xp": 57.5
  }
 }
