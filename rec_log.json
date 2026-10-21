@@ -1163,21 +1163,21 @@
   "backfilled": false,
   "bench": [
    572,
-   12,
    138,
-   305
+   305,
+   12
   ],
   "captain": 427,
   "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "55f70231adea",
+  "code_sha": "d0518c12255c",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-21T21:29:37+00:00",
-  "saved_at_et": "2026-10-21 5:29 PM ET",
+  "saved_at": "2026-10-21T23:08:10+00:00",
+  "saved_at_et": "2026-10-21 7:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1265,13 +1265,6 @@
     "xp": 4.16
    },
    {
-    "club": "ARS",
-    "id": 12,
-    "name": "Saka",
-    "pos": "MID",
-    "xp": 3.27
-   },
-   {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
@@ -1284,6 +1277,13 @@
     "name": "Davis",
     "pos": "DEF",
     "xp": 3.07
+   },
+   {
+    "club": "ARS",
+    "id": 12,
+    "name": "Saka",
+    "pos": "MID",
+    "xp": 2.17
    }
   ],
   "status": "pending",

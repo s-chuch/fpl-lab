@@ -114,6 +114,12 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 5.33,
     "bench_swaps": [
       {
+        "bench": "Schade",
+        "bench_ep": 2.68,
+        "starter": "Saka",
+        "starter_ep": 2.17
+      },
+      {
         "bench": "Tarkowski",
         "bench_ep": 3.98,
         "starter": "Hall",
@@ -130,8 +136,8 @@ window.FPL_WILDCARD_WATCH = {
     "availability_flags": [
       {
         "name": "Saka",
-        "label": "DOUBT 75%",
-        "chance": 75
+        "label": "DOUBT 50%",
+        "chance": 50
       }
     ],
     "xi_ep": [
@@ -180,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 3.27,
+        "ep_next": 2.17,
         "status": "doubt"
       },
       {

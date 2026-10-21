@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-21T21:29:22.719029+00:00",
+    "fetched_at": "2026-10-21T23:08:01.330479+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -24,13 +24,7 @@
           "opponent": "Fleetwood Town",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-21",
-            "competition": "Champions League",
-            "opponent": "Bayern M\u00fcnchen"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 5,
@@ -321,13 +315,7 @@
           "opponent": "Bournemouth",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-21",
-            "competition": "Champions League",
-            "opponent": "Viking"
-          }
-        ]
+        "between": []
       },
       "MCI": {
         "rest_days": 4,

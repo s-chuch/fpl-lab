@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-21 21:29 UTC",
+  "generated_at": "2026-10-21 23:08 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -650,7 +650,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Gibbs-White (NFO) \u2014 Fitness or rotation doubts (3 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Gibbs-White (NFO) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -663,7 +663,7 @@ window.FPL_NEWS = {
       "id": 480,
       "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 3
+        "risk": 2
       },
       "quotes": [
         {
@@ -683,25 +683,16 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-team-news-weds-injury-updates-gibbs-white-latest",
           "title": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest",
-          "stance": [
-            "risk"
-          ],
-          "url": "",
-          "title": ""
         }
       ],
       "facts": [
         {
           "topic": "fitness",
           "tone": "bad",
-          "text": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest",
+          "text": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest  Oliver Glasner faces the media today, plus updates from four European pressers",
           "source": "Scout",
-          "url": "",
-          "title": ""
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-team-news-weds-injury-updates-gibbs-white-latest",
+          "title": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest"
         },
         {
           "topic": "fitness",
@@ -1475,39 +1466,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Hub",
-      "title": "Best FPL Wildcard and team of the week for Gameweek 8",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-8-article-26-27"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 8 early Scout Picks: Three double-ups",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-early-scout-picks-arsenal-trio-two-double-ups"
-    },
-    {
-      "source": "Scout",
-      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 8?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/goals-assists-imminent-who-is-due-in-fpl-gameweek-8"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 8 team news: Weds\u2019 injury updates + Gibbs-White latest",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-team-news-weds-injury-updates-gibbs-white-latest"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy",
-      "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 8 Captains",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-8-captains/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
