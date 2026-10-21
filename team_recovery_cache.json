@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-21T13:35:40.681687+00:00",
+    "fetched_at": "2026-10-21T21:29:22.719029+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -93,13 +93,7 @@
           "opponent": "Chelsea",
           "days_after": 6
         },
-        "between": [
-          {
-            "date": "2026-10-21",
-            "competition": "Champions League",
-            "opponent": "Como"
-          }
-        ]
+        "between": []
       },
       "EVE": {
         "rest_days": 7,

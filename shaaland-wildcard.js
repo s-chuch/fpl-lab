@@ -127,7 +127,13 @@ window.FPL_WILDCARD_WATCH = {
       "Schade"
     ],
     "bench_order_changed": true,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Saka",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
@@ -174,8 +180,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Saka",
         "pos": "MID",
-        "ep_next": 4.36,
-        "status": "ok"
+        "ep_next": 3.27,
+        "status": "doubt"
       },
       {
         "name": "Haaland",
