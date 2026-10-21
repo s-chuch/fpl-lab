@@ -183,9 +183,13 @@ def fmt_fix(info):
 def player_availability(el):
     """Map FPL element status/chance/news into a plan availability record."""
     status = (el.get("status") or "a").lower()
+    import fitness
+    src = None
     chance = el.get("chance_of_playing_next_round")
     if chance is None:
         chance = el.get("chance_of_playing_this_round")
+    if chance is None and status == "d":          # a doubt with no number: read the news line, else the 50% assumption (fitness.py)
+        chance, src = fitness.chance(el)
     news = (el.get("news") or "").strip()
     if status in ("i", "s", "u") or chance == 0:
         label = {"i": "INJ", "s": "SUS", "u": "OUT"}.get(status, "OUT")
@@ -193,8 +197,8 @@ def player_availability(el):
             label = "LEFT"          # no longer at the club: not an injury
         return {"status": status, "chance": chance, "news": news, "kind": "out", "label": label}
     if status == "d" or (chance is not None and chance < 100):
-        label = f"DOUBT {chance}%" if chance is not None else "DOUBT"
-        return {"status": status, "chance": chance, "news": news, "kind": "doubt", "label": label}
+        label = (f"DOUBT ~{chance}%" if src == "assumed" else f"DOUBT {chance}%") if chance is not None else "DOUBT"
+        return {"status": status, "chance": chance, "news": news, "kind": "doubt", "label": label, "assumed": src == "assumed"}
     return {"status": status, "chance": chance, "news": news, "kind": "ok", "label": None}
 
 def bare(name):

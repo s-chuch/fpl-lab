@@ -752,7 +752,7 @@ def build_value_board(boot, min_minutes=180, top_n=10, exclude=None):
         by_pos[pos] = by_pos[pos][:top_n]
     return {"min_minutes": min_minutes, "top_n": top_n, "by_pos": by_pos}
 
-def build_injury_watch(boot, squad_names=None, top_n=15):
+def build_injury_watch(boot, squad_names=None, top_n=15, squad_ids=None):
     """Highest-ownership players league-wide currently flagged out/doubtful
     by FPL. Ownership %, not true Effective Ownership — FPL doesn't publish
     global captaincy rates to weight it by. A widely-owned player's injury
@@ -770,7 +770,7 @@ def build_injury_watch(boot, squad_names=None, top_n=15):
             "id": el["id"], "name": el["web_name"], "club": teams[el["team"]]["short_name"], "pos": POS[el["element_type"]],
             "cost": el["now_cost"] / 10, "owned_pct": float(el.get("selected_by_percent") or 0),
             "status": avail["kind"], "label": avail["label"], "chance": avail["chance"],
-            "yours": el["web_name"] in squad_names,
+            "yours": (el["id"] in squad_ids) if squad_ids is not None else el["web_name"] in squad_names,
         })
     rows.sort(key=lambda r: -r["owned_pct"])
     # Not sliced to top_n here (unlike every other top-N builder in this

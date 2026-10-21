@@ -253,7 +253,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
             row.extend([cell["fixture"], fdr if fdr is not None else "-", cell["call"]])
         players.append({"id": el["id"], "name": el["web_name"], "pos": pos, "gws": gws, "cost": cost, "avail": avail})
         if avail["kind"] != "ok":
-            availability[el["web_name"]] = avail
+            availability[el["web_name"]] = {**avail, "id": el["id"]}
         rows.append(row)
     xis = {}
     for ev in upcoming:
@@ -343,6 +343,7 @@ def build_plan(boot, team_id, hist=None, chips_used=None, inputs=None):
         "xis": xis,
         "bench_calls": bench_calls,
         "availability": availability,
+        "squad_ids": [p["id"] for p in players],
         "transfer": {"ft_available": ft, "action": action, "reason": reason, "move": move, "fh_unused": not fh_used},
         "deadline_passed": ds["deadline_passed"],
         "locked_gw": ds["locked_gw"],
@@ -1399,7 +1400,7 @@ def main(team_id=TEAM_ID, out_path=None):
     data["form_fdr"] = section("form_fdr", build_form_fdr, boot, next_fixture_map, exclude=owned, fallback={})
     data["value_board"] = section("value_board", build_value_board, boot, exclude=owned, fallback={})
     squad_names = {r[1] for r in (plan.get("rows") or [])}
-    data["injury_watch"] = section("injury_watch", build_injury_watch, boot, squad_names=squad_names, fallback={"rows": []})
+    data["injury_watch"] = section("injury_watch", build_injury_watch, boot, squad_names=squad_names, squad_ids=set(plan.get("squad_ids") or []) or None, fallback={"rows": []})
 
     # Injury tab's mini-league section: a niche differential 6 of your 13
     # ESL teams all specifically picked being suddenly doubtful is a much

@@ -91,13 +91,10 @@ def sell_price(buy, now):
 
 # --------------------------------------------------------------------------- expected points
 def availability(el):
-    st = el.get("status")
-    if st in ("u", "s", "i"):
-        return 0.0
-    chance = el.get("chance_of_playing_next_round")
-    if chance is None:
-        return 1.0 if st == "a" else 0.75
-    return max(0.0, min(1.0, chance / 100))
+    """0-1: how likely he is to play (see fitness.chance: next round, else this round, else the news text, else a doubt is 50%)."""
+    import fitness
+    pct, _src = fitness.chance(el)
+    return max(0.0, min(1.0, pct / 100))
 
 
 # League-typical per-90 rates by position. A season rate over only a few games is noisy, so each
