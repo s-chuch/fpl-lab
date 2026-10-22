@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-22T21:42:44+00:00",
+ "updated": "2026-10-22T22:01:47+00:00",
  "gws": [],
  "per_position": {
   "GKP": {
@@ -30,5 +30,27 @@
  },
  "mae_before": null,
  "mae_after": null,
- "applied": false
+ "applied": false,
+ "start": {
+  "25": {
+   "n": 0,
+   "mult": 1.0,
+   "applied": false
+  },
+  "50": {
+   "n": 0,
+   "mult": 1.0,
+   "applied": false
+  },
+  "75": {
+   "n": 0,
+   "mult": 1.0,
+   "applied": false
+  }
+ },
+ "start_cal": {
+  "n": 0,
+  "brier": null,
+  "bands": []
+ }
 }
