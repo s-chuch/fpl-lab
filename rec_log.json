@@ -1171,13 +1171,13 @@
   "captain_name": "Mbeumo",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "78ce828161ee",
+  "code_sha": "111e3c059a1c",
   "ft": 3,
   "gw": 8,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-22T21:41:17+00:00",
-  "saved_at_et": "2026-10-22 5:41 PM ET",
+  "saved_at": "2026-10-22T21:42:38+00:00",
+  "saved_at_et": "2026-10-22 5:42 PM ET",
   "source": "plan",
   "squad": [
    {
