@@ -140,3 +140,34 @@ class PickAndFreeze(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FairTotals(unittest.TestCase):
+    def _e(self, gw, diff, you_ch=None, backfilled=False, sha="abc1234", cap_you="A", cap_model="B", you_mv=(), model_mv=()):
+        sc = {"you": 60 + diff, "model": 60, "diff": diff, "chip": {"you": you_ch, "model": None},
+              "captain": {"you": cap_you, "model": cap_model, "diff": diff},
+              "transfers": {"you": [{"out": o, "in": i} for o, i in you_mv], "model": [{"out": o, "in": i} for o, i in model_mv], "diff": diff},
+              "lineup": {"diff": 0}}
+        return {"gw": gw, "status": "scored", "backfilled": backfilled, "code_sha": sha, "score": sc}
+
+    def test_only_like_for_like_weeks_count(self):
+        log = {"gw1": self._e(1, 10), "gw2": self._e(2, -4, you_ch="wildcard"), "gw3": self._e(3, 6, backfilled=True),
+               "gw4": self._e(4, 8, sha="ed836692c8a3")}
+        t = rec_log.totals(log)
+        self.assertEqual((t["gws"], t["you"], t["model"], t["diff"]), (1, 70, 60, 10))
+        self.assertEqual(t["excluded"], {"backfilled": 1, "chip": 1, "known_issue": 1})
+        self.assertEqual(t["all"]["gws"], 4)
+
+    def test_too_few_weeks_is_flagged_and_enough_weeks_get_a_noise_band(self):
+        few = rec_log.totals({f"gw{i}": self._e(i, 5) for i in range(1, 4)})
+        self.assertFalse(few["noise"]["enough"])
+        many = rec_log.totals({f"gw{i}": self._e(i, d) for i, d in enumerate([5, -3, 8, 2, -6, 4, 7, 1], start=1)})
+        self.assertTrue(many["noise"]["enough"])
+        self.assertIsNotNone(many["noise"]["se"])
+
+    def test_disagreements_count_only_where_choices_differ(self):
+        log = {"gw1": self._e(1, 7, cap_you="A", cap_model="A", you_mv=[("x", "y")], model_mv=[("x", "y")]),
+               "gw2": self._e(2, -3, cap_you="A", cap_model="B", you_mv=[("x", "y")], model_mv=[("p", "q")])}
+        d = rec_log.totals(log)["disagree"]
+        self.assertEqual((d["captain"]["n"], d["captain"]["model"], d["captain"]["you"]), (1, 1, 0))
+        self.assertEqual((d["transfers"]["n"], d["transfers"]["avg"]), (1, -3.0))

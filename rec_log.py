@@ -201,10 +201,29 @@ def score_entry(rec, actual, live):
     return out
 
 
+# Recommendations saved on code with a known fault: shown, but not counted in the you-vs-model totals (short sha -> what was wrong)
+KNOWN_ISSUES = {"ed83669": "Saved before the 17 Oct fix: a news 'rotation risk' tag cut Haaland's expected points by 20% (any Champions League mention triggered it), so the captain pick was wrong for a reason that is now fixed."}
+MIN_CLEAN_WEEKS = 8      # fewer clean weeks than this is too few to call a winner (a week's gap is mostly luck)
+
+
+def _counts(e):
+    """A scored week counts towards the comparison only when it is like for like: a real frozen recommendation (not rebuilt afterwards from an
+    old snapshot) and no Wildcard / Free Hit played by the manager (those weeks are a different decision, not a transfer comparison)."""
+    s = e.get("score") or {}
+    return (not e.get("backfilled") and (s.get("chip") or {}).get("you") not in ("wildcard", "freehit")
+            and (e.get("code_sha") or "")[:7] not in KNOWN_ISSUES)
+
+
+def _pairs(moves):
+    return sorted((m.get("out"), m.get("in")) for m in (moves or []))
+
+
 def totals(log):
-    rows = [e for e in log.values() if isinstance(e, dict) and e.get("status") == "scored"]
+    scored = [e for e in log.values() if isinstance(e, dict) and e.get("status") == "scored"]
+    rows = [e for e in scored if _counts(e)]
     t = {"gws": len(rows), "you": 0, "model": 0, "you_wins": 0, "model_wins": 0, "same": 0,
          "decisions": {k: {"you": 0, "model": 0, "same": 0} for k in ("captain", "transfers", "lineup")}}
+    dis = {k: {"n": 0, "you": 0, "model": 0, "points": 0} for k in ("captain", "transfers", "lineup")}     # where the two actually chose differently
     for e in rows:
         s = e["score"]
         t["you"] += s["you"]; t["model"] += s["model"]
@@ -212,7 +231,29 @@ def totals(log):
         for k in t["decisions"]:
             d = s[k]["diff"]
             t["decisions"][k]["you" if d > 0 else "model" if d < 0 else "same"] += 1
+        differ = {"captain": (s["captain"].get("you") != s["captain"].get("model")),
+                  "transfers": _pairs(s["transfers"].get("you")) != _pairs(s["transfers"].get("model")),
+                  "lineup": s["lineup"]["diff"] != 0}
+        for k, yes in differ.items():
+            if yes:
+                x, d = dis[k], s[k]["diff"]
+                x["n"] += 1; x["points"] += d
+                if d > 0: x["you"] += 1
+                elif d < 0: x["model"] += 1
     t["diff"] = t["you"] - t["model"]
+    for x in dis.values():
+        x["avg"] = round(x["points"] / x["n"], 1) if x["n"] else None
+    t["disagree"] = dis
+    t["all"] = {"gws": len(scored), "you": sum(e["score"]["you"] for e in scored), "model": sum(e["score"]["model"] for e in scored)}
+    t["excluded"] = {"backfilled": sum(1 for e in scored if e.get("backfilled")),
+                     "chip": sum(1 for e in scored if not e.get("backfilled") and (e["score"].get("chip") or {}).get("you") in ("wildcard", "freehit")),
+                     "known_issue": sum(1 for e in scored if not e.get("backfilled") and (e.get("code_sha") or "")[:7] in KNOWN_ISSUES)}
+    diffs = [e["score"]["diff"] for e in rows]
+    n = len(diffs)
+    mean = sum(diffs) / n if n else 0.0
+    sd = (sum((x - mean) ** 2 for x in diffs) / (n - 1)) ** 0.5 if n > 1 else None
+    t["noise"] = {"n": n, "needed": MIN_CLEAN_WEEKS, "enough": n >= MIN_CLEAN_WEEKS, "sd": round(sd, 1) if sd is not None else None,
+                  "mean": round(mean, 1), "se": round(sd / n ** 0.5, 1) if sd is not None else None}
     return t
 
 
@@ -290,6 +331,7 @@ def view(log):
     for k, e in sorted(log.items(), key=lambda kv: -int(kv[0][2:])):
         r = {x: e.get(x) for x in ("gw", "status", "backfilled", "backfill_note", "saved_at_et", "code_sha", "transfers", "hit_cost",
                                    "captain_name", "vice_name", "chip", "xp")}
+        r["known_issue"] = KNOWN_ISSUES.get((e.get("code_sha") or "")[:7])
         if e.get("score"):
             r["score"] = {x: v for x, v in e["score"].items() if x != "model_lines"}
         rows.append(r)
