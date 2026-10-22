@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-22T21:41:07.983022+00:00",
+    "fetched_at": "2026-10-22T23:07:20.576648+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -129,13 +129,7 @@
           "opponent": "Fulham",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-22",
-            "competition": "Europa League",
-            "opponent": "Besiktas"
-          }
-        ]
+        "between": []
       },
       "IPS": {
         "rest_days": 6,
@@ -345,13 +339,7 @@
           "opponent": "Aston Villa",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-22",
-            "competition": "Europa League",
-            "opponent": "Milan"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 8,
