@@ -523,7 +523,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
         rows.append({"id": el["id"], "team": el["team"], "name": v["name"], "club": v["club"], "pos": pos, "fixture": v["fixture"], "avail": v["avail"],
                      "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "defcon": o["defcon"] * v["avail"],
-                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "factors": v.get("adj_factors") or [], "xp": v["xp"], "xp_raw": v.get("xp_raw", v["xp"]),
+                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "news": v.get("news") or "", "factors": v.get("adj_factors") or [], "xp": v["xp"], "xp_raw": v.get("xp_raw", v["xp"]),
                      "cost": v["cost"], "own": float(el.get("selected_by_percent") or 0), "form": float(el.get("form") or 0), "minutes": int(el.get("minutes") or 0),
                      "xg90": float(el.get("expected_goals_per_90") or 0), "xa90": float(el.get("expected_assists_per_90") or 0),
                      "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0,
@@ -563,7 +563,16 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         return rotation_start(r["mp"], r["avail"], r.get("factors"))
     for r in rows:
         r["start"] = start_prob(r)
-    rot = sorted((r for r in rows if r["xp"] >= 3.0 and r["avail"] > 0.5 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
+    # rotation = the chance he does not play a full part: benched, rested or too hurt to start. A doubt (down to 25%) belongs here and ranks
+    # high; only players FPL has ruled out (availability 0) are left off, and "worth watching" is judged on his points when fit.
+    def fit_xp(r):
+        return r["xp"] / r["avail"] if r["avail"] > 0 else 0.0
+    rot = sorted((r for r in rows if r["avail"] > 0 and fit_xp(r) >= 3.0 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
+    def rot_why(r):
+        out = []
+        if r["avail"] < 1:
+            out.append(r["news"] if r.get("news") else f"{round(100 * r['avail'])}% chance of playing")
+        return (out + (r["risks"] or []))[:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]
     return {
         "gw": nxt,
         "goals": [item(r, "goals", r["goals"], {"xg": round(r["goals"], 2)}) for r in scorers],
@@ -575,7 +584,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         "_rows": [r for r in rows if r["xp"] >= 1.0],
         "clean_sheets": sheets,
         "rotation": [{"id": r["id"], "team": r["team"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
-                      "why": r["risks"][:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]} for r in rot],
+                      "why": rot_why(r)} for r in rot],
         "scale": {c: s for c, s in scale.items() if s != 1.0},
     }
 
