@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-22T13:37:23.698317+00:00",
+    "fetched_at": "2026-10-22T21:41:07.983022+00:00",
     "target_gw": 8,
     "anchor": "2026-10-23T17:30:00+00:00",
     "teams": {
@@ -177,13 +177,7 @@
           "opponent": "Brentford",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-22",
-            "competition": "Europa League",
-            "opponent": "Lech Poznan"
-          }
-        ]
+        "between": []
       },
       "NFO": {
         "rest_days": 5,
@@ -288,13 +282,7 @@
           "opponent": "Manchester City",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-22",
-            "competition": "Conference League",
-            "opponent": "Jablonec"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 3,
