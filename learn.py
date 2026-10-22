@@ -51,6 +51,55 @@ def collect(plog):
     return out
 
 
+START_K = 40            # graded doubted player-gameweeks in a fitness band before it moves at all (and half-way at 2x this)
+START_BANDS = (("25", 0.0, 0.375), ("50", 0.375, 0.625), ("75", 0.625, 0.95))     # by FPL chance of playing (fit players are 0.95+)
+START_MULT = (0.5, 1.5)
+
+
+def collect_start(plog):
+    """[(avail, model start chance before any correction, started 0/1)] from graded gameweeks that logged p_start."""
+    out = []
+    for g in (plog.get("gws") or {}).values():
+        if not g.get("graded"):
+            continue
+        cols = g.get("cols") or []
+        try:
+            ia, ip, io = cols.index("avail"), cols.index("p_start"), cols.index("o_start")
+        except ValueError:
+            continue
+        for r in g.get("rows") or []:
+            if len(r) > io and r[ip] is not None and r[io] is not None and r[ia] is not None:
+                out.append((float(r[ia]), float(r[ip]), int(r[io])))
+    return out
+
+
+def fit_start(plog):
+    """How well the start model did, by fitness band, and the multiplier that would fix each doubt band (shrunk; applied from START_K rows).
+    -> (per-band dict read by start_model, calibration for the Scorecard)."""
+    rows = collect_start(plog)
+    per = {}
+    for name, lo, hi in START_BANDS:
+        sub = [r for r in rows if lo <= r[0] < hi and r[0] > 0]
+        n = len(sub)
+        row = {"n": n, "mult": 1.0, "applied": False}
+        if n:
+            pred, act = sum(r[1] for r in sub) / n, sum(r[2] for r in sub) / n
+            row.update({"pred": round(pred, 3), "actual": round(act, 3)})
+            if pred > 0:
+                ratio = act / pred
+                k = n / (n + START_K)
+                row["mult"] = round(max(START_MULT[0], min(START_MULT[1], 1 + (ratio - 1) * k)), 3)
+                row["applied"] = n >= START_K
+        per[name] = row
+    cal = []
+    for lo, hi in ((0, .2), (.2, .4), (.4, .6), (.6, .8), (.8, 1.01)):
+        sub = [r for r in rows if lo <= r[1] < hi]
+        if sub:
+            cal.append({"lo": lo, "hi": min(hi, 1.0), "n": len(sub), "pred": round(sum(r[1] for r in sub) / len(sub), 3), "actual": round(sum(r[2] for r in sub) / len(sub), 3)})
+    brier = round(sum((r[1] - r[2]) ** 2 for r in rows) / len(rows), 4) if rows else None
+    return per, {"n": len(rows), "brier": brier, "bands": cal}
+
+
 def fit(plog, now=None):
     data = collect(plog)
     per, before, after = {}, [], []
@@ -72,12 +121,14 @@ def fit(plog, now=None):
             before += [abs(x - y) for x, y in pts]
             after += [abs(max(0.0, row["a"] + row["b"] * x) - y) for x, y in pts]
         per[pos] = row
-    return {"version": 1, "updated": (now or datetime.now(timezone.utc)).isoformat(timespec="seconds"),
+    doc = {"version": 1, "updated": (now or datetime.now(timezone.utc)).isoformat(timespec="seconds"),
             "gws": sorted(g["gw"] for g in (plog.get("gws") or {}).values() if g.get("graded")),
             "per_position": per,
             "mae_before": round(sum(before) / len(before), 3) if before else None,
             "mae_after": round(sum(after) / len(after), 3) if after else None,
             "applied": any(r["applied"] for r in per.values())}
+    doc["start"], doc["start_cal"] = fit_start(plog)
+    return doc
 
 
 def update(plog, path=FILE):

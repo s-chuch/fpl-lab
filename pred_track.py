@@ -229,8 +229,8 @@ def grade_target(pick, live, boot_el=None):
 
 # ---------------------------------------------------------------- per-player snapshot (training data)
 PLAYER_FILE = Path(__file__).resolve().parent / "player_log.json"
-PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score", "sh4", "sot4", "big4", "cc4", "bcc4"]
-OUTCOME_COLS = ["o_min", "o_goals", "o_assists", "o_dc", "o_pts"]
+PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score", "sh4", "sot4", "big4", "cc4", "bcc4", "p_start"]
+OUTCOME_COLS = ["o_min", "o_goals", "o_assists", "o_dc", "o_pts", "o_start"]
 
 
 def player_record(plog, gw, rows, now):
@@ -255,7 +255,7 @@ def player_grade(plog, boot, get):
             continue
         for r in g["rows"]:
             st = live.get(r[0]) or {}
-            r.extend([int(st.get("minutes") or 0), int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("defensive_contribution") or 0), int(st.get("total_points") or 0)])
+            r.extend([int(st.get("minutes") or 0), int(st.get("goals_scored") or 0), int(st.get("assists") or 0), int(st.get("defensive_contribution") or 0), int(st.get("total_points") or 0), 1 if int(st.get("starts") or 0) > 0 else 0])
         g["cols"] = list(g.get("cols") or PLAYER_COLS) + OUTCOME_COLS
         g["graded"] = True
     return plog

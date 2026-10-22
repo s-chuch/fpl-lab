@@ -842,7 +842,17 @@ function labLearning(D){
   const head=`<h3 class="lab-ph3">Model learning</h3>`;
   if(!L) return head+`<p class="note" data-keep>The model compares its expected points with the points players actually score, per position, once each gameweek settles. From 150 player-gameweeks per position it nudges its numbers towards reality (never more than ±30% and pulled towards no change). First data after GW8 settles.</p>`;
   const rows=["GKP","DEF","MID","FWD"].map(pos=>{const r=(L.per_position||{})[pos]||{}; const st=r.applied?`<b>${r.b>=1?"×":"×"}${labNum(r.b,2)}${r.a?` ${r.a>0?"+":""}${labNum(r.a,2)}`:""}</b>`:`<span class="note">collecting (${r.n||0}/150)</span>`; const bias=(r.mean_xp!=null)?`${labNum(r.mean_xp,1)} → ${labNum(r.mean_actual,1)}`:"–"; return `<tr><td>${pos}</td><td>${bias}</td><td>${st}</td></tr>`;}).join("");
-  return head+`<table class="lab-rtab"><thead><tr><th>Position</th><th>Model → actual (avg pts)</th><th>Correction</th></tr></thead><tbody>${rows}</tbody></table><p class="note" data-keep>${L.applied?`In use from the next refresh: points error ${L.mae_before} → ${L.mae_after} on the gameweeks learned from (GW${(L.gws||[]).join(", GW")}). It re-fits every refresh.`:`Not applied yet: waiting for 150 player-gameweeks per position. Graded so far: GW${(L.gws||[]).join(", GW")||"–"}.`} The same corrected expected points feed the AI team, Target, Predictions and the Plan.</p>`;
+  return head+`<table class="lab-rtab"><thead><tr><th>Position</th><th>Model → actual (avg pts)</th><th>Correction</th></tr></thead><tbody>${rows}</tbody></table><p class="note" data-keep>${L.applied?`In use from the next refresh: points error ${L.mae_before} → ${L.mae_after} on the gameweeks learned from (GW${(L.gws||[]).join(", GW")}). It re-fits every refresh.`:`Not applied yet: waiting for 150 player-gameweeks per position. Graded so far: GW${(L.gws||[]).join(", GW")||"–"}.`} The same corrected expected points feed the AI team, Target, Predictions and the Plan.</p>`+labStartModel(L);
+}
+function labStartModel(L){
+  const C=(L||{}).start_cal||{}, S=(L||{}).start||{}, pc=x=>x==null?"–":Math.round(100*x)+"%";
+  const head=`<h3 class="lab-ph3">Start model</h3>`;
+  const intro=`<p class="note" data-keep>Chance a player starts: fitted on two seasons of starts and minutes (error 0.1445 against 0.158 for the old formulas). Rest days and home/away added nothing. Doubts are cut harder than FPL's percentage (50% fit ≈ 35% of the normal start chance) until this season's results say otherwise.</p>`;
+  if(!C.n) return head+intro+`<p class="note" data-keep>Predicted against actual start rates appear once a gameweek with logged start chances has settled.</p>`;
+  const bands=(C.bands||[]).map(b=>`<tr><td>${Math.round(100*b.lo)}–${Math.round(100*b.hi)}%</td><td>${pc(b.pred)}</td><td>${pc(b.actual)}</td><td>${b.n}</td></tr>`).join("");
+  const dl={"25":"25% doubt","50":"50% doubt","75":"75% doubt"};
+  const doubts=["25","50","75"].map(k=>{const r=S[k]||{}; return `<tr><td>${dl[k]}</td><td>${pc(r.pred)}</td><td>${pc(r.actual)}</td><td>${r.n||0}${r.applied?` · ×${labNum(r.mult,2)}`:" · collecting"}</td></tr>`;}).join("");
+  return head+intro+`<table class="lab-rtab"><thead><tr><th>Predicted</th><th>Said</th><th>Actual</th><th>Players</th></tr></thead><tbody>${bands}</tbody></table><table class="lab-rtab"><thead><tr><th>Fitness</th><th>Said</th><th>Actual</th><th>Players</th></tr></thead><tbody>${doubts}</tbody></table>`;
 }
 function labScorecard(D){
   const P=D.predictions||{}, R=P.record||{}, T=R.target||{}, M=R.model_same_weeks||{};

@@ -88,9 +88,10 @@ def model_inputs(boot, team_recovery=None):
         _warn(f"model_inputs: Understat unavailable, continuing without it: {e}")
     def live(gw):
         return {el["id"]: {"minutes": int(el["stats"].get("minutes") or 0), "points": int(el["stats"].get("total_points") or 0),
-                           "xgi": float(el["stats"].get("expected_goal_involvements") or 0), "ga": int(el["stats"].get("goals_scored") or 0) + int(el["stats"].get("assists") or 0)}
+                           "xgi": float(el["stats"].get("expected_goal_involvements") or 0), "ga": int(el["stats"].get("goals_scored") or 0) + int(el["stats"].get("assists") or 0),
+                           "starts": int(el["stats"].get("starts") or 0)}
                 for el in get(f"https://fantasy.premierleague.com/api/event/{gw}/live/").get("elements", [])}
-    risk = {"recent_minutes": {}, "recent_stats": {}, "club_rest": {}, "rot_names": {}}
+    risk = {"recent_minutes": {}, "recent_stats": {}, "team_matches": {}, "club_rest": {}, "rot_names": {}}
     try:
         allfx = get("https://fantasy.premierleague.com/api/fixtures/")
         def done(f):
@@ -98,6 +99,10 @@ def model_inputs(boot, team_recovery=None):
         def clubs_over(gw):      # clubs whose every match in `gw` is over (FPL marks the whole gameweek finished only after its checks)
             fx = [f for f in allfx if f.get("event") == gw]
             return {t for f in fx for t in (f["team_h"], f["team_a"]) if all(done(x) for x in fx if t in (x["team_h"], x["team_a"]))}
+        for f in allfx:       # matches each club has played so far (the start model's denominator)
+            if done(f):
+                for t in (f["team_h"], f["team_a"]):
+                    risk["team_matches"][t] = risk["team_matches"].get(t, 0) + 1
         started = sorted(e["id"] for e in boot["events"] if e.get("finished") or any(f.get("event") == e["id"] and done(f) for f in allfx))[-3:]
         team_of = {e["id"]: e["team"] for e in boot["elements"]}
         for g in started:
@@ -107,7 +112,7 @@ def model_inputs(boot, team_recovery=None):
             for eid, st in lv.items():
                 if team_of.get(eid) in played:      # a club's blank gameweek is not a rest; a club whose match is not over yet is skipped
                     risk["recent_minutes"].setdefault(eid, []).append(min(90, st["minutes"]))
-                    risk["recent_stats"].setdefault(eid, []).append({"gw": g, "min": st["minutes"], "pts": st["points"], "xgi": st["xgi"], "ga": st["ga"]})
+                    risk["recent_stats"].setdefault(eid, []).append({"gw": g, "min": st["minutes"], "pts": st["points"], "xgi": st["xgi"], "ga": st["ga"], "starts": st["starts"]})
     except Exception as e:
         _warn(f"model_inputs: recent minutes unavailable: {e}")
     try:
@@ -346,34 +351,17 @@ def trend_of(el, stats, played):
     return {"dir": "up" if pts >= 2 else "down" if pts <= -2 else "flat", "why": why[:3]}
 
 
-START_RECENT_W = (0.2, 0.3, 0.5)     # weights of his last three gameweeks, newest last
-
-
-def rotation_start(mp, avail, factors):
-    """The Predictions rotation list's number: share of minutes he normally plays x fitness x every factor the model applies
-    (minutes falling, rest, reported rotation). Target uses the same figure, so the two pages agree."""
-    f = 1.0
-    for x in (factors or []):
-        f *= x.get("factor", 1.0)
-    return min(1.0, mp) * avail * f
-
-
-def start_chance(el, recent, played, avail=1.0, factors=()):
-    """Chance he is in the starting XI next gameweek: 40% his season starts per gameweek, 60% his last three gameweeks
-    (a start = 60+ minutes; the latest counts most, so a game he did not play hurts), times his fitness and the
-    reported-rotation / rest factors the model already applies. Not the same as minutes share: a sub who plays 30 minutes every week scores low."""
-    season = min(1.0, (el.get("starts") or 0) / max(1, played))
-    if recent and len(recent) >= 2:
-        w = START_RECENT_W[-len(recent):]
-        rec = sum(wi * (1.0 if m >= 60 else 0.0) for wi, m in zip(w, recent)) / sum(w)
-        base = 0.4 * season + 0.6 * rec
-    else:
-        base = season
-    f = 1.0
-    for x in factors:
-        if x.get("label") in ("rotation", "rest"):
-            f *= x.get("factor", 1.0)
-    return max(0.0, min(1.0, base * avail * f))
+def player_start(el, v, risk, played):
+    """Chance he starts next gameweek (start_model: his starts / minutes history, fitness doubt, reported rotation). One number for the
+    rotation list, Target and the scorecards. `v` is his ai_team.player_values entry (for the reported-rotation factor)."""
+    import start_model
+    rot = 1.0
+    for x in ((v or {}).get("adj_factors") or []):
+        if x.get("label") == "rotation":
+            rot *= x.get("factor", 1.0)
+    rs = (risk or {}).get("recent_stats") or {}
+    tm = ((risk or {}).get("team_matches") or {}).get(el["team"]) or played
+    return start_model.start_prob(el, rs.get(el["id"]), tm, rot)
 
 
 def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
@@ -406,18 +394,12 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
             row["sig"] = s["reasons"][:4]
             row["adj"] = s["adj"]
     els = {e["id"]: e for e in boot["elements"]}
-    fx_next = fixture_scan(nxt, teams_by_id)
     rec_min = (risk or {}).get("recent_minutes") or {}
     def starts_of(r):
         eid = r.get("id") or by_key.get((r.get("name"), r.get("club")))
-        v = (per_gw[0] if per_gw else {}).get(eid) or {}
         if eid not in els:
             return None
-        s1 = start_chance(els[eid], rec_min.get(eid), played, v.get("avail", 1.0), v.get("adj_factors") or [])
-        o = ai_team.model_outlook(els[eid], fx_next.get(els[eid]["team"], []), played, (uwins or {}).get(eid), rec_min.get(eid))
-        if not o:
-            return s1
-        return min(s1, rotation_start(o["mp"], v.get("avail", 1.0), v.get("adj_factors") or []))      # the rotation list's own number
+        return player_start(els[eid], (per_gw[0] if per_gw else {}).get(eid), risk, played)["p"]
     rec_stats = (risk or {}).get("recent_stats") or {}
     def gate(rows):
         """Remove players unlikely to start and tag the doubtful ones, so Target does not recommend someone who sits on the bench."""
@@ -520,10 +502,11 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         if not o:
             continue
         pos = v["pos"]
+        sp = player_start(el, v, risk, played)
         playing = v["avail"] > 0.5 and o["mp"] >= 0.5
         rows.append({"id": el["id"], "team": el["team"], "name": v["name"], "club": v["club"], "pos": pos, "fixture": v["fixture"], "avail": v["avail"],
                      "goals": o["goals"] * v["avail"], "assists": o["assists"] * v["avail"], "cs": o["cs"], "defcon": o["defcon"] * v["avail"],
-                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "news": v.get("news") or "", "factors": v.get("adj_factors") or [], "xp": v["xp"], "xp_raw": v.get("xp_raw", v["xp"]),
+                     "mp": o["mp"], "playing": playing, "risks": v["risks"], "news": v.get("news") or "", "start": sp["p"], "start_raw": sp["raw"], "factors": v.get("adj_factors") or [], "xp": v["xp"], "xp_raw": v.get("xp_raw", v["xp"]),
                      "cost": v["cost"], "own": float(el.get("selected_by_percent") or 0), "form": float(el.get("form") or 0), "minutes": int(el.get("minutes") or 0),
                      "xg90": float(el.get("expected_goals_per_90") or 0), "xa90": float(el.get("expected_assists_per_90") or 0),
                      "fdr": (fx[0].get("fdr") if fx else None), "home": 1 if fx and fx[0].get("side") == "H" else 0,
@@ -557,22 +540,22 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         sheets.append({"team": d["team"], "club": c, "fixture": d["fixture"], "p": round(100 * min(0.97, p * scale.get("clean_sheets", 1.0))), "raw": round(100 * p),
                        "who": [n for _x, n in sorted(d["who"], reverse=True)[:2]]})
     sheets = sorted(sheets, key=lambda r: -r["raw"])[:top_n]
-    # rotation: players who matter (decent expected points) ranked by how likely they are NOT to play a full part this gameweek:
-    # 1 - (share of minutes he normally plays x fitness x the rest / minutes-falling / reported-rotation factors the model applies)
-    def start_prob(r):
-        return rotation_start(r["mp"], r["avail"], r.get("factors"))
-    for r in rows:
-        r["start"] = start_prob(r)
-    # rotation = the chance he does not play a full part: benched, rested or too hurt to start. A doubt (down to 25%) belongs here and ranks
-    # high; only players FPL has ruled out (availability 0) are left off, and "worth watching" is judged on his points when fit.
+    # rotation = the chance he does not play a full part: benched, rested or too hurt to start (1 - start_model chance, the same figure Target
+    # uses). A doubt belongs here and ranks high; only players FPL has ruled out (availability 0) are left off, and "worth watching" is judged
+    # on his points when fit.
     def fit_xp(r):
         return r["xp"] / r["avail"] if r["avail"] > 0 else 0.0
     rot = sorted((r for r in rows if r["avail"] > 0 and fit_xp(r) >= 3.0 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
+    rs_all = (risk or {}).get("recent_stats") or {}
     def rot_why(r):
         out = []
         if r["avail"] < 1:
             out.append(r["news"] if r.get("news") else f"{round(100 * r['avail'])}% chance of playing")
-        return (out + (r["risks"] or []))[:2] or [f"has played {round(100 * min(1.0, r['mp']))}% of the minutes available"]
+        out += [x for x in (r["risks"] or []) if str(x).startswith("rotation reported")][:1]
+        rec = (rs_all.get(r["id"]) or [])[-3:]
+        if len(rec) == 3:
+            out.append(f"started {sum(1 for x in rec if x.get('starts'))} of his last 3 ({', '.join(str(min(90, x['min'])) + chr(39) for x in rec)})")
+        return out[:2] or [f"started {round(100 * r['start'])}% likely on his minutes history"]
     return {
         "gw": nxt,
         "goals": [item(r, "goals", r["goals"], {"xg": round(r["goals"], 2)}) for r in scorers],

@@ -1509,7 +1509,7 @@ def main(team_id=TEAM_ID, out_path=None):
                 pcols.append([r["id"], r["team"], r["pos"], r["cost"], r["own"], r["form"], r["minutes"], round(r["xg90"], 2), round(r["xa90"], 2), r["fdr"], r["home"],
                               round(r["mp"], 2), round(r["avail"], 2), r.get("xp_raw", r["xp"]), round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
                               round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1],
-                              r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"]])
+                              r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"], round(r.get("start_raw", r.get("start", 0)), 3)])
             pl = pred_track.load(pred_track.PLAYER_FILE)
             pred_track.player_record(pl, preds["gw"], pcols, datetime.now(timezone.utc))
             pred_track.player_grade(pl, boot, get)
