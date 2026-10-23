@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "EVE (H)"
+      "fixture": "LIV (A)"
     },
     {
       "pos": "DEF",
       "name": "Gvardiol",
       "club": "MCI",
-      "fixture": "AVL (A)"
+      "fixture": "BHA (H)"
     },
     {
       "pos": "DEF",
       "name": "Hall",
       "club": "NEW",
-      "fixture": "CRY (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "ARS (A)",
+      "fixture": "NEW (A)",
       "vice": true
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "LIV (A)"
-    },
-    {
-      "pos": "MID",
-      "name": "Belloumi",
-      "club": "HUL",
-      "fixture": "BRE (H)"
+      "fixture": "MCI (A)"
     },
     {
       "pos": "MID",
       "name": "Dewsbury-Hall",
       "club": "EVE",
-      "fixture": "ARS (A)"
+      "fixture": "NEW (A)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "LIV (A)",
+      "fixture": "MCI (A)",
       "captain": true
     },
     {
       "pos": "MID",
       "name": "Schade",
       "club": "BRE",
-      "fixture": "HUL (A)"
+      "fixture": "NFO (H)"
+    },
+    {
+      "pos": "MID",
+      "name": "Tavernier",
+      "club": "BOU",
+      "fixture": "LEE (H)"
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "AVL (A)"
+      "fixture": "BHA (H)"
     },
     {
       "pos": "FWD",
       "name": "Kostoulas",
       "club": "BHA",
-      "fixture": "LIV (A)"
+      "fixture": "MCI (A)"
     }
   ],
   "bench": [
@@ -85,120 +85,120 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "BRE (H)"
+      "fixture": "IPS (H)"
     },
     {
       "pos": "MID",
-      "name": "Tavernier",
-      "club": "BOU",
-      "fixture": "MUN (A)"
+      "name": "Belloumi",
+      "club": "HUL",
+      "fixture": "IPS (H)"
     },
     {
       "pos": "DEF",
       "name": "Bogle",
       "club": "LEE",
-      "fixture": "SUN (A)"
+      "fixture": "BOU (A)"
     },
     {
       "pos": "FWD",
       "name": "Walle Egeli",
       "club": "IPS",
-      "fixture": "NFO (H)"
+      "fixture": "HUL (A)"
     }
   ],
-  "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
+  "note": "Confirmed GW8 squad — the GW8 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.74,
-    "vice": "De Cuyper",
-    "vice_ep": 5.33,
+    "captain_ep": 5.6,
+    "vice": "Dewsbury-Hall",
+    "vice_ep": 4.72,
     "bench_swaps": [
       {
         "bench": "Bogle",
-        "bench_ep": 4.15,
+        "bench_ep": 3.95,
         "starter": "Gvardiol",
-        "starter_ep": 2.12
+        "starter_ep": 1.37
       },
       {
-        "bench": "Tavernier",
-        "bench_ep": 4.28,
+        "bench": "Belloumi",
+        "bench_ep": 2.73,
         "starter": "Schade",
-        "starter_ep": 2.68
+        "starter_ep": 2.05
       }
     ],
     "bench_order": [
       "Tzolakis",
-      "Tavernier",
       "Bogle",
+      "Belloumi",
       "Walle Egeli"
     ],
-    "bench_order_changed": false,
+    "bench_order_changed": true,
     "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.28,
+        "ep_next": 3.83,
         "status": "ok"
       },
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 2.12,
+        "ep_next": 1.37,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.51,
+        "ep_next": 3.09,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.98,
+        "ep_next": 3.79,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.33,
-        "status": "ok"
-      },
-      {
-        "name": "Belloumi",
-        "pos": "MID",
-        "ep_next": 3.29,
+        "ep_next": 4.51,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 5.31,
+        "ep_next": 4.72,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.47,
+        "ep_next": 3.93,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.68,
+        "ep_next": 2.05,
+        "status": "ok"
+      },
+      {
+        "name": "Tavernier",
+        "pos": "MID",
+        "ep_next": 4.07,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.74,
+        "ep_next": 5.6,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.14,
+        "ep_next": 2.66,
         "status": "ok"
       }
     ],
@@ -206,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.16,
+        "ep_next": 3.79,
         "status": "ok"
       },
       {
-        "name": "Tavernier",
+        "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 4.28,
+        "ep_next": 2.73,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.15,
+        "ep_next": 3.95,
         "status": "ok"
       },
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.15,
+        "ep_next": 0.11,
         "status": "ok"
       }
     ]
@@ -260,14 +260,14 @@ window.FPL_WILDCARD_WATCH = {
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "De Cuyper": 5.3,
-        "Belloumi": 5.2,
         "Dewsbury-Hall": 6.6,
         "Groß": 6.2,
         "Schade": 6.2,
+        "Tavernier": 6.2,
         "Haaland": 15.7,
         "Kostoulas": 5.7,
         "Tzolakis": 4.7,
-        "Tavernier": 6.2,
+        "Belloumi": 5.2,
         "Bogle": 4.7,
         "Walle Egeli": 4.5
       }
@@ -563,5 +563,5 @@ window.FPL_WILDCARD_WATCH = {
       }
     ]
   },
-  "squad_gw": 7
+  "squad_gw": 8
 };

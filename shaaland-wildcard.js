@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "EVE (H)"
+      "fixture": "LIV (A)"
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "LIV (A)"
+      "fixture": "MCI (A)"
     },
     {
       "pos": "DEF",
       "name": "Calafiori",
       "club": "ARS",
-      "fixture": "EVE (H)"
+      "fixture": "LIV (A)"
     },
     {
       "pos": "DEF",
       "name": "Hall",
       "club": "NEW",
-      "fixture": "CRY (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "MID",
       "name": "Barnes",
       "club": "NEW",
-      "fixture": "CRY (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "MID",
       "name": "King",
       "club": "FUL",
-      "fixture": "COV (A)"
+      "fixture": "AVL (A)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "LIV (A)"
+      "fixture": "MCI (A)"
     },
     {
       "pos": "MID",
-      "name": "Saka",
-      "club": "ARS",
-      "fixture": "EVE (H)",
+      "name": "Schade",
+      "club": "BRE",
+      "fixture": "NFO (H)"
+    },
+    {
+      "pos": "MID",
+      "name": "Palmer",
+      "club": "CHE",
+      "fixture": "MUN (H)",
       "vice": true
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "AVL (A)",
+      "fixture": "BHA (H)",
       "captain": true
     },
     {
       "pos": "FWD",
       "name": "João Pedro",
       "club": "CHE",
-      "fixture": "TOT (H)"
-    },
-    {
-      "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "LIV (A)"
+      "fixture": "MUN (H)"
     }
   ],
   "bench": [
@@ -85,126 +85,114 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "BRE (H)"
+      "fixture": "IPS (H)"
     },
     {
-      "pos": "DEF",
-      "name": "Tarkowski",
-      "club": "EVE",
-      "fixture": "ARS (A)"
-    },
-    {
-      "pos": "MID",
-      "name": "Schade",
-      "club": "BRE",
-      "fixture": "HUL (A)"
+      "pos": "FWD",
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "MCI (A)"
     },
     {
       "pos": "DEF",
       "name": "Davis",
       "club": "IPS",
-      "fixture": "NFO (H)"
+      "fixture": "HUL (A)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Tarkowski",
+      "club": "EVE",
+      "fixture": "NEW (A)"
     }
   ],
-  "note": "Confirmed GW7 squad — the GW7 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
+  "note": "Confirmed GW8 squad — the GW8 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.74,
+    "captain_ep": 5.6,
     "vice": "De Cuyper",
-    "vice_ep": 5.33,
+    "vice_ep": 4.51,
     "bench_swaps": [
       {
-        "bench": "Schade",
-        "bench_ep": 2.68,
-        "starter": "Saka",
-        "starter_ep": 2.17
-      },
-      {
         "bench": "Tarkowski",
-        "bench_ep": 3.98,
+        "bench_ep": 3.79,
         "starter": "Hall",
-        "starter_ep": 3.51
+        "starter_ep": 3.09
       }
     ],
     "bench_order": [
       "Tzolakis",
       "Tarkowski",
       "Davis",
-      "Schade"
+      "Kostoulas"
     ],
     "bench_order_changed": true,
-    "availability_flags": [
-      {
-        "name": "Saka",
-        "label": "DOUBT 50%",
-        "chance": 50
-      }
-    ],
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.28,
+        "ep_next": 3.83,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.33,
+        "ep_next": 4.51,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 4.71,
+        "ep_next": 4.13,
         "status": "ok"
       },
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.51,
+        "ep_next": 3.09,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.74,
+        "ep_next": 3.33,
         "status": "ok"
       },
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.87,
+        "ep_next": 3.08,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.47,
+        "ep_next": 3.93,
         "status": "ok"
       },
       {
-        "name": "Saka",
+        "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.17,
-        "status": "doubt"
+        "ep_next": 2.05,
+        "status": "ok"
+      },
+      {
+        "name": "Palmer",
+        "pos": "MID",
+        "ep_next": 3.32,
+        "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.74,
+        "ep_next": 5.6,
         "status": "ok"
       },
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.92,
-        "status": "ok"
-      },
-      {
-        "name": "Kostoulas",
-        "pos": "FWD",
-        "ep_next": 3.14,
+        "ep_next": 3.4,
         "status": "ok"
       }
     ],
@@ -212,25 +200,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.16,
+        "ep_next": 3.79,
         "status": "ok"
       },
       {
-        "name": "Tarkowski",
-        "pos": "DEF",
-        "ep_next": 3.98,
-        "status": "ok"
-      },
-      {
-        "name": "Schade",
-        "pos": "MID",
-        "ep_next": 2.68,
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "ep_next": 2.66,
         "status": "ok"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 3.07,
+        "ep_next": 2.89,
+        "status": "ok"
+      },
+      {
+        "name": "Tarkowski",
+        "pos": "DEF",
+        "ep_next": 3.79,
         "status": "ok"
       }
     ]
@@ -259,7 +247,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-23",
-      "total_cost": 100.6,
+      "total_cost": 100.8,
       "prices": {
         "Raya": 6.1,
         "De Cuyper": 5.3,
@@ -268,22 +256,22 @@ window.FPL_WILDCARD_WATCH = {
         "Barnes": 6.1,
         "King": 5.6,
         "Groß": 6.2,
-        "Saka": 9.6,
+        "Schade": 6.2,
+        "Palmer": 9.8,
         "Haaland": 15.7,
         "João Pedro": 7.9,
-        "Kostoulas": 5.7,
         "Tzolakis": 4.7,
-        "Tarkowski": 6.2,
-        "Schade": 6.2,
-        "Davis": 4.0
+        "Kostoulas": 5.7,
+        "Davis": 4.0,
+        "Tarkowski": 6.2
       }
     },
     "entry_prices": {
       "João Pedro": 7.7,
       "Davis": 4.0,
-      "Saka": 9.6
+      "Palmer": 9.8
     },
-    "total_delta": 1.8,
+    "total_delta": 2.0,
     "players": [
       {
         "name": "De Cuyper",
@@ -439,13 +427,22 @@ window.FPL_WILDCARD_WATCH = {
         "status": "removed"
       },
       {
-        "name": "Saka",
+        "name": "Palmer",
         "baseline_cost": null,
-        "current_cost": 9.6,
+        "current_cost": 9.8,
         "delta": null,
-        "entry_cost": 9.6,
+        "entry_cost": 9.8,
         "delta_since_added": 0.0,
         "status": "added"
+      },
+      {
+        "name": "Saka",
+        "baseline_cost": null,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
       },
       {
         "name": "Tzolakis",
@@ -694,8 +691,20 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.1,
         "to": 6.2,
         "delta": 0.1
+      },
+      {
+        "date": "2026-10-23",
+        "event": "removed",
+        "player": "Saka",
+        "price_at_change": 9.6
+      },
+      {
+        "date": "2026-10-23",
+        "event": "added",
+        "player": "Palmer",
+        "price_at_change": 9.8
       }
     ]
   },
-  "squad_gw": 7
+  "squad_gw": 8
 };

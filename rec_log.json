@@ -1286,7 +1286,7 @@
     "xp": 2.17
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Mbeumo",
@@ -1317,5 +1317,164 @@
    165
   ],
   "xp": 57.1
+ },
+ "gw9": {
+  "backfilled": false,
+  "bench": [
+   572,
+   449,
+   305,
+   138
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "7c9f30e0a170",
+  "ft": 3,
+  "gw": 9,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-23T22:58:48+00:00",
+  "saved_at_et": "2026-10-23 6:58 PM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 3.83
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.51
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": 4.13
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.79
+   },
+   {
+    "club": "MUN",
+    "id": 427,
+    "name": "Mbeumo",
+    "pos": "MID",
+    "xp": 4.6
+   },
+   {
+    "club": "FUL",
+    "id": 261,
+    "name": "Iwobi",
+    "pos": "MID",
+    "xp": 4.3
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 3.93
+   },
+   {
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 3.33
+   },
+   {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.32
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.6
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": 3.4
+   },
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.79
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.09
+   },
+   {
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
+    "pos": "DEF",
+    "xp": 2.89
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 2.66
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Mbeumo",
+    "in_id": 427,
+    "out": "King",
+    "out_id": 268
+   },
+   {
+    "in": "Iwobi",
+    "in_id": 261,
+    "out": "Schade",
+    "out_id": 94
+   }
+  ],
+  "vice": 115,
+  "vice_name": "De Cuyper",
+  "xi": [
+   1,
+   115,
+   8,
+   229,
+   427,
+   261,
+   124,
+   453,
+   154,
+   411,
+   165
+  ],
+  "xp": 50.3
  }
 }

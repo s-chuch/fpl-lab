@@ -1236,7 +1236,7 @@
     "xp": 2.12
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Mbeumo",
@@ -1267,5 +1267,164 @@
    79
   ],
   "xp": 57.5
+ },
+ "gw9": {
+  "backfilled": false,
+  "bench": [
+   572,
+   286,
+   138,
+   391
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "7c9f30e0a170",
+  "ft": 3,
+  "gw": 9,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-23T22:59:01+00:00",
+  "saved_at_et": "2026-10-23 6:59 PM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 3.83
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.51
+   },
+   {
+    "club": "LEE",
+    "id": 330,
+    "name": "Bogle",
+    "pos": "DEF",
+    "xp": 3.95
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.79
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.09
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 4.72
+   },
+   {
+    "club": "MUN",
+    "id": 427,
+    "name": "Mbeumo",
+    "pos": "MID",
+    "xp": 4.6
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 4.07
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 3.93
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.6
+   },
+   {
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
+    "pos": "FWD",
+    "xp": 4.1
+   },
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.79
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.73
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 2.66
+   },
+   {
+    "club": "MCI",
+    "id": 391,
+    "name": "Gvardiol",
+    "pos": "DEF",
+    "xp": 1.37
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Mbeumo",
+    "in_id": 427,
+    "out": "Schade",
+    "out_id": 94
+   },
+   {
+    "in": "Evanilson",
+    "in_id": 79,
+    "out": "Walle Egeli",
+    "out_id": 321
+   }
+  ],
+  "vice": 236,
+  "vice_name": "Dewsbury-Hall",
+  "xi": [
+   1,
+   115,
+   330,
+   229,
+   449,
+   236,
+   427,
+   68,
+   124,
+   411,
+   79
+  ],
+  "xp": 51.8
  }
 }
