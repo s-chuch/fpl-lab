@@ -1,9 +1,122 @@
 window.FPL_NEWS = {
   "gw": 8,
   "cutoff": "2026-10-17 10:00 UTC",
-  "generated_at": "2026-10-22 23:07 UTC",
+  "generated_at": "2026-10-23 05:44 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
+    {
+      "text": "De Cuyper (BHA) \u2014 Mixed: some say buy, some say sell (3 buy, 2 keep, 2 sell/avoid mentions) \u00b7 5/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "De Cuyper",
+      "club": "BHA",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 115,
+      "verdict": "Mixed: some say buy, some say sell",
+      "stance": {
+        "buy": 3,
+        "sell": 2,
+        "hold": 2
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Most-popular FPL defender transfers Six of the top 10 most popular defender transfers involve selling Gvardiol with Bobby Thomas, Riccardo Calafiori, Maxim De Cuyper, Jean Paul van Hecke and Jayden Bogle some of the popular target...",
+          "stance": [
+            "buy",
+            "sell"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "AAFPL",
+          "text": "The reason to avoid Brighton\u2019s two high-flying Seagulls, Maxim De Cuyper and Pascal Gro\u00df, is less about their form and more about what lies ahead.",
+          "stance": [
+            "buy",
+            "sell"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "source": "AAFPL",
+          "text": "As it stands, I am starting De Cuyper but this can change later after Press Conference updates, and we will keep the article updated.",
+          "stance": [
+            "hold"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        },
+        {
+          "source": "AAFPL",
+          "text": "He will be one of the Top Transfer Targets for me from GW10 as I don\u2019t own both De Cuyper and Gross.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Even if De Cuyper and Gro\u00df have been delivering the goods lately, the risk of reduced minutes makes them less appealing as fresh transfers for GW8.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Gross + De Cuyper: Bench or start in FPL Gameweek 8?",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/23/gross-de-cuyper-bench-or-start-in-fpl-gameweek-8",
+          "title": "Gross + De Cuyper: Bench or start in FPL Gameweek 8?"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "GW8 Benching Dilemmas: This is the toughest week in terms of Benching Dilemmas for me because I will need to start only one among De Cuyper vs LIV(A), Gross vs LIV(A) and Silva vs MUN(H).",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "I got away with no De Cuyper/Pedro/Rogers in GW8 with all of them blanking.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "With 3 other in form attackers who can gobble up bonus points, the door is wide open for a 1 assist game for De Cuyper.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
+          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Brighton are ranked 16th for Clean Sheets Odds in GW8 but De Cuyper is essentially an attacker playing at LW.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
+          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
+        }
+      ],
+      "tone": "mixed"
+    },
     {
       "text": "Gibbs-White (NFO) \u2014 Leaning buy (3 buy, 1 keep, 1 sell/avoid, 1 captain, 1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
@@ -455,110 +568,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
-    },
-    {
-      "text": "De Cuyper (BHA) \u2014 Mixed: some say buy, some say sell (3 buy, 2 keep, 2 sell/avoid mentions) \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "De Cuyper",
-      "club": "BHA",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 115,
-      "verdict": "Mixed: some say buy, some say sell",
-      "stance": {
-        "buy": 3,
-        "sell": 2,
-        "hold": 2
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Most-popular FPL defender transfers Six of the top 10 most popular defender transfers involve selling Gvardiol with Bobby Thomas, Riccardo Calafiori, Maxim De Cuyper, Jean Paul van Hecke and Jayden Bogle some of the popular target...",
-          "stance": [
-            "buy",
-            "sell"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw8-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 8 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "source": "AAFPL",
-          "text": "The reason to avoid Brighton\u2019s two high-flying Seagulls, Maxim De Cuyper and Pascal Gro\u00df, is less about their form and more about what lies ahead.",
-          "stance": [
-            "buy",
-            "sell"
-          ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "source": "AAFPL",
-          "text": "As it stands, I am starting De Cuyper but this can change later after Press Conference updates, and we will keep the article updated.",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        },
-        {
-          "source": "AAFPL",
-          "text": "He will be one of the Top Transfer Targets for me from GW10 as I don\u2019t own both De Cuyper and Gross.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "Even if De Cuyper and Gro\u00df have been delivering the goods lately, the risk of reduced minutes makes them less appealing as fresh transfers for GW8.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gameweek-8-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 8 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "GW8 Benching Dilemmas: This is the toughest week in terms of Benching Dilemmas for me because I will need to start only one among De Cuyper vs LIV(A), Gross vs LIV(A) and Silva vs MUN(H).",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "I got away with no De Cuyper/Pedro/Rogers in GW8 with all of them blanking.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "With 3 other in form attackers who can gobble up bonus points, the door is wide open for a 1 assist game for De Cuyper.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/ingenuity-fantasy-5s-gw8-round-up-jackpot-now-275-free-entry/",
-          "title": "Ingenuity Fantasy 5\u2019s GW8 Round Up: Jackpot now \u00a3275! \u2013 Free Entry!"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Brighton are ranked 16th for Clean Sheets Odds in GW8 but De Cuyper is essentially an attacker playing at LW.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-team-selection-drafts-transfer-plans-and-chip-strategy/",
-          "title": "FPL GW8 Team Selection- Drafts, Transfer Plans and Chip Strategy"
-        }
-      ],
-      "tone": "mixed"
     },
     {
       "text": "Gro\u00df (BHA) \u2014 Mixed: some say buy, some say sell (1 buy, 1 sell/avoid mentions) \u00b7 4/5 sites with fresh articles",
@@ -1679,6 +1688,80 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
+      "text": "Mu\u00f1oz (NFO) \u2014 Leaning buy (2 buy, 1 keep mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix"
+      ],
+      "player": "Mu\u00f1oz",
+      "club": "NFO",
+      "tags": [
+        "differential"
+      ],
+      "id": 201,
+      "verdict": "Leaning buy",
+      "stance": {
+        "hold": 1,
+        "buy": 2
+      },
+      "quotes": [
+        {
+          "source": "AAFPL",
+          "text": "We\u2019ve got goalscorers throughout the team; Thiago being Thiago wants to score more goals and he\u2019s certainly not far away\u201d Daniel Munoz \u2013 Nottingham Forest \u2013 5.3 Defender \u2013 4.8 % TSB Forest have been unlucky to keep only 1 Clean Sh...",
+          "stance": [
+            "hold"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gw8-differential-picks-to-target-ahead-of-gw8-deadline/",
+          "title": "Top FPL GW8 Differential Picks to Target Ahead of GW8 Deadline"
+        },
+        {
+          "source": "AAFPL",
+          "text": "There is no explanation needed for Munoz\u2019s attacking threat as he has already had 2 Shots on Target, 7 Shots in the Box, 3 Big Chances, 7 Key passes and 2 Big Chances created.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gw8-differential-picks-to-target-ahead-of-gw8-deadline/",
+          "title": "Top FPL GW8 Differential Picks to Target Ahead of GW8 Deadline"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Top Defenders for xGI/90 this season (Minimum 400 minutes): De Cuyper \u2013 0.40 Calafiori \u2013 0.34 Bogle \u2013 0.33 Davis- 0.32 Munoz \u2013 0.30 FPL GW8 Ultra-Differential Pick(<1% TSB) Jack Rudoni \u2013 Coventry City \u2013 4.9 Midfielder \u2013 0.4 % TSB ...",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gw8-differential-picks-to-target-ahead-of-gw8-deadline/",
+          "title": "Top FPL GW8 Differential Picks to Target Ahead of GW8 Deadline"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "We\u2019ve got goalscorers throughout the team; Thiago being Thiago wants to score more goals and he\u2019s certainly not far away\u201d Daniel Munoz \u2013 Nottingham Forest \u2013 5.3 Defender \u2013 4.8 % TSB Forest have been unlucky to keep only 1 Clean Sheet so far this season as thei...",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gw8-differential-picks-to-target-ahead-of-gw8-deadline/",
+          "title": "Top FPL GW8 Differential Picks to Target Ahead of GW8 Deadline"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Munoz comes into the side for Forest\u2019s away game against Ipswich in FPL GW8.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/fpl-gw8-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW8 Scout Picks Based on Stats, Analysis and Matchups"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "There is no explanation needed for Munoz\u2019s attacking threat as he has already had 2 Shots on Target, 7 Shots in the Box, 3 Big Chances, 7 Key passes and 2 Big Chances created.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/10/top-fpl-gw8-differential-picks-to-target-ahead-of-gw8-deadline/",
+          "title": "Top FPL GW8 Differential Picks to Target Ahead of GW8 Deadline"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Trafford (LEE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
@@ -1796,13 +1879,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "GW8 coverage is talking about a free hit window \u2014 mentioned by 2/5 sites.",
-      "sources": [
-        "AAFPL",
-        "Hub"
-      ]
     }
   ],
   "links": [
@@ -1827,8 +1903,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Gross + De Cuyper: Bench or start in FPL Gameweek 8?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/23/gross-de-cuyper-bench-or-start-in-fpl-gameweek-8"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
