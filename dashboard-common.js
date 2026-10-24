@@ -838,6 +838,30 @@ function labNews(D,they){
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
 // Plan tab (bottom accordion): template and differential picks per league (and overall), from data.leagues, as lists
+// the Wildcard room card's layout, for the current squad against one mini-league: ownership count, captained-by, type
+function labTemplateTable(lg,they){
+  const squads=lg.member_squads||[], me=squads.find(m=>m.me), rivals=squads.filter(m=>!m.me);
+  if(!me||!rivals.length) return `<p class="note" data-keep>No squad data for this league yet.</p>`;
+  const mine=(me.xi||[]).concat(me.bench||[]), n=rivals.length, key=p=>p.name+"|"+p.club;
+  const own={}, cap={}, info={};
+  rivals.forEach(m=>{
+    (m.xi||[]).concat(m.bench||[]).forEach(p=>{own[key(p)]=(own[key(p)]||0)+1; info[key(p)]=p;});
+    const c=(m.xi||[]).find(p=>p.name===m.captain); if(c) cap[key(c)]=(cap[key(c)]||0)+1;
+  });
+  const pct=c=>Math.round(100*c/n), diffMax=Math.max(1,Math.floor(n/4));
+  const tag=c=>c>=Math.ceil(n/2)?["Template","pos"]:c===0?["Unique","used"]:c<=diffMax?["Differential","mid"]:["Shared",""];
+  const rows=mine.map(p=>({p,c:own[key(p)]||0,cc:cap[key(p)]||0})).sort((x,y)=>y.c-x.c).map(({p,c,cc})=>{
+    const [t,k]=tag(c), isC=p.name===me.captain, isV=p.name===me.vice&&!isC;
+    return `<tr><td>${nameCell(p.name,p.club)}${isC?` <span class="pill used">C</span>`:isV?` <span class="pill free">VC</span>`:""}</td><td>${c}/${n} (${pct(c)}%)</td><td>${cc||"–"}</td><td><span class="pill ${k}">${t}</span></td></tr>`;}).join("");
+  const myKeys=new Set(mine.map(key));
+  const missing=Object.keys(own).filter(k=>!myKeys.has(k)&&own[k]>=Math.max(3,Math.ceil(n/3))).sort((x,y)=>own[y]-own[x]).slice(0,8)
+    .map(k=>`<li><span class="who">${esc(info[k].name)} (${esc(info[k].club)}) · ${esc(info[k].pos||"")}</span><div class="detail">${own[k]}/${n} rivals (${pct(own[k])}%) own him${cap[k]?` · captained by ${cap[k]}`:""}</div></li>`).join("");
+  const nT=mine.filter(p=>(own[key(p)]||0)>=Math.ceil(n/2)).length, nD=mine.filter(p=>(own[key(p)]||0)<=diffMax).length;
+  const tp=they?"Their":"Your";
+  return `<p class="note" data-keep><b>${nT}</b> of ${mine.length} picks are template (owned by half the league or more) · <b>${nD}</b> are differentials (owned by ${diffMax} or fewer) · against the other ${n} managers' current squads.</p>
+    <table class="table-compact" data-keep><thead><tr><th style="width:36%">${tp} player</th><th style="width:26%">League owns</th><th style="width:14%">Cap</th><th style="width:24%">Type</th></tr></thead><tbody>${rows}</tbody></table>
+    ${missing?`<h4 class="lab-tplh">League template ${they?"they're":"you're"} not playing</h4><ul class="chiplist" data-keep>${missing}</ul>`:""}`;
+}
 function labTemplateBody(D,they,sel){
   const L=D.leagues||{}, leagues=(L.mini||[]);
   const missing=they?"they are":"you are", owns=they?"They own":"You own", lack=they?"they lack":"you lack", Ydiff=they?"Their":"Your";
@@ -849,13 +873,8 @@ function labTemplateBody(D,they,sel){
     view=list(`Template ${missing} missing (25%+ own it overall)`,(L.overall_template||[]).map(x=>li(x.name,`${labNum(x.own,0)}% own`)),`${owns} the overall template.`)
         +list(`${Ydiff} differentials (12% or fewer own them)`,(L.overall_diffs||[]).map(x=>li(x.name,`${labNum(x.own,1)}% own`,"lab-green")),"No overall differentials.");
   }else{
-    const lg=leagues.find(l=>"l"+l.id===sel)||{}, T=lg.tactics||{}, rk=(x,dflt)=>x&&x.rank?"P"+x.rank:dflt;
-    const caps=(T.cap_last||[]).map(x=>`${esc(x.name)} ${x.count}`).join(" · ");
-    view=(lg.picks_unlocked===false?`<p class="note" data-keep>Rivals' picks unlock after the deadline, so only ownership lists are shown until then.</p>`:"")
-      +list(`Template ${missing} missing`,(lg.template||[]).map(x=>li(x.name,`${x.count} of ${x.n} managers`)),`${owns} the league template.`)
-      +list(`${Ydiff} differentials vs 1st & 2nd`,(T.you_unique||[]).map(x=>li(x.name,`${labNum(x.own,0)}% own${x.vs_a?" · vs "+rk(T.first,"1st"):""}${x.vs_b?" · vs "+rk(T.second,"2nd"):""}`,"lab-green")),"Nothing rare enough to call a real difference right now.")
-      +list("1st & 2nd both own",(T.they_share||[]).map(x=>li(x.name,`${x.count} of ${x.n} managers`)),`They share nothing ${lack}.`)
-      +(caps?`<p class="note" data-keep>League captains last gameweek: ${caps}</p>`:"");
+    const lg=leagues.find(l=>"l"+l.id===sel)||{};
+    view=(lg.picks_unlocked===false?`<p class="note" data-keep>Rivals' picks unlock after the deadline, so these use the picks from the last locked gameweek.</p>`:"")+labTemplateTable(lg,they);
   }
   const pills=keys.map(k=>{const lg=leagues.find(l=>"l"+l.id===k); return `<button type="button" data-tpl="${k}" class="${k===sel?"on":""}">${k==="all"?"Overall":esc((lg&&lg.name)||k)}</button>`;}).join("");
   return `<div class="lab-stabs" data-keep>${pills}</div><div data-keep>${view}</div>`;
