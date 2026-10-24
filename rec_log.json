@@ -1330,13 +1330,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "87f8c09d6dc3",
+  "code_sha": "1647cb1e4792",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T12:30:55+00:00",
-  "saved_at_et": "2026-10-24 8:30 AM ET",
+  "saved_at": "2026-10-24T16:06:18+00:00",
+  "saved_at_et": "2026-10-24 12:06 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1344,7 +1344,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 3.83
+    "xp": 4.63
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.6
    },
    {
     "club": "BHA",
@@ -1354,32 +1361,18 @@
     "xp": 4.51
    },
    {
-    "club": "ARS",
-    "id": 8,
-    "name": "Calafiori",
-    "pos": "DEF",
-    "xp": 4.13
-   },
-   {
     "club": "EVE",
     "id": 229,
     "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 3.79
-   },
-   {
-    "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
-    "xp": 4.7
+    "xp": 4.07
    },
    {
     "club": "FUL",
     "id": 261,
     "name": "Iwobi",
     "pos": "MID",
-    "xp": 4.3
+    "xp": 4.7
    },
    {
     "club": "BHA",
@@ -1387,6 +1380,13 @@
     "name": "Groß",
     "pos": "MID",
     "xp": 3.93
+   },
+   {
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.68
    },
    {
     "club": "NEW",
@@ -1407,7 +1407,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.75
+    "xp": 6.39
    },
    {
     "club": "CHE",
@@ -1448,33 +1448,33 @@
   "status": "pending",
   "transfers": [
    {
-    "in": "Dewsbury-Hall",
-    "in_id": 236,
-    "out": "Schade",
-    "out_id": 94
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Calafiori",
+    "out_id": 8
    },
    {
     "in": "Iwobi",
     "in_id": 261,
-    "out": "King",
-    "out_id": 268
+    "out": "Schade",
+    "out_id": 94
    }
   ],
   "vice": 115,
   "vice_name": "De Cuyper",
   "xi": [
    1,
+   4,
    115,
-   8,
    229,
-   236,
    261,
    124,
+   268,
    453,
    154,
    411,
    165
   ],
-  "xp": 50.7
+  "xp": 54.0
  }
 }

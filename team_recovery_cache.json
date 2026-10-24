@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-24T12:30:38.094529+00:00",
+    "fetched_at": "2026-10-24T16:06:04.033460+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -395,11 +395,6 @@
         },
         "between": [
           {
-            "date": "2026-10-24",
-            "competition": "Premier League",
-            "opponent": "Man City"
-          },
-          {
             "date": "2026-10-28",
             "competition": "EFL Cup",
             "opponent": "Bournemouth"
@@ -426,11 +421,6 @@
           "days_after": 4
         },
         "between": [
-          {
-            "date": "2026-10-24",
-            "competition": "Premier League",
-            "opponent": "Aston Villa"
-          },
           {
             "date": "2026-10-28",
             "competition": "EFL Cup",

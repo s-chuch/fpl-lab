@@ -1274,19 +1274,19 @@
    572,
    286,
    138,
-   391
+   321
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "87f8c09d6dc3",
+  "code_sha": "1647cb1e4792",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T12:31:12+00:00",
-  "saved_at_et": "2026-10-24 8:31 AM ET",
+  "saved_at": "2026-10-24T16:06:33+00:00",
+  "saved_at_et": "2026-10-24 12:06 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1294,7 +1294,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 3.83
+    "xp": 4.63
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.6
    },
    {
     "club": "BHA",
@@ -1304,18 +1311,18 @@
     "xp": 4.51
    },
    {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 4.07
+   },
+   {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
     "xp": 3.95
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.79
    },
    {
     "club": "NEW",
@@ -1329,7 +1336,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.72
+    "xp": 4.98
    },
    {
     "club": "MUN",
@@ -1357,14 +1364,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.75
-   },
-   {
-    "club": "BOU",
-    "id": 79,
-    "name": "Evanilson",
-    "pos": "FWD",
-    "xp": 4.1
+    "xp": 6.39
    },
    {
     "club": "HUL",
@@ -1388,43 +1388,43 @@
     "xp": 2.66
    },
    {
-    "club": "MCI",
-    "id": 391,
-    "name": "Gvardiol",
-    "pos": "DEF",
-    "xp": 1.52
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.11
    }
   ],
   "status": "pending",
   "transfers": [
    {
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Gvardiol",
+    "out_id": 391
+   },
+   {
     "in": "Mbeumo",
     "in_id": 427,
     "out": "Schade",
     "out_id": 94
-   },
-   {
-    "in": "Evanilson",
-    "in_id": 79,
-    "out": "Walle Egeli",
-    "out_id": 321
    }
   ],
   "vice": 236,
   "vice_name": "Dewsbury-Hall",
   "xi": [
    1,
+   4,
    115,
-   330,
    229,
+   330,
    449,
    236,
    427,
    68,
    124,
-   411,
-   79
+   411
   ],
-  "xp": 52.1
+  "xp": 56.2
  }
 }
