@@ -500,3 +500,7 @@ body.lab .lab-dsec h4 span{font-weight:800}
 
 .lab-tpl .lab-stabs{margin:4px 0 6px}.lab-tpl .lab-tplh{margin:10px 0 5px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
 .lab-tpl .xi{gap:5px}.lab-tpl .chip{padding:5px 8px;font-size:12px}.lab-tpl .note{font-size:12px}
+.lab-tpl-x{display:none}
+#labTpl .lab-list li{padding:7px 0;font-size:13.5px}#labTpl .lab-list .lab-green{color:var(--green)}#labTpl .lab-list li span.note{width:auto;margin:0}
+#labTpl .lab-tplh{margin:12px 0 2px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+#labTpl .lab-stabs{margin:6px 0 4px}
