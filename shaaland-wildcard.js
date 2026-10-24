@@ -116,14 +116,14 @@ window.FPL_WILDCARD_WATCH = {
       {
         "bench": "Tarkowski",
         "bench_ep": 4.07,
-        "starter": "Hall",
-        "starter_ep": 3.09
+        "starter": "Calafiori",
+        "starter_ep": 2.35
       },
       {
         "bench": "Kostoulas",
         "bench_ep": 2.66,
         "starter": "João Pedro",
-        "starter_ep": 2.54
+        "starter_ep": 1.82
       }
     ],
     "bench_order": [
@@ -134,6 +134,11 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "bench_order_changed": true,
     "availability_flags": [
+      {
+        "name": "Calafiori",
+        "label": "DOUBT 75%",
+        "chance": 75
+      },
       {
         "name": "João Pedro",
         "label": "DOUBT 75%",
@@ -156,8 +161,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.13,
-        "status": "ok"
+        "ep_next": 2.35,
+        "status": "doubt"
       },
       {
         "name": "Hall",
@@ -192,7 +197,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.58,
+        "ep_next": 3.23,
         "status": "ok"
       },
       {
@@ -204,7 +209,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 2.54,
+        "ep_next": 1.82,
         "status": "doubt"
       }
     ],

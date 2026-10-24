@@ -1322,21 +1322,21 @@
   "backfilled": false,
   "bench": [
    572,
-   305,
    138,
+   94,
    165
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "cde485e29208",
+  "code_sha": "e527585c3bd1",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T17:12:48+00:00",
-  "saved_at_et": "2026-10-24 1:12 PM ET",
+  "saved_at": "2026-10-24T18:43:44+00:00",
+  "saved_at_et": "2026-10-24 2:43 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1354,6 +1354,13 @@
     "xp": 5.8
    },
    {
+    "club": "ARS",
+    "id": 31,
+    "name": "Konsa",
+    "pos": "DEF",
+    "xp": 4.7
+   },
+   {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
@@ -1361,25 +1368,18 @@
     "xp": 4.51
    },
    {
-    "club": "ARS",
-    "id": 8,
-    "name": "Calafiori",
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 3.13
+    "xp": 4.07
    },
    {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
+    "club": "IPS",
+    "id": 305,
+    "name": "Davis",
     "pos": "DEF",
-    "xp": 3.09
-   },
-   {
-    "club": "FUL",
-    "id": 261,
-    "name": "Iwobi",
-    "pos": "MID",
-    "xp": 4.6
+    "xp": 2.89
    },
    {
     "club": "BHA",
@@ -1396,18 +1396,18 @@
     "xp": 3.62
    },
    {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.58
-   },
-   {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
     "xp": 3.33
+   },
+   {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.23
    },
    {
     "club": "MCI",
@@ -1424,13 +1424,6 @@
     "xp": 3.79
    },
    {
-    "club": "IPS",
-    "id": 305,
-    "name": "Davis",
-    "pos": "DEF",
-    "xp": 2.89
-   },
-   {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
@@ -1438,11 +1431,18 @@
     "xp": 2.66
    },
    {
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.05
+   },
+   {
     "club": "CHE",
     "id": 165,
     "name": "João Pedro",
     "pos": "FWD",
-    "xp": 2.54
+    "xp": 1.82
    }
   ],
   "status": "pending",
@@ -1450,14 +1450,14 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
+    "out": "Calafiori",
+    "out_id": 8
    },
    {
-    "in": "Iwobi",
-    "in_id": 261,
-    "out": "Schade",
-    "out_id": 94
+    "in": "Konsa",
+    "in_id": 31,
+    "out": "Hall",
+    "out_id": 449
    }
   ],
   "vice": 115,
@@ -1465,16 +1465,16 @@
   "xi": [
    1,
    4,
+   31,
    115,
-   8,
-   449,
-   261,
+   229,
+   305,
    124,
    268,
-   154,
    453,
+   154,
    411
   ],
-  "xp": 53.0
+  "xp": 53.5
  }
 }
