@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-23",
+  "captured_at": "2026-10-24",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW8 squad — the GW8 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.6,
+    "captain_ep": 5.75,
     "vice": "De Cuyper",
     "vice_ep": 4.51,
     "bench_swaps": [
@@ -186,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.6,
+        "ep_next": 5.75,
         "status": "ok"
       },
       {
@@ -246,10 +246,10 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-23",
-      "total_cost": 100.8,
+      "date": "2026-10-24",
+      "total_cost": 101.0,
       "prices": {
-        "Raya": 6.1,
+        "Raya": 6.2,
         "De Cuyper": 5.3,
         "Calafiori": 6.0,
         "Hall": 5.3,
@@ -261,7 +261,7 @@ window.FPL_WILDCARD_WATCH = {
         "Haaland": 15.7,
         "João Pedro": 7.9,
         "Tzolakis": 4.7,
-        "Kostoulas": 5.7,
+        "Kostoulas": 5.8,
         "Davis": 4.0,
         "Tarkowski": 6.2
       }
@@ -271,7 +271,7 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Palmer": 9.8
     },
-    "total_delta": 2.0,
+    "total_delta": 2.2,
     "players": [
       {
         "name": "De Cuyper",
@@ -295,6 +295,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 6.0,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.8,
         "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
@@ -328,9 +337,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.7,
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -356,15 +365,6 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "Barnes",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Raya",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
         "delta": 0.0,
@@ -434,15 +434,6 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": 9.8,
         "delta_since_added": 0.0,
         "status": "added"
-      },
-      {
-        "name": "Saka",
-        "baseline_cost": null,
-        "current_cost": null,
-        "delta": null,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "removed"
       },
       {
         "name": "Tzolakis",
@@ -703,6 +694,22 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Palmer",
         "price_at_change": 9.8
+      },
+      {
+        "date": "2026-10-24",
+        "event": "price_change",
+        "player": "Kostoulas",
+        "from": 5.7,
+        "to": 5.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-24",
+        "event": "price_change",
+        "player": "Raya",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
       }
     ]
   },

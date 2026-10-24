@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-23",
+  "captured_at": "2026-10-24",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW8 squad — the GW8 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.6,
+    "captain_ep": 5.75,
     "vice": "Dewsbury-Hall",
     "vice_ep": 4.72,
     "bench_swaps": [
@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Bogle",
         "bench_ep": 3.95,
         "starter": "Gvardiol",
-        "starter_ep": 1.37
+        "starter_ep": 1.52
       },
       {
         "bench": "Belloumi",
@@ -144,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 1.37,
+        "ep_next": 1.52,
         "status": "ok"
       },
       {
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.6,
+        "ep_next": 5.75,
         "status": "ok"
       },
       {
@@ -252,10 +252,10 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-23",
-      "total_cost": 94.4,
+      "date": "2026-10-24",
+      "total_cost": 94.7,
       "prices": {
-        "Raya": 6.1,
+        "Raya": 6.2,
         "Gvardiol": 5.8,
         "Hall": 5.3,
         "Tarkowski": 6.2,
@@ -263,9 +263,9 @@ window.FPL_WILDCARD_WATCH = {
         "Dewsbury-Hall": 6.6,
         "Groß": 6.2,
         "Schade": 6.2,
-        "Tavernier": 6.2,
+        "Tavernier": 6.3,
         "Haaland": 15.7,
-        "Kostoulas": 5.7,
+        "Kostoulas": 5.8,
         "Tzolakis": 4.7,
         "Belloumi": 5.2,
         "Bogle": 4.7,
@@ -273,7 +273,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 1.8,
+    "total_delta": 2.1,
     "players": [
       {
         "name": "De Cuyper",
@@ -289,6 +289,24 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.8,
         "current_cost": 6.2,
         "delta": 0.4,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.8,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.3,
+        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -339,9 +357,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.7,
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -366,15 +384,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Tavernier",
-        "baseline_cost": 6.1,
-        "current_cost": 6.2,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Tzolakis",
         "baseline_cost": 4.6,
         "current_cost": 4.7,
@@ -387,15 +396,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Dewsbury-Hall",
         "baseline_cost": 6.6,
         "current_cost": 6.6,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.1,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -559,6 +559,30 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Groß",
         "from": 6.1,
         "to": 6.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-24",
+        "event": "price_change",
+        "player": "Kostoulas",
+        "from": 5.7,
+        "to": 5.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-24",
+        "event": "price_change",
+        "player": "Raya",
+        "from": 6.1,
+        "to": 6.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-24",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.2,
+        "to": 6.3,
         "delta": 0.1
       }
     ]

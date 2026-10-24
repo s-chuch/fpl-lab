@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-23 22:58 UTC",
+  "generated_at": "2026-10-24 12:30 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -27,8 +27,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Villa v Man City team news: Haaland + Manzambi start, Foden sub",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/villa-v-man-city-team-news-haaland-manzambi-start-foden-sub"
+    },
+    {
+      "source": "Scout",
+      "title": "FPL notes: More Gibbs-White frustration + Williams injury",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/fpl-notes-more-gibbs-white-frustration-williams-injury"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
-  "sites_with_articles": 0
+  "sites_with_articles": 1
 };

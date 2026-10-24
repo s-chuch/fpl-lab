@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-23T22:58:33.252419+00:00",
+    "fetched_at": "2026-10-24T12:30:38.094529+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -188,7 +188,7 @@
           "date": "2026-10-23",
           "competition": "Premier League",
           "opponent": "Nott'm Forest",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -241,7 +241,7 @@
           "date": "2026-10-23",
           "competition": "Premier League",
           "opponent": "Ipswich",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",

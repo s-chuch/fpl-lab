@@ -1280,13 +1280,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "7c9f30e0a170",
+  "code_sha": "87f8c09d6dc3",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-23T22:59:01+00:00",
-  "saved_at_et": "2026-10-23 6:59 PM ET",
+  "saved_at": "2026-10-24T12:31:12+00:00",
+  "saved_at_et": "2026-10-24 8:31 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1357,7 +1357,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.6
+    "xp": 5.75
    },
    {
     "club": "BOU",
@@ -1392,7 +1392,7 @@
     "id": 391,
     "name": "Gvardiol",
     "pos": "DEF",
-    "xp": 1.37
+    "xp": 1.52
    }
   ],
   "status": "pending",
@@ -1425,6 +1425,6 @@
    411,
    79
   ],
-  "xp": 51.8
+  "xp": 52.1
  }
 }
