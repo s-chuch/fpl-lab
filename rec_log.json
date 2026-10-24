@@ -1322,21 +1322,21 @@
   "backfilled": false,
   "bench": [
    572,
-   449,
    305,
-   138
+   138,
+   165
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "1647cb1e4792",
+  "code_sha": "1c16298aafaf",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T16:06:18+00:00",
-  "saved_at_et": "2026-10-24 12:06 PM ET",
+  "saved_at": "2026-10-24T16:38:31+00:00",
+  "saved_at_et": "2026-10-24 12:38 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1351,7 +1351,7 @@
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.6
+    "xp": 5.8
    },
    {
     "club": "BHA",
@@ -1361,18 +1361,25 @@
     "xp": 4.51
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
     "pos": "DEF",
-    "xp": 4.07
+    "xp": 3.13
+   },
+   {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.09
    },
    {
     "club": "FUL",
     "id": 261,
     "name": "Iwobi",
     "pos": "MID",
-    "xp": 4.7
+    "xp": 4.6
    },
    {
     "club": "BHA",
@@ -1386,7 +1393,14 @@
     "id": 268,
     "name": "King",
     "pos": "MID",
-    "xp": 3.68
+    "xp": 3.62
+   },
+   {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.4
    },
    {
     "club": "NEW",
@@ -1396,13 +1410,6 @@
     "xp": 3.33
    },
    {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.32
-   },
-   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
@@ -1410,25 +1417,11 @@
     "xp": 6.39
    },
    {
-    "club": "CHE",
-    "id": 165,
-    "name": "João Pedro",
-    "pos": "FWD",
-    "xp": 3.4
-   },
-   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
     "xp": 3.79
-   },
-   {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
-    "pos": "DEF",
-    "xp": 3.09
    },
    {
     "club": "IPS",
@@ -1443,6 +1436,13 @@
     "name": "Kostoulas",
     "pos": "FWD",
     "xp": 2.66
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": 2.54
    }
   ],
   "status": "pending",
@@ -1450,8 +1450,8 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Calafiori",
-    "out_id": 8
+    "out": "Tarkowski",
+    "out_id": 229
    },
    {
     "in": "Iwobi",
@@ -1466,15 +1466,15 @@
    1,
    4,
    115,
-   229,
+   8,
+   449,
    261,
    124,
    268,
-   453,
    154,
-   411,
-   165
+   453,
+   411
   ],
-  "xp": 54.0
+  "xp": 52.8
  }
 }

@@ -118,6 +118,12 @@ window.FPL_WILDCARD_WATCH = {
         "bench_ep": 4.07,
         "starter": "Hall",
         "starter_ep": 3.09
+      },
+      {
+        "bench": "Kostoulas",
+        "bench_ep": 2.66,
+        "starter": "João Pedro",
+        "starter_ep": 2.54
       }
     ],
     "bench_order": [
@@ -127,7 +133,13 @@ window.FPL_WILDCARD_WATCH = {
       "Kostoulas"
     ],
     "bench_order_changed": true,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "João Pedro",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
@@ -180,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.32,
+        "ep_next": 3.4,
         "status": "ok"
       },
       {
@@ -192,8 +204,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.4,
-        "status": "ok"
+        "ep_next": 2.54,
+        "status": "doubt"
       }
     ],
     "bench_ep": [

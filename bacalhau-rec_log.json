@@ -1280,13 +1280,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "1647cb1e4792",
+  "code_sha": "1c16298aafaf",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T16:06:33+00:00",
-  "saved_at_et": "2026-10-24 12:06 PM ET",
+  "saved_at": "2026-10-24T16:38:43+00:00",
+  "saved_at_et": "2026-10-24 12:38 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1301,7 +1301,7 @@
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.6
+    "xp": 5.8
    },
    {
     "club": "BHA",
@@ -1336,7 +1336,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.98
+    "xp": 4.75
    },
    {
     "club": "MUN",
@@ -1410,8 +1410,8 @@
     "out_id": 94
    }
   ],
-  "vice": 236,
-  "vice_name": "Dewsbury-Hall",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    4,

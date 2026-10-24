@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-24 16:06 UTC",
+  "generated_at": "2026-10-24 16:38 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [],
@@ -30,8 +30,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "3pm team news: Calafiori + Havertz benched",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/3pm-team-news-calafiori-havertz-benched"
+      "title": "Chelsea v Spurs team news: Why Pedro misses out, Quenda starts",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/chelsea-v-spurs-team-news-why-pedro-misses-out-quenda-starts"
     }
   ],
   "no_new": false,
