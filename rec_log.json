@@ -1330,13 +1330,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e527585c3bd1",
+  "code_sha": "c0b2138b7e0f",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T18:43:44+00:00",
-  "saved_at_et": "2026-10-24 2:43 PM ET",
+  "saved_at": "2026-10-24T22:20:05+00:00",
+  "saved_at_et": "2026-10-24 6:20 PM ET",
   "source": "plan",
   "squad": [
    {
