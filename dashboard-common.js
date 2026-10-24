@@ -837,6 +837,39 @@ function labNews(D,they){
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
+// Plan tab: template and differential picks per league (and overall), from data.leagues
+function labTemplateCard(D,they){
+  const L=D.leagues||{}, leagues=(L.mini||[]); if(!leagues.length&&!(L.overall_template||[]).length&&!(L.overall_diffs||[]).length) return "";
+  const Ydiff=they?"Their":"Your", missing=they?"they are":"you are", owns=they?"They own":"You own", lack=they?"they lack":"you lack";
+  const keys=[...leagues.map(l=>"l"+l.id),"all"]; let sel=keys[0];
+  try{const s=sessionStorage.getItem("lab:tpl"); if(keys.includes(s)) sel=s;}catch(_){}
+  const chip=(t,c)=>`<span class="chip${c?" "+c:""}">${t}</span>`;
+  const row=(title,items,empty)=>`<h4 class="lab-tplh">${title}</h4><div class="xi">${items.length?items.join(""):`<span class="note">${empty}</span>`}</div>`;
+  const view=k=>{
+    if(k==="all"){
+      const t=(L.overall_template||[]).map(x=>chip(`${esc(x.name)} · ${labNum(x.own,0)}%`)), d2=(L.overall_diffs||[]).map(x=>chip(`${esc(x.name)} · ${labNum(x.own,1)}%`,"ok"));
+      return row(`Template ${missing} missing (25%+ own it overall)`,t,`${owns} the overall template.`)+row(`${Ydiff} differentials (12% or fewer own them)`,d2,"No overall differentials.");
+    }
+    const lg=leagues.find(l=>"l"+l.id===k)||{}, T=lg.tactics||{}, rk=(x,dflt)=>x&&x.rank?"P"+x.rank:dflt;
+    const tpl=(lg.template||[]).map(x=>chip(`${esc(x.name)} · ${x.count}/${x.n}`));
+    const dif=(T.you_unique||[]).map(x=>chip(`${esc(x.name)} · ${labNum(x.own,0)}%${x.vs_a?" vs "+rk(T.first,"1st"):""}${x.vs_b?" vs "+rk(T.second,"2nd"):""}`,"ok"));
+    const sh=(T.they_share||[]).map(x=>chip(`${esc(x.name)} · ${x.count}/${x.n}`,"sit"));
+    const caps=(T.cap_last||[]).map(x=>`${esc(x.name)} ${x.count}`).join(" · ");
+    return (lg.picks_unlocked===false?`<p class="note" data-keep>Rivals' picks unlock after the deadline, so only ownership lists are shown until then.</p>`:"")
+      +row(`Template ${missing} missing`,tpl,`${owns} the league template.`)
+      +row(`${Ydiff} differentials vs 1st & 2nd`,dif,"Nothing rare enough to call a real difference right now.")
+      +row("1st & 2nd both own",sh,`They share nothing ${lack}.`)
+      +(caps?`<p class="note" data-keep>League captains last gameweek: ${caps}</p>`:"");
+  };
+  const pills=keys.map(k=>{const lg=leagues.find(l=>"l"+l.id===k); return `<button type="button" data-tpl="${k}" class="${k===sel?"on":""}">${k==="all"?"Overall":esc((lg&&lg.name)||k)}</button>`;}).join("");
+  return `<div class="card lab-tpl" id="labTpl" data-keep><h2>TEMPLATE &amp; DIFFERENTIALS</h2><div class="lab-stabs" data-keep>${pills}</div><div class="lab-tplb" data-keep>${view(sel)}</div></div>`;
+}
+function labTemplateWire(root,D,they){
+  const card=root.querySelector("#labTpl"); if(!card) return;
+  card.addEventListener("click",e=>{const b=e.target.closest("button[data-tpl]"); if(!b) return;
+    try{sessionStorage.setItem("lab:tpl",b.dataset.tpl);}catch(_){}
+    const fresh=document.createElement("div"); fresh.innerHTML=labTemplateCard(D,they); card.replaceWith(fresh.firstElementChild); labTemplateWire(root,D,they);});
+}
 function labLearning(D){
   const L=(D.predictions||{}).learning, snapN=((D.predictions||{}).snapshot||{}).players;
   const head=`<h3 class="lab-ph3">Model learning</h3>`;
@@ -1202,6 +1235,7 @@ function labShell(D,opt){
 <button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
 <button class="lab-tile tr" data-p="labTr" aria-expanded="false"><span class="lab-ic">${LAB_SVG.swap}</span><span class="lab-tx"><b class="lab-tt">TRANSFER</b><em>Make up to ${esc(String(Tr.ft))} free transfer${Tr.ft===1?"":"s"}:<br>${Tr.names}</em></span></button></div>
 <div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div>${labDecLast(D,they)}</div>
+${labTemplateCard(D,they)}
 ${labPitch(D,they,KEY)}
 ${labAcc("labChips","CHIPS","View chip status and strategy",labChips(D,they))}
 ${labAcc("labLeague","LEAGUE","Current standings and rivals",labLeague(D,they))}
@@ -1213,6 +1247,7 @@ ${labAcc("labNews","FPL NEWS","Injuries, suspensions &amp; key updates",labNews(
 </main>
 <nav class="lab-bottom">${tabs.map(([id,l,ic])=>`<button data-v="${id}">${ic}<span>${l.toUpperCase()}</span></button>`).join("")}</nav>`;
   document.body.insertBefore(root,document.body.firstChild);
+  try{ labTemplateWire(root,D,they); }catch(e){}
   // PLAN: live/deadline/chip banners stay at the top
   const top=root.querySelector(".lab-top");
   ["deadlineBanner","liveBar","chipAlert"].forEach(id=>{const e=document.getElementById(id); if(e) top.appendChild(e);});
