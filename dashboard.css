@@ -504,3 +504,13 @@ body.lab .lab-dsec h4 span{font-weight:800}
 #labTpl .lab-list li{padding:7px 0;font-size:13.5px}#labTpl .lab-list .lab-green{color:var(--green)}#labTpl .lab-list li span.note{width:auto;margin:0}
 #labTpl .lab-tplh{margin:12px 0 2px;font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
 #labTpl .lab-stabs{margin:6px 0 4px}
+
+#labTpl table.lab-tpt{width:100%;border-collapse:collapse;font-size:13px;display:table}
+#labTpl table.lab-tpt thead{display:table-header-group}#labTpl table.lab-tpt tbody{display:table-row-group}
+#labTpl table.lab-tpt tr{display:table-row;background:none;border:0;padding:0;margin:0}
+#labTpl table.lab-tpt th,#labTpl table.lab-tpt td{display:table-cell;padding:6px 3px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;vertical-align:middle}
+#labTpl table.lab-tpt th{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em}
+#labTpl table.lab-tpt th:first-child,#labTpl table.lab-tpt td.nm{text-align:left;white-space:normal;line-height:1.2}
+#labTpl table.lab-tpt td.nm .note{font-size:10.5px;width:auto;margin:0}
+#labTpl table.lab-tpt .pill{font-size:10px;padding:1px 6px}
+@media (max-width:340px){#labTpl table.lab-tpt .cp{display:none}}

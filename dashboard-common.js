@@ -839,10 +839,11 @@ function labNews(D,they){
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
 // Plan tab (bottom accordion): template and differential picks per league (and overall), from data.leagues, as lists
 // the Wildcard room card's layout, for the current squad against one mini-league: ownership count, captained-by, type
-function labTemplateTable(lg,they){
+function labTemplateTable(lg,they,D){
   const squads=lg.member_squads||[], me=squads.find(m=>m.me), rivals=squads.filter(m=>!m.me);
   if(!me||!rivals.length) return `<p class="note" data-keep>No squad data for this league yet.</p>`;
   const mine=(me.xi||[]).concat(me.bench||[]), n=rivals.length, key=p=>p.name+"|"+p.club;
+  const overall={}; (((D||{}).price_radar||{}).squad||[]).forEach(x=>{overall[x.name+"|"+x.club]=x.owned_pct;});
   const own={}, cap={}, info={};
   rivals.forEach(m=>{
     (m.xi||[]).concat(m.bench||[]).forEach(p=>{own[key(p)]=(own[key(p)]||0)+1; info[key(p)]=p;});
@@ -851,15 +852,16 @@ function labTemplateTable(lg,they){
   const pct=c=>Math.round(100*c/n), diffMax=Math.max(1,Math.floor(n/4));
   const tag=c=>c>=Math.ceil(n/2)?["Template","pos"]:c===0?["Unique","used"]:c<=diffMax?["Differential","mid"]:["Shared",""];
   const rows=mine.map(p=>({p,c:own[key(p)]||0,cc:cap[key(p)]||0})).sort((x,y)=>y.c-x.c).map(({p,c,cc})=>{
-    const [t,k]=tag(c), isC=p.name===me.captain, isV=p.name===me.vice&&!isC;
-    return `<tr><td>${nameCell(p.name,p.club)}${isC?` <span class="pill used">C</span>`:isV?` <span class="pill free">VC</span>`:""}</td><td>${c}/${n} (${pct(c)}%)</td><td>${cc||"–"}</td><td><span class="pill ${k}">${t}</span></td></tr>`;}).join("");
+    const [t,k]=tag(c), isC=p.name===me.captain, isV=p.name===me.vice&&!isC, ov=overall[key(p)];
+    return `<tr><td class="nm"><b>${esc(p.name)}</b>${isC?` <span class="pill used">C</span>`:isV?` <span class="pill free">VC</span>`:""}<br><span class="note">${esc(p.club||"")}</span></td><td>${c}/${n}</td><td>${pct(c)}%</td><td class="cp">${cc||"–"}</td><td>${ov!=null?labNum(ov,ov<10?1:0)+"%":"–"}</td><td><span class="pill ${k}">${t}</span></td></tr>`;}).join("");
   const myKeys=new Set(mine.map(key));
   const missing=Object.keys(own).filter(k=>!myKeys.has(k)&&own[k]>=Math.max(3,Math.ceil(n/3))).sort((x,y)=>own[y]-own[x]).slice(0,8)
     .map(k=>`<li><span class="who">${esc(info[k].name)} (${esc(info[k].club)}) · ${esc(info[k].pos||"")}</span><div class="detail">${own[k]}/${n} rivals (${pct(own[k])}%) own him${cap[k]?` · captained by ${cap[k]}`:""}</div></li>`).join("");
   const nT=mine.filter(p=>(own[key(p)]||0)>=Math.ceil(n/2)).length, nD=mine.filter(p=>(own[key(p)]||0)<=diffMax).length;
   const tp=they?"Their":"Your";
   return `<p class="note" data-keep><b>${nT}</b> of ${mine.length} picks are template (owned by half the league or more) · <b>${nD}</b> are differentials (owned by ${diffMax} or fewer) · against the other ${n} managers' current squads.</p>
-    <table class="table-compact" data-keep><thead><tr><th style="width:36%">${tp} player</th><th style="width:26%">League owns</th><th style="width:14%">Cap</th><th style="width:24%">Type</th></tr></thead><tbody>${rows}</tbody></table>
+    <table class="lab-tpt" data-keep><thead><tr><th>${tp} pick</th><th>Owns</th><th>%</th><th class="cp">Cap</th><th>Overall</th><th>Type</th></tr></thead><tbody>${rows}</tbody></table>
+    <p class="note" data-keep>Owns = how many of the other ${n} managers have him · Cap = how many captained him · Overall = owned by that % of all managers.</p>
     ${missing?`<h4 class="lab-tplh">League template ${they?"they're":"you're"} not playing</h4><ul class="chiplist" data-keep>${missing}</ul>`:""}`;
 }
 function labTemplateBody(D,they,sel){
@@ -870,11 +872,14 @@ function labTemplateBody(D,they,sel){
   const list=(title,items,empty)=>`<h4 class="lab-tplh">${title}</h4><ul class="lab-list" data-keep>${items.length?items.join(""):`<li class="note">${empty}</li>`}</ul>`;
   let view;
   if(sel==="all"){
-    view=list(`Template ${missing} missing (25%+ own it overall)`,(L.overall_template||[]).map(x=>li(x.name,`${labNum(x.own,0)}% own`)),`${owns} the overall template.`)
-        +list(`${Ydiff} differentials (12% or fewer own them)`,(L.overall_diffs||[]).map(x=>li(x.name,`${labNum(x.own,1)}% own`,"lab-green")),"No overall differentials.");
+    const sq=(((D||{}).price_radar||{}).squad||[]).slice().sort((x,y)=>(y.owned_pct||0)-(x.owned_pct||0));
+    const ot=x=>x>=25?["Template","pos"]:x<=12?["Differential","mid"]:["Shared",""];
+    const orows=sq.map(x=>{const [t,k]=ot(x.owned_pct||0); return `<tr><td class="nm"><b>${esc(x.name)}</b><br><span class="note">${esc(x.club||"")}</span></td><td>${labNum(x.owned_pct||0,(x.owned_pct||0)<10?1:0)}%</td><td>£${labNum(x.cost,1)}m</td><td><span class="pill ${k}">${t}</span></td></tr>`;}).join("");
+    view=(sq.length?`<table class="lab-tpt" data-keep><thead><tr><th>${Ydiff} pick</th><th>Overall</th><th>Price</th><th>Type</th></tr></thead><tbody>${orows}</tbody></table><p class="note" data-keep>Overall = owned by that % of all managers: template 25% or more, differential 12% or fewer.</p>`:"")
+        +list(`Template ${missing} missing (25%+ own it overall)`,(L.overall_template||[]).map(x=>li(x.name,`${labNum(x.own,0)}% own`)),`${owns} the overall template.`);
   }else{
     const lg=leagues.find(l=>"l"+l.id===sel)||{};
-    view=(lg.picks_unlocked===false?`<p class="note" data-keep>Rivals' picks unlock after the deadline, so these use the picks from the last locked gameweek.</p>`:"")+labTemplateTable(lg,they);
+    view=(lg.picks_unlocked===false?`<p class="note" data-keep>Rivals' picks unlock after the deadline, so these use the picks from the last locked gameweek.</p>`:"")+labTemplateTable(lg,they,D);
   }
   const pills=keys.map(k=>{const lg=leagues.find(l=>"l"+l.id===k); return `<button type="button" data-tpl="${k}" class="${k===sel?"on":""}">${k==="all"?"Overall":esc((lg&&lg.name)||k)}</button>`;}).join("");
   return `<div class="lab-stabs" data-keep>${pills}</div><div data-keep>${view}</div>`;
