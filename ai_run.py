@@ -547,6 +547,11 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         return r["xp"] / r["avail"] if r["avail"] > 0 else 0.0
     rot = sorted((r for r in rows if r["avail"] > 0 and fit_xp(r) >= 3.0 and 1 - r["start"] >= 0.15), key=lambda r: r["start"])[:top_n]
     rs_all = (risk or {}).get("recent_stats") or {}
+    def rot_kind(r):
+        """Why he is on the list: a fitness doubt, reported rotation news, or just his minutes history (graded separately: injuries are no skill)."""
+        if r["avail"] < 1:
+            return "fitness"
+        return "news" if any(str(x).startswith("rotation reported") for x in (r["risks"] or [])) else "minutes"
     def rot_why(r):
         out = []
         if r["avail"] < 1:
@@ -566,7 +571,7 @@ def build_predictions(boot, ds, teams_by_id, inputs, top_n=10, scale=None):
         "chances": chances,
         "_rows": [r for r in rows if r["xp"] >= 1.0],
         "clean_sheets": sheets,
-        "rotation": [{"id": r["id"], "team": r["team"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]),
+        "rotation": [{"id": r["id"], "team": r["team"], "name": r["name"], "club": r["club"], "pos": r["pos"], "fixture": r["fixture"], "rotate": round(100 * (1 - r["start"])), "start": round(100 * r["start"]), "kind": rot_kind(r),
                       "why": rot_why(r)} for r in rot],
         "scale": {c: s for c, s in scale.items() if s != 1.0},
     }

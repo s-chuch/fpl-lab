@@ -1498,7 +1498,7 @@ def main(team_id=TEAM_ID, out_path=None):
             pool1 = [r for r in (((data.get("targets") or {}).get("pool") or {}).get("1") or []) if (r["name"], r["club"]) not in owned]
             tgt = (pool1 or ((((data.get("targets") or {}).get("horizons") or {}).get("1") or {}).get("top") or []))[:10]       # what the Target tab shows first
             picks["ap"] = [{k: x[k] for k in ("id", "name", "club", "pos", "ap", "fixture") if k in x} for x in preds.get("ap", [])]
-            picks["rotation"] = [{k: x[k] for k in ("id", "team", "name", "club", "pos", "rotate", "fixture") if k in x} for x in preds.get("rotation", [])]
+            picks["rotation"] = [{k: x[k] for k in ("id", "team", "name", "club", "pos", "rotate", "fixture", "kind") if k in x} for x in preds.get("rotation", [])]
             picks[pred_track.TARGET] = [{"id": ids.get((t["name"], t["club"])), "name": t["name"], "club": t["club"], "pos": t.get("pos"), "score": t.get("score"), "xp": t.get("xp")} for t in tgt]
             pred_track.record(plog, preds["gw"], picks, datetime.now(timezone.utc))
             # per-player snapshot (inputs + chances + Target rank), the training data for tuning later

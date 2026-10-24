@@ -203,7 +203,7 @@ def grade(log, boot, get, process=None):
                 proc = None
         g["results"] = {c: [add_process(c, p, grade_pick(c, p, live, fixtures, boot_el), proc) for p in g["picks"].get(c, [])] for c in CATS}
         g["results"][TARGET] = [add_process(TARGET, p, grade_target(p, live, boot_el), proc) for p in g["picks"].get(TARGET, [])]
-        g["results"]["rotation"] = [grade_rotation(p, live) for p in g["picks"].get("rotation", [])]
+        g["results"]["rotation"] = [{**grade_rotation(p, live), "kind": p.get("kind") or "unspecified"} for p in g["picks"].get("rotation", [])]
         g["results"]["ap"] = [add_process("ap", p, grade_pick("ap", p, live, fixtures, boot_el), proc) for p in g["picks"].get("ap", [])]
         g["graded"] = True
     return log
@@ -370,13 +370,16 @@ def view(log, boot_players=None):
         pts[key] = [round(s_ / n_, 2) if n_ else None, n_]
     exp_ap = [pk.get("ap") for g in graded if g["results"].get(TARGET) for pk in g["picks"].get("ap", []) if pk.get("ap") is not None]
     pts["ap_expected"] = round(sum(exp_ap) / len(exp_ap), 2) if exp_ap else None
-    rot = [0, 0]
+    rot, rot_kinds = [0, 0], {}
     for g in graded:
         rs = g["results"].get("rotation", [])
         rot[0] += sum(1 for r in rs if r["hit"]); rot[1] += len(rs)
+        for r in rs:
+            k = rot_kinds.setdefault(r.get("kind") or "unspecified", [0, 0])
+            k[0] += 1 if r["hit"] else 0; k[1] += 1
     last = None
     if graded:
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
     return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
-            "overall": [h_all, n_all], "calibration": cal, "near": near, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "points": pts}
+            "overall": [h_all, n_all], "calibration": cal, "near": near, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "rotation_kinds": rot_kinds, "points": pts}

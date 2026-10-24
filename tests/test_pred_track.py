@@ -99,3 +99,13 @@ class AttackPoints(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class RotationKinds(unittest.TestCase):
+    def test_view_splits_rotation_results_by_reason_and_tolerates_old_picks(self):
+        log = {"gws": {"9": {"gw": 9, "graded": True, "picks": {}, "results": {"rotation": [
+            {"hit": True, "kind": "fitness"}, {"hit": True, "kind": "fitness"}, {"hit": False, "kind": "minutes"},
+            {"hit": True, "kind": "minutes"}, {"hit": False}]}}}}
+        v = pt.view(log)
+        self.assertEqual(v["rotation"], [3, 5])
+        self.assertEqual(v["rotation_kinds"], {"fitness": [2, 2], "minutes": [1, 2], "unspecified": [0, 1]})
