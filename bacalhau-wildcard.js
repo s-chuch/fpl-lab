@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Bogle",
         "bench_ep": 3.95,
         "starter": "Gvardiol",
-        "starter_ep": 2.71
+        "starter_ep": 2.65
       },
       {
         "bench": "Belloumi",
@@ -144,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Gvardiol",
         "pos": "DEF",
-        "ep_next": 2.71,
+        "ep_next": 2.65,
         "status": "ok"
       },
       {
