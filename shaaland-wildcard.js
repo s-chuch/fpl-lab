@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-24",
+  "captured_at": "2026-10-25",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -263,7 +263,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-24",
+      "date": "2026-10-25",
       "total_cost": 101.0,
       "prices": {
         "Raya": 6.2,

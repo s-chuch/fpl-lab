@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-25T00:00:22.977870+00:00",
+    "fetched_at": "2026-10-25T13:02:46.811625+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -38,7 +38,7 @@
           "date": "2026-10-24",
           "competition": "Premier League",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -305,7 +305,7 @@
           "date": "2026-10-24",
           "competition": "Premier League",
           "opponent": "Chelsea",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
