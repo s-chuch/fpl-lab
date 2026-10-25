@@ -1274,19 +1274,19 @@
    572,
    286,
    138,
-   321
+   94
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "eac06edb43aa",
+  "code_sha": "1180d98a854e",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-25T13:03:17+00:00",
-  "saved_at_et": "2026-10-25 9:03 AM ET",
+  "saved_at": "2026-10-25T22:23:54+00:00",
+  "saved_at_et": "2026-10-25 6:23 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1308,7 +1308,14 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.51
+    "xp": 4.72
+   },
+   {
+    "club": "LEE",
+    "id": 330,
+    "name": "Bogle",
+    "pos": "DEF",
+    "xp": 4.6
    },
    {
     "club": "EVE",
@@ -1318,18 +1325,18 @@
     "xp": 4.06
    },
    {
-    "club": "LEE",
-    "id": 330,
-    "name": "Bogle",
-    "pos": "DEF",
-    "xp": 3.95
-   },
-   {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 3.09
+    "xp": 3.8
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 5.28
    },
    {
     "club": "EVE",
@@ -1337,20 +1344,6 @@
     "name": "Dewsbury-Hall",
     "pos": "MID",
     "xp": 4.75
-   },
-   {
-    "club": "MUN",
-    "id": 427,
-    "name": "Mbeumo",
-    "pos": "MID",
-    "xp": 4.6
-   },
-   {
-    "club": "BOU",
-    "id": 68,
-    "name": "Tavernier",
-    "pos": "MID",
-    "xp": 4.07
    },
    {
     "club": "BHA",
@@ -1367,32 +1360,39 @@
     "xp": 6.39
    },
    {
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
+    "pos": "FWD",
+    "xp": 4.8
+   },
+   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.79
+    "xp": 4.23
    },
    {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 2.73
+    "xp": 3.5
    },
    {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 2.66
+    "xp": 3.11
    },
    {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.11
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.32
    }
   ],
   "status": "pending",
@@ -1404,27 +1404,27 @@
     "out_id": 391
    },
    {
-    "in": "Mbeumo",
-    "in_id": 427,
-    "out": "Schade",
-    "out_id": 94
+    "in": "Evanilson",
+    "in_id": 79,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 68,
+  "vice_name": "Tavernier",
   "xi": [
    1,
    4,
    115,
-   229,
    330,
+   229,
    449,
-   236,
-   427,
    68,
+   236,
    124,
-   411
+   411,
+   79
   ],
-  "xp": 56.4
+  "xp": 59.3
  }
 }

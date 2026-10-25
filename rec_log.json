@@ -1323,20 +1323,20 @@
   "bench": [
    572,
    305,
-   138,
+   94,
    165
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "eac06edb43aa",
+  "code_sha": "1180d98a854e",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-25T13:03:02+00:00",
-  "saved_at_et": "2026-10-25 9:03 AM ET",
+  "saved_at": "2026-10-25T22:23:43+00:00",
+  "saved_at_et": "2026-10-25 6:23 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1358,7 +1358,7 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.51
+    "xp": 4.72
    },
    {
     "club": "EVE",
@@ -1372,14 +1372,21 @@
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 3.09
+    "xp": 3.8
    },
    {
-    "club": "FUL",
-    "id": 261,
-    "name": "Iwobi",
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.6
+    "xp": 5.3
+   },
+   {
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 4.03
    },
    {
     "club": "BHA",
@@ -1396,20 +1403,6 @@
     "xp": 3.62
    },
    {
-    "club": "NEW",
-    "id": 453,
-    "name": "Barnes",
-    "pos": "MID",
-    "xp": 3.33
-   },
-   {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.23
-   },
-   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
@@ -1417,11 +1410,18 @@
     "xp": 6.39
    },
    {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 3.11
+   },
+   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.79
+    "xp": 4.23
    },
    {
     "club": "IPS",
@@ -1431,11 +1431,11 @@
     "xp": 2.89
    },
    {
-    "club": "BHA",
-    "id": 138,
-    "name": "Kostoulas",
-    "pos": "FWD",
-    "xp": 2.66
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.32
    },
    {
     "club": "CHE",
@@ -1454,10 +1454,10 @@
     "out_id": 8
    },
    {
-    "in": "Iwobi",
-    "in_id": 261,
-    "out": "Schade",
-    "out_id": 94
+    "in": "Tavernier",
+    "in_id": 68,
+    "out": "Palmer",
+    "out_id": 154
    }
   ],
   "vice": 115,
@@ -1468,13 +1468,13 @@
    115,
    229,
    449,
-   261,
+   68,
+   453,
    124,
    268,
-   453,
-   154,
-   411
+   411,
+   138
   ],
-  "xp": 53.8
+  "xp": 56.0
  }
 }

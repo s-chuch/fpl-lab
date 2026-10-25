@@ -110,20 +110,20 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Haaland",
     "captain_ep": 6.39,
-    "vice": "Dewsbury-Hall",
-    "vice_ep": 4.75,
+    "vice": "Tavernier",
+    "vice_ep": 5.28,
     "bench_swaps": [
       {
         "bench": "Bogle",
-        "bench_ep": 3.95,
+        "bench_ep": 4.6,
         "starter": "Gvardiol",
         "starter_ep": 2.65
       },
       {
         "bench": "Belloumi",
-        "bench_ep": 2.73,
+        "bench_ep": 3.5,
         "starter": "Schade",
-        "starter_ep": 2.05
+        "starter_ep": 2.32
       }
     ],
     "bench_order": [
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.09,
+        "ep_next": 3.8,
         "status": "ok"
       },
       {
@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.51,
+        "ep_next": 4.72,
         "status": "ok"
       },
       {
@@ -180,13 +180,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.05,
+        "ep_next": 2.32,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.07,
+        "ep_next": 5.28,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.66,
+        "ep_next": 3.11,
         "status": "ok"
       }
     ],
@@ -206,19 +206,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.79,
+        "ep_next": 4.23,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.73,
+        "ep_next": 3.5,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 3.95,
+        "ep_next": 4.6,
         "status": "ok"
       },
       {

@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-25T13:02:46.811625+00:00",
+    "fetched_at": "2026-10-25T22:23:31.268565+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -72,13 +72,7 @@
           "opponent": "Arsenal",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Brentford"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 6,
@@ -99,13 +93,7 @@
           "opponent": "Roma",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Bournemouth"
-          }
-        ]
+        "between": []
       },
       "EVE": {
         "rest_days": 4,
@@ -155,11 +143,6 @@
         },
         "between": [
           {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Newcastle"
-          },
-          {
             "date": "2026-10-28",
             "competition": "EFL Cup",
             "opponent": "Fulham"
@@ -208,11 +191,6 @@
         },
         "between": [
           {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Leeds"
-          },
-          {
             "date": "2026-10-28",
             "competition": "EFL Cup",
             "opponent": "Brentford"
@@ -259,13 +237,7 @@
           "opponent": "Spurs",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Sunderland"
-          }
-        ]
+        "between": []
       },
       "BRE": {
         "rest_days": 3,
@@ -287,11 +259,6 @@
           "days_after": 8
         },
         "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          },
           {
             "date": "2026-10-28",
             "competition": "EFL Cup",
@@ -340,11 +307,6 @@
           "days_after": 5
         },
         "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Liverpool"
-          },
           {
             "date": "2026-10-28",
             "competition": "EFL Cup",
@@ -427,11 +389,6 @@
         },
         "between": [
           {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Man Utd"
-          },
-          {
             "date": "2026-10-28",
             "competition": "EFL Cup",
             "opponent": "Aston Villa"
@@ -459,11 +416,6 @@
         },
         "between": [
           {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Crystal Palace"
-          },
-          {
             "date": "2026-10-29",
             "competition": "EFL Cup",
             "opponent": "Everton"
@@ -490,11 +442,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-10-25",
-            "competition": "Premier League",
-            "opponent": "Brighton"
-          },
           {
             "date": "2026-10-28",
             "competition": "EFL Cup",
