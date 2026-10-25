@@ -1280,13 +1280,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "c0b2138b7e0f",
+  "code_sha": "4b2e1446229b",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-24T22:20:18+00:00",
-  "saved_at_et": "2026-10-24 6:20 PM ET",
+  "saved_at": "2026-10-25T00:00:50+00:00",
+  "saved_at_et": "2026-10-24 8:00 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1294,14 +1294,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.63
+    "xp": 4.62
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.8
+    "xp": 6.0
    },
    {
     "club": "BHA",
@@ -1315,7 +1315,7 @@
     "id": 229,
     "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 4.07
+    "xp": 4.06
    },
    {
     "club": "LEE",
@@ -1425,6 +1425,6 @@
    124,
    411
   ],
-  "xp": 56.2
+  "xp": 56.4
  }
 }

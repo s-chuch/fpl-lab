@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.63,
+        "ep_next": 4.62,
         "status": "ok"
       },
       {
@@ -156,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.07,
+        "ep_next": 4.06,
         "status": "ok"
       },
       {

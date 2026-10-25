@@ -111,11 +111,11 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Haaland",
     "captain_ep": 6.39,
     "vice": "Raya",
-    "vice_ep": 4.63,
+    "vice_ep": 4.62,
     "bench_swaps": [
       {
         "bench": "Tarkowski",
-        "bench_ep": 4.07,
+        "bench_ep": 4.06,
         "starter": "Calafiori",
         "starter_ep": 2.35
       },
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.63,
+        "ep_next": 4.62,
         "status": "ok"
       },
       {
@@ -235,7 +235,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.07,
+        "ep_next": 4.06,
         "status": "ok"
       }
     ]
