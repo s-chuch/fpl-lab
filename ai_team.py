@@ -35,6 +35,7 @@ MIN_HIT_GAIN = HIT_COST + 1.5
 MAX_HITS = 2
 LEAGUE_AVG_TEAM_XG = 1.4   # goals per team per match, for scaling bookmaker goal expectations
 HALF_SPLIT = 20            # chips reset at GW20
+RESULT_VERSION = 2         # shape of a stored gameweek result; a settled result with an older one is rescored once (v2: subbed-off player kept on the bench)
 
 # Expected-points model knobs (values unchanged; each is a judgement call, backtested by calibrate.py)
 MINUTES_FALLING_FACTOR = 0.85   # a regular whose recent minutes fell well below his season share
@@ -729,7 +730,7 @@ def update(state, ctx):
     # 3. score every played gameweek from live data
     for key, p in state["history"].items():
         gw = p["gw"]
-        if p.get("result", {}).get("final"):
+        if p.get("result", {}).get("final") and p["result"].get("v") == RESULT_VERSION:
             continue
         try:
             live = ctx["live"](gw)
@@ -737,6 +738,7 @@ def update(state, ctx):
             continue
         res = score_plan(p, live, gw in finished)
         res["final"] = gw in settled
+        res["v"] = RESULT_VERSION
         p["result"] = res
         p["user_points"] = (ctx.get("user_points") or {}).get(gw)
     h = state["history"].values()

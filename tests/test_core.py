@@ -96,6 +96,14 @@ class ScorePlan(unittest.TestCase):
         self.assertEqual(next(l for l in res["lines"] if l["name"] == "MID12").get("sub"), "in")
         self.assertEqual(res["bench_pts"], 2)
 
+    def test_settled_result_with_an_old_shape_is_rescored_once(self):
+        self.assertEqual(ai_team.RESULT_VERSION, 2)
+        # the skip rule in update(): only a final result carrying the current version is left alone
+        keep = lambda r: bool(r.get("final")) and r.get("v") == ai_team.RESULT_VERSION
+        self.assertFalse(keep({"final": True}))
+        self.assertTrue(keep({"final": True, "v": ai_team.RESULT_VERSION}))
+        self.assertFalse(keep({"final": False, "v": ai_team.RESULT_VERSION}))
+
 
 class Model(unittest.TestCase):
     def test_defcon_raises_a_defenders_expected_points(self):
