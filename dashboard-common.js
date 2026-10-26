@@ -897,11 +897,22 @@ function labTemplateWire(root,D,they){
     body.innerHTML=labTemplateBody(D,they,b.dataset.tpl);});
 }
 function labLearning(D){
-  const L=(D.predictions||{}).learning, snapN=((D.predictions||{}).snapshot||{}).players;
+  const L=(D.predictions||{}).learning;
   const head=`<h3 class="lab-ph3">Model learning</h3>`;
-  if(!L) return head+`<p class="note" data-keep>The model compares its expected points with the points players actually score, per position, once each gameweek settles. From 150 player-gameweeks per position it nudges its numbers towards reality (never more than ±30% and pulled towards no change). First data after GW8 settles.</p>`;
-  const rows=["GKP","DEF","MID","FWD"].map(pos=>{const r=(L.per_position||{})[pos]||{}; const st=r.applied?`<b>${r.b>=1?"×":"×"}${labNum(r.b,2)}${r.a?` ${r.a>0?"+":""}${labNum(r.a,2)}`:""}</b>`:`<span class="note">collecting (${r.n||0}/150)</span>`; const bias=(r.mean_xp!=null)?`${labNum(r.mean_xp,1)} → ${labNum(r.mean_actual,1)}`:"–"; return `<tr><td>${pos}</td><td>${bias}</td><td>${st}</td></tr>`;}).join("");
-  return head+`<table class="lab-rtab"><thead><tr><th>Position</th><th>Model → actual (avg pts)</th><th>Correction</th></tr></thead><tbody>${rows}</tbody></table><p class="note" data-keep>${L.applied?`In use from the next refresh: points error ${L.mae_before} → ${L.mae_after} on the gameweeks learned from (GW${(L.gws||[]).join(", GW")}). It re-fits every refresh.`:`Not applied yet: waiting for 150 player-gameweeks per position. Graded so far: GW${(L.gws||[]).join(", GW")||"–"}.`} The same corrected expected points feed the AI team, Target, Predictions and the Plan.</p>`+labStartModel(L);
+  const intro=`<p class="note" data-keep>Every refresh the model saves its expected points for each player; once the gameweek settles it compares them with the points they scored, per position. From 150 player-gameweeks in a position it nudges that position's numbers towards reality (never more than ±30%, and pulled towards no change), and the corrected number feeds the AI team, Target, Predictions and the Plan. Until then nothing changes.</p>`;
+  if(!L) return head+intro+`<p class="note" data-keep>First data after GW8 settles.</p>`;
+  const PN={GKP:"Keepers",DEF:"Defenders",MID:"Midfielders",FWD:"Forwards"};
+  const rows=["GKP","DEF","MID","FWD"].map(pos=>{const r=(L.per_position||{})[pos]||{}, n=r.n||0, pct=Math.min(100,Math.round(100*n/150));
+    const gap=r.mean_xp!=null?r.mean_actual-r.mean_xp:null;
+    const bias=gap==null?"–":`${labNum(r.mean_xp,1)} → ${labNum(r.mean_actual,1)} <small class="${gap>0.15?"pos":gap<-0.15?"neg":""}">(${gap>0?"+":""}${labNum(gap,1)})</small>`;
+    const st=r.applied?`<b>×${labNum(r.b,2)}${r.a?` ${r.a>0?"+":""}${labNum(r.a,2)}`:""}</b>`:`<span class="lab-prog" title="${n} of 150 player-gameweeks"><i style="width:${pct}%"></i></span> <small>${n}/150</small>`;
+    return `<tr><td>${PN[pos]}</td><td>${bias}</td><td>${r.mae!=null?labNum(r.mae,2):"–"}</td><td>${st}</td></tr>`;}).join("");
+  const gws=(L.by_gw||[]).slice().reverse().map(g=>`<tr><td>GW${g.gw}</td><td>${g.n}</td><td>${labNum(g.xp,2)} → ${labNum(g.actual,2)}</td><td>${labNum(g.mae,2)}</td></tr>`).join("");
+  const M=L.misses||{}, mk=(a,sign)=>(a||[]).map(m=>`<div class="lab-pr"><span class="n">${esc(m.name||"")}${m.club?` <em>${esc(m.club)}</em>`:""} <em>${esc(m.pos)}</em></span><span class="v">${labNum(m.xp,1)} → <b>${m.actual}</b></span></div>`).join("");
+  const miss=(M.under||[]).length?`<h4 class="lab-ph4">Biggest misses · GW${M.gw} (model → actual points, players who played)</h4><p class="note" data-keep>Scored far more than expected</p><div class="lab-prs">${mk(M.under)}</div><p class="note" data-keep>Scored far less than expected</p><div class="lab-prs">${mk(M.over)}</div>`:"";
+  const foot=L.applied?`<p class="note" data-keep>In use from the next refresh: points error ${L.mae_before} → ${L.mae_after} on the gameweeks learned from (GW${(L.gws||[]).join(", GW")}). It re-fits every refresh.</p>`
+    :`<p class="note" data-keep>Not applied yet: each position needs 150 player-gameweeks (about 3 more gameweeks for the busiest positions). Graded so far: GW${(L.gws||[]).join(", GW")}. "Average error" is how many points the model is off per player on average; the bracket on "Model → actual" is how much too low (+) or too high (−) it is on average.</p>`;
+  return head+intro+`<table class="lab-rtab"><thead><tr><th>Position</th><th>Model → actual (avg pts)</th><th>Avg error</th><th>Correction</th></tr></thead><tbody>${rows}</tbody></table>${foot}${gws?`<h4 class="lab-ph4">By gameweek</h4><table class="lab-rtab"><thead><tr><th>GW</th><th>Players</th><th>Model → actual</th><th>Avg error</th></tr></thead><tbody>${gws}</tbody></table>`:""}${miss}`;
 }
 function labStartModel(L){
   const C=(L||{}).start_cal||{}, S=(L||{}).start||{}, pc=x=>x==null?"–":Math.round(100*x)+"%";

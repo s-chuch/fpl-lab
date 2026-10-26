@@ -100,6 +100,29 @@ def fit_start(plog):
     return per, {"n": len(rows), "brier": brier, "bands": cal}
 
 
+def gw_summary(plog):
+    """Per graded gameweek: players, mean model xp, mean actual, mean absolute error; plus the latest gameweek's biggest misses (ids; the page adds names)."""
+    by, misses = [], None
+    for key, g in sorted((plog.get("gws") or {}).items(), key=lambda kv: int(kv[0])):
+        if not g.get("graded"):
+            continue
+        cols = g.get("cols") or []
+        try:
+            ii, ip, ix, io, im = (cols.index(c) for c in ("id", "pos", "xp", "o_pts", "o_min"))
+        except ValueError:
+            continue
+        rows = [r for r in g.get("rows") or [] if len(r) > io and r[ix] is not None and r[io] is not None]
+        if not rows:
+            continue
+        by.append({"gw": int(key), "n": len(rows), "xp": round(sum(r[ix] for r in rows) / len(rows), 2), "actual": round(sum(r[io] for r in rows) / len(rows), 2),
+                   "mae": round(sum(abs(r[ix] - r[io]) for r in rows) / len(rows), 2)})
+        played = [r for r in rows if (r[im] or 0) > 0]          # a player who did not play is a minutes miss, not a points-model miss
+        ranked = sorted(played, key=lambda r: r[io] - r[ix])
+        pick = lambda r: {"id": r[ii], "pos": r[ip], "xp": round(r[ix], 1), "actual": r[io], "min": r[im]}
+        misses = {"gw": int(key), "under": [pick(r) for r in ranked[::-1][:5]], "over": [pick(r) for r in ranked[:5]]}
+    return by, misses
+
+
 def fit(plog, now=None):
     data = collect(plog)
     per, before, after = {}, [], []
@@ -115,7 +138,8 @@ def fit(plog, now=None):
             b_s = max(B_RANGE[0], min(B_RANGE[1], b_s))
             a_s = (sum(ys) / n - b_s * sum(xs) / n) * k
             a_s = max(A_RANGE[0], min(A_RANGE[1], a_s))
-            row.update({"a_raw": round(a, 3), "b_raw": round(b, 3), "mean_xp": round(sum(xs) / n, 2), "mean_actual": round(sum(ys) / n, 2)})
+            row.update({"a_raw": round(a, 3), "b_raw": round(b, 3), "mean_xp": round(sum(xs) / n, 2), "mean_actual": round(sum(ys) / n, 2),
+                        "mae": round(sum(abs(x - y) for x, y in pts) / n, 2)})
             if n >= MIN_ROWS:
                 row.update({"a": round(a_s, 3), "b": round(b_s, 3), "applied": True})
             before += [abs(x - y) for x, y in pts]
@@ -127,6 +151,7 @@ def fit(plog, now=None):
             "mae_before": round(sum(before) / len(before), 3) if before else None,
             "mae_after": round(sum(after) / len(after), 3) if after else None,
             "applied": any(r["applied"] for r in per.values())}
+    doc["by_gw"], doc["misses"] = gw_summary(plog)
     doc["start"], doc["start_cal"] = fit_start(plog)
     return doc
 

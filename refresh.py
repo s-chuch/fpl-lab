@@ -1516,6 +1516,12 @@ def main(team_id=TEAM_ID, out_path=None):
             try:
                 import learn
                 preds["learning"] = learn.update(pl)           # compare the model's expected points with what happened; used from the next run
+                _by = {e["id"]: e for e in boot["elements"]}
+                _tm = {t["id"]: t["short_name"] for t in boot["teams"]}
+                for _k in ("under", "over"):
+                    for _m in ((preds["learning"].get("misses") or {}).get(_k) or []):
+                        _e = _by.get(_m["id"]) or {}
+                        _m["name"], _m["club"] = _e.get("web_name", "?"), _tm.get(_e.get("team"), "")
             except Exception as e:
                 _warn(f"learn: {type(e).__name__}: {e}")
             pred_track.save(pred_track.PLAYER_FILE, pl)

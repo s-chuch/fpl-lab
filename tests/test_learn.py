@@ -45,6 +45,18 @@ class Learn(unittest.TestCase):
         self.assertFalse(learn.fit(log)["applied"])
 
 
+class Summary(unittest.TestCase):
+    def test_per_gameweek_error_and_biggest_misses(self):
+        cols = ["id", "pos", "xp", "o_min", "o_pts"]
+        log = {"gws": {"8": {"graded": True, "cols": cols, "rows": [
+            [1, "DEF", 3.0, 90, 12], [2, "MID", 4.0, 90, -1], [3, "FWD", 5.0, 0, 0], [4, "MID", 2.0, 90, 2]]}}}
+        by, misses = learn.gw_summary(log)
+        self.assertEqual(by[0]["n"], 4)
+        self.assertEqual(misses["under"][0]["id"], 1)            # most points above expectation
+        self.assertEqual(misses["over"][0]["id"], 2)             # most below; the player who did not play is left out
+        self.assertNotIn(3, [m["id"] for m in misses["over"] + misses["under"]])
+
+
 class AdjustXp(unittest.TestCase):
     def test_adjust_applies_only_applied_positions_and_keeps_zero(self):
         import ai_team
