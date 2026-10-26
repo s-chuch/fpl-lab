@@ -1178,6 +1178,138 @@
   "hits": 0,
   "saved_at": "2026-10-23T13:13:23+00:00",
   "saved_at_et": "2026-10-23 9:13 AM ET",
+  "score": {
+   "captain": {
+    "diff": 6,
+    "model": "Mbeumo",
+    "model_mult": 2,
+    "model_pts": 2,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 8
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": 9,
+   "lineup": {
+    "diff": -2,
+    "model_autosubs": [
+     {
+      "in": "Kostoulas",
+      "out": "João Pedro"
+     }
+    ],
+    "model_bench_pts": 5,
+    "you_autosubs": [],
+    "you_bench_pts": 7
+   },
+   "model": 38,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 7
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Calafiori",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Hall",
+     "played": true,
+     "pts": 5
+    },
+    {
+     "mult": 2,
+     "name": "Mbeumo",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 0
+    },
+    {
+     "mult": 1,
+     "name": "King",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Haaland",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "Kostoulas",
+     "played": true,
+     "pts": 2
+    }
+   ],
+   "transfers": {
+    "diff": 5,
+    "model": [
+     {
+      "in": "Mbeumo",
+      "in_pts": 2,
+      "net": 0,
+      "out": "Schade",
+      "out_pts": 2
+     },
+     {
+      "in": "Dewsbury-Hall",
+      "in_pts": 2,
+      "net": -6,
+      "out": "Barnes",
+      "out_pts": 8
+     }
+    ],
+    "model_hits": 0,
+    "model_net": -6,
+    "you": [
+     {
+      "in": "Palmer",
+      "in_pts": -1,
+      "net": -1,
+      "out": "Saka",
+      "out_pts": 0
+     }
+    ],
+    "you_hits": 0,
+    "you_net": -1
+   },
+   "verdict": "You +9",
+   "you": 47
+  },
+  "scored_at_et": "2026-10-26 3:04 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1286,7 +1418,7 @@
     "xp": 2.17
    }
   ],
-  "status": "frozen",
+  "status": "scored",
   "transfers": [
    {
     "in": "Mbeumo",
@@ -1330,13 +1462,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "4cf0b1b9c803",
+  "code_sha": "1cbf8916dde3",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-26T14:58:09+00:00",
-  "saved_at_et": "2026-10-26 10:58 AM ET",
+  "saved_at": "2026-10-26T19:04:58+00:00",
+  "saved_at_et": "2026-10-26 3:04 PM ET",
   "source": "plan",
   "squad": [
    {

@@ -1,35 +1,49 @@
 {
  "version": 1,
- "updated": "2026-10-26T14:58:15+00:00",
- "gws": [],
+ "updated": "2026-10-26T19:05:05+00:00",
+ "gws": [
+  8
+ ],
  "per_position": {
   "GKP": {
-   "n": 0,
+   "n": 19,
    "a": 0.0,
    "b": 1.0,
    "applied": false
   },
   "DEF": {
-   "n": 0,
+   "n": 81,
    "a": 0.0,
    "b": 1.0,
-   "applied": false
+   "applied": false,
+   "a_raw": 1.554,
+   "b_raw": 0.659,
+   "mean_xp": 2.98,
+   "mean_actual": 3.52
   },
   "MID": {
-   "n": 0,
+   "n": 99,
    "a": 0.0,
    "b": 1.0,
-   "applied": false
+   "applied": false,
+   "a_raw": 1.408,
+   "b_raw": 0.415,
+   "mean_xp": 2.69,
+   "mean_actual": 2.53
   },
   "FWD": {
-   "n": 0,
+   "n": 21,
    "a": 0.0,
    "b": 1.0,
-   "applied": false
+   "applied": false,
+   "a_raw": -1.092,
+   "b_raw": 1.383,
+   "mean_xp": 3.17,
+   "mean_actual": 3.29
   }
  },
- "mae_before": null,
- "mae_after": null,
+ "mae_before": 2.262,
+ "mae_after": 2.262,
  "applied": false,
  "start": {
   "25": {
@@ -38,19 +52,59 @@
    "applied": false
   },
   "50": {
-   "n": 0,
-   "mult": 1.0,
-   "applied": false
+   "n": 4,
+   "mult": 0.983,
+   "applied": false,
+   "pred": 0.308,
+   "actual": 0.25
   },
   "75": {
-   "n": 0,
-   "mult": 1.0,
-   "applied": false
+   "n": 10,
+   "mult": 0.931,
+   "applied": false,
+   "pred": 0.458,
+   "actual": 0.3
   }
  },
  "start_cal": {
-  "n": 0,
-  "brier": null,
-  "bands": []
+  "n": 220,
+  "brier": 0.1355,
+  "bands": [
+   {
+    "lo": 0,
+    "hi": 0.2,
+    "n": 3,
+    "pred": 0.18,
+    "actual": 0.0
+   },
+   {
+    "lo": 0.2,
+    "hi": 0.4,
+    "n": 16,
+    "pred": 0.287,
+    "actual": 0.375
+   },
+   {
+    "lo": 0.4,
+    "hi": 0.6,
+    "n": 25,
+    "pred": 0.528,
+    "actual": 0.68
+   },
+   {
+    "lo": 0.6,
+    "hi": 0.8,
+    "n": 35,
+    "pred": 0.719,
+    "actual": 0.714
+   },
+   {
+    "lo": 0.8,
+    "hi": 1.0,
+    "n": 141,
+    "pred": 0.896,
+    "actual": 0.901
+   }
+  ]
  }
 }

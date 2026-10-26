@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-26 14:57 UTC",
+  "generated_at": "2026-10-26 19:04 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -183,51 +183,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Palmer (CHE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Palmer",
-      "club": "CHE",
-      "tags": [],
-      "id": 154,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "FPL notes: Pedro injury latest + why Palmer isn\u2019t flagged  Plus, an update on James Maddison after Spurs beat Chelsea",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/fpl-notes-pedro-injury-latest-why-palmer-isnt-flagged",
-          "title": "FPL notes: Pedro injury latest + why Palmer isn\u2019t flagged"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "FPL notes: Pedro injury latest + why Palmer isn\u2019t flagged  Plus, an update on James Maddison after Spurs beat Chelsea",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/24/fpl-notes-pedro-injury-latest-why-palmer-isnt-flagged",
-          "title": "FPL notes: Pedro injury latest + why Palmer isn\u2019t flagged"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "It is worth mentioning that Cole Palmer is available for Gameweek 9 despite his red card against Spurs as the Chelsea midfielder will serve his suspension midweek in the Carabao Cup.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "mixed"
     },
     {
       "text": "Schade (BRE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -463,8 +418,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: More Muharemovic + Trafford joy, but DCL quiet",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-notes-more-muharemovic-trafford-joy-but-dcl-quiet"
+      "title": "Who is close to a ban or suspended in FPL Gameweek 9?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-9-2"
     }
   ],
   "no_new": false,
