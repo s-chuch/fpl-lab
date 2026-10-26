@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   age:
@@ -20,4 +21,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Restart the refresh if it has stopped
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # GitHub throttles scheduled workflows; a stopped refresh is restarted from here (before any age check turns red)
+          age=$(python -c 'import re,datetime as d;m=re.search(r"\"generated_at\":\s*\"(\d{4}-\d\d-\d\d \d\d:\d\d)",open("data.js").read(4000));print(int((d.datetime.utcnow()-d.datetime.strptime(m.group(1),"%Y-%m-%d %H:%M")).total_seconds()//3600) if m else 99)')
+          echo "data.js is ${age}h old"
+          if [ "$age" -ge 12 ]; then gh workflow run refresh.yml --ref main || echo "dispatch failed"; fi
       - run: python check_data.py --age-only
