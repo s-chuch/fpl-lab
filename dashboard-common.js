@@ -1334,4 +1334,15 @@ ${labTemplateAcc(D,they)}
   });
   let v="plan"; try{v=localStorage.getItem(KEY)||"plan";}catch(e){}
   show(v);
+  // a phone browser can keep a backgrounded tab (with its old code and data) for hours: when it comes back after 10+ minutes, reload and
+  // return to the same More page and scroll position
+  const loadedAt=Date.now();
+  try{ const r=JSON.parse(sessionStorage.getItem("lab:resume")||"null"); sessionStorage.removeItem("lab:resume");
+    if(r&&r.page) openPage(r.page); if(r&&r.y) setTimeout(()=>window.scrollTo(0,r.y),60); }catch(_){}
+  document.addEventListener("visibilitychange",()=>{
+    if(document.visibilityState!=="visible"||Date.now()-loadedAt<10*60*1000) return;
+    if(/^(INPUT|TEXTAREA|SELECT)$/.test((document.activeElement||{}).tagName||"")) return;
+    try{ const open=pages.querySelector(".lab-mpage:not([hidden])"); sessionStorage.setItem("lab:resume",JSON.stringify({page:open&&root.querySelector("#labMore").classList.contains("on")?open.id:"",y:window.scrollY})); }catch(_){}
+    location.reload();
+  });
 }
