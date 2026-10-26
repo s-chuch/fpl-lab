@@ -381,5 +381,11 @@ def view(log, boot_players=None):
     if graded:
         g = graded[-1]
         last = {"gw": g["gw"], "picks": {c: [{**p, **r} for p, r in zip(g["picks"].get(c, []), g["results"].get(c, []))] for c in CATS}}
-    return {"graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
+    def slim(ps, rs):       # who was picked and what he did, for the Scorecard's player lists
+        return [{"name": p.get("name"), "club": p.get("club"), "pos": p.get("pos"), "p": p.get("p"), "xp": p.get("xp"),
+                 "hit": r.get("hit"), "goal": r.get("goal"), "assist": r.get("assist"), "min": r.get("min"),
+                 "started": r.get("started"), "why": r.get("why")} for p, r in zip(ps, rs)]
+    by_gw = [{"gw": g["gw"], "model": slim(g["picks"].get("gi", []), g["results"].get("gi", [])),
+              "target": slim(g["picks"].get(TARGET, []), g["results"].get(TARGET, []))} for g in graded][-6:]
+    return {"by_gw": by_gw, "graded": len(graded), "pending": [g["gw"] for g in gws if not g.get("graded")], "per_gw": per_gw, "total": total,
             "overall": [h_all, n_all], "calibration": cal, "near": near, "why": why, "last": last, "target": tgt, "model_same_weeks": cmp_, "rotation": rot, "rotation_kinds": rot_kinds, "points": pts}

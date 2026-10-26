@@ -913,6 +913,11 @@ function labStartModel(L){
   const doubts=["25","50","75"].map(k=>{const r=S[k]||{}; return `<tr><td>${dl[k]}</td><td>${pc(r.pred)}</td><td>${pc(r.actual)}</td><td>${r.n||0}${r.applied?` · ×${labNum(r.mult,2)}`:" · collecting"}</td></tr>`;}).join("");
   return head+intro+`<table class="lab-rtab"><thead><tr><th>Predicted</th><th>Said</th><th>Actual</th><th>Players</th></tr></thead><tbody>${bands}</tbody></table><table class="lab-rtab"><thead><tr><th>Fitness</th><th>Said</th><th>Actual</th><th>Players</th></tr></thead><tbody>${doubts}</tbody></table>`;
 }
+function labPickWhat(r){   // what a graded pick did, from the saved reason ("1 goal, 0 assists" / "90 min, no goal or assist" / "did not play")
+  const w=r.why||"", g=r.goal===true?1:Number((w.match(/(\d+) goals?/)||[])[1]||0), a=r.assist===true?1:Number((w.match(/(\d+) assists?/)||[])[1]||0);
+  if(g||a) return [g?(g>1?g+" goals":"goal"):"",a?(a>1?a+" assists":"assist"):""].filter(Boolean).join(" + ");
+  return /did not play|^only |did not start/.test(w)?"did not play":"no goal or assist";
+}
 function labScorecard(D){
   const P=D.predictions||{}, R=P.record||{}, T=R.target||{}, M=R.model_same_weeks||{};
   const snap=P.snapshot?`<p class="note">Player snapshots: ${P.snapshot.players} players saved for GW${P.snapshot.gw} (${P.snapshot.saved_gws} gameweek${P.snapshot.saved_gws===1?"":"s"} so far). Each holds the inputs, the model's chances and Target's rank at the deadline, and what the player then did, so the model can be tuned on this season's own data.</p>`:"";
@@ -923,12 +928,15 @@ function labScorecard(D){
   const body=rows.map(([l,m,t])=>{const mp=m&&m[1]?pc(m[0],m[1]):null, tp=pc(t[0],t[1]); const win=mp!=null&&tp!=null&&mp!==tp?(mp>tp?"m":"t"):""; return `<tr><td>${l}</td><td class="${win==="m"?"lab-win":""}">${m?fmt(m[0],m[1]):"–"}</td><td class="${win==="t"?"lab-win":""}">${fmt(t[0],t[1])}</td></tr>`;}).join("");
   const mg=Object.fromEntries((R.per_gw||[]).map(r=>[r.gw,r]));
   const gws=(T.per_gw||[]).slice().reverse().map(t=>{const m=mg[t.gw]||{}; const c=v=>v&&v[1]!=null?`${v[0]}`:"–"; return `<tr><td>GW${t.gw}</td><td>${c(m.goals)} / ${c(m.assists)} / ${c(m.gi)}</td><td>${t.goal} / ${t.assist} / ${t.gi}</td></tr>`;}).join("");
+  const pk=r=>`<div class="lab-pr"><span class="n"><i class="lab-ok ${r.hit?"y":"n"}">${r.hit?"✓":"✗"}</i> ${esc(r.name||"")}${r.club?` <em>${esc(r.club)}</em>`:""}</span><span class="v ${r.hit?"y":""}">${labPickWhat(r)}</span></div>`;
+  const plist=(t,a)=>`<h4 class="lab-ph4">${t} · ${(a||[]).filter(r=>r.hit).length} of ${(a||[]).length}</h4><div class="lab-prs">${(a||[]).map(pk).join("")||'<p class="note">Not saved.</p>'}</div>`;
+  const byGw=(R.by_gw||[]).slice().reverse().map((g,i)=>`<details class="fold"${i===0?" open":""}><summary><h4 class="lab-ph4">GW${g.gw} players: who was picked and what they did</h4></summary>${plist("Model top 10 (goal or assist)",g.model)}${plist("Target top 10",g.target)}</details>`).join("");
   const gm=pc(T.gi,T.n), mm=M.gi&&M.gi[1]?pc(M.gi[0],M.gi[1]):null;
   const verdict=(T.n<30)?`Only ${T.n} picks each so far: too few to call a winner.`:(mm==null?"":(gm>mm?"Target is ahead on goal or assist.":gm<mm?"The model is ahead on goal or assist.":"Level on goal or assist."));
   return `<p class="note" data-keep>Same gameweeks, same marking, top 10 each. ${verdict}</p>
     <table class="lab-rtab"><thead><tr><th>Top 10 that…</th><th>Model</th><th>Target</th></tr></thead><tbody>${body}${ptsRow}${T.started!=null?`<tr><td>Target picks who started</td><td>–</td><td>${fmt(T.started,T.n)}</td></tr>`:""}</tbody></table>
     <h4 class="lab-ph4">By gameweek (goal / assist / either)</h4>
-    <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${snap}${labLearning(D)}`;
+    <table class="lab-rtab"><thead><tr><th>GW</th><th>Model</th><th>Target</th></tr></thead><tbody>${gws}</tbody></table>${byGw}${snap}${labLearning(D)}`;
 }
 // ---------------------------------------------------------------- PREDICTIONS: the live gameweek (live-data.js .pred, live_update.pred_live)
 function labPredLiveHtml(){
