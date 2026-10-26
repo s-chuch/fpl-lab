@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-26T21:15:21+00:00",
+ "updated": "2026-10-26T21:17:32+00:00",
  "gws": [
   8
  ],
@@ -19,7 +19,8 @@
    "a_raw": 1.554,
    "b_raw": 0.659,
    "mean_xp": 2.98,
-   "mean_actual": 3.52
+   "mean_actual": 3.52,
+   "mae": 2.82
   },
   "MID": {
    "n": 99,
@@ -29,7 +30,8 @@
    "a_raw": 1.408,
    "b_raw": 0.415,
    "mean_xp": 2.69,
-   "mean_actual": 2.53
+   "mean_actual": 2.53,
+   "mae": 1.79
   },
   "FWD": {
    "n": 21,
@@ -39,12 +41,99 @@
    "a_raw": -1.092,
    "b_raw": 1.383,
    "mean_xp": 3.17,
-   "mean_actual": 3.29
+   "mean_actual": 3.29,
+   "mae": 2.35
   }
  },
  "mae_before": 2.262,
  "mae_after": 2.262,
  "applied": false,
+ "by_gw": [
+  {
+   "gw": 8,
+   "n": 220,
+   "xp": 2.89,
+   "actual": 3.14,
+   "mae": 2.32
+  }
+ ],
+ "misses": {
+  "gw": 8,
+  "under": [
+   {
+    "id": 4,
+    "pos": "DEF",
+    "xp": 4.3,
+    "actual": 17,
+    "min": 90
+   },
+   {
+    "id": 31,
+    "pos": "DEF",
+    "xp": 3.4,
+    "actual": 14,
+    "min": 90
+   },
+   {
+    "id": 166,
+    "pos": "FWD",
+    "xp": 3.5,
+    "actual": 13,
+    "min": 81
+   },
+   {
+    "id": 579,
+    "pos": "DEF",
+    "xp": 2.1,
+    "actual": 10,
+    "min": 90
+   },
+   {
+    "id": 60,
+    "pos": "DEF",
+    "xp": 3.4,
+    "actual": 11,
+    "min": 90
+   }
+  ],
+  "over": [
+   {
+    "id": 154,
+    "pos": "MID",
+    "xp": 4.4,
+    "actual": -1,
+    "min": 79
+   },
+   {
+    "id": 114,
+    "pos": "DEF",
+    "xp": 3.7,
+    "actual": -1,
+    "min": 45
+   },
+   {
+    "id": 504,
+    "pos": "DEF",
+    "xp": 5.5,
+    "actual": 1,
+    "min": 90
+   },
+   {
+    "id": 124,
+    "pos": "MID",
+    "xp": 4.5,
+    "actual": 0,
+    "min": 90
+   },
+   {
+    "id": 115,
+    "pos": "DEF",
+    "xp": 5.3,
+    "actual": 1,
+    "min": 90
+   }
+  ]
+ },
  "start": {
   "25": {
    "n": 0,
