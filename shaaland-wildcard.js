@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-25",
+  "captured_at": "2026-10-26",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -25,15 +25,15 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "DEF",
-      "name": "Calafiori",
-      "club": "ARS",
-      "fixture": "LIV (A)"
-    },
-    {
-      "pos": "DEF",
       "name": "Hall",
       "club": "NEW",
       "fixture": "EVE (H)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Calafiori",
+      "club": "ARS",
+      "fixture": "LIV (A)"
     },
     {
       "pos": "MID",
@@ -68,16 +68,16 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "MCI (A)"
+    },
+    {
+      "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
       "fixture": "BHA (H)",
       "captain": true
-    },
-    {
-      "pos": "FWD",
-      "name": "João Pedro",
-      "club": "CHE",
-      "fixture": "MUN (H)"
     }
   ],
   "bench": [
@@ -89,9 +89,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "MCI (A)"
+      "name": "João Pedro",
+      "club": "CHE",
+      "fixture": "MUN (H)"
     },
     {
       "pos": "DEF",
@@ -117,20 +117,14 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tarkowski",
         "bench_ep": 4.06,
         "starter": "Calafiori",
-        "starter_ep": 2.35
-      },
-      {
-        "bench": "Kostoulas",
-        "bench_ep": 3.11,
-        "starter": "João Pedro",
-        "starter_ep": 1.82
+        "starter_ep": 1.88
       }
     ],
     "bench_order": [
       "Tzolakis",
       "Tarkowski",
-      "Kostoulas",
-      "Davis"
+      "Davis",
+      "João Pedro"
     ],
     "bench_order_changed": true,
     "availability_flags": [
@@ -159,16 +153,16 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Calafiori",
-        "pos": "DEF",
-        "ep_next": 2.35,
-        "status": "doubt"
-      },
-      {
         "name": "Hall",
         "pos": "DEF",
         "ep_next": 3.8,
         "status": "ok"
+      },
+      {
+        "name": "Calafiori",
+        "pos": "DEF",
+        "ep_next": 1.88,
+        "status": "doubt"
       },
       {
         "name": "Barnes",
@@ -201,16 +195,16 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "ep_next": 3.11,
+        "status": "ok"
+      },
+      {
         "name": "Haaland",
         "pos": "FWD",
         "ep_next": 6.39,
         "status": "ok"
-      },
-      {
-        "name": "João Pedro",
-        "pos": "FWD",
-        "ep_next": 1.82,
-        "status": "doubt"
       }
     ],
     "bench_ep": [
@@ -221,10 +215,10 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Kostoulas",
+        "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 3.11,
-        "status": "ok"
+        "ep_next": 1.82,
+        "status": "doubt"
       },
       {
         "name": "Davis",
@@ -263,22 +257,22 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-25",
+      "date": "2026-10-26",
       "total_cost": 101.0,
       "prices": {
         "Raya": 6.2,
         "De Cuyper": 5.3,
-        "Calafiori": 6.0,
         "Hall": 5.3,
+        "Calafiori": 6.0,
         "Barnes": 6.1,
         "King": 5.6,
         "Groß": 6.2,
         "Schade": 6.2,
         "Palmer": 9.8,
-        "Haaland": 15.7,
-        "João Pedro": 7.9,
-        "Tzolakis": 4.7,
         "Kostoulas": 5.8,
+        "Haaland": 15.7,
+        "Tzolakis": 4.7,
+        "João Pedro": 7.9,
         "Davis": 4.0,
         "Tarkowski": 6.2
       }
