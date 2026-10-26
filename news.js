@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-26 12:23 UTC",
+  "generated_at": "2026-10-26 14:57 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -111,6 +111,45 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
+    },
+    {
+      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [
+        "transfer target"
+      ],
+      "id": 334,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after deliveri...",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after delivering FPL returns and Bonus Point...",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "good"
     },
     {
       "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -317,7 +356,32 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Wissa (NEW) \u2014 Leaning sell / avoid (2 sell/avoid, 1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Trafford (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Trafford",
+      "club": "LEE",
+      "tags": [],
+      "id": 385,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Rayan the shot monster Rayan tops the comparison for shots inside the box (19) and big chances (nine) but his goal at Old Trafford was his first of the season.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "neutral"
+    },
+    {
+      "text": "Wissa (NEW) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -330,7 +394,7 @@ window.FPL_NEWS = {
       "id": 464,
       "verdict": "Leaning sell / avoid",
       "stance": {
-        "sell": 2,
+        "sell": 1,
         "risk": 1
       },
       "quotes": [
@@ -351,15 +415,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/25/2pm-team-news-bruno-wissa-thiaw-benched-as-schade-sangare-start",
           "title": "2pm team news: Bruno, Wissa + Thiaw benched, as Schade + Sangare start"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Time to sell Wissa + Thiaw, Barnes goal, Palace woes",
-          "stance": [
-            "sell"
-          ],
-          "url": "",
-          "title": ""
         }
       ],
       "facts": [
@@ -407,29 +462,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/"
-    },
-    {
       "source": "Scout",
-      "title": "FPL notes: Wirtz injury, Isak scores again + Brighton blanks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-notes-wirtz-injury-isak-scores-again-brighton-blanks"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Time to sell Wissa + Thiaw, Barnes goal, Palace woes",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-notes-time-to-sell-wissa-thiaw-barnes-goal-palace-woes"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: Jackson in demand, Maresca on Cherki, Ndiaye + Guehi subs",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-notes-jackson-in-demand-maresca-on-cherki-ndiaye-guehi-subs"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL notes: McBurnie goal, Sangare DefCon + time to sell Schade?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/25/fpl-notes-mcburnie-goal-sangare-defcon-time-to-sell-schade"
+      "title": "FPL notes: More Muharemovic + Trafford joy, but DCL quiet",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-notes-more-muharemovic-trafford-joy-but-dcl-quiet"
     }
   ],
   "no_new": false,
