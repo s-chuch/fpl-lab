@@ -559,14 +559,14 @@ def score_plan(plan, live, final):
     got = lambda i: (live.get(i) or {}).get("points", 0)
     played = lambda i: ((live.get(i) or {}).get("minutes", 0) or 0) > 0
     xi, bench = list(plan["xi"]), list(plan["bench"])
-    subs = []
+    subs, swaps = [], []
     # Until the gameweek is over a player on 0 minutes may simply not have kicked off yet: no auto-sub or
     # vice-captain promotion is applied (they would show up and then reverse), so the total is a floor.
     gk_bench = [b for b in bench if pos_of[b] == "GKP"] if final else []
     for b in gk_bench:
         starter = next((s for s in xi if pos_of[s] == "GKP"), None)
         if starter is not None and not played(starter) and played(b):
-            xi[xi.index(starter)] = b; subs.append({"out": name_of[starter], "in": name_of[b]})
+            xi[xi.index(starter)] = b; subs.append({"out": name_of[starter], "in": name_of[b]}); swaps.append((starter, b))
     for b in [b for b in bench if pos_of[b] != "GKP"] if final else []:
         if not played(b):
             continue
@@ -575,16 +575,20 @@ def score_plan(plan, live, final):
                 continue
             trial = [b if i == s else i for i in xi]
             if _valid_formation(trial, pos_of):
-                xi = trial; subs.append({"out": name_of[s], "in": name_of[b]}); break
+                xi = trial; subs.append({"out": name_of[s], "in": name_of[b]}); swaps.append((s, b)); break
     cap = plan["captain"] if (not final or played(plan["captain"]) or not played(plan["vice"])) else plan["vice"]
     mult = 3 if plan.get("chip") == "3xc" else 2
+    came_on = {b for _, b in swaps}
     lines = [{"id": i, "name": name_of[i], "pos": pos_of[i], "pts": got(i), "mult": mult if i == cap else 1,
-              "played": played(i)} for i in xi]
+              "played": played(i), **({"sub": "in"} if i in came_on else {})} for i in xi]
     gross = sum(l["pts"] * l["mult"] for l in lines)
     bench_pts = sum(got(b) for b in bench if b not in xi)
     if plan.get("chip") == "bboost":
         gross += bench_pts                       # Bench Boost: the bench scores too
-    bench_lines = [{"id": b, "name": name_of[b], "pos": pos_of[b], "pts": got(b), "played": played(b)} for b in bench if b not in xi]
+    went_off = {b: o for o, b in swaps}          # a player who came on leaves his slot on the bench to the one he replaced
+    bench_lines = [{"id": o, "name": name_of[o], "pos": pos_of[o], "pts": got(o), "played": played(o), "off": True} if b in went_off else
+                   {"id": b, "name": name_of[b], "pos": pos_of[b], "pts": got(b), "played": played(b)}
+                   for b in bench for o in [went_off.get(b)]]
     return {"points": gross - plan.get("hit_cost", 0), "gross": gross, "hits": plan.get("hit_cost", 0),
             "captain": name_of[cap], "lines": lines, "autosubs": subs, "bench_pts": bench_pts, "bench_lines": bench_lines, "final": final,
             "provisional": not final}

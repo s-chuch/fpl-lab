@@ -83,6 +83,19 @@ class ScorePlan(unittest.TestCase):
         self.assertEqual(provisional["captain"], "FWD13")
         self.assertEqual(final["captain"], "FWD14")      # vice takes over once it is certain
 
+    def test_substituted_player_stays_on_the_bench(self):
+        live = {i: {"minutes": 90, "points": 2} for i in range(1, 16)}
+        live[15] = {"minutes": 0, "points": 0}      # a forward did not play
+        live[12] = {"minutes": 70, "points": 8}     # the bench midfielder did
+        live[6] = live[7] = {"minutes": 0, "points": 0}   # the bench defenders did not
+        plan = self.plan()
+        res = ai_team.score_plan(plan, live, True)
+        self.assertEqual(res["autosubs"][0]["in"], "MID12")
+        self.assertEqual(len(res["bench_lines"]), 4)
+        self.assertTrue(next(b for b in res["bench_lines"] if b["name"] == "FWD15").get("off"))
+        self.assertEqual(next(l for l in res["lines"] if l["name"] == "MID12").get("sub"), "in")
+        self.assertEqual(res["bench_pts"], 2)
+
 
 class Model(unittest.TestCase):
     def test_defcon_raises_a_defenders_expected_points(self):

@@ -505,10 +505,11 @@ function aiResultsCard(D,who){
     const isC=!isBench&&l.mult>1, isV=!isBench&&p.vice===l.id&&!isC&&r.captain&&r.captain!==l.name&&false;
     const pts=l.played?String(l.pts*(l.mult||1)):"–";
     const cls=!l.played?" yet":(l.pts>=6?" hot":l.pts<=1?" cold":"");
-    return `<div class="lab-pk lab-rk${cls}" title="${esc(x.name)} ${esc(x.club||"")}: ${l.played?l.pts+" pts"+(l.mult>1?" ×"+l.mult:""):"yet to play / did not play"}"><span class="lab-bl">${isC?`<i class="b c">C</i>`:p.vice===l.id&&!isBench?`<i class="b v">V</i>`:""}</span>${labShirt(D,{club:x.club,pos:x.pos})}<span class="lab-pn${x.name.length>10?" long":""}">${esc(x.name)}</span><span class="lab-pf lab-pts">${pts}${isC&&l.played?` <small>×${l.mult}</small>`:""}</span></div>`;};
+    return `<div class="lab-pk lab-rk${cls}" title="${esc(x.name)} ${esc(x.club||"")}: ${l.played?l.pts+" pts"+(l.mult>1?" ×"+l.mult:""):"yet to play / did not play"}"><span class="lab-bl">${isC?`<i class="b c">C</i>`:p.vice===l.id&&!isBench?`<i class="b v">V</i>`:""}${l.sub==="in"?`<i class="b subin" title="came on as an auto-sub">↑</i>`:l.off?`<i class="b subout" title="auto-subbed off">↓</i>`:""}</span>${labShirt(D,{club:x.club,pos:x.pos})}<span class="lab-pn${x.name.length>10?" long":""}">${esc(x.name)}</span><span class="lab-pf lab-pts">${pts}${isC&&l.played?` <small>×${l.mult}</small>`:""}</span></div>`;};
   const rows=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${(r.lines||[]).filter(l=>l.pos===pos).map(l=>card(l,false)).join("")}</div>`).join("");
   const bench=(r.bench_lines||[]).map(l=>card(l,true)).join("");
-  const subs=(r.autosubs||[]).length?`<p class="note">Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" → "+esc(s.in)).join(", ")}</p>`:"";
+  const ptsOf=n=>{const l=[...(r.lines||[]),...(r.bench_lines||[])].find(x=>x.name===n); return l?l.pts:0;};
+  const subs=(r.autosubs||[]).length?`<p class="note" data-keep>Auto-subs: ${(r.autosubs).map(s=>esc(s.out)+" ↓ → "+esc(s.in)+" ↑ (+"+(ptsOf(s.in)-ptsOf(s.out))+")").join(", ")}</p>`:"";
   // gameweek-by-gameweek: the AI team against you (both net of hits); only settled gameweeks count towards the tally
   const asc=[...H].reverse(), W2c=esc(W2);
   let aiW=0, youW=0, lvl=0;
