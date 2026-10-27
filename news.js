@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-27 12:50 UTC",
+  "generated_at": "2026-10-27 14:10 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -970,8 +970,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Pedro, Haaland, Szoboszlai: Latest team news ahead of FPL Gameweek 9",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/pedro-haaland-szoboszlai-latest-team-news-ahead-of-fpl-gameweek-9"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
