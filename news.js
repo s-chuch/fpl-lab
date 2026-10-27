@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-27 12:04 UTC",
+  "generated_at": "2026-10-27 12:05 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -970,24 +970,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Tattico Fantasy Serie A Gameweek 9: Expert team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/tattico-fantasy-serie-a-gameweek-9-expert-team-reveals"
-    },
-    {
-      "source": "Scout",
-      "title": "WUCL Fantasy Matchday 3: Team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/wucl-fantasy-matchday-3-team-reveal"
-    },
-    {
-      "source": "Scout",
-      "title": "Saudi Fantasy: Round 12 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/saudi-fantasy-round-12-team-reveals-2"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
