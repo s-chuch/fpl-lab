@@ -47,7 +47,7 @@ def build(plan, vals, state, signals=None):
         alts = _best_swaps(squad_ids, buys, state.get("bank", 0.0), vals, signals) if squad_ids else []
         chosen = {(m["out_id"], m["in_id"]) for m in tr}
         for m in tr:
-            why = [f"Expected gain {m['gain']:+.1f} points over this and next gameweek; a free move needs {T.MIN_FREE_GAIN * T.hurdle_mult():.1f}"
+            why = [f"Expected gain {m['gain']:+.1f} points over this and next gameweek; a free move needs {T.free_need(state.get('ft') or 1, 0):.1f} (a banked free transfer is worth about 2.5 points next week)"
                    + (f", this one is a -4 hit that needs {T.MIN_HIT_GAIN * T.hurdle_mult():.1f}" if m.get("hit") else "") + "."]
             if m.get("xp_in") is not None:
                 why.append(f"This gameweek: {m['in']} {_fmt(m['xp_in'])} xP against {m['out']} {_fmt(m['xp_out'])} xP.")
@@ -62,7 +62,7 @@ def build(plan, vals, state, signals=None):
     elif squad_ids:
         buys = {int(k): v for k, v in (state.get("buys") or {}).items()}
         alts = _best_swaps(squad_ids, buys, state.get("bank", 0.0), vals, signals)
-        need = T.MIN_FREE_GAIN * T.hurdle_mult()
+        need = T.free_need(state.get('ft') or 1, 0)
         why = [f"No move: the best swap is worth {alts[0][0]:+.1f}, below the {need:.1f} a free transfer must add, so the free transfer is banked."] if alts else ["No move: no affordable swap improves the squad."]
         out.append({"kind": "transfer", "title": "No transfer", "why": why, "alts": [f"{name(o)} → {name(i)} {g:+.1f}" for g, o, i in alts]})
     # ----- captain and vice

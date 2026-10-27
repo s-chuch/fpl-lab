@@ -89,3 +89,18 @@ class Defaults(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class FreeTransferHurdle(unittest.TestCase):
+    def setUp(self):
+        self._saved = ai_team.LEARNED_DOC
+        ai_team.LEARNED_DOC = {}
+
+    def tearDown(self):
+        ai_team.LEARNED_DOC = self._saved
+
+    def test_a_banked_transfer_is_only_spent_on_a_real_gain_unless_it_would_be_lost(self):
+        self.assertEqual(ai_team.free_need(1, 0), ai_team.FREE_HURDLE)
+        self.assertEqual(ai_team.free_need(3, 0), ai_team.FREE_HURDLE)
+        self.assertEqual(ai_team.free_need(5, 0), ai_team.MIN_FREE_GAIN)      # already at the cap: waiting wastes one
+        self.assertEqual(ai_team.free_need(5, 1), ai_team.FREE_HURDLE)        # the second move of the week would leave 3 banked

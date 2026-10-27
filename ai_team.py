@@ -27,9 +27,11 @@ LOCK_HOURS = 12
 HIT_COST = 4
 NEXT_WEIGHT = 0.35        # weight of the gameweek after the target when scoring a squad
 BENCH_WEIGHT = 0.18       # a bench player's xP counts this much towards the squad score
-MIN_FREE_GAIN = 0.6       # a free transfer must add at least this many points
+MIN_FREE_GAIN = 0.6       # a free transfer must add at least this many points when a banked one would be lost anyway (already holding FT_CAP)
+FREE_HURDLE = 1.5         # otherwise it must add this much: a banked free transfer buys a second swap next week that realised ~2.1-2.7 points in two seasons of history (calibrate_decisions.py)
+FT_CAP = 5                # FPL lets 5 free transfers bank
 HYSTERESIS = MIN_FREE_GAIN   # a new set of transfers must beat the previous (kept) one by this much to replace it
-KEEP_FLOOR = MIN_FREE_GAIN / 2   # kept moves that have decayed below this gain are dropped
+KEEP_FLOOR = FREE_HURDLE / 2   # kept moves that have decayed below this gain are dropped
 KEEP_AVAIL = 0.75          # a kept "in" player below this fitness forces a re-plan
 MIN_HIT_GAIN = HIT_COST + 1.5
 MAX_HITS = 2
@@ -87,6 +89,11 @@ def captain_elite_weight():
 def hurdle_mult():
     t = LEARNED_DOC.get("transfers") or {}
     return t.get("mult", 1.0) if t.get("applied") else 1.0
+
+
+def free_need(ft, n):
+    """Points the n-th free transfer of a plan must add: low only when waiting would waste one (already at the bank cap), else FREE_HURDLE (x learned)."""
+    return (MIN_FREE_GAIN if ft - n >= FT_CAP else FREE_HURDLE) * hurdle_mult()
 
 
 def adjust_xp(pos, xp):
@@ -456,7 +463,7 @@ def plan_transfers(squad, buys, bank, ft, vals, signals=None):
                 gain = squad_score([v["id"] if i == out else i for i in squad], vals) - cur + adj(v["id"]) - adj(out)
                 if gain > top[0]:
                     top = (gain, out, v["id"], sell)
-        need = (MIN_FREE_GAIN if n < ft else MIN_HIT_GAIN) * hurdle_mult()
+        need = (free_need(ft, n) if n < ft else MIN_HIT_GAIN * hurdle_mult())
         if top[1] is None or top[0] < need:
             break
         gain, out, inn, sell = top

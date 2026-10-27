@@ -42,10 +42,39 @@ def rows_for(season):
             last4 = sorted({int(r["round"]) for r in prior})[-4:]
             pts4 = [sum(C._f(r["total_points"]) for r in prior if int(r["round"]) == g) for g in last4]
             form4 = (sum(pts4) / len(pts4)) * len(cur) if pts4 else 0.0      # FPL's `form` (points per game, last ~month), which is what the live `ep_next` equals this season
-            out[(el_id, t)] = {"pos": C.norm_pos(cur[0]["position"]), "price": C._f(cur[0].get("value")) / 10.0,
+            apps = [r for r in prior if C._f(r["minutes"]) > 0][-4:]
+            uw = {"apps": len(apps), "xg": sum(C._f(r.get("expected_goals")) for r in apps), "xa": sum(C._f(r.get("expected_assists")) for r in apps)} if apps else None
+            m_recent = ai_team.model_xp(el, fixtures, t - 1, uw, None) if uw else None
+            last_gw = max(int(r["round"]) for r in prior)
+            last_pts = sum(C._f(r["total_points"]) for r in prior if int(r["round"]) == last_gw)
+            out[(el_id, t)] = {"pos": C.norm_pos(cur[0]["position"]), "last_pts": last_pts, "xp_recent": m_recent, "price": C._f(cur[0].get("value")) / 10.0,
                                "xp": ai_team.model_xp(el, fixtures, t - 1, None, None), "form4": form4,
                                "fpl": sum(C._f(r["xP"]) for r in cur), "act": sum(C._f(r["total_points"]) for r in cur)}
     return out
+
+
+def test_haul(data):
+    """After a 10+ point gameweek: what the model expected, what FPL's form said, and what he actually scored next."""
+    groups = {"after a 10+ haul": [], "after 6-9": [], "after 0-5": []}
+    for r in data.values():
+        k = "after a 10+ haul" if r["last_pts"] >= 10 else "after 6-9" if r["last_pts"] >= 6 else "after 0-5"
+        groups[k].append(r)
+    out = {}
+    for k, v in groups.items():
+        out[k] = {"n": len(v), "model": sum(r["xp"] for r in v) / len(v), "form4": sum(r["form4"] for r in v) / len(v),
+                  "fpl_xp": sum(r["fpl"] for r in v) / len(v), "actual": mean_se([r["act"] for r in v])}
+    return out
+
+
+def test_recent(data):
+    """Weight on the last-four-appearance xG/xA window (the live model uses 0.45): m(u) is linear in u between season-only and the live blend."""
+    rows = [r for r in data.values() if r["xp_recent"] is not None]
+    res = {}
+    for u in (0.0, 0.2, 0.45, 0.7, 1.0):
+        pred = [r["xp"] + (u / 0.45) * (r["xp_recent"] - r["xp"]) for r in rows]
+        err = [abs(p - r["act"]) for p, r in zip(pred, rows)]
+        res[u] = sum(err) / len(err)
+    return res
 
 
 def mean_se(v):
@@ -155,6 +184,42 @@ def test_b(data, w, seed=7, proxy="fpl"):
             "first": mean_se(best_first), "second": mean_se(second), "second_pred": None}
 
 
+def test_caps(data):
+    """Variants of how FPL's form (the live ep_next) enters: raw at w, or capped at c x the model's own number so a hot week cannot pull a player far above it."""
+    variants = [("w=0.2 raw (live)", 0.2, None), ("w=0.1 raw", 0.1, None), ("w=0.0", 0.0, None),
+                ("w=0.2 cap 1.5x", 0.2, 1.5), ("w=0.2 cap 1.25x", 0.2, 1.25), ("w=0.3 cap 1.25x", 0.3, 1.25), ("w=0.3 cap 1.5x", 0.3, 1.5)]
+    gws = sorted({g for (_, g) in data})
+    out = {}
+    for name, w, cap in variants:
+        def bl(r):
+            f = r["form4"] if cap is None else min(r["form4"], cap * r["xp"] + 0.5)
+            return (1 - w) * r["xp"] + w * f
+        err = [abs(bl(r) - r["act"]) for r in data.values()]
+        haul = [r for r in data.values() if r["last_pts"] >= 10]
+        bias = sum(bl(r) - r["act"] for r in haul) / len(haul)
+        tops = {1: [], 3: [], 10: []}
+        for g in gws:
+            sub = sorted(((bl(r), r["act"]) for (e, gg), r in data.items() if gg == g), key=lambda x: -x[0])
+            if len(sub) < 30:
+                continue
+            for k in tops:
+                tops[k].append(sum(a for _, a in sub[:k]) / k)
+        out[name] = {"mae": sum(err) / len(err), "haul_bias": bias, **{f"top{k}": mean_se(v) for k, v in tops.items()}}
+    return out
+
+
+def chasing():
+    for sn in SEASONS:
+        data = rows_for(sn)
+        print(f"\n== {sn}: after a big week, what happens next")
+        for k, r in test_haul(data).items():
+            print(f"{k:18} n={r['n']:5}  model {r['model']:.2f}  FPL form {r['form4']:.2f}  FPL xP {r['fpl_xp']:.2f}  actual {r['actual'][0]:.2f}±{r['actual'][1]:.2f}")
+        print("last-four-appearance weight -> MAE:", {u: round(m, 4) for u, m in test_recent(data).items()})
+        print("how FPL form enters (haul bias = prediction minus actual for players after a 10+ week):")
+        for name, r in test_caps(data).items():
+            print(f"  {name:18} MAE {r['mae']:.3f}  haul bias {r['haul_bias']:+.2f}  top1 {r['top1'][0]:.2f}  top3 {r['top3'][0]:.2f}±{r['top3'][1]:.2f}  top10 {r['top10'][0]:.2f}±{r['top10'][1]:.2f}")
+
+
 def main():
     out = {}
     for s in SEASONS:
@@ -182,4 +247,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if "--chasing" in sys.argv:
+        chasing()
+        sys.exit(0)
     json.dump(main(), open(Path(__file__).resolve().parent / "docs" / "decision_backtest.json", "w"), indent=1, default=str)
