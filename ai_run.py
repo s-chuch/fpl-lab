@@ -448,21 +448,25 @@ def enrich_with_model(data, boot, ds, teams_by_id, inputs, signals):
             if xp_n < 2.5 * min(n, len(per_gw)):
                 continue
             et = e["element_type"]
+            xgi_raw = float(e.get("expected_goal_involvements_per_90") or 0)
+            xgi_adj = round(ai_team.shrunk_per90(xgi_raw, int(e.get("minutes") or 0), POS[et]), 2) if et in (2, 3) else round(xgi_raw, 2)
             big = (["DC per 90", round(float(e.get("defensive_contribution_per_90") or 0), 1)] if et == 2 else
                    ["Saves per 90", round(float(e.get("saves_per_90") or 0), 1)] if et == 1 else
                    ["xG", round(float(e.get("expected_goals") or 0), 1)] if et == 4 else
                    ["xGI per 90", round(float(e.get("expected_goal_involvements_per_90") or 0), 2)])
             r = {"id": eid, "name": e["web_name"], "club": short[e["team"]], "pos": POS[et], "cost": e["now_cost"] / 10,
                  "form": float(e.get("form") or 0), "owned_pct": float(e.get("selected_by_percent") or 0), "xp": xp_n, "xp_n": min(n, len(per_gw)),
-                 "xgi90": round(float(e.get("expected_goal_involvements_per_90") or 0), 2), "big": big,
+                 "xgi90": xgi_adj, "big": big if et != 3 else ["xGI per 90", xgi_adj],
                  "pts": int(e.get("total_points") or 0), "vpm": round((e.get("total_points") or 0) / (e["now_cost"] / 10), 2) if e["now_cost"] else 0}
+            if et in (2, 3) and abs(xgi_raw - xgi_adj) >= 0.03:       # a thin sample: say so on the card
+                r["why"] = [f"xGI per 90 {xgi_raw:.2f} on {int(e.get('minutes') or 0)} min, pulled towards the position average"]
             s = starts_of(r)
             if s is not None:
                 r["start"] = round(100 * s)
                 if s < START_FLOOR:
                     continue
                 if s < START_WARN:
-                    r["why"] = [f"Rotation risk · starts ~{r['start']}%"]
+                    r["why"] = [f"Rotation risk · starts ~{r['start']}%"] + (r.get("why") or [])
             t_ = trend_of(e, rec_stats.get(eid), played)
             if t_:
                 r["trend"] = t_

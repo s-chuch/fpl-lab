@@ -91,6 +91,14 @@ def hurdle_mult():
     return t.get("mult", 1.0) if t.get("applied") else 1.0
 
 
+def shrunk_per90(raw, minutes, pos):
+    """A per-90 xG + xA rate pulled towards the position's prior by the same weight model_xp uses (full weight after SHRINK_MINUTES), so a rate built on a few
+    games cannot outrank a regular's."""
+    w = min(1.0, max(0.0, minutes) / SHRINK_MINUTES)
+    pr = PRIOR[pos]
+    return w * raw + (1 - w) * (pr["xg"] + pr["xa"])
+
+
 def free_need(ft, n):
     """Points the n-th free transfer of a plan must add: low only when waiting would waste one (already at the bank cap), else FREE_HURDLE (x learned)."""
     return (MIN_FREE_GAIN if ft - n >= FT_CAP else FREE_HURDLE) * hurdle_mult()

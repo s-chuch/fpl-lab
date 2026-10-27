@@ -104,3 +104,12 @@ class FreeTransferHurdle(unittest.TestCase):
         self.assertEqual(ai_team.free_need(3, 0), ai_team.FREE_HURDLE)
         self.assertEqual(ai_team.free_need(5, 0), ai_team.MIN_FREE_GAIN)      # already at the cap: waiting wastes one
         self.assertEqual(ai_team.free_need(5, 1), ai_team.FREE_HURDLE)        # the second move of the week would leave 3 banked
+
+
+class ShrunkRate(unittest.TestCase):
+    def test_thin_samples_are_pulled_towards_the_position_prior(self):
+        prior = ai_team.PRIOR["MID"]["xg"] + ai_team.PRIOR["MID"]["xa"]
+        self.assertAlmostEqual(ai_team.shrunk_per90(0.74, 0, "MID"), prior)
+        self.assertGreater(ai_team.shrunk_per90(0.74, 215, "MID"), prior)
+        self.assertLess(ai_team.shrunk_per90(0.74, 215, "MID"), 0.74)
+        self.assertEqual(ai_team.shrunk_per90(0.5, 600, "MID"), 0.5)         # a regular's own rate is untouched
