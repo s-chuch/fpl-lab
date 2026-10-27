@@ -553,6 +553,37 @@ function aiDecisionCard(D,who){
   const learning=`<details class="fold" data-keep><summary><h3>What it is learning from these results</h3></summary><ul class="legend-list" data-keep><li>Rest multiplier: ${ST(F.rest)}</li><li>Minutes-falling multiplier: ${ST(F.minutes)}</li><li>Reported-rotation multiplier: ${ST(F.rotation)}</li><li>Top-rated players (captain pool): ${(L.top||{}).applied?`shifted ${labNum(L.top.shift,2)} pts`:`${(L.top||{}).n||0} of 40 rows, no shift yet`}</li><li>Top-50 managers' ownership bonus: ${(L.elite||{}).own_applied?`learned weight ${labNum(L.elite.own_weight,2)}`:`${(L.elite||{}).own_n||0} of 150 rows, using 0.40`}; captain tie-break: ${(L.elite||{}).cap_applied?`weight ${labNum(L.elite.cap_weight,2)}`:`${(L.elite||{}).cap_n||0} of 60 rows, off`}</li><li>Free-move hurdle: ${(L.transfers||{}).applied?`raised ×${labNum(L.transfers.mult,2)}`:`${(L.transfers||{}).n||0} of 10 moves reviewed, unchanged`}</li></ul><p class="note" data-keep>Every number is pulled towards today's value until enough settled results back it, and bounded, so one bad week cannot swing the AI.</p></details>`;
   return `<div class="card"><h2>AI decisions · GW${p.gw} ${open?'<span class="pill free">open</span>':p.locked?'<span class="pill">locked</span>':""}</h2><div class="lab-stabs" id="labAiDGw">${pills}</div>${tot}${items}${none}${learning}</div>`;
 }
+// ---------------------------------------------------------------- REGRESSION TRACKER (regression.py -> data["regression"])
+function regSpark(v){
+  if(!v||v.length<2) return "";
+  const w=96,h=26,lo=Math.min(0,...v),hi=Math.max(0,...v),sp=(hi-lo)||1, y=x=>(h-2-((x-lo)/sp)*(h-4)).toFixed(1), step=w/(v.length-1);
+  const pts=v.map((x,i)=>`${(i*step).toFixed(1)},${y(x)}`).join(" ");
+  return `<svg class="lab-spark" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><line x1="0" x2="${w}" y1="${y(0)}" y2="${y(0)}" class="z"/><polyline points="${pts}" fill="none"/><circle cx="${w}" cy="${y(v[v.length-1])}" r="2.2"/></svg>`;
+}
+function regressionCard(D){
+  const R=D.regression||{}, rows=R.rows||[];
+  if(!rows.length) return `<div class="card"><h2>Regression tracker</h2><p class="note" data-keep>Appears once players are flagged on the XGA tab and the next refresh has read their gameweek history.</p></div>`;
+  const B=R.baseline||{}, bo=(B.over||B.both&&B.both.over)||{}, bu=(B.under||B.both&&B.both.under)||{};
+  const o4=(bo.next4||{}), o8=(bo.next8||{}), u4=(bu.next4||{}), u8=(bu.next8||{});
+  const sg=n=>(n>0?"+":"")+labNum(n,2);
+  const base=(B.both||B).over?`<p class="note" data-keep><b>What history says.</b> Over two seasons, attackers who reached +${(B.over_at||2)} above their expected goals and assists kept going: over their next 4 gameweeks they scored ${sg(o4.period_gap)} more than expected (and ${sg(o8.period_gap)} over 8), and only ${Math.round(100*(o8.share_moved_toward_zero||0))}% had a smaller gap after 8 gameweeks. Players ${labNum(Math.abs(B.under_at||-1.5),1)}+ below expectation improved only a little (${sg(u4.period_gap)} over 4, ${sg(u8.period_gap)} over 8). So a gap is a watch signal, not a sell or buy order, and the rows below show who is really cooling.</p>`:"";
+  const group=(side,title)=>{
+    const list=rows.filter(r=>r.side===side).sort((a,b)=>(b.yours-a.yours)||(a.status==="back")-(b.status==="back")||Math.abs(b.gap)-Math.abs(a.gap));
+    if(!list.length) return "";
+    const card=r=>{
+      const unit=r.kind==="luck"?"goals conceded vs xGC":"G+A vs xGI";
+      const since=r.status==="back"?`back to the mean since GW${r.back_gw}`:(r.peak_gw&&Math.abs(r.gap)<Math.abs(r.peak)-0.3?`down ${labNum(Math.abs(r.peak)-Math.abs(r.gap),1)} from its GW${r.peak_gw} peak`:`flagged GW${r.flag_gw||"?"}`);
+      return `<div class="lab-reg ${r.status}"><div class="top"><span class="n">${esc(r.name)} <em>${esc(r.club||"")} ${esc(r.pos)}</em>${r.yours?` <i class="b you">yours</i>`:""}</span><span class="pill st-${r.status}">${esc(r.label)}</span></div>
+        <div class="mid"><div class="g"><b>${sg(r.gap)}</b><small>${unit}</small></div><div class="l4"><b>${sg(r.last4)}</b><small>last 4 GWs</small></div>${regSpark(r.series)}</div>
+        <p class="note" data-keep>${esc(since)}${r.owned_pct?` · ${labNum(r.owned_pct,1)}% owned`:""}</p></div>`;};
+    const shown=list.filter((r,i)=>r.yours||i<8), rest=list.filter(r=>!shown.includes(r));
+    return `<h3 class="lab-ph3">${title}</h3><div class="lab-regs">${shown.map(card).join("")}</div>${rest.length?`<details class="fold" data-keep><summary><h4 class="lab-ph4">${rest.length} more</h4></summary><div class="lab-regs">${rest.map(card).join("")}</div></details>`:""}`;};
+  return `<div class="card"><h2>Regression tracker · to GW${R.gw}</h2>
+    <p class="note" data-keep>Players flagged as over- or underperforming their expected numbers, with the gap built up gameweek by gameweek. Positive = ahead of expectation (G+A above xGI, or fewer goals conceded than xGC for defenders and keepers). The line is the season gap by gameweek; "last 4 GWs" is how much it moved recently.</p>
+    ${base}${group("over","Running ahead of expectation")}${group("under","Running behind expectation")}
+    <ul class="legend-list" data-keep><li>Cooling / Warming up: the gap has fallen back by 0.5+ from its recent high (last five gameweeks) or over the last four</li><li>Still running hot / Still cold: the gap widened by 0.5+ in the last four</li><li>Back to the mean: the gap is under 1.0 after having been flagged; it stays listed for 3 gameweeks</li></ul></div>`;
+}
+function renderRegression(D){ const el=document.getElementById("stratRegress"); if(el) el.innerHTML=regressionCard(D); }
 function renderAiTeam(D,who){
   const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults"), dc=document.getElementById("aiDecision");
   const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); if(dc) dc.innerHTML=aiDecisionCard(D,who); };

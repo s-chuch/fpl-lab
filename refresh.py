@@ -1383,6 +1383,11 @@ def main(team_id=TEAM_ID, out_path=None):
     data["strategy"] = section("strategy", build_strategy, boot, team_id, hist, gws, data["transfers"], plan.get("squad_from_gw"), fallback={})
     owned = {(r[1], r[2]) for r in (plan.get("rows") or [])}  # your squad as (name, club): scouting lists leave these out
     data["xg_signal"] = section("xg_signal", build_xg_signal, boot, team_id, plan.get("squad_from_gw"), exclude=owned, next_fixture_map=next_fixture_map, fallback={})
+    def _regression():
+        import regression
+        last = max([e["id"] for e in boot["events"] if e.get("finished")] or [0])
+        return regression.build_regression(boot, data.get("xg_signal") or {}, get, last)
+    data["regression"] = section("regression", _regression, fallback={})
     data["volume_log"] = section("volume_log", lambda: update_volume_log(backfill_volume_log(data.get("volume_log"), boot, team_id), (data.get("xg_signal") or {}).get("imminent"), ds, boot), fallback={})
     data["defcon"] = section("defcon", build_defcon, boot, team_id, plan.get("squad_from_gw"), exclude=owned, fallback={})
     data["rotation_risk"] = section("rotation_risk", build_rotation_risk, boot, team_id, plan.get("squad_from_gw"), team_recovery=team_recovery.get("teams"), target_gw=team_recovery.get("target_gw"), fallback={})

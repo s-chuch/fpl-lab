@@ -521,3 +521,27 @@ body.lab .lab-bl .b.subout{background:#ef4444;color:#fff}
 
 body.lab .lab-prog{display:inline-block;width:56px;height:6px;border-radius:3px;background:rgba(255,255,255,.12);vertical-align:middle;overflow:hidden}
 body.lab .lab-prog i{display:block;height:100%;background:var(--purple,#8b5cf6);border-radius:3px}
+
+body.lab .lab-regs{display:grid;gap:8px}
+body.lab .lab-reg{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px}
+body.lab .lab-reg .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+body.lab .lab-reg .n{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+body.lab .lab-reg .n em{font-style:normal;font-weight:400;opacity:.65;font-size:.8em}
+body.lab .lab-reg .mid{display:flex;align-items:center;gap:14px;margin-top:6px}
+body.lab .lab-reg .mid div{display:flex;flex-direction:column;line-height:1.15}
+body.lab .lab-reg .mid b{font-size:1.1rem}
+body.lab .lab-reg .mid small{opacity:.65;font-size:.72rem}
+body.lab .lab-reg .note{margin:6px 0 0}
+body.lab .lab-reg .pill{white-space:nowrap}
+body.lab .st-reverting,body.lab .st-back{background:rgba(34,197,94,.18);color:#4ade80}
+body.lab .st-widening{background:rgba(239,68,68,.18);color:#f87171}
+body.lab .st-holding{background:rgba(250,204,21,.15);color:#facc15}
+body.lab .lab-spark{margin-left:auto;flex:none}
+body.lab .lab-spark polyline{stroke:#a78bfa;stroke-width:1.8;stroke-linejoin:round}
+body.lab .lab-spark circle{fill:#a78bfa}
+body.lab .lab-spark line.z{stroke:rgba(255,255,255,.25);stroke-dasharray:3 3;stroke-width:1}
+body.lab .lab-reg .mid{flex-wrap:wrap;row-gap:6px}
+body.lab .lab-reg .lab-spark{max-width:100%}
+body.lab .lab-regs{grid-template-columns:minmax(0,1fr)}
+body.lab .lab-reg{min-width:0}
+body.lab .lab-reg .top .n{flex:1 1 auto}
