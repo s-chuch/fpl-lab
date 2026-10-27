@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-26",
+  "captured_at": "2026-10-27",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -252,28 +252,28 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-26",
-      "total_cost": 94.7,
+      "date": "2026-10-27",
+      "total_cost": 94.8,
       "prices": {
         "Raya": 6.2,
-        "Gvardiol": 5.8,
+        "Gvardiol": 5.7,
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "De Cuyper": 5.3,
         "Dewsbury-Hall": 6.6,
         "Groß": 6.2,
         "Schade": 6.2,
-        "Tavernier": 6.3,
+        "Tavernier": 6.4,
         "Haaland": 15.7,
         "Kostoulas": 5.8,
         "Tzolakis": 4.7,
         "Belloumi": 5.2,
-        "Bogle": 4.7,
+        "Bogle": 4.8,
         "Walle Egeli": 4.5
       }
     },
     "entry_prices": {},
-    "total_delta": 2.1,
+    "total_delta": 2.2,
     "players": [
       {
         "name": "De Cuyper",
@@ -294,6 +294,24 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.4,
+        "delta": 0.3,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Bogle",
+        "baseline_cost": 4.6,
+        "current_cost": 4.8,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Kostoulas",
         "baseline_cost": 5.6,
         "current_cost": 5.8,
@@ -303,36 +321,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Tavernier",
-        "baseline_cost": 6.1,
-        "current_cost": 6.3,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Belloumi",
         "baseline_cost": 5.1,
         "current_cost": 5.2,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Bogle",
-        "baseline_cost": 4.6,
-        "current_cost": 4.7,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Gvardiol",
-        "baseline_cost": 5.7,
-        "current_cost": 5.8,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -396,6 +387,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Dewsbury-Hall",
         "baseline_cost": 6.6,
         "current_cost": 6.6,
+        "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Gvardiol",
+        "baseline_cost": 5.7,
+        "current_cost": 5.7,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -583,6 +583,30 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.2,
         "to": 6.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-27",
+        "event": "price_change",
+        "player": "Bogle",
+        "from": 4.7,
+        "to": 4.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-27",
+        "event": "price_change",
+        "player": "Gvardiol",
+        "from": 5.8,
+        "to": 5.7,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-10-27",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.3,
+        "to": 6.4,
         "delta": 0.1
       }
     ]

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-26T23:40:14+00:00",
+ "updated": "2026-10-27T12:04:16+00:00",
  "gws": [
   8
  ],
@@ -133,6 +133,46 @@
     "min": 90
    }
   ]
+ },
+ "factors": {
+  "rest": {
+   "n": 0,
+   "prior": 0.93,
+   "factor": 0.93,
+   "applied": false
+  },
+  "minutes": {
+   "n": 0,
+   "prior": 0.85,
+   "factor": 0.85,
+   "applied": false
+  },
+  "rotation": {
+   "n": 0,
+   "prior": 0.8,
+   "factor": 0.8,
+   "applied": false
+  }
+ },
+ "top": {
+  "n": 7,
+  "shift": -0.145,
+  "applied": false,
+  "min_xp": 5.0,
+  "raw": -2.634
+ },
+ "elite": {
+  "own_n": 0,
+  "own_weight": 0.4,
+  "own_applied": false,
+  "cap_n": 0,
+  "cap_weight": 0.0,
+  "cap_applied": false
+ },
+ "transfers": {
+  "n": 0,
+  "mult": 1.0,
+  "applied": false
  },
  "start": {
   "25": {
