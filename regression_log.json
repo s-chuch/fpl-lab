@@ -1,0 +1,227 @@
+{
+ "flagged": {
+  "101": {
+   "back_gw": null,
+   "flag_gw": 6,
+   "name": "Henderson",
+   "side": "over"
+  },
+  "109": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Verbruggen",
+   "side": "over"
+  },
+  "115": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "De Cuyper",
+   "side": "over"
+  },
+  "124": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Gro\u00df",
+   "side": "over"
+  },
+  "13": {
+   "back_gw": null,
+   "flag_gw": 6,
+   "name": "Rice",
+   "side": "over"
+  },
+  "138": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Kostoulas",
+   "side": "over"
+  },
+  "15": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "\u00d8degaard",
+   "side": "under"
+  },
+  "154": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Palmer",
+   "side": "over"
+  },
+  "165": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Jo\u00e3o Pedro",
+   "side": "over"
+  },
+  "167": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Delap",
+   "side": "under"
+  },
+  "214": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Kamada",
+   "side": "over"
+  },
+  "229": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Tarkowski",
+   "side": "over"
+  },
+  "249": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Barry",
+   "side": "under"
+  },
+  "261": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Iwobi",
+   "side": "under"
+  },
+  "264": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Bobb",
+   "side": "under"
+  },
+  "277": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Egan",
+   "side": "over"
+  },
+  "282": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Giles",
+   "side": "over"
+  },
+  "286": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Belloumi",
+   "side": "over"
+  },
+  "300": {
+   "back_gw": null,
+   "flag_gw": 6,
+   "name": "Walton",
+   "side": "over"
+  },
+  "330": {
+   "back_gw": null,
+   "flag_gw": 8,
+   "name": "Bogle",
+   "side": "over"
+  },
+  "334": {
+   "back_gw": null,
+   "flag_gw": 3,
+   "name": "Muharemovi\u0107",
+   "side": "over"
+  },
+  "385": {
+   "back_gw": null,
+   "flag_gw": 3,
+   "name": "Trafford",
+   "side": "over"
+  },
+  "399": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Cherki",
+   "side": "over"
+  },
+  "411": {
+   "back_gw": null,
+   "flag_gw": 8,
+   "name": "Haaland",
+   "side": "over"
+  },
+  "453": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Barnes",
+   "side": "over"
+  },
+  "483": {
+   "back_gw": null,
+   "flag_gw": 8,
+   "name": "Ndoye",
+   "side": "under"
+  },
+  "486": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "McAtee",
+   "side": "under"
+  },
+  "504": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Vuskovic",
+   "side": "over"
+  },
+  "534": {
+   "back_gw": null,
+   "flag_gw": 3,
+   "name": "Hume",
+   "side": "over"
+  },
+  "536": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Reinildo",
+   "side": "over"
+  },
+  "542": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "E.Le F\u00e9e",
+   "side": "under"
+  },
+  "569": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Gonzalo",
+   "side": "under"
+  },
+  "572": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Tzolakis",
+   "side": "over"
+  },
+  "592": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Ouattara",
+   "side": "over"
+  },
+  "67": {
+   "back_gw": null,
+   "flag_gw": 6,
+   "name": "Rayan",
+   "side": "under"
+  },
+  "79": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Evanilson",
+   "side": "over"
+  },
+  "94": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Schade",
+   "side": "over"
+  }
+ },
+ "gw": 8
+}
