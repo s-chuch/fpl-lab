@@ -123,7 +123,148 @@ def gw_summary(plog):
     return by, misses
 
 
-def fit(plog, now=None):
+# --------------------------------------------------------------------------- which ingredient is wrong?
+FACTOR_K = 80           # flagged player-gameweeks at which a learned multiplier counts for half (against today's constant)
+FACTOR_MIN = 60         # flagged player-gameweeks before it is used at all
+FACTOR_RANGE = (0.6, 1.1)
+TOP_XP = 5.0            # corrected expected points from which a player is in the captain pool
+TOP_K, TOP_MIN, TOP_RANGE = 120, 40, (-1.5, 1.5)
+ELITE_K, ELITE_MIN, ELITE_PRIOR = 300, 150, 0.4
+CAP_K, CAP_MIN, CAP_MAX = 200, 60, 0.5
+
+
+def _named(plog):
+    """Every graded row as a dict keyed by column name (only gameweeks that saved the column set)."""
+    for g in (plog.get("gws") or {}).values():
+        if not g.get("graded"):
+            continue
+        cols = g.get("cols") or []
+        if "o_pts" not in cols or "xp" not in cols:
+            continue
+        for r in g.get("rows") or []:
+            if len(r) >= len(cols):
+                yield dict(zip(cols, r))
+
+
+def _corrected(row, per):
+    c = (per or {}).get(row.get("pos")) or {}
+    x = float(row["xp"])
+    return max(0.0, c.get("a", 0.0) + c.get("b", 1.0) * x) if c.get("applied") and x > 0 else x
+
+
+def fit_factors(plog, priors=None):
+    """Test each hand-set multiplier (rest, minutes falling, reported rotation) against results: actual points of players carrying only that
+    flag, against what the model would have said without it, relative to the same ratio for players with no flag at all (same position).
+    Shrunk towards today's constant, bounded, used from FACTOR_MIN flagged player-gameweeks."""
+    if priors is None:
+        import ai_team
+        priors = {"rest": ai_team.REST_FACTOR, "minutes": ai_team.MINUTES_FALLING_FACTOR, "rotation": ai_team.ROTATION_REPORTED_FACTOR}
+    rows = [r for r in _named(plog) if r.get("fac") is not None and r.get("xp") is not None and r.get("o_pts") is not None and r["fac"] > 0]
+    out = {}
+    base = {}
+    for pos in POSITIONS:
+        sub = [r for r in rows if r["pos"] == pos and abs(r["fac"] - 1.0) < 1e-6 and r["xp"] > 0]
+        den = sum(r["xp"] for r in sub)
+        base[pos] = (sum(r["o_pts"] for r in sub) / den) if den > 0 else None
+    flag = {"rest": lambda r: r.get("f_rest", 0) >= 1 and not r.get("f_min") and not r.get("f_rot"),
+            "minutes": lambda r: r.get("f_min") and not r.get("f_rest") and not r.get("f_rot"),
+            "rotation": lambda r: r.get("f_rot") and not r.get("f_rest") and not r.get("f_min")}
+    for label, prior in priors.items():
+        sel = [r for r in rows if flag[label](r) and r["xp"] > 0]
+        n = len(sel)
+        row = {"n": n, "prior": prior, "factor": prior, "applied": False}
+        if n:
+            num = wsum = 0.0
+            counts = []
+            for pos in POSITIONS:
+                ps = [r for r in sel if r["pos"] == pos]
+                den = sum(r["xp"] / r["fac"] for r in ps)
+                if not ps or den <= 0 or not base.get(pos):
+                    continue
+                num += len(ps) * (sum(r["o_pts"] for r in ps) / den) / base[pos]
+                wsum += len(ps)
+                counts += [max(1, r.get("f_rest", 1)) if label == "rest" else 1 for r in ps]
+            if wsum:
+                total = num / wsum                         # the combined effect of every copy of this flag, relative to unflagged
+                per_flag = total ** (1.0 / (sum(counts) / len(counts)))
+                k = n / (n + FACTOR_K)
+                f = prior + (per_flag - prior) * k
+                f = max(FACTOR_RANGE[0], min(FACTOR_RANGE[1], f))
+                row.update({"raw": round(per_flag, 3), "factor": round(f, 3), "applied": n >= FACTOR_MIN})
+        out[label] = row
+    return out
+
+
+def fit_top(plog, per):
+    """Do the players the model rates highest (the captain pool) score what it says? A shrunk, bounded shift for corrected xp >= TOP_XP."""
+    res = []
+    for r in _named(plog):
+        if r.get("xp") is None or r.get("o_pts") is None:
+            continue
+        c = _corrected(r, per)
+        if c >= TOP_XP:
+            res.append(r["o_pts"] - c)
+    n = len(res)
+    row = {"n": n, "shift": 0.0, "applied": False, "min_xp": TOP_XP}
+    if n:
+        raw = sum(res) / n
+        s = max(TOP_RANGE[0], min(TOP_RANGE[1], raw * n / (n + TOP_K)))
+        row.update({"raw": round(raw, 3), "shift": round(s, 3), "applied": n >= TOP_MIN})
+    return row
+
+
+def _slope(xs, ys):
+    n = len(xs)
+    mx, my = sum(xs) / n, sum(ys) / n
+    sxx = sum((x - mx) ** 2 for x in xs)
+    return (sum((x - mx) * (y - my) for x, y in zip(xs, ys)) / sxx) if sxx > 1e-9 else 0.0
+
+
+def fit_elite(plog, per):
+    """Do players the top-50 managers hold / captain beat the model's number? Own weight replaces the hand-set 0.4 in the transfer bonus
+    (bonus = weight x min(1, ownership / 50%)); the captain weight is a bounded tie-break on the AI's captain choice."""
+    rows = [r for r in _named(plog) if r.get("e_own") is not None and r.get("xp") is not None and r.get("o_pts") is not None]
+    out = {"own_n": len(rows), "own_weight": ELITE_PRIOR, "own_applied": False, "cap_n": 0, "cap_weight": 0.0, "cap_applied": False}
+    if len(rows) >= 20:
+        res = {}
+        for r in rows:
+            res.setdefault(r["pos"], []).append(r["o_pts"] - _corrected(r, per))
+        mean = {p: sum(v) / len(v) for p, v in res.items()}
+        xs = [r["e_own"] for r in rows]
+        ys = [r["o_pts"] - _corrected(r, per) - mean[r["pos"]] for r in rows]
+        slope = _slope(xs, ys)                               # points per 100% of the top 50 owning him
+        k = len(rows) / (len(rows) + ELITE_K)
+        w = max(0.0, min(1.2, ELITE_PRIOR + (slope * 0.5 - ELITE_PRIOR) * k))
+        out.update({"own_slope": round(slope, 3), "own_weight": round(w, 3), "own_applied": len(rows) >= ELITE_MIN})
+    pool = [r for r in rows if r.get("e_cap") is not None and _corrected(r, per) >= 4.0]
+    out["cap_n"] = len(pool)
+    if len(pool) >= 20:
+        slope = _slope([r["e_cap"] for r in pool], [r["o_pts"] - _corrected(r, per) for r in pool])
+        k = len(pool) / (len(pool) + CAP_K)
+        out.update({"cap_slope": round(slope, 3), "cap_weight": round(max(0.0, min(CAP_MAX, slope * k)), 3), "cap_applied": len(pool) >= CAP_MIN})
+    return out
+
+
+def fit_transfers(reviews):
+    """Realised points of the players brought in against the model's expected gap, over every settled gameweek's transfers (the AI's own ledger).
+    If the model keeps promising more than the moves deliver, the free-move hurdle is raised (x1 to x2)."""
+    pred = real = 0.0
+    n = 0
+    for rv in (reviews or {}).values():
+        for m in rv.get("transfers") or []:
+            if m.get("pred") is None or m.get("real") is None:
+                continue
+            pred += m["pred"]; real += m["real"]; n += 1
+    row = {"n": n, "mult": 1.0, "applied": False}
+    if n and pred > 0:
+        ratio = real / pred
+        k = n / (n + 10)
+        mult = 1.0 + (1.0 / max(0.5, min(1.0, ratio)) - 1.0) * k
+        row.update({"ratio": round(ratio, 3), "mult": round(max(1.0, min(2.0, mult)), 3), "applied": n >= 10 and ratio < 0.8})
+    return row
+
+
+def fit(plog, now=None, reviews=None):
     data = collect(plog)
     per, before, after = {}, [], []
     for pos in POSITIONS:
@@ -152,12 +293,16 @@ def fit(plog, now=None):
             "mae_after": round(sum(after) / len(after), 3) if after else None,
             "applied": any(r["applied"] for r in per.values())}
     doc["by_gw"], doc["misses"] = gw_summary(plog)
+    doc["factors"] = fit_factors(plog)
+    doc["top"] = fit_top(plog, per)
+    doc["elite"] = fit_elite(plog, per)
+    doc["transfers"] = fit_transfers(reviews)
     doc["start"], doc["start_cal"] = fit_start(plog)
     return doc
 
 
-def update(plog, path=FILE):
-    doc = fit(plog)
+def update(plog, path=FILE, reviews=None):
+    doc = fit(plog, reviews=reviews)
     tmp = Path(str(path) + ".tmp")
     tmp.write_text(json.dumps(doc, indent=1) + "\n")
     os.replace(tmp, path)

@@ -157,7 +157,7 @@ def run_ai_team(data, boot, team_id, ds, chips_used, gws, teams_by_id, team_reco
                 scan_cache[gw] = fixture_scan(gw, teams_by_id)
             return scan_cache[gw]
         ctx = {"now": datetime.now(timezone.utc), "boot": boot, "deadline_state": ds, "fix_scan": fix_scan, "live": live, "risk": risk,
-               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins, "signals": signals, "model_ref": _model_ref()}
+               "clone": clone, "user_points": {g["gw"]: g["points"] - (g.get("hits") or 0) for g in gws}, "uwins": uwins, "signals": signals, "model_ref": _model_ref(), "elite": data.get("elite")}
         return ai_team.update(data.get("ai_team"), ctx)
     except Exception as e:
         _warn(f"ai_team: update failed, keeping the previous state: {e}")
@@ -215,6 +215,11 @@ RULE_VERDICT = {"Leaning buy": "buy", "Captain candidate": "captain", "Leaning s
                 "Fitness or rotation doubts": "doubt"}
 
 
+def _ai_team():
+    import ai_team
+    return ai_team
+
+
 def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=None):
     """{player id: {"adj": total, "adj_ai": total without the rivals component, "reasons": [...], "parts": {...}}}.
     news: news.js themes (with ids); elite: data["elite"]; league: {"counts": {id: n}, "n": members, "mode": defend|chase|climb};
@@ -245,7 +250,7 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
         for eid, c in (elite.get("own") or {}).items():
             pct = 100 * c / elite["n"]
             if pct >= 10:
-                put(eid, "elite", 0.4 * min(1.0, pct / 50), f"Top-{elite['n']} own {round(pct)}%")
+                put(eid, "elite", _ai_team().elite_weight() * min(1.0, pct / 50), f"Top-{elite['n']} own {round(pct)}%")
     # 3. price: buy before a rise, sell before a fall. FPL publishes its own progress towards a change and a likelihood bucket
     # (price_change_projections[0].likelihood: 4 = about to rise ... -4 = about to fall); transfer momentum is the fallback.
     total = boot.get("total_players") or 0

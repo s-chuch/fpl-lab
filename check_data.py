@@ -142,6 +142,11 @@ def check(name, d):
     pa = _age_hours(plan.get("computed_at")) if plan and not plan.get("locked") else None
     if pa is not None and pa > 12:
         problems.append(f"{name}: the unlocked AI plan was last computed {pa:.0f}h ago")
+    for k in ("decisions_error",):
+        if plan.get(k):
+            problems.append(f"{name}: AI plan {k}: {plan[k]}")
+    if ai.get("review_error"):
+        problems.append(f"{name}: AI review failed: {ai['review_error']}")
     if plan and len(plan.get("xi", [])) != 11:
         problems.append(f"{name}: AI team XI has {len(plan.get('xi', []))} players")
     return problems

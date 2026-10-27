@@ -50,26 +50,57 @@ FDR_CS_BASE, FDR_CS_SLOPE, FDR_CS_RANGE = 0.40, 0.07, (0.08, 0.6)   # clean-shee
 FDR_ATT_BASE, FDR_ATT_SLOPE = 1.12, 0.06                            # attacking returns by difficulty rating
 
 
-def _load_learned():
-    """The per-position correction learn.py wrote from this season's graded results (identity until there is enough evidence)."""
+def _load_doc():
     try:
         import json
         from pathlib import Path
-        doc = json.loads((Path(__file__).resolve().parent / "learned.json").read_text())
-        return {p: v for p, v in (doc.get("per_position") or {}).items() if v.get("applied")}
+        return json.loads((Path(__file__).resolve().parent / "learned.json").read_text())
     except (OSError, ValueError, AttributeError):
         return {}
 
 
+def _load_learned():
+    """The per-position correction learn.py wrote from this season's graded results (identity until there is enough evidence)."""
+    return {p: v for p, v in (_load_doc().get("per_position") or {}).items() if v.get("applied")}
+
+
+LEARNED_DOC = _load_doc()
 LEARNED = _load_learned()
 
 
+def learned_factor(label, prior):
+    """A multiplier (rest / minutes / rotation) as this season's results measured it, else the hand-set constant (learn.fit_factors)."""
+    f = (LEARNED_DOC.get("factors") or {}).get(label) or {}
+    return f.get("factor", prior) if f.get("applied") else prior
+
+
+def elite_weight():
+    e = LEARNED_DOC.get("elite") or {}
+    return e.get("own_weight", 0.4) if e.get("own_applied") else 0.4
+
+
+def captain_elite_weight():
+    e = LEARNED_DOC.get("elite") or {}
+    return e.get("cap_weight", 0.0) if e.get("cap_applied") else 0.0
+
+
+def hurdle_mult():
+    t = LEARNED_DOC.get("transfers") or {}
+    return t.get("mult", 1.0) if t.get("applied") else 1.0
+
+
 def adjust_xp(pos, xp):
-    """Expected points nudged by what this season's graded gameweeks showed (see learn.py). 0 stays 0 (unavailable)."""
-    c = LEARNED.get(pos)
-    if not c or xp <= 0:
+    """Expected points nudged by what this season's graded gameweeks showed (see learn.py): the per-position line, then the shift for the
+    captain pool (players the model rates highest). 0 stays 0 (unavailable)."""
+    if xp <= 0:
         return xp
-    return max(0.0, c["a"] + c["b"] * xp)
+    c = LEARNED.get(pos)
+    if c:
+        xp = max(0.0, c["a"] + c["b"] * xp)
+    top = LEARNED_DOC.get("top") or {}
+    if top.get("applied") and xp >= top.get("min_xp", 5.0):
+        xp = max(0.0, xp + top.get("shift", 0.0))
+    return xp
 
 
 def _f(v, d=0.0):
@@ -215,19 +246,19 @@ def player_values(boot, fix_next, fix_after, gws_played, uwins=None, risk=None):
             season = min(1.0, _f(el.get("minutes")) / (90.0 * max(1, gws_played)))
             share = sum(min(90, m) for m in recent) / (90.0 * len(recent))
             if season >= MINUTES_REGULAR_SEASON and (share < MINUTES_FALLING_SHARE * season or recent[-1] < MINUTES_BENCHED_BELOW):
-                flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); factor *= MINUTES_FALLING_FACTOR
-                adjf.append({"why": flags[-1], "factor": MINUTES_FALLING_FACTOR, "label": "minutes"})
+                flags.append(f"minutes falling ({' → '.join(str(m) for m in recent)})"); mf = learned_factor("minutes", MINUTES_FALLING_FACTOR); factor *= mf
+                adjf.append({"why": flags[-1], "factor": mf, "label": "minutes"})
         cr = club_rest.get(el["team"]) or {}
         if cr.get("rest_days") is not None and cr["rest_days"] <= CONGESTION_DAYS:
-            flags.append(f"only {cr['rest_days']}d rest before its next match"); factor *= REST_FACTOR
-            adjf.append({"why": flags[-1], "factor": REST_FACTOR, "label": "rest"})
+            flags.append(f"only {cr['rest_days']}d rest before its next match"); rf = learned_factor("rest", REST_FACTOR); factor *= rf
+            adjf.append({"why": flags[-1], "factor": rf, "label": "rest"})
         if cr.get("turnaround") is not None and cr["turnaround"] <= CONGESTION_DAYS:
-            flags.append(f"plays again {cr['turnaround']}d after its next match"); factor *= REST_FACTOR
-            adjf.append({"why": flags[-1], "factor": REST_FACTOR, "label": "rest"})
+            flags.append(f"plays again {cr['turnaround']}d after its next match"); rf = learned_factor("rest", REST_FACTOR); factor *= rf
+            adjf.append({"why": flags[-1], "factor": rf, "label": "rest"})
         rot_txt = rot_names.get(f"id:{el['id']}") or rot_names.get(el["web_name"])
         if rot_txt:
-            flags.append(f"rotation reported: {str(rot_txt)[:90]}"); factor *= ROTATION_REPORTED_FACTOR
-            adjf.append({"why": flags[-1], "factor": ROTATION_REPORTED_FACTOR, "label": "rotation"})
+            flags.append(f"rotation reported: {str(rot_txt)[:90]}"); of = learned_factor("rotation", ROTATION_REPORTED_FACTOR); factor *= of
+            adjf.append({"why": flags[-1], "factor": of, "label": "rotation"})
         f1, f2 = fix_next.get(el["team"], []), fix_after.get(el["team"], [])
         uw = (uwins or {}).get(el["id"])
         m1 = model_xp(el, f1, gws_played, uw, recent) * av * factor
@@ -425,7 +456,7 @@ def plan_transfers(squad, buys, bank, ft, vals, signals=None):
                 gain = squad_score([v["id"] if i == out else i for i in squad], vals) - cur + adj(v["id"]) - adj(out)
                 if gain > top[0]:
                     top = (gain, out, v["id"], sell)
-        need = MIN_FREE_GAIN if n < ft else MIN_HIT_GAIN
+        need = (MIN_FREE_GAIN if n < ft else MIN_HIT_GAIN) * hurdle_mult()
         if top[1] is None or top[0] < need:
             break
         gain, out, inn, sell = top
@@ -522,7 +553,8 @@ def make_plan(gw, deadline, vals, state, uwins, now, signals=None, forced=None):
         else:
             squad, moves, bank, hits, buys = plan_transfers([int(i) for i in state["squad"]], buys, state["bank"], ft_before, vals, signals)
     xi, bench = pick_xi(squad, vals, "xp")          # the lineup played is chosen on this gameweek's expected points
-    ranked = sorted(xi, key=lambda i: -vals[i]["xp"])
+    cw = captain_elite_weight()       # 0 until this season's results show the top managers' captain choice adds something (learn.fit_elite)
+    ranked = sorted(xi, key=lambda i: -(vals[i]["xp"] + cw * (vals[i].get("e_cap") or 0)))
     captain = ranked[0]
     vice = next((i for i in ranked[1:] if vals[i]["team"] != vals[captain]["team"]), ranked[1])
     ft_after = None if ft_before is None else max(0, ft_before - len(moves))
@@ -532,7 +564,7 @@ def make_plan(gw, deadline, vals, state, uwins, now, signals=None, forced=None):
                    "buy": buys.get(i, vals[i]["cost"]), "why": _why(vals[i], (uwins or {}).get(i), "")} for i in xi + bench],
         "xi": xi, "bench": bench, "captain": captain, "vice": vice, "formation": formation(xi, vals),
         "transfers": [{"out": vals[m["out"]]["name"], "out_id": m["out"], "in": vals[m["in"]]["name"], "in_id": m["in"],
-                       "gain": m["gain"], "hit": m["hit"], "sell": m["sell"], "bought_at": m["bought_at"], "cost_in": m["cost_in"],
+                       "gain": m["gain"], "xp_in": vals[m["in"]]["xp"], "xp_out": vals[m["out"]]["xp"], "hit": m["hit"], "sell": m["sell"], "bought_at": m["bought_at"], "cost_in": m["cost_in"],
                        "adj": m.get("adj", 0), "reasons_in": m.get("reasons_in", []), "reasons_out": m.get("reasons_out", [])} for m in moves],
         "hits": hits, "hit_cost": hits * HIT_COST, "ft_before": ft_before, "ft_after": ft_after, "bank": bank,
         "squad_cost": round(sum(vals[i]["cost"] for i in squad), 1),
@@ -702,6 +734,10 @@ def update(state, ctx):
         lock_at = deadline - timedelta(hours=LOCK_HOURS)
         fix1, fix2 = ctx["fix_scan"](target), (ctx["fix_scan"](target + 1) if target + 1 in events else {})
         vals = player_values(boot, fix1, fix2, gws_played, ctx.get("uwins"), ctx.get("risk"))
+        _el = ctx.get("elite") or {}
+        for k, c in ((_el.get("cap") or {}).items() if _el.get("n") else []):      # what the top managers captained (their last locked gameweek)
+            if int(k) in vals:
+                vals[int(k)]["e_cap"] = round(c / _el["n"], 3)
         if not (plan and plan["locked"]):
             prev = plan
             ref = ctx.get("model_ref")
@@ -711,6 +747,7 @@ def update(state, ctx):
                 kept = keep_previous(state, vals, prev, plan, ctx.get("signals"))
                 if kept is not None:
                     plan = make_plan(target, deadline, vals, state, ctx.get("uwins"), now, ctx.get("signals"), forced=kept)
+                    plan["kept_transfers"] = True
             try:
                 plan = apply_chips(plan, state, target, deadline, ctx, gws_played, now)
             except Exception as e:                    # chips are an add-on: a failure here keeps the ordinary plan
@@ -719,6 +756,11 @@ def update(state, ctx):
                 state["changes"].append({"at": now.isoformat(), "gw": target, "kind": "chip",
                                          "text": (f"Chip: {plan['chip_info']['reason']}" if plan.get("chip") else f"Chip: no longer playing {prev.get('chip')} this gameweek")})
             plan["model_ref"] = ref
+            try:
+                import ai_decisions
+                plan["decisions"] = ai_decisions.build(plan, vals, state, ctx.get("signals"))
+            except Exception as e:                    # an explanation is an add-on: a failure here never touches the plan
+                plan["decisions_error"] = f"{type(e).__name__}: {str(e)[:120]}"
             if now >= lock_at:
                 plan["locked"], plan["locked_at"] = True, now.isoformat()
             state["plan"] = plan
@@ -741,6 +783,24 @@ def update(state, ctx):
         res["v"] = RESULT_VERSION
         p["result"] = res
         p["user_points"] = (ctx.get("user_points") or {}).get(gw)
+    # 3b. look back at every settled gameweek once (and again if the top managers' picks only became public later)
+    try:
+        import ai_review
+        reviews = state.setdefault("reviews", {})
+        elite = ctx.get("elite")
+        for p in state["history"].values():
+            res = p.get("result") or {}
+            if not res.get("final"):
+                continue
+            rv = reviews.get(str(p["gw"]))
+            if rv is None or (not rv.get("elite") and elite and elite.get("gw") == p["gw"]):
+                try:
+                    reviews[str(p["gw"])] = ai_review.review(p, res, ctx["live"](p["gw"]), elite)
+                except Exception:
+                    pass
+        state["review_totals"] = ai_review.totals(reviews)
+    except Exception as e:                                   # the review is an add-on: it never breaks the plan
+        state["review_error"] = f"{type(e).__name__}: {str(e)[:120]}"
     h = state["history"].values()
     state["total_points"] = sum(p.get("result", {}).get("points", 0) for p in h)
     state["user_total"] = sum(p.get("user_points") or 0 for p in h)

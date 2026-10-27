@@ -229,7 +229,7 @@ def grade_target(pick, live, boot_el=None):
 
 # ---------------------------------------------------------------- per-player snapshot (training data)
 PLAYER_FILE = Path(__file__).resolve().parent / "player_log.json"
-PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score", "sh4", "sot4", "big4", "cc4", "bcc4", "p_start"]
+PLAYER_COLS = ["id", "team", "pos", "cost", "own", "form", "min", "xg90", "xa90", "fdr", "home", "mp", "avail", "xp", "p_goal", "p_assist", "p_gi", "p_cs", "p_dc", "t_rank", "t_score", "sh4", "sot4", "big4", "cc4", "bcc4", "p_start", "fac", "f_rest", "f_min", "f_rot", "e_own", "e_cap"]
 OUTCOME_COLS = ["o_min", "o_goals", "o_assists", "o_dc", "o_pts", "o_start"]
 
 

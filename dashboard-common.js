@@ -527,10 +527,37 @@ function aiResultsCard(D,who){
     <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${rows}</div>
     <div class="lab-bench">${bench}</div>${subs}${cmp}</div>`;
 }
+function aiDecisionCard(D,who){
+  const A=D.ai_team; if(!A) return `<div class="card"><h2>AI decisions</h2><p class="note" data-keep>Nothing yet.</p></div>`;
+  const plans=[...(A.plan?[A.plan]:[]),...Object.values(A.history||{}).sort((a,b)=>b.gw-a.gw)];
+  const seen=new Set(), list=plans.filter(p=>!seen.has(p.gw)&&seen.add(p.gw));
+  let sel=list.length?list[0].gw:null; try{const k=Number(sessionStorage.getItem("lab:aidgw")); if(list.some(h=>h.gw===k)) sel=k;}catch(e){}
+  const p=list.find(h=>h.gw===sel); if(!p) return `<div class="card"><h2>AI decisions</h2><p class="note" data-keep>Nothing yet.</p></div>`;
+  const R=((A.reviews||{})[String(p.gw)])||null, open=p===A.plan&&!(p.locked);
+  const pills=list.map(h=>`<button type="button" data-aidgw="${h.gw}" class="${h.gw===p.gw?"on":""}">GW${h.gw}${h===A.plan?(h.locked?" 🔒":" ●"):""}</button>`).join("");
+  const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join("");
+  const sg=n=>(n>0?"+":"")+n;
+  const outcome=d=>{ if(!R) return "";
+    if(d.kind==="captain"&&R.captain){ const c=R.captain, e=R.elite;
+      return `${esc(c.name)} scored ${c.pts} (×${c.mult}). Best in the XI: ${esc(c.best)} ${c.best_pts}, ranked #${c.best_xp_rank} by the model, so the armband cost ${c.regret} points.`+(e&&e.captain?` Top-50 captain: ${esc(e.captain)} (${Math.round(100*e.captain_share)}%, ${e.captain_pts} pts)${e.agrees?", the same pick":""}.`:""); }
+    if(d.kind==="transfer"&&R.transfers){ const t=R.transfers.find(x=>d.title.indexOf(x.in)>=0&&d.title.indexOf(x.out)>=0); if(!t) return "";
+      return `${esc(t.in)} ${t.pts_in} pts vs ${esc(t.out)} ${t.pts_out}: ${sg(t.real)} for the week`+(t.pred!=null?` (the model expected ${sg(t.pred)})`:"")+(t.mins_in===0?`; ${esc(t.in)} did not play`:"")+"."; }
+    if(d.kind==="xi"&&R.xi){ const x=R.xi, m=(R.misses||[]).map(z=>`${esc(z.name)} ${z.pts} vs ${z.xp} expected (${esc(z.cause)})`).join("; ");
+      return `XI scored ${x.pts}; the best possible XI would have scored ${x.hindsight_pts} (${x.regret} left on the table); bench ${x.bench_pts}.`+((x.autosubs||[]).length?` Auto-subs: ${x.autosubs.map(z=>esc(z.out)+" → "+esc(z.in)).join(", ")}.`:"")+(m?` Biggest misses: ${m}.`:""); }
+    return ""; };
+  const items=(p.decisions||[]).map((d,i)=>{ const o=outcome(d);
+    return `<details class="fold" data-keep ${i<3?"open":""}><summary><h3>${esc(d.title)}</h3></summary><ul class="legend-list" data-keep>${li(d.why)}</ul>${(d.alts||[]).length?`<p class="note" data-keep>Next best: ${(d.alts).map(esc).join(" · ")}</p>`:""}${o?`<p class="note lab-outcome" data-keep><b>What happened:</b> ${o}</p>`:""}</details>`; }).join("");
+  const none=!(p.decisions||[]).length?`<p class="note" data-keep>The reasons for this gameweek's decisions were not saved (the Decision tab started at GW9).</p>`+(R?[R.captain&&outcome({kind:"captain"}),R.xi&&outcome({kind:"xi"})].filter(Boolean).map(x=>`<p class="note" data-keep>${x}</p>`).join(""):""):"";
+  const T=A.review_totals||{}, L=(D.predictions||{}).learning||{}, F=L.factors||{}, ST=(x)=>x&&x.applied?`learned ${labNum(x.factor,2)}`:`${x?x.n:0} of 60 rows${x?`, using ${labNum(x.prior??x.factor,2)}`:""}`;
+  const tot=T.gws?`<p class="note" data-keep>Season so far (${T.gws} settled gameweek${T.gws===1?"":"s"}): captain choices cost ${T.captain_regret} points against the best player in the XI; the XI left ${T.xi_regret} points against the best possible XI; transfers delivered ${T.move_real>0?"+":""}${T.move_real} points for the moves compared.${T.elite_n?` The AI captained the same player as the top-50 managers in ${T.elite_agree} of ${T.elite_n} gameweeks.`:""}</p>`:"";
+  const learning=`<details class="fold" data-keep><summary><h3>What it is learning from these results</h3></summary><ul class="legend-list" data-keep><li>Rest multiplier: ${ST(F.rest)}</li><li>Minutes-falling multiplier: ${ST(F.minutes)}</li><li>Reported-rotation multiplier: ${ST(F.rotation)}</li><li>Top-rated players (captain pool): ${(L.top||{}).applied?`shifted ${labNum(L.top.shift,2)} pts`:`${(L.top||{}).n||0} of 40 rows, no shift yet`}</li><li>Top-50 managers' ownership bonus: ${(L.elite||{}).own_applied?`learned weight ${labNum(L.elite.own_weight,2)}`:`${(L.elite||{}).own_n||0} of 150 rows, using 0.40`}; captain tie-break: ${(L.elite||{}).cap_applied?`weight ${labNum(L.elite.cap_weight,2)}`:`${(L.elite||{}).cap_n||0} of 60 rows, off`}</li><li>Free-move hurdle: ${(L.transfers||{}).applied?`raised ×${labNum(L.transfers.mult,2)}`:`${(L.transfers||{}).n||0} of 10 moves reviewed, unchanged`}</li></ul><p class="note" data-keep>Every number is pulled towards today's value until enough settled results back it, and bounded, so one bad week cannot swing the AI.</p></details>`;
+  return `<div class="card"><h2>AI decisions · GW${p.gw} ${open?'<span class="pill free">open</span>':p.locked?'<span class="pill">locked</span>':""}</h2><div class="lab-stabs" id="labAiDGw">${pills}</div>${tot}${items}${none}${learning}</div>`;
+}
 function renderAiTeam(D,who){
-  const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults");
-  const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); };
+  const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults"), dc=document.getElementById("aiDecision");
+  const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); if(dc) dc.innerHTML=aiDecisionCard(D,who); };
   paint();
+  if(dc&&!dc.dataset.wired){ dc.dataset.wired="1"; dc.addEventListener("click",e=>{const b=e.target.closest("[data-aidgw]"); if(!b) return; try{sessionStorage.setItem("lab:aidgw",b.dataset.aidgw);}catch(_){} paint();}); }
   if(r&&!r.dataset.wired){
     r.dataset.wired="1";
     r.addEventListener("click",e=>{const b=e.target.closest("[data-aigw]"); if(!b) return; try{sessionStorage.setItem("lab:aigw",b.dataset.aigw);}catch(_){} paint();});

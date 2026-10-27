@@ -1504,18 +1504,32 @@ def main(team_id=TEAM_ID, out_path=None):
             # per-player snapshot (inputs + chances + Target rank), the training data for tuning later
             trank = {(t["name"], t["club"]): (i + 1, t.get("score")) for i, t in enumerate(tgt)}
             pcols = []
+            _el_log = data.get("elite") or {}
+            def _ingredients(r, el):
+                """the multipliers the model applied (so learn.py can test each one) and what the top managers hold (a gameweek behind: their picks for the next one are not public yet)"""
+                fl = r.get("factors") or []
+                fac = 1.0
+                for a in fl:
+                    fac *= a.get("factor") or 1.0
+                n = el.get("n") or 0
+                own = (el.get("own") or {}); cap = (el.get("cap") or {})
+                k = str(r["id"])
+                return [round(fac, 4), sum(1 for a in fl if a.get("label") == "rest"), int(any(a.get("label") == "minutes" for a in fl)),
+                        int(any(a.get("label") == "rotation" for a in fl)),
+                        round((own.get(k) or own.get(r["id"]) or 0) / n, 3) if n else None, round((cap.get(k) or cap.get(r["id"]) or 0) / n, 3) if n else None]
             for r in rows:
                 tr = trank.get((r["name"], r["club"]), (None, None))
                 pcols.append([r["id"], r["team"], r["pos"], r["cost"], r["own"], r["form"], r["minutes"], round(r["xg90"], 2), round(r["xa90"], 2), r["fdr"], r["home"],
                               round(r["mp"], 2), round(r["avail"], 2), r.get("xp_raw", r["xp"]), round(r["goals"], 3), round(r["assists"], 3), round(r["goals"] + r["assists"], 3),
                               round(r["cs"], 3), round(r["defcon"], 3), tr[0], tr[1],
-                              r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"], round(r.get("start_raw", r.get("start", 0)), 3)])
+                              r["vol"]["shots"], r["vol"]["sot"], r["vol"]["big"], r["vol"]["cc"], r["vol"]["big_cc"], round(r.get("start_raw", r.get("start", 0)), 3)]
+                             + _ingredients(r, _el_log))
             pl = pred_track.load(pred_track.PLAYER_FILE)
             pred_track.player_record(pl, preds["gw"], pcols, datetime.now(timezone.utc))
             pred_track.player_grade(pl, boot, get)
             try:
                 import learn
-                preds["learning"] = learn.update(pl)           # compare the model's expected points with what happened; used from the next run
+                preds["learning"] = learn.update(pl, reviews=(data.get("ai_team") or {}).get("reviews"))           # compare the model's expected points with what happened; used from the next run
                 _by = {e["id"]: e for e in boot["elements"]}
                 _tm = {t["id"]: t["short_name"] for t in boot["teams"]}
                 for _k in ("under", "over"):
