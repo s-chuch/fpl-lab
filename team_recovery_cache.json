@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-27T14:46:35.062137+00:00",
+    "fetched_at": "2026-10-27T23:39:26.118187+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -11,7 +11,7 @@
           "date": "2026-10-27",
           "competition": "EFL Cup",
           "opponent": "Fleetwood Town",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-01",
@@ -24,13 +24,7 @@
           "opponent": "Slavia Praha",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-27",
-            "competition": "EFL Cup",
-            "opponent": "Fleetwood Town"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 7,

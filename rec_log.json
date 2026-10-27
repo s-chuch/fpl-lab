@@ -1454,21 +1454,21 @@
   "backfilled": false,
   "bench": [
    572,
+   138,
    305,
-   94,
-   165
+   94
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "74f5d823b55d",
+  "code_sha": "769a356518d0",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-27T14:47:42+00:00",
-  "saved_at_et": "2026-10-27 10:47 AM ET",
+  "saved_at": "2026-10-27T23:39:37+00:00",
+  "saved_at_et": "2026-10-27 7:39 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1507,13 +1507,6 @@
     "xp": 3.8
    },
    {
-    "club": "BOU",
-    "id": 68,
-    "name": "Tavernier",
-    "pos": "MID",
-    "xp": 5.3
-   },
-   {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
@@ -1535,6 +1528,13 @@
     "xp": 3.62
    },
    {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.23
+   },
+   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
@@ -1542,11 +1542,11 @@
     "xp": 6.39
    },
    {
-    "club": "BHA",
-    "id": 138,
-    "name": "Kostoulas",
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
     "pos": "FWD",
-    "xp": 3.11
+    "xp": 4.8
    },
    {
     "club": "HUL",
@@ -1554,6 +1554,13 @@
     "name": "Tzolakis",
     "pos": "GKP",
     "xp": 4.23
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 3.11
    },
    {
     "club": "IPS",
@@ -1568,13 +1575,6 @@
     "name": "Schade",
     "pos": "MID",
     "xp": 2.32
-   },
-   {
-    "club": "CHE",
-    "id": 165,
-    "name": "João Pedro",
-    "pos": "FWD",
-    "xp": 1.82
    }
   ],
   "status": "pending",
@@ -1586,10 +1586,10 @@
     "out_id": 8
    },
    {
-    "in": "Tavernier",
-    "in_id": 68,
-    "out": "Palmer",
-    "out_id": 154
+    "in": "Evanilson",
+    "in_id": 79,
+    "out": "João Pedro",
+    "out_id": 165
    }
   ],
   "vice": 115,
@@ -1600,13 +1600,13 @@
    115,
    229,
    449,
-   68,
    453,
    124,
    268,
+   154,
    411,
-   138
+   79
   ],
-  "xp": 56.0
+  "xp": 55.6
  }
 }

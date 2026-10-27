@@ -135,8 +135,8 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "name": "João Pedro",
-        "label": "DOUBT 75%",
-        "chance": 75
+        "label": "INJ",
+        "chance": 0
       }
     ],
     "xi_ep": [
@@ -217,8 +217,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 1.82,
-        "status": "doubt"
+        "ep_next": 0.0,
+        "status": "out"
       },
       {
         "name": "Davis",
