@@ -1,11 +1,11 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-27 14:10 UTC",
+  "generated_at": "2026-10-27 14:46 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (1 keep, 2 fitness/rotation mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
+      "text": "Jo\u00e3o Pedro (CHE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Hub",
@@ -13,14 +13,11 @@ window.FPL_NEWS = {
       ],
       "player": "Jo\u00e3o Pedro",
       "club": "CHE",
-      "tags": [
-        "injury/doubt"
-      ],
+      "tags": [],
       "id": 165,
-      "verdict": "Fitness or rotation doubts",
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "risk": 2,
-        "hold": 1
+        "risk": 1
       },
       "quotes": [
         {
@@ -31,24 +28,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
           "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "source": "Hub",
-          "text": "FPL 2026/27: The key dates and info \ud83d\udea8 FPL Gameweek 9 deadline: Saturday, October 31, 11:00 UK time \ud83e\udd15 Joao Pedro was a surprise Gameweek 8 injury absentee \ud83d\udecb\ufe0f Riccardo Calafiori was only fit enough to feature from off the bench \ud83e\udee8 Bo...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
-        },
-        {
-          "source": "Hub",
-          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 LEE ( H ) IPS ( A ) NFO ( H ) FUL ( A ) BHA ( H ) Hold - Joao Pedro and Riccardo Calafiori Pedro\u2019s absence was a frustrating one but it was a case of safety in numbers, with ...",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
         }
       ],
       "facts": [
@@ -654,7 +633,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Calafiori (ARS) \u2014 Fitness or rotation doubts (1 keep, 3 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "Calafiori (ARS) \u2014 Fitness or rotation doubts (1 keep, 2 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Hub"
@@ -667,14 +646,15 @@ window.FPL_NEWS = {
       "id": 8,
       "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 3,
-        "hold": 1
+        "hold": 1,
+        "risk": 2
       },
       "quotes": [
         {
           "source": "Hub",
-          "text": "Calafiori falls into a similar category, having been benched amid fitness concerns.",
+          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 LEE ( H ) IPS ( A ) NFO ( H ) FUL ( A ) BHA ( H ) Hold - Riccardo Calafiori Calafiori owners were frustrated by the defender being benched amid fitness concerns.",
           "stance": [
+            "hold",
             "risk"
           ],
           "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
@@ -688,24 +668,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
           "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "source": "Hub",
-          "text": "FPL 2026/27: The key dates and info \ud83d\udea8 FPL Gameweek 9 deadline: Saturday, October 31, 11:00 UK time \ud83e\udd15 Joao Pedro was a surprise Gameweek 8 injury absentee \ud83d\udecb\ufe0f Riccardo Calafiori was only fit enough to feature from off the bench \ud83e\udee8 Bo...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
-        },
-        {
-          "source": "Hub",
-          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 LEE ( H ) IPS ( A ) NFO ( H ) FUL ( A ) BHA ( H ) Hold - Joao Pedro and Riccardo Calafiori Pedro\u2019s absence was a frustrating one but it was a case of safety in numbers, with ...",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
         }
       ],
       "facts": [
@@ -970,14 +932,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Pedro, Haaland, Szoboszlai: Latest team news ahead of FPL Gameweek 9",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/pedro-haaland-szoboszlai-latest-team-news-ahead-of-fpl-gameweek-9"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
