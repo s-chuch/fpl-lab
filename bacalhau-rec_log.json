@@ -1399,13 +1399,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "3d9becbbcb3b",
+  "code_sha": "a5c99447f90b",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-28T19:56:38+00:00",
-  "saved_at_et": "2026-10-28 3:56 PM ET",
+  "saved_at": "2026-10-28T20:04:43+00:00",
+  "saved_at_et": "2026-10-28 4:04 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1427,7 +1427,7 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.64
+    "xp": 4.72
    },
    {
     "club": "LEE",
@@ -1462,7 +1462,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.86
+    "xp": 4.75
    },
    {
     "club": "BHA",
@@ -1497,7 +1497,7 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 3.51
+    "xp": 3.5
    },
    {
     "club": "BHA",

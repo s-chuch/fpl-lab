@@ -121,7 +121,7 @@ window.FPL_WILDCARD_WATCH = {
       },
       {
         "bench": "Belloumi",
-        "bench_ep": 3.51,
+        "bench_ep": 3.5,
         "starter": "Schade",
         "starter_ep": 2.32
       }
@@ -162,13 +162,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.64,
+        "ep_next": 4.72,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.86,
+        "ep_next": 4.75,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 3.51,
+        "ep_next": 3.5,
         "status": "ok"
       },
       {
