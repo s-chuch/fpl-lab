@@ -748,6 +748,27 @@ function newsThemeRow(x,NP){
   const sites=(x.sources||[]).length;
   return `<li><span class="who">${esc(x.player||"")} <span class="note">${esc(x.club||"")}</span> · ${T.i} <b class="${T.c}">${T.l}</b></span><div class="detail note">${sites} site${sites===1?"":"s"} · ${good.length} good · ${bad.length} bad · ${neu.length} neutral</div>${pills?`<div class="detail">${pills}</div>`:""}${nums}${llmBlock}${sayBlock}</li>`;
 }
+// Latest team news from Exa (exa_news.py -> exa-news.js): display only, never used by the model. Names first, one line each,
+// tap a row to open the source; FPL's own flag sits beside it so a conflict is visible. Hidden when missing, empty or >24h old.
+function exaNewsHtml(D,opts){
+  opts=opts||{};
+  try{
+    const X=window.EXA_NEWS; if(!X||!Array.isArray(X.items)||!X.items.length) return "";
+    const t=Date.parse(X.generated_at||""); if(isNaN(t)||Date.now()-t>24*3600*1000) return "";
+    const me=String((D&&D.team&&D.team.id)||"");
+    const flag=it=>{const c=it.fpl_chance,st=it.fpl_status;
+      if(st==="a"&&(c==null||c>=100)) return ["FPL fit","free"];
+      if(c!=null) return ["FPL "+c+"%",c<=25?"used":"mid"];
+      return [st==="s"?"FPL suspended":"FPL out","used"];};
+    const rows=X.items.filter(it=>it&&it.player&&it.snippet&&it.url).slice().sort((a,b)=>(((b.yours||[]).includes(me))?1:0)-(((a.yours||[]).includes(me))?1:0));
+    if(!rows.length) return "";
+    const row=it=>{const f=flag(it),mine=(it.yours||[]).includes(me);
+      return `<a class="exa-row" href="${safeHref(it.url)}" target="_blank" rel="noopener"><span class="exa-top"><b>${mine?"★ ":""}${esc(it.player)}</b> <span class="note">${esc(it.team||"")}</span> <span class="pill ${f[1]}">${esc(f[0])}</span></span><span class="exa-snip">${esc(it.snippet)}</span><span class="exa-src">${esc(it.source_domain||"")} · ${esc(it.published||"")}</span></a>`;};
+    const head=rows.slice(0,6).map(row).join(""), rest=rows.slice(6);
+    const more=rest.length?`<details class="fold"><summary>${rest.length} more</summary>${rest.map(row).join("")}</details>`:"";
+    return `<div class="card exa-card"><h2>Latest team news (Exa)</h2><p class="note">Updated ${esc(toToronto(X.generated_at))} · last 3 days · FPL flag beside each name · tap to open the source</p><div class="exa-list">${head}${more}</div></div>`;
+  }catch(e){return "";}
+}
 function renderNews(){
   const N=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};
   const rank=(x)=>{const p=NP[String(x.id)]||{}; return [p.yours?0:1, -(x.sources||[]).length, -(p.owned||0)];};
@@ -760,7 +781,7 @@ function renderNews(){
   const rawCap=8;
   const newBlock=fresh.length?fresh.slice(0,rawCap).map(x=>`<li><span class="who">${esc(x.title)}</span><div class="detail"><span class="pill free">${esc(x.source)}</span> <a href="${safeHref(x.url)}" target="_blank" rel="noopener">open</a></div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape - already folded into the themes above.</span></li>`:""):`<li><span class="note">No new articles this scrape.</span></li>`;
   const sites=N.sites_checked?` · ${N.sites_with_articles??"?"} of ${N.sites_checked} sites had fresh articles`:"";
-  document.getElementById("news").innerHTML=`${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. ${W.Your} players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
+  document.getElementById("news").innerHTML=`${exaNewsHtml(D)}${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. ${W.Your} players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
 }
 function renderSetPieces(){
   const S=D.set_pieces||{rows:[]};
@@ -892,7 +913,7 @@ function labNews(D,they){
   const tn=tnAll.slice(0,6).map(({r,own,ai})=>`<li><b>${esc(r.name)}</b> <span class="note">${esc(r.club)}</span> <span class="lab-pill ${r.status==="d"?"warn":"bad"}">${r.status==="d"?"DOUBT "+(r.chance??""):r.status==="s"?"SUS":r.status==="u"?"OUT":"INJ"}</span> <span class="lab-pill ${own?"used":""}">${own?(they?"theirs":"yours"):ai?"in AI team":esc(r.owned)+"% own"}</span><div class="note">${esc(r.news||"")}</div></li>`).join("");
   const N=window.FPL_NEWS||{};
   const ag=(N.agreed||[]).slice(0,6).map(x=>`<li><b>${esc(x.player||"")}</b> <span class="note">${esc(x.club||"")}</span> · ${esc(x.verdict||"")}<div class="note">${(x.sources||[]).length} sites: ${esc((x.sources||[]).join(", "))}</div></li>`).join("");
-  return `<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New flags that could matter · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags on players you own or that 10%+ of managers own.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
+  return exaNewsHtml(D)+`<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New flags that could matter · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags on players you own or that 10%+ of managers own.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way

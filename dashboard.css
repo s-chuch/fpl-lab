@@ -545,3 +545,13 @@ body.lab .lab-reg .lab-spark{max-width:100%}
 body.lab .lab-regs{grid-template-columns:minmax(0,1fr)}
 body.lab .lab-reg{min-width:0}
 body.lab .lab-reg .top .n{flex:1 1 auto}
+
+/* Latest team news (Exa): names first, one short line, tap opens the source */
+.exa-card h2{margin-bottom:4px}
+.exa-row{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:inherit;text-decoration:none;-webkit-tap-highlight-color:transparent}
+.exa-card .exa-list>.exa-row:last-child,.exa-card details .exa-row:last-child{border-bottom:0}
+.exa-top{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline}
+.exa-top b{font-weight:700}
+.exa-snip{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:13px;line-height:1.4;margin-top:3px}
+.exa-src{display:block;font-size:11px;color:var(--muted);opacity:.75;margin-top:2px}
+.exa-card details.fold summary{cursor:pointer;color:var(--gold);font-size:13px;padding:8px 0}
