@@ -553,6 +553,47 @@ function aiDecisionCard(D,who){
   const learning=`<details class="fold" data-keep><summary><h3>What it is learning from these results</h3></summary><ul class="legend-list" data-keep><li>Rest multiplier: ${ST(F.rest)}</li><li>Minutes-falling multiplier: ${ST(F.minutes)}</li><li>Reported-rotation multiplier: ${ST(F.rotation)}</li><li>Top-rated players (captain pool): ${(L.top||{}).applied?`shifted ${labNum(L.top.shift,2)} pts`:`${(L.top||{}).n||0} of 40 rows, no shift yet`}</li><li>Top-50 managers' ownership bonus: ${(L.elite||{}).own_applied?`learned weight ${labNum(L.elite.own_weight,2)}`:`${(L.elite||{}).own_n||0} of 150 rows, using 0.40`}; captain tie-break: ${(L.elite||{}).cap_applied?`weight ${labNum(L.elite.cap_weight,2)}`:`${(L.elite||{}).cap_n||0} of 60 rows, off`}</li><li>Free-move hurdle: ${(L.transfers||{}).applied?`raised ×${labNum(L.transfers.mult,2)}`:`${(L.transfers||{}).n||0} of 10 moves reviewed, unchanged`}</li></ul><p class="note" data-keep>Every number is pulled towards today's value until enough settled results back it, and bounded, so one bad week cannot swing the AI.</p></details>`;
   return `<div class="card"><h2>AI decisions · GW${p.gw} ${open?'<span class="pill free">open</span>':p.locked?'<span class="pill">locked</span>':""}</h2><div class="lab-stabs" id="labAiDGw">${pills}</div>${tot}${items}${none}${learning}</div>`;
 }
+// ---------------------------------------------------------------- CHANCE-VOLUME LISTS (Fantasy Football Scout rule; signals._imminent_understat)
+function imminentCards(D){
+  const IM=((D.xg_signal||{}).imminent)||{};
+  const key=r=>r.name+"|"+r.club;
+  const pool={}; (((D.targets||{}).pool||{})["1"]||[]).forEach(r=>{pool[key(r)]=r;});
+  const reg={}; (((D.regression||{}).rows)||[]).forEach(r=>{reg[r.name+"|"+r.club]=r;});
+  const sp={}; (((D.set_pieces||{}).rows)||[]).forEach(c=>[["pens","pens"],["fks","free kicks"],["corners","corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t=>{(sp[t.name+"|"+c.club]=sp[t.name+"|"+c.club]||[]).push(l);})));
+  const inj={}; (((D.injury_watch||{}).rows)||[]).forEach(r=>{inj[r.name+"|"+r.club]=r;});
+  const sg=n=>(n>0?"+":"")+labNum(n,2);
+  const chips=(r,kind)=>{
+    const k=key(r), out=[], P=pool[k], R=reg[k], S=sp[k], J=inj[k];
+    const season=kind==="goal"?r.season_gap_g:r.season_gap_a;
+    if(season!=null){
+      if(kind==="goal") out.push(season<=-1.5?`<b class="neg">Season-long underfinisher (${sg(season)} vs xG)</b> · not owed a goal`:`Chances good, finishing record fine this season (${sg(season)} vs xG): unlucky`);
+      else out.push(season<=-1.5?`<b class="neg">Season-long under-assister (${sg(season)} vs xA)</b>`:`Season assists vs xA ${sg(season)}`);
+    }
+    if(S) out.push(`Takes ${[...new Set(S)].join(", ")}`);
+    if(P&&P.start!=null) out.push(`Starts ~${P.start}%`);
+    if(r.mins&&r.gws) out.push(`${Math.round(r.mins/r.gws)} min per appearance${r.mins/r.gws<70?" (often subbed)":""}`);
+    if(J&&J.label) out.push(`<b class="neg">FPL flag: ${esc(J.label)}${J.chance!=null&&J.chance<100?" "+J.chance+"%":""}</b>`);
+    if(R) out.push(`Season gap: ${esc(R.label)}`);
+    out.push(`Next ${esc(r.next||"–")}${r.fdr!=null?" (FDR "+r.fdr+")":""}`);
+    return out;
+  };
+  const row=kind=>r=>{
+    const isG=kind==="goal";
+    const main=isG?`<td>${sg(r.goal_delta)}</td><td>${r.shots} · ${r.box!=null?r.box:"–"} · ${r.sot}</td><td>${r.big}${r.big_missed!=null?` (${r.big_missed})`:""}</td>`
+                  :`<td>${sg(r.assist_delta)}</td><td>${r.cc}</td><td>${r.big_cc}</td>`;
+    const det=isG?`${r.mins!=null?r.mins+" min · ":""}${r.goals} goal${r.goals===1?"":"s"} · non-penalty xG ${labNum(r.npxg!=null?r.npxg:r.xg,2)}${r.pens?` · ${r.pens} penalty`:""}`
+                 :`${r.mins!=null?r.mins+" min · ":""}${r.assists} assist${r.assists===1?"":"s"} · xA ${labNum(r.xa,2)} · from corners ${r.corner_cc==null?"–":r.corner_cc} · from crosses ${r.cross_cc==null?"–":r.cross_cc}`;
+    return `<tr><td class="n"><b>${esc(r.name)}</b> <em>${esc(r.club)} ${esc(r.pos)}</em> <button type="button" class="lab-inf" data-inf="1" aria-label="Show details" aria-expanded="false">i</button></td>${main}</tr><tr class="lab-det" hidden><td colspan="4">${det}<br>${chips(r,kind).join(" · ")}</td></tr>`;
+  };
+  const table=(kind,title,head,rule)=>{
+    const rows=(IM[kind]||[]).map(row(kind)).join("");
+    return `<h3 class="lab-ph3">${title}</h3><p class="note" data-keep>${esc(rule)}. Players you own are in the squad table above.</p>${rows?`<table class="lab-atk"><thead><tr><th>Player</th>${head}</tr></thead><tbody>${rows}</tbody></table>`:`<p class="note" data-keep>None meet the rule right now.</p>`}`;
+  };
+  return `${table("goal","Goals · chance volume, no goal yet","<th>xG Δ</th><th>Shots·box·SoT</th><th>Big (missed)</th>",IM.goal_rule||"")}
+    ${table("assist","Assists · chance volume, no assist yet","<th>xA Δ</th><th>Chances</th><th>Big</th>",IM.assist_rule||"")}
+    <ul class="legend-list" data-keep><li>Same screen as Fantasy Football Scout's Goals / Assists Imminent. xG Δ = goals minus non-penalty xG (xA Δ = assists minus xA), most negative first. Big = shots worth 0.3+ xG (missed = not scored). Shots·box·SoT = shots, from inside the penalty area, on target. Understat data; its xG differs a little from FPL's.</li>
+    <li><b>Not a "due" list.</b> Over two seasons, players who fit this screen scored 0.90x to 0.97x their xG over the next four gameweeks: the chances are real, a goal is not owed. Tap the i for role, minutes, injury flag and the season-long finishing record.</li></ul>`;
+}
 // ---------------------------------------------------------------- REGRESSION TRACKER (regression.py -> data["regression"])
 function regSpark(v){
   if(!v||v.length<2) return "";

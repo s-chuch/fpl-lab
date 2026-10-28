@@ -190,6 +190,8 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
                 "box": w.get("box"), "big_missed": w.get("big_missed"), "pens": w.get("pens", 0),
                 "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"],
                 "corner_cc": w.get("corner_cc"), "cross_cc": w.get("cross_cc"), "eid": eid}
+        item["season_gap_g"] = round(float(el.get("goals_scored") or 0) - float(el.get("expected_goals") or 0), 2)      # FPL's season xG includes penalties
+        item["season_gap_a"] = round(float(el.get("assists") or 0) - float(el.get("expected_assists") or 0), 2)
         item["goal_delta"] = round(((w.get("npg") if w.get("npg") is not None else w["goals"]) - (w.get("npxg") if w.get("npxg") is not None else w["xg"])), 2)
         item["assist_delta"] = round(w["assists"] - w["xa"], 2)
         fx = next_fixture_map.get(el["team"]) if next_fixture_map else None
