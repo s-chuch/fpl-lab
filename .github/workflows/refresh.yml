@@ -60,12 +60,12 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    # A failing job emails the repo owner by default (GitHub notification), so no
-    # extra alerting is wired up here.
+    # A failing job emails by default (GitHub notification); the last steps also open/close a `refresh-failed` issue.
     timeout-minutes: 20
     steps:
       # Always the tip of main: a queued run (or a push-triggered one) must not start from the commit that
@@ -220,3 +220,34 @@ jobs:
       - name: Unit tests
         if: always() && steps.gate.outputs.run != 'false'
         run: python -m unittest discover -s tests
+
+      # Issue alert for a failed refresh (assigned to the owner). Skipped on 30-minute gate skips; never fails the run.
+      - name: Open or update a refresh-failed issue
+        if: failure() && steps.gate.outputs.run != 'false'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create refresh-failed --color b60205 --description "refresh.yml run failed" -R "$REPO" 2>/dev/null || true
+          msg="refresh.yml failed ($GITHUB_EVENT_NAME): $RUN_URL"
+          n=$(gh issue list -R "$REPO" --label refresh-failed --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" -R "$REPO" --body "$msg"
+          else
+            gh issue create -R "$REPO" --title "Refresh FPL data failed" --label refresh-failed --assignee s-chuch --body "$msg"
+          fi
+
+      - name: Close the refresh-failed issue after a good run
+        if: success() && steps.gate.outputs.run != 'false'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          for n in $(gh issue list -R "$REPO" --label refresh-failed --state open --json number --jq '.[].number'); do
+            gh issue comment "$n" -R "$REPO" --body "Resolved: a later run passed: $RUN_URL"
+            gh issue close "$n" -R "$REPO" --reason completed
+          done
