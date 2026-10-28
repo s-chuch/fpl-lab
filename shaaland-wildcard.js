@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tarkowski",
         "bench_ep": 4.06,
         "starter": "Calafiori",
-        "starter_ep": 2.35
+        "starter_ep": 1.88
       }
     ],
     "bench_order": [
@@ -161,7 +161,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 2.35,
+        "ep_next": 1.88,
         "status": "doubt"
       },
       {

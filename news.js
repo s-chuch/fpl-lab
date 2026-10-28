@@ -1,11 +1,11 @@
 window.FPL_NEWS = {
   "gw": 9,
   "cutoff": "2026-10-23 17:30 UTC",
-  "generated_at": "2026-10-28 12:58 UTC",
+  "generated_at": "2026-10-28 14:56 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (2 buy, 1 keep, 1 sell/avoid, 8 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (1 buy, 1 keep, 1 sell/avoid, 7 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -23,10 +23,10 @@ window.FPL_NEWS = {
       "id": 165,
       "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 8,
+        "risk": 7,
         "hold": 1,
         "sell": 1,
-        "buy": 2
+        "buy": 1
       },
       "quotes": [
         {
@@ -49,12 +49,12 @@ window.FPL_NEWS = {
         },
         {
           "source": "Ingenuity",
-          "text": "Targeting Man United if Joao Pedro is fit, and targeting Crystal Palace are two of the more secure paths we can take this week so that\u2019s what we\u2019ve done.",
+          "text": "However, Joao Pedro\u2019s injury takes some significant potency out of Cheslea\u2019s attack.",
           "stance": [
-            "buy"
+            "risk"
           ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-free-hit-team/",
-          "title": "The Best FPL Gameweek 9 Free Hit Team"
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         },
         {
           "source": "Fix",
@@ -77,14 +77,6 @@ window.FPL_NEWS = {
           "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
         },
         {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "As mentioned before, a lot of the strategy will depend on Joao Pedro\u2019s fitness, so have some alternative\u2019s ready.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-free-hit-team/",
-          "title": "The Best FPL Gameweek 9 Free Hit Team"
-        },
-        {
           "topic": "role",
           "tone": "bad",
           "text": "Leave Jo\u00e3o Pedro on your bench and wait.",
@@ -103,18 +95,18 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "good",
-          "text": "He\u2019s in great form and costs \u00a31.7m less than Jo\u00e3o Pedro.",
+          "text": "In fact, When Joao Pedro plays, Chelsea have averaged a whopping 3.33 goals per game this season, and when he hasn\u2019t, they\u2019ve scored a grand total of 0 across both those games.",
           "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-joao-pedro-replacements-in-fpl-gw9/",
-          "title": "The Best Jo\u00e3o Pedro Replacements in FPL \u2013 GW9"
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "His 0.44 expected goal involvements per 90 is still solid, and at \u00a36.7m he saves you \u00a31.2m on Jo\u00e3o Pedro.",
+          "text": "Chelsea have conceded the 3 rd most goals this season, and that number jumps to an average of 2.5 per game when Joao Pedro doesn\u2019t play.",
           "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-joao-pedro-replacements-in-fpl-gw9/",
-          "title": "The Best Jo\u00e3o Pedro Replacements in FPL \u2013 GW9"
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         },
         {
           "topic": "price",
@@ -136,7 +128,84 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Haaland (MCI) \u2014 Mentioned, no clear view (1 captain mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Evanilson (BOU) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Evanilson",
+      "club": "BOU",
+      "tags": [
+        "differential"
+      ],
+      "id": 79,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "If the saving enables another meaningful improvement to your starting XI, Evanilson could be the better transfer for your team.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 FUL ( H ) MUN ( A ) SUN ( H ) IPS ( A ) EVE ( H ) Evanilson After a slow start to the season, Evanilson has now found the back of the net in three consecutive games as the Cherries have finally begun to c...",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-gameweek-9-pedro-replacements-26-27-article",
+          "title": "Best Joao Pedro FPL replacements for Gameweek 9"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "The Bournemouth trio of Evanilson, Rayan and Marcus Tavernier all found the back of the net against Manchester United.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Best Jo\u00e3o Pedro Replacements: FPL GW9 Comparison Evanilson leads these five forwards for points over the last five Gameweeks, while Jackson has scored the most goals.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "His four goals give him the edge over Evanilson for scoring output in the five-Gameweek sample.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Barry costs \u00a31.2m less than Jackson and \u00a30.6m less than Evanilson, which could help fund an upgrade elsewhere.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "At \u00a36.2m, Evanilson also costs \u00a30.6m less than Jackson.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Haaland (MCI) \u2014 Captain candidate (2 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub",
@@ -150,11 +219,22 @@ window.FPL_NEWS = {
         "rotation risk"
       ],
       "id": 411,
-      "verdict": "Mentioned, no clear view",
+      "verdict": "Captain candidate",
       "stance": {
-        "captain": 1
+        "captain": 2,
+        "risk": 1
       },
       "quotes": [
+        {
+          "source": "Ingenuity",
+          "text": "Erling Haaland vs BHA (H) Honestly, if in doubt, give Haaland the armband.",
+          "stance": [
+            "captain",
+            "risk"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
+        },
         {
           "source": "Hub",
           "text": "This game is likely to have goals in it and that's exactly what you want with Haaland as your captain.",
@@ -167,6 +247,14 @@ window.FPL_NEWS = {
       ],
       "facts": [
         {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Erling Haaland vs BHA (H) Honestly, if in doubt, give Haaland the armband.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
+        },
+        {
           "topic": "fixture",
           "tone": "neutral",
           "text": "Erling Haaland We just don\u2019t bet against this man at this point.",
@@ -177,10 +265,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "This game is likely to have goals in it and that's exactly what you want with Haaland as your captain.",
+          "text": "As the above image shows, only Erling Haaland has attempted more shots in the box than Jackson over the last four gameweeks.",
           "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-9-article-26-27",
-          "title": "Best FPL players for Gameweek 9"
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-gameweek-9-pedro-replacements-26-27-article",
+          "title": "Best Joao Pedro FPL replacements for Gameweek 9"
         },
         {
           "topic": "price",
@@ -191,7 +279,7 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
         }
       ],
-      "tone": "neutral"
+      "tone": "bad"
     },
     {
       "text": "Manzambi (AVL) \u2014 Leaning buy (2 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
@@ -268,7 +356,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
+      "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view (1 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "Fix",
         "Hub",
@@ -284,8 +372,20 @@ window.FPL_NEWS = {
       ],
       "id": 166,
       "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
+      "stance": {
+        "captain": 1
+      },
+      "quotes": [
+        {
+          "source": "Ingenuity",
+          "text": "Nicolas Jackson vs FUL (H) Honestly, if you\u2019re one of the many managers who have just brought in Jackson, this is a great week to captain him.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
+        }
+      ],
       "facts": [
         {
           "topic": "role",
@@ -357,6 +457,7 @@ window.FPL_NEWS = {
       "player": "Palmer",
       "club": "CHE",
       "tags": [
+        "captain talk",
         "rotation risk"
       ],
       "id": 154,
@@ -383,6 +484,14 @@ window.FPL_NEWS = {
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
           "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
+        },
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "However, Palmer has set-pieces and pens to balance out.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         },
         {
           "topic": "role",
@@ -463,6 +572,68 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
+      "text": "Barry (EVE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Barry",
+      "club": "EVE",
+      "tags": [],
+      "id": 249,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "The Coventry match stands out, although buying Barry means starting with a trip to Newcastle.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Player \u00a3m Pts G A Next 3 Jackson 6.8 30 4 0 FUL mun SUN Evanilson 6.2 32 3 2 LEE ips NFO Calvert- Lewin 6.1 25 2 1 bou TOT che Barry 5.6 18 2 0 new COV bre Thiago 7.8 19 1 3 NFO bha EVE Pts = FPL points; G = goals; A = FPL assists.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "This is particularly significant as unlike Barry, who is receiving a higher xGI per 90, Mbeumo has a proven track record as a top finisher in the league, so we can trust him to convert.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Barry costs \u00a31.2m less than Jackson and \u00a30.6m less than Evanilson, which could help fund an upgrade elsewhere.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Best budget option: Thierno Barry (\u00a35.6m).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
+          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Belloumi (HUL) \u2014 Leaning buy (2 buy mentions) \u00b7 3/5 sites with fresh articles",
       "sources": [
         "Hub",
@@ -528,72 +699,90 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Evanilson (BOU) \u2014 Mentioned, no clear view \u00b7 3/5 sites with fresh articles",
+      "text": "Calafiori (ARS) \u2014 Fitness or rotation doubts (1 keep, 4 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
       "sources": [
         "Fix",
-        "Ingenuity",
+        "Hub",
         "Scout"
       ],
-      "player": "Evanilson",
-      "club": "BOU",
+      "player": "Calafiori",
+      "club": "ARS",
       "tags": [
-        "differential"
+        "injury/doubt",
+        "rotation risk"
       ],
-      "id": 79,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
+      "id": 8,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "hold": 1,
+        "risk": 4
+      },
+      "quotes": [
         {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "If the saving enables another meaningful improvement to your starting XI, Evanilson could be the better transfer for your team.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+          "source": "Hub",
+          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 LEE ( H ) IPS ( A ) NFO ( H ) FUL ( A ) BHA ( H ) Hold - Riccardo Calafiori Calafiori owners were frustrated by the defender being benched amid fitness concerns.",
+          "stance": [
+            "hold",
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
         },
         {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "The Bournemouth trio of Evanilson, Rayan and Marcus Tavernier all found the back of the net against Manchester United.",
+          "source": "Fix",
+          "text": "Brighton\u2019s assets had an off day at Anfield while the template could see a shake-up with Jo\u00e3o Pedro and Riccardo Calafiori both emerging as doubts for Gameweek 9.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Calafiori + Rice injury updates as Arsenal crash out  FPL takeaways from Arsenal's shock EFL Cup exit",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/fpl-notes-calafiori-rice-injury-updates-as-arsenal-crash-out",
+          "title": "FPL notes: Calafiori + Rice injury updates as Arsenal crash out"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Calafiori + Rice injury updates as Arsenal crash out",
+          "stance": [
+            "risk"
+          ],
+          "url": "",
+          "title": ""
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Brighton\u2019s assets had an off day at Anfield while the template could see a shake-up with Jo\u00e3o Pedro and Riccardo Calafiori both emerging as doubts for Gameweek 9.",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
           "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
         },
         {
           "topic": "form",
-          "tone": "good",
-          "text": "Best Jo\u00e3o Pedro Replacements: FPL GW9 Comparison Evanilson leads these five forwards for points over the last five Gameweeks, while Jackson has scored the most goals.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "His four goals give him the edge over Evanilson for scoring output in the five-Gameweek sample.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "Barry costs \u00a31.2m less than Jackson and \u00a30.6m less than Evanilson, which could help fund an upgrade elsewhere.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+          "tone": "bad",
+          "text": "With United in poor form and Fernandes\u2019s place in the starting 11 uncertain, his sales numbers should be higher than Pedro\u2019s and Calafiori\u2019s.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
         },
         {
           "topic": "price",
           "tone": "neutral",
-          "text": "At \u00a36.2m, Evanilson also costs \u00a30.6m less than Jackson.",
+          "text": "Gvardiol is the most sold defender along with Calafiori, the duo feature in seven of the top 10 defender transfer combinations.",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
         }
       ],
-      "tone": "good"
+      "tone": "bad"
     },
     {
       "text": "Isak (LIV) \u2014 Mentioned, no clear view \u00b7 3/5 sites with fresh articles",
@@ -673,6 +862,14 @@ window.FPL_NEWS = {
           "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
         },
         {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Spurs\u2019 brimming confidence from 5 goals in their last 2, and Palace\u2019s awful defence, could mean there is plenty of opportunity for Kudus here.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-free-hit-team/",
+          "title": "The Best FPL Gameweek 9 Free Hit Team"
+        },
+        {
           "topic": "price",
           "tone": "neutral",
           "text": "Mathys Tel (\u00a35.6m) sealed the victory late on, so either he or Mohammed Kudus (\u00a36.5m) are worth considering, knowing Palace have conceded at least twice in 75% of their matches.",
@@ -684,46 +881,6 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [
-        "transfer target"
-      ],
-      "id": 334,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after deliveri...",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after delivering FPL returns and Bonus Point...",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "good"
-    },
-    {
       "text": "Rogers (CHE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/5 sites with fresh articles",
       "sources": [
         "Hub",
@@ -732,7 +889,9 @@ window.FPL_NEWS = {
       ],
       "player": "Rogers",
       "club": "CHE",
-      "tags": [],
+      "tags": [
+        "captain talk"
+      ],
       "id": 40,
       "verdict": "Mentioned, no clear view",
       "stance": {
@@ -757,6 +916,22 @@ window.FPL_NEWS = {
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
           "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Cole Palmer/Morgan Rogers vs MUN (H) Were Joao Pedro fit, the pair of Rogers and Palmer would likely find themselves right near the top, potentially even number one over Haaland.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Rogers is averaging the slightly higher xGI per 90 of 0.45 compared to Palmer\u2019s 0.33 xGI per 90.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         }
       ],
       "tone": "bad"
@@ -865,40 +1040,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Thomas",
-      "club": "COV",
-      "tags": [],
-      "id": 173,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "This led to 22 defcons for Thomas against Coventry and 13 for Richards.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-free-hit-team/",
-          "title": "The Best FPL Gameweek 9 Free Hit Team"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "If Bobby Thomas (\u00a34.0m) can\u2019t play for the Sky Blues, attacking full-back Milan van Ewijk (\u00a33.9m) is a good alternative.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
-          "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
-        }
-      ],
-      "tone": "good"
     }
   ],
   "split": [
@@ -939,68 +1080,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": [],
-      "id": 249,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "The Coventry match stands out, although buying Barry means starting with a trip to Newcastle.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Player \u00a3m Pts G A Next 3 Jackson 6.8 30 4 0 FUL mun SUN Evanilson 6.2 32 3 2 LEE ips NFO Calvert- Lewin 6.1 25 2 1 bou TOT che Barry 5.6 18 2 0 new COV bre Thiago 7.8 19 1 3 NFO bha EVE Pts = FPL points; G = goals; A = FPL assists.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Thierno Barry (\u00a35.6m): Best Budget Replacement Thierno Barry is the cheapest forward in this comparison, with 18 points and two goals over the last five Gameweeks .",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "Barry costs \u00a31.2m less than Jackson and \u00a30.6m less than Evanilson, which could help fund an upgrade elsewhere.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Best budget option: Thierno Barry (\u00a35.6m).",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/",
-          "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Brobbey (SUN) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
+      "text": "Brobbey (SUN) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Ingenuity",
         "Scout"
@@ -1009,9 +1089,9 @@ window.FPL_NEWS = {
       "club": "SUN",
       "tags": [],
       "id": 552,
-      "verdict": "Mentioned, no clear view",
+      "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 1
+        "risk": 2
       },
       "quotes": [
         {
@@ -1022,6 +1102,15 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
           "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "Before his injury, Brobbey looked like one of the most dangerous strikers in the league with a hat-trick against City.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         }
       ],
       "facts": [
@@ -1036,79 +1125,13 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "neutral",
-          "text": "Competing with Brobbey for our cheap striker spot are a pair who\u2019ll face off at St James\u2019 Park.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
-          "title": "FPL Gameweek 9 early Scout Picks: Villa triple-up"
+          "text": "Brian Brobbey vs COV (A) Despite some decent results recently, Coventry have still conceded the 3 rd most goals in the league this season, joint with Chelsea.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/",
+          "title": "The Best FPL Gameweek 9 Captains"
         }
       ],
       "tone": "neutral"
-    },
-    {
-      "text": "Calafiori (ARS) \u2014 Fitness or rotation doubts (1 keep, 2 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": [
-        "injury/doubt"
-      ],
-      "id": 8,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "hold": 1,
-        "risk": 2
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "Player fixtures Next 5 GWs GW 9 GW 10 GW 11 GW 12 GW 13 LEE ( H ) IPS ( A ) NFO ( H ) FUL ( A ) BHA ( H ) Hold - Riccardo Calafiori Calafiori owners were frustrated by the defender being benched amid fitness concerns.",
-          "stance": [
-            "hold",
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
-        },
-        {
-          "source": "Fix",
-          "text": "Brighton\u2019s assets had an off day at Anfield while the template could see a shake-up with Jo\u00e3o Pedro and Riccardo Calafiori both emerging as doubts for Gameweek 9.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Brighton\u2019s assets had an off day at Anfield while the template could see a shake-up with Jo\u00e3o Pedro and Riccardo Calafiori both emerging as doubts for Gameweek 9.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "bad",
-          "text": "With United in poor form and Fernandes\u2019s place in the starting 11 uncertain, his sales numbers should be higher than Pedro\u2019s and Calafiori\u2019s.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 9"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Gvardiol is the most sold defender along with Calafiori, the duo feature in seven of the top 10 defender transfer combinations.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "bad"
     },
     {
       "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
@@ -1273,6 +1296,70 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
+    },
+    {
+      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [
+        "transfer target"
+      ],
+      "id": 334,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after deliveri...",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Most-popular FPL defender transfers Ezri Konsa is the most popular defender transfer in after his goal against Everton while the centre-back trio of Tarik Muharemovi\u0107, Gabriel and Jan Paul van Hecke are also popular after delivering FPL returns and Bonus Point...",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 9 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Mukiele (SUN) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Mukiele",
+      "club": "SUN",
+      "tags": [],
+      "id": 533,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Despite not registering an attacking return either, Mukiele has still maintained decent involvement, and was super unlucky not to have scored against Arsenal.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-free-hit-team/",
+          "title": "The Best FPL Gameweek 9 Free Hit Team"
+        }
+      ],
+      "tone": "neutral"
     }
   ],
   "links": [
@@ -1299,44 +1386,24 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Jo\u00e3o Pedro Injury: Best FPL Replacements for GW9",
-      "url": "https://www.fantasyfootballfix.com/blog-index/joao-pedro-injury-best-fpl-replacements-gw9/"
-    },
-    {
       "source": "Hub",
-      "title": "Best FPL players for Gameweek 9",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-9-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL GW9 fixtures: Goal, clean-sheet odds and hidden gems",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-9-article-26-27"
+      "title": "Best Joao Pedro FPL replacements for Gameweek 9",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-gameweek-9-pedro-replacements-26-27-article"
     },
     {
       "source": "Scout",
-      "title": "Jackson v Manzambi: How do the two Villa picks compare?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/jackson-v-manzambi-how-do-the-two-villa-picks-compare"
+      "title": "FPL notes: Calafiori + Rice injury updates as Arsenal crash out",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/fpl-notes-calafiori-rice-injury-updates-as-arsenal-crash-out"
     },
     {
       "source": "Scout",
-      "title": "Best Pedro replacements in FPL \u2013 and is he a definite \u2018sell\u2019?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/best-pedro-replacements-in-fpl-and-is-he-a-definite-sell"
+      "title": "FPL Gameweek 9: Which teams are projected to score the most goals?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/fpl-gameweek-9-which-teams-are-projected-to-score-the-most-goals"
     },
     {
-      "source": "Scout",
-      "title": "FPL Gameweek 9: Best clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/fpl-gameweek-9-best-clean-sheet-odds"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 9: Which players are predicted to get goals + assists?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/fpl-gameweek-9-which-players-are-predicted-to-get-goals-assists"
-    },
-    {
-      "source": "Scout",
-      "title": "MLS Fantasy: Gameweek 32 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/10/28/mls-fantasy-gameweek-32-team-reveals"
+      "source": "Ingenuity",
+      "title": "The Best FPL Gameweek 9 Captains",
+      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-9-captains/"
     }
   ],
   "no_new": false,
