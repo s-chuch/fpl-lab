@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-28T19:56:12.573926+00:00",
+    "fetched_at": "2026-10-28T23:56:54.313116+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -122,7 +122,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -135,13 +135,7 @@
           "opponent": "Hoffenheim",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Fulham"
-          }
-        ]
+        "between": []
       },
       "IPS": {
         "rest_days": 8,
@@ -170,7 +164,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Brentford",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -183,13 +177,7 @@
           "opponent": "GNK Dinamo",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Brentford"
-          }
-        ]
+        "between": []
       },
       "NFO": {
         "rest_days": 8,
@@ -239,7 +227,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Sunderland",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -252,13 +240,7 @@
           "opponent": "Brighton",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Sunderland"
-          }
-        ]
+        "between": []
       },
       "TOT": {
         "rest_days": 7,
@@ -287,7 +269,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Manchester City",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -300,13 +282,7 @@
           "opponent": "Getafe",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Manchester City"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 3,
@@ -314,7 +290,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Bournemouth",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -327,13 +303,7 @@
           "opponent": "Barcelona",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Bournemouth"
-          }
-        ]
+        "between": []
       },
       "MCI": {
         "rest_days": 3,
@@ -341,7 +311,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Brighton & Hove Albion",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -354,13 +324,7 @@
           "opponent": "Leipzig",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Brighton & Hove Albion"
-          }
-        ]
+        "between": []
       },
       "BOU": {
         "rest_days": 3,
@@ -368,7 +332,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Aston Villa",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -381,13 +345,7 @@
           "opponent": "Sparta Praha",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Aston Villa"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 4,
@@ -422,7 +380,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Chelsea",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-01",
@@ -435,13 +393,7 @@
           "opponent": "Fenerbah\u00e7e",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Chelsea"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 3,
@@ -449,7 +401,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Crystal Palace",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -462,13 +414,7 @@
           "opponent": "Newcastle",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Crystal Palace"
-          }
-        ]
+        "between": []
       },
       "CHE": {
         "rest_days": 3,
@@ -476,7 +422,7 @@
           "date": "2026-10-28",
           "competition": "EFL Cup",
           "opponent": "Liverpool",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-10-31",
@@ -489,13 +435,7 @@
           "opponent": "Sunderland",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-10-28",
-            "competition": "EFL Cup",
-            "opponent": "Liverpool"
-          }
-        ]
+        "between": []
       }
     }
   }
