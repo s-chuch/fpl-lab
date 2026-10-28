@@ -251,3 +251,23 @@ jobs:
             gh issue comment "$n" -R "$REPO" --body "Resolved: a later run passed: $RUN_URL"
             gh issue close "$n" -R "$REPO" --reason completed
           done
+
+      # External heartbeat: Sentry cron monitor `fpl-lab-refresh` emails if no OK check-in arrives for ~18h
+      # (14h interval + 4h margin). Only a real, fully green refresh checks in (not the 30-minute gate skips).
+      # Non-fatal and skipped without the SENTRY_DSN secret, so a Sentry problem can never break the refresh.
+      # The monitor config rides along (idempotent upsert); change it here or in Sentry.
+      - name: Sentry heartbeat (refresh OK)
+        if: success() && steps.gate.outputs.run != 'false'
+        continue-on-error: true
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: |
+          if [ -z "$SENTRY_DSN" ]; then echo "SENTRY_DSN not set - skipping heartbeat"; exit 0; fi
+          key="${SENTRY_DSN#*//}"; key="${key%%@*}"
+          host="${SENTRY_DSN#*@}"; host="${host%%/*}"
+          proj="${SENTRY_DSN##*/}"
+          code=$(curl -sS -m 20 -o /dev/null -w '%{http_code}' -X POST "https://${host}/api/${proj}/cron/fpl-lab-refresh/${key}/" \
+            -H 'Content-Type: application/json' \
+            --data-raw '{"status":"ok","monitor_config":{"schedule":{"type":"interval","value":14,"unit":"hour"},"checkin_margin":240,"failure_issue_threshold":1,"recovery_threshold":1}}' 2>/dev/null) || code="curl-failed"
+          echo "Sentry check-in HTTP status: ${code}"
+          exit 0
