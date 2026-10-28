@@ -59,7 +59,7 @@ RECENT_VOLUME_SHOTS = 10          # min shots in recent Understat window
 RECENT_VOLUME_CHANCES = 8         # min chances created in recent window
 RECENT_VOLUME_MAX_GOALS = 1       # max goals in that window to count as "imminent"
 RECENT_VOLUME_MAX_ASSISTS = 1     # max assists in that window
-RECENT_VOLUME_WEIGHT_BOOST = 0.18 # add this to the recent-window weight (0.45 -> ~0.63)
+RECENT_VOLUME_WEIGHT_BOOST = 0.0  # was 0.18 (0.45 -> 0.63): backtest (docs/decision_backtest.md) found no gain for goals and slightly worse assist error, because picking players on high recent chance volume also picks noise; set back to 0.18 to re-enable
 RECENT_VOLUME_WEIGHT_MAX = 0.70   # the recent weight never goes above this
 
 # Set-piece boosts (small, capped)

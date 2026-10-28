@@ -19,6 +19,19 @@ def w(**kw):
 
 
 class RecentWeight(unittest.TestCase):
+    """The boost is switched off in production (RECENT_VOLUME_WEIGHT_BOOST = 0.0, see docs/decision_backtest.md); these tests switch it on to check the mechanics."""
+    def setUp(self):
+        self._boost = ai_team.RECENT_VOLUME_WEIGHT_BOOST
+        ai_team.RECENT_VOLUME_WEIGHT_BOOST = 0.18
+
+    def tearDown(self):
+        ai_team.RECENT_VOLUME_WEIGHT_BOOST = self._boost
+
+    def test_production_default_leaves_the_weight_alone(self):
+        ai_team.RECENT_VOLUME_WEIGHT_BOOST = self._boost
+        self.assertEqual(ai_team.RECENT_VOLUME_WEIGHT_BOOST, 0.0)
+        self.assertAlmostEqual(ai_team.recent_weight(w(shots=14, goals=0)), 0.45)
+
     def test_boost_fires_on_many_shots_and_few_goals(self):
         self.assertAlmostEqual(ai_team.recent_weight(w(shots=10, goals=1)), 0.45 + 0.18)
         self.assertAlmostEqual(ai_team.recent_weight(w(shots=14, goals=0)), 0.63)

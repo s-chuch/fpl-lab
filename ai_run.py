@@ -215,6 +215,8 @@ RULE_VERDICT = {"Leaning buy": "buy", "Captain candidate": "captain", "Leaning s
                 "Fitness or rotation doubts": "doubt"}
 
 
+SETPIECE_SIGNAL = 0.0     # was 0.25 (penalties) / 0.1 (free kicks, corners): set-piece duty is now counted once, in the xP model (ai_team.set_piece_boosts); the reasons still show
+
 def _ai_team():
     import ai_team
     return ai_team
@@ -283,12 +285,12 @@ def build_transfer_signals(boot, news=None, elite=None, league=None, set_pieces=
         for p in row.get("pens", []):
             eid = by_name.get((p["name"], tid))
             if eid:
-                put(eid, "setpiece", 0.25, "Takes penalties")
+                put(eid, "setpiece", SETPIECE_SIGNAL, "Takes penalties")
         for kind, lbl in (("fks", "free kicks"), ("corners", "corners")):
             for p in row.get(kind, []):
                 eid = by_name.get((p["name"], tid))
                 if eid and "setpiece" not in sig.get(eid, {}).get("parts", {}):
-                    put(eid, "setpiece", 0.1, f"Takes {lbl}")
+                    put(eid, "setpiece", SETPIECE_SIGNAL, f"Takes {lbl}")
     # 5. your rivals (you only): defend a lead with the template, chase with differentials
     if league and league.get("n"):
         n, mode = league["n"], league.get("mode")
