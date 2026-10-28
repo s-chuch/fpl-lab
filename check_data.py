@@ -168,6 +168,22 @@ def check_age_only(files):
     return 1 if problems else 0
 
 
+def check_exa_news():
+    """exa-news.js (display-only Exa team news) is optional: a missing file is fine, a corrupt one is only a warning -
+    the page hides the block and the next refresh rewrites it. Never fails the run."""
+    path = ROOT / "exa-news.js"
+    if not path.is_file():
+        return
+    try:
+        raw = path.read_text()
+        d = json.loads(raw[raw.index("{"): raw.rindex("}") + 1])
+        n = len(d.get("items") or [])
+        age = _age_hours(d.get("generated_at"))
+        print(f"exa-news.js: {n} items, {'?' if age is None else round(age, 1)}h old, {(d.get('month_usage') or {}).get('searches', '?')} searches this month")
+    except Exception as e:
+        print(f"::warning::exa-news.js unreadable ({e}) - the page hides the block until the next refresh")
+
+
 def main(argv):
     if argv and argv[0] == "--age-only":
         return check_age_only(argv[1:] or ["data.js", "bacalhau-data.js"])
@@ -180,6 +196,7 @@ def main(argv):
             problems.append(f"{f}: could not be read ({e})")
     for p in problems:
         print("::error::" + p)
+    check_exa_news()
     print("data checks:", "OK" if not problems else f"{len(problems)} problem(s)")
     return 1 if problems else 0
 

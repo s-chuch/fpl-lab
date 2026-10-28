@@ -41,6 +41,7 @@ on:
       - "index.html"
       - "bacalhau.html"
       - "news_scrape.py"
+      - "exa_news.py"
       - "check_data.py"
       - "tests/**"
       - "lab_audit.py"
@@ -129,7 +130,7 @@ jobs:
       - name: Syntax check
         if: steps.gate.outputs.run != 'false'
         run: |
-          python -m py_compile regression.py ai_review.py ai_decisions.py ai_changes.py news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py rec_log.py pred_track.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
+          python -m py_compile exa_news.py regression.py ai_review.py ai_decisions.py ai_changes.py news_llm.py news_scrape.py refresh.py fpl_common.py lab_audit.py league_tactics.py wildcard_recommend.py rec_log.py pred_track.py fixtures_external.py understat.py ai_team.py stamp_versions.py check_data.py fplbase.py chips.py signals.py ai_run.py planner.py live_update.py fixture_swing.py elo.py odds.py
 
       - name: Pull live FPL data
         id: pull
@@ -148,6 +149,16 @@ jobs:
           python wildcard_recommend.py shaaland-wildcard.js || failed="$failed wildcard(shaaland)"
           echo "failed=$failed" >> "$GITHUB_OUTPUT"
 
+      # Team news from Exa web search (display only, never fed into the model). Hard-capped at 10 searches per run, cached
+      # for 6h (push-triggered runs spend nothing), skipped without the EXA_API_KEY secret, and non-fatal: on any error the
+      # previous exa-news.js stays. The key is only passed to this step.
+      - name: Exa team news (display only)
+        if: steps.gate.outputs.run != 'false'
+        continue-on-error: true
+        env:
+          EXA_API_KEY: ${{ secrets.EXA_API_KEY }}
+        run: python exa_news.py || echo "::warning::exa_news.py failed - keeping the previous exa-news.js"
+
       - name: Commit data files if they changed
         if: steps.gate.outputs.run != 'false'
         run: |
@@ -160,7 +171,7 @@ jobs:
           python stamp_versions.py
           # Optional caches (written only when their source answered) may not exist: add only files that do, since
           # `git add` aborts on a missing pathspec and would commit nothing at all.
-          for f in data.js bacalhau-data.js rec_log.json bacalhau-rec_log.json prediction_log.json bacalhau-prediction_log.json player_log.json learned.json regression_log.json legacy_predictions.json news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
+          for f in data.js bacalhau-data.js rec_log.json bacalhau-rec_log.json prediction_log.json bacalhau-prediction_log.json player_log.json learned.json regression_log.json legacy_predictions.json news.js exa-news.js news_seen.json elo_cache.json odds_cache.json bacalhau-wildcard.js shaaland-wildcard.js team_recovery_cache.json understat_cache.json index.html bacalhau.html; do
             if [ -e "$f" ]; then git add "$f"; fi
           done
           if git diff --staged --quiet; then
