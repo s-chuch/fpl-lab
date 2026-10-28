@@ -51,6 +51,23 @@ EP_NEXT_WEIGHT = 0.2            # FPL's ep_next mostly repeats form, so it only 
 FDR_CS_BASE, FDR_CS_SLOPE, FDR_CS_RANGE = 0.40, 0.07, (0.08, 0.6)   # clean-sheet chance by difficulty rating
 FDR_ATT_BASE, FDR_ATT_SLOPE = 1.12, 0.06                            # attacking returns by difficulty rating
 
+# Recent volume boost (Scout-style underperformance signal): a player with lots of recent chances but few goals/assists has his
+# recent Understat rates (xG/xA per appearance over his last understat.WINDOW appearances) trusted more. It raises the weight on the
+# recent RATES only; it does not credit "goals owed" (a backtest of 2024-25/2025-26 found no rebound for underperformers).
+RECENT_BASE_WEIGHT = 0.45         # weight of the recent window in the Understat blend when the volume signal is off (as before)
+RECENT_VOLUME_SHOTS = 10          # min shots in recent Understat window
+RECENT_VOLUME_CHANCES = 8         # min chances created in recent window
+RECENT_VOLUME_MAX_GOALS = 1       # max goals in that window to count as "imminent"
+RECENT_VOLUME_MAX_ASSISTS = 1     # max assists in that window
+RECENT_VOLUME_WEIGHT_BOOST = 0.18 # add this to the recent-window weight (0.45 -> ~0.63)
+RECENT_VOLUME_WEIGHT_MAX = 0.70   # the recent weight never goes above this
+
+# Set-piece boosts (small, capped)
+PENALTY_TAKER_XG_BOOST = 0.12     # extra expected goals per fixture if primary PK taker (FPL penalties_order == 1), net of penalty xG already in his recent rate
+CORNER_TAKER_XA_BOOST = 0.08      # extra expected assists per fixture if high corner volume
+CORNER_TAKER_MIN_CORNERS = 15     # season or recent threshold to count as high volume. NOT USED YET: neither FPL nor Understat gives a corners-taken count,
+                                  # so first-choice corner duty (corners_and_indirect_freekicks_order == 1) is the stand-in until a real count exists
+
 
 def _load_doc():
     try:
@@ -152,6 +169,48 @@ SHRINK_MINUTES = 500.0     # a player's own rate has full weight after ~five ful
 DEFCON_THRESHOLD = {"DEF": 10.0, "MID": 12.0, "FWD": 12.0}   # defensive contributions per match for the +2 points
 
 
+def recent_weight(uwin):
+    """Weight (0-0.70) of the player's recent Understat window in the xG/xA blend: RECENT_BASE_WEIGHT, raised by
+    RECENT_VOLUME_WEIGHT_BOOST when he shows Scout-style volume without the returns: lots of shots but at most
+    RECENT_VOLUME_MAX_GOALS goals, or lots of chances created but at most RECENT_VOLUME_MAX_ASSISTS assists, in the window.
+    Window keys come from understat.player_windows: apps, shots, goals, xg, cc (chances created), assists, xa."""
+    w = RECENT_BASE_WEIGHT
+    if uwin and uwin.get("apps"):
+        if (uwin.get("shots", 0) >= RECENT_VOLUME_SHOTS and uwin.get("goals", 0) <= RECENT_VOLUME_MAX_GOALS) or \
+           (uwin.get("cc", 0) >= RECENT_VOLUME_CHANCES and uwin.get("assists", 0) <= RECENT_VOLUME_MAX_ASSISTS):
+            w = min(RECENT_VOLUME_WEIGHT_MAX, w + RECENT_VOLUME_WEIGHT_BOOST)
+    return w
+
+
+def blend_recent(xg90, xa90, uwin):
+    """(xg90, xa90) with the player's recent Understat xG/xA per appearance blended in at recent_weight(uwin); unchanged without a window.
+    The single place both model_xp and model_outlook take this from."""
+    if not (uwin and uwin.get("apps")):
+        return xg90, xa90
+    w = recent_weight(uwin)
+    return (1 - w) * xg90 + w * (uwin["xg"] / uwin["apps"]), (1 - w) * xa90 + w * (uwin["xa"] / uwin["apps"])
+
+
+def set_piece_boosts(el, pos, uwin):
+    """(extra expected goals, extra expected assists) per fixture for set-piece duty; both small, capped and 0 for keepers.
+    Penalties: FPL's penalties_order == 1 (first-choice taker). His season and recent xG already contain the penalties he has taken, so the
+    boost is only the part not yet in his recent rate: PENALTY_TAKER_XG_BOOST minus the penalty xG per appearance in his Understat window
+    (shots worth understat.PENALTY_XG = 0.761, summed into the window's pen_xg). Without a window we cannot tell what is already counted, so no penalty boost.
+    Corners: corners_and_indirect_freekicks_order == 1, a stand-in for high corner volume (no corners-taken count exists in the data;
+    CORNER_TAKER_MIN_CORNERS is therefore not applied). Corner chances are already part of his xA, so this is a deliberately small nudge."""
+    if pos == "GKP":
+        return 0.0, 0.0
+    pk = corner = 0.0
+    if el.get("penalties_order") == 1 and uwin and uwin.get("apps"):
+        pens_xg = uwin.get("pen_xg")
+        if pens_xg is None:
+            return 0.0, 0.0        # window without penalty info (older cache shape): do not guess, never stack blindly
+        pk = max(0.0, min(PENALTY_TAKER_XG_BOOST, PENALTY_TAKER_XG_BOOST - pens_xg / uwin["apps"]))
+    if el.get("corners_and_indirect_freekicks_order") == 1:
+        corner = CORNER_TAKER_XA_BOOST
+    return pk, corner
+
+
 def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     """Expected points for one gameweek from the player's own numbers and the fixtures:
     minutes security x (appearance + attacking returns + clean sheet + saves - goals conceded + bonus).
@@ -168,11 +227,12 @@ def model_xp(el, fixtures, gws_played, uwin=None, recent=None):
     pr = PRIOR[pos]
     xg90 = w * _f(el.get("expected_goals_per_90")) + (1 - w) * pr["xg"]
     xa90 = w * _f(el.get("expected_assists_per_90")) + (1 - w) * pr["xa"]
-    if uwin and uwin.get("apps"):
-        # recent shot/chance quality (Understat, last few appearances) blended with the season rate
-        xg90 = 0.55 * xg90 + 0.45 * (uwin["xg"] / uwin["apps"])
-        xa90 = 0.55 * xa90 + 0.45 * (uwin["xa"] / uwin["apps"])
+    # recent shot/chance quality (Understat, last few appearances) blended with the season rate; weight raised for high-volume, low-conversion players
+    xg90, xa90 = blend_recent(xg90, xa90, uwin)
     attack = xg90 * GOAL_PTS[pos] + xa90 * 3
+    # small explicit set-piece boosts (per fixture, then scaled by minutes and availability like the rest of the attacking terms)
+    pk_boost, corner_boost = set_piece_boosts(el, pos, uwin)
+    attack += pk_boost * GOAL_PTS[pos] + corner_boost * 3
     cs90 = w * _f(el.get("clean_sheets_per_90")) + (1 - w) * pr["cs"]
     xgc90 = _f(el.get("expected_goals_conceded_per_90"))
     saves = _f(el.get("saves_per_90")) / 3 if pos == "GKP" else 0.0
@@ -218,9 +278,10 @@ def model_outlook(el, fixtures, gws_played, uwin=None, recent=None):
     pr = PRIOR[pos]
     xg90 = w * _f(el.get("expected_goals_per_90")) + (1 - w) * pr["xg"]
     xa90 = w * _f(el.get("expected_assists_per_90")) + (1 - w) * pr["xa"]
-    if uwin and uwin.get("apps"):
-        xg90 = 0.55 * xg90 + 0.45 * (uwin["xg"] / uwin["apps"])
-        xa90 = 0.55 * xa90 + 0.45 * (uwin["xa"] / uwin["apps"])
+    xg90, xa90 = blend_recent(xg90, xa90, uwin)      # same blend and set-piece boosts as model_xp (shared helpers, so they cannot drift)
+    pk_boost, corner_boost = set_piece_boosts(el, pos, uwin)
+    xg90 += pk_boost
+    xa90 += corner_boost
     cs90 = w * _f(el.get("clean_sheets_per_90")) + (1 - w) * pr["cs"]
     goals = assists = 0.0
     p_cs_none = 1.0

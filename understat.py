@@ -20,6 +20,7 @@ WINDOW = 4            # a player's last N appearances
 TEAM_MATCHES = 7      # a team's last N matches fetched, so a rotated player still has N appearances
 BIG_CHANCE_XG = 0.3   # a shot worth at least this much xG counts as a big chance
 ON_TARGET = {"Goal", "SavedShot", "ShotOnPost"}
+PENALTY_XG = 0.761    # Understat gives every penalty this xG
 # Understat club name -> FPL short name where a plain name match is not enough
 TEAM_ALIASES = {"manchester city": "MCI", "manchester united": "MUN", "tottenham": "TOT", "newcastle united": "NEW",
                 "nottingham forest": "NFO", "wolverhampton wanderers": "WOL", "west ham": "WHU", "leeds": "LEE",
@@ -109,7 +110,7 @@ def player_windows(season=2026, before=None, fetched=None):
     for name, lst in apps.items():
         last = lst[-WINDOW:]
         agg = {"apps": len(last), "shots": 0, "sot": 0, "big": 0, "goals": 0, "xg": 0.0,
-               "cc": 0, "big_cc": 0, "assists": 0, "xa": 0.0, "team": last[-1][1]}
+               "cc": 0, "big_cc": 0, "assists": 0, "xa": 0.0, "pens": 0, "pen_xg": 0.0, "team": last[-1][1]}
         for mid, _club in last:
             for player, assist, result, xg, ha in matches[mid]["shots"]:
                 if player == name:
@@ -117,11 +118,13 @@ def player_windows(season=2026, before=None, fetched=None):
                     agg["sot"] += result in ON_TARGET
                     agg["big"] += xg >= BIG_CHANCE_XG
                     agg["goals"] += result == "Goal"
+                    if abs(xg - PENALTY_XG) <= 0.002:      # a penalty (the model must not count its xG a second time as a set-piece boost)
+                        agg["pens"] += 1; agg["pen_xg"] += xg
                 if assist == name:
                     agg["cc"] += 1; agg["xa"] += xg
                     agg["big_cc"] += xg >= BIG_CHANCE_XG
                     agg["assists"] += result == "Goal"
-        agg["xg"], agg["xa"] = round(agg["xg"], 2), round(agg["xa"], 2)
+        agg["xg"], agg["xa"], agg["pen_xg"] = round(agg["xg"], 2), round(agg["xa"], 2), round(agg["pen_xg"], 3)
         out[name] = agg
     return out
 
