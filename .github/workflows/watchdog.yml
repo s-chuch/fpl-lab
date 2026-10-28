@@ -8,6 +8,7 @@ on:
 permissions:
   contents: read
   actions: write
+  issues: write
 
 jobs:
   age:
@@ -22,11 +23,46 @@ jobs:
         with:
           python-version: "3.12"
       - name: Restart the refresh if it has stopped
+        id: age
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           # GitHub throttles scheduled workflows; a stopped refresh is restarted from here (before any age check turns red)
           age=$(python -c 'import re,datetime as d;m=re.search(r"\"generated_at\":\s*\"(\d{4}-\d\d-\d\d \d\d:\d\d)",open("data.js").read(4000));print(int((d.datetime.utcnow()-d.datetime.strptime(m.group(1),"%Y-%m-%d %H:%M")).total_seconds()//3600) if m else 99)')
           echo "data.js is ${age}h old"
+          echo "age=$age" >> "$GITHUB_OUTPUT"
           if [ "$age" -ge 12 ]; then gh workflow run refresh.yml --ref main || echo "dispatch failed"; fi
+
+      # Issue alert (assigned to the owner): one open `data-stale` issue at a time; later stale runs comment on it,
+      # and the first fresh run closes it. Never fails the watchdog itself.
+      - name: Open or update the data-stale issue
+        if: steps.age.outputs.age >= 12
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGE: ${{ steps.age.outputs.age }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create data-stale --color d93f0b --description "Dashboard data is stale (watchdog)" -R "$REPO" 2>/dev/null || true
+          msg="The watchdog found data.js ${AGE}h old at $(TZ=America/Toronto date '+%Y-%m-%d %H:%M %Z') and re-dispatched refresh.yml. Check https://github.com/${REPO}/actions/workflows/refresh.yml"
+          n=$(gh issue list -R "$REPO" --label data-stale --state open --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue comment "$n" -R "$REPO" --body "$msg"
+          else
+            gh issue create -R "$REPO" --title "Dashboard data is stale (${AGE}h old)" --label data-stale --assignee s-chuch --body "$msg"
+          fi
+
+      - name: Close the data-stale issue once data is fresh
+        if: steps.age.outputs.age < 12
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGE: ${{ steps.age.outputs.age }}
+          REPO: ${{ github.repository }}
+        run: |
+          for n in $(gh issue list -R "$REPO" --label data-stale --state open --json number --jq '.[].number'); do
+            gh issue comment "$n" -R "$REPO" --body "Resolved: data.js is ${AGE}h old again."
+            gh issue close "$n" -R "$REPO" --reason completed
+          done
+
       - run: python check_data.py --age-only
