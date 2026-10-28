@@ -39,35 +39,45 @@ def run(elements, windows, **bkw):
 
 
 class Volume(unittest.TestCase):
-    def test_defenders_never_in_goal_list(self):
-        res = run([el(1, 2, 540), el(2, 3, 540)], {1: win(sot=5, big=4), 2: win(sot=5, big=4)})
-        self.assertEqual([x["eid"] for x in res["goal"]], [2])
+    """The Fantasy Football Scout rule: 10+ shots and <= 1 goal / 8+ chances created and <= 1 assist over the last four appearances."""
+    def test_goal_rule_is_ten_shots_and_at_most_one_goal(self):
+        els = [el(i, 3, 540) for i in (1, 2, 3, 4)]
+        res = run(els, {1: win(shots=10), 2: win(shots=9), 3: win(shots=12, goals=1), 4: win(shots=12, goals=2)})
+        self.assertEqual({x["eid"] for x in res["goal"]}, {1, 3})
+        self.assertIn("10+", res["goal_rule"])
+
+    def test_goal_list_is_ordered_by_non_penalty_xg_delta_and_includes_defenders(self):
+        els = [el(1, 3, 540), el(2, 2, 540), el(3, 4, 540)]
+        res = run(els, {1: win(shots=11, npg=0, npxg=1.0), 2: win(shots=11, npg=0, npxg=2.0), 3: win(shots=11, npg=1, npxg=1.2)})
+        self.assertEqual([x["eid"] for x in res["goal"]], [2, 1, 3])               # -2.0, -1.0, -0.2
+        self.assertEqual(res["goal"][0]["pos"], "DEF")
 
     def test_non_starter_dropped(self):
-        res = run([el(1, 3, 300), el(2, 3, 290)], {1: win(sot=4), 2: win(sot=4)})   # 300 >= 297, 290 < 297
+        res = run([el(1, 3, 300), el(2, 3, 290)], {1: win(shots=10), 2: win(shots=10)})   # 300 >= 297, 290 < 297
         self.assertEqual([x["eid"] for x in res["goal"]], [1])
         res = run([el(1, 3, 290)], {1: win(cc=9)})
         self.assertEqual(res["assist"], [])
 
-    def test_assist_thresholds(self):
+    def test_assist_rule_is_eight_chances_and_at_most_one_assist(self):
         els = [el(i, 3, 540) for i in (1, 2, 3, 4)]
-        res = run(els, {1: win(cc=5, big_cc=2), 2: win(cc=7), 3: win(cc=1, big_cc=3), 4: win(cc=5, big_cc=2, assists=1)})
+        res = run(els, {1: win(cc=7), 2: win(cc=8), 3: win(cc=12, assists=1), 4: win(cc=12, assists=2)})
         self.assertEqual({x["eid"] for x in res["assist"]}, {2, 3})
-        self.assertIn("7+", res["assist_rule"]); self.assertIn("3+", res["assist_rule"])
+        self.assertIn("8+", res["assist_rule"])
 
-    def test_defender_assist_needs_double(self):
-        res = run([el(1, 2, 540), el(2, 2, 540), el(3, 2, 540)], {1: win(cc=7), 2: win(cc=14), 3: win(big_cc=6)})
-        self.assertEqual({x["eid"] for x in res["assist"]}, {2, 3})
+    def test_defenders_use_the_same_assist_bar(self):
+        res = run([el(1, 2, 540), el(2, 2, 540)], {1: win(cc=8), 2: win(cc=7)})
+        self.assertEqual({x["eid"] for x in res["assist"]}, {1})
 
     def test_assist_needs_three_appearances(self):
         res = run([el(1, 3, 540), el(2, 3, 540)], {1: win(cc=9, apps=2), 2: win(cc=9, apps=3)})
         self.assertEqual({x["eid"] for x in res["assist"]}, {2})
 
-    def test_flags_carry_pos(self):
-        res = run([el(1, 3, 540)], {1: win(sot=4, cc=7)})
+    def test_flags_carry_pos_and_rule(self):
+        res = run([el(1, 3, 540)], {1: win(shots=11, cc=8)})
         self.assertEqual(res["goal"][0]["pos"], "MID")
         log = signals.update_volume_log({}, {"source": "understat", **res}, {"next_gw": 7}, boot_of([el(1, 3, 540)]))
         self.assertTrue(all(f["pos"] == "MID" for f in log["gw7"]["flags"]))
+        self.assertEqual(log["gw7"]["rule"], 2)                                      # old weeks have no rule: they were the 3-shots-on-target version
 
 
 class Grading(unittest.TestCase):

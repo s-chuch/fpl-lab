@@ -15,12 +15,14 @@ _log = fpl_common.get_logger("understat.py")
 
 BASE = "https://understat.com"
 CACHE = Path(__file__).with_name("understat_cache.json")
-SCHEMA = 2
+SCHEMA = 3            # 3: per shot also position, situation, cross flag and minute; per match minutes played
 WINDOW = 4            # a player's last N appearances
 TEAM_MATCHES = 7      # a team's last N matches fetched, so a rotated player still has N appearances
 BIG_CHANCE_XG = 0.3   # a shot worth at least this much xG counts as a big chance
 ON_TARGET = {"Goal", "SavedShot", "ShotOnPost"}
 PENALTY_XG = 0.761    # Understat gives every penalty this xG
+BOX_X, BOX_Y = 0.835, (0.2, 0.8)   # a shot from the penalty area (Understat coordinates run 0-1 along and across the pitch, attacking towards x = 1)
+SITUATION = {"OpenPlay": "O", "FromCorner": "C", "SetPiece": "S", "Penalty": "P", "DirectFreekick": "D"}
 # Understat club name -> FPL short name where a plain name match is not enough
 TEAM_ALIASES = {"manchester city": "MCI", "manchester united": "MUN", "tottenham": "TOT", "newcastle united": "NEW",
                 "nottingham forest": "NFO", "wolverhampton wanderers": "WOL", "west ham": "WHU", "leeds": "LEE",
@@ -72,14 +74,17 @@ def fetch_matches(season):
         except Exception as e:
             _log.warning(f"match {mid}: {e}")
             return mid, None
-        shots = [[s["player"], s.get("player_assisted") or "", s["result"], round(float(s["xG"]), 3), s["h_a"]]
+        shots = [[s["player"], s.get("player_assisted") or "", s["result"], round(float(s["xG"]), 3), s["h_a"],
+                  round(float(s.get("X") or 0), 3), round(float(s.get("Y") or 0), 3), SITUATION.get(s.get("situation"), "O"),
+                  "X" if s.get("lastAction") == "Cross" else "", int(s.get("minute") or 0)]
                  for side in ("h", "a") for s in (d.get("shots", {}).get(side) or [])]
-        mins = {}
+        mins, played = {}, {}
         for side in ("h", "a"):
             for p in (d.get("rosters", {}).get(side) or {}).values():
                 if int(p.get("time") or 0) > 0:
                     mins[p["player"]] = p.get("h_a") or side
-        return mid, {"shots": shots, "mins": mins}
+                    played[p["player"]] = int(p.get("time") or 0)
+        return mid, {"shots": shots, "mins": mins, "tm": played}
     with ThreadPoolExecutor(max_workers=6) as ex:
         for mid, rec in ex.map(one, todo):
             if rec:
@@ -110,21 +115,33 @@ def player_windows(season=2026, before=None, fetched=None):
     for name, lst in apps.items():
         last = lst[-WINDOW:]
         agg = {"apps": len(last), "shots": 0, "sot": 0, "big": 0, "goals": 0, "xg": 0.0,
-               "cc": 0, "big_cc": 0, "assists": 0, "xa": 0.0, "pens": 0, "pen_xg": 0.0, "team": last[-1][1]}
+               "cc": 0, "big_cc": 0, "assists": 0, "xa": 0.0, "pens": 0, "pen_xg": 0.0, "box": 0, "npxg": 0.0, "npg": 0, "big_missed": 0,
+               "corner_cc": 0, "cross_cc": 0, "mins": 0, "team": last[-1][1]}
         for mid, _club in last:
-            for player, assist, result, xg, ha in matches[mid]["shots"]:
+            agg["mins"] += int((matches[mid].get("tm") or {}).get(name, 0))
+            for sh in matches[mid]["shots"]:
+                player, assist, result, xg, ha = sh[:5]
+                x, y, sit, cross = (sh[5], sh[6], sh[7], sh[8]) if len(sh) >= 9 else (None, None, "", "")
                 if player == name:
+                    penalty = sit == "P" or (not sit and abs(xg - PENALTY_XG) <= 0.002)       # a penalty (the model must not count its xG a second time as a set-piece boost)
                     agg["shots"] += 1; agg["xg"] += xg
                     agg["sot"] += result in ON_TARGET
                     agg["big"] += xg >= BIG_CHANCE_XG
                     agg["goals"] += result == "Goal"
-                    if abs(xg - PENALTY_XG) <= 0.002:      # a penalty (the model must not count its xG a second time as a set-piece boost)
+                    if penalty:
                         agg["pens"] += 1; agg["pen_xg"] += xg
+                    else:
+                        agg["npxg"] += xg; agg["npg"] += result == "Goal"
+                        agg["big_missed"] += (xg >= BIG_CHANCE_XG and result != "Goal")
+                        if x is not None and x >= BOX_X and BOX_Y[0] <= y <= BOX_Y[1]:
+                            agg["box"] += 1
                 if assist == name:
                     agg["cc"] += 1; agg["xa"] += xg
                     agg["big_cc"] += xg >= BIG_CHANCE_XG
                     agg["assists"] += result == "Goal"
-        agg["xg"], agg["xa"], agg["pen_xg"] = round(agg["xg"], 2), round(agg["xa"], 2), round(agg["pen_xg"], 3)
+                    agg["corner_cc"] += sit == "C"
+                    agg["cross_cc"] += cross == "X"
+        agg["xg"], agg["xa"], agg["pen_xg"], agg["npxg"] = round(agg["xg"], 2), round(agg["xa"], 2), round(agg["pen_xg"], 3), round(agg["npxg"], 2)
         out[name] = agg
     return out
 
@@ -141,7 +158,8 @@ def gw_process(boot, kick_from, kick_to, season=2026, fetched=None):
         rec = matches[m["id"]]
         for name, side in rec["mins"].items():
             agg.setdefault(name, {"shots": 0, "sot": 0, "big": 0, "cc": 0, "big_cc": 0, "team": m[side]["title"]})
-        for player, assist, result, xg, ha in rec["shots"]:
+        for sh in rec["shots"]:
+            player, assist, result, xg = sh[0], sh[1], sh[2], sh[3]
             if player in agg:
                 agg[player]["shots"] += 1; agg[player]["sot"] += result in ON_TARGET; agg[player]["big"] += xg >= BIG_CHANCE_XG
             if assist in agg:

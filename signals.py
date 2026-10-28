@@ -142,15 +142,15 @@ def _imminent_returns(boot, all_rows, squad_rows, pool, top_n, next_fixture_map=
         _warn(f"imminent: Understat unavailable, falling back to FPL xG/xA: {e}")
     return _imminent_fpl(boot, all_rows, squad_rows, pool, top_n)
 
-UNDERSTAT_GOAL_SOT = 3      # shots on target over the window with no goal => goal due
+UNDERSTAT_GOAL_SHOTS = 10   # the Fantasy Football Scout rule: 10+ shots over the last four appearances...
 
-UNDERSTAT_GOAL_BIG = 2      # ...or this many big chances (shots worth 0.3+ xG)
+UNDERSTAT_GOAL_MAX = 1      # ...and no more than one goal
 
-UNDERSTAT_ASSIST_CC = 7     # chances created (shots the player set up) with no assist => assist due
+UNDERSTAT_ASSIST_CC = 8     # 8+ chances created (shots the player set up)...
 
-UNDERSTAT_ASSIST_BIG = 3    # ...or this many big chances created
+UNDERSTAT_ASSIST_MAX = 1    # ...and no more than one assist
 
-ASSIST_DEF_FACTOR = 2       # a defender must clear the assist bar at 2x (12+ chances created or 6+ big)
+IMMINENT_RULE = 2           # volume_log flags carry this so the old rule's (3 shots on target / 2 big chances) hit rate is never mixed with this one
 
 STARTER_SHARE = 0.55        # season minutes / (90 * finished gameweeks) a player needs to be flagged
 
@@ -185,30 +185,30 @@ def _imminent_understat(boot, squad_rows, top_n, understat, next_fixture_map=Non
             continue    # rotation / bench player: chance volume over a few cameos is noise
         key = (el["web_name"], teams[el["team"]])
         item = {"name": el["web_name"], "pos": POS[el["element_type"]], "club": key[1], "cost": el["now_cost"] / 10,
-                "owned_pct": float(el.get("selected_by_percent") or 0), "gws": w["apps"], "shots": w["shots"],
-                "sot": w["sot"], "big": w["big"], "goals": w["goals"], "xg": w["xg"],
-                "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"], "eid": eid}
+                "owned_pct": float(el.get("selected_by_percent") or 0), "gws": w["apps"], "mins": w.get("mins"), "shots": w["shots"],
+                "sot": w["sot"], "big": w["big"], "goals": w["goals"], "xg": w["xg"], "npxg": w.get("npxg"), "npg": w.get("npg"),
+                "box": w.get("box"), "big_missed": w.get("big_missed"), "pens": w.get("pens", 0),
+                "cc": w["cc"], "big_cc": w["big_cc"], "assists": w["assists"], "xa": w["xa"],
+                "corner_cc": w.get("corner_cc"), "cross_cc": w.get("cross_cc"), "eid": eid}
+        item["goal_delta"] = round(((w.get("npg") if w.get("npg") is not None else w["goals"]) - (w.get("npxg") if w.get("npxg") is not None else w["xg"])), 2)
+        item["assist_delta"] = round(w["assists"] - w["xa"], 2)
         fx = next_fixture_map.get(el["team"]) if next_fixture_map else None
         item["next"] = f"{fx['opp']} ({fx['side']})" if fx else "Blank"
         item["fdr"] = fx["fdr"] if fx else None
-        # Easy next fixture and a low-owned differential rank higher; a blank GW drops a player
-        # down, since no fixture means no chance of a return.
-        bonus = (3 - fx["fdr"] if fx and fx.get("fdr") else -2) + (1 if item["owned_pct"] < 10 else 0)
-        item["bonus"] = bonus
         due = []
-        mult = ASSIST_DEF_FACTOR if el["element_type"] == 2 else 1
-        if el["element_type"] != 2 and w["goals"] == 0 and (w["sot"] >= UNDERSTAT_GOAL_SOT or w["big"] >= UNDERSTAT_GOAL_BIG):
+        if w["apps"] >= 3 and w["shots"] >= UNDERSTAT_GOAL_SHOTS and w["goals"] <= UNDERSTAT_GOAL_MAX:
             due.append("goal"); goal.append(item)
-        if w["assists"] == 0 and w["apps"] >= 3 and (w["cc"] >= UNDERSTAT_ASSIST_CC * mult or w["big_cc"] >= UNDERSTAT_ASSIST_BIG * mult):
+        if w["apps"] >= 3 and w["cc"] >= UNDERSTAT_ASSIST_CC and w["assists"] <= UNDERSTAT_ASSIST_MAX:
             due.append("assist"); assist.append(item)
         due_by[key] = due
     for r in squad_rows:
         r["due"] = due_by.get((r["name"], r["club"]), [])
-    goal.sort(key=lambda x: -(x["sot"] + 2 * x["big"] + x["xg"] + x["bonus"]))
-    assist.sort(key=lambda x: -(x["cc"] + 2 * x["big_cc"] + x["xa"] + x["bonus"]))
-    return {"source": "understat", "window": understat.WINDOW, "goal_rule": f"{UNDERSTAT_GOAL_SOT}+ shots on target or {UNDERSTAT_GOAL_BIG}+ big chances",
-            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created or {UNDERSTAT_ASSIST_BIG}+ big chances created, in 3+ of the last {understat.WINDOW} appearances (defenders: double)",
-            "starter_rule": f"regular starters only ({round(STARTER_SHARE * 100)}%+ of available minutes); goal list is midfielders and forwards",
+    goal.sort(key=lambda x: (x["goal_delta"], -x["shots"]))          # most chances missed first, as in the Scout table (xG delta)
+    assist.sort(key=lambda x: (x["assist_delta"], -x["cc"]))
+    return {"source": "understat", "rule": IMMINENT_RULE, "window": understat.WINDOW,
+            "goal_rule": f"{UNDERSTAT_GOAL_SHOTS}+ shots and no more than {UNDERSTAT_GOAL_MAX} goal in the last {understat.WINDOW} appearances",
+            "assist_rule": f"{UNDERSTAT_ASSIST_CC}+ chances created and no more than {UNDERSTAT_ASSIST_MAX} assist in the last {understat.WINDOW} appearances",
+            "starter_rule": f"regular starters only ({round(STARTER_SHARE * 100)}%+ of available minutes); xG is Understat's, non-penalty; ordered by xG / xA delta (goals or assists minus expected)",
             "goal": [x for x in goal if (x["name"], x["club"]) not in owned][:top_n],
             "assist": [x for x in assist if (x["name"], x["club"]) not in owned][:top_n]}
 
@@ -315,7 +315,7 @@ def update_volume_log(log, imminent, ds, boot):
     if imminent and imminent.get("source") == "understat" and gw:
         flags = [{"eid": x["eid"], "name": x["name"], "club": x["club"], "pos": x.get("pos") or POS.get((els.get(x["eid"]) or {}).get("element_type")), "kind": kind}
                  for kind in ("goal", "assist") for x in imminent.get(kind, [])]
-        log[f"gw{gw}"] = {"gw": gw, "flags": flags, "graded": False}
+        log[f"gw{gw}"] = {"gw": gw, "flags": flags, "graded": False, "rule": imminent.get("rule", 1)}
     # grade only once FPL has settled the gameweek (finished AND data_checked)
     finished = {e["id"] for e in boot["events"] if e.get("finished") and e.get("data_checked")}
     for entry in log.values():     # backfill the position onto older flags
