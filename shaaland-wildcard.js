@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-27",
+  "captured_at": "2026-10-28",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -257,7 +257,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-27",
+      "date": "2026-10-28",
       "total_cost": 101.0,
       "prices": {
         "Raya": 6.2,
@@ -270,9 +270,9 @@ window.FPL_WILDCARD_WATCH = {
         "Schade": 6.2,
         "Palmer": 9.8,
         "Kostoulas": 5.8,
-        "Haaland": 15.7,
+        "Haaland": 15.8,
         "Tzolakis": 4.7,
-        "João Pedro": 7.9,
+        "João Pedro": 7.8,
         "Davis": 4.0,
         "Tarkowski": 6.2
       }
@@ -312,19 +312,19 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.8,
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.8,
         "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
       },
       {
-        "name": "Haaland",
-        "baseline_cost": 15.6,
-        "current_cost": 15.7,
-        "delta": 0.1,
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.8,
+        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -413,10 +413,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "baseline_cost": null,
-        "current_cost": 7.9,
+        "current_cost": 7.8,
         "delta": null,
         "entry_cost": 7.7,
-        "delta_since_added": 0.2,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -721,6 +721,22 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.1,
         "to": 6.2,
         "delta": 0.1
+      },
+      {
+        "date": "2026-10-28",
+        "event": "price_change",
+        "player": "Haaland",
+        "from": 15.7,
+        "to": 15.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-28",
+        "event": "price_change",
+        "player": "João Pedro",
+        "from": 7.9,
+        "to": 7.8,
+        "delta": -0.1
       }
     ]
   },

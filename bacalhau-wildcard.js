@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-10-27",
+  "captured_at": "2026-10-28",
   "chips": {
     "bboost": "available",
     "3xc": "played_gw3",
@@ -252,8 +252,8 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-10-27",
-      "total_cost": 94.8,
+      "date": "2026-10-28",
+      "total_cost": 94.9,
       "prices": {
         "Raya": 6.2,
         "Gvardiol": 5.7,
@@ -264,7 +264,7 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 6.2,
         "Schade": 6.2,
         "Tavernier": 6.4,
-        "Haaland": 15.7,
+        "Haaland": 15.8,
         "Kostoulas": 5.8,
         "Tzolakis": 4.7,
         "Belloumi": 5.2,
@@ -273,7 +273,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "entry_prices": {},
-    "total_delta": 2.2,
+    "total_delta": 2.3,
     "players": [
       {
         "name": "De Cuyper",
@@ -312,6 +312,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.8,
+        "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Kostoulas",
         "baseline_cost": 5.6,
         "current_cost": 5.8,
@@ -324,15 +333,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Belloumi",
         "baseline_cost": 5.1,
         "current_cost": 5.2,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Haaland",
-        "baseline_cost": 15.6,
-        "current_cost": 15.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -607,6 +607,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.3,
         "to": 6.4,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-28",
+        "event": "price_change",
+        "player": "Haaland",
+        "from": 15.7,
+        "to": 15.8,
         "delta": 0.1
       }
     ]
