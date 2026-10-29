@@ -3,24 +3,32 @@
     {
       "name": "Fix",
       "url": "https://www.fantasyfootballfix.com/",
-      "feed": false
+      "feed": false,
+      "extra_tokens": ["blog-index", "transfer-tips", "team-news", "predicted-lineups"]
     },
     {
       "name": "Hub",
       "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-      "feed": false
+      "feed": false,
+      "extra_tokens": ["fpl-tips", "team-news", "predicted", "line-ups"]
     },
     {
       "name": "Scout",
-      "url": "https://www.fantasyfootballscout.co.uk/"
+      "url": "https://www.fantasyfootballscout.co.uk/",
+      "feed": "https://www.fantasyfootballscout.co.uk/feed/",
+      "extra_tokens": ["goals-assists-imminent", "who-is-due", "scout-picks", "team-news", "predicted-line-ups"]
     },
     {
       "name": "AAFPL",
-      "url": "https://allaboutfpl.com/"
+      "url": "https://allaboutfpl.com/",
+      "feed": "https://allaboutfpl.com/feed/",
+      "extra_tokens": ["ultimate-guide", "tips", "team-news"]
     },
     {
       "name": "Ingenuity",
-      "url": "https://ingenuityfantasy.com/"
+      "url": "https://ingenuityfantasy.com/",
+      "feed": "https://ingenuityfantasy.com/feed/",
+      "extra_tokens": ["fpl", "gameweek", "tips"]
     }
   ]
 }
