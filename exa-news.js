@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-10-28T18:38:21Z",
+ "generated_at": "2026-10-29T02:09:38Z",
  "gw": 9,
  "searches_used": 10,
- "last_attempt": "2026-10-28T18:38:21Z",
+ "last_attempt": "2026-10-29T02:09:38Z",
  "month_usage": {
   "month": "2026-10",
-  "searches": 20,
-  "cost_usd": 0.14
+  "searches": 30,
+  "cost_usd": 0.21
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -93,16 +93,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Wirtz",
-   "team": "LIV",
+   "player": "Lacroix",
+   "team": "CHE",
    "fpl_status": "d",
    "fpl_chance": 75,
-   "fpl_news": "Ankle injury - 75% chance of playing",
-   "headline": "Florian Wirtz faces Liverpool fitness race as he battles ankle injury The Independent",
-   "snippet": "Florian Wirtz faces Liverpool fitness race as he battles ankle injury The Independent",
-   "source_domain": "independent.co.uk",
-   "published": "2026-10-27",
-   "url": "https://www.independent.co.uk/sport/football/florian-wirtz-injury-liverpool-iraola-carabao-cup-b3074233.html",
+   "fpl_news": "Hamstring injury - 75% chance of playing",
+   "headline": "Chelsea FC: Xabi Alonso explains Maxence Lacroix injury as star forced off against Liverpool The Standard",
+   "snippet": "Lacroix hobbled back to the changing rooms at a snail’s pace, clutching the back of his left thigh as he conversed with the club’s trainers, bearing a concerned expression all the way.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-28",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-maxence-lacroix-injury-liverpool-b1302723.html",
    "yours": []
   }
  ]
