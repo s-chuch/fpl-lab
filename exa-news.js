@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-10-29T02:09:38Z",
+ "generated_at": "2026-10-29T15:02:32Z",
  "gw": 9,
  "searches_used": 10,
- "last_attempt": "2026-10-29T02:09:38Z",
+ "last_attempt": "2026-10-29T15:02:32Z",
  "month_usage": {
   "month": "2026-10",
-  "searches": 30,
-  "cost_usd": 0.21
+  "searches": 40,
+  "cost_usd": 0.28
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Pedro, Martinez, Chavarria, Emegha - Chelsea injury news and return dates before Liverpool Football London",
-   "snippet": "Joao Pedro Injury: Thigh What Alonso has said: \"He has an injury on his thigh and he's going to be out for a few weeks.",
-   "source_domain": "football.london",
-   "published": "2026-10-28",
-   "url": "https://www.football.london/chelsea-fc/news/chelsea-injury-news-joao-pedro-34826531",
+   "headline": "The Scout’s FPL Gameweek 9 transfer radar",
+   "snippet": "Since we have already picked out the top forwards in our look at the best replacements for the injured Joao Pedro (£7.8m), we turn our attention to defenders and midfielders here.",
+   "source_domain": "premierleague.com",
+   "published": "2026-10-29",
+   "url": "https://www.premierleague.com/en/news/4750306/the-scouts-fpl-gameweek-9-transfer-radar",
    "yours": [
     "1360999"
    ]
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "Tzolis, Calafiori, Rice, Saliba, Saka, Madueke - Arsenal injury updates and return dates Football London",
-   "snippet": "Riccardo Calafiori football.london understands Riccardo Calafiori is a doubt for Sunday's trip to Liverpool due to the issue he sustained in the final stages of last weekend's win over Everton.",
-   "source_domain": "football.london",
-   "published": "2026-10-28",
-   "url": "https://www.football.london/arsenal-fc/news/tzolis-calafiori-rice-saliba-saka-34830864",
+   "headline": "Arsenal FC XI vs Liverpool: Confirmed team news, predicted lineup, injury latest for Premier League The Standard",
+   "snippet": "Riccardo Calafiori also missed that match with the injury that he picked up in the closing stages in the win over the Toffees.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-29",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-xi-vs-liverpool-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1302661.html",
    "yours": [
     "1360999"
    ]
@@ -46,11 +46,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Twelve players could miss Liverpool vs Chelsea Carabao Cup tie after injury update - Liverpool Echo",
-   "snippet": "Both were injured during the win at Brentford earlier this month and have missed the last two games, Munoz with a knock and Szoboszlai having aggravated a previous hamstring problem Florian Wirtz, who was forced off…",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-10-28",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/twelve-players-could-miss-liverpool-34823153",
+   "headline": "Liverpool FC injury update: Dominik Szoboszlai, Victor Munoz, Jeremie Frimpong latest news and return dates The Standard",
+   "snippet": "Dominik Szoboszlai Liverpool fans were left frustrated that Szoboszlai aggravated a hamstring injury on international duty with Hungary last month.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-29",
+   "url": "https://www.standard.co.uk/sport/football/liverpool-fc-injury-update-szoboszlai-munoz-frimpong-latest-news-return-dates-b1302654.html",
    "yours": []
   },
   {
@@ -59,11 +59,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Mikel Arteta reveals Arsenal’s missing trio are injury doubts for Liverpool clash The Independent",
-   "snippet": "Declan Rice is among the trio now in doubt to face Liverpool on Sunday (Getty) The trio could now be doubts for the trip to Liverpool on Sunday, where Arsenal will need to bounce back from cup humiliation.",
-   "source_domain": "independent.co.uk",
-   "published": "2026-10-28",
-   "url": "https://www.independent.co.uk/sport/football/arsenal-injury-news-rice-calafiori-madueke-fleetwood-b3074620.html",
+   "headline": "Arsenal FC XI vs Liverpool: Confirmed team news, predicted lineup, injury latest for Premier League The Standard",
+   "snippet": "Declan Rice was absent against Fleetwood and he was holding his hamstring before coming off against Everton last weekend.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-29",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-xi-vs-liverpool-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1302661.html",
+   "yours": []
+  },
+  {
+   "player": "Thomas",
+   "team": "COV",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Free-Hit in Gameweek 9? How and when to use your chips in FPL",
+   "snippet": "Joao Pedro (£7.9m) has been ruled out for a couple of weeks with a thigh injury, while other popular players such as Riccardo Calafiori (£6.0m) and Bobby Thomas (£4.0m) are flagged as injury doubts, with also Arsenal…",
+   "source_domain": "premierleague.com",
+   "published": "2026-10-27",
+   "url": "https://www.premierleague.com/en/news/4362085",
    "yours": []
   },
   {
@@ -72,11 +85,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal FC injury update: Declan Rice, Riccardo Calafiori, Noni Madueke latest news and return dates The Standard",
-   "snippet": "Bukayo Saka Arsenal were handed a major injury scare after Bukayo Saka was forced off against Bayern Munich.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-10-28",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-rice-calafiori-madueke-latest-news-return-dates-b1302579.html",
+   "headline": "The Scout’s FPL Gameweek 9 transfer radar",
+   "snippet": "Downgrading, say, Bukayo Saka (£9.5m) or Bruno Fernandes (£11.7m) to the talented Switzerland international frees up money to be spent elsewhere, such as in defence, where Arsenal's Gabriel (£7.9m) is hitting his…",
+   "source_domain": "premierleague.com",
+   "published": "2026-10-29",
+   "url": "https://www.premierleague.com/en/news/4750306/the-scouts-fpl-gameweek-9-transfer-radar",
    "yours": []
   },
   {
@@ -85,11 +98,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Man City injury news and return dates ahead of Brighton tie",
-   "snippet": "Antoine Semenyo Injury: Leg Semenyo is the only long-term concern for City.",
+   "headline": "Ndiaye, Nunes, Semenyo - Man City injury news and return dates after dramatic Brighton win - Manchester Evening News",
+   "snippet": "Antoine Semenyo Injury: Leg Semenyo remains the biggest concern for Maresca and City.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-10-28",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/nunes-ndiaye-semenyo-man-city-34825044",
+   "published": "2026-10-29",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/ndiaye-nunes-semenyo-man-city-34832935",
    "yours": []
   },
   {
@@ -98,11 +111,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hamstring injury - 75% chance of playing",
-   "headline": "Chelsea FC: Xabi Alonso explains Maxence Lacroix injury as star forced off against Liverpool The Standard",
-   "snippet": "Lacroix hobbled back to the changing rooms at a snail’s pace, clutching the back of his left thigh as he conversed with the club’s trainers, bearing a concerned expression all the way.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-10-28",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-maxence-lacroix-injury-liverpool-b1302723.html",
+   "headline": "Chelsea injury nightmare deepens as Xabi Alonso provides update on Maxence Lacroix blow against Liverpool Goal.com",
+   "snippet": "Lacroix limps off at Anfield The Blues crashed out of the Carabao Cup following a tense penalty shootout, with normal time ending 1-1 after Morgan Rogers and Cody Gakpo traded spot-kicks.",
+   "source_domain": "goal.com",
+   "published": "2026-10-29",
+   "url": "https://www.goal.com/en/news/chelsea-injury-maxence-lacroix-liverpool-xabi-alonso/bltcd98f4664608188d",
+   "yours": []
+  },
+  {
+   "player": "Shaw",
+   "team": "MUN",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Unspecified injury - Unknown return date",
+   "headline": "Mainoo, Sesko, Shaw - Manchester United injury news and return dates before Chelsea - Manchester Evening News",
+   "snippet": "Luke Shaw Injury: Unknown Carrick confirmed earlier this month that Shaw would be out longer than Mainoo.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-10-29",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/mainoo-sesko-shaw-manchester-united-34833886",
    "yours": []
   }
  ]
