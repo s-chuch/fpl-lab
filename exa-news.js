@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-10-29T15:02:32Z",
+ "generated_at": "2026-10-29T23:52:31Z",
  "gw": 9,
  "searches_used": 10,
- "last_attempt": "2026-10-29T15:02:32Z",
+ "last_attempt": "2026-10-29T23:52:31Z",
  "month_usage": {
   "month": "2026-10",
-  "searches": 40,
-  "cost_usd": 0.28
+  "searches": 50,
+  "cost_usd": 0.35
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "Arsenal FC XI vs Liverpool: Confirmed team news, predicted lineup, injury latest for Premier League The Standard",
-   "snippet": "Riccardo Calafiori also missed that match with the injury that he picked up in the closing stages in the win over the Toffees.",
-   "source_domain": "standard.co.uk",
+   "headline": "Calafiori, Rice, Madueke - Arsenal injury news ahead of Liverpool Football London",
+   "snippet": "Riccardo Calafiori is a doubt to face Liverpool Arsenal manager Mikel Arteta faces an anxious wait over Riccardo Calafiori's fitness ahead of Sunday's crucial Premier League showdown with Liverpool at Anfield.",
+   "source_domain": "football.london",
    "published": "2026-10-29",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-xi-vs-liverpool-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1302661.html",
+   "url": "https://www.football.london/arsenal-fc/news/arsenal-liverpool-injury-premier-league-34836182",
    "yours": [
     "1360999"
    ]
@@ -70,13 +70,13 @@ window.EXA_NEWS = {
    "player": "Thomas",
    "team": "COV",
    "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Free-Hit in Gameweek 9? How and when to use your chips in FPL",
-   "snippet": "Joao Pedro (£7.9m) has been ruled out for a couple of weeks with a thigh injury, while other popular players such as Riccardo Calafiori (£6.0m) and Bobby Thomas (£4.0m) are flagged as injury doubts, with also Arsenal…",
-   "source_domain": "premierleague.com",
-   "published": "2026-10-27",
-   "url": "https://www.premierleague.com/en/news/4362085",
+   "fpl_chance": 50,
+   "fpl_news": "Calf injury - 50% chance of playing",
+   "headline": "Frank Lampard press conference: Coventry City vs Sunderland - BBC Sport",
+   "snippet": "Lampard on Thomas' injury, being less 'passive' and Sunderland To play this video you need to enable JavaScript in your browser.",
+   "source_domain": "bbc.com",
+   "published": "2026-10-29",
+   "url": "https://www.bbc.com/sport/football/articles/ckly06j9wnv4o",
    "yours": []
   },
   {
@@ -85,11 +85,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "The Scout’s FPL Gameweek 9 transfer radar",
-   "snippet": "Downgrading, say, Bukayo Saka (£9.5m) or Bruno Fernandes (£11.7m) to the talented Switzerland international frees up money to be spent elsewhere, such as in defence, where Arsenal's Gabriel (£7.9m) is hitting his…",
-   "source_domain": "premierleague.com",
+   "headline": "Three Arsenal players guaranteed to miss Liverpool clash as Mikel Arteta sweats over four more Football London",
+   "snippet": "Bukayo Saka will certainly miss the Liverpool game.",
+   "source_domain": "football.london",
    "published": "2026-10-29",
-   "url": "https://www.premierleague.com/en/news/4750306/the-scouts-fpl-gameweek-9-transfer-radar",
+   "url": "https://www.football.london/arsenal-fc/news/three-arsenal-players-guaranteed-miss-34833289",
    "yours": []
   },
   {
@@ -99,7 +99,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Ndiaye, Nunes, Semenyo - Man City injury news and return dates after dramatic Brighton win - Manchester Evening News",
-   "snippet": "Antoine Semenyo Injury: Leg Semenyo remains the biggest concern for Maresca and City.",
+   "snippet": "Ndiaye, Nunes, Semenyo - Man City injury news and return dates after dramatic Brighton win - Manchester Evening News",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-10-29",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/ndiaye-nunes-semenyo-man-city-34832935",
@@ -109,10 +109,10 @@ window.EXA_NEWS = {
    "player": "Lacroix",
    "team": "CHE",
    "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Hamstring injury - 75% chance of playing",
+   "fpl_chance": 50,
+   "fpl_news": "Hamstring injury - 50% chance of playing",
    "headline": "Chelsea injury nightmare deepens as Xabi Alonso provides update on Maxence Lacroix blow against Liverpool Goal.com",
-   "snippet": "Lacroix limps off at Anfield The Blues crashed out of the Carabao Cup following a tense penalty shootout, with normal time ending 1-1 after Morgan Rogers and Cody Gakpo traded spot-kicks.",
+   "snippet": "Chelsea’s injury problems have gone from bad to worse after Maxence Lacroix was forced to withdraw during their Carabao Cup showdown against Liverpool.",
    "source_domain": "goal.com",
    "published": "2026-10-29",
    "url": "https://www.goal.com/en/news/chelsea-injury-maxence-lacroix-liverpool-xabi-alonso/bltcd98f4664608188d",

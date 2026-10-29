@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-29T15:01:59.432928+00:00",
+    "fetched_at": "2026-10-29T23:52:01.079092+00:00",
     "target_gw": 9,
     "anchor": "2026-10-31T11:00:00+00:00",
     "teams": {
@@ -95,7 +95,7 @@
           "date": "2026-10-29",
           "competition": "EFL Cup",
           "opponent": "Newcastle United",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-02",
@@ -108,13 +108,7 @@
           "opponent": "Coventry",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-10-29",
-            "competition": "EFL Cup",
-            "opponent": "Newcastle United"
-          }
-        ]
+        "between": []
       },
       "CRY": {
         "rest_days": 3,
@@ -353,7 +347,7 @@
           "date": "2026-10-29",
           "competition": "EFL Cup",
           "opponent": "Everton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-02",
@@ -366,13 +360,7 @@
           "opponent": "Fulham",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-10-29",
-            "competition": "EFL Cup",
-            "opponent": "Everton"
-          }
-        ]
+        "between": []
       },
       "LIV": {
         "rest_days": 4,
