@@ -1462,13 +1462,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "27f5f04ea494",
+  "code_sha": "01dbf60ac287",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-30T02:35:35+00:00",
-  "saved_at_et": "2026-10-29 10:35 PM ET",
+  "saved_at": "2026-10-30T14:55:07+00:00",
+  "saved_at_et": "2026-10-30 10:55 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1476,105 +1476,105 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.62
+    "xp": 4.5
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 6.0
+    "xp": 5.9
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.72
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 4.06
+    "xp": 4.55
    },
    {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 3.98
+    "xp": 3.99
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.9
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.41
+    "xp": 4.46
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 4.03
-   },
-   {
-    "club": "FUL",
-    "id": 268,
-    "name": "King",
-    "pos": "MID",
-    "xp": 3.62
+    "xp": 4.11
    },
    {
     "club": "CHE",
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.61
+    "xp": 3.93
+   },
+   {
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.53
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.72
+    "xp": 7.69
    },
    {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 4.8
+    "xp": 5.0
    },
    {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.23
+    "xp": 4.09
    },
    {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 3.11
+    "xp": 3.14
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 2.89
+    "xp": 2.84
    },
    {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.32
+    "xp": 2.39
    }
   ],
   "status": "pending",
@@ -1598,15 +1598,15 @@
    1,
    4,
    115,
-   229,
    449,
+   229,
    124,
    453,
-   268,
    154,
+   268,
    411,
    79
   ],
-  "xp": 57.3
+  "xp": 59.2
  }
 }

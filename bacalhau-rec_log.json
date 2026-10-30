@@ -1399,13 +1399,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "27f5f04ea494",
+  "code_sha": "01dbf60ac287",
   "ft": 3,
   "gw": 9,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-30T02:35:47+00:00",
-  "saved_at_et": "2026-10-29 10:35 PM ET",
+  "saved_at": "2026-10-30T14:55:20+00:00",
+  "saved_at_et": "2026-10-30 10:55 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1413,105 +1413,105 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.62
+    "xp": 4.5
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 6.0
+    "xp": 5.9
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.72
+    "xp": 4.55
    },
    {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
-    "xp": 4.6
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 4.06
+    "xp": 4.3
    },
    {
     "club": "NEW",
     "id": 449,
     "name": "Hall",
     "pos": "DEF",
-    "xp": 3.98
+    "xp": 3.99
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.9
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.43
+    "xp": 5.56
    },
    {
     "club": "EVE",
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.75
+    "xp": 4.73
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.41
+    "xp": 4.46
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 6.72
+    "xp": 7.69
    },
    {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 4.8
+    "xp": 5.0
    },
    {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.23
+    "xp": 4.09
    },
    {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 3.5
+    "xp": 3.45
    },
    {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 3.11
+    "xp": 3.14
    },
    {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.32
+    "xp": 2.39
    }
   ],
   "status": "pending",
@@ -1536,14 +1536,14 @@
    4,
    115,
    330,
-   229,
    449,
+   229,
    68,
    236,
    124,
    411,
    79
   ],
-  "xp": 60.8
+  "xp": 62.3
  }
 }
