@@ -601,9 +601,10 @@ function regSpark(v){
   const pts=v.map((x,i)=>`${(i*step).toFixed(1)},${y(x)}`).join(" ");
   return `<svg class="lab-spark" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}" aria-hidden="true"><line x1="0" x2="${w}" y1="${y(0)}" y2="${y(0)}" class="z"/><polyline points="${pts}" fill="none"/><circle cx="${w}" cy="${y(v[v.length-1])}" r="2.2"/></svg>`;
 }
-function regressionCard(D){
-  const R=D.regression||{}, rows=R.rows||[];
-  if(!rows.length) return `<div class="card"><h2>Regression tracker</h2><p class="note" data-keep>Appears once players are flagged on the XGA tab and the next refresh has read their gameweek history.</p></div>`;
+function regressionCard(D,mine){
+  const R=D.regression||{}, rows=(R.rows||[]).filter(r=>!!r.yours===!!mine);
+  const ttl=mine?"Regression · your players":"Regression tracker · players you do not own";
+  if(!rows.length) return `<div class="card"><h2>${ttl}</h2><p class="note" data-keep>${mine?"None of your players is flagged as over- or underperforming right now.":"Appears once players you do not own are flagged on the XGA tab and the next refresh has read their gameweek history."}</p></div>`;
   const B=R.baseline||{}, bo=(B.over||B.both&&B.both.over)||{}, bu=(B.under||B.both&&B.both.under)||{};
   const o4=(bo.next4||{}), o8=(bo.next8||{}), u4=(bu.next4||{}), u8=(bu.next8||{});
   const sg=n=>(n>0?"+":"")+labNum(n,2);
@@ -619,12 +620,12 @@ function regressionCard(D){
         <p class="note" data-keep>${esc(since)}${r.owned_pct?` · ${labNum(r.owned_pct,1)}% owned`:""}</p></div>`;};
     const shown=list.filter((r,i)=>r.yours||i<8), rest=list.filter(r=>!shown.includes(r));
     return `<h3 class="lab-ph3">${title}</h3><div class="lab-regs">${shown.map(card).join("")}</div>${rest.length?`<details class="fold" data-keep><summary><h4 class="lab-ph4">${rest.length} more</h4></summary><div class="lab-regs">${rest.map(card).join("")}</div></details>`:""}`;};
-  return `<div class="card"><h2>Regression tracker · to GW${R.gw}</h2>
+  return `<div class="card"><h2>${ttl} · to GW${R.gw}</h2>
     <p class="note" data-keep>Players flagged as over- or underperforming their expected numbers, with the gap built up gameweek by gameweek. Positive = ahead of expectation (G+A above xGI, or fewer goals conceded than xGC for defenders and keepers). The line is the season gap by gameweek; "last 4 GWs" is how much it moved recently.</p>
     ${base}${group("over","Running ahead of expectation")}${group("under","Running behind expectation")}
     <ul class="legend-list" data-keep><li>Cooling / Warming up: the gap has fallen back by 0.5+ from its recent high (last five gameweeks) or over the last four</li><li>Still running hot / Still cold: the gap widened by 0.5+ in the last four</li><li>Back to the mean: the gap is under 1.0 after having been flagged; it stays listed for 3 gameweeks</li></ul></div>`;
 }
-function renderRegression(D){ const el=document.getElementById("stratRegress"); if(el) el.innerHTML=regressionCard(D); }
+function renderRegression(D){ const el=document.getElementById("stratRegress"); if(el) el.innerHTML=regressionCard(D,false); const m=document.getElementById("revRegress"); if(m) m.innerHTML=regressionCard(D,true); }
 function renderAiTeam(D,who){
   const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults"), dc=document.getElementById("aiDecision");
   const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); if(dc) dc.innerHTML=aiDecisionCard(D,who); };
