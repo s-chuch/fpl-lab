@@ -216,6 +216,12 @@
    "name": "Ouattara",
    "side": "over"
   },
+  "60": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Hill",
+   "side": "under"
+  },
   "67": {
    "back_gw": null,
    "flag_gw": 6,

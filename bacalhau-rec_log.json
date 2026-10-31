@@ -1,4 +1,163 @@
 {
+ "gw10": {
+  "backfilled": false,
+  "bench": [
+   572,
+   286,
+   138,
+   94
+  ],
+  "captain": 411,
+  "captain_name": "Haaland",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "e7b21104aeb9",
+  "ft": 3,
+  "gw": 10,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-10-31T12:44:48+00:00",
+  "saved_at_et": "2026-10-31 8:44 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 4.28
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.6
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.43
+   },
+   {
+    "club": "LEE",
+    "id": 330,
+    "name": "Bogle",
+    "pos": "DEF",
+    "xp": 4.34
+   },
+   {
+    "club": "BOU",
+    "id": 60,
+    "name": "Hill",
+    "pos": "DEF",
+    "xp": 4.23
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.79
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 4.92
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 4.28
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 4.22
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.92
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 4.6
+   },
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.49
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.9
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 2.82
+   },
+   {
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.19
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Hall",
+    "out_id": 449
+   },
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
+   }
+  ],
+  "vice": 68,
+  "vice_name": "Tavernier",
+  "xi": [
+   1,
+   4,
+   115,
+   330,
+   60,
+   229,
+   68,
+   236,
+   124,
+   411,
+   249
+  ],
+  "xp": 56.5
+ },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
   "backfilled": true,
@@ -1514,7 +1673,7 @@
     "xp": 2.39
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Gabriel",
