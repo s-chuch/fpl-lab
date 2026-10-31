@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 6.2,
+    "captain_ep": 6.19,
     "vice": "De Cuyper",
-    "vice_ep": 5.43,
+    "vice_ep": 5.44,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.43,
+        "ep_next": 5.44,
         "status": "ok"
       },
       {
@@ -155,7 +155,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.81,
+        "ep_next": 4.83,
         "status": "ok"
       },
       {
@@ -179,13 +179,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 3.54,
+        "ep_next": 3.53,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 6.2,
+        "ep_next": 6.19,
         "status": "ok"
       }
     ],

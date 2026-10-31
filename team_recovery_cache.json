@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-31T19:51:20.953526+00:00",
+    "fetched_at": "2026-10-31T23:13:38.571949+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -154,11 +154,6 @@
         },
         "between": [
           {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Spurs"
-          },
-          {
             "date": "2026-11-05",
             "competition": "Europa League",
             "opponent": "Hoffenheim"
@@ -295,13 +290,7 @@
           "opponent": "Ipswich",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Crystal Palace"
-          }
-        ]
+        "between": []
       },
       "BHA": {
         "rest_days": 3,
@@ -350,11 +339,6 @@
           "days_after": 13
         },
         "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Fulham"
-          },
           {
             "date": "2026-11-03",
             "competition": "Champions League",
@@ -494,13 +478,7 @@
           "opponent": "Man City",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Aston Villa"
-          }
-        ]
+        "between": []
       },
       "CHE": {
         "rest_days": 8,
