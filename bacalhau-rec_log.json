@@ -5,19 +5,19 @@
    572,
    286,
    138,
-   94
+   321
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e7b21104aeb9",
+  "code_sha": "aa72dc4faf81",
   "ft": 3,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-31T12:44:48+00:00",
-  "saved_at_et": "2026-10-31 8:44 AM ET",
+  "saved_at": "2026-10-31T14:24:32+00:00",
+  "saved_at_et": "2026-10-31 10:24 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -63,6 +63,13 @@
     "xp": 3.79
    },
    {
+    "club": "MUN",
+    "id": 427,
+    "name": "Mbeumo",
+    "pos": "MID",
+    "xp": 5.0
+   },
+   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
@@ -91,13 +98,6 @@
     "xp": 5.92
    },
    {
-    "club": "EVE",
-    "id": 249,
-    "name": "Barry",
-    "pos": "FWD",
-    "xp": 4.6
-   },
-   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
@@ -119,11 +119,11 @@
     "xp": 2.82
    },
    {
-    "club": "BRE",
-    "id": 94,
-    "name": "Schade",
-    "pos": "MID",
-    "xp": 2.19
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.09
    }
   ],
   "status": "pending",
@@ -135,10 +135,10 @@
     "out_id": 449
    },
    {
-    "in": "Barry",
-    "in_id": 249,
-    "out": "Walle Egeli",
-    "out_id": 321
+    "in": "Mbeumo",
+    "in_id": 427,
+    "out": "Schade",
+    "out_id": 94
    }
   ],
   "vice": 68,
@@ -150,13 +150,13 @@
    330,
    60,
    229,
+   427,
    68,
    236,
    124,
-   411,
-   249
+   411
   ],
-  "xp": 56.5
+  "xp": 56.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.7,
+        "ep_next": 4.41,
         "status": "ok"
       },
       {
@@ -391,15 +391,6 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Isak",
         "baseline_cost": 9.1,
-        "current_cost": null,
-        "delta": null,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "removed"
-      },
-      {
-        "name": "João Pedro",
-        "baseline_cost": null,
         "current_cost": null,
         "delta": null,
         "entry_cost": null,

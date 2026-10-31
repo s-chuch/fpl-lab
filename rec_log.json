@@ -3,21 +3,21 @@
   "backfilled": false,
   "bench": [
    572,
+   449,
    268,
-   138,
    305
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e7b21104aeb9",
+  "code_sha": "aa72dc4faf81",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-31T12:44:34+00:00",
-  "saved_at_et": "2026-10-31 8:44 AM ET",
+  "saved_at": "2026-10-31T14:24:13+00:00",
+  "saved_at_et": "2026-10-31 10:24 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -35,13 +35,6 @@
     "xp": 5.6
    },
    {
-    "club": "LEE",
-    "id": 334,
-    "name": "Muharemović",
-    "pos": "DEF",
-    "xp": 4.7
-   },
-   {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
@@ -49,11 +42,11 @@
     "xp": 4.43
    },
    {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 3.56
+    "xp": 3.79
    },
    {
     "club": "BOU",
@@ -63,18 +56,18 @@
     "xp": 4.92
    },
    {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 4.41
+   },
+   {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
     "xp": 4.22
-   },
-   {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.69
    },
    {
     "club": "NEW",
@@ -91,6 +84,13 @@
     "xp": 5.92
    },
    {
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
+    "pos": "FWD",
+    "xp": 4.3
+   },
+   {
     "club": "AVL",
     "id": 166,
     "name": "N.Jackson",
@@ -105,18 +105,18 @@
     "xp": 3.49
    },
    {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.56
+   },
+   {
     "club": "FUL",
     "id": 268,
     "name": "King",
     "pos": "MID",
     "xp": 3.5
-   },
-   {
-    "club": "BHA",
-    "id": 138,
-    "name": "Kostoulas",
-    "pos": "FWD",
-    "xp": 2.82
    },
    {
     "club": "IPS",
@@ -131,14 +131,14 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
-   },
-   {
-    "in": "Muharemović",
-    "in_id": 334,
     "out": "Calafiori",
     "out_id": 8
+   },
+   {
+    "in": "Evanilson",
+    "in_id": 79,
+    "out": "Kostoulas",
+    "out_id": 138
    }
   ],
   "vice": 68,
@@ -146,17 +146,17 @@
   "xi": [
    1,
    4,
-   334,
    115,
-   449,
+   229,
    68,
-   124,
    154,
+   124,
    453,
    411,
+   79,
    166
   ],
-  "xp": 54.6
+  "xp": 55.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
