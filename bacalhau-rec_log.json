@@ -5,19 +5,19 @@
    572,
    286,
    138,
-   321
+   94
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "4d699207b680",
+  "code_sha": "50e31c64c5c9",
   "ft": 3,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-31T14:32:48+00:00",
-  "saved_at_et": "2026-10-31 10:32 AM ET",
+  "saved_at": "2026-10-31T15:32:48+00:00",
+  "saved_at_et": "2026-10-31 11:32 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -39,21 +39,21 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.43
+    "xp": 5.01
    },
    {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
-    "xp": 4.34
+    "xp": 4.46
    },
    {
     "club": "BOU",
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 4.23
+    "xp": 4.28
    },
    {
     "club": "EVE",
@@ -63,25 +63,18 @@
     "xp": 3.79
    },
    {
-    "club": "MUN",
-    "id": 427,
-    "name": "Mbeumo",
-    "pos": "MID",
-    "xp": 5.0
-   },
-   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.92
+    "xp": 5.09
    },
    {
     "club": "EVE",
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.28
+    "xp": 4.26
    },
    {
     "club": "BHA",
@@ -95,35 +88,42 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.92
+    "xp": 6.12
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 4.7
    },
    {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.49
+    "xp": 3.57
    },
    {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 2.9
+    "xp": 3.42
    },
    {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 2.82
+    "xp": 3.01
    },
    {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.09
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.27
    }
   ],
   "status": "pending",
@@ -135,10 +135,10 @@
     "out_id": 449
    },
    {
-    "in": "Mbeumo",
-    "in_id": 427,
-    "out": "Schade",
-    "out_id": 94
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
   "vice": 68,
@@ -150,13 +150,13 @@
    330,
    60,
    229,
-   427,
    68,
    236,
    124,
-   411
+   411,
+   249
   ],
-  "xp": 56.9
+  "xp": 57.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -109,15 +109,15 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.92,
+    "captain_ep": 6.12,
     "vice": "Tavernier",
-    "vice_ep": 4.92,
+    "vice_ep": 5.09,
     "bench_swaps": [
       {
         "bench": "Raya",
         "bench_ep": 4.28,
         "starter": "Tzolakis",
-        "starter_ep": 3.49
+        "starter_ep": 3.57
       }
     ],
     "bench_order": [
@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.49,
+        "ep_next": 3.57,
         "status": "ok"
       },
       {
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.43,
+        "ep_next": 5.01,
         "status": "ok"
       },
       {
@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.59,
+        "ep_next": 3.54,
         "status": "ok"
       },
       {
@@ -174,31 +174,31 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 4.43,
+        "ep_next": 4.27,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.92,
+        "ep_next": 5.09,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.92,
+        "ep_next": 6.12,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 3.82,
+        "ep_next": 3.79,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.82,
+        "ep_next": 3.01,
         "status": "ok"
       }
     ],
@@ -212,19 +212,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "King",
         "pos": "MID",
-        "ep_next": 3.5,
+        "ep_next": 3.53,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 1.78,
+        "ep_next": 1.68,
         "status": "doubt"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.5,
+        "ep_next": 2.6,
         "status": "ok"
       }
     ]

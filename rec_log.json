@@ -3,21 +3,21 @@
   "backfilled": false,
   "bench": [
    572,
-   449,
    268,
+   138,
    305
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "4d699207b680",
+  "code_sha": "50e31c64c5c9",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-10-31T14:32:30+00:00",
-  "saved_at_et": "2026-10-31 10:32 AM ET",
+  "saved_at": "2026-10-31T15:32:35+00:00",
+  "saved_at_et": "2026-10-31 11:32 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -39,7 +39,14 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.43
+    "xp": 5.01
+   },
+   {
+    "club": "LEE",
+    "id": 334,
+    "name": "Muharemović",
+    "pos": "DEF",
+    "xp": 4.8
    },
    {
     "club": "EVE",
@@ -53,14 +60,14 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.92
+    "xp": 5.09
    },
    {
     "club": "CHE",
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 4.43
+    "xp": 4.27
    },
    {
     "club": "BHA",
@@ -74,56 +81,49 @@
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.59
+    "xp": 3.54
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.92
-   },
-   {
-    "club": "BOU",
-    "id": 79,
-    "name": "Evanilson",
-    "pos": "FWD",
-    "xp": 4.3
+    "xp": 6.12
    },
    {
     "club": "AVL",
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 3.82
+    "xp": 3.79
    },
    {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.49
-   },
-   {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
-    "pos": "DEF",
-    "xp": 3.56
+    "xp": 3.57
    },
    {
     "club": "FUL",
     "id": 268,
     "name": "King",
     "pos": "MID",
-    "xp": 3.5
+    "xp": 3.53
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 3.01
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 2.5
+    "xp": 2.6
    }
   ],
   "status": "pending",
@@ -135,10 +135,10 @@
     "out_id": 8
    },
    {
-    "in": "Evanilson",
-    "in_id": 79,
-    "out": "Kostoulas",
-    "out_id": 138
+    "in": "Muharemović",
+    "in_id": 334,
+    "out": "Hall",
+    "out_id": 449
    }
   ],
   "vice": 68,
@@ -147,16 +147,16 @@
    1,
    4,
    115,
+   334,
    229,
    68,
    154,
    124,
    453,
    411,
-   79,
    166
   ],
-  "xp": 55.2
+  "xp": 56.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.92,
+    "captain_ep": 6.12,
     "vice": "Tavernier",
-    "vice_ep": 4.92,
+    "vice_ep": 5.09,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -143,19 +143,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.43,
+        "ep_next": 5.01,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.34,
+        "ep_next": 4.46,
         "status": "ok"
       },
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.23,
+        "ep_next": 4.28,
         "status": "ok"
       },
       {
@@ -167,25 +167,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.28,
+        "ep_next": 4.26,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.92,
+        "ep_next": 5.09,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.9,
+        "ep_next": 3.42,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.92,
+        "ep_next": 6.12,
         "status": "ok"
       }
     ],
@@ -193,25 +193,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.49,
+        "ep_next": 3.57,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.82,
+        "ep_next": 3.01,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.19,
+        "ep_next": 2.27,
         "status": "ok"
       },
       {
         "name": "Walle Egeli",
         "pos": "FWD",
-        "ep_next": 0.09,
+        "ep_next": 0.06,
         "status": "ok"
       }
     ]
