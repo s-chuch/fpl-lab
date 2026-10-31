@@ -415,6 +415,35 @@ function labLiveOn(L){
   if(lg!=null&&L.gw<lg) return false;                 // a snapshot of an earlier gameweek
   return L.games.some(g=>g.started)&&L.games.some(g=>!g.finished);
 }
+// ---- Live tab (left of Plan): everything for the gameweek under way, from live-data.js (live_update.py)
+function labLiveMain(L,team){
+  try{
+    if(!L) return `<div class="card"><p class="note" data-keep>Loading live data…</p></div>`;
+    const Wd=(typeof W!=="undefined")?W:{You:"You",you:"you",Your:"Your"};
+    if(!labLiveOn(L)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>No gameweek is in play. This page fills in when the next gameweek's first match kicks off: ${Wd.Your.toLowerCase()} head to head against the model, the mini-league tables, the prediction tracker and the squad, all updating as the matches go.</p></div>`;
+    const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
+    if(!(ageMin<360)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>The live snapshot is more than 6 hours old, so it is not shown as live.</p></div>`;
+    const sg=n=>(n>0?"+":"")+n, H=(L.h2h||{})[team], LG=(L.leagues||{})[team]||[];
+    let h="";
+    if(H&&H.you&&H.ai){
+      const d=H.you.pts-H.ai.pts, dt=H.you.total-H.ai.total, lead=d>0?Wd.You:d<0?"The model":"Level";
+      const col=(t,x)=>`<div><span>${t}</span><b>${x.pts}</b><small>season ${x.total} · C ${esc(x.captain||"")} · ${x.yet} yet to play${x.chip?" · "+esc(x.chip):""}</small></div>`;
+      const list=(arr,t)=>arr.length?`<div class="lab-hl"><h4 class="lab-ph4">${t}</h4>${arr.map(a=>`<div class="r${a.played?"":" yet"}"><span>${esc(a.name)} <em>${esc(a.club)}</em>${a.cap?` <i class="b c">C</i>`:""}</span><b>${a.played?a.pts:"–"}</b></div>`).join("")}</div>`:"";
+      h+=`<div class="card"><div class="lab-ph"><h2>${Wd.You} vs the model · GW${L.gw}</h2><span class="pill free">${d===0?"level":lead+" "+(d>0?"+":"")+d}</span></div>
+        <div class="lab-rsum lab-h2h">${col(Wd.You,H.you)}${col("Model",H.ai)}<div><span>Season gap</span><b>${sg(dt)}</b><small>${dt>0?Wd.You+" ahead":dt<0?"model ahead":"level"}</small></div></div>
+        ${H.only_you.length||H.only_ai.length?`<div class="lab-hcols">${list(H.only_you,Wd.Your+" players only")}${list(H.only_ai,"Model players only")}</div>`:""}
+        <p class="note lab-legend" data-keep>${H.same} players are in both XIs. Points are provisional (bonus so far, no auto-subs yet), net of hits.</p></div>`;
+    }
+    LG.forEach(lg=>{
+      const rows=lg.rows.map(r=>{ const mv=r.rank_before-r.rank; return `<tr class="${r.me?"me":""}"><td>${r.rank}</td><td class="nm">${esc(r.team)}</td><td class="mv ${mv>0?"up":mv<0?"dn":""}">${mv>0?"▲"+mv:mv<0?"▼"+(-mv):"–"}</td><td>${r.pts}</td><td>${r.total}</td><td>${r.yet}</td></tr>`; }).join("");
+      h+=`<div class="card"><h2>${esc(lg.name)} · live</h2><table class="lab-lt"><thead><tr><th>#</th><th class="nm">Team</th><th></th><th>GW</th><th>Total</th><th>To play</th></tr></thead><tbody>${rows}</tbody></table>
+        <p class="note lab-legend" data-keep>Season points before the gameweek plus each manager's provisional points. "To play" counts starters yet to kick off. Arrows show the move since the gameweek began.</p></div>`;
+    });
+    const pr=labPredLiveHtml();
+    h+=`<div data-predlive>${pr||""}</div>`;
+    return h;
+  }catch(e){ return ""; }
+}
 function liveBar(L,team){
   try{
     if(!labLiveOn(L)) return "";
@@ -439,7 +468,7 @@ function liveBar(L,team){
   }catch(e){ return ""; }
 }
 function loadLive(team){
-  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); const pl=document.getElementById("labPredLive"); if(pl) pl.innerHTML=labPredLiveHtml(); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
+  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); document.querySelectorAll("#labPredLive,[data-predlive]").forEach(pl=>{pl.innerHTML=labPredLiveHtml();}); const lm=document.getElementById("labLiveMain"); if(lm) lm.innerHTML=labLiveMain(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
   load(); setInterval(load,5*60*1000);
 }
 // Backtest of the expected-points model (calibrate.py): fitted on last season, graded on a later one it never saw.
@@ -869,6 +898,7 @@ const LAB_CLUB={ARS:"Arsenal",AVL:"Aston Villa",BHA:"Brighton",BOU:"Bournemouth"
 const LAB_SVG={
   flask:'<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7.5 15h9"/></svg>',
   info:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.5v.01"/></svg>',
+  live:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.2"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></svg>',
   plan:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></svg>',
   target:'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="3"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg>',
   more:'<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>',
@@ -1390,12 +1420,13 @@ function labShell(D,opt){
   const KEY="fpl-lab:view:"+(opt.key||"x");
   document.body.classList.add("lab"); document.documentElement.classList.add("lab-html");
   const root=document.createElement("div"); root.id="lab";
-  const tabs=[["plan","Plan",LAB_SVG.plan],["target","Target",LAB_SVG.target],["more","More",LAB_SVG.more]];
+  const tabs=[["live","Live",LAB_SVG.live],["plan","Plan",LAB_SVG.plan],["target","Target",LAB_SVG.target],["more","More",LAB_SVG.more]];
   const C=labCaptainPanel(D,they), Tr=labTransfer(D);
   const gw=(D.deadline||{}).next_gw;
   root.innerHTML=`<header class="lab-head"><div class="lab-brand"><span>FPL Lab</span>${LAB_SVG.flask}</div><div class="lab-team">${esc((D.team||{}).name||opt.team||"")}</div><button class="lab-ibtn" aria-label="About this page" aria-expanded="false">${LAB_SVG.info}</button></header>
 <div class="lab-info" hidden></div>
 <main class="lab-main">
+<div class="lab-view" id="labLive"><div id="labLiveMain">${labLiveMain(window.FPL_LIVE,opt.team||(D.team||{}).name||"")}</div></div>
 <div class="lab-view" id="labPlan"><div class="lab-top"></div>
 <div class="lab-do card"><h2>DO THIS${gw?` <span class="note">· GW${gw}</span>`:""}</h2><div class="lab-tiles">
 <button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
@@ -1416,7 +1447,8 @@ ${labTemplateAcc(D,they)}
   try{ labTemplateWire(root,D,they); }catch(e){}
   // PLAN: live/deadline/chip banners stay at the top
   const top=root.querySelector(".lab-top");
-  ["deadlineBanner","liveBar","chipAlert"].forEach(id=>{const e=document.getElementById(id); if(e) top.appendChild(e);});
+  ["deadlineBanner","chipAlert"].forEach(id=>{const e=document.getElementById(id); if(e) top.appendChild(e);});
+  { const lb=document.getElementById("liveBar"), lv=root.querySelector("#labLive"); if(lb&&lv) lv.appendChild(lb); }      // the squad pitch lives on the Live tab
   // info panel: the old header line, KPIs and links
   const info=root.querySelector(".lab-info");
   ["meta","kpis"].forEach(id=>{const e=document.getElementById(id); if(e) info.appendChild(e);});
@@ -1459,7 +1491,7 @@ ${labTemplateAcc(D,they)}
   const openPage=id=>{ const pg=document.getElementById(id); if(!pg) return; menu.hidden=true; pages.querySelectorAll(".lab-mpage").forEach(x=>x.hidden=x!==pg); window.scrollTo(0,0); };
   const closePage=()=>{ pages.querySelectorAll(".lab-mpage").forEach(x=>x.hidden=true); menu.hidden=false; window.scrollTo(0,0); };
   // view switching (top tabs and bottom nav)
-  const show=v=>{ if(!["plan","target","more"].includes(v)) v="plan";
+  const show=v=>{ if(!["live","plan","target","more"].includes(v)) v="plan";
     root.querySelectorAll(".lab-view").forEach(x=>x.classList.toggle("on",x.id==="lab"+v[0].toUpperCase()+v.slice(1)));
     root.querySelectorAll("[data-v]").forEach(b=>{b.classList.toggle("on",b.dataset.v===v); b.setAttribute("aria-current",b.dataset.v===v?"page":"false");});
     try{localStorage.setItem(KEY,v);}catch(e){} };

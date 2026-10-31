@@ -555,3 +555,12 @@ body.lab .lab-reg .top .n{flex:1 1 auto}
 .exa-snip{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:13px;line-height:1.4;margin-top:3px}
 .exa-src{display:block;font-size:11px;color:var(--muted);opacity:.75;margin-top:2px}
 .exa-card details.fold summary{cursor:pointer;color:var(--gold);font-size:13px;padding:8px 0}
+/* Live tab */
+.lab-h2h{grid-template-columns:1fr 1fr 1fr}.lab-h2h small{font-size:10.5px}
+.lab-hcols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}.lab-hcols>div{min-width:0}
+.lab-hl .r{display:flex;justify-content:space-between;gap:6px;font-size:13px;padding:3px 0;border-bottom:1px solid var(--line)}.lab-hl .r.yet{color:var(--muted)}.lab-hl .r span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.lab-hl em{font-style:normal;color:var(--muted);font-size:11px}
+table.lab-lt{width:100%;border-collapse:collapse;font-size:13px;display:table}table.lab-lt thead{display:table-header-group}table.lab-lt tbody{display:table-row-group}
+table.lab-lt tr{display:table-row;background:none;border:0;padding:0;margin:0}
+table.lab-lt th,table.lab-lt td{display:table-cell;padding:6px 3px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+table.lab-lt th{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase}table.lab-lt .nm{text-align:left;white-space:normal;line-height:1.2}
+table.lab-lt tr.me td{background:rgba(59,130,246,.12);font-weight:700}table.lab-lt .mv{font-size:11px;color:var(--muted)}table.lab-lt .mv.up{color:#34d399}table.lab-lt .mv.dn{color:#f87171}

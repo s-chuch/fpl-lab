@@ -15,6 +15,7 @@ import ai_team
 
 TEAMS = {"Shaaland": 1360999, "Bacalhau": 1360920}
 OUT = ROOT / "live-data.js"
+DATA_FILES = {"Shaaland": "data.js", "Bacalhau": "bacalhau-data.js"}
 
 
 def live_gameweek(boot, fixtures, now):
@@ -46,18 +47,81 @@ def team_snapshot(boot, team_id, gw, live, els):
             "xi": [p["element"] for p in picks if p["position"] <= 11], "bench": [p["element"] for p in picks if p["position"] > 11],
             "captain": next(p["element"] for p in picks if p.get("is_captain")), "vice": next(p["element"] for p in picks if p.get("is_vice_captain")),
             "chip": "3xc" if pk.get("active_chip") == "3xc" else None, "hit_cost": (pk.get("entry_history") or {}).get("event_transfers_cost") or 0}
+    return snapshot_plan(boot, plan, pk.get("active_chip"), live, els)
+
+
+def snapshot_plan(boot, plan, chip, live, els):
+    """Provisional points of a 15-man plan from FPL's live stats (the AI team's locked plan goes through here too)."""
     stats = {i: {"minutes": s.get("minutes", 0), "points": s.get("total_points", 0), "bonus": s.get("bonus", 0)} for i, s in live.items()}
     res = ai_team.score_plan(plan, stats, False)      # not final: no auto-subs or vice promotion until it is certain
-    chip = pk.get("active_chip")
     bench_boost = chip == "bboost"
     total = res["gross"] + (res["bench_pts"] if bench_boost else 0) - res["hits"]
     short = {t["id"]: t["short_name"] for t in boot["teams"]}
     lines = [{"id": l["id"], "name": l["name"], "pos": l["pos"], "club": short.get(els[l["id"]]["team"], ""), "pts": l["pts"], "mult": l["mult"], "played": l["played"],
-              "bonus": stats[l["id"]]["bonus"], "vice": l["id"] == plan["vice"]} for l in res["lines"]]
-    bench = [{"id": i, "name": els[i]["web_name"], "pos": POS[els[i]["element_type"]], "club": short.get(els[i]["team"], ""), "pts": stats[i]["points"],
-              "played": stats[i]["minutes"] > 0, "bonus": stats[i]["bonus"]} for i in plan["bench"]]
+              "bonus": stats.get(l["id"], {}).get("bonus", 0), "vice": l["id"] == plan["vice"]} for l in res["lines"]]
+    bench = [{"id": i, "name": els[i]["web_name"], "pos": POS[els[i]["element_type"]], "club": short.get(els[i]["team"], ""), "pts": stats.get(i, {}).get("points", 0),
+              "played": stats.get(i, {}).get("minutes", 0) > 0, "bonus": stats.get(i, {}).get("bonus", 0)} for i in plan["bench"]]
     return {"points": total, "gross": res["gross"], "hits": res["hits"], "captain": res["captain"], "chip": chip,
             "xi": lines, "bench": bench, "yet_to_play": sum(1 for l in lines if not l["played"])}
+
+
+def entry_base(entry_id, gw):
+    """Season points before this gameweek (FPL's own history, net of hits)."""
+    if gw <= 1:
+        return 0
+    cur = get(f"https://fantasy.premierleague.com/api/entry/{entry_id}/history/").get("current") or []
+    return next((c["total_points"] for c in cur if c["event"] == gw - 1), 0)
+
+
+def h2h_live(boot, data, snap_me, gw, live, els, my_entry):
+    """You against the AI team for the live gameweek: provisional points, season totals, and who only one side owns."""
+    ai = data.get("ai_team") or {}
+    plan = (ai.get("history") or {}).get(f"gw{gw}") or (ai.get("plan") if (ai.get("plan") or {}).get("gw") == gw else None)
+    if not plan or not snap_me or not plan.get("xi"):
+        return None
+    sc = snapshot_plan(boot, {**plan, "hit_cost": plan.get("hit_cost") or 0}, plan.get("chip"), live, els)
+    res_pts = ((plan.get("result") or {}).get("points")) or 0
+    ai_base = (ai.get("season_points") or 0) - res_pts         # the stored season total already holds the provisional result
+    me_base = entry_base(my_entry, gw)
+    mine = {l["id"] for l in snap_me["xi"]}
+    theirs = {l["id"] for l in sc["xi"]}
+    only = lambda lines, other: [{"name": l["name"], "club": l["club"], "pts": l["pts"] * (l["mult"] or 1), "played": l["played"], "cap": (l["mult"] or 1) > 1}
+                                 for l in lines if l["id"] not in other]
+    return {"you": {"pts": snap_me["points"], "base": me_base, "total": me_base + snap_me["points"], "captain": snap_me["captain"], "yet": snap_me["yet_to_play"]},
+            "ai": {"pts": sc["points"], "base": ai_base, "total": ai_base + sc["points"], "captain": sc["captain"], "yet": sc["yet_to_play"], "chip": plan.get("chip")},
+            "only_you": only(snap_me["xi"], theirs), "only_ai": only(sc["xi"], mine), "same": len(mine & theirs)}
+
+
+def leagues_live(boot, data, my_name, snap_me, my_entry, gw, live, els):
+    """Each mini-league live: season points before the gameweek + every member's provisional points for it."""
+    from concurrent.futures import ThreadPoolExecutor
+    out = []
+    for lg in (data.get("leagues") or {}).get("mini") or []:
+        table = lg.get("table") or []
+        def one(row):
+            try:
+                if row.get("entry") == my_entry:
+                    snap, base = snap_me, entry_base(my_entry, gw)
+                else:
+                    snap, base = team_snapshot(boot, row["entry"], gw, live, els), entry_base(row["entry"], gw)
+                if not snap:
+                    return None
+                return {"team": row["team"], "me": bool(row.get("me") or row.get("entry") == my_entry), "base": base, "pts": snap["points"], "total": base + snap["points"],
+                        "yet": snap["yet_to_play"], "cap": snap["captain"]}
+            except Exception as e:
+                _warn(f"live: league member {row.get('entry')}: {e}")
+                return None
+        with ThreadPoolExecutor(max_workers=6) as pool:
+            rows = [r for r in pool.map(one, table) if r]
+        if len(rows) < 2:
+            continue
+        before = sorted(rows, key=lambda r: -r["base"])
+        for i, r in enumerate(before):
+            r["rank_before"] = 1 + sum(1 for x in rows if x["base"] > r["base"])
+        for r in rows:
+            r["rank"] = 1 + sum(1 for x in rows if x["total"] > r["total"])
+        out.append({"id": lg.get("id"), "name": lg.get("name"), "size": lg.get("size"), "rows": sorted(rows, key=lambda r: (r["rank"], r["team"]))})
+    return out
 
 
 DEFCON_THR = {2: 10, 3: 12, 4: 12}
@@ -172,11 +236,21 @@ def main(argv):
         snap["pred"] = pred_live(gw, boot, live, fx, els)
     except Exception as e:
         _warn(f"live: predictions: {e}")
+    snap["h2h"], snap["leagues"] = {}, {}
     for name, tid in TEAMS.items():
         try:
             snap["teams"][name] = team_snapshot(boot, tid, gw, live, els)
         except Exception as e:
             _warn(f"live: {name}: {e}")
+        data = _data_js(DATA_FILES[name])
+        try:
+            snap["h2h"][name] = h2h_live(boot, data, snap["teams"].get(name), gw, live, els, tid)
+        except Exception as e:
+            _warn(f"live: {name} head to head: {e}")
+        try:
+            snap["leagues"][name] = leagues_live(boot, data, name, snap["teams"].get(name), tid, gw, live, els)
+        except Exception as e:
+            _warn(f"live: {name} leagues: {e}")
     text = "window.FPL_LIVE = " + json.dumps(snap, separators=(",", ":")) + ";\n"
     try:    # nothing but the timestamp moved: do not write (the workflow would commit an identical snapshot every 10 minutes)
         strip = lambda t: re.sub(r'"generated_at":"[^"]*"', "", t)
