@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-31T15:32:21.965446+00:00",
+    "fetched_at": "2026-10-31T19:51:20.953526+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -56,13 +56,7 @@
           "opponent": "Crystal Palace",
           "days_after": 15
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Sunderland"
-          }
-        ]
+        "between": []
       },
       "HUL": {
         "rest_days": 7,
@@ -83,13 +77,7 @@
           "opponent": "Brighton",
           "days_after": 15
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Ipswich"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 5,
@@ -196,13 +184,7 @@
           "opponent": "Spurs",
           "days_after": 13
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          }
-        ]
+        "between": []
       },
       "SUN": {
         "rest_days": 3,
@@ -224,11 +206,6 @@
           "days_after": 13
         },
         "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Coventry"
-          },
           {
             "date": "2026-11-05",
             "competition": "Europa League",
@@ -255,13 +232,7 @@
           "opponent": "Bournemouth",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Brentford"
-          }
-        ]
+        "between": []
       },
       "LEE": {
         "rest_days": 7,
@@ -282,13 +253,7 @@
           "opponent": "Chelsea",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Bournemouth"
-          }
-        ]
+        "between": []
       },
       "BRE": {
         "rest_days": 8,
@@ -309,13 +274,7 @@
           "opponent": "Everton",
           "days_after": 15
         },
-        "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Nott'm Forest"
-          }
-        ]
+        "between": []
       },
       "TOT": {
         "rest_days": 7,
@@ -364,11 +323,6 @@
           "days_after": 14
         },
         "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Man City"
-          },
           {
             "date": "2026-11-05",
             "competition": "Conference League",
@@ -429,11 +383,6 @@
         },
         "between": [
           {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Brighton"
-          },
-          {
             "date": "2026-11-04",
             "competition": "Champions League",
             "opponent": "Leipzig"
@@ -460,11 +409,6 @@
           "days_after": 13
         },
         "between": [
-          {
-            "date": "2026-10-31",
-            "competition": "Premier League",
-            "opponent": "Leeds"
-          },
           {
             "date": "2026-11-05",
             "competition": "Europa League",

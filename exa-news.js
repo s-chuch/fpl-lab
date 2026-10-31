@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-10-31T12:44:52Z",
+ "generated_at": "2026-10-31T19:51:53Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-10-31T12:44:52Z",
+ "last_attempt": "2026-10-31T19:51:53Z",
  "month_usage": {
   "month": "2026-10",
-  "searches": 80,
-  "cost_usd": 0.56
+  "searches": 90,
+  "cost_usd": 0.63
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -57,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Arsenal FC XI vs Liverpool: Confirmed team news, predicted lineup, injury latest for Premier League The Standard",
-   "snippet": "Declan Rice should return but questions remain over Noni Madueke’s fitness ...",
-   "source_domain": "standard.co.uk",
+   "headline": "Liverpool v Arsenal: Team news - Liverpool FC",
+   "snippet": "He looks like [he could return before the next international break]; we need to wait and see how he evolves.” Riccardo Calafiori, Declan Rice and Christos Tzolis are all in training and on course to be available for…",
+   "source_domain": "liverpoolfc.com",
    "published": "2026-10-31",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-xi-vs-liverpool-confirmed-team-news-predicted-lineup-injury-latest-premier-league-2026-b1302661.html",
+   "url": "https://www.liverpoolfc.com/news/liverpool-v-arsenal-team-news-premier-league",
    "yours": []
   },
   {
@@ -70,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 50,
    "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Predicted line-ups for Premier League teams in Matchweek 9",
-   "snippet": "Coventry v Sunderland predicted line-ups Coventry: Head coach Frank Lampard will make a late decision on Bobby Thomas, who has a calf injury but “not a terrible one”.",
-   "source_domain": "premierleague.com",
-   "published": "2026-10-30",
-   "url": "https://www.premierleague.com/en/news/4750527/predicted-line-ups-for-premier-league-teams-in-matchweek-9/",
+   "headline": "Frank Lampard press conference: Coventry City vs Sunderland - BBC Sport",
+   "snippet": "Lampard on Thomas' injury, being less 'passive' and Sunderland To play this video you need to enable JavaScript in your browser.",
+   "source_domain": "bbc.co.uk",
+   "published": "2026-10-29",
+   "url": "https://www.bbc.co.uk/sport/football/articles/ckly06j9wnv4o",
    "yours": []
   },
   {
@@ -97,7 +97,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Nunes, Ndiaye, Semenyo - Man City injury news and return dates vs Brighton - Manchester Evening News",
-   "snippet": "Only Antoine Semenyo [out], the rest, they are all available.\" Potential return date: October 31 vs Brighton Iliman Ndiaye ...",
+   "snippet": "Only Antoine Semenyo [out], the rest, they are all available.\" Potential return date: October 31 vs Brighton Iliman Ndiaye Injury: Cramp After his assist against Villa, there were concerns over the forward's fitness.",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-10-31",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/nunes-ndiaye-semenyo-man-city-34838742",
@@ -122,11 +122,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hamstring injury - 75% chance of playing",
-   "headline": "Liverpool v Arsenal: Team news - Liverpool FC",
-   "snippet": "He looks like [he could return before the next international break]; we need to wait and see how he evolves.” Riccardo Calafiori, Declan Rice and Christos Tzolis are all in training and on course to be available for…",
-   "source_domain": "liverpoolfc.com",
+   "headline": "Arsenal FC get huge team news hint as injured star set to return against Liverpool The Standard",
+   "snippet": "Christos Tzolis has dropped a clear hint that he will be in the Arsenal squad to face Liverpool on Sunday.",
+   "source_domain": "standard.co.uk",
    "published": "2026-10-31",
-   "url": "https://www.liverpoolfc.com/news/liverpool-v-arsenal-team-news-premier-league",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-tzolis-injury-latest-liverpool-calafiori-b1303083.html",
+   "yours": []
+  },
+  {
+   "player": "James",
+   "team": "CHE",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Premier League team news: predicted lineups for the weekend action Premier League The Guardian",
+   "snippet": "Chelsea Subs from Sherman-Lowe, Slonina, Subuloye, Chavarría, Gusto, Lavia, Barco, Quenda, Estêvão, Watson, Nicoll-Jazuli, Emegha Doubtful Chavarría (knock) Injured Martínez (jaw, 8 Nov), James (knee, Jan), João Pedro…",
+   "source_domain": "theguardian.com",
+   "published": "2026-10-30",
+   "url": "https://www.theguardian.com/football/2026/oct/30/premier-league-team-news-predicted-lineups-for-the-weekend-action",
    "yours": []
   },
   {
@@ -136,7 +149,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Head injury - Unknown return date",
    "headline": "Premier League team news: predicted lineups for the weekend action Premier League The Guardian",
-   "snippet": "Subs from Sherman-Lowe, Slonina, Subuloye, Chavarría, Gusto, Lavia, Barco, Quenda, Estêvão, Watson, Nicoll-Jazuli, Emegha Doubtful Chavarría (knock) Injured Martínez (jaw, 8 Nov), James (knee, Jan), João Pedro (thigh…",
+   "snippet": "Chelsea Subs from Sherman-Lowe, Slonina, Subuloye, Chavarría, Gusto, Lavia, Barco, Quenda, Estêvão, Watson, Nicoll-Jazuli, Emegha Doubtful Chavarría (knock) Injured Martínez (jaw, 8 Nov), James (knee, Jan), João Pedro…",
    "source_domain": "theguardian.com",
    "published": "2026-10-30",
    "url": "https://www.theguardian.com/football/2026/oct/30/premier-league-team-news-predicted-lineups-for-the-weekend-action",

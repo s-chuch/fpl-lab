@@ -109,15 +109,15 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 6.12,
-    "vice": "Tavernier",
-    "vice_ep": 5.09,
+    "captain_ep": 6.2,
+    "vice": "De Cuyper",
+    "vice_ep": 5.43,
     "bench_swaps": [
       {
         "bench": "Raya",
         "bench_ep": 4.28,
         "starter": "Tzolakis",
-        "starter_ep": 3.57
+        "starter_ep": 3.61
       }
     ],
     "bench_order": [
@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.57,
+        "ep_next": 3.61,
         "status": "ok"
       },
       {
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.01,
+        "ep_next": 5.43,
         "status": "ok"
       },
       {
@@ -168,25 +168,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.22,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 4.27,
+        "ep_next": 4.31,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.09,
+        "ep_next": 5.43,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 6.12,
+        "ep_next": 6.2,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.01,
+        "ep_next": 3.05,
         "status": "ok"
       }
     ],
@@ -224,7 +224,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.6,
+        "ep_next": 2.47,
         "status": "ok"
       }
     ]

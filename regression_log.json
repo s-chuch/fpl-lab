@@ -66,6 +66,12 @@
    "name": "Kamada",
    "side": "over"
   },
+  "226": {
+   "back_gw": null,
+   "flag_gw": 2,
+   "name": "Pickford",
+   "side": "over"
+  },
   "229": {
    "back_gw": null,
    "flag_gw": 2,
@@ -232,6 +238,18 @@
    "back_gw": null,
    "flag_gw": 7,
    "name": "Evanilson",
+   "side": "over"
+  },
+  "82": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Kelleher",
+   "side": "over"
+  },
+  "87": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Ajer",
    "side": "over"
   },
   "94": {
