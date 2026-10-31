@@ -564,3 +564,4 @@ table.lab-lt tr{display:table-row;background:none;border:0;padding:0;margin:0}
 table.lab-lt th,table.lab-lt td{display:table-cell;padding:6px 3px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
 table.lab-lt th{font-size:10.5px;color:var(--muted);font-weight:600;text-transform:uppercase}table.lab-lt .nm{text-align:left;white-space:normal;line-height:1.2}
 table.lab-lt tr.me td{background:rgba(59,130,246,.12);font-weight:700}table.lab-lt .mv{font-size:11px;color:var(--muted)}table.lab-lt .mv.up{color:#34d399}table.lab-lt .mv.dn{color:#f87171}
+.lab-h2h>div{min-width:0;overflow-wrap:anywhere}table.lab-lt{table-layout:auto}.lab-livecard .lab-rsum>div{min-width:0}

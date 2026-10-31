@@ -423,22 +423,23 @@ function labLiveMain(L,team){
     if(!labLiveOn(L)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>No gameweek is in play. This page fills in when the next gameweek's first match kicks off: ${Wd.Your.toLowerCase()} head to head against the model, the mini-league tables, the prediction tracker and the squad, all updating as the matches go.</p></div>`;
     const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
     if(!(ageMin<360)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>The live snapshot is more than 6 hours old, so it is not shown as live.</p></div>`;
-    const sg=n=>(n>0?"+":"")+n, H=(L.h2h||{})[team], LG=(L.leagues||{})[team]||[];
+    const sg=n=>(n>0?"+":"")+n, H=(L.h2h||{})[team], LG=(L.leagues||{})[team]||[], me=Wd.You==="You"?"You":team, mine=Wd.You==="You"?"Your":team+"'s";
     let h="";
-    if(H&&H.you&&H.ai){
-      const d=H.you.pts-H.ai.pts, dt=H.you.total-H.ai.total, lead=d>0?Wd.You:d<0?"The model":"Level";
+    if(H&&H.you&&H.ai) try{
+      const d=H.you.pts-H.ai.pts, dt=H.you.total-H.ai.total, lead=d>0?me:d<0?"The model":"Level";
       const col=(t,x)=>`<div><span>${t}</span><b>${x.pts}</b><small>season ${x.total} · C ${esc(x.captain||"")} · ${x.yet} yet to play${x.chip?" · "+esc(x.chip):""}</small></div>`;
       const list=(arr,t)=>arr.length?`<div class="lab-hl"><h4 class="lab-ph4">${t}</h4>${arr.map(a=>`<div class="r${a.played?"":" yet"}"><span>${esc(a.name)} <em>${esc(a.club)}</em>${a.cap?` <i class="b c">C</i>`:""}</span><b>${a.played?a.pts:"–"}</b></div>`).join("")}</div>`:"";
-      h+=`<div class="card"><div class="lab-ph"><h2>${Wd.You} vs the model · GW${L.gw}</h2><span class="pill free">${d===0?"level":lead+" "+(d>0?"+":"")+d}</span></div>
-        <div class="lab-rsum lab-h2h">${col(Wd.You,H.you)}${col("Model",H.ai)}<div><span>Season gap</span><b>${sg(dt)}</b><small>${dt>0?Wd.You+" ahead":dt<0?"model ahead":"level"}</small></div></div>
-        ${H.only_you.length||H.only_ai.length?`<div class="lab-hcols">${list(H.only_you,Wd.Your+" players only")}${list(H.only_ai,"Model players only")}</div>`:""}
+      h+=`<div class="card"><div class="lab-ph"><h2>${me} vs the model · GW${L.gw}</h2><span class="pill free">${d===0?"level":lead+" "+(d>0?"+":"")+d}</span></div>
+        <div class="lab-rsum lab-h2h">${col(me,H.you)}${col("Model",H.ai)}<div><span>Season gap</span><b>${sg(dt)}</b><small>${dt>0?me+" ahead":dt<0?"model ahead":"level"}</small></div></div>
+        ${H.only_you.length||H.only_ai.length?`<div class="lab-hcols">${list(H.only_you,mine+" players only")}${list(H.only_ai,"Model players only")}</div>`:""}
         <p class="note lab-legend" data-keep>${H.same} players are in both XIs. Points are provisional (bonus so far, no auto-subs yet), net of hits.</p></div>`;
-    }
-    LG.forEach(lg=>{
+    }catch(e){ h+=`<div class="card"><p class="note" data-keep>Head to head is not available in this snapshot.</p></div>`; }
+    else h+=`<div class="card"><p class="note" data-keep>Head to head is not in this snapshot yet; it appears at the next live update.</p></div>`;
+    LG.forEach(lg=>{ try{
       const rows=lg.rows.map(r=>{ const mv=r.rank_before-r.rank; return `<tr class="${r.me?"me":""}"><td>${r.rank}</td><td class="nm">${esc(r.team)}</td><td class="mv ${mv>0?"up":mv<0?"dn":""}">${mv>0?"▲"+mv:mv<0?"▼"+(-mv):"–"}</td><td>${r.pts}</td><td>${r.total}</td><td>${r.yet}</td></tr>`; }).join("");
       h+=`<div class="card"><h2>${esc(lg.name)} · live</h2><table class="lab-lt"><thead><tr><th>#</th><th class="nm">Team</th><th></th><th>GW</th><th>Total</th><th>To play</th></tr></thead><tbody>${rows}</tbody></table>
-        <p class="note lab-legend" data-keep>Season points before the gameweek plus each manager's provisional points. "To play" counts starters yet to kick off. Arrows show the move since the gameweek began.</p></div>`;
-    });
+        <p class="note lab-legend" data-keep>Season points before the gameweek plus each manager's provisional points. "To play" counts starters yet to kick off. Arrows show the move since the gameweek began.${lg.missing?` Partial: ${lg.missing} manager${lg.missing>1?"s":""} could not be loaded.`:""}</p></div>`;
+    }catch(e){} });
     const pr=labPredLiveHtml();
     h+=`<div data-predlive>${pr||""}</div>`;
     return h;
@@ -459,7 +460,7 @@ function liveBar(L,team){
     const pitch=["GKP","DEF","MID","FWD"].map(pos=>`<div class="lab-prow">${T.xi.filter(p=>p.pos===pos).map(p=>card(p,false)).join("")}</div>`).join("");
     const bench=(T.bench||[]).map(b=>card(b,true)).join("");
     const games=(L.games||[]).filter(g=>g.started).map(g=>`<span class="lab-gm${g.finished?"":" on"}">${esc(g.home)} ${g.hs??"-"}-${g.as??"-"} ${esc(g.away)}${g.finished?"":" "+(g.minutes||"")+"'"}</span>`).join("");
-    return `<div class="card lab-livecard"><div class="lab-ph"><h2>Live · GW${L.gw}</h2><span class="pill free">${L.in_play} in play</span></div>
+    return `<div class="card lab-livecard"><div class="lab-ph"><h2>Live · GW${L.gw}</h2><span class="pill free">${L.in_play||0} in play</span></div>
       <div class="lab-rsum"><div><span>Points</span><b>${T.points}</b><small>${T.hits?`incl. −${T.hits} hit`:"provisional"}</small></div><div><span>Yet to play</span><b>${T.yet_to_play}</b><small>of the XI</small></div><div><span>Updated</span><b>${esc(new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).toLocaleTimeString("en-CA",{timeZone:"America/Toronto",hour:"2-digit",minute:"2-digit",hour12:false}))} ET</b><small>${T.chip?esc(T.chip)+" active":"refreshes every 5 min"}</small></div></div>
       ${games?`<div class="lab-games">${games}</div>`:""}
       <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${pitch}</div>
@@ -468,7 +469,7 @@ function liveBar(L,team){
   }catch(e){ return ""; }
 }
 function loadLive(team){
-  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); document.querySelectorAll("#labPredLive,[data-predlive]").forEach(pl=>{pl.innerHTML=labPredLiveHtml();}); const lm=document.getElementById("labLiveMain"); if(lm) lm.innerHTML=labLiveMain(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>s.remove(); document.head.appendChild(s);};
+  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); document.querySelectorAll("#labPredLive,[data-predlive]").forEach(pl=>{pl.innerHTML=labPredLiveHtml();}); const lm=document.getElementById("labLiveMain"); if(lm) lm.innerHTML=labLiveMain(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>{ s.remove(); const lm=document.getElementById("labLiveMain"); if(lm&&!window.FPL_LIVE) lm.innerHTML=`<div class="card"><h2>Live</h2><p class="note" data-keep>Live data could not be loaded. It is retried every 5 minutes.</p></div>`; }; document.head.appendChild(s);};
   load(); setInterval(load,5*60*1000);
 }
 // Backtest of the expected-points model (calibrate.py): fitted on last season, graded on a later one it never saw.
@@ -1505,6 +1506,7 @@ ${labTemplateAcc(D,they)}
     else if(b.classList.contains("lab-ibtn")){ info.hidden=!info.hidden; b.setAttribute("aria-expanded",String(!info.hidden)); }
   });
   let v="plan"; try{v=localStorage.getItem(KEY)||"plan";}catch(e){}
+  if(v==="live"&&!labLiveOn(window.FPL_LIVE)) v="plan";          // an empty Live tab is not where to land; the stored choice is kept for the next match day
   show(v);
   // a phone browser can keep a backgrounded tab (with its old code and data) for hours: when it comes back after 10+ minutes, reload and
   // return to the same More page and scroll position

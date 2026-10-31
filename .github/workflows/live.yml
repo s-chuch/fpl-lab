@@ -46,7 +46,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           live=0
-          for i in $(seq 1 15); do
+          for i in $(seq 1 13); do
             out=$(python live_update.py 2>&1); echo "$out"
             if echo "$out" | grep -q "no gameweek in play"; then live=0; break; fi
             live=1

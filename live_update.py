@@ -54,7 +54,7 @@ def snapshot_plan(boot, plan, chip, live, els):
     """Provisional points of a 15-man plan from FPL's live stats (the AI team's locked plan goes through here too)."""
     stats = {i: {"minutes": s.get("minutes", 0), "points": s.get("total_points", 0), "bonus": s.get("bonus", 0)} for i, s in live.items()}
     res = ai_team.score_plan(plan, stats, False)      # not final: no auto-subs or vice promotion until it is certain
-    bench_boost = chip == "bboost"
+    bench_boost = chip == "bboost" and plan.get("chip") != "bboost"      # score_plan already counts the bench when the plan itself says bboost
     total = res["gross"] + (res["bench_pts"] if bench_boost else 0) - res["hits"]
     short = {t["id"]: t["short_name"] for t in boot["teams"]}
     lines = [{"id": l["id"], "name": l["name"], "pos": l["pos"], "club": short.get(els[l["id"]]["team"], ""), "pts": l["pts"], "mult": l["mult"], "played": l["played"],
@@ -70,7 +70,10 @@ def entry_base(entry_id, gw):
     if gw <= 1:
         return 0
     cur = get(f"https://fantasy.premierleague.com/api/entry/{entry_id}/history/").get("current") or []
-    return next((c["total_points"] for c in cur if c["event"] == gw - 1), 0)
+    for c in cur:
+        if c["event"] == gw - 1:
+            return c["total_points"]
+    raise ValueError(f"entry {entry_id} has no GW{gw - 1} in its history")      # a member who joined late: skipped, not shown with 0
 
 
 def h2h_live(boot, data, snap_me, gw, live, els, my_entry):
@@ -113,6 +116,7 @@ def leagues_live(boot, data, my_name, snap_me, my_entry, gw, live, els):
                 return None
         with ThreadPoolExecutor(max_workers=6) as pool:
             rows = [r for r in pool.map(one, table) if r]
+        missing = len(table) - len(rows)
         if len(rows) < 2:
             continue
         before = sorted(rows, key=lambda r: -r["base"])
@@ -120,7 +124,7 @@ def leagues_live(boot, data, my_name, snap_me, my_entry, gw, live, els):
             r["rank_before"] = 1 + sum(1 for x in rows if x["base"] > r["base"])
         for r in rows:
             r["rank"] = 1 + sum(1 for x in rows if x["total"] > r["total"])
-        out.append({"id": lg.get("id"), "name": lg.get("name"), "size": lg.get("size"), "rows": sorted(rows, key=lambda r: (r["rank"], r["team"]))})
+        out.append({"id": lg.get("id"), "name": lg.get("name"), "size": lg.get("size"), "missing": missing, "rows": sorted(rows, key=lambda r: (r["rank"], r["team"]))})
     return out
 
 

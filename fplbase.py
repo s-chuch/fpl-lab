@@ -34,7 +34,7 @@ MAXX = {"GKP": 1, "DEF": 5, "MID": 5, "FWD": 3}
 
 # Within one run the same per-GW endpoints are read by several builders (bench audit, captain
 # audit/board, transfers, ...). Memoise the ones that don't change during a run.
-_MEMO_PARTS = ("/live/", "/picks/", "/element-summary/", "/transfers/")
+_MEMO_PARTS = ("/live/", "/picks/", "/element-summary/", "/transfers/", "/history/")
 
 _memo = {}
 
