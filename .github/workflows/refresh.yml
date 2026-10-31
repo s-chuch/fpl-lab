@@ -62,6 +62,7 @@ concurrency:
 permissions:
   contents: write
   issues: write
+  actions: write
 
 jobs:
   refresh:
@@ -80,6 +81,30 @@ jobs:
 
       - name: Fast-forward to the latest main
         run: git pull --ff-only origin main
+
+      - name: Start the live loop if matches are on
+        # GitHub throttles live.yml's own cron (no run for 14 hours on 31 Oct), but this workflow's schedule keeps firing, so it starts the loop.
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if python3 - <<'PY'
+          import json, re, sys, urllib.request
+          from datetime import datetime, timezone
+          fx = json.load(urllib.request.urlopen(urllib.request.Request("https://fantasy.premierleague.com/api/fixtures/", headers={"User-Agent": "Mozilla/5.0"}), timeout=30))
+          on = any(f.get("started") and not (f.get("finished") or f.get("finished_provisional")) for f in fx)
+          try:
+              m = re.search(r'"generated_at":"(\d{4}-\d\d-\d\d \d\d:\d\d)', open("live-data.js").read(2000))
+              age = (datetime.now(timezone.utc) - datetime.strptime(m.group(1), "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)).total_seconds() / 60
+          except Exception:
+              age = 9999
+          print(f"match in play: {on}; live-data.js is {age:.0f} min old", file=sys.stderr)
+          sys.exit(0 if on and age > 25 else 1)
+          PY
+          then
+            running=$(gh run list --workflow=live.yml --status in_progress --json databaseId --jq length || echo 0)
+            if [ "${running:-0}" -eq 0 ]; then gh workflow run live.yml --ref main || echo "dispatch failed"; else echo "live loop already running"; fi
+          fi
 
       - name: Gate the 30-minute AI-lock runs
         id: gate

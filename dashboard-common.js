@@ -420,6 +420,8 @@ function labLiveMain(L,team){
   try{
     if(!L) return `<div class="card"><p class="note" data-keep>Loading live data…</p></div>`;
     const Wd=(typeof W!=="undefined")?W:{You:"You",you:"you",Your:"Your"};
+    const dl=((window.FPL_DATA||{}).deadline)||{};
+    if(!labLiveOn(L)&&dl.passed&&dl.locked_gw!=null&&L.gw<dl.locked_gw) return `<div class="card"><h2>Live · GW${dl.locked_gw}</h2><p class="note" data-keep>GW${dl.locked_gw} is under way but the live snapshot has not started yet (the last one is for GW${L.gw}, ${esc(L.generated_at||"")}). It starts within a few minutes of the next data refresh and this page re-checks every 5 minutes.</p></div>`;
     if(!labLiveOn(L)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>No gameweek is in play. This page fills in when the next gameweek's first match kicks off: ${Wd.Your.toLowerCase()} head to head against the model, the mini-league tables, the prediction tracker and the squad, all updating as the matches go.</p></div>`;
     const ageMin=(Date.now()-new Date(String(L.generated_at).replace(" UTC","Z").replace(" ","T")).getTime())/60000;
     if(!(ageMin<360)) return `<div class="card"><h2>Live</h2><p class="note" data-keep>The live snapshot is more than 6 hours old, so it is not shown as live.</p></div>`;
