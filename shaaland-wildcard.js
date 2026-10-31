@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.69,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
@@ -275,8 +275,8 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Davis": 4.0,
       "Palmer": 9.8,
-      "Tavernier": 6.5,
-      "N.Jackson": 6.9
+      "N.Jackson": 6.9,
+      "Tavernier": 6.5
     },
     "total_delta": 1.5,
     "players": [
