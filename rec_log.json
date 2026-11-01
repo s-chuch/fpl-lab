@@ -11,13 +11,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "4c26efc70b88",
+  "code_sha": "6d6a80d8af10",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-01T14:50:10+00:00",
-  "saved_at_et": "2026-11-01 9:50 AM ET",
+  "saved_at": "2026-11-01T23:26:17+00:00",
+  "saved_at_et": "2026-11-01 6:26 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -25,7 +25,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.28
+    "xp": 4.74
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 6.1
    },
    {
     "club": "TOT",
@@ -35,13 +42,6 @@
     "xp": 6.0
    },
    {
-    "club": "ARS",
-    "id": 4,
-    "name": "Gabriel",
-    "pos": "DEF",
-    "xp": 5.6
-   },
-   {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
@@ -49,11 +49,11 @@
     "xp": 5.44
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
     "pos": "DEF",
-    "xp": 3.79
+    "xp": 4.16
    },
    {
     "club": "BOU",
@@ -129,26 +129,26 @@
   "status": "pending",
   "transfers": [
    {
-    "in": "Van Hecke",
-    "in_id": 112,
-    "out": "Calafiori",
-    "out_id": 8
-   },
-   {
     "in": "Gabriel",
     "in_id": 4,
     "out": "Hall",
     "out_id": 449
+   },
+   {
+    "in": "Van Hecke",
+    "in_id": 112,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 115,
   "vice_name": "De Cuyper",
   "xi": [
    1,
-   112,
    4,
+   112,
    115,
-   229,
+   8,
    68,
    124,
    154,
@@ -156,7 +156,7 @@
    411,
    166
   ],
-  "xp": 59.7
+  "xp": 61.1
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -3,21 +3,21 @@
   "backfilled": false,
   "bench": [
    572,
-   286,
    138,
-   94
+   94,
+   321
   ],
   "captain": 411,
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "4c26efc70b88",
+  "code_sha": "6d6a80d8af10",
   "ft": 3,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-01T14:50:20+00:00",
-  "saved_at_et": "2026-11-01 9:50 AM ET",
+  "saved_at": "2026-11-01T23:26:31+00:00",
+  "saved_at_et": "2026-11-01 6:26 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -25,7 +25,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.28
+    "xp": 4.74
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 6.1
    },
    {
     "club": "TOT",
@@ -56,13 +63,6 @@
     "xp": 4.48
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.79
-   },
-   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
@@ -84,6 +84,13 @@
     "xp": 4.26
    },
    {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 3.53
+   },
+   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
@@ -91,25 +98,11 @@
     "xp": 6.19
    },
    {
-    "club": "BOU",
-    "id": 79,
-    "name": "Evanilson",
-    "pos": "FWD",
-    "xp": 5.1
-   },
-   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
     "xp": 3.61
-   },
-   {
-    "club": "HUL",
-    "id": 286,
-    "name": "Belloumi",
-    "pos": "MID",
-    "xp": 3.53
    },
    {
     "club": "BHA",
@@ -124,39 +117,46 @@
     "name": "Schade",
     "pos": "MID",
     "xp": 2.54
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.06
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Van Hecke",
-    "in_id": 112,
+    "in": "Gabriel",
+    "in_id": 4,
     "out": "Hall",
     "out_id": 449
    },
    {
-    "in": "Evanilson",
-    "in_id": 79,
-    "out": "Walle Egeli",
-    "out_id": 321
+    "in": "Van Hecke",
+    "in_id": 112,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 115,
   "vice_name": "De Cuyper",
   "xi": [
    1,
+   4,
    112,
    115,
    60,
    330,
-   229,
    68,
    124,
    236,
-   411,
-   79
+   286,
+   411
   ],
-  "xp": 60.4
+  "xp": 61.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

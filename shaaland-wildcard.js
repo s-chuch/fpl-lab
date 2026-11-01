@@ -115,9 +115,15 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Raya",
-        "bench_ep": 4.28,
+        "bench_ep": 4.74,
         "starter": "Tzolakis",
         "starter_ep": 3.61
+      },
+      {
+        "bench": "Calafiori",
+        "bench_ep": 4.16,
+        "starter": "Hall",
+        "starter_ep": 3.56
       },
       {
         "bench": "King",
@@ -128,18 +134,12 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "bench_order": [
       "Raya",
+      "Calafiori",
       "King",
-      "Davis",
-      "Calafiori"
+      "Davis"
     ],
     "bench_order_changed": true,
-    "availability_flags": [
-      {
-        "name": "Calafiori",
-        "label": "DOUBT 75%",
-        "chance": 75
-      }
-    ],
+    "availability_flags": [],
     "xi_ep": [
       {
         "name": "Tzolakis",
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.28,
+        "ep_next": 4.74,
         "status": "ok"
       },
       {
@@ -224,8 +224,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 2.1,
-        "status": "doubt"
+        "ep_next": 4.16,
+        "status": "ok"
       },
       {
         "name": "Davis",

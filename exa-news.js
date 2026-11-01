@@ -1,67 +1,26 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-01T14:50:24Z",
+ "generated_at": "2026-11-01T23:26:33Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-01T14:50:24Z",
+ "last_attempt": "2026-11-01T23:26:33Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 20,
-  "cost_usd": 0.14
+  "searches": 30,
+  "cost_usd": 0.21
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
-  {
-   "player": "Calafiori",
-   "team": "ARS",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 9",
-   "snippet": "Most transfers for Gameweek 10 Most transfers in Most transfers out --- --- --- --- Evanilson (BOU) 161,975 Joao Pedro (CHE) 308,138 Jackson (AVL) 121,145 Cherki (MCI) 88,924 Tavernier (BOU) 100,807 Calafiori (ARS)…",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-01",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-7",
-   "yours": [
-    "1360999"
-   ]
-  },
   {
    "player": "João Pedro",
    "team": "CHE",
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 9",
-   "snippet": "Most transfers for Gameweek 10 Most transfers in Most transfers out --- --- --- --- Evanilson (BOU) 161,975 Joao Pedro (CHE) 308,138 Jackson (AVL) 121,145 Cherki (MCI) 88,924 Tavernier (BOU) 100,807 Calafiori (ARS)…",
-   "source_domain": "premierleague.com",
+   "headline": "Morgan Rogers tells Chelsea icon why Joao Pedro is 'always moaning' at him behind the scenes Football London",
+   "snippet": "Morgan Rogers tells Chelsea icon why Joao Pedro is 'always moaning' at him behind the scenes Football London",
+   "source_domain": "football.london",
    "published": "2026-11-01",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-7",
-   "yours": []
-  },
-  {
-   "player": "Szoboszlai",
-   "team": "LIV",
-   "fpl_status": "d",
-   "fpl_chance": 50,
-   "fpl_news": "Hamstring injury - 50% chance of playing",
-   "headline": "Dominik Szoboszlai and Victor Munoz arrive with Liverpool squad for Arsenal game in huge boost - Liverpool Echo",
-   "snippet": "Szoboszlai was suffering from a hamstring injury while Munoz struggled with a knee issue.",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-01",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/breaking-liverpool-arsenal-team-news-34846534",
-   "yours": []
-  },
-  {
-   "player": "Rice",
-   "team": "ARS",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "14 players could miss Liverpool vs Arsenal after Andoni Iraola injury update - Liverpool Echo",
-   "snippet": "While for Arsenal, Riccardo Calafiori, Declan Rice and Christos Tzolis could all return, but Max Dowman will miss the game as he begins a three-match suspension after being sent off against Fleetwood.",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-01",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/liverpool-arsenal-injury-news-latest-34845908",
+   "url": "https://www.football.london/chelsea-fc/news/morgan-rogers-joao-pedro-chelsea-34847358",
    "yours": []
   },
   {
@@ -109,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Maxence Lacroix could be out until January for Chelsea - BBC Sport",
-   "snippet": "Chelsea fear defender Maxence Lacroix is set for a lengthy lay-off after suffering a serious hamstring injury.",
-   "source_domain": "bbc.com",
-   "published": "2026-10-30",
-   "url": "https://www.bbc.com/sport/football/articles/cmkgkpexjzneo",
+   "headline": "Chelsea FC XI vs Manchester United: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Injured: Martinez, Lacroix, Joao Pedro, James, Hato, Gittens",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-31",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-man-utd-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1302848.html",
    "yours": []
   },
   {
@@ -130,16 +89,29 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
+   "player": "Shaw",
+   "team": "MUN",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Unspecified injury - Unknown return date",
+   "headline": "Man Utd injury update: Amad Diallo, Marcus Rashford, Luke Shaw latest news and return dates The Standard",
+   "snippet": "Luke Shaw Luke Shaw may be approaching a return from the mysterious “knock” which has left him sidelined since United drew 1-1 with Tottenham earlier this month.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-01",
+   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-amad-rashford-shaw-latest-news-return-dates-b1303061.html",
+   "yours": []
+  },
+  {
    "player": "James",
    "team": "CHE",
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Premier League team news: predicted lineups for the weekend action Premier League The Guardian",
-   "snippet": "CHELSEA v MANCHESTER UNITED Saturday 12.30pm TNT Sports 1 Venue Stamford Bridge Referee Peter Bankes This season G5 Y23 R1 4.8 cards/game View image in fullscreen Chelsea v Manchester United: probable starters in bold…",
-   "source_domain": "theguardian.com",
-   "published": "2026-10-30",
-   "url": "https://www.theguardian.com/football/2026/oct/30/premier-league-team-news-predicted-lineups-for-the-weekend-action",
+   "headline": "Chelsea FC XI vs Manchester United: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Summer signing Lacroix is the latest Chelsea player to succumb to injury in recent weeks, with captain Reece James ruled out until January following knee surgery and star striker Joao Pedro also sidelined with a thigh…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-10-31",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-man-utd-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1302848.html",
    "yours": []
   },
   {
@@ -148,11 +120,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Head injury - Unknown return date",
-   "headline": "Premier League team news: predicted lineups for the weekend action Premier League The Guardian",
-   "snippet": "CHELSEA v MANCHESTER UNITED Saturday 12.30pm TNT Sports 1 Venue Stamford Bridge Referee Peter Bankes This season G5 Y23 R1 4.8 cards/game View image in fullscreen Chelsea v Manchester United: probable starters in bold…",
-   "source_domain": "theguardian.com",
-   "published": "2026-10-30",
-   "url": "https://www.theguardian.com/football/2026/oct/30/premier-league-team-news-predicted-lineups-for-the-weekend-action",
+   "headline": "Emiliano Martinez reveals finger injury 'will NEVER return' to normal as Chelsea star admits to 'zombie' World Cup struggle with Argentina G",
+   "snippet": "Emiliano Martinez has opened up on the harrowing physical toll of his career, admitting that a significant finger injury sustained earlier this year will never truly heal.",
+   "source_domain": "goal.com",
+   "published": "2026-10-31",
+   "url": "https://www.goal.com/en/news/emiliano-martinez-finger-injury-chelsea-world-cup-argentina/bltf181ca5ec83b2432",
    "yours": []
   }
  ]
