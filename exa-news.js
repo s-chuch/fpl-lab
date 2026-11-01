@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-01T07:20:57Z",
+ "generated_at": "2026-11-01T14:50:24Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-01T07:20:57Z",
+ "last_attempt": "2026-11-01T14:50:24Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 10,
-  "cost_usd": 0.07
+  "searches": 20,
+  "cost_usd": 0.14
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "Arsenal predicted XI vs Liverpool - Nine changes as Noni Madueke and Riccardo Calafiori calls made Football London",
-   "snippet": "Riccardo Calafiori and Noni Madueke are facing late fitness tests for Liverpool vs Arsenal Arsenal Ryan Taylor 07:00, 01 Nov 2026 ...",
-   "source_domain": "football.london",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 9",
+   "snippet": "Most transfers for Gameweek 10 Most transfers in Most transfers out --- --- --- --- Evanilson (BOU) 161,975 Joao Pedro (CHE) 308,138 Jackson (AVL) 121,145 Cherki (MCI) 88,924 Tavernier (BOU) 100,807 Calafiori (ARS)…",
+   "source_domain": "premierleague.com",
    "published": "2026-11-01",
-   "url": "https://www.football.london/arsenal-fc/players/arsenal-predicted-xi-liverpool-madueke-34843063",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-7",
    "yours": [
     "1360999"
    ]
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Manchester United: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "Alonso said that he expected Joao Pedro to miss “a few weeks” as he continues his recovery.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-10-31",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-man-utd-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1302848.html",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 9",
+   "snippet": "Most transfers for Gameweek 10 Most transfers in Most transfers out --- --- --- --- Evanilson (BOU) 161,975 Joao Pedro (CHE) 308,138 Jackson (AVL) 121,145 Cherki (MCI) 88,924 Tavernier (BOU) 100,807 Calafiori (ARS)…",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-01",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-7",
    "yours": []
   },
   {
@@ -44,11 +44,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 50,
    "fpl_news": "Hamstring injury - 50% chance of playing",
-   "headline": "14 players could miss Liverpool vs Arsenal after Andoni Iraola injury update - Liverpool Echo",
-   "snippet": "And Andoni Iraola confirmed on Friday that Victor Munoz and Dominik Szoboszlai 'have a chance' to feature for the Reds this afternoon.",
+   "headline": "Dominik Szoboszlai and Victor Munoz arrive with Liverpool squad for Arsenal game in huge boost - Liverpool Echo",
+   "snippet": "Szoboszlai was suffering from a hamstring injury while Munoz struggled with a knee issue.",
    "source_domain": "liverpoolecho.co.uk",
    "published": "2026-11-01",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/liverpool-arsenal-injury-news-latest-34845908",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/breaking-liverpool-arsenal-team-news-34846534",
    "yours": []
   },
   {
@@ -57,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Preview: Liverpool v Arsenal Arsenal FC Official Website Arsenal.com",
-   "snippet": "TEAM NEWS After missing our midweek match, Mikel Arteta confirmed that Declan Rice and Riccardo Calafiori have both trained before our trip to Anfield.",
-   "source_domain": "arsenal.com",
-   "published": "2026-10-31",
-   "url": "https://www.arsenal.com/news/preview-liverpool-v-arsenal-aIdk94W0fxtN",
+   "headline": "14 players could miss Liverpool vs Arsenal after Andoni Iraola injury update - Liverpool Echo",
+   "snippet": "While for Arsenal, Riccardo Calafiori, Declan Rice and Christos Tzolis could all return, but Max Dowman will miss the game as he begins a three-match suspension after being sent off against Fleetwood.",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-01",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/liverpool-arsenal-injury-news-latest-34845908",
    "yours": []
   },
   {
@@ -109,11 +109,24 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Manchester United: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "Subs: Sharman-Lowe, Gusto, Subuloye, Chavarria, Barco, Nicoll-Jazuli, Quenda, Welbeck, Emegha Injured: Martinez, Lacroix, Joao Pedro, James, Hato, Gittens",
-   "source_domain": "standard.co.uk",
-   "published": "2026-10-31",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-man-utd-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1302848.html",
+   "headline": "Maxence Lacroix could be out until January for Chelsea - BBC Sport",
+   "snippet": "Chelsea fear defender Maxence Lacroix is set for a lengthy lay-off after suffering a serious hamstring injury.",
+   "source_domain": "bbc.com",
+   "published": "2026-10-30",
+   "url": "https://www.bbc.com/sport/football/articles/cmkgkpexjzneo",
+   "yours": []
+  },
+  {
+   "player": "Cash",
+   "team": "AVL",
+   "fpl_status": "s",
+   "fpl_chance": 0,
+   "fpl_news": "Suspended until 21 Nov",
+   "headline": "Aston Villa face Man United problem after suspension as Zion Suzuki defended after clanger - Birmingham Live",
+   "snippet": "Emery faces right-back issue Matty Cash collected his fifth booking of the league season against Fulham, meaning he will now be suspended for Villa’s trip to Manchester United next weekend.",
+   "source_domain": "birminghammail.co.uk",
+   "published": "2026-11-01",
+   "url": "https://www.birminghammail.co.uk/sport/football/football-news/aston-villa-face-man-united-34843050",
    "yours": []
   },
   {
