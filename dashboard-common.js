@@ -471,7 +471,8 @@ function liveBar(L,team){
   }catch(e){ return ""; }
 }
 function loadLive(team){
-  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); document.querySelectorAll("#labPredLive,[data-predlive]").forEach(pl=>{pl.innerHTML=labPredLiveHtml();}); const lm=document.getElementById("labLiveMain"); if(lm) lm.innerHTML=labLiveMain(window.FPL_LIVE,team); s.remove();}; s.onerror=()=>{ s.remove(); const lm=document.getElementById("labLiveMain"); if(lm&&!window.FPL_LIVE) lm.innerHTML=`<div class="card"><h2>Live</h2><p class="note" data-keep>Live data could not be loaded. It is retried every 5 minutes.</p></div>`; }; document.head.appendChild(s);};
+  window.LAB_TEAM=team;
+  const load=()=>{const s=document.createElement("script"); s.src="live-data.js?t="+Date.now(); s.onload=()=>{const el=document.getElementById("liveBar"); if(el) el.innerHTML=liveBar(window.FPL_LIVE,team); document.querySelectorAll("#labPredLive,[data-predlive]").forEach(pl=>{pl.innerHTML=labPredLiveHtml();}); const lm=document.getElementById("labLiveMain"); if(lm) lm.innerHTML=labLiveMain(window.FPL_LIVE,team); try{ if(window.labRepaintAi) window.labRepaintAi(); }catch(_){} s.remove();}; s.onerror=()=>{ s.remove(); const lm=document.getElementById("labLiveMain"); if(lm&&!window.FPL_LIVE) lm.innerHTML=`<div class="card"><h2>Live</h2><p class="note" data-keep>Live data could not be loaded. It is retried every 5 minutes.</p></div>`; }; document.head.appendChild(s);};
   load(); setInterval(load,5*60*1000);
 }
 // Backtest of the expected-points model (calibrate.py): fitted on last season, graded on a later one it never saw.
@@ -526,11 +527,15 @@ function aiResultsCard(D,who){
   const A=D.ai_team; if(!A) return `<div class="card"><h2>AI team results</h2><p class="note">Nothing yet.</p></div>`;
   const H=Object.values(A.history||{}).sort((a,b)=>b.gw-a.gw);
   if(!H.length) return `<div class="card"><h2>AI team results</h2><p class="note" data-keep>It starts with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. GW${A.plan?A.plan.gw:7} is the first gameweek it plays on its own; points appear once that deadline passes.</p></div>`;
-  const tot=A.season_points??A.total_points??0, you=A.user_season??A.user_total??0, W2=who||"You";
+  const tot=A.season_points??A.total_points??0, W2=who||"You";
+  // FPL's entry history only gets the open gameweek once it is over, so "You" for a gameweek in play is your live provisional score (same scoring as the AI's)
+  const LV=window.FPL_LIVE, LT=LV&&LV.teams&&LV.teams[window.LAB_TEAM||""], liveOk=!!(LT&&typeof labLiveOn==="function"&&labLiveOn(LV));
+  const prov=h=>liveOk&&h.gw===LV.gw&&!(h.result||{}).final, uOf=h=>prov(h)?LT.points:h.user_points;
+  let you=A.user_season??A.user_total??0; H.forEach(h=>{ if(prov(h)) you+=LT.points-(h.user_points||0); });
   let sel=H[0].gw; try{const k=Number(sessionStorage.getItem("lab:aigw")); if(H.some(h=>h.gw===k)) sel=k;}catch(e){}
   const p=H.find(h=>h.gw===sel)||H[0], r=p.result||{};
   const sq=Object.fromEntries((p.squad||[]).map(x=>[x.id,x]));
-  const diff=(r.points??0)-(p.user_points??0);
+  const diff=(r.points??0)-(uOf(p)??0);
   const when=A.generated_at?new Date(A.generated_at).toLocaleString("en-CA",{timeZone:"America/Toronto",month:"short",day:"numeric",hour:"2-digit",minute:"2-digit",hour12:false})+" ET":"";
   const pills=H.map(h=>`<button type="button" data-aigw="${h.gw}" class="${h.gw===p.gw?"on":""}">GW${h.gw}${(h.result||{}).final?"":" ●"}</button>`).join("");
   const card=(l,isBench)=>{const x=sq[l.id]||{name:l.name,pos:l.pos,club:""};
@@ -545,15 +550,15 @@ function aiResultsCard(D,who){
   // gameweek-by-gameweek: the AI team against you (both net of hits); only settled gameweeks count towards the tally
   const asc=[...H].reverse(), W2c=esc(W2);
   let aiW=0, youW=0, lvl=0;
-  const crow=h=>{const a=(h.result||{}).points, u=h.user_points, fin=!!(h.result||{}).final; if(a==null||u==null) return "";
+  const crow=h=>{const a=(h.result||{}).points, u=uOf(h), fin=!!(h.result||{}).final; if(a==null||u==null) return "";
     const df=a-u, who=df>0?"AI":df<0?W2c:"Level"; if(fin){ if(df>0) aiW++; else if(df<0) youW++; else lvl++; }
-    return `<tr class="${h.gw===p.gw?"on":""}"><td>GW${h.gw}${fin?"":" ●"}</td><td>${a}</td><td>${u}</td><td class="${df>0?"pos":df<0?"neg":""}">${df>0?"+":""}${df}</td><td>${fin?who:"live"}</td></tr>`;};
+    return `<tr class="${h.gw===p.gw?"on":""}"><td>GW${h.gw}${fin?"":" ●"}</td><td>${a}</td><td>${u}${prov(h)?"*":""}</td><td class="${df>0?"pos":df<0?"neg":""}">${df>0?"+":""}${df}</td><td>${fin?who:"live"}</td></tr>`;};
   const crows=asc.map(crow).join("");
   const sdiff=tot-you;
-  const cmp=crows?`<h3 class="lab-ph3">Week by week · AI vs ${W2c}</h3><table class="lab-tbl lab-cmp"><thead><tr><th>GW</th><th>AI</th><th>${W2c}</th><th>Diff</th><th>Better</th></tr></thead><tbody>${crows}<tr class="tot"><td>Season</td><td>${tot}</td><td>${you}</td><td class="${sdiff>0?"pos":sdiff<0?"neg":""}">${sdiff>0?"+":""}${sdiff}</td><td>${sdiff>0?"AI":sdiff<0?W2c:"Level"}</td></tr></tbody></table><p class="note" data-keep>Settled gameweeks: AI ${aiW} · ${W2c} ${youW}${lvl?` · level ${lvl}`:""}. Both net of transfer hits; season includes the ${A.baseline_points??0} points you had when the AI copied your team at GW${A.cloned_from_gw??"?"}. ● = still being played.</p>`:"";
+  const cmp=crows?`<h3 class="lab-ph3">Week by week · AI vs ${W2c}</h3><table class="lab-tbl lab-cmp"><thead><tr><th>GW</th><th>AI</th><th>${W2c}</th><th>Diff</th><th>Better</th></tr></thead><tbody>${crows}<tr class="tot"><td>Season</td><td>${tot}</td><td>${you}</td><td class="${sdiff>0?"pos":sdiff<0?"neg":""}">${sdiff>0?"+":""}${sdiff}</td><td>${sdiff>0?"AI":sdiff<0?W2c:"Level"}</td></tr></tbody></table><p class="note" data-keep>Settled gameweeks: AI ${aiW} · ${W2c} ${youW}${lvl?` · level ${lvl}`:""}. Both net of transfer hits; season includes the ${A.baseline_points??0} points you had when the AI copied your team at GW${A.cloned_from_gw??"?"}. ● = still being played; * = live score.</p>`:"";
   const state=r.final?`<span class="pill used">Final</span>`:`<span class="pill free">Live · updating</span>`;
   return `<div class="card lab-aires"><h2>AI team results</h2>
-    <div class="lab-rsum"><div><span>Season</span><b>AI ${tot}</b><small>${esc(W2)} ${you}</small></div><div><span>GW${p.gw}</span><b>${r.points??"–"}</b><small>${r.final&&p.user_points!=null?`${esc(W2)} ${p.user_points} · <i class="${diff>0?"pos":diff<0?"neg":""}">${(diff>0?"+":"")+diff}</i>`:`${esc(W2)} compared once settled`}</small></div><div><span>Bench</span><b>${r.bench_pts??0}</b><small>${r.hits?`−${r.hits} hit`:"no hit"}</small></div></div>
+    <div class="lab-rsum"><div><span>Season</span><b>AI ${tot}</b><small>${esc(W2)} ${you}</small></div><div><span>GW${p.gw}</span><b>${r.points??"–"}</b><small>${(r.final||prov(p))&&uOf(p)!=null?`${esc(W2)} ${uOf(p)}${prov(p)?" (live)":""} · <i class="${diff>0?"pos":diff<0?"neg":""}">${(diff>0?"+":"")+diff}</i>`:`${esc(W2)} compared once settled`}</small></div><div><span>Bench</span><b>${r.bench_pts??0}</b><small>${r.hits?`−${r.hits} hit`:"no hit"}</small></div></div>
     <p class="note" data-keep>The AI started with the ${A.baseline_points??0} points you had at GW${A.cloned_from_gw??"?"}. ${state} ${when?`Data as of ${when}.`:""}${r.final?"":" Points show as each match is played; auto-subs and a vice-captain swap are only applied once the gameweek is settled."}</p>
     <div class="lab-stabs" id="labAiGw">${pills}</div>
     <div class="lab-pitch"><div class="lab-lines"><i class="box"></i><i class="six"></i><i class="half"></i><i class="circ"></i></div>${rows}</div>
@@ -661,7 +666,7 @@ function renderRegression(D){ const el=document.getElementById("stratRegress"); 
 function renderAiTeam(D,who){
   const a=document.getElementById("aiPlan"), r=document.getElementById("aiResults"), dc=document.getElementById("aiDecision");
   const paint=()=>{ if(a) a.innerHTML=aiPlanCard(D,who)+aiChangesCard(D.ai_team); if(r) r.innerHTML=aiResultsCard(D,who); if(dc) dc.innerHTML=aiDecisionCard(D,who); };
-  paint();
+  paint(); window.labRepaintAi=()=>{ if(r) r.innerHTML=aiResultsCard(D,who); };      // loadLive repaints the results when a live snapshot lands
   if(dc&&!dc.dataset.wired){ dc.dataset.wired="1"; dc.addEventListener("click",e=>{const b=e.target.closest("[data-aidgw]"); if(!b) return; try{sessionStorage.setItem("lab:aidgw",b.dataset.aidgw);}catch(_){} paint();}); }
   if(r&&!r.dataset.wired){
     r.dataset.wired="1";
