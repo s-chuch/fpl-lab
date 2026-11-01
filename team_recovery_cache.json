@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-10-31T23:13:38.571949+00:00",
+    "fetched_at": "2026-11-01T00:41:42.453227+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -43,7 +43,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Sunderland",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-06",
@@ -64,7 +64,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Ipswich",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -166,7 +166,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Hull",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",
@@ -214,7 +214,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Brentford",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -235,7 +235,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Bournemouth",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -256,7 +256,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Nott'm Forest",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",
@@ -277,7 +277,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Crystal Palace",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -465,7 +465,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Aston Villa",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -486,7 +486,7 @@
           "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Man Utd",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",

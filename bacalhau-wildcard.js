@@ -240,18 +240,18 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-31",
-      "total_cost": 94.8,
+      "total_cost": 95.1,
       "prices": {
         "Raya": 6.2,
         "Hall": 5.3,
         "Tarkowski": 6.2,
-        "De Cuyper": 5.3,
+        "De Cuyper": 5.4,
         "Bogle": 4.8,
         "Hill": 5.5,
         "Groß": 6.2,
         "Dewsbury-Hall": 6.6,
-        "Tavernier": 6.5,
-        "Belloumi": 5.2,
+        "Tavernier": 6.6,
+        "Belloumi": 5.3,
         "Haaland": 15.8,
         "Tzolakis": 4.7,
         "Kostoulas": 5.8,
@@ -262,13 +262,22 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Hill": 5.5
     },
-    "total_delta": 2.2,
+    "total_delta": 2.5,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.3,
-        "delta": 0.4,
+        "current_cost": 5.4,
+        "delta": 0.5,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.6,
+        "delta": 0.5,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -283,10 +292,10 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Tavernier",
-        "baseline_cost": 6.1,
-        "current_cost": 6.5,
-        "delta": 0.4,
+        "name": "Belloumi",
+        "baseline_cost": 5.1,
+        "current_cost": 5.3,
+        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -314,15 +323,6 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 5.6,
         "current_cost": 5.8,
         "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Belloumi",
-        "baseline_cost": 5.1,
-        "current_cost": 5.2,
-        "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -634,6 +634,30 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Hill",
         "price_at_change": 5.5
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "Belloumi",
+        "from": 5.2,
+        "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.3,
+        "to": 5.4,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.5,
+        "to": 6.6,
+        "delta": 0.1
       }
     ]
   },

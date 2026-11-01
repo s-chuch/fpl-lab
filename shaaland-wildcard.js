@@ -224,7 +224,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 1.68,
+        "ep_next": 2.1,
         "status": "doubt"
       },
       {
@@ -259,21 +259,21 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-10-31",
-      "total_cost": 100.3,
+      "total_cost": 100.5,
       "prices": {
         "Tzolakis": 4.7,
         "Hall": 5.3,
-        "De Cuyper": 5.3,
+        "De Cuyper": 5.4,
         "Tarkowski": 6.2,
         "Barnes": 6.1,
         "Groß": 6.2,
         "Palmer": 9.8,
-        "Tavernier": 6.5,
+        "Tavernier": 6.6,
         "Haaland": 15.8,
-        "N.Jackson": 6.9,
+        "N.Jackson": 7.0,
         "Kostoulas": 5.8,
         "Raya": 6.2,
-        "King": 5.6,
+        "King": 5.5,
         "Calafiori": 5.9,
         "Davis": 4.0
       }
@@ -284,13 +284,13 @@ window.FPL_WILDCARD_WATCH = {
       "N.Jackson": 6.9,
       "Tavernier": 6.5
     },
-    "total_delta": 1.5,
+    "total_delta": 1.7,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.3,
-        "delta": 0.4,
+        "current_cost": 5.4,
+        "delta": 0.5,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -341,15 +341,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "King",
-        "baseline_cost": 5.5,
-        "current_cost": 5.6,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Raya",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
@@ -371,6 +362,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Barnes",
         "baseline_cost": 6.1,
         "current_cost": 6.1,
+        "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "King",
+        "baseline_cost": 5.5,
+        "current_cost": 5.5,
         "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
@@ -424,10 +424,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "baseline_cost": null,
-        "current_cost": 6.9,
+        "current_cost": 7.0,
         "delta": null,
         "entry_cost": 6.9,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -451,10 +451,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "baseline_cost": null,
-        "current_cost": 6.5,
+        "current_cost": 6.6,
         "delta": null,
         "entry_cost": 6.5,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -468,34 +468,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-09-23",
-        "event": "added",
-        "player": "Tzolakis",
-        "price_at_change": 4.6
-      },
-      {
-        "date": "2026-09-24",
-        "event": "price_change",
-        "player": "Tzolakis",
-        "from": 4.6,
-        "to": 4.7,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-09-25",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 4.9,
-        "to": 5.0,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-09-27",
-        "event": "removed",
-        "player": "Isak",
-        "price_at_change": 9.1
-      },
       {
         "date": "2026-09-27",
         "event": "added",
@@ -753,6 +725,38 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Tavernier",
         "price_at_change": 6.5
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.3,
+        "to": 5.4,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "King",
+        "from": 5.6,
+        "to": 5.5,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "N.Jackson",
+        "from": 6.9,
+        "to": 7.0,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-10-31",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.5,
+        "to": 6.6,
+        "delta": 0.1
       }
     ]
   },
