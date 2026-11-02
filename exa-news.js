@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-02T10:12:24Z",
+ "generated_at": "2026-11-02T18:03:37Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-02T10:12:24Z",
+ "last_attempt": "2026-11-02T18:03:37Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 40,
-  "cost_usd": 0.28
+  "searches": 50,
+  "cost_usd": 0.35
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,7 +17,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Joao Pedro Joao Pedro was a surprise absentee from the Chelsea squad for their rare home loss to Tottenham, with Alonso later confirming that he had picked up a thigh injury in training on the eve of the game.",
+   "snippet": "Joao Pedro was a surprise absentee from the Chelsea squad for their rare home loss to Tottenham, with Alonso later confirming that he had picked up a thigh injury in training on the eve of the game.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-02",
    "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
@@ -30,7 +30,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Arsenal FC injury update: Eberechi Eze, Bukayo Saka, William Saliba latest news and return dates The Standard",
-   "snippet": "Bukayo Saka Bukayo Saka has now missed Arsenal's last three games in all competitions with a quad injury sustained after just 10 minutes against Bayern Munich.",
+   "snippet": "Bukayo Saka has now missed Arsenal's last three games in all competitions with a quad injury sustained after just 10 minutes against Bayern Munich.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-02",
    "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-eze-saka-saliba-latest-news-return-dates-b1303184.html",
@@ -43,7 +43,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Nunes, Ndiaye, Semenyo - Man City injury news and return dates vs Brighton - Manchester Evening News",
-   "snippet": "Only Antoine Semenyo [out], the rest, they are all available.\" Potential return date: October 31 vs Brighton ...",
+   "snippet": "Only Antoine Semenyo [out], the rest, they are all available.\" Potential return date: October 31 vs Brighton Iliman Ndiaye Injury: Cramp After his assist against Villa, there were concerns over the forward's fitness.",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-10-31",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/nunes-ndiaye-semenyo-man-city-34838742",
@@ -81,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "Man Utd injury update: Amad Diallo, Marcus Rashford, Luke Shaw latest news and return dates The Standard",
-   "snippet": "Luke Shaw Luke Shaw may be approaching a return from the mysterious “knock” which has left him sidelined since United drew 1-1 with Tottenham earlier this month.",
-   "source_domain": "standard.co.uk",
+   "headline": "Manchester United issue injury update on four players as Leny Yoro issue explained - Manchester Evening News",
+   "snippet": "United's left-back crisis is set to continue for a little longer, with Luke Shaw not due back before the international break as he continues to recover from an injury that has kept him sidelined for the last five games.",
+   "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-amad-rashford-latest-news-return-dates-b1303061.html",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/manchester-united-issue-injury-update-34850497",
    "yours": []
   },
   {
@@ -95,7 +95,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Reece James Chelsea’s influential captain Reece James suffered a knee injury in training at Cobham on his return from another hamstring issue.",
+   "snippet": "Chelsea’s influential captain Reece James suffered a knee injury in training at Cobham on his return from another hamstring issue.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-02",
    "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
