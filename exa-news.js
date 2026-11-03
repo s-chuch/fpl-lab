@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-03T02:09:57Z",
+ "generated_at": "2026-11-03T11:12:31Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-03T02:09:57Z",
+ "last_attempt": "2026-11-03T11:12:31Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 60,
-  "cost_usd": 0.42
+  "searches": 70,
+  "cost_usd": 0.49
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 10",
-   "snippet": "Price rises None Price falls Myles Lewis-Skelly (Arsenal) £5.3m Paddy McNair (Hull City) £3.9m Wellity Lucky (Liverpool) £3.9m Most transfers for Gameweek 10 Most transfers in Most transfers out…",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-02",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-10",
+   "headline": "Steven Gerrard warns Xabi Alonso that Chelsea star is about to give him Joao Pedro 'problem' Football London",
+   "snippet": "Joao Pedro is set to be out until after the international break with a thigh injury(Image: Darren Walsh/Chelsea FC) ...",
+   "source_domain": "football.london",
+   "published": "2026-11-03",
+   "url": "https://www.football.london/chelsea-fc/news/steven-gerrard-warns-xabi-alonso-34854420",
    "yours": []
   },
   {
@@ -30,23 +30,10 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Arsenal FC injury update: Eberechi Eze, Bukayo Saka, William Saliba latest news and return dates The Standard",
-   "snippet": "Bukayo Saka has now missed Arsenal's last three games in all competitions with a quad injury sustained after just 10 minutes against Bayern Munich.",
+   "snippet": "Bukayo Saka Bukayo Saka has now missed Arsenal's last three games in all competitions with a quad injury sustained after just 10 minutes against Bayern Munich.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-02",
    "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-eze-saka-saliba-latest-news-return-dates-b1303184.html",
-   "yours": []
-  },
-  {
-   "player": "Semenyo",
-   "team": "MCI",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Nunes, Ndiaye, Semenyo - Man City injury news and return dates vs Brighton - Manchester Evening News",
-   "snippet": "Only Antoine Semenyo [out], the rest, they are all available.\" Potential return date: October 31 vs Brighton Iliman Ndiaye Injury: Cramp After his assist against Villa, there were concerns over the forward's fitness.",
-   "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-10-31",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/nunes-ndiaye-semenyo-man-city-34838742",
    "yours": []
   },
   {
@@ -81,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "Manchester United issue injury update on four players as Leny Yoro issue explained - Manchester Evening News",
-   "snippet": "United's left-back crisis is set to continue for a little longer, with Luke Shaw not due back before the international break as he continues to recover from an injury that has kept him sidelined for the last five games.",
+   "headline": "Nine players set to miss Man United vs Roma after Marcus Rashford injury update - Manchester Evening News",
+   "snippet": "There will be no Luke Shaw for United, with Carrick confirming that the left-back remains sidelined with an injury that has kept him unavailable for the past five matches.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-02",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/manchester-united-issue-injury-update-34850497",
+   "published": "2026-11-03",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-utd-injury-latest-roma-34853445",
    "yours": []
   },
   {
