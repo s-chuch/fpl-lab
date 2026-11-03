@@ -131,13 +131,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.55,
+        "ep_next": 3.74,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.73,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
@@ -167,7 +167,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.99,
+        "ep_next": 4.52,
         "status": "ok"
       },
       {
@@ -179,7 +179,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 3.61,
+        "ep_next": 3.76,
         "status": "ok"
       },
       {

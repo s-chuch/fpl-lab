@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-02T17:59:27.298304+00:00",
+    "fetched_at": "2026-11-03T02:06:20.478661+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -107,7 +107,7 @@
           "date": "2026-11-02",
           "competition": "Premier League",
           "opponent": "Newcastle",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-06",
@@ -120,13 +120,7 @@
           "opponent": "Brentford",
           "days_after": 17
         },
-        "between": [
-          {
-            "date": "2026-11-02",
-            "competition": "Premier League",
-            "opponent": "Newcastle"
-          }
-        ]
+        "between": []
       },
       "CRY": {
         "rest_days": 3,
@@ -401,7 +395,7 @@
           "date": "2026-11-02",
           "competition": "Premier League",
           "opponent": "Everton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -414,13 +408,7 @@
           "opponent": "Arsenal",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-11-02",
-            "competition": "Premier League",
-            "opponent": "Everton"
-          }
-        ]
+        "between": []
       },
       "LIV": {
         "rest_days": 4,

@@ -11,13 +11,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "bd1b24e0135b",
+  "code_sha": "84df8600bab0",
   "ft": 3,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-02T18:02:20+00:00",
-  "saved_at_et": "2026-11-02 1:02 PM ET",
+  "saved_at": "2026-11-03T02:08:55+00:00",
+  "saved_at_et": "2026-11-02 9:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -70,6 +70,13 @@
     "xp": 5.45
    },
    {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 4.52
+   },
+   {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
@@ -77,18 +84,11 @@
     "xp": 4.15
    },
    {
-    "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
-    "xp": 3.99
-   },
-   {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 3.61
+    "xp": 3.76
    },
    {
     "club": "MCI",
@@ -129,14 +129,14 @@
   "status": "pending",
   "transfers": [
    {
-    "in": "Gabriel",
-    "in_id": 4,
+    "in": "Van Hecke",
+    "in_id": 112,
     "out": "Hall",
     "out_id": 449
    },
    {
-    "in": "Van Hecke",
-    "in_id": 112,
+    "in": "Gabriel",
+    "in_id": 4,
     "out": "Tarkowski",
     "out_id": 229
    }
@@ -151,12 +151,12 @@
    60,
    330,
    68,
-   124,
    236,
+   124,
    286,
    411
   ],
-  "xp": 60.0
+  "xp": 60.7
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-02T18:03:37Z",
+ "generated_at": "2026-11-03T02:09:57Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-02T18:03:37Z",
+ "last_attempt": "2026-11-03T02:09:57Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 50,
-  "cost_usd": 0.35
+  "searches": 60,
+  "cost_usd": 0.42
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Joao Pedro was a surprise absentee from the Chelsea squad for their rare home loss to Tottenham, with Alonso later confirming that he had picked up a thigh injury in training on the eve of the game.",
-   "source_domain": "standard.co.uk",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 10",
+   "snippet": "Price rises None Price falls Myles Lewis-Skelly (Arsenal) £5.3m Paddy McNair (Hull City) £3.9m Wellity Lucky (Liverpool) £3.9m Most transfers for Gameweek 10 Most transfers in Most transfers out…",
+   "source_domain": "premierleague.com",
    "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-10",
    "yours": []
   },
   {
@@ -68,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 21 Nov",
-   "headline": "Buendia starts, McGinn role - Aston Villa starting XI vs Barcelona predicted - Birmingham Live",
-   "snippet": "Matty Cash, Victor Lindelof, Pau Torres and Ian Maatsen will likely make up the defence, with Boubacar Kamara and Joao Gomes forming the double pivot in midfield.",
-   "source_domain": "birminghammail.co.uk",
+   "headline": "Barcelona vs Aston Villa: TV channel, how to watch in UK, kick-off time, live stream, team news, referee, predicted line-ups - ESPN",
+   "snippet": "Injury and Team News Barcelona Dani Olmo, M: thigh, OUT Xavi Espart, D: ankle, OUT Andreas Christensen, D: thigh, OUT Eric García, D: thigh, OUT Roony Bardghji, F: knee, OUT Aston Villa Aaron Wan-Bissaka, D: hamstring…",
+   "source_domain": "espn.com",
    "published": "2026-11-02",
-   "url": "https://www.birminghammail.co.uk/sport/football/football-news/buendia-starts-mcginn-role-aston-34846522",
+   "url": "https://www.espn.com/soccer/story/_/id/50346655/barcelona-vs-aston-villa-2026-27-uefa-champions-league-tv-channel-how-watch-kickoff-live-stream-referee-injury-predicted-lineups",
    "yours": []
   },
   {
@@ -95,7 +95,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Chelsea’s influential captain Reece James suffered a knee injury in training at Cobham on his return from another hamstring issue.",
+   "snippet": "Reece James Chelsea’s influential captain Reece James suffered a knee injury in training at Cobham on his return from another hamstring issue.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-02",
    "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",

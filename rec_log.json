@@ -3,7 +3,7 @@
   "backfilled": false,
   "bench": [
    572,
-   449,
+   268,
    453,
    138
   ],
@@ -11,13 +11,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "bd1b24e0135b",
+  "code_sha": "84df8600bab0",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-02T18:00:53+00:00",
-  "saved_at_et": "2026-11-02 1:00 PM ET",
+  "saved_at": "2026-11-03T02:07:38+00:00",
+  "saved_at_et": "2026-11-02 9:07 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -56,6 +56,13 @@
     "xp": 4.15
    },
    {
+    "club": "NEW",
+    "id": 449,
+    "name": "Hall",
+    "pos": "DEF",
+    "xp": 3.74
+   },
+   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
@@ -75,13 +82,6 @@
     "name": "Groß",
     "pos": "MID",
     "xp": 4.15
-   },
-   {
-    "club": "FUL",
-    "id": 268,
-    "name": "King",
-    "pos": "MID",
-    "xp": 3.57
    },
    {
     "club": "MCI",
@@ -105,18 +105,18 @@
     "xp": 3.61
    },
    {
-    "club": "NEW",
-    "id": 449,
-    "name": "Hall",
-    "pos": "DEF",
-    "xp": 3.55
+    "club": "FUL",
+    "id": 268,
+    "name": "King",
+    "pos": "MID",
+    "xp": 3.57
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.27
+    "xp": 3.54
    },
    {
     "club": "BHA",
@@ -129,16 +129,16 @@
   "status": "pending",
   "transfers": [
    {
-    "in": "Gabriel",
-    "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
-   },
-   {
     "in": "Van Hecke",
     "in_id": 112,
     "out": "Davis",
     "out_id": 305
+   },
+   {
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 68,
@@ -149,14 +149,14 @@
    112,
    115,
    8,
+   449,
    68,
    154,
    124,
-   268,
    411,
    166
   ],
-  "xp": 59.2
+  "xp": 59.4
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -123,13 +123,13 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Calafiori",
         "bench_ep": 4.15,
         "starter": "Hall",
-        "starter_ep": 3.55
+        "starter_ep": 3.74
       },
       {
         "bench": "King",
         "bench_ep": 3.57,
         "starter": "Barnes",
-        "starter_ep": 3.27
+        "starter_ep": 3.54
       }
     ],
     "bench_order": [
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hall",
         "pos": "DEF",
-        "ep_next": 3.55,
+        "ep_next": 3.74,
         "status": "ok"
       },
       {
@@ -162,13 +162,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.73,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.27,
+        "ep_next": 3.54,
         "status": "ok"
       },
       {
