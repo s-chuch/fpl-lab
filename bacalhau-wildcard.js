@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.68,
-    "vice": "Tavernier",
-    "vice_ep": 5.45,
+    "captain_ep": 6.09,
+    "vice": "De Cuyper",
+    "vice_ep": 5.6,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -125,7 +125,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.75,
+        "ep_next": 4.96,
         "status": "ok"
       },
       {
@@ -137,55 +137,55 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.37,
+        "ep_next": 4.35,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.41,
+        "ep_next": 5.6,
         "status": "ok"
       },
       {
         "name": "Bogle",
         "pos": "DEF",
-        "ep_next": 4.61,
+        "ep_next": 4.42,
         "status": "ok"
       },
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.89,
+        "ep_next": 5.08,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.15,
+        "ep_next": 3.95,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.52,
+        "ep_next": 4.12,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.45,
+        "ep_next": 5.17,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 3.76,
+        "ep_next": 3.43,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.68,
+        "ep_next": 6.09,
         "status": "ok"
       }
     ],
@@ -199,13 +199,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.02,
+        "ep_next": 3.15,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.78,
+        "ep_next": 2.57,
         "status": "ok"
       },
       {

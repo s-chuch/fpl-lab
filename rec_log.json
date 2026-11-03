@@ -11,13 +11,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "7326335d93e7",
+  "code_sha": "e2ad67e653b4",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-03T11:10:18+00:00",
-  "saved_at_et": "2026-11-03 6:10 AM ET",
+  "saved_at": "2026-11-03T16:00:05+00:00",
+  "saved_at_et": "2026-11-03 11:00 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -88,14 +88,14 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.68
+    "xp": 5.83
    },
    {
     "club": "AVL",
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 4.36
+    "xp": 4.43
    },
    {
     "club": "HUL",
@@ -156,7 +156,7 @@
    411,
    166
   ],
-  "xp": 59.4
+  "xp": 59.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
@@ -1628,6 +1628,140 @@
   "hits": 0,
   "saved_at": "2026-10-30T23:31:41+00:00",
   "saved_at_et": "2026-10-30 7:31 PM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 2,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 2
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": -7,
+   "lineup": {
+    "diff": -7,
+    "model_autosubs": [],
+    "model_bench_pts": 7,
+    "you_autosubs": [],
+    "you_bench_pts": 14
+   },
+   "model": 55,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 5
+    },
+    {
+     "mult": 1,
+     "name": "Gabriel",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Hall",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Barnes",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Palmer",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "King",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Evanilson",
+     "played": true,
+     "pts": 9
+    }
+   ],
+   "transfers": {
+    "diff": 0,
+    "model": [
+     {
+      "in": "Gabriel",
+      "in_pts": 6,
+      "net": 0,
+      "out": "Calafiori",
+      "out_pts": 6
+     },
+     {
+      "in": "Evanilson",
+      "in_pts": 9,
+      "net": 9,
+      "out": "João Pedro",
+      "out_pts": 0
+     }
+    ],
+    "model_hits": 0,
+    "model_net": 9,
+    "you": [
+     {
+      "in": "Tavernier",
+      "in_pts": 3,
+      "net": 0,
+      "out": "Schade",
+      "out_pts": 3
+     },
+     {
+      "in": "N.Jackson",
+      "in_pts": 9,
+      "net": 9,
+      "out": "João Pedro",
+      "out_pts": 0
+     }
+    ],
+    "you_hits": 0,
+    "you_net": 9
+   },
+   "verdict": "Model +7",
+   "you": 48
+  },
+  "scored_at_et": "2026-11-03 11:00 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1736,7 +1870,7 @@
     "xp": 2.39
    }
   ],
-  "status": "frozen",
+  "status": "scored",
   "transfers": [
    {
     "in": "Gabriel",

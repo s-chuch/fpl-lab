@@ -1,5 +1,11 @@
 {
  "flagged": {
+  "1": {
+   "back_gw": null,
+   "flag_gw": 9,
+   "name": "Raya",
+   "side": "over"
+  },
   "101": {
    "back_gw": null,
    "flag_gw": 6,
@@ -120,6 +126,12 @@
    "name": "Belloumi",
    "side": "over"
   },
+  "295": {
+   "back_gw": null,
+   "flag_gw": 9,
+   "name": "McBurnie",
+   "side": "over"
+  },
   "300": {
    "back_gw": null,
    "flag_gw": 6,
@@ -168,6 +180,12 @@
    "name": "Barnes",
    "side": "over"
   },
+  "480": {
+   "back_gw": null,
+   "flag_gw": 9,
+   "name": "Gibbs-White",
+   "side": "under"
+  },
   "483": {
    "back_gw": null,
    "flag_gw": 8,
@@ -199,7 +217,7 @@
    "side": "over"
   },
   "536": {
-   "back_gw": null,
+   "back_gw": 9,
    "flag_gw": 7,
    "name": "Reinildo",
    "side": "over"
@@ -265,5 +283,5 @@
    "side": "over"
   }
  },
- "gw": 8
+ "gw": 9
 }

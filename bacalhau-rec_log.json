@@ -3,21 +3,21 @@
   "backfilled": false,
   "bench": [
    572,
+   286,
    138,
-   94,
-   321
+   94
   ],
   "captain": 4,
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "7326335d93e7",
+  "code_sha": "e2ad67e653b4",
   "ft": 3,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-03T11:11:29+00:00",
-  "saved_at_et": "2026-11-03 6:11 AM ET",
+  "saved_at": "2026-11-03T16:01:50+00:00",
+  "saved_at_et": "2026-11-03 11:01 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -25,77 +25,77 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.75
+    "xp": 4.96
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.9
-   },
-   {
-    "club": "TOT",
-    "id": 112,
-    "name": "Van Hecke",
-    "pos": "DEF",
-    "xp": 5.7
+    "xp": 6.1
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.41
+    "xp": 5.6
    },
    {
     "club": "BOU",
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 4.89
+    "xp": 5.08
    },
    {
     "club": "LEE",
     "id": 330,
     "name": "Bogle",
     "pos": "DEF",
-    "xp": 4.61
+    "xp": 4.42
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 4.35
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.45
+    "xp": 5.17
    },
    {
     "club": "EVE",
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.52
+    "xp": 4.12
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.15
-   },
-   {
-    "club": "HUL",
-    "id": 286,
-    "name": "Belloumi",
-    "pos": "MID",
-    "xp": 3.76
+    "xp": 3.95
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.68
+    "xp": 6.09
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.0
    },
    {
     "club": "HUL",
@@ -105,58 +105,58 @@
     "xp": 3.61
    },
    {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 3.43
+   },
+   {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 3.02
+    "xp": 3.15
    },
    {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.78
-   },
-   {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.06
+    "xp": 2.57
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Van Hecke",
-    "in_id": 112,
+    "in": "Gabriel",
+    "in_id": 4,
     "out": "Hall",
     "out_id": 449
    },
    {
-    "in": "Gabriel",
-    "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
-  "vice": 68,
-  "vice_name": "Tavernier",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    4,
-   112,
    115,
    60,
    330,
+   229,
    68,
    236,
    124,
-   286,
-   411
+   411,
+   249
   ],
-  "xp": 60.7
+  "xp": 60.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
@@ -1565,6 +1565,133 @@
   "hits": 0,
   "saved_at": "2026-10-30T23:31:55+00:00",
   "saved_at_et": "2026-10-30 7:31 PM ET",
+  "score": {
+   "captain": {
+    "diff": 0,
+    "model": "Haaland",
+    "model_mult": 2,
+    "model_pts": 2,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 2
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": -4,
+   "lineup": {
+    "diff": 5,
+    "model_autosubs": [],
+    "model_bench_pts": 11,
+    "you_autosubs": [],
+    "you_bench_pts": 6
+   },
+   "model": 51,
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 5
+    },
+    {
+     "mult": 1,
+     "name": "Gabriel",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "mult": 1,
+     "name": "Bogle",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Hall",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": 6
+    },
+    {
+     "mult": 1,
+     "name": "Tavernier",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "mult": 1,
+     "name": "Dewsbury-Hall",
+     "played": true,
+     "pts": 4
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 2,
+     "name": "Haaland",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Evanilson",
+     "played": true,
+     "pts": 9
+    }
+   ],
+   "transfers": {
+    "diff": -9,
+    "model": [
+     {
+      "in": "Gabriel",
+      "in_pts": 6,
+      "net": 4,
+      "out": "Gvardiol",
+      "out_pts": 2
+     },
+     {
+      "in": "Evanilson",
+      "in_pts": 9,
+      "net": 9,
+      "out": "Walle Egeli",
+      "out_pts": 0
+     }
+    ],
+    "model_hits": 0,
+    "model_net": 13,
+    "you": [
+     {
+      "in": "Hill",
+      "in_pts": 6,
+      "net": 4,
+      "out": "Gvardiol",
+      "out_pts": 2
+     }
+    ],
+    "you_hits": 0,
+    "you_net": 4
+   },
+   "verdict": "Model +4",
+   "you": 47
+  },
+  "scored_at_et": "2026-11-03 11:01 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -1673,7 +1800,7 @@
     "xp": 2.39
    }
   ],
-  "status": "frozen",
+  "status": "scored",
   "transfers": [
    {
     "in": "Gabriel",
