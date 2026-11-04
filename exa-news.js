@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-04T16:02:45Z",
+ "generated_at": "2026-11-04T22:28:59Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-04T16:02:45Z",
+ "last_attempt": "2026-11-04T22:28:59Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 90,
-  "cost_usd": 0.63
+  "searches": 100,
+  "cost_usd": 0.7
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
-   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
-   "source_domain": "football.london",
+   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
+   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
+   "source_domain": "bbc.com",
    "published": "2026-11-04",
-   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
+   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
    "yours": []
   },
   {
@@ -30,7 +30,7 @@ window.EXA_NEWS = {
    "fpl_chance": 50,
    "fpl_news": "Calf injury - 50% chance of playing",
    "headline": "Frank Lampard press conference: Everton vs Coventry - BBC Sport",
-   "snippet": "Here are the key lines from his news conference: Lampard gave nothing away on the fitness of Bobby Thomas and Frank Onyeka.",
+   "snippet": "Here are the key lines from his news conference: - Lampard gave nothing away on the fitness of Bobby Thomas and Frank Onyeka.",
    "source_domain": "bbc.com",
    "published": "2026-11-04",
    "url": "https://www.bbc.com/sport/football/articles/cm62ykjww1edo",
@@ -55,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Man City XI vs RB Leipzig: Predicted lineup, confirmed team news, injury latest for Champions League today The Standard",
-   "snippet": "Antoine Semenyo is Man City’s one long-term absentee after suffering a knee injury in the win over Ipswich last month, keeping him out of the last four matches across all competitions as a result.",
-   "source_domain": "standard.co.uk",
+   "headline": "The Scout’s FPL Gameweek 10 transfer radar",
+   "snippet": "Iliman Ndiaye (Manchester City) £5.8m An injury to Antoine Semenyo (£8.2m) has helped boost Ndiaye's game-time prospects.",
+   "source_domain": "premierleague.com",
    "published": "2026-11-04",
-   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-rb-leipzig-predicted-lineup-confirmed-team-news-injury-latest-champions-league-2026-today-b1303414.html",
+   "url": "https://www.premierleague.com/en/news/4756485",
    "yours": []
   },
   {
@@ -68,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
-   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
-   "source_domain": "football.london",
+   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
+   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
+   "source_domain": "bbc.com",
    "published": "2026-11-04",
-   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
+   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
    "yours": []
   },
   {
@@ -81,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 21 Nov",
-   "headline": "Aston Villa news: 'It is giving me a lot of information' - Unai Emery reflects on defeat by Barcelona - BBC Sport",
-   "snippet": "In the first half Matty Cash, Joao Gomes and Johan Manzambi, twice, made Barca sweat as the visitors created chances without taking them.",
-   "source_domain": "bbc.co.uk",
+   "headline": "Nine players could miss Man Utd vs Aston Villa as boss admits fresh blow 'doesn’t look great' - Birmingham Live",
+   "snippet": "Matty Cash is suspended for Villa's trip to Old Trafford(Image: Getty Images) \"We’ll have to assess what that looks like but, initially, it doesn’t look great.",
+   "source_domain": "birminghammail.co.uk",
    "published": "2026-11-04",
-   "url": "https://www.bbc.co.uk/sport/football/articles/c80406nxlxn0o",
+   "url": "https://www.birminghammail.co.uk/sport/football/football-news/aston-villa-manchester-united-injuries-34859865",
    "yours": []
   },
   {
@@ -107,11 +107,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
-   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
-   "source_domain": "football.london",
+   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
+   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
+   "source_domain": "bbc.com",
    "published": "2026-11-04",
-   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
+   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
    "yours": []
   },
   {
@@ -120,11 +120,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Head injury - Unknown return date",
-   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
-   "snippet": "Emiliano Martinez joined his Chelsea teammates on a gloomy Wednesday in Surrey.",
-   "source_domain": "football.london",
+   "headline": "Training gallery: Getting set for Sunderland",
+   "snippet": "Emiliano Martinez played his part too, wearing a protective face covering.",
+   "source_domain": "chelseafc.com",
    "published": "2026-11-04",
-   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
+   "url": "https://www.chelseafc.com/en/news/article/training-gallery-getting-set-for-sunderland",
    "yours": []
   }
  ]

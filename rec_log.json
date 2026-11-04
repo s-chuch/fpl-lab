@@ -11,13 +11,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "b53cd7bea872",
+  "code_sha": "c76808c8c992",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-04T16:28:13+00:00",
-  "saved_at_et": "2026-11-04 11:28 AM ET",
+  "saved_at": "2026-11-04T22:28:44+00:00",
+  "saved_at_et": "2026-11-04 5:28 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -1082,6 +1082,28 @@
     "you_bench_pts": 3
    },
    "model": 51,
+   "model_bench_lines": [
+    {
+     "name": "Raya",
+     "played": true,
+     "pts": 9
+    },
+    {
+     "name": "João Pedro",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "name": "King",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "name": "Davis",
+     "played": true,
+     "pts": 0
+    }
+   ],
    "model_lines": [
     {
      "mult": 1,
@@ -1175,7 +1197,26 @@
     "you_net": 0
    },
    "verdict": "You +26",
-   "you": 77
+   "you": 77,
+   "you_bench": [
+    "Tzolakis",
+    "Tarkowski",
+    "Schade",
+    "Davis"
+   ],
+   "you_xi": [
+    "Raya",
+    "De Cuyper",
+    "Calafiori",
+    "Hall",
+    "Barnes",
+    "King",
+    "Groß",
+    "Saka",
+    "Haaland",
+    "João Pedro",
+    "Kostoulas"
+   ]
   },
   "scored_at_et": "2026-10-20 7:04 PM ET",
   "source": "plan",
@@ -1365,6 +1406,29 @@
     "you_bench_pts": 7
    },
    "model": 38,
+   "model_bench_lines": [
+    {
+     "name": "Tzolakis",
+     "played": true,
+     "pts": 3
+    },
+    {
+     "name": "João Pedro",
+     "off": true,
+     "played": false,
+     "pts": 0
+    },
+    {
+     "name": "Davis",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "name": "Saka",
+     "played": false,
+     "pts": 0
+    }
+   ],
    "model_lines": [
     {
      "mult": 1,
@@ -1466,7 +1530,26 @@
     "you_net": -1
    },
    "verdict": "You +9",
-   "you": 47
+   "you": 47,
+   "you_bench": [
+    "Tzolakis",
+    "João Pedro",
+    "Davis",
+    "Tarkowski"
+   ],
+   "you_xi": [
+    "Raya",
+    "De Cuyper",
+    "Hall",
+    "Calafiori",
+    "Barnes",
+    "King",
+    "Groß",
+    "Schade",
+    "Palmer",
+    "Kostoulas",
+    "Haaland"
+   ]
   },
   "scored_at_et": "2026-10-26 3:04 PM ET",
   "source": "plan",
@@ -1651,6 +1734,28 @@
     "you_bench_pts": 14
    },
    "model": 55,
+   "model_bench_lines": [
+    {
+     "name": "Tzolakis",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "name": "Kostoulas",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "name": "Davis",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "name": "Schade",
+     "played": true,
+     "pts": 3
+    }
+   ],
    "model_lines": [
     {
      "mult": 1,
@@ -1759,7 +1864,26 @@
     "you_net": 9
    },
    "verdict": "Model +7",
-   "you": 48
+   "you": 48,
+   "you_bench": [
+    "Raya",
+    "King",
+    "Calafiori",
+    "Davis"
+   ],
+   "you_xi": [
+    "Tzolakis",
+    "Hall",
+    "De Cuyper",
+    "Tarkowski",
+    "Barnes",
+    "Groß",
+    "Palmer",
+    "Tavernier",
+    "Haaland",
+    "N.Jackson",
+    "Kostoulas"
+   ]
   },
   "scored_at_et": "2026-11-03 11:00 AM ET",
   "source": "plan",

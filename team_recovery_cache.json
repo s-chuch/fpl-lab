@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-04T16:02:21.096480+00:00",
+    "fetched_at": "2026-11-04T22:28:33.575427+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -417,13 +417,7 @@
           "opponent": "Man Utd",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-11-04",
-            "competition": "Champions League",
-            "opponent": "Fenerbah\u00e7e"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 7,
