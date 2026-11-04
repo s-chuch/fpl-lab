@@ -138,6 +138,28 @@ class PickAndFreeze(unittest.TestCase):
         self.assertEqual(rec_log.log_path("bacalhau-data.js").name, "bacalhau-rec_log.json")
 
 
+class LineupView(unittest.TestCase):
+    def test_lineup_carries_formation_points_and_where_you_had_each_player(self):
+        r = rec(); r["status"] = "scored"; r["captain_name"] = "P8"; r["vice_name"] = "P9"
+        r["squad"] = [dict(p, club="XXX", xp=3.0) for p in r["squad"]]
+        s = rec_log.score_entry(r, actual_from(r), live(pts=2))
+        r["score"] = s
+        lu = rec_log.lineup_of(r)
+        self.assertEqual(len(lu["xi"]), 11); self.assertEqual(len(lu["bench"]), 4)
+        self.assertEqual(sum(int(x) for x in lu["formation"].split("-")), 10)
+        self.assertEqual(lu["xi"][0]["pts"], 2); self.assertTrue(all(p["you"] == "xi" for p in lu["xi"]))
+        self.assertTrue(all(p["you"] == "bench" for p in lu["bench"]))
+        self.assertEqual(sum(p["pts"] for p in lu["bench"]), 8)
+
+    def test_entry_without_squad_has_no_lineup(self):
+        self.assertIsNone(rec_log.lineup_of({"gw": 3}))
+
+    def test_view_hides_the_bulky_lines_but_keeps_the_lineup(self):
+        r = rec(); r["status"] = "scored"; r["score"] = rec_log.score_entry(r, actual_from(r), live())
+        v = rec_log.view({"gw5": r})["rows"][0]
+        self.assertNotIn("model_lines", v["score"]); self.assertNotIn("you_xi", v["score"]); self.assertTrue(v["lineup"])
+
+
 if __name__ == "__main__":
     unittest.main()
 

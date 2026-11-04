@@ -1368,12 +1368,26 @@ function labDecLast(D,they){
   const s=r.score, ok=s.diff>=0;
   return `<button class="lab-last" data-declog="gw${r.gw}"><span>Last GW${r.gw}: <b>${they?"They":"You"} ${s.you}</b> vs <b>Model ${s.model}</b> ${ok?'<i class="ok">✓</i>':'<i class="bad">✗</i>'}</span><span class="note">Decision log ›</span></button>`;
 }
+// Decision log: the recommended lineup for a gameweek (XI by position with xP and, once scored, points; bench in auto-sub order)
+function labLineup(r,they){
+  const L=r.lineup; if(!L||!(L.xi||[]).length) return "";
+  const yl=they?"their":"your", chip=(p,bench)=>{
+    const c=!bench&&p.name===L.captain, v=!bench&&p.name===L.vice, pts=p.pts!=null?p.pts*(p.mult||1):null;
+    const flag=p.you==="bench"?`${yl} bench`:p.you==="no"?`not in ${yl} squad`:"";
+    const tip=`${p.name}${p.xp!=null?" · "+Number(p.xp).toFixed(1)+" xP":""}${pts!=null?" · "+p.pts+" pts"+(p.mult>1?" ×"+p.mult:""):""}${p.off?" · went off, auto-subbed":""}${flag?" · "+flag:""}`;
+    return `<div class="lab-lc${flag?" diff":""}${p.off?" off":""}" title="${esc(tip)}"><span class="n">${c?'<i class="b c">C</i>':v?'<i class="b v">V</i>':""}${esc(p.name)}</span><small>${p.xp!=null?Number(p.xp).toFixed(1)+" xP":""}${pts!=null?`${p.xp!=null?" · ":""}<b>${pts}</b>`:""}</small>${flag?`<em>${esc(flag)}</em>`:""}</div>`;};
+  const rows=["GKP","DEF","MID","FWD"].map(pos=>{const l=L.xi.filter(p=>p.pos===pos); return l.length?`<div class="lab-lrow">${l.map(p=>chip(p,false)).join("")}</div>`:"";}).join("");
+  const bench=(L.bench||[]).length?`<p class="note">Bench, in auto-sub order</p><div class="lab-lrow">${L.bench.map(p=>chip(p,true)).join("")}</div>`:"";
+  const sc=(L.xi.some(p=>p.pts!=null))?"xP, then points once the gameweek is scored (captain doubled)":"expected points (xP) when it was saved";
+  const hasMine=L.xi.some(p=>p.you);
+  return `<div class="lab-dsec"><h4>Recommended lineup <span>${esc(L.formation||"")}</span></h4>${rows}${bench}<p class="note" data-keep>${sc}.${hasMine?` Outlined = ${yl} team did not start him (on ${yl} bench or not owned).`:""}</p></div>`;
+}
 function labDecRow(r,they){
   const Y=they?"They":"You", y=they?"their":"your";
   const mv=t=>(t||[]).length?(t||[]).map(m=>`${esc(m.out)} → ${esc(m.in)}`).join(", "):"Roll";
   const meta=`<p class="note">Saved ${esc(r.saved_at_et||"?")}${r.code_sha?` · code ${esc(String(r.code_sha).slice(0,7))}`:""}${r.backfilled?` · <b>backfilled</b>: ${esc(r.backfill_note||"")}`:""}</p>`;
   if(r.status!=="scored"){
-    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li></ul>${meta}`;
+    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li></ul>${labLineup(r,they)}${meta}`;
     return `<details class="lab-drow pending" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><b>${r.status==="frozen"?"Recommendation frozen at the deadline":"Recommendation saved"}</b><span class="note">scored after GW finishes · C ${esc(r.captain_name||"–")} · ${mv(r.transfers)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
   }
   const s=r.score, C=s.captain||{}, T=s.transfers||{}, Ln=s.lineup||{};
@@ -1382,7 +1396,7 @@ function labDecRow(r,they){
   const chipY=(s.chip||{}).you;
   const body=`<div class="lab-dsec"><h4>Captain <span>${labSigned(C.diff)}</span></h4><ul class="lab-dl"><li><span>${Y}: ${esc(C.you||"–")} ${C.you_pts}×${C.you_mult}</span><b>${C.you_pts*C.you_mult}</b></li><li><span>Model: ${esc(C.model||"–")} ${C.model_pts}×${C.model_mult}</span><b>${C.model_pts*C.model_mult}</b></li></ul></div>
 <div class="lab-dsec"><h4>Transfers <span>${labSigned(T.diff)}</span></h4><p class="note">${Y} (in − out this GW, net of hits: ${labSigned(T.you_net)})${chipY&&/wildcard|freehit/.test(chipY)?` · ${esc(LAB_CHIPN[chipY])} week: net change from the previous squad`:""}</p><ul class="lab-dl">${tl(T.you,T.you_hits)}</ul><p class="note">Model (net ${labSigned(T.model_net)})</p><ul class="lab-dl">${tl(T.model,T.model_hits)}</ul></div>
-<div class="lab-dsec"><h4>Lineup, bench &amp; chips <span>${labSigned(Ln.diff)}</span></h4><p class="note">The rest of the gap: XI and bench picks, autosubs${chipY?`, ${y} ${esc(LAB_CHIPN[chipY]||chipY)}`:""}. Bench points: ${Y.toLowerCase()} ${Ln.you_bench_pts} · model ${Ln.model_bench_pts}. Model autosubs: ${subs(Ln.model_autosubs)}.</p></div>${meta}`;
+<div class="lab-dsec"><h4>Lineup, bench &amp; chips <span>${labSigned(Ln.diff)}</span></h4><p class="note">The rest of the gap: XI and bench picks, autosubs${chipY?`, ${y} ${esc(LAB_CHIPN[chipY]||chipY)}`:""}. Bench points: ${Y.toLowerCase()} ${Ln.you_bench_pts} · model ${Ln.model_bench_pts}. Model autosubs: ${subs(Ln.model_autosubs)}.</p></div>${labLineup(r,they)}${meta}`;
   return `<details class="lab-drow" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><span class="lab-dsc">${Y} <b>${s.you}</b> · Model <b>${s.model}</b> ${labVerdict(s,they)}${r.backfilled?' <span class="lab-pill used">backfilled</span>':""}</span><span class="note">C ${esc(C.you||"–")} / ${esc(C.model||"–")} · T ${(T.you||[]).length?(T.you.length>2?T.you.length+" moves":mv(T.you)):"roll"}${chipY?" ("+esc(LAB_CHIPN[chipY]||chipY)+")":""} / ${mv(T.model)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
 }
 // More > Plan > Log: every recommended transfer, and what following it would have scored against what was actually done

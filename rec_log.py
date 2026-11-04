@@ -195,10 +195,28 @@ def score_entry(rec, actual, live):
                    "you_autosubs": y["autosubs"], "model_autosubs": m["autosubs"]},
         "chip": {"you": chip, "model": rec.get("chip")},
         "model_lines": [{k: l[k] for k in ("name", "pts", "mult", "played")} for l in m["lines"]],
+        "model_bench_lines": _bench_lines(m),
+        "you_xi": [p["name"] for p in a_squad[:11]], "you_bench": [p["name"] for p in a_squad[11:]],
     }
     if y["gross"] != you_gross:
         out["you_check"] = y["gross"]     # our own recount of your picks, if it differs from FPL's total
     return out
+
+
+def _bench_lines(side):
+    """The recommended bench in auto-sub order with the points each made (a player who went off for an auto-sub is flagged `off`)."""
+    return [{"name": l["name"], "pts": l["pts"], "played": l["played"], **({"off": True} if l.get("off") else {})} for l in side.get("bench_lines") or []]
+
+
+def fill_lineup(e, boot, team_id, get):
+    """Older scored weeks lack the recommended bench's points and your own XI: fill them once from FPL's live feed and your picks."""
+    live = _live(get, e["gw"])
+    m = _side(e["squad"], e["xi"], e["bench"], e["captain"], e["vice"], e.get("chip"), e.get("hit_cost", 0), live)
+    name = {el["id"]: el["web_name"] for el in boot["elements"]}
+    picks = sorted(get(f"https://fantasy.premierleague.com/api/entry/{team_id}/event/{e['gw']}/picks/").get("picks") or [], key=lambda p: p["position"])
+    e["score"]["model_bench_lines"] = _bench_lines(m)
+    e["score"]["you_xi"] = [name.get(p["element"]) for p in picks[:11]]
+    e["score"]["you_bench"] = [name.get(p["element"]) for p in picks[11:]]
 
 
 # Recommendations saved on code with a known fault: shown, but not counted in the you-vs-model totals (short sha -> what was wrong)
@@ -322,7 +340,43 @@ def update(log, data, boot, team_id, get, now=None, sha=None):
                 e["scored_at_et"] = et_text(now)
             except Exception as ex:
                 e["score_error"] = f"{type(ex).__name__}: {str(ex)[:160]}"
+        if e.get("status") == "scored" and e.get("score") and "model_bench_lines" not in e["score"] and e.get("squad") and not e.get("backfilled"):
+            try:
+                fill_lineup(e, boot, team_id, get)
+            except Exception as ex:
+                e["score"].setdefault("model_bench_lines", [])
+                e["lineup_error"] = f"{type(ex).__name__}: {str(ex)[:120]}"
     return dict(sorted(log.items(), key=lambda kv: int(kv[0][2:])))
+
+
+def lineup_of(e):
+    """The recommended lineup for the page: XI by position with expected points (and points once scored), bench in auto-sub order,
+    and where each player was in your own team (xi / bench / no). None when the entry holds no squad."""
+    squad = {p["id"]: p for p in e.get("squad") or []}
+    if not squad or not e.get("xi"):
+        return None
+    sc = e.get("score") or {}
+    pts = {l["name"]: l for l in sc.get("model_lines") or []}
+    bpts = {l["name"]: l for l in sc.get("model_bench_lines") or []}
+    mine_xi, mine_bn = set(sc.get("you_xi") or []), set(sc.get("you_bench") or [])
+    def row(i, line):
+        p = squad.get(i) or {}
+        out = {"name": p.get("name"), "pos": p.get("pos"), "club": p.get("club")}
+        if p.get("xp") is not None:
+            out["xp"] = p["xp"]
+        if line:
+            out["pts"] = line.get("pts")
+            if line.get("mult", 1) > 1:
+                out["mult"] = line["mult"]
+            if line.get("off"):
+                out["off"] = True
+        if mine_xi or mine_bn:
+            out["you"] = "xi" if p.get("name") in mine_xi else "bench" if p.get("name") in mine_bn else "no"
+        return out
+    xi = [row(i, pts.get(squad.get(i, {}).get("name"))) for i in e["xi"] if i in squad]
+    bench = [row(i, bpts.get(squad.get(i, {}).get("name"))) for i in e.get("bench") or [] if i in squad]
+    n = lambda pos: sum(1 for p in xi if p["pos"] == pos)
+    return {"formation": f"{n('DEF')}-{n('MID')}-{n('FWD')}", "captain": e.get("captain_name"), "vice": e.get("vice_name"), "xi": xi, "bench": bench}
 
 
 def view(log):
@@ -333,7 +387,8 @@ def view(log):
                                    "captain_name", "vice_name", "chip", "xp")}
         r["known_issue"] = KNOWN_ISSUES.get((e.get("code_sha") or "")[:7])
         if e.get("score"):
-            r["score"] = {x: v for x, v in e["score"].items() if x != "model_lines"}
+            r["score"] = {x: v for x, v in e["score"].items() if x not in ("model_lines", "model_bench_lines", "you_xi", "you_bench")}
+        r["lineup"] = lineup_of(e)
         rows.append(r)
     return {"rows": rows, "totals": totals(log)}
 
