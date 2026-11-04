@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-04T22:28:33.575427+00:00",
+    "fetched_at": "2026-11-04T23:12:01.887317+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -24,13 +24,7 @@
           "opponent": "Newcastle",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-11-04",
-            "competition": "Champions League",
-            "opponent": "Slavia Praha"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 6,
@@ -342,13 +336,7 @@
           "opponent": "Fulham",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-11-04",
-            "competition": "Champions League",
-            "opponent": "Leipzig"
-          }
-        ]
+        "between": []
       },
       "BOU": {
         "rest_days": 3,
