@@ -11,13 +11,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e2ad67e653b4",
+  "code_sha": "76b6f2d3d6b4",
   "ft": 2,
   "gw": 10,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-03T16:00:05+00:00",
-  "saved_at_et": "2026-11-03 11:00 AM ET",
+  "saved_at": "2026-11-04T00:30:15+00:00",
+  "saved_at_et": "2026-11-03 7:30 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -25,35 +25,35 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.75
+    "xp": 4.96
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.9
-   },
-   {
-    "club": "TOT",
-    "id": 112,
-    "name": "Van Hecke",
-    "pos": "DEF",
-    "xp": 5.7
+    "xp": 6.1
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.41
+    "xp": 5.6
+   },
+   {
+    "club": "TOT",
+    "id": 112,
+    "name": "Van Hecke",
+    "pos": "DEF",
+    "xp": 5.6
    },
    {
     "club": "ARS",
     "id": 8,
     "name": "Calafiori",
     "pos": "DEF",
-    "xp": 4.15
+    "xp": 4.32
    },
    {
     "club": "NEW",
@@ -67,28 +67,28 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.45
-   },
-   {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 4.18
+    "xp": 5.17
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.15
+    "xp": 3.95
+   },
+   {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.81
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.83
+    "xp": 6.09
    },
    {
     "club": "AVL",
@@ -109,21 +109,21 @@
     "id": 268,
     "name": "King",
     "pos": "MID",
-    "xp": 3.57
+    "xp": 3.27
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.54
+    "xp": 3.24
    },
    {
     "club": "BHA",
     "id": 138,
     "name": "Kostoulas",
     "pos": "FWD",
-    "xp": 3.02
+    "xp": 3.15
    }
   ],
   "status": "pending",
@@ -141,22 +141,22 @@
     "out_id": 229
    }
   ],
-  "vice": 68,
-  "vice_name": "Tavernier",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    4,
-   112,
    115,
+   112,
    8,
    449,
    68,
-   154,
    124,
+   154,
    411,
    166
   ],
-  "xp": 59.6
+  "xp": 59.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

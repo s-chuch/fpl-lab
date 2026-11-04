@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-03T11:12:31Z",
+ "generated_at": "2026-11-04T00:30:27Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-03T11:12:31Z",
+ "last_attempt": "2026-11-04T00:30:27Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 70,
-  "cost_usd": 0.49
+  "searches": 80,
+  "cost_usd": 0.56
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,7 +17,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Steven Gerrard warns Xabi Alonso that Chelsea star is about to give him Joao Pedro 'problem' Football London",
-   "snippet": "Joao Pedro is set to be out until after the international break with a thigh injury(Image: Darren Walsh/Chelsea FC) ...",
+   "snippet": "Once Joao Pedro returns from his thigh injury, it will be much more difficult for Alonso to get Estevao into the attack, with the likes of Pedro Neto, Cole Palmer and Morgan Rogers all vying for a spot as well.",
    "source_domain": "football.london",
    "published": "2026-11-03",
    "url": "https://www.football.london/chelsea-fc/news/steven-gerrard-warns-xabi-alonso-34854420",
@@ -29,11 +29,24 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal FC injury update: Eberechi Eze, Bukayo Saka, William Saliba latest news and return dates The Standard",
-   "snippet": "Bukayo Saka Bukayo Saka has now missed Arsenal's last three games in all competitions with a quad injury sustained after just 10 minutes against Bayern Munich.",
+   "headline": "Preview: Slavia Prague v Arsenal Arsenal FC Official Website Arsenal.com",
+   "snippet": "Bukayo Saka remains out with the thigh issue sustained against Bayern Munich.",
+   "source_domain": "arsenal.com",
+   "published": "2026-11-03",
+   "url": "https://www.arsenal.com/news/preview-slavia-prague-v-arsenal-axS2l8b56cCy",
+   "yours": []
+  },
+  {
+   "player": "Semenyo",
+   "team": "MCI",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Man City XI vs RB Leipzig: Confirmed team news, predicted lineup, injury latest for Champions League The Standard",
+   "snippet": "Antoine Semenyo is Man City’s one long-term absentee after suffering a knee injury in the win over Ipswich last month, keeping him out of the last four matches in all competitions as a result.",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-eze-saka-saliba-latest-news-return-dates-b1303184.html",
+   "published": "2026-11-03",
+   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-rb-leipzig-confirmed-team-news-predicted-lineup-injury-latest-champions-league-2026-b1303414.html",
    "yours": []
   },
   {
@@ -42,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Maxence Lacroix Maxence Lacroix limped off late in the first half at Liverpool with a worrying-looking hamstring injury.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
+   "headline": "Chelsea's £75m star needs to send Xabi Alonso message after crucial injury blow Football London",
+   "snippet": "The latest being Maxence Lacroix, who, towards the end of the first half in last week's Carabao Cup defeat to Liverpool, pulled up clutching his hamstring.",
+   "source_domain": "football.london",
+   "published": "2026-11-03",
+   "url": "https://www.football.london/chelsea-fc/news/chelseas-75m-star-needs-send-34856541",
    "yours": []
   },
   {
@@ -55,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 21 Nov",
-   "headline": "Barcelona vs Aston Villa: TV channel, how to watch in UK, kick-off time, live stream, team news, referee, predicted line-ups - ESPN",
-   "snippet": "Injury and Team News Barcelona Dani Olmo, M: thigh, OUT Xavi Espart, D: ankle, OUT Andreas Christensen, D: thigh, OUT Eric García, D: thigh, OUT Roony Bardghji, F: knee, OUT Aston Villa Aaron Wan-Bissaka, D: hamstring…",
-   "source_domain": "espn.com",
-   "published": "2026-11-02",
-   "url": "https://www.espn.com/soccer/story/_/id/50346655/barcelona-vs-aston-villa-2026-27-uefa-champions-league-tv-channel-how-watch-kickoff-live-stream-referee-injury-predicted-lineups",
+   "headline": "Barcelona v Aston Villa: How the Aston Villa players rated - BBC Sport",
+   "snippet": "6 Matty Cash: A arrowed volley almost brought Villa level soon after Yamal's goal but his attacking instincts were restricted.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-03",
+   "url": "https://www.bbc.com/sport/football/articles/cwp9ged9zjp7o",
    "yours": []
   },
   {
@@ -81,11 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "Reece James Chelsea’s influential captain Reece James suffered a knee injury in training at Cobham on his return from another hamstring issue.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
+   "headline": "Reece James - Football.London - Page 2",
+   "snippet": "Reece James - Football.London - Page 2 Reece James All the latest news and updates about Chelsea FC captain and right back Reece James.",
+   "source_domain": "football.london",
+   "published": "2026-11-03",
+   "url": "https://www.football.london/all-about/reece-james?service=responsive&pageNumber=2",
    "yours": []
   },
   {

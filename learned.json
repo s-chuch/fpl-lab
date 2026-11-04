@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T16:01:42+00:00",
+ "updated": "2026-11-04T00:30:21+00:00",
  "gws": [
   8,
   9
@@ -187,9 +187,10 @@
   "cap_slope": -8.9
  },
  "transfers": {
-  "n": 0,
+  "n": 1,
   "mult": 1.0,
-  "applied": false
+  "applied": false,
+  "ratio": 1.32
  },
  "start": {
   "25": {
