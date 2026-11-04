@@ -432,7 +432,8 @@ def _best_xi(squad):
     return picked
 
 def _process_xi(squad, mins_key="mins"):
-    """Best legal XI judged only by minutes, not final points: a bench player only
+    """Best legal XI judged only by what was knowable before the deadline, not final points (mins_key "xp" = the model's saved expected
+    points: minutes, fitness, fixtures, odds, rotation; otherwise minutes alone). With minutes: a bench player only
     displaces a starter here if they played strictly more minutes by `mins_key` — a
     call you could make without knowing the final scoreline. The real captain is
     pinned first so the multiplier isn't re-litigated by this heuristic.
@@ -533,6 +534,20 @@ def build_captain_board(boot, team_id, lookback=3):
         }
     return out
 
+def _gw_xp(gw):
+    """{element id: pre-deadline expected points} the model saved for that gameweek (player_log.json, kept from GW8 on), or {}."""
+    try:
+        doc = json.loads((ROOT / "player_log.json").read_text())
+        g = (doc.get("gws") or {}).get(str(gw)) or {}
+        i_id, i_xp = g["cols"].index("id"), g["cols"].index("xp")
+        return {r[i_id]: float(r[i_xp]) for r in g.get("rows") or [] if r[i_xp] is not None}
+    except (OSError, ValueError, KeyError, TypeError):
+        return {}
+
+
+XP_COVER = 13       # the process XI is judged on expected points when the log holds at least this many of the 15 picks
+
+
 def build_bench_audit(boot, team_id, lookback=3):
     """`process` grades your bench call against what was knowable BEFORE the
     deadline, not against what happened in the gameweek itself: a player's
@@ -583,6 +598,8 @@ def build_bench_audit(boot, team_id, lookback=3):
                 trail_mins[el["id"]] = trail_mins.get(el["id"], 0) + int(el["stats"].get("minutes") or 0)
         cap = next((p for p in pk.get("picks", []) if p.get("is_captain")), None)
         mult = (cap or {}).get("multiplier") or 2
+        gxp = _gw_xp(gw)
+        basis = "xp" if sum(1 for p in pk.get("picks", []) if p["element"] in gxp) >= XP_COVER else "minutes"
         squad, bench = [], []
         for p in pk.get("picks", []):
             item = {
@@ -591,6 +608,7 @@ def build_bench_audit(boot, team_id, lookback=3):
                 "pts": pts.get(p["element"], 0),
                 "mins": mins.get(p["element"], 0),
                 "trail_mins": trail_mins.get(p["element"], 0),
+                "xp": gxp.get(p["element"], 0.0),       # a player the log skipped was below its relevance bar: lowest rank
                 "started": p["position"] <= 11,
                 "captain": bool(p.get("is_captain")),
             }
@@ -606,7 +624,7 @@ def build_bench_audit(boot, team_id, lookback=3):
         # _best_xi already guarantees the real captain is in `best`.
         best_cap_pts = next((p["pts"] for p in best if p["captain"]), 0)
         hindsight = raw + best_cap_pts * (mult - 1)
-        proc_xi = _process_xi(squad, mins_key="trail_mins")
+        proc_xi = _process_xi(squad, mins_key="xp" if basis == "xp" else "trail_mins")
         proc_started = {p["name"] for p in proc_xi}
         proc_cap_pts = next((p["pts"] for p in proc_xi if p["captain"]), 0)
         process = sum(p["pts"] for p in proc_xi) + proc_cap_pts * (mult - 1)
@@ -633,7 +651,8 @@ def build_bench_audit(boot, team_id, lookback=3):
                 bench_tags[name] = "variance"
             else:
                 bench_tags[name] = "ok"
-        out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4], "bench_tags": bench_tags}
+        out[f"gw{gw}"] = {"you": you, "process": process, "hindsight": hindsight, "your_bench": bench, "better_bench": better[:4], "bench_tags": bench_tags,
+                          "basis": basis, "xp": {p["name"]: round(p["xp"], 2) for p in squad} if basis == "xp" else {}}
     return out
 
 

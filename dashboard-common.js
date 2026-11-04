@@ -763,7 +763,8 @@ function fhHead(A){
 function benchBlock(key,title,open){
   const b=D.bench_audit&&D.bench_audit[key]; if(!b)return"";
   const max=Math.max(b.you,b.process,b.hindsight,1);
-  const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}">${esc(x[0])} · ${x[1]}</div>`).join("");
+  const xpOf=n=>(b.xp&&b.xp[n]!=null)?` title="${esc(n)}: ${Number(b.xp[n]).toFixed(1)} expected points before the deadline"`:"";
+  const yours=(b.your_bench||[]).map(x=>`<div class="${chipClass(key,x[0])}"${xpOf(x[0])}>${esc(x[0])} · ${x[1]}</div>`).join("");
   const should=(b.better_bench||[]).map(x=>`<div class="chip ok">${esc(x[0])} · ${x[1]}</div>`).join("");
   // The first bar is the only judgment: green if the team matched/beat the
   // process benchmark (the best XI knowable pre-deadline), red if it fell
@@ -771,7 +772,7 @@ function benchBlock(key,title,open){
   // particular Hindsight is pure outcome (unknowable in advance), so coloring
   // it "bad" would imply it should have hit an unhittable target.
   const youKls=b.you>=b.process?"good":"bad";
-  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${youKls==="good"?"pos":"neg"}">${W.You} ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar(W.You,b.you,max,"you")}${bar("Process",b.process,max,"proc")}${bar("Hindsight",b.hindsight,max,"hind")}<p class="note">${W.Your} bench</p><div class="xi">${yours}</div><p class="note">Started, but the process XI would have left them out (judged on minutes before the deadline, not on points)</p><div class="xi">${should}</div></details>`;
+  return `<details class="card fold"${open?" open":""}><summary><h2>${title}</h2><span class="foldsum"><b class="${youKls==="good"?"pos":"neg"}">${W.You} ${b.you}</b> · Process ${b.process} · Hindsight ${b.hindsight}</span></summary>${bar(W.You,b.you,max,"you")}${bar("Process",b.process,max,"proc")}${bar("Hindsight",b.hindsight,max,"hind")}<p class="note">${W.Your} bench</p><div class="xi">${yours}</div><p class="note">Started, but the process XI would have left them out ${b.basis==="xp"?"(judged on the model's expected points before the deadline: minutes, fitness, fixtures, odds; not on points scored)":"(judged on minutes before the deadline, not on points; no saved expected points for this gameweek)"}</p><div class="xi">${should}</div></details>`;
 }
 function newsCard(title, vs){
   // Own/missing used to be one <li> per player with a full repeated sentence
