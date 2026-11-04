@@ -1369,7 +1369,7 @@ function labDecLast(D,they){
   return `<button class="lab-last" data-declog="gw${r.gw}"><span>Last GW${r.gw}: <b>${they?"They":"You"} ${s.you}</b> vs <b>Model ${s.model}</b> ${ok?'<i class="ok">✓</i>':'<i class="bad">✗</i>'}</span><span class="note">Decision log ›</span></button>`;
 }
 // Decision log: the recommended lineup for a gameweek (XI by position with xP and, once scored, points; bench in auto-sub order)
-function labLineup(r,they){
+function labLineup(r,they,title){
   const L=r.lineup; if(!L||!(L.xi||[]).length) return "";
   const yl=they?"their":"your", chip=(p,bench)=>{
     const c=!bench&&p.name===L.captain, v=!bench&&p.name===L.vice, pts=p.pts!=null?p.pts*(p.mult||1):null;
@@ -1380,14 +1380,18 @@ function labLineup(r,they){
   const bench=(L.bench||[]).length?`<p class="note">Bench, in auto-sub order</p><div class="lab-lrow">${L.bench.map(p=>chip(p,true)).join("")}</div>`:"";
   const sc=(L.xi.some(p=>p.pts!=null))?"xP, then points once the gameweek is scored (captain doubled)":"expected points (xP) when it was saved";
   const hasMine=L.xi.some(p=>p.you);
-  return `<div class="lab-dsec"><h4>Recommended lineup <span>${esc(L.formation||"")}</span></h4>${rows}${bench}<p class="note" data-keep>${sc}.${hasMine?` Outlined = ${yl} team did not start him (on ${yl} bench or not owned).`:""}</p></div>`;
+  return `<div class="lab-dsec"><h4>${esc(title||"Recommended lineup")} <span>${esc(L.formation||"")}</span></h4>${rows}${bench}<p class="note" data-keep>${sc}.${hasMine?` Outlined = ${yl} team did not start him (on ${yl} bench or not owned).`:""}</p></div>`;
+}
+function labYouLogged(r,they){
+  const V=(window.FPL_DATA||{}).logged_transfers; if(!V||V.gw!==r.gw||!(V.moves||[]).length) return "";
+  return `<li><span>${they?"They":"You"} logged</span><b>${V.moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${V.hit_cost?` <span class="neg">−${V.hit_cost}</span>`:""}</b></li>`;
 }
 function labDecRow(r,they){
   const Y=they?"They":"You", y=they?"their":"your";
   const mv=t=>(t||[]).length?(t||[]).map(m=>`${esc(m.out)} → ${esc(m.in)}`).join(", "):"Roll";
   const meta=`<p class="note">Saved ${esc(r.saved_at_et||"?")}${r.code_sha?` · code ${esc(String(r.code_sha).slice(0,7))}`:""}${r.backfilled?` · <b>backfilled</b>: ${esc(r.backfill_note||"")}`:""}</p>`;
   if(r.status!=="scored"){
-    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li></ul>${labLineup(r,they)}${meta}`;
+    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li>${labYouLogged(r,they)}</ul>${labLineup(r,they)}${meta}`;
     return `<details class="lab-drow pending" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><b>${r.status==="frozen"?"Recommendation frozen at the deadline":"Recommendation saved"}</b><span class="note">scored after GW finishes · C ${esc(r.captain_name||"–")} · ${mv(r.transfers)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
   }
   const s=r.score, C=s.captain||{}, T=s.transfers||{}, Ln=s.lineup||{};
@@ -1437,6 +1441,56 @@ function labDecLog(D,they){
   const top=top0+fair+`<p class="note" data-keep><b>${esc(verdictNoise)}</b></p>`+dis;
   return `${top}<p class="note">Each gameweek the lab saves its final pre-deadline recommendation (the Plan tab's transfers, XI, bench, captain), freezes it at the deadline and scores it once FPL finishes the gameweek: the recommended 15 with FPL autosub and captain rules, minus its hits, against ${they?"their":"your"} real points net of hits.</p>${rows.map(r=>labDecRow(r,they)).join("")}`;
 }
+// ---- Log my transfers (Plan tab): FPL hides next gameweek's squad until the deadline, so you tell the program what you did.
+// Pick who you sold and who replaced them; "Save" opens a pre-filled GitHub issue that log-transfers.yml validates and stores.
+const LAB_REPO="s-chuch/fpl-lab";
+function labLoggedCard(D,they){
+  const V=D.logged_transfers; if(!V||!V.moves||!V.moves.length) return "";
+  const Y=they?"Their":"Your", sg=n=>(n>0?"+":"")+n;
+  const mv=V.moves.map(m=>`<li><span>${esc(m.out)} <small>${Number(m.out_xp).toFixed(1)}</small> → ${esc(m.in)} <em>${esc(m.in_club)}</em> <small>${Number(m.in_xp).toFixed(1)} xP · £${Number(m.in_cost).toFixed(1)}m</small></span><b class="${m.in_xp-m.out_xp>=0?"pos":"neg"}">${sg(+(m.in_xp-m.out_xp).toFixed(1))}</b></li>`).join("");
+  const cmp=V.model_xp!=null?`<p class="note" data-keep>Model recommended: ${esc((V.model_moves||[]).join(", ")||"roll")} · ${Number(V.model_xp).toFixed(1)} xP. ${Y} logged squad: ${Number(V.xp).toFixed(1)} xP (<b class="${V.diff_vs_model>=0?"pos":"neg"}">${sg(V.diff_vs_model)}</b>)${V.hit_cost?`, after a −${V.hit_cost} hit`:""}. Without the moves: ${Number(V.xp_if_no_moves).toFixed(1)}.</p>`:`<p class="note" data-keep>${Y} logged squad: ${Number(V.xp).toFixed(1)} xP${V.hit_cost?` after a −${V.hit_cost} hit`:""}; without the moves ${Number(V.xp_if_no_moves).toFixed(1)}.</p>`;
+  const fl=(V.flags||[]).length?`<p class="note" data-keep>⚠ ${V.flags.map(esc).join(" · ")}</p>`:"";
+  return `<div class="card lab-logged"><h2>${Y} logged moves · GW${V.gw}</h2><ul class="lab-dl">${mv}</ul>${cmp}${fl}${labLineup({lineup:V.lineup},they,"Lineup after the moves")}<p class="note" data-keep>Lineup, bench and captain for the squad after ${they?"their":"your"} moves, on the same expected points as everything else. The real picks replace this after the deadline.</p></div>`;
+}
+function labLogForm(D,they,team){
+  const rows=((D.plan||{}).rows)||[], ids=((D.plan||{}).squad_ids)||[], gw=(D.deadline||{}).next_gw;
+  if(!rows.length||rows.length!==ids.length||!gw) return `<p class="note" data-keep>The squad is not loaded yet.</p>`;
+  const ft=Number((D.planner||{}).ft??((D.plan||{}).transfer||{}).ft_available??1);
+  const pool=(((D.targets||{}).pool||{})["1"])||[];
+  const mine=new Set(rows.map(r=>r[1]));
+  return `<div id="labLogForm" data-gw="${gw}" data-team="${esc(team)}" data-ft="${ft}"><p class="note" data-keep>Made transfers in FPL? Tap who you sold, then who you bought. ${they?"They have":"You have"} ${ft} free transfer${ft===1?"":"s"}.</p>
+    <h4 class="lab-ph4">Sold</h4><div class="lab-lrow lab-lsel">${rows.map((r,i)=>`<button type="button" class="lab-lp" data-sell="${i}">${esc(r[1])}<small>${esc(r[0])}</small></button>`).join("")}</div>
+    <div id="labLogBuys"></div><div id="labLogOut"></div></div>`;
+}
+function labLogWire(root,D,they,team){
+  const f=root.querySelector("#labLogForm"); if(!f) return;
+  const rows=D.plan.rows, ids=D.plan.squad_ids, gw=Number(f.dataset.gw), ft=Number(f.dataset.ft);
+  const pool=((((D.targets||{}).pool||{})["1"])||[]).filter(p=>!rows.some(r=>r[1]===p.name));
+  const sell=new Map();            // squad index -> {id,name} or {name,club} of the replacement
+  const buys=f.querySelector("#labLogBuys"), out=f.querySelector("#labLogOut");
+  const paint=()=>{
+    const idxs=[...sell.keys()].sort((a,b)=>a-b);
+    buys.innerHTML=idxs.map(i=>{const r=rows[i], cur=sell.get(i), cands=pool.filter(p=>p.pos===r[0]).slice(0,60);
+      const q=(f.dataset["q"+i]||"").toLowerCase(), shown=(q?cands.filter(p=>(p.name+" "+p.club).toLowerCase().includes(q)):cands).slice(0,8);
+      return `<div class="lab-lbuy" data-i="${i}"><h4 class="lab-ph4">Replaced ${esc(r[1])} (${esc(r[0])}) with</h4><div class="lab-lrow lab-lsel">${shown.map(p=>`<button type="button" class="lab-lp${cur&&cur.id===p.id?" on":""}" data-buy="${i}" data-id="${p.id}" data-name="${esc(p.name)}">${esc(p.name)}<small>${esc(p.club)} · £${Number(p.cost).toFixed(1)}m · ${Number(p.xp).toFixed(1)} xP</small></button>`).join("")||`<span class="note">No match in the target list.</span>`}</div>
+        <div class="lab-lin"><input type="search" placeholder="Search the list, or type another player" data-q="${i}" value="${esc(f.dataset["q"+i]||"")}" autocomplete="off"><input type="text" placeholder="Club (if the name is shared), e.g. TOT" data-club="${i}" value="${esc(cur&&!cur.id?cur.club||"":"")}" autocomplete="off"><button type="button" class="lab-lp" data-use="${i}">Use the typed name</button></div></div>`;}).join("");
+    const done=idxs.length&&idxs.every(i=>sell.get(i));
+    const moves=idxs.filter(i=>sell.get(i)).map(i=>({out:{id:ids[i]},in:sell.get(i).id?{id:sell.get(i).id}:{name:sell.get(i).name,club:sell.get(i).club||undefined}}));
+    const hits=Math.max(0,idxs.length-ft);
+    if(!idxs.length){ out.innerHTML=""; return; }
+    const body="```json\n"+JSON.stringify({team,gw,moves})+"\n```";
+    const url=`https://github.com/${LAB_REPO}/issues/new?title=${encodeURIComponent(`Transfers GW${gw} ${team}`)}&body=${encodeURIComponent(body)}`;
+    const names=idxs.map(i=>`${esc(rows[i][1])} → ${sell.get(i)?esc(sell.get(i).name):"…"}`).join(", ");
+    out.innerHTML=`<p class="note" data-keep><b>${names}</b>${hits?` · <span class="neg">−${hits*4} hit</span>`:" · no hit"}</p>${done?`<a class="lab-save" href="${url}" target="_blank" rel="noopener">Save to the program (opens GitHub, tap Submit)</a><p class="note" data-keep>Log the full list of this gameweek's moves each time: a new save replaces the last one.</p>`:`<p class="note" data-keep>Choose a replacement for each player you sold.</p>`}`;
+  };
+  f.addEventListener("click",e=>{
+    const sb=e.target.closest("[data-sell]"), bb=e.target.closest("[data-buy]"), ub=e.target.closest("[data-use]");
+    if(sb){ const i=Number(sb.dataset.sell); if(sell.has(i)){ sell.delete(i); sb.classList.remove("on"); } else if(sell.size<5){ sell.set(i,null); sb.classList.add("on"); } paint(); }
+    else if(bb){ sell.set(Number(bb.dataset.buy),{id:Number(bb.dataset.id),name:bb.dataset.name}); paint(); }
+    else if(ub){ const i=Number(ub.dataset.use), q=(f.dataset["q"+i]||"").trim(), club=(f.querySelector(`[data-club="${i}"]`)||{}).value||""; if(q){ sell.set(i,{name:q,club:club.trim()}); paint(); } }
+  });
+  f.addEventListener("input",e=>{ const q=e.target.closest("[data-q]"); if(!q) return; const i=q.dataset.q; f.dataset["q"+i]=q.value; const pos=q.selectionStart; paint(); const n=f.querySelector(`[data-q="${i}"]`); if(n){ n.focus(); try{n.setSelectionRange(pos,pos);}catch(_){} } });
+}
 // ---------------------------------------------------------------- shell
 function labShell(D,opt){
   opt=opt||{}; const they=!!opt.they;
@@ -1455,6 +1509,7 @@ function labShell(D,opt){
 <button class="lab-tile cap" data-p="labCap" aria-expanded="false"><span class="lab-ic">${LAB_SVG.shield}</span><span class="lab-tx"><b class="lab-tt">CAPTAIN</b><em>C <strong>${esc(C.cap)}</strong><br>VC ${esc(C.vc)}</em></span></button>
 <button class="lab-tile tr" data-p="labTr" aria-expanded="false"><span class="lab-ic">${LAB_SVG.swap}</span><span class="lab-tx"><b class="lab-tt">TRANSFER</b><em>Make up to ${esc(String(Tr.ft))} free transfer${Tr.ft===1?"":"s"}:<br>${Tr.names}</em></span></button></div>
 <div class="lab-panel" id="labCap" hidden>${C.html}</div><div class="lab-panel" id="labTr" hidden>${((D.plan||{}).transfer||{}).reason?`<p class="note">${esc(D.plan.transfer.reason)}</p>`:""}${typeof plannerCardCompact==="function"?plannerCardCompact(D):""}</div>${labDecLast(D,they)}</div>
+${labLoggedCard(D,they)}${labAcc("labLog","LOG MY TRANSFERS","Tell the program what you changed",labLogForm(D,they,opt.team||(D.team||{}).name||""))}
 ${labPitch(D,they,KEY)}
 ${labAcc("labChips","CHIPS","View chip status and strategy",labChips(D,they))}
 ${labAcc("labLeague","LEAGUE","Current standings and rivals",labLeague(D,they))}
@@ -1468,6 +1523,7 @@ ${labTemplateAcc(D,they)}
 <nav class="lab-bottom">${tabs.map(([id,l,ic])=>`<button data-v="${id}">${ic}<span>${l.toUpperCase()}</span></button>`).join("")}</nav>`;
   document.body.insertBefore(root,document.body.firstChild);
   try{ labTemplateWire(root,D,they); }catch(e){}
+  try{ labLogWire(root,D,they,opt.team||(D.team||{}).name||""); }catch(e){ console.warn("labLogWire",e); }
   // PLAN: live/deadline/chip banners stay at the top
   const top=root.querySelector(".lab-top");
   ["deadlineBanner","chipAlert"].forEach(id=>{const e=document.getElementById(id); if(e) top.appendChild(e);});

@@ -1,0 +1,66 @@
+name: Log my transfers
+
+# You log the transfers you made in FPL from the Plan tab (it opens a pre-filled issue titled "Transfers GW<n> <team>").
+# FPL hides next gameweek's squad until the deadline, so this is how the program learns what you did. Only the repository owner's
+# issues are read, the issue text is passed in as environment variables (never put into the shell), and nothing is stored unless it
+# validates against FPL (log_transfers.py).
+on:
+  issues:
+    types: [opened, edited]
+
+concurrency:
+  group: log-transfers
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+jobs:
+  log:
+    if: github.event.issue.user.login == github.repository_owner && startsWith(github.event.issue.title, 'Transfers')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate and store
+        id: log
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          REPLY_FILE: ${{ runner.temp }}/reply.md
+        run: |
+          set +e
+          python log_transfers.py
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+      - name: Commit the log
+        if: steps.log.outputs.rc == '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add my_transfers.json
+          git commit -m "Log transfers from issue #${{ github.event.issue.number }}" || echo "nothing new"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break || sleep 5; done
+      - name: Refresh the data
+        if: steps.log.outputs.rc == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run refresh.yml --ref main || echo "dispatch failed"
+      - name: Reply on the issue and close it
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          REPLY: ${{ runner.temp }}/reply.md
+        run: |
+          [ -f "$REPLY" ] || echo "The logger did not run to the end; see the workflow log." > "$REPLY"
+          gh issue comment "$NUMBER" --body-file "$REPLY"
+          gh issue close "$NUMBER" || true

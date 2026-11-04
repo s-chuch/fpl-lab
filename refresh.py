@@ -1617,6 +1617,7 @@ def main(team_id=TEAM_ID, out_path=None):
     })
     # Decision log: freeze this gameweek's recommendation before the deadline, score finished ones (rec_log.py).
     # The committed rec_log*.json is the record; data.js only carries the page's view of it.
+    _rl = {}
     try:
         import rec_log
         _rl_path = rec_log.log_path(data_file)
@@ -1627,6 +1628,22 @@ def main(team_id=TEAM_ID, out_path=None):
     except Exception as e:
         _warn(f"decision_log failed: {type(e).__name__}: {e}")
         health["decision_log"] = {"ok": False, "error": f"{type(e).__name__}: {str(e)[:160]}", "since": ((existing.get("_health") or {}).get("decision_log") or {}).get("since") or datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")}
+    def _logged_transfers():
+        """Your hand-logged transfers for the next open gameweek (my_transfers.py), with lineup advice for the squad after them."""
+        import ai_team, my_transfers as MT
+        gw = (data.get("deadline") or {}).get("next_gw")
+        entry = ((MT.load().get(str(team_id)) or {}).get(str(gw))) if gw else None
+        dl = next((e.get("deadline_time") for e in boot["events"] if e["id"] == gw), None)
+        if not entry or not dl or datetime.now(timezone.utc) >= parse_deadline(dl):
+            return None                       # nothing logged, or the real picks are public now
+        uwins, risk, _live = inputs or ({}, {}, None)
+        played = max(1, sum(1 for e in boot["events"] if e.get("finished")))
+        vals = ai_team.player_values(boot, fixture_scan(gw, teams_by_id), {}, played, uwins, risk)
+        ids = list((data.get("plan") or {}).get("squad_ids") or [])
+        ft = ((data.get("planner") or {}).get("ft"))
+        view = MT.build_view({**entry, "gw": gw}, ids, vals, (_rl or {}).get(f"gw{gw}"), ft, ai_team.pick_xi)
+        return view
+    data["logged_transfers"] = section("logged_transfers", _logged_transfers, fallback=None)
     data["_health"] = health
     tmp = data_file.with_name(data_file.name + ".tmp")
     tmp.write_text("window.FPL_DATA = " + json.dumps(data, separators=(",", ":")) + ";\n")
