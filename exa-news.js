@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-04T00:30:27Z",
+ "generated_at": "2026-11-04T16:02:45Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-04T00:30:27Z",
+ "last_attempt": "2026-11-04T16:02:45Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 80,
-  "cost_usd": 0.56
+  "searches": 90,
+  "cost_usd": 0.63
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,24 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Steven Gerrard warns Xabi Alonso that Chelsea star is about to give him Joao Pedro 'problem' Football London",
-   "snippet": "Once Joao Pedro returns from his thigh injury, it will be much more difficult for Alonso to get Estevao into the attack, with the likes of Pedro Neto, Cole Palmer and Morgan Rogers all vying for a spot as well.",
+   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
+   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
    "source_domain": "football.london",
-   "published": "2026-11-03",
-   "url": "https://www.football.london/chelsea-fc/news/steven-gerrard-warns-xabi-alonso-34854420",
+   "published": "2026-11-04",
+   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
+   "yours": []
+  },
+  {
+   "player": "Thomas",
+   "team": "COV",
+   "fpl_status": "d",
+   "fpl_chance": 50,
+   "fpl_news": "Calf injury - 50% chance of playing",
+   "headline": "Frank Lampard press conference: Everton vs Coventry - BBC Sport",
+   "snippet": "Here are the key lines from his news conference: Lampard gave nothing away on the fitness of Bobby Thomas and Frank Onyeka.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-04",
+   "url": "https://www.bbc.com/sport/football/articles/cm62ykjww1edo",
    "yours": []
   },
   {
@@ -29,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Preview: Slavia Prague v Arsenal Arsenal FC Official Website Arsenal.com",
-   "snippet": "Bukayo Saka remains out with the thigh issue sustained against Bayern Munich.",
-   "source_domain": "arsenal.com",
-   "published": "2026-11-03",
-   "url": "https://www.arsenal.com/news/preview-slavia-prague-v-arsenal-axS2l8b56cCy",
+   "headline": "Arsenal 'ask NASA for help' after familiar problem keeps plaguing Mikel Arteta Football London",
+   "snippet": "Bukayo Saka was recently ruled out for more than two months with a thigh injury, having also missed significant spells of the previous two seasons with various muscle problems.",
+   "source_domain": "football.london",
+   "published": "2026-11-04",
+   "url": "https://www.football.london/arsenal-fc/news/arsenal-ask-nasa-help-after-34861901",
    "yours": []
   },
   {
@@ -42,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Man City XI vs RB Leipzig: Confirmed team news, predicted lineup, injury latest for Champions League The Standard",
-   "snippet": "Antoine Semenyo is Man City’s one long-term absentee after suffering a knee injury in the win over Ipswich last month, keeping him out of the last four matches in all competitions as a result.",
+   "headline": "Man City XI vs RB Leipzig: Predicted lineup, confirmed team news, injury latest for Champions League today The Standard",
+   "snippet": "Antoine Semenyo is Man City’s one long-term absentee after suffering a knee injury in the win over Ipswich last month, keeping him out of the last four matches across all competitions as a result.",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-03",
-   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-rb-leipzig-confirmed-team-news-predicted-lineup-injury-latest-champions-league-2026-b1303414.html",
+   "published": "2026-11-04",
+   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-rb-leipzig-predicted-lineup-confirmed-team-news-injury-latest-champions-league-2026-today-b1303414.html",
    "yours": []
   },
   {
@@ -55,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea's £75m star needs to send Xabi Alonso message after crucial injury blow Football London",
-   "snippet": "The latest being Maxence Lacroix, who, towards the end of the first half in last week's Carabao Cup defeat to Liverpool, pulled up clutching his hamstring.",
+   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
+   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
    "source_domain": "football.london",
-   "published": "2026-11-03",
-   "url": "https://www.football.london/chelsea-fc/news/chelseas-75m-star-needs-send-34856541",
+   "published": "2026-11-04",
+   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
    "yours": []
   },
   {
@@ -68,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 21 Nov",
-   "headline": "Barcelona v Aston Villa: How the Aston Villa players rated - BBC Sport",
-   "snippet": "6 Matty Cash: A arrowed volley almost brought Villa level soon after Yamal's goal but his attacking instincts were restricted.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-03",
-   "url": "https://www.bbc.com/sport/football/articles/cwp9ged9zjp7o",
+   "headline": "Aston Villa news: 'It is giving me a lot of information' - Unai Emery reflects on defeat by Barcelona - BBC Sport",
+   "snippet": "In the first half Matty Cash, Joao Gomes and Johan Manzambi, twice, made Barca sweat as the visitors created chances without taking them.",
+   "source_domain": "bbc.co.uk",
+   "published": "2026-11-04",
+   "url": "https://www.bbc.co.uk/sport/football/articles/c80406nxlxn0o",
    "yours": []
   },
   {
@@ -81,11 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "Nine players set to miss Man United vs Roma after Marcus Rashford injury update - Manchester Evening News",
-   "snippet": "There will be no Luke Shaw for United, with Carrick confirming that the left-back remains sidelined with an injury that has kept him unavailable for the past five matches.",
-   "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-03",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-utd-injury-latest-roma-34853445",
+   "headline": "Manchester United injury update: Carlos Baleba, Marcus Rashford, Luke Shaw latest news and return dates The Standard",
+   "snippet": "Luke Shaw Left-back Shaw is still sidelined with a muscluar problem that he picked up in the 1-1 draw with Tottenham.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-04",
+   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-baleba-rashford-shaw-latest-news-return-dates-b1303478.html",
    "yours": []
   },
   {
@@ -94,11 +107,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Reece James - Football.London - Page 2",
-   "snippet": "Reece James - Football.London - Page 2 Reece James All the latest news and updates about Chelsea FC captain and right back Reece James.",
+   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
+   "snippet": "Lacroix (hamstring), Joao Pedro (thigh) and Reece James (knee), as expected, were not involved during Chelsea's Wednesday session.",
    "source_domain": "football.london",
-   "published": "2026-11-03",
-   "url": "https://www.football.london/all-about/reece-james?service=responsive&pageNumber=2",
+   "published": "2026-11-04",
+   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
    "yours": []
   },
   {
@@ -107,11 +120,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Head injury - Unknown return date",
-   "headline": "Chelsea FC injury update: Joao Pedro, Jordan Henderson, Emi Martinez latest news and return dates The Standard",
-   "snippet": "However, Martinez’s progress since then has been swift and he’s pushing to return ahead of schedule, with Alonso admitting that there’s a chance he could be back before the international break - likely wearing a face…",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-02",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-henderson-martinez-latest-news-return-dates-b1303090.html",
+   "headline": "Moises Caicedo injury scare but Chelsea get triple boost as stars return to training Football London",
+   "snippet": "Emiliano Martinez joined his Chelsea teammates on a gloomy Wednesday in Surrey.",
+   "source_domain": "football.london",
+   "published": "2026-11-04",
+   "url": "https://www.football.london/chelsea-fc/news/moises-caicedo-injury-scare-chelsea-34861543",
    "yours": []
   }
  ]

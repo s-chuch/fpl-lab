@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-04T00:30:02.821428+00:00",
+    "fetched_at": "2026-11-04T16:02:21.096480+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -80,7 +80,7 @@
           "date": "2026-11-03",
           "competition": "Champions League",
           "opponent": "Roma",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",
@@ -308,7 +308,7 @@
           "date": "2026-11-03",
           "competition": "Champions League",
           "opponent": "Barcelona",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",
