@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-05T00:48:07.489654+00:00",
+    "fetched_at": "2026-11-05T16:16:54.535853+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -11,7 +11,7 @@
           "date": "2026-11-04",
           "competition": "Champions League",
           "opponent": "Slavia Praha",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -323,7 +323,7 @@
           "date": "2026-11-04",
           "competition": "Champions League",
           "opponent": "Leipzig",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-07",
@@ -392,7 +392,7 @@
           "date": "2026-11-04",
           "competition": "Champions League",
           "opponent": "Fenerbah\u00e7e",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-08",

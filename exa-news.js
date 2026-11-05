@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-04T22:28:59Z",
+ "generated_at": "2026-11-05T16:17:19Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-04T22:28:59Z",
+ "last_attempt": "2026-11-05T16:17:19Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 100,
-  "cost_usd": 0.7
+  "searches": 110,
+  "cost_usd": 0.77
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
-   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-04",
-   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
+   "headline": "Xabi Alonso suffers fresh Chelsea injury concern as another star misses training Football London",
+   "snippet": "Joao Pedro (thigh), Maxence Lacroix (hamstring) and Reece James (knee) were not involved, as expected, as they recover from longer-term injuries.",
+   "source_domain": "football.london",
+   "published": "2026-11-05",
+   "url": "https://www.football.london/chelsea-fc/news/xabi-alonso-suffers-fresh-chelsea-34865859",
    "yours": []
   },
   {
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 50,
    "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Frank Lampard press conference: Everton vs Coventry - BBC Sport",
-   "snippet": "Here are the key lines from his news conference: - Lampard gave nothing away on the fitness of Bobby Thomas and Frank Onyeka.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-04",
-   "url": "https://www.bbc.com/sport/football/articles/cm62ykjww1edo",
+   "headline": "Branthwaite Fitness Update & Team News For Coventry Test - Everton Football Club",
+   "snippet": "Bobby Thomas and Frank Onyeka face late fitness checks.",
+   "source_domain": "evertonfc.com",
+   "published": "2026-11-05",
+   "url": "https://www.evertonfc.com/news/2026/november/05/branthwaite-fitness-update---team-news-for-coventry-test/",
    "yours": []
   },
   {
@@ -42,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal 'ask NASA for help' after familiar problem keeps plaguing Mikel Arteta Football London",
-   "snippet": "Bukayo Saka was recently ruled out for more than two months with a thigh injury, having also missed significant spells of the previous two seasons with various muscle problems.",
-   "source_domain": "football.london",
-   "published": "2026-11-04",
-   "url": "https://www.football.london/arsenal-fc/news/arsenal-ask-nasa-help-after-34861901",
+   "headline": "Arsenal FC injury update: Ezri Konsa, William Saliba, Bukayo Saka latest return dates The Standard",
+   "snippet": "Bukayo Saka Bukayo Saka has now missed four Arsenal games in a row with a quad injury sustained after just 10 minutes against Bayern Munich last month.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-05",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-konsa-saliba-saka-latest-news-return-dates-b1303630.html",
    "yours": []
   },
   {
@@ -55,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "The Scout’s FPL Gameweek 10 transfer radar",
-   "snippet": "Iliman Ndiaye (Manchester City) £5.8m An injury to Antoine Semenyo (£8.2m) has helped boost Ndiaye's game-time prospects.",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-04",
-   "url": "https://www.premierleague.com/en/news/4756485",
+   "headline": "Man City XI vs Nottingham Forest: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
+   "snippet": "Iliman Ndiaye has impressed since his move from Everton, meaning he should retain his place on the right flank, with Jeremy Doku the preferred option off the left to come in for Foden, in lieu of Antoine Semenyo, who…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-05",
+   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-nottingham-forest-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1303725.html",
    "yours": []
   },
   {
@@ -68,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
-   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-04",
-   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
+   "headline": "Xabi Alonso suffers fresh Chelsea injury concern as another star misses training Football London",
+   "snippet": "Joao Pedro (thigh), Maxence Lacroix (hamstring) and Reece James (knee) were not involved, as expected, as they recover from longer-term injuries.",
+   "source_domain": "football.london",
+   "published": "2026-11-05",
+   "url": "https://www.football.london/chelsea-fc/news/xabi-alonso-suffers-fresh-chelsea-34865859",
    "yours": []
   },
   {
@@ -94,11 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "Manchester United injury update: Carlos Baleba, Marcus Rashford, Luke Shaw latest news and return dates The Standard",
-   "snippet": "Luke Shaw Left-back Shaw is still sidelined with a muscluar problem that he picked up in the 1-1 draw with Tottenham.",
-   "source_domain": "standard.co.uk",
+   "headline": "Nine players could miss Man Utd vs Aston Villa as boss admits fresh blow 'doesn’t look great' - Birmingham Live",
+   "snippet": "Argentina centre-back Lisandro Martinez is ruled out after being sent off against Chelsea last time out, while Luke Shaw might not return until after the international break.",
+   "source_domain": "birminghammail.co.uk",
    "published": "2026-11-04",
-   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-baleba-rashford-shaw-latest-news-return-dates-b1303478.html",
+   "url": "https://www.birminghammail.co.uk/sport/football/football-news/aston-villa-manchester-united-injuries-34859865",
    "yours": []
   },
   {
@@ -107,11 +107,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Chelsea news: Martinez and Henderson return but Caicedo absent from training - BBC Sport",
-   "snippet": "None of Chelsea's other injured players, including Joao Pedro, Reece James and Maxence Lacroix, were spotted in training.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-04",
-   "url": "https://www.bbc.com/sport/football/articles/cmlydl6k52jyo",
+   "headline": "Tottenham XI vs Leeds: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
+   "snippet": "Mudryk and Savio, after the international break.\" James Maddison was not risked against Palace following a groin issue suffered in the win over Chelsea, and should therefore be available to play some part at Leeds…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-05",
+   "url": "https://www.standard.co.uk/sport/football/tottenham-xi-vs-leeds-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303584.html",
    "yours": []
   },
   {
@@ -120,11 +120,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Head injury - Unknown return date",
-   "headline": "Training gallery: Getting set for Sunderland",
-   "snippet": "Emiliano Martinez played his part too, wearing a protective face covering.",
-   "source_domain": "chelseafc.com",
-   "published": "2026-11-04",
-   "url": "https://www.chelseafc.com/en/news/article/training-gallery-getting-set-for-sunderland",
+   "headline": "Xabi Alonso suffers fresh Chelsea injury concern as another star misses training Football London",
+   "snippet": "View 2 Images Emiliano Martinez during Chelsea's training session on Wednesday(Image: Darren Walsh/Chelsea FC) Martinez suffered a fractured jaw last month in the 2-0 win at Everton and then underwent successful…",
+   "source_domain": "football.london",
+   "published": "2026-11-05",
+   "url": "https://www.football.london/chelsea-fc/news/xabi-alonso-suffers-fresh-chelsea-34865859",
    "yours": []
   }
  ]
