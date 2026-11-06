@@ -240,14 +240,14 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-05",
-      "total_cost": 95.1,
+      "total_cost": 95.2,
       "prices": {
         "Raya": 6.2,
         "Hall": 5.3,
         "Tarkowski": 6.2,
         "De Cuyper": 5.4,
         "Bogle": 4.8,
-        "Hill": 5.5,
+        "Hill": 5.6,
         "Groß": 6.2,
         "Dewsbury-Hall": 6.6,
         "Tavernier": 6.6,
@@ -262,7 +262,7 @@ window.FPL_WILDCARD_WATCH = {
     "entry_prices": {
       "Hill": 5.5
     },
-    "total_delta": 2.5,
+    "total_delta": 2.6,
     "players": [
       {
         "name": "De Cuyper",
@@ -402,10 +402,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hill",
         "baseline_cost": null,
-        "current_cost": 5.5,
+        "current_cost": 5.6,
         "delta": null,
         "entry_cost": 5.5,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       }
     ],
@@ -657,6 +657,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.5,
         "to": 6.6,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-05",
+        "event": "price_change",
+        "player": "Hill",
+        "from": 5.5,
+        "to": 5.6,
         "delta": 0.1
       }
     ]

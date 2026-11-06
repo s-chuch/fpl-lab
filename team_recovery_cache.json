@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-05T16:16:54.535853+00:00",
+    "fetched_at": "2026-11-06T00:55:11.222214+00:00",
     "target_gw": 10,
     "anchor": "2026-11-06T18:30:00+00:00",
     "teams": {
@@ -129,13 +129,7 @@
           "opponent": "Coventry",
           "days_after": 13
         },
-        "between": [
-          {
-            "date": "2026-11-05",
-            "competition": "Europa League",
-            "opponent": "Hoffenheim"
-          }
-        ]
+        "between": []
       },
       "IPS": {
         "rest_days": 8,
@@ -177,13 +171,7 @@
           "opponent": "Aston Villa",
           "days_after": 13
         },
-        "between": [
-          {
-            "date": "2026-11-05",
-            "competition": "Europa League",
-            "opponent": "GNK Dinamo"
-          }
-        ]
+        "between": []
       },
       "NFO": {
         "rest_days": 7,
@@ -288,13 +276,7 @@
           "opponent": "Hull",
           "days_after": 14
         },
-        "between": [
-          {
-            "date": "2026-11-05",
-            "competition": "Conference League",
-            "opponent": "Getafe"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 5,
@@ -357,13 +339,7 @@
           "opponent": "Nott'm Forest",
           "days_after": 13
         },
-        "between": [
-          {
-            "date": "2026-11-05",
-            "competition": "Europa League",
-            "opponent": "Sparta Praha"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 5,
