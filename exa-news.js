@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-06T00:55:44Z",
+ "generated_at": "2026-11-06T11:19:05Z",
  "gw": 10,
  "searches_used": 10,
- "last_attempt": "2026-11-06T00:55:44Z",
+ "last_attempt": "2026-11-06T11:19:05Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 120,
-  "cost_usd": 0.84
+  "searches": 130,
+  "cost_usd": 0.91
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Joao Pedro and Maxence Lacroix are both sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery and unlikely to be available again until January.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303742.html",
+   "headline": "Chelsea news: Blues told England Cole Palmer was fit - BBC Sport",
+   "snippet": "A host of other high-profile injured players, including Joao Pedro, Reece James and Maxence Lacroix, were not involved and are unlikely to make the trip to the Stadium of Light.",
+   "source_domain": "bbc.co.uk",
+   "published": "2026-11-06",
+   "url": "https://www.bbc.co.uk/sport/football/articles/cmzxjjyek5q4o",
    "yours": []
   },
   {
@@ -33,7 +33,7 @@ window.EXA_NEWS = {
    "snippet": "Despite performing so well in recent weeks - helping Arsenal to three clean sheets in three Premier League games - for me defender Ezri Konsa (£4.8m) is not a buy this week.",
    "source_domain": "bbc.co.uk",
    "published": "2026-11-05",
-   "url": "https://www.bbc.co.uk/sport/football/articles/cm4g112qp051o?at_medium=RSS&at_campaign=rss",
+   "url": "https://www.bbc.co.uk/sport/football/articles/cm4g112qp051o",
    "yours": []
   },
   {
@@ -68,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal FC XI vs Hull: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "In the absence of the injured Bukayo Saka, Noni Madueke continues to impress and he is effectively the only option on the right wing with Max Dowman suspended for the next two Premier League matches.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-xi-vs-hull-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303618.html",
+   "headline": "Arsenal get boost from England squad announcement as Declan Rice worry emerges Football London",
+   "snippet": "There had been growing expectation that the winger was set to be included particularly with club team-mate Bukayo Saka sidelined with a quad injury.",
+   "source_domain": "football.london",
+   "published": "2026-11-06",
+   "url": "https://www.football.london/arsenal-fc/news/arsenal-declan-rice-madueke-england-34871701",
    "yours": []
   },
   {
@@ -81,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Man City XI vs Nottingham Forest: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Iliman Ndiaye has impressed since his move from Everton, meaning he should retain his place on the right flank, with Jeremy Doku the preferred option off the left to come in for Foden, in lieu of Antoine Semenyo, who…",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-nottingham-forest-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1303725.html",
+   "headline": "Enzo Maresca press conference LIVE Man City team news and injury updates vs Nottingham Forest - Manchester Evening News",
+   "snippet": "Today 09:55 GMT McAidoo essential for Maresca While Semenyo remains sidelined at City, McAidoo is providing Maresca with a great option.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-06",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/enzo-maresca-press-conference-live-34870806",
    "yours": []
   },
   {
@@ -94,11 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Joao Pedro and Maxence Lacroix are both sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery and unlikely to be available again until January.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303742.html",
+   "headline": "Chelsea news: Blues told England Cole Palmer was fit - BBC Sport",
+   "snippet": "A host of other high-profile injured players, including Joao Pedro, Reece James and Maxence Lacroix, were not involved and are unlikely to make the trip to the Stadium of Light.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-06",
+   "url": "https://www.bbc.com/sport/football/articles/cmzxjjyek5q4o",
    "yours": []
   },
   {
@@ -107,11 +107,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 21 Nov",
-   "headline": "Nine players could miss Man Utd vs Aston Villa as boss admits fresh blow 'doesn’t look great' - Birmingham Live",
-   "snippet": "Matty Cash is suspended for Villa's trip to Old Trafford(Image: Getty Images) \"We’ll have to assess what that looks like but, initially, it doesn’t look great.",
+   "headline": "Cash unavailable, Mbaye starts - Aston Villa predicted XI vs Man Utd - Birmingham Live",
+   "snippet": "Cash unavailable, Mbaye starts - Aston Villa predicted XI vs Man Utd Unai Emery has a few selection dilemmas ahead of Aston Villa's clash with Man United ...",
    "source_domain": "birminghammail.co.uk",
-   "published": "2026-11-04",
-   "url": "https://www.birminghammail.co.uk/sport/football/football-news/aston-villa-manchester-united-injuries-34859865",
+   "published": "2026-11-06",
+   "url": "https://www.birminghammail.co.uk/sport/football/football-news/cash-unavailable-mbaye-starts-aston-34871863",
    "yours": []
   },
   {
@@ -120,37 +120,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "Manchester United XI vs Aston Villa: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Predicted Man Utd XI (4-2-3-1): Lammens; Yoro, Maguire, Heaven, Dalot; Tielemans, Mainoo; Amad, Fernandes, Cunha; Mbuemo Doubts: Rashford, Dorgu Injured: Sesko, Shaw, Ugarte, Baleba Suspended: Martinez Venue: Old…",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/man-utd-xi-vs-aston-villa-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1303729.html",
-   "yours": []
-  },
-  {
-   "player": "James",
-   "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Joao Pedro and Maxence Lacroix are both sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery and unlikely to be available again until January.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303742.html",
-   "yours": []
-  },
-  {
-   "player": "Martinez",
-   "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Head injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Chelsea welcomed Emi Martinez back to training this week ahead of Sunday’s trip to Sunderland.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-confirmed-team-news-predicted-lineup-injury-latest-2026-premier-league-b1303742.html",
+   "headline": "Manchester United reporter notebook: Shea Lacey and Old Trafford young guns offer Michael Carrick hope of unlikely revival Football News Sky",
+   "snippet": "At left-back, Carrick has used four different players in the position rather than turn to Harry Amass, the only other natural left-back in the squad besides Luke Shaw.",
+   "source_domain": "skysports.com",
+   "published": "2026-11-06",
+   "url": "https://www.skysports.com/football/news/13608473/manchester-united-reporter-notebook-shea-lacey-and-old-trafford-young-guns-offer-michael-carrick-hope-of-unlikely-revival",
    "yours": []
   }
  ]
