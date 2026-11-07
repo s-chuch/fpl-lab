@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-07T17:55:39.108884+00:00",
+    "fetched_at": "2026-11-07T18:35:18.965528+00:00",
     "target_gw": 11,
     "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
@@ -24,13 +24,7 @@
           "opponent": "B. Dortmund",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 15,
@@ -72,13 +66,7 @@
           "opponent": "Crystal Palace",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Arsenal"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 14,
@@ -432,13 +420,7 @@
           "opponent": "Brighton",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Fulham"
-          }
-        ]
+        "between": []
       },
       "LIV": {
         "rest_days": 14,
@@ -486,13 +468,7 @@
           "opponent": "Bournemouth",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Newcastle"
-          }
-        ]
+        "between": []
       },
       "CHE": {
         "rest_days": 13,
