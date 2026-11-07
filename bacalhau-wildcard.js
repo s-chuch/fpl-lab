@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Haaland",
     "captain_ep": 5.49,
     "vice": "Van Hecke",
-    "vice_ep": 5.29,
+    "vice_ep": 5.33,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.29,
+        "ep_next": 5.33,
         "status": "ok"
       },
       {

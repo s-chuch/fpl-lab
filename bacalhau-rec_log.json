@@ -170,13 +170,13 @@
   "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ad115f3d9180",
+  "code_sha": "69aba2bf1901",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-07T12:39:47+00:00",
-  "saved_at_et": "2026-11-07 7:39 AM ET",
+  "saved_at": "2026-11-07T13:14:27+00:00",
+  "saved_at_et": "2026-11-07 8:14 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -191,7 +191,7 @@
     "id": 112,
     "name": "Van Hecke",
     "pos": "DEF",
-    "xp": 5.29
+    "xp": 5.33
    },
    {
     "club": "BHA",
@@ -294,8 +294,8 @@
     "out_id": 321
    }
   ],
-  "vice": 112,
-  "vice_name": "Van Hecke",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    112,
@@ -309,7 +309,7 @@
    249,
    79
   ],
-  "xp": 58.2
+  "xp": 58.3
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
