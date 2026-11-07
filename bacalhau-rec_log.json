@@ -162,21 +162,21 @@
   "backfilled": false,
   "bench": [
    572,
-   229,
    286,
-   94
+   94,
+   321
   ],
-  "captain": 112,
-  "captain_name": "Van Hecke",
+  "captain": 4,
+  "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "790c767c5551",
+  "code_sha": "1da9d1558b20",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-07T15:57:17+00:00",
-  "saved_at_et": "2026-11-07 10:57 AM ET",
+  "saved_at": "2026-11-07T16:36:54+00:00",
+  "saved_at_et": "2026-11-07 11:36 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -184,7 +184,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.49
+    "xp": 4.87
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.9
    },
    {
     "club": "TOT",
@@ -243,13 +250,6 @@
     "xp": 5.49
    },
    {
-    "club": "EVE",
-    "id": 249,
-    "name": "Barry",
-    "pos": "FWD",
-    "xp": 5.4
-   },
-   {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
@@ -261,14 +261,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.79
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.86
+    "xp": 3.81
    },
    {
     "club": "HUL",
@@ -283,21 +276,29 @@
     "name": "Schade",
     "pos": "MID",
     "xp": 2.59
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.06
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Barry",
-    "in_id": 249,
-    "out": "Walle Egeli",
-    "out_id": 321
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 115,
   "vice_name": "De Cuyper",
   "xi": [
    1,
+   4,
    112,
    115,
    504,
@@ -306,10 +307,9 @@
    236,
    124,
    411,
-   249,
    79
   ],
-  "xp": 58.6
+  "xp": 59.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
