@@ -115,17 +115,17 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
-      "Belloumi",
       "Schade",
+      "Belloumi",
       "Walle Egeli"
     ],
-    "bench_order_changed": false,
+    "bench_order_changed": true,
     "availability_flags": [],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.87,
+        "ep_next": 4.89,
         "status": "ok"
       },
       {
@@ -193,13 +193,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.81,
+        "ep_next": 4.01,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 3.2,
+        "ep_next": 2.26,
         "status": "ok"
       },
       {

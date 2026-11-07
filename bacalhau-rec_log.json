@@ -162,21 +162,21 @@
   "backfilled": false,
   "bench": [
    572,
-   286,
    94,
+   286,
    321
   ],
   "captain": 4,
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "1da9d1558b20",
+  "code_sha": "63fcfc89c7ae",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-07T16:36:54+00:00",
-  "saved_at_et": "2026-11-07 11:36 AM ET",
+  "saved_at": "2026-11-07T17:16:23+00:00",
+  "saved_at_et": "2026-11-07 12:16 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -184,14 +184,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.87
+    "xp": 4.89
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.9
+    "xp": 6.0
    },
    {
     "club": "TOT",
@@ -261,14 +261,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 3.81
-   },
-   {
-    "club": "HUL",
-    "id": 286,
-    "name": "Belloumi",
-    "pos": "MID",
-    "xp": 3.2
+    "xp": 4.01
    },
    {
     "club": "BRE",
@@ -276,6 +269,13 @@
     "name": "Schade",
     "pos": "MID",
     "xp": 2.59
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.26
    },
    {
     "club": "IPS",
@@ -309,7 +309,7 @@
    411,
    79
   ],
-  "xp": 59.9
+  "xp": 60.1
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

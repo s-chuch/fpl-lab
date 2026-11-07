@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "1da9d1558b20",
+  "code_sha": "63fcfc89c7ae",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-07T16:36:43+00:00",
-  "saved_at_et": "2026-11-07 11:36 AM ET",
+  "saved_at": "2026-11-07T17:16:14+00:00",
+  "saved_at_et": "2026-11-07 12:16 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -184,7 +184,7 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.87
+    "xp": 4.89
    },
    {
     "club": "ARS",
@@ -212,7 +212,7 @@
     "id": 8,
     "name": "Calafiori",
     "pos": "DEF",
-    "xp": 3.97
+    "xp": 4.0
    },
    {
     "club": "BOU",
@@ -261,14 +261,14 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.3
+    "xp": 4.01
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.22
+    "xp": 3.23
    },
    {
     "club": "AVL",
