@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 2.83,
+        "bench_ep": 2.88,
         "starter": "Manzambi",
         "starter_ep": 2.7
       }
@@ -132,7 +132,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.37,
+        "ep_next": 4.42,
         "status": "ok"
       },
       {
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.51,
+        "ep_next": 3.54,
         "status": "ok"
       },
       {
@@ -200,7 +200,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.42,
+        "ep_next": 3.47,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 2.83,
+        "ep_next": 2.88,
         "status": "ok"
       },
       {
