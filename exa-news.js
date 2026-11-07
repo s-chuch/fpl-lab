@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-07T12:39:49Z",
+ "generated_at": "2026-11-07T19:15:16Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-07T12:39:49Z",
+ "last_attempt": "2026-11-07T19:15:16Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 160,
-  "cost_usd": 1.12
+  "searches": 170,
+  "cost_usd": 1.19
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -68,7 +68,7 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea’s Alonso identity still to form in a midfield that remains problem area Chelsea The Guardian",
+   "headline": "Chelsea’s Alonso identity still to form in a midfield that remains a problem Chelsea The Guardian",
    "snippet": "The striker João Pedro is out with a thigh injury, the centre-back Maxence Lacroix is hamstrung and there will have to be further adjustment if Caicedo cannot prove his fitness before Chelsea face the league’s bottom…",
    "source_domain": "theguardian.com",
    "published": "2026-11-07",
