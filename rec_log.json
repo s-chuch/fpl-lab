@@ -166,17 +166,17 @@
    453,
    53
   ],
-  "captain": 249,
-  "captain_name": "Barry",
+  "captain": 411,
+  "captain_name": "Haaland",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "50505055640e",
+  "code_sha": "ea864eb11d99",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-07T00:51:19+00:00",
-  "saved_at_et": "2026-11-06 7:51 PM ET",
+  "saved_at": "2026-11-07T01:30:45+00:00",
+  "saved_at_et": "2026-11-06 8:30 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -212,7 +212,7 @@
     "id": 229,
     "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 3.85
+    "xp": 3.86
    },
    {
     "club": "ARS",
@@ -236,18 +236,18 @@
     "xp": 3.98
    },
    {
-    "club": "EVE",
-    "id": 249,
-    "name": "Barry",
-    "pos": "FWD",
-    "xp": 5.6
-   },
-   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
     "xp": 5.49
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.4
    },
    {
     "club": "AVL",
@@ -311,11 +311,11 @@
    8,
    68,
    124,
-   249,
    411,
+   249,
    166
   ],
-  "xp": 52.2
+  "xp": 51.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
