@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-07T15:17:22.980803+00:00",
+    "fetched_at": "2026-11-07T15:56:59.958775+00:00",
     "target_gw": 11,
     "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
@@ -255,13 +255,7 @@
           "opponent": "Coventry",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Spurs"
-          }
-        ]
+        "between": []
       },
       "BRE": {
         "rest_days": 15,
@@ -309,13 +303,7 @@
           "opponent": "Sunderland",
           "days_after": 8
         },
-        "between": [
-          {
-            "date": "2026-11-07",
-            "competition": "Premier League",
-            "opponent": "Leeds"
-          }
-        ]
+        "between": []
       },
       "BHA": {
         "rest_days": 14,
