@@ -271,8 +271,8 @@ window.FPL_WILDCARD_WATCH = {
       "Palmer": 9.8,
       "N.Jackson": 6.9,
       "Tavernier": 6.5,
-      "Silva": 5.1,
-      "Manzambi": 6.2
+      "Manzambi": 6.2,
+      "Silva": 5.1
     },
     "total_delta": 2.3,
     "players": [

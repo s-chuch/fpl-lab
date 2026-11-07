@@ -261,9 +261,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     "entry_prices": {
       "Hill": 5.5,
+      "Evanilson": 6.5,
       "Vuskovic": 5.2,
-      "Van Hecke": 5.0,
-      "Evanilson": 6.5
+      "Van Hecke": 5.0
     },
     "total_delta": 3.4,
     "players": [
