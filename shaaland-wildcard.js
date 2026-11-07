@@ -200,7 +200,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.01,
+        "ep_next": 4.0,
         "status": "ok"
       },
       {

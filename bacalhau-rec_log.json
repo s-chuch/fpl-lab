@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "b015b75d0a71",
+  "code_sha": "f19f2fca0706",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-07T22:32:04+00:00",
-  "saved_at_et": "2026-11-07 5:32 PM ET",
+  "saved_at": "2026-11-07T23:11:37+00:00",
+  "saved_at_et": "2026-11-07 6:11 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -261,7 +261,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.01
+    "xp": 4.0
    },
    {
     "club": "BRE",
