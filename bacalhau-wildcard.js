@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "HUL (H)"
+      "fixture": "NEW (A)"
     },
     {
       "pos": "DEF",
-      "name": "Hall",
-      "club": "NEW",
-      "fixture": "FUL (A)"
+      "name": "Vuskovic",
+      "club": "BHA",
+      "fixture": "HUL (A)"
     },
     {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "COV (H)",
+      "fixture": "BRE (A)",
       "vice": true
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "BRE (H)"
+      "fixture": "HUL (A)"
     },
     {
       "pos": "DEF",
-      "name": "Bogle",
-      "club": "LEE",
-      "fixture": "TOT (H)"
+      "name": "Van Hecke",
+      "club": "TOT",
+      "fixture": "IPS (H)",
+      "captain": true
     },
     {
       "pos": "DEF",
       "name": "Hill",
       "club": "BOU",
-      "fixture": "IPS (A)"
+      "fixture": "NFO (H)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "BRE (H)"
+      "fixture": "HUL (A)"
     },
     {
       "pos": "MID",
       "name": "Dewsbury-Hall",
       "club": "EVE",
-      "fixture": "COV (H)"
+      "fixture": "BRE (A)"
     },
     {
       "pos": "MID",
       "name": "Tavernier",
       "club": "BOU",
-      "fixture": "IPS (A)"
-    },
-    {
-      "pos": "MID",
-      "name": "Belloumi",
-      "club": "HUL",
-      "fixture": "ARS (A)"
+      "fixture": "NFO (H)"
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "NFO (A)",
-      "captain": true
+      "fixture": "FUL (H)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Evanilson",
+      "club": "BOU",
+      "fixture": "NFO (H)"
     }
   ],
   "bench": [
@@ -85,37 +85,37 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "ARS (A)"
+      "fixture": "BHA (H)"
     },
     {
-      "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "BRE (H)"
+      "pos": "MID",
+      "name": "Belloumi",
+      "club": "HUL",
+      "fixture": "BHA (H)"
     },
     {
       "pos": "MID",
       "name": "Schade",
       "club": "BRE",
-      "fixture": "BHA (A)"
+      "fixture": "EVE (H)"
     },
     {
       "pos": "FWD",
       "name": "Walle Egeli",
       "club": "IPS",
-      "fixture": "BOU (H)"
+      "fixture": "TOT (A)"
     }
   ],
-  "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
+  "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 6.09,
+    "captain_ep": 5.49,
     "vice": "De Cuyper",
-    "vice_ep": 5.6,
+    "vice_ep": 5.26,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
-      "Kostoulas",
+      "Belloumi",
       "Schade",
       "Walle Egeli"
     ],
@@ -125,67 +125,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.96,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
-        "name": "Hall",
-        "pos": "DEF",
-        "ep_next": 3.74,
-        "status": "ok"
-      },
-      {
-        "name": "Tarkowski",
-        "pos": "DEF",
-        "ep_next": 4.35,
-        "status": "ok"
-      },
-      {
-        "name": "De Cuyper",
-        "pos": "DEF",
-        "ep_next": 5.6,
-        "status": "ok"
-      },
-      {
-        "name": "Bogle",
-        "pos": "DEF",
-        "ep_next": 4.42,
-        "status": "ok"
-      },
-      {
-        "name": "Hill",
+        "name": "Vuskovic",
         "pos": "DEF",
         "ep_next": 5.08,
         "status": "ok"
       },
       {
+        "name": "Tarkowski",
+        "pos": "DEF",
+        "ep_next": 3.85,
+        "status": "ok"
+      },
+      {
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "ep_next": 5.26,
+        "status": "ok"
+      },
+      {
+        "name": "Van Hecke",
+        "pos": "DEF",
+        "ep_next": 5.22,
+        "status": "ok"
+      },
+      {
+        "name": "Hill",
+        "pos": "DEF",
+        "ep_next": 4.6,
+        "status": "ok"
+      },
+      {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 3.95,
+        "ep_next": 3.98,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.12,
+        "ep_next": 4.17,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.17,
-        "status": "ok"
-      },
-      {
-        "name": "Belloumi",
-        "pos": "MID",
-        "ep_next": 3.43,
+        "ep_next": 4.78,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 6.09,
+        "ep_next": 5.49,
+        "status": "ok"
+      },
+      {
+        "name": "Evanilson",
+        "pos": "FWD",
+        "ep_next": 4.36,
         "status": "ok"
       }
     ],
@@ -193,19 +193,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.61,
+        "ep_next": 3.42,
         "status": "ok"
       },
       {
-        "name": "Kostoulas",
-        "pos": "FWD",
-        "ep_next": 3.15,
+        "name": "Belloumi",
+        "pos": "MID",
+        "ep_next": 3.2,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.57,
+        "ep_next": 2.59,
         "status": "ok"
       },
       {
@@ -240,34 +240,46 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-06",
-      "total_cost": 95.2,
+      "total_cost": 96.0,
       "prices": {
         "Raya": 6.2,
-        "Hall": 5.3,
+        "Vuskovic": 5.2,
         "Tarkowski": 6.2,
         "De Cuyper": 5.4,
-        "Bogle": 4.8,
+        "Van Hecke": 5.0,
         "Hill": 5.6,
-        "Groß": 6.2,
+        "Groß": 6.3,
         "Dewsbury-Hall": 6.6,
         "Tavernier": 6.6,
-        "Belloumi": 5.3,
         "Haaland": 15.8,
+        "Evanilson": 6.5,
         "Tzolakis": 4.7,
-        "Kostoulas": 5.8,
-        "Schade": 6.2,
+        "Belloumi": 5.3,
+        "Schade": 6.1,
         "Walle Egeli": 4.5
       }
     },
     "entry_prices": {
-      "Hill": 5.5
+      "Hill": 5.5,
+      "Vuskovic": 5.2,
+      "Van Hecke": 5.0,
+      "Evanilson": 6.5
     },
-    "total_delta": 2.6,
+    "total_delta": 3.4,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
         "current_cost": 5.4,
+        "delta": 0.5,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Groß",
+        "baseline_cost": 5.8,
+        "current_cost": 6.3,
         "delta": 0.5,
         "entry_cost": null,
         "delta_since_added": null,
@@ -283,27 +295,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Groß",
-        "baseline_cost": 5.8,
-        "current_cost": 6.2,
-        "delta": 0.4,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Belloumi",
         "baseline_cost": 5.1,
         "current_cost": 5.3,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Bogle",
-        "baseline_cost": 4.6,
-        "current_cost": 4.8,
         "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
@@ -319,34 +313,7 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.8,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Hall",
-        "baseline_cost": 5.2,
-        "current_cost": 5.3,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.2,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Schade",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
         "delta": 0.1,
@@ -382,6 +349,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Schade",
+        "baseline_cost": 6.1,
+        "current_cost": 6.1,
+        "delta": 0.0,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Walle Egeli",
         "baseline_cost": 4.5,
         "current_cost": 4.5,
@@ -391,8 +367,35 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Bogle",
+        "baseline_cost": 4.6,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "Evanilson",
+        "baseline_cost": null,
+        "current_cost": 6.5,
+        "delta": null,
+        "entry_cost": 6.5,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
         "name": "Gvardiol",
         "baseline_cost": 5.7,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "Hall",
+        "baseline_cost": 5.2,
         "current_cost": null,
         "delta": null,
         "entry_cost": null,
@@ -407,14 +410,36 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": 5.5,
         "delta_since_added": 0.1,
         "status": "added"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "Van Hecke",
+        "baseline_cost": null,
+        "current_cost": 5.0,
+        "delta": null,
+        "entry_cost": 5.0,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
+        "name": "Vuskovic",
+        "baseline_cost": null,
+        "current_cost": 5.2,
+        "delta": null,
+        "entry_cost": 5.2,
+        "delta_since_added": 0.0,
+        "status": "added"
       }
     ],
     "log": [
-      {
-        "date": "2026-09-20",
-        "event": "captured",
-        "detail": "Initial target squad captured — 15 players, £92.6m."
-      },
       {
         "date": "2026-09-21",
         "event": "price_change",
@@ -666,8 +691,60 @@ window.FPL_WILDCARD_WATCH = {
         "from": 5.5,
         "to": 5.6,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-06",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 6.2,
+        "to": 6.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-06",
+        "event": "price_change",
+        "player": "Schade",
+        "from": 6.2,
+        "to": 6.1,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-06",
+        "event": "removed",
+        "player": "Bogle",
+        "price_at_change": 4.8
+      },
+      {
+        "date": "2026-11-06",
+        "event": "removed",
+        "player": "Hall",
+        "price_at_change": 5.3
+      },
+      {
+        "date": "2026-11-06",
+        "event": "removed",
+        "player": "Kostoulas",
+        "price_at_change": 5.8
+      },
+      {
+        "date": "2026-11-06",
+        "event": "added",
+        "player": "Evanilson",
+        "price_at_change": 6.5
+      },
+      {
+        "date": "2026-11-06",
+        "event": "added",
+        "player": "Van Hecke",
+        "price_at_change": 5.0
+      },
+      {
+        "date": "2026-11-06",
+        "event": "added",
+        "player": "Vuskovic",
+        "price_at_change": 5.2
       }
     ]
   },
-  "squad_gw": 9
+  "squad_gw": 10
 };

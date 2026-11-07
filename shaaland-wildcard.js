@@ -13,224 +13,212 @@ window.FPL_WILDCARD_WATCH = {
   "xi": [
     {
       "pos": "GKP",
-      "name": "Tzolakis",
-      "club": "HUL",
-      "fixture": "ARS (A)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Hall",
-      "club": "NEW",
-      "fixture": "FUL (A)"
+      "name": "Raya",
+      "club": "ARS",
+      "fixture": "NEW (A)"
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "BRE (H)"
+      "fixture": "HUL (A)"
     },
     {
       "pos": "DEF",
       "name": "Tarkowski",
       "club": "EVE",
-      "fixture": "COV (H)"
+      "fixture": "BRE (A)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Calafiori",
+      "club": "ARS",
+      "fixture": "NEW (A)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Silva",
+      "club": "BOU",
+      "fixture": "NFO (H)"
     },
     {
       "pos": "MID",
-      "name": "Barnes",
-      "club": "NEW",
-      "fixture": "FUL (A)"
+      "name": "Manzambi",
+      "club": "AVL",
+      "fixture": "SUN (H)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "BRE (H)"
+      "fixture": "HUL (A)"
     },
     {
       "pos": "MID",
       "name": "Palmer",
       "club": "CHE",
-      "fixture": "SUN (A)",
-      "vice": true
+      "fixture": "LEE (H)"
     },
     {
       "pos": "MID",
       "name": "Tavernier",
       "club": "BOU",
-      "fixture": "IPS (A)"
+      "fixture": "NFO (H)",
+      "vice": true
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "NFO (A)",
+      "fixture": "FUL (H)",
       "captain": true
     },
     {
       "pos": "FWD",
       "name": "N.Jackson",
       "club": "AVL",
-      "fixture": "MUN (A)"
-    },
-    {
-      "pos": "FWD",
-      "name": "Kostoulas",
-      "club": "BHA",
-      "fixture": "BRE (H)"
+      "fixture": "SUN (H)"
     }
   ],
   "bench": [
     {
       "pos": "GKP",
-      "name": "Raya",
-      "club": "ARS",
-      "fixture": "HUL (H)"
+      "name": "Tzolakis",
+      "club": "HUL",
+      "fixture": "BHA (H)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Kostoulas",
+      "club": "BHA",
+      "fixture": "HUL (A)"
     },
     {
       "pos": "MID",
-      "name": "King",
-      "club": "FUL",
-      "fixture": "NEW (H)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Calafiori",
-      "club": "ARS",
-      "fixture": "HUL (H)"
+      "name": "Barnes",
+      "club": "NEW",
+      "fixture": "ARS (H)"
     },
     {
       "pos": "DEF",
       "name": "Davis",
       "club": "IPS",
-      "fixture": "BOU (H)"
+      "fixture": "TOT (A)"
     }
   ],
-  "note": "Confirmed GW9 squad — the GW9 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
+  "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 6.09,
+    "captain_ep": 5.49,
     "vice": "De Cuyper",
-    "vice_ep": 5.6,
+    "vice_ep": 5.26,
     "bench_swaps": [
       {
-        "bench": "Raya",
-        "bench_ep": 4.96,
-        "starter": "Tzolakis",
-        "starter_ep": 3.61
-      },
-      {
-        "bench": "Calafiori",
-        "bench_ep": 4.32,
-        "starter": "Hall",
-        "starter_ep": 3.74
-      },
-      {
-        "bench": "King",
-        "bench_ep": 3.27,
-        "starter": "Barnes",
-        "starter_ep": 3.24
+        "bench": "Barnes",
+        "bench_ep": 2.83,
+        "starter": "Manzambi",
+        "starter_ep": 2.7
       }
     ],
     "bench_order": [
-      "Raya",
-      "Calafiori",
-      "King",
+      "Tzolakis",
+      "Kostoulas",
+      "Barnes",
       "Davis"
     ],
-    "bench_order_changed": true,
+    "bench_order_changed": false,
     "availability_flags": [],
     "xi_ep": [
       {
-        "name": "Tzolakis",
+        "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.61,
-        "status": "ok"
-      },
-      {
-        "name": "Hall",
-        "pos": "DEF",
-        "ep_next": 3.74,
+        "ep_next": 4.37,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.6,
+        "ep_next": 5.26,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 4.35,
-        "status": "ok"
-      },
-      {
-        "name": "Barnes",
-        "pos": "MID",
-        "ep_next": 3.24,
-        "status": "ok"
-      },
-      {
-        "name": "Groß",
-        "pos": "MID",
-        "ep_next": 3.95,
-        "status": "ok"
-      },
-      {
-        "name": "Palmer",
-        "pos": "MID",
-        "ep_next": 3.81,
-        "status": "ok"
-      },
-      {
-        "name": "Tavernier",
-        "pos": "MID",
-        "ep_next": 5.17,
-        "status": "ok"
-      },
-      {
-        "name": "Haaland",
-        "pos": "FWD",
-        "ep_next": 6.09,
-        "status": "ok"
-      },
-      {
-        "name": "N.Jackson",
-        "pos": "FWD",
-        "ep_next": 4.43,
-        "status": "ok"
-      },
-      {
-        "name": "Kostoulas",
-        "pos": "FWD",
-        "ep_next": 3.15,
-        "status": "ok"
-      }
-    ],
-    "bench_ep": [
-      {
-        "name": "Raya",
-        "pos": "GKP",
-        "ep_next": 4.96,
-        "status": "ok"
-      },
-      {
-        "name": "King",
-        "pos": "MID",
-        "ep_next": 3.27,
+        "ep_next": 3.85,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 4.32,
+        "ep_next": 3.51,
+        "status": "ok"
+      },
+      {
+        "name": "Silva",
+        "pos": "DEF",
+        "ep_next": 4.73,
+        "status": "ok"
+      },
+      {
+        "name": "Manzambi",
+        "pos": "MID",
+        "ep_next": 2.7,
+        "status": "ok"
+      },
+      {
+        "name": "Groß",
+        "pos": "MID",
+        "ep_next": 3.98,
+        "status": "ok"
+      },
+      {
+        "name": "Palmer",
+        "pos": "MID",
+        "ep_next": 3.44,
+        "status": "ok"
+      },
+      {
+        "name": "Tavernier",
+        "pos": "MID",
+        "ep_next": 4.78,
+        "status": "ok"
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "ep_next": 5.49,
+        "status": "ok"
+      },
+      {
+        "name": "N.Jackson",
+        "pos": "FWD",
+        "ep_next": 3.84,
+        "status": "ok"
+      }
+    ],
+    "bench_ep": [
+      {
+        "name": "Tzolakis",
+        "pos": "GKP",
+        "ep_next": 3.42,
+        "status": "ok"
+      },
+      {
+        "name": "Kostoulas",
+        "pos": "FWD",
+        "ep_next": 3.05,
+        "status": "ok"
+      },
+      {
+        "name": "Barnes",
+        "pos": "MID",
+        "ep_next": 2.83,
         "status": "ok"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.84,
+        "ep_next": 2.63,
         "status": "ok"
       }
     ]
@@ -259,22 +247,22 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-06",
-      "total_cost": 100.5,
+      "total_cost": 101.1,
       "prices": {
-        "Tzolakis": 4.7,
-        "Hall": 5.3,
+        "Raya": 6.2,
         "De Cuyper": 5.4,
         "Tarkowski": 6.2,
-        "Barnes": 6.1,
-        "Groß": 6.2,
+        "Calafiori": 5.9,
+        "Silva": 5.1,
+        "Manzambi": 6.2,
+        "Groß": 6.3,
         "Palmer": 9.8,
         "Tavernier": 6.6,
         "Haaland": 15.8,
         "N.Jackson": 7.0,
+        "Tzolakis": 4.7,
         "Kostoulas": 5.8,
-        "Raya": 6.2,
-        "King": 5.5,
-        "Calafiori": 5.9,
+        "Barnes": 6.1,
         "Davis": 4.0
       }
     },
@@ -282,9 +270,11 @@ window.FPL_WILDCARD_WATCH = {
       "Davis": 4.0,
       "Palmer": 9.8,
       "N.Jackson": 6.9,
-      "Tavernier": 6.5
+      "Tavernier": 6.5,
+      "Silva": 5.1,
+      "Manzambi": 6.2
     },
-    "total_delta": 1.7,
+    "total_delta": 2.3,
     "players": [
       {
         "name": "De Cuyper",
@@ -298,8 +288,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "baseline_cost": 5.8,
-        "current_cost": 6.2,
-        "delta": 0.4,
+        "current_cost": 6.3,
+        "delta": 0.5,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -326,15 +316,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 5.9,
-        "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Hall",
-        "baseline_cost": 5.2,
-        "current_cost": 5.3,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -368,15 +349,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "King",
-        "baseline_cost": 5.5,
-        "current_cost": 5.5,
-        "delta": 0.0,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Cherki",
         "baseline_cost": 7.8,
         "current_cost": null,
@@ -395,8 +367,26 @@ window.FPL_WILDCARD_WATCH = {
         "status": "added"
       },
       {
+        "name": "Hall",
+        "baseline_cost": 5.2,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
         "name": "Isak",
         "baseline_cost": 9.1,
+        "current_cost": null,
+        "delta": null,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
+      },
+      {
+        "name": "King",
+        "baseline_cost": 5.5,
         "current_cost": null,
         "delta": null,
         "entry_cost": null,
@@ -420,6 +410,15 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": null,
         "delta_since_added": null,
         "status": "removed"
+      },
+      {
+        "name": "Manzambi",
+        "baseline_cost": null,
+        "current_cost": 6.2,
+        "delta": null,
+        "entry_cost": 6.2,
+        "delta_since_added": 0.0,
+        "status": "added"
       },
       {
         "name": "N.Jackson",
@@ -449,6 +448,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "removed"
       },
       {
+        "name": "Silva",
+        "baseline_cost": null,
+        "current_cost": 5.1,
+        "delta": null,
+        "entry_cost": 5.1,
+        "delta_since_added": 0.0,
+        "status": "added"
+      },
+      {
         "name": "Tavernier",
         "baseline_cost": null,
         "current_cost": 6.6,
@@ -468,44 +476,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-09-27",
-        "event": "added",
-        "player": "Barry",
-        "price_at_change": 5.6
-      },
-      {
-        "date": "2026-09-27",
-        "event": "price_change",
-        "player": "Barry",
-        "from": 5.6,
-        "to": 5.7,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-09-30",
-        "event": "price_change",
-        "player": "Tarkowski",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-03",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 5.8,
-        "to": 5.9,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-05",
-        "event": "price_change",
-        "player": "Calafiori",
-        "from": 5.8,
-        "to": 5.9,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-06",
         "event": "price_change",
@@ -757,8 +727,40 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.5,
         "to": 6.6,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-06",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 6.2,
+        "to": 6.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-06",
+        "event": "removed",
+        "player": "Hall",
+        "price_at_change": 5.3
+      },
+      {
+        "date": "2026-11-06",
+        "event": "removed",
+        "player": "King",
+        "price_at_change": 5.5
+      },
+      {
+        "date": "2026-11-06",
+        "event": "added",
+        "player": "Manzambi",
+        "price_at_change": 6.2
+      },
+      {
+        "date": "2026-11-06",
+        "event": "added",
+        "player": "Silva",
+        "price_at_change": 5.1
       }
     ]
   },
-  "squad_gw": 9
+  "squad_gw": 10
 };

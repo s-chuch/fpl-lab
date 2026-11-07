@@ -1,429 +1,537 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-06T15:46:14.842230+00:00",
-    "target_gw": 10,
-    "anchor": "2026-11-06T18:30:00+00:00",
+    "fetched_at": "2026-11-07T00:00:18.244037+00:00",
+    "target_gw": 11,
+    "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
       "ARS": {
-        "rest_days": 3,
+        "rest_days": 14,
         "last_match": {
-          "date": "2026-11-04",
-          "competition": "Champions League",
-          "opponent": "Slavia Praha",
-          "scheduled": false
-        },
-        "next_match": {
           "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Hull"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Newcastle",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "COV": {
-        "rest_days": 6,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Sunderland",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-06",
-          "competition": "Premier League",
-          "opponent": "Everton"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Crystal Palace",
-          "days_after": 15
-        },
-        "between": []
-      },
-      "HUL": {
-        "rest_days": 7,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Ipswich",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Arsenal"
-        },
-        "following_match": {
-          "date": "2026-11-22",
-          "competition": "Premier League",
-          "opponent": "Brighton",
-          "days_after": 15
-        },
-        "between": []
-      },
-      "MUN": {
-        "rest_days": 5,
-        "last_match": {
-          "date": "2026-11-03",
-          "competition": "Champions League",
-          "opponent": "Roma",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Aston Villa"
-        },
-        "following_match": {
-          "date": "2026-11-22",
-          "competition": "Premier League",
-          "opponent": "Liverpool",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "EVE": {
-        "rest_days": 4,
-        "last_match": {
-          "date": "2026-11-02",
-          "competition": "Premier League",
-          "opponent": "Newcastle",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-06",
-          "competition": "Premier League",
-          "opponent": "Coventry"
-        },
-        "following_match": {
-          "date": "2026-11-23",
-          "competition": "Premier League",
-          "opponent": "Brentford",
-          "days_after": 17
-        },
-        "between": []
-      },
-      "CRY": {
-        "rest_days": 3,
-        "last_match": {
-          "date": "2026-11-05",
-          "competition": "Europa League",
-          "opponent": "Hoffenheim",
-          "scheduled": true
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Liverpool"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Coventry",
-          "days_after": 13
-        },
-        "between": []
-      },
-      "IPS": {
-        "rest_days": 8,
-        "last_match": {
-          "date": "2026-10-31",
           "competition": "Premier League",
           "opponent": "Hull",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Bournemouth"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Spurs",
-          "days_after": 13
-        },
-        "between": []
-      },
-      "SUN": {
-        "rest_days": 3,
-        "last_match": {
-          "date": "2026-11-05",
-          "competition": "Europa League",
-          "opponent": "GNK Dinamo",
           "scheduled": true
         },
         "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Chelsea"
-        },
-        "following_match": {
           "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Aston Villa",
-          "days_after": 13
-        },
-        "between": []
-      },
-      "NFO": {
-        "rest_days": 7,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Brentford",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Man City"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Bournemouth",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "LEE": {
-        "rest_days": 7,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Bournemouth",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Spurs"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Chelsea",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "BRE": {
-        "rest_days": 8,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Nott'm Forest",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Brighton"
-        },
-        "following_match": {
-          "date": "2026-11-23",
-          "competition": "Premier League",
-          "opponent": "Everton",
-          "days_after": 15
-        },
-        "between": []
-      },
-      "TOT": {
-        "rest_days": 7,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Crystal Palace",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Leeds"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Ipswich",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "BHA": {
-        "rest_days": 3,
-        "last_match": {
-          "date": "2026-11-05",
-          "competition": "Conference League",
-          "opponent": "Getafe",
-          "scheduled": true
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Brentford"
-        },
-        "following_match": {
-          "date": "2026-11-22",
-          "competition": "Premier League",
-          "opponent": "Hull",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "AVL": {
-        "rest_days": 5,
-        "last_match": {
-          "date": "2026-11-03",
-          "competition": "Champions League",
-          "opponent": "Barcelona",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Man Utd"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Sunderland",
-          "days_after": 13
-        },
-        "between": []
-      },
-      "MCI": {
-        "rest_days": 3,
-        "last_match": {
-          "date": "2026-11-04",
-          "competition": "Champions League",
-          "opponent": "Leipzig",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Nott'm Forest"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Fulham",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "BOU": {
-        "rest_days": 3,
-        "last_match": {
-          "date": "2026-11-05",
-          "competition": "Europa League",
-          "opponent": "Sparta Praha",
-          "scheduled": true
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Ipswich"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Nott'm Forest",
-          "days_after": 13
-        },
-        "between": []
-      },
-      "NEW": {
-        "rest_days": 5,
-        "last_match": {
-          "date": "2026-11-02",
-          "competition": "Premier League",
-          "opponent": "Everton",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
-          "competition": "Premier League",
-          "opponent": "Fulham"
-        },
-        "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Arsenal",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "LIV": {
-        "rest_days": 4,
-        "last_match": {
-          "date": "2026-11-04",
-          "competition": "Champions League",
-          "opponent": "Fenerbah\u00e7e",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-08",
-          "competition": "Premier League",
-          "opponent": "Crystal Palace"
-        },
-        "following_match": {
-          "date": "2026-11-22",
-          "competition": "Premier League",
-          "opponent": "Man Utd",
-          "days_after": 14
-        },
-        "between": []
-      },
-      "FUL": {
-        "rest_days": 7,
-        "last_match": {
-          "date": "2026-10-31",
-          "competition": "Premier League",
-          "opponent": "Aston Villa",
-          "scheduled": false
-        },
-        "next_match": {
-          "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Newcastle"
         },
         "following_match": {
-          "date": "2026-11-21",
-          "competition": "Premier League",
-          "opponent": "Man City",
-          "days_after": 14
+          "date": "2026-11-24",
+          "competition": "Champions League",
+          "opponent": "B. Dortmund",
+          "days_after": 3
         },
-        "between": []
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Hull"
+          }
+        ]
       },
-      "CHE": {
-        "rest_days": 8,
+      "COV": {
+        "rest_days": 15,
         "last_match": {
-          "date": "2026-10-31",
+          "date": "2026-11-06",
           "competition": "Premier League",
-          "opponent": "Man Utd",
+          "opponent": "Everton",
           "scheduled": false
         },
         "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Crystal Palace"
+        },
+        "following_match": {
+          "date": "2026-11-28",
+          "competition": "Premier League",
+          "opponent": "Leeds",
+          "days_after": 7
+        },
+        "between": []
+      },
+      "HUL": {
+        "rest_days": 15,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Arsenal",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-22",
+          "competition": "Premier League",
+          "opponent": "Brighton"
+        },
+        "following_match": {
+          "date": "2026-11-29",
+          "competition": "Premier League",
+          "opponent": "Crystal Palace",
+          "days_after": 7
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Arsenal"
+          }
+        ]
+      },
+      "MUN": {
+        "rest_days": 14,
+        "last_match": {
           "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Aston Villa",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-22",
+          "competition": "Premier League",
+          "opponent": "Liverpool"
+        },
+        "following_match": {
+          "date": "2026-11-25",
+          "competition": "Champions League",
+          "opponent": "Sporting CP",
+          "days_after": 3
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Aston Villa"
+          }
+        ]
+      },
+      "EVE": {
+        "rest_days": 17,
+        "last_match": {
+          "date": "2026-11-06",
+          "competition": "Premier League",
+          "opponent": "Coventry",
+          "scheduled": false
+        },
+        "next_match": {
+          "date": "2026-11-23",
+          "competition": "Premier League",
+          "opponent": "Brentford"
+        },
+        "following_match": {
+          "date": "2026-11-29",
+          "competition": "Premier League",
+          "opponent": "Liverpool",
+          "days_after": 6
+        },
+        "between": []
+      },
+      "CRY": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Liverpool",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Coventry"
+        },
+        "following_match": {
+          "date": "2026-11-26",
+          "competition": "Europa League",
+          "opponent": "Real Sociedad",
+          "days_after": 5
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Liverpool"
+          }
+        ]
+      },
+      "IPS": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Bournemouth",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Spurs"
+        },
+        "following_match": {
+          "date": "2026-11-28",
+          "competition": "Premier League",
+          "opponent": "Aston Villa",
+          "days_after": 7
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Bournemouth"
+          }
+        ]
+      },
+      "SUN": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Chelsea",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Aston Villa"
+        },
+        "following_match": {
+          "date": "2026-11-26",
+          "competition": "Europa League",
+          "opponent": "Jagiellonia",
+          "days_after": 5
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Chelsea"
+          }
+        ]
+      },
+      "NFO": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Man City",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Bournemouth"
+        },
+        "following_match": {
+          "date": "2026-11-27",
+          "competition": "Premier League",
+          "opponent": "Chelsea",
+          "days_after": 6
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Man City"
+          }
+        ]
+      },
+      "LEE": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Spurs",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Chelsea"
+        },
+        "following_match": {
+          "date": "2026-11-28",
+          "competition": "Premier League",
+          "opponent": "Coventry",
+          "days_after": 7
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Spurs"
+          }
+        ]
+      },
+      "BRE": {
+        "rest_days": 15,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Brighton",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-23",
+          "competition": "Premier League",
+          "opponent": "Everton"
+        },
+        "following_match": {
+          "date": "2026-11-28",
+          "competition": "Premier League",
+          "opponent": "Man Utd",
+          "days_after": 5
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Brighton"
+          }
+        ]
+      },
+      "TOT": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Leeds",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Ipswich"
+        },
+        "following_match": {
+          "date": "2026-11-29",
+          "competition": "Premier League",
+          "opponent": "Sunderland",
+          "days_after": 8
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Leeds"
+          }
+        ]
+      },
+      "BHA": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Brentford",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-22",
+          "competition": "Premier League",
+          "opponent": "Hull"
+        },
+        "following_match": {
+          "date": "2026-11-26",
+          "competition": "Conference League",
+          "opponent": "U. Craiova",
+          "days_after": 4
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Brentford"
+          }
+        ]
+      },
+      "AVL": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Man Utd",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Sunderland"
         },
         "following_match": {
+          "date": "2026-11-24",
+          "competition": "Champions League",
+          "opponent": "Galatasaray",
+          "days_after": 3
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Man Utd"
+          }
+        ]
+      },
+      "MCI": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Nott'm Forest",
+          "scheduled": true
+        },
+        "next_match": {
           "date": "2026-11-21",
           "competition": "Premier League",
-          "opponent": "Leeds",
-          "days_after": 13
+          "opponent": "Fulham"
         },
-        "between": []
+        "following_match": {
+          "date": "2026-11-24",
+          "competition": "Champions League",
+          "opponent": "Napoli",
+          "days_after": 3
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Nott'm Forest"
+          }
+        ]
+      },
+      "BOU": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Ipswich",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Nott'm Forest"
+        },
+        "following_match": {
+          "date": "2026-11-26",
+          "competition": "Europa League",
+          "opponent": "Celta",
+          "days_after": 5
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Ipswich"
+          }
+        ]
+      },
+      "NEW": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Fulham",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Arsenal"
+        },
+        "following_match": {
+          "date": "2026-11-29",
+          "competition": "Premier League",
+          "opponent": "Brighton",
+          "days_after": 8
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Fulham"
+          }
+        ]
+      },
+      "LIV": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Crystal Palace",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-22",
+          "competition": "Premier League",
+          "opponent": "Man Utd"
+        },
+        "following_match": {
+          "date": "2026-11-25",
+          "competition": "Champions League",
+          "opponent": "Club Brugge",
+          "days_after": 3
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Crystal Palace"
+          }
+        ]
+      },
+      "FUL": {
+        "rest_days": 14,
+        "last_match": {
+          "date": "2026-11-07",
+          "competition": "Premier League",
+          "opponent": "Newcastle",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Man City"
+        },
+        "following_match": {
+          "date": "2026-11-29",
+          "competition": "Premier League",
+          "opponent": "Bournemouth",
+          "days_after": 8
+        },
+        "between": [
+          {
+            "date": "2026-11-07",
+            "competition": "Premier League",
+            "opponent": "Newcastle"
+          }
+        ]
+      },
+      "CHE": {
+        "rest_days": 13,
+        "last_match": {
+          "date": "2026-11-08",
+          "competition": "Premier League",
+          "opponent": "Sunderland",
+          "scheduled": true
+        },
+        "next_match": {
+          "date": "2026-11-21",
+          "competition": "Premier League",
+          "opponent": "Leeds"
+        },
+        "following_match": {
+          "date": "2026-11-27",
+          "competition": "Premier League",
+          "opponent": "Nott'm Forest",
+          "days_after": 6
+        },
+        "between": [
+          {
+            "date": "2026-11-08",
+            "competition": "Premier League",
+            "opponent": "Sunderland"
+          }
+        ]
       }
     }
   }

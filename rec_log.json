@@ -126,7 +126,7 @@
     "xp": 2.65
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Gabriel",
@@ -157,6 +157,165 @@
    166
   ],
   "xp": 62.8
+ },
+ "gw11": {
+  "backfilled": false,
+  "bench": [
+   572,
+   154,
+   453,
+   53
+  ],
+  "captain": 249,
+  "captain_name": "Barry",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "be23d0d70d20",
+  "ft": 1,
+  "gw": 11,
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-11-07T00:00:28+00:00",
+  "saved_at_et": "2026-11-06 7:00 PM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 4.37
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 5.26
+   },
+   {
+    "club": "TOT",
+    "id": 112,
+    "name": "Van Hecke",
+    "pos": "DEF",
+    "xp": 5.2
+   },
+   {
+    "club": "BOU",
+    "id": 566,
+    "name": "Silva",
+    "pos": "DEF",
+    "xp": 4.73
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.85
+   },
+   {
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
+    "pos": "DEF",
+    "xp": 3.51
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 4.78
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 3.98
+   },
+   {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.6
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.49
+   },
+   {
+    "club": "AVL",
+    "id": 166,
+    "name": "N.Jackson",
+    "pos": "FWD",
+    "xp": 3.84
+   },
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.42
+   },
+   {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.44
+   },
+   {
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
+    "pos": "MID",
+    "xp": 2.83
+   },
+   {
+    "club": "AVL",
+    "id": 53,
+    "name": "Manzambi",
+    "pos": "MID",
+    "xp": 2.7
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Kostoulas",
+    "out_id": 138
+   },
+   {
+    "in": "Van Hecke",
+    "in_id": 112,
+    "out": "Davis",
+    "out_id": 305
+   }
+  ],
+  "vice": 115,
+  "vice_name": "De Cuyper",
+  "xi": [
+   1,
+   115,
+   112,
+   566,
+   229,
+   8,
+   68,
+   124,
+   249,
+   411,
+   166
+  ],
+  "xp": 52.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

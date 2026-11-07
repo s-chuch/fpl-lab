@@ -18,6 +18,12 @@
    "name": "Verbruggen",
    "side": "over"
   },
+  "114": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Boscagli",
+   "side": "over"
+  },
   "115": {
    "back_gw": null,
    "flag_gw": 5,
@@ -226,6 +232,12 @@
    "back_gw": null,
    "flag_gw": 4,
    "name": "E.Le F\u00e9e",
+   "side": "under"
+  },
+  "566": {
+   "back_gw": null,
+   "flag_gw": 4,
+   "name": "Silva",
    "side": "under"
   },
   "569": {
