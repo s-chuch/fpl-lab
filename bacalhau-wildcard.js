@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Van Hecke",
-    "captain_ep": 5.8,
+    "captain_ep": 5.49,
     "vice": "Haaland",
     "vice_ep": 5.49,
     "bench_swaps": [],
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.8,
+        "ep_next": 5.49,
         "status": "ok"
       },
       {
