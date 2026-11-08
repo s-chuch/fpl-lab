@@ -162,21 +162,21 @@
   "backfilled": false,
   "bench": [
    572,
+   229,
    94,
-   286,
-   321
+   286
   ],
-  "captain": 4,
-  "captain_name": "Gabriel",
+  "captain": 115,
+  "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "7c6c74e45cf1",
+  "code_sha": "0ba2e622c8ce",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-08T14:55:49+00:00",
-  "saved_at_et": "2026-11-08 9:55 AM ET",
+  "saved_at": "2026-11-08T15:35:49+00:00",
+  "saved_at_et": "2026-11-08 10:35 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -187,11 +187,18 @@
     "xp": 4.89
    },
    {
-    "club": "ARS",
-    "id": 4,
-    "name": "Gabriel",
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 6.0
+    "xp": 5.98
+   },
+   {
+    "club": "BHA",
+    "id": 504,
+    "name": "Vuskovic",
+    "pos": "DEF",
+    "xp": 5.83
    },
    {
     "club": "TOT",
@@ -201,39 +208,25 @@
     "xp": 5.49
    },
    {
-    "club": "BHA",
-    "id": 115,
-    "name": "De Cuyper",
-    "pos": "DEF",
-    "xp": 5.4
-   },
-   {
-    "club": "BHA",
-    "id": 504,
-    "name": "Vuskovic",
-    "pos": "DEF",
-    "xp": 5.26
-   },
-   {
     "club": "BOU",
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 4.82
+    "xp": 5.01
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.01
+    "xp": 5.07
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.82
+    "xp": 4.9
    },
    {
     "club": "EVE",
@@ -250,11 +243,18 @@
     "xp": 5.72
    },
    {
+    "club": "EVE",
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.4
+   },
+   {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 5.02
+    "xp": 5.14
    },
    {
     "club": "HUL",
@@ -264,11 +264,18 @@
     "xp": 4.0
    },
    {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.86
+   },
+   {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.64
+    "xp": 2.66
    },
    {
     "club": "HUL",
@@ -276,40 +283,33 @@
     "name": "Belloumi",
     "pos": "MID",
     "xp": 2.26
-   },
-   {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.06
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Gabriel",
-    "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 504,
+  "vice_name": "Vuskovic",
   "xi": [
    1,
-   4,
-   112,
    115,
    504,
+   112,
    60,
    68,
    124,
    236,
    411,
+   249,
    79
   ],
-  "xp": 62.6
+  "xp": 63.5
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

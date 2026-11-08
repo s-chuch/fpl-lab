@@ -108,10 +108,10 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
-    "captain": "Haaland",
-    "captain_ep": 5.72,
-    "vice": "Van Hecke",
-    "vice_ep": 5.49,
+    "captain": "De Cuyper",
+    "captain_ep": 5.98,
+    "vice": "Vuskovic",
+    "vice_ep": 5.83,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -131,7 +131,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Vuskovic",
         "pos": "DEF",
-        "ep_next": 5.26,
+        "ep_next": 5.83,
         "status": "ok"
       },
       {
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.4,
+        "ep_next": 5.98,
         "status": "ok"
       },
       {
@@ -155,13 +155,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.82,
+        "ep_next": 5.01,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.82,
+        "ep_next": 4.9,
         "status": "ok"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.01,
+        "ep_next": 5.07,
         "status": "ok"
       },
       {
@@ -185,7 +185,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "pos": "FWD",
-        "ep_next": 5.02,
+        "ep_next": 5.14,
         "status": "ok"
       }
     ],
@@ -205,7 +205,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.64,
+        "ep_next": 2.66,
         "status": "ok"
       },
       {
