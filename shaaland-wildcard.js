@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "De Cuyper",
-    "captain_ep": 5.97,
+    "captain_ep": 5.98,
     "vice": "Haaland",
     "vice_ep": 5.72,
     "bench_swaps": [
@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.97,
+        "ep_next": 5.98,
         "status": "ok"
       },
       {

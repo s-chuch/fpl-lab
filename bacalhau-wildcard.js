@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "De Cuyper",
-    "captain_ep": 5.97,
+    "captain_ep": 5.98,
     "vice": "Vuskovic",
-    "vice_ep": 5.86,
+    "vice_ep": 5.87,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -131,7 +131,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Vuskovic",
         "pos": "DEF",
-        "ep_next": 5.86,
+        "ep_next": 5.87,
         "status": "ok"
       },
       {
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.97,
+        "ep_next": 5.98,
         "status": "ok"
       },
       {

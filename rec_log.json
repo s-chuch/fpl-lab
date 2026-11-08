@@ -166,17 +166,17 @@
    53,
    305
   ],
-  "captain": 4,
-  "captain_name": "Gabriel",
+  "captain": 115,
+  "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "2175658f07c2",
+  "code_sha": "380d97bd7387",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-08T19:32:45+00:00",
-  "saved_at_et": "2026-11-08 2:32 PM ET",
+  "saved_at": "2026-11-08T20:12:02+00:00",
+  "saved_at_et": "2026-11-08 3:12 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -198,7 +198,7 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.97
+    "xp": 5.98
    },
    {
     "club": "BOU",
