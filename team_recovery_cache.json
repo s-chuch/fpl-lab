@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-08T16:54:15.981295+00:00",
+    "fetched_at": "2026-11-08T17:33:47.216324+00:00",
     "target_gw": 11,
     "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
@@ -135,13 +135,7 @@
           "opponent": "Real Sociedad",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Liverpool"
-          }
-        ]
+        "between": []
       },
       "IPS": {
         "rest_days": 13,
@@ -162,13 +156,7 @@
           "opponent": "Aston Villa",
           "days_after": 7
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Bournemouth"
-          }
-        ]
+        "between": []
       },
       "SUN": {
         "rest_days": 13,
@@ -189,13 +177,7 @@
           "opponent": "Jagiellonia",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Chelsea"
-          }
-        ]
+        "between": []
       },
       "NFO": {
         "rest_days": 14,
@@ -258,13 +240,7 @@
           "opponent": "Man Utd",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Brighton"
-          }
-        ]
+        "between": []
       },
       "TOT": {
         "rest_days": 14,
@@ -306,13 +282,7 @@
           "opponent": "U. Craiova",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Brentford"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 13,
@@ -381,13 +351,7 @@
           "opponent": "Celta",
           "days_after": 5
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Ipswich"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 14,
@@ -429,13 +393,7 @@
           "opponent": "Club Brugge",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Crystal Palace"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 14,
@@ -477,13 +435,7 @@
           "opponent": "Nott'm Forest",
           "days_after": 6
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Sunderland"
-          }
-        ]
+        "between": []
       }
     }
   }
