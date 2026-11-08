@@ -170,13 +170,13 @@
   "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ab4b4b9d23f9",
+  "code_sha": "9ab527530547",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-08T22:14:26+00:00",
-  "saved_at_et": "2026-11-08 5:14 PM ET",
+  "saved_at": "2026-11-08T22:49:13+00:00",
+  "saved_at_et": "2026-11-08 5:49 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -275,7 +275,7 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 3.03
+    "xp": 3.05
    },
    {
     "club": "IPS",
