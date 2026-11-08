@@ -106,7 +106,10 @@ def check(name, d):
     if gws and total is not None:
         net = sum(g["points"] - (g.get("hits") or 0) for g in gws)
         locked = (d.get("deadline") or {}).get("locked_gw")
-        live = bool(gws and gws[-1].get("gw") == locked and not gws[-1].get("points"))    # the gameweek in play is not in the rows yet
+        last_fin = (d.get("plan") or {}).get("last_finished") or 0
+        # the gameweek in play: FPL's overall total moves live while its history row is missing or lags (it read 18 of 48 points mid-GW10),
+        # so until the gameweek finishes the rows may only fall short of the total, never exceed it
+        live = bool(gws and gws[-1].get("gw") == locked and (not gws[-1].get("points") or int(last_fin) < int(locked or 0)))
         if (net - total > 2) if live else (abs(net - total) > 2):
             problems.append(f"{name}: gameweek points add up to {net} but FPL reports {total} overall")
     # a finished gameweek must have a graded track record
@@ -184,6 +187,27 @@ def check_exa_news():
         print(f"::warning::exa-news.js unreadable ({e}) - the page hides the block until the next refresh")
 
 
+NEWS_MAX_HOURS = 36
+
+
+def check_news_fresh():
+    """news.js is rewritten (generated_at = now) on every successful scrape, so one older than this means the scraper has silently stopped
+    (it did for 11 days when news_scrape.py was left truncated: it exited 0 and printed nothing). Returns a list of problems."""
+    path = ROOT / "news.js"
+    if not path.is_file():
+        return ["news.js is missing: the news scraper has never written it"]
+    try:
+        raw = path.read_text()
+        d = json.loads(raw[raw.index("{"): raw.rindex("}") + 1])
+    except Exception as e:
+        return [f"news.js unreadable ({e})"]
+    age = _age_hours(d.get("generated_at"))
+    if age is None:
+        return ["news.js has no readable generated_at"]
+    print(f"news.js: GW{d.get('gw')}, {round(age, 1)}h old, {d.get('new_articles') if not isinstance(d.get('new_articles'), list) else len(d['new_articles'])} new article(s)")
+    return [f"news.js is {round(age)}h old (limit {NEWS_MAX_HOURS}h): the news scraper has stopped producing output"] if age > NEWS_MAX_HOURS else []
+
+
 def main(argv):
     if argv and argv[0] == "--age-only":
         return check_age_only(argv[1:] or ["data.js", "bacalhau-data.js"])
@@ -194,6 +218,7 @@ def main(argv):
             problems += check(f, load(ROOT / f))
         except Exception as e:
             problems.append(f"{f}: could not be read ({e})")
+    problems += check_news_fresh()
     for p in problems:
         print("::error::" + p)
     check_exa_news()

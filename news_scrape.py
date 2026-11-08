@@ -450,5 +450,125 @@ def main():
         seen_u.add(art["url"])
         uniq.append(art)
     discovered = uniq
-    # Rest of main() continues as before (body fetching, theme building, write)...
-    # (truncated here for the push example; full original logic follows in the real file)
+    print(f"news_scrape.py: {len(discovered)} unique candidate link(s) across all sources before filtering")
+    first_seed = len(seen_set) < 8
+    fetched_bodies = 0
+    new_articles = []
+    drop_seen_stale, drop_junk, drop_cutoff = 0, 0, 0
+    for art in discovered:
+        if not keep_seen(art["url"], gw, cutoff):
+            drop_seen_stale += 1
+            continue
+        url_dt = url_date(art["url"])
+        body_html = art.get("body_html") or ""
+        # A feed's <content:encoded> already gives the full article for free; only
+        # fall back to fetching the rendered page when the feed gave us nothing (or
+        # just a short <description> summary too thin for good mention detection).
+        # Articles inside the window get their full text every run (not only the first time they are seen): the
+        # verdict on each player lives in the body, and the feed alone usually carries just the headline.
+        if len(body_html) < 400 and fetched_bodies < MAX_BODY_FETCHES:
+            fetched_bodies += 1
+            fetched = fetch_html(art["url"])
+            if fetched:
+                body_html = fetched
+                art["title"] = page_title(body_html, art["url"]) or art["title"]
+        if is_junk(art["title"], art["url"]):
+            drop_junk += 1
+            continue
+        pub = art.get("pub_date") or parse_pub_date(body_html, art["url"]) or url_dt
+        if not after_cutoff(pub, cutoff):
+            drop_cutoff += 1
+            continue
+        title = art.get("title") or ""
+        text_blob = article_text(body_html, lower=False) if body_html else ""
+        match_blob = (title + " " + text_blob).strip()
+        if match_blob:
+            match_blob = f"\x02{art['url']}\x03{title}\x02" + match_blob      # carries the article's link and headline with its text
+        if not match_blob and body_html:
+            # last resort: still avoid raw HTML tags by stripping
+            match_blob = re.sub(r"<[^>]+>", " ", body_html)[:8000]
+        if match_blob:
+            blobs[art["source"]] = blobs.get(art["source"], "") + ARTICLE_SEP + match_blob
+        if art["url"] not in seen_set:
+            new_articles.append({"source": art["source"], "title": art["title"], "url": art["url"]})
+            title_blobs[art["source"]] = title_blobs.get(art["source"], "") + ARTICLE_SEP + title
+        seen_set[art["url"]] = None
+    print(f"news_scrape.py: filter funnel — {len(discovered)} candidates, "
+          f"{drop_seen_stale} dropped (already seen / before cutoff by URL date), "
+          f"{drop_junk} dropped (junk title/url), {drop_cutoff} dropped (pub date not after cutoff), "
+          f"{len(new_articles)} new")
+    seen_set = {u: None for u in seen_set if keep_seen(u, gw, cutoff)}
+    # Weight new-article titles heavily by repeating them into the blob
+    for src, tb in title_blobs.items():
+        blobs[src] = blobs.get(src, "") + ARTICLE_SEP + tb + ARTICLE_SEP + tb
+    try:
+        player_index = load_player_index()
+    except Exception as e:
+        print(f"news_scrape.py: could not load player index for theme discovery: {e}")
+        player_index = []
+    agreed, split = build_themes(blobs, gw, player_index, checked=len(by_source)) if player_index else ([], [])
+    def filter_themes_for_gw(items, gw_id, min_sources=1):
+        """Drop carried themes that name a different GW (e.g. GW5 text after roll to 6),
+        or that fall below the current source-count floor — e.g. stale 1-source items
+        carried forward from before build_themes()'s "Emerging" threshold was raised to
+        2+, which would otherwise linger here indefinitely since this path never
+        re-runs build_themes() on them."""
+        out = []
+        for it in items or []:
+            t = str(it.get("text") or "")
+            mentioned = [int(m) for m in re.findall(r"GW(\d+)", t, flags=re.I)]
+            if mentioned and any(m != int(gw_id) for m in mentioned):
+                continue
+            if len(it.get("sources") or []) < min_sources:
+                continue
+            out.append(it)
+        return out
+
+    if not agreed and not split:
+        # Only reuse prior themes within the same planning GW, and only if text
+        # does not still name an older locked GW.
+        if prev.get("gw") == gw:
+            agreed = filter_themes_for_gw(prev.get("agreed") or [], gw, min_sources=3)
+            split = filter_themes_for_gw(prev.get("split") or [], gw, min_sources=2)
+    # Optional language-model read of each theme (needs the ANTHROPIC_API_KEY secret; otherwise the rule-based
+    # verdicts stay). Excerpts are only an input to it and are not shipped to the page.
+    try:
+        import news_llm
+        themed = agreed + split
+        facts = {e["id"]: e for e in player_index}
+        got = news_llm.summarise(themed, (prev.get("agreed") or []) + (prev.get("split") or []), facts)
+        for it in themed:
+            if it.get("id") in got:
+                it["llm"], it["llm_hash"] = got[it["id"]], news_llm.excerpt_hash(it)
+    except Exception as e:
+        print(f"news_scrape.py: language-model step skipped: {e}")
+    for it in agreed + split:
+        it.pop("excerpts", None)
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    if not ok_sources:
+        # Every source failed: any themes here are carried over, not fresh — keep the
+        # old timestamp so the dashboard doesn't present them as just-refreshed.
+        print("news_scrape.py: WARNING — 0 sources fetched successfully; keeping previous generated_at (themes are stale)")
+        generated_at = prev.get("generated_at") or generated_at
+    news = {
+        "gw": gw,
+        "cutoff": cutoff.strftime("%Y-%m-%d %H:%M UTC") if cutoff else None,
+        "generated_at": generated_at,
+        "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
+        "agreed": agreed,
+        "split": split,
+        "links": links,
+        "new_articles": new_articles[:12],
+        "no_new": not new_articles,
+        "sites_checked": len(by_source),
+        "sites_with_articles": len(blobs),
+    }
+    for path, text in ((SEEN_PATH, json.dumps(list(seen_set)[-200:])), (NEWS_PATH, "window.FPL_NEWS = " + json.dumps(news, indent=2) + ";\n")):
+        tmp = path.with_name(path.name + ".tmp")      # atomic: a killed run must not leave a truncated file to be committed
+        tmp.write_text(text)
+        os.replace(tmp, path)
+    print("news.js", "new" if new_articles else "no-new", len(new_articles), "gw", gw, "cutoff", news["cutoff"], "seen", len(seen_set), "agreed", len(agreed), "split", len(split))
+
+
+if __name__ == "__main__":
+    main()
