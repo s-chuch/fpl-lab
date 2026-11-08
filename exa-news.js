@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-08T08:22:17Z",
+ "generated_at": "2026-11-08T14:52:37Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-08T08:22:17Z",
+ "last_attempt": "2026-11-08T14:52:37Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 190,
-  "cost_usd": 1.33
+  "searches": 200,
+  "cost_usd": 1.4
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea’s Alonso identity still to form in a midfield that remains a problem Chelsea The Guardian",
-   "snippet": "The striker João Pedro is out with a thigh injury, the centre-back Maxence Lacroix is hamstrung and there will have to be further adjustment if Caicedo cannot prove his fitness before Chelsea face the league’s bottom…",
-   "source_domain": "theguardian.com",
-   "published": "2026-11-07",
-   "url": "https://www.theguardian.com/football/2026/nov/07/chelsea-xabi-alonso-midfield-problem-area",
+   "headline": "Chelsea FC XI vs Sunderland: Starting lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-starting-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
    "yours": []
   },
   {
@@ -30,7 +30,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
    "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
+   "snippet": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-08",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
@@ -94,11 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea’s Alonso identity still to form in a midfield that remains a problem Chelsea The Guardian",
-   "snippet": "The striker João Pedro is out with a thigh injury, the centre-back Maxence Lacroix is hamstrung and there will have to be further adjustment if Caicedo cannot prove his fitness before Chelsea face the league’s bottom…",
-   "source_domain": "theguardian.com",
-   "published": "2026-11-07",
-   "url": "https://www.theguardian.com/football/2026/nov/07/chelsea-xabi-alonso-midfield-problem-area",
+   "headline": "Chelsea FC XI vs Sunderland: Starting lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-starting-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
    "yours": []
   },
   {
@@ -115,29 +115,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "King",
-   "team": "FUL",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Groin injury - 75% chance of playing",
-   "headline": "Alvaro Arbeloa issues Fulham FC update after Josh King injury worry against Newcastle The Standard",
-   "snippet": "Alvaro Arbeloa issues Fulham FC update after Josh King injury worry against Newcastle The Standard",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-07",
-   "url": "https://www.standard.co.uk/sport/football/fulham-fc-injury-latest-arbeloa-king-b1303986.html",
-   "yours": []
-  },
-  {
    "player": "James",
    "team": "CHE",
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Nine players set to miss Sunderland vs Chelsea as Xabi Alonso gives injury update Football London",
-   "snippet": "There’s no injury, but he was not feeling well yesterday and today had a fever in the morning, so he was not feeling good enough to come with the team.” Reece James and Jamie Gittens remain sidelined for Chelsea and…",
-   "source_domain": "football.london",
-   "published": "2026-11-07",
-   "url": "https://www.football.london/chelsea-fc/news/chelsea-injury-update-sunderland-alonso-34876903",
+   "headline": "Chelsea FC XI vs Sunderland: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
    "yours": []
   },
   {
@@ -146,11 +133,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Nine players set to miss Sunderland vs Chelsea as Xabi Alonso gives injury update Football London",
-   "snippet": "Not not, not yet to be close, so maybe after the international, but it's going to take longer.” Chelsea also face a wait to discover if Emi Martinez will be available, with the goalkeeper returning to training after…",
-   "source_domain": "football.london",
-   "published": "2026-11-07",
-   "url": "https://www.football.london/chelsea-fc/news/chelsea-injury-update-sunderland-alonso-34876903",
+   "headline": "Chelsea FC XI vs Sunderland: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "But Martinez - wearing a protective face mask - was this week involved in Chelsea training at Cobham to raise suggestions of an early return, but he is not included in the squad at all.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
    "yours": []
   }
  ]

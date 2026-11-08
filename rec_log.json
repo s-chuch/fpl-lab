@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "bcdd750093d8",
+  "code_sha": "21690c859497",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-08T14:16:02+00:00",
-  "saved_at_et": "2026-11-08 9:16 AM ET",
+  "saved_at": "2026-11-08T14:52:27+00:00",
+  "saved_at_et": "2026-11-08 9:52 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -198,14 +198,14 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.37
+    "xp": 5.4
    },
    {
     "club": "BOU",
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
-    "xp": 4.88
+    "xp": 5.09
    },
    {
     "club": "ARS",
@@ -219,21 +219,21 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.02
+    "xp": 5.01
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.05
+    "xp": 4.82
    },
    {
     "club": "CHE",
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.44
+    "xp": 3.48
    },
    {
     "club": "MCI",
@@ -282,7 +282,7 @@
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 2.66
+    "xp": 2.69
    }
   ],
   "status": "pending",
@@ -315,7 +315,7 @@
    249,
    166
   ],
-  "xp": 54.6
+  "xp": 55.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

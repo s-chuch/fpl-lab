@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Haaland",
     "captain_ep": 5.72,
     "vice": "De Cuyper",
-    "vice_ep": 5.37,
+    "vice_ep": 5.4,
     "bench_swaps": [
       {
         "bench": "Barnes",
@@ -138,7 +138,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.37,
+        "ep_next": 5.4,
         "status": "ok"
       },
       {
@@ -156,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 4.88,
+        "ep_next": 5.09,
         "status": "ok"
       },
       {
@@ -168,19 +168,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.05,
+        "ep_next": 4.82,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.44,
+        "ep_next": 3.48,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.02,
+        "ep_next": 5.01,
         "status": "ok"
       },
       {
@@ -206,7 +206,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.08,
+        "ep_next": 3.18,
         "status": "ok"
       },
       {
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.66,
+        "ep_next": 2.69,
         "status": "ok"
       }
     ]

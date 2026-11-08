@@ -36,6 +36,12 @@
    "name": "Gro\u00df",
    "side": "over"
   },
+  "127": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Gomez",
+   "side": "over"
+  },
   "13": {
    "back_gw": null,
    "flag_gw": 6,
@@ -258,6 +264,12 @@
    "name": "Tzolakis",
    "side": "over"
   },
+  "579": {
+   "back_gw": null,
+   "flag_gw": 5,
+   "name": "Araujo",
+   "side": "over"
+  },
   "592": {
    "back_gw": null,
    "flag_gw": 7,
@@ -274,6 +286,12 @@
    "back_gw": null,
    "flag_gw": 6,
    "name": "Rayan",
+   "side": "under"
+  },
+  "75": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Christie",
    "side": "under"
   },
   "79": {
