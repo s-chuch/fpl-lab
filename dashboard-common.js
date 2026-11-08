@@ -596,7 +596,7 @@ function imminentCards(D){
   const key=r=>r.name+"|"+r.club;
   const pool={}; (((D.targets||{}).pool||{})["1"]||[]).forEach(r=>{pool[key(r)]=r;});
   const reg={}; (((D.regression||{}).rows)||[]).forEach(r=>{reg[r.name+"|"+r.club]=r;});
-  const sp={}; (((D.set_pieces||{}).rows)||[]).forEach(c=>[["pens","pens"],["fks","free kicks"],["corners","corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t=>{(sp[t.name+"|"+c.club]=sp[t.name+"|"+c.club]||[]).push(l);})));
+  const sp={}; (((D.set_pieces||{}).rows)||[]).forEach(c=>[["pens","pens"],["fks","free kicks"],["corners","corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t=>{if(t.status==="out")return;(sp[t.name+"|"+c.club]=sp[t.name+"|"+c.club]||[]).push(l);})));
   const inj={}; (((D.injury_watch||{}).rows)||[]).forEach(r=>{inj[r.name+"|"+r.club]=r;});
   const sg=n=>(n>0?"+":"")+labNum(n,2);
   const chips=(r,kind)=>{
@@ -865,9 +865,11 @@ function renderNews(){
 }
 function renderSetPieces(){
   const S=D.set_pieces||{rows:[]};
-  const cell=l=>(l||[]).map(p=>`${esc(p.name)}${p.yours?" ★":""}`).join(", ")||"–";
+  // a taker FPL flags (INJ / SUS / DOUBT 50% ...) shows the flag; when he is out his deputy (next in FPL's order) follows
+  const flag=p=>p.label?` <span class="${p.status==="out"?"neg":"mid"}">${esc(p.label)}</span>`:"";
+  const cell=l=>(l||[]).map(p=>`${p.status==="out"?`<s>${esc(p.name)}</s>`:esc(p.name)}${p.yours?" ★":""}${flag(p)}${p.deputy?` → <b>${esc(p.deputy.name)}</b>${p.deputy.yours?" ★":""}${flag(p.deputy)} <span class="note">deputy</span>`:""}`).join(", ")||"–";
   const rows=(S.rows||[]).map(r=>`<tr><td>${esc(r.club)}</td><td>${cell(r.pens)}</td><td>${cell(r.fks)}</td><td>${cell(r.corners)}</td></tr>`).join("");
-  document.getElementById("setPieces").innerHTML=`<div class="card"><h2>Set-piece takers</h2><ul class="note-list"><li>First-choice taker per club from FPL's own order fields (★ = in ${W.Your.toLowerCase()} squad)</li></ul><table class="table-compact"><thead><tr><th style="width:12%">Club</th><th style="width:30%">Penalties</th><th style="width:29%">Free kicks</th><th style="width:29%">Corners</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  document.getElementById("setPieces").innerHTML=`<div class="card"><h2>Set-piece takers</h2><ul class="note-list"><li>First-choice taker per club from FPL's own order fields (★ = in ${W.Your.toLowerCase()} squad); a taker who is out is struck through and the next in FPL's order is shown as his deputy</li></ul><table class="table-compact"><thead><tr><th style="width:12%">Club</th><th style="width:30%">Penalties</th><th style="width:29%">Free kicks</th><th style="width:29%">Corners</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
 // Scouting rows carry the model's xP and the extra signals behind them (ai_run.enrich_with_model).
@@ -1215,7 +1217,7 @@ function labPool(D,h){
   byPos(D.value_board,(p,r)=>{p.vpm=r.value_per_1m; p.pts=r.points;});
   Object.values((D.form_fdr||{}).by_pos||{}).forEach(()=>{});
   const tt=D.transfer_targets||{}; ["xg","defcon"].forEach(k=>(tt[k]||[]).forEach(r=>add(r,(p,r)=>{if(p.xp==null&&h===1) p.xp=r.xp; p.sig=p.sig||r.sig;})));
-  ((D.set_pieces||{}).rows||[]).forEach(c=>{[["pens","Pens"],["fks","FKs"],["corners","Corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t=>{ if(t.yours) return; add({name:t.name,club:c.club,owned_pct:t.owned},(p)=>{p.sp=(p.sp||[]); if(!p.sp.includes(l)) p.sp.push(l);}); }));});
+  ((D.set_pieces||{}).rows||[]).forEach(c=>{[["pens","Pens"],["fks","FKs"],["corners","Corners"]].forEach(([k,l])=>(c[k]||[]).forEach(t0=>{ const t=(t0.status==="out"&&t0.deputy)?t0.deputy:t0; if(t0.status==="out"&&!t0.deputy) return; if(t.yours) return; add({name:t.name,club:c.club,owned_pct:t.owned},(p)=>{p.sp=(p.sp||[]); if(!p.sp.includes(l)) p.sp.push(l);}); }));});
   const order=new Map(T.map((r,i)=>[r.name+"|"+r.club,i]));
   const list=[...M.values()]; list.forEach(p=>{p.ord=order.has(p.name+"|"+p.club)?order.get(p.name+"|"+p.club):999;});
   return list;

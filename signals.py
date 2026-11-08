@@ -563,6 +563,38 @@ def rotation_flag(flagged, el):
 CONGESTION_DAYS = 3  # rest before the next match at or under this = fatigue risk (a Sat->Tue turnaround is 3)
 
 SQUEEZE_DAYS = 3     # next match followed by another within this many days = rotation risk in the first
+SQUEEZE_LONG_BREAK = 7   # last match this many days back or more (international break): the squeeze says nothing about rotation
+SQUEEZE_NAILED = 70      # three recent games all at or above this many minutes = nailed on, no squeeze flag
+START_MINS = 46          # a start on the Rotation tab = 46+ minutes (exactly 45 is a sub-on at half time, not a start)
+
+
+def squeeze_applies(turnaround, rest_days, mins):
+    """A squeeze (the club plays again within SQUEEZE_DAYS after its next match) only means rotation risk for a player
+    who is not nailed on (last three all SQUEEZE_NAILED+) and when the club has just played (rest under a week)."""
+    if turnaround is None or turnaround > SQUEEZE_DAYS:
+        return False
+    if rest_days is not None and rest_days >= SQUEEZE_LONG_BREAK:
+        return False
+    return not (len(mins) >= 3 and all(m >= SQUEEZE_NAILED for m in mins[-3:]))
+
+
+def rotation_gws(boot, allfx, lookback=3):
+    """-> (gameweeks to read, {gw: clubs whose every match there is over}). FPL flips `finished` on a gameweek only after its
+    checks, so a gameweek counts for a club as soon as all of that club's fixtures in it are finished_provisional
+    (same rule as ai_run.model_inputs)."""
+    def done(f):
+        return bool(f.get("finished") or f.get("finished_provisional"))
+    over = {}
+    for e in boot.get("events") or []:
+        gw = e["id"]
+        fx = [f for f in allfx if f.get("event") == gw]
+        clubs = {t for f in fx for t in (f["team_h"], f["team_a"]) if all(done(x) for x in fx if t in (x["team_h"], x["team_a"]))}
+        if e.get("finished") or clubs:
+            over[gw] = clubs if not e.get("finished") else None     # None = settled for every club
+    return sorted(over)[-lookback:], over
+
+def _club_done(over, gw, team):
+    return gw in over and (over[gw] is None or team in over[gw])
 
 COMPETITION_ABBREV = {
     "premier league": "PL", "uefa champions league": "CL", "champions league": "CL",
@@ -574,7 +606,7 @@ COMPETITION_ABBREV = {
 def _comp_abbrev(name):
     return COMPETITION_ABBREV.get((name or "").strip().lower(), name or "?")
 
-def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=45, target_gw=None):
+def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3, start_mins=START_MINS, target_gw=None):
     """Minutes trend over the last few finished GWs for each squad player —
     catches a player sliding out of the XI while it's still happening,
     instead of only after the fact via a bench-audit miss the week it costs
@@ -603,8 +635,12 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
     teams = {t["id"]: t for t in boot["teams"]}
     if not picks_gw:
         return None
-    finished = sorted(e["id"] for e in boot.get("events") or [] if e.get("finished"))
-    recent_gws = finished[-lookback:]
+    try:
+        allfx = get("https://fantasy.premierleague.com/api/fixtures/")
+    except FETCH_ERRORS as e:
+        _warn(f"build_rotation_risk: fixtures unavailable, using finished gameweeks only: {e}")
+        allfx = []
+    recent_gws, over = rotation_gws(boot, allfx, lookback)
     if len(recent_gws) < 2:
         return None  # too early in the season for a trend to mean anything
     try:
@@ -638,7 +674,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         if not el:
             continue
         # capped at 90 (a double gameweek is not a 180-minute "starter"); a gameweek in which no one at the club played is a blank, not a rest
-        mins = [min(90, minutes_by_gw[gw].get(el["id"], 0)) for gw in recent_gws if club_played[gw].get(el["team"])]
+        mins = [min(90, minutes_by_gw[gw].get(el["id"], 0)) for gw in recent_gws if club_played[gw].get(el["team"]) and _club_done(over, gw, el["team"])]
         if len(mins) < 2:
             continue
         first, last = mins[0], mins[-1]
@@ -675,7 +711,7 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
         recovery = (team_recovery or {}).get(club)
         rest_days = recovery.get("rest_days") if recovery else None
 
-        def match_label(m):
+        def match_label(m, when_=True):
             if not m:
                 return None
             comp = _comp_abbrev(m.get("competition"))
@@ -683,13 +719,14 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
                 days_until = (datetime.strptime(m["date"], "%Y-%m-%d").date() - datetime.now(ET).date()).days
             except Exception:
                 days_until = None
-            when = f" in {days_until}d" if days_until is not None and days_until >= 0 else ""
+            when = f" in {days_until}d" if when_ and days_until is not None and days_until >= 0 else ""
             return f"vs {m['opponent']} ({comp}){when}" if m.get("opponent") else f"{comp}{when}"
 
         next_match_label = match_label((recovery or {}).get("next_match"))
         fol = (recovery or {}).get("following_match")
         turnaround = fol.get("days_after") if fol else None
         following_label = match_label(fol)
+        following_plain = match_label(fol, False)
         between_labels = [match_label(m) for m in ((recovery or {}).get("between") or [])]
         # Forward-looking signals, only when nothing more specific explains the row.
         if reason is None and tag == "fringe" and avail["kind"] == "ok":
@@ -699,10 +736,10 @@ def build_rotation_risk(boot, team_id, picks_gw, team_recovery=None, lookback=3,
             reason = "congestion"
             if not rotation_note:
                 rotation_note = (f"{rest_days}d rest before {next_match_label}" if next_match_label else f"Only {rest_days}d rest before its next match") + (f" (after {between_labels[-1]})" if between_labels else "")
-        if reason is None and turnaround is not None and turnaround <= SQUEEZE_DAYS:
+        if reason is None and squeeze_applies(turnaround, rest_days, mins):
             reason = "squeeze"  # plays again soon after the next match: the next one is the likelier rotation game
             if not rotation_note:
-                rotation_note = f"Plays again {turnaround}d after {next_match_label or 'its next match'}: {following_label}"
+                rotation_note = f"{next_match_label or 'Next match'}, then {following_plain or 'another match'} {turnaround}d later"
 
         rows.append({
             "name": el["web_name"], "pos": POS[el["element_type"]], "club": club,
@@ -783,6 +820,19 @@ def build_injury_watch(boot, squad_names=None, top_n=15, squad_ids=None):
     # slice the global table itself.
     return {"top_n": top_n, "rows": rows}
 
+INJURY_MIN_OWNED = 0.5   # % owned: below this a flagged player is kept only when someone you care about holds him
+
+
+def trim_injury_watch(iw, keep_ids=(), min_owned=INJURY_MIN_OWNED):
+    """Shrink the injury list: players who have LEFT the club are dropped, and rows owned by under `min_owned`% are kept only
+    when they are yours, in `keep_ids` (league rivals' squads, players with a news flag, scouting pools) or the whole list
+    would otherwise be hundreds of near-zero-ownership names. Mutates and returns `iw`."""
+    keep = set(keep_ids or ())
+    iw["rows"] = [r for r in iw.get("rows") or []
+                  if r.get("label") != "LEFT" and (r.get("yours") or r.get("id") in keep or (r.get("owned_pct") or 0) >= min_owned)]
+    return iw
+
+
 def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclude=None):
     """Approximate price-change momentum from FPL's own transfer-volume
     fields: transfers_in_event/transfers_out_event (net transfers so far
@@ -842,24 +892,57 @@ def build_price_radar(boot, team_id, picks_gw, top_n=8, extra_names=None, exclud
 
     squad_rows = sorted((row_of(elements[eid]) for eid in squad_ids), key=lambda r: -abs(r["momentum"]))
     all_rows = [row_of(el) for el in elements.values()]
-    movers = [r for r in all_rows if (r["name"], r["club"]) not in (exclude or ())]  # your own players are in `squad`
-    if any(r.get("fpl_pct") is not None for r in movers):      # FPL's own progress towards a change, closest first
-        rising = sorted((r for r in movers if (r.get("fpl_pct") or 0) > 0), key=lambda r: -r["fpl_pct"])[:top_n]
-        falling = sorted((r for r in movers if (r.get("fpl_pct") or 0) < 0), key=lambda r: r["fpl_pct"])[:top_n]
-    else:
-        rising = sorted((r for r in movers if r["net_transfers_today"] > 0), key=lambda r: -r["momentum"])[:top_n]
-        falling = sorted((r for r in movers if r["net_transfers_today"] < 0), key=lambda r: r["momentum"])[:top_n]
+    # (the market-wide `rising` / `falling` lists were built here but no page ever showed them, and `falling` was full of
+    # 0.0%-owned players: they are no longer built. The radar is the decision set only: your squad and `watch`.)
     # `watch` is the actual decision set (wildcard-watch names + the wildcard
     # tab's own top-3 target names) rather than the top-N market movers —
     # every one of those names gets a row here even if its price hasn't
     # moved today, since "not currently rising/falling" is itself useful to
     # see for a player you're specifically weighing, not a reason to hide it.
-    squad_names = {r["name"] for r in squad_rows}
-    watch_names = {n for n in (extra_names or ()) if n not in squad_names}
-    watch = [r for r in all_rows if r["name"] in watch_names]
-    return {"squad": squad_rows, "rising": rising, "falling": falling, "watch": watch}
+    # a name may carry its club ("Name|CLUB") so two players sharing a web_name are not both picked up; a bare name matches any club
+    squad_keys = {(r["name"], r["club"]) for r in squad_rows}
+    wanted = set(extra_names or ())
+    watch = [r for r in all_rows if (r["name"] in wanted or f'{r["name"]}|{r["club"]}' in wanted) and (r["name"], r["club"]) not in squad_keys]
+    return {"squad": squad_rows, "watch": watch}
 
-def build_price_trend(prev_trend, rows, today, max_days=7):
+ETA_TONIGHT = 90    # FPL's own progress towards a change (percent): this or more = projected tonight
+ETA_CLOSE = 60
+
+
+def price_eta(row, streak):
+    """-> (key, direction): where a player stands against FPL's own price-change projection. `fpl_pct` is the progress towards
+    a move (+100 rise, -100 fall; it can read above 100), so 90+ is "tonight" and 60-90 is "close"; the streak of days our own
+    momentum has leaned the same way is only the fallback when FPL gave no figure."""
+    pct = row.get("fpl_pct")
+    if pct is None:
+        try:
+            pct = float(row.get("fpl_likelihood"))
+        except (TypeError, ValueError):
+            pct = None
+    mom = row.get("momentum") or 0
+    mdir = 1 if mom > 0 else (-1 if mom < 0 else 0)
+    if pct is not None:
+        d = 1 if pct > 0 else (-1 if pct < 0 else 0)
+        if abs(pct) >= ETA_TONIGHT:
+            return "tonight", d
+        if abs(pct) >= ETA_CLOSE:
+            return "close", d
+    if streak >= 3:
+        return "soon", mdir
+    return ("trend", mdir) if streak >= 1 else ("flat", 0)
+
+
+def current_event(boot):
+    """The gameweek FPL's per-gameweek counters (transfers_in_event, cost_change_event) belong to."""
+    evs = boot.get("events") or []
+    for key in ("is_current", "is_next"):
+        for e in evs:
+            if e.get(key):
+                return e["id"]
+    return None
+
+
+def build_price_trend(prev_trend, rows, today, max_days=7, event=None):
     """Rough 'how close to a price change' estimate for the decision-set
     players (squad + wildcard-watch) — built from OUR OWN observed momentum
     history across refreshes, not FPL's undisclosed threshold algorithm
@@ -876,6 +959,10 @@ def build_price_trend(prev_trend, rows, today, max_days=7):
         name = f'{r["name"]}|{r["club"]}'     # two players can share a web_name: key on name + club
         prev = prev_trend.get(name) or prev_trend.get(r["name"]) or {}
         history = list(prev.get("history") or [])
+        # transfers_in_event / cost_change_event are per-gameweek counters that restart when the gameweek changes: momentum
+        # read before that is not comparable, so the history (and the streak) starts again
+        if event is not None and prev.get("event") is not None and prev.get("event") != event:
+            history = []
         if history and history[-1].get("date") == today:
             history[-1] = {"date": today, "momentum": r["momentum"]}
         else:
@@ -889,7 +976,8 @@ def build_price_trend(prev_trend, rows, today, max_days=7):
                 streak += 1
             else:
                 break
-        trend[name] = {"history": history, "streak_days": streak, "days_tracked": len(history)}
+        eta, eta_dir = price_eta(r, streak)
+        trend[name] = {"history": history, "streak_days": streak, "days_tracked": len(history), "event": event, "eta": eta, "eta_dir": eta_dir}
     return trend
 
 
@@ -926,19 +1014,40 @@ def build_elite_ownership(boot, gw, top_n=50):
             "names": {i: [els[i]["web_name"], teams[els[i]["team"]], POS[els[i]["element_type"]]] for i in set(keep) | set(cap) if i in els}}
 
 
+SET_PIECE_FIELDS = (("pens", "penalties_order"), ("fks", "direct_freekicks_order"), ("corners", "corners_and_indirect_freekicks_order"))
+
+
 def build_set_pieces(boot, mine=None):
-    """First-choice penalty, direct free-kick and corner takers per club, from FPL's own taker-order fields."""
+    """First-choice penalty, direct free-kick and corner takers per club, from FPL's own taker-order fields. Each taker
+    carries his availability (`status` out / doubt and `label`, as on the Injury tab; nothing when fit); when the first
+    choice is out (injured, suspended, left) the next taker in FPL's order who is not out follows as `deputy`."""
     teams = {t["id"]: t["short_name"] for t in boot["teams"]}
     mine = set(mine or ())
     out = {tid: {"club": teams[tid], "pens": [], "fks": [], "corners": []} for tid in teams}
+    avail = {el["id"]: player_availability(el) for el in boot["elements"]}
+    by_team = {}
     for el in boot["elements"]:
-        rec = out[el["team"]]
-        item = {"name": el["web_name"], "yours": el["id"] in mine, "owned": float(el.get("selected_by_percent") or 0)}
-        if el.get("penalties_order") == 1:
-            rec["pens"].append(item)
-        if el.get("direct_freekicks_order") == 1:
-            rec["fks"].append(item)
-        if el.get("corners_and_indirect_freekicks_order") == 1:
-            rec["corners"].append(item)
+        by_team.setdefault(el["team"], []).append(el)
+
+    def item(el):
+        a = avail[el["id"]]
+        d = {"name": el["web_name"], "yours": el["id"] in mine, "owned": float(el.get("selected_by_percent") or 0)}
+        if a["kind"] != "ok":
+            d["status"], d["label"] = a["kind"], a["label"]
+        return d
+
+    for el in boot["elements"]:
+        for key, field in SET_PIECE_FIELDS:
+            if el.get(field) == 1:
+                out[el["team"]][key].append(item(el))
+    for tid, rec in out.items():
+        for key, field in SET_PIECE_FIELDS:
+            for first in rec[key]:
+                if first.get("status") != "out":
+                    continue
+                nxt = sorted((e for e in by_team.get(tid, []) if (e.get(field) or 0) > 1 and avail[e["id"]]["kind"] != "out"),
+                             key=lambda e: e[field])
+                if nxt:
+                    first["deputy"] = item(nxt[0])
     rows = sorted(out.values(), key=lambda r: r["club"])
     return {"rows": rows}

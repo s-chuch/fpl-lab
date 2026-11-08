@@ -1472,6 +1472,12 @@ def main(team_id=TEAM_ID, out_path=None):
     data["set_pieces"] = section("set_pieces", build_set_pieces, boot, my_ids, fallback={"rows": []})
     data["news_players"] = section("news_players", build_news_players, boot, ds, teams_by_id, inputs, fpl_common.load_js_object(ROOT / "news.js"),
                                    [x["name"] for x in (tac.get("they_share") or [])], my_ids, fallback={})
+    # Injury list: drop players who left and the near-zero-ownership rows, except anyone yours, held by a rival in any of the
+    # leagues, or in the news (the league table above was built from the full list first).
+    _keep = {int(k) for k in (data.get("news_players") or {}) if str(k).isdigit()}
+    for _c in counts_by_league.values():
+        _keep |= {int(k) for k in ((_c or {}).get("rival_owners") or {})}
+    data["injury_watch"] = trim_injury_watch(data["injury_watch"], _keep)
     data["elite"] = section("elite", build_elite_ownership, boot, ds.get("locked_gw"), fallback={})
     _elite = data["elite"] or {}
     for _h in ((data["targets"].get("horizons") or {}).values()):
@@ -1483,10 +1489,10 @@ def main(team_id=TEAM_ID, out_path=None):
     watch_filename = "bacalhau-wildcard.js" if "bacalhau" in data_file.name else "shaaland-wildcard.js"
     watch = fpl_common.load_js_object(ROOT / watch_filename)
     watch_names = {p.get("name") for p in (watch.get("xi") or []) + (watch.get("bench") or []) if p.get("name")}
-    watch_names |= {r["name"] for r in wc_top3}
-    data["price_radar"] = section("price_radar", build_price_radar, boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned, fallback={"squad": [], "rising": [], "falling": [], "watch": []})
+    watch_names |= {f'{r["name"]}|{r["club"]}' if r.get("club") else r["name"] for r in wc_top3}
+    data["price_radar"] = section("price_radar", build_price_radar, boot, team_id, plan.get("squad_from_gw"), extra_names=watch_names, exclude=owned, fallback={"squad": [], "watch": []})
     trend_rows = (data["price_radar"].get("squad") or []) + (data["price_radar"].get("watch") or [])
-    data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et)
+    data["price_trend"] = build_price_trend(prev_price_trend, trend_rows, today_et, event=current_event(boot))
     # --- everything below needs every signal above: news, elite ownership, price momentum, set pieces, rivals ---
     _mode = "chase"
     _rank = tac.get("you_rank")
