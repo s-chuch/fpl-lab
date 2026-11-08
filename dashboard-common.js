@@ -1382,6 +1382,15 @@ function labLineup(r,they,title){
   const hasMine=L.xi.some(p=>p.you);
   return `<div class="lab-dsec"><h4>${esc(title||"Recommended lineup")} <span>${esc(L.formation||"")}</span></h4>${rows}${bench}<p class="note" data-keep>${sc}.${hasMine?` Outlined = ${yl} team did not start him (on ${yl} bench or not owned).`:""}</p></div>`;
 }
+// Pending Decision-log row: mark recommended players the logged lineup does not start, then show the lineup after the logged moves
+function labLoggedLineups(r,they){
+  const V=(window.FPL_DATA||{}).logged_transfers, mine=V&&V.gw===r.gw&&V.lineup;
+  if(!mine||!(mine.xi||[]).length||!r.lineup) return labLineup(r,they);
+  const xi=new Set(mine.xi.map(p=>p.name)), bn=new Set((mine.bench||[]).map(p=>p.name));
+  const mark=p=>({...p,you:xi.has(p.name)?p.you:bn.has(p.name)?"bench":"no"});
+  const rec={...r,lineup:{...r.lineup,xi:r.lineup.xi.map(mark),bench:(r.lineup.bench||[]).map(mark)}};
+  return labLineup(rec,they)+labLineup({lineup:mine},they,they?"Their lineup after their logged moves":"Your lineup after your logged moves");
+}
 function labYouLogged(r,they){
   const V=(window.FPL_DATA||{}).logged_transfers; if(!V||V.gw!==r.gw||!(V.moves||[]).length) return "";
   return `<li><span>${they?"They":"You"} logged</span><b>${V.moves.map(m=>esc(m.out)+" → "+esc(m.in)).join(", ")}${V.hit_cost?` <span class="neg">−${V.hit_cost}</span>`:""}</b></li>`;
@@ -1391,7 +1400,7 @@ function labDecRow(r,they){
   const mv=t=>(t||[]).length?(t||[]).map(m=>`${esc(m.out)} → ${esc(m.in)}`).join(", "):"Roll";
   const meta=`<p class="note">Saved ${esc(r.saved_at_et||"?")}${r.code_sha?` · code ${esc(String(r.code_sha).slice(0,7))}`:""}${r.backfilled?` · <b>backfilled</b>: ${esc(r.backfill_note||"")}`:""}</p>`;
   if(r.status!=="scored"){
-    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li>${labYouLogged(r,they)}</ul>${labLineup(r,they)}${meta}`;
+    const body=`<ul class="lab-dl"><li><span>Model transfers</span><b>${mv(r.transfers)}${r.hit_cost?` <span class="neg">−${r.hit_cost}</span>`:""}</b></li><li><span>Model captain / vice</span><b>${esc(r.captain_name||"–")} / ${esc(r.vice_name||"–")}</b></li>${r.xp!=null?`<li><span>Model xP (XI, captain doubled, net of hits)</span><b>${labNum(r.xp,1)}</b></li>`:""}<li><span>Chip</span><b>${r.chip?esc(LAB_CHIPN[r.chip]||r.chip):"None planned"}</b></li>${labYouLogged(r,they)}</ul>${labLoggedLineups(r,they)}${meta}`;
     return `<details class="lab-drow pending" id="declog-gw${r.gw}"><summary><span class="lab-dgw">GW${r.gw}</span><span class="lab-dmain"><b>${r.status==="frozen"?"Recommendation frozen at the deadline":"Recommendation saved"}</b><span class="note">scored after GW finishes · C ${esc(r.captain_name||"–")} · ${mv(r.transfers)}</span></span><i>${LAB_SVG.chev}</i></summary>${body}</details>`;
   }
   const s=r.score, C=s.captain||{}, T=s.transfers||{}, Ln=s.lineup||{};

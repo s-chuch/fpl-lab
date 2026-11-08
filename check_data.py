@@ -5,7 +5,7 @@ anything - e.g. a chip you have played with no result, or an AI plan for the wro
 
     python check_data.py [data.js bacalhau-data.js]      exit 1 if anything is wrong"""
 from __future__ import annotations
-import json, sys
+import json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -50,6 +50,24 @@ def _age_hours(stamp):
         return (datetime.now(timezone.utc) - t).total_seconds() / 3600
     except Exception:
         return None
+
+
+NEWS_MAX_HOURS = 36
+
+
+def check_news_fresh():
+    """news.js must have been regenerated within NEWS_MAX_HOURS, so a dead scraper cannot stay silent."""
+    try:
+        txt = (ROOT / "news.js").read_text(encoding="utf-8")
+        m = re.search(r'"generated_at"\s*:\s*"([^"]+)"', txt)
+        age = _age_hours(m.group(1)) if m else None
+    except Exception:
+        age = None
+    if age is None:
+        return ["news.js: generated_at missing or unreadable"]
+    if age > NEWS_MAX_HOURS:
+        return [f"news.js: news is {age:.0f}h old (limit {NEWS_MAX_HOURS}h), the news scraper may have stopped"]
+    return []
 
 
 def check_ai_squad(name, d):
@@ -106,7 +124,9 @@ def check(name, d):
     if gws and total is not None:
         net = sum(g["points"] - (g.get("hits") or 0) for g in gws)
         locked = (d.get("deadline") or {}).get("locked_gw")
-        live = bool(gws and gws[-1].get("gw") == locked and not gws[-1].get("points"))    # the gameweek in play is not in the rows yet
+        last_fin = (d.get("plan") or {}).get("last_finished") or 0
+        # a gameweek in play is not (fully) in the rows yet: rows may only fall short of FPL's total
+        live = bool(gws and gws[-1].get("gw") == locked and (not gws[-1].get("points") or int(last_fin) < int(locked or 0)))
         if (net - total > 2) if live else (abs(net - total) > 2):
             problems.append(f"{name}: gameweek points add up to {net} but FPL reports {total} overall")
     # a finished gameweek must have a graded track record
@@ -194,6 +214,7 @@ def main(argv):
             problems += check(f, load(ROOT / f))
         except Exception as e:
             problems.append(f"{f}: could not be read ({e})")
+    problems += check_news_fresh()
     for p in problems:
         print("::error::" + p)
     check_exa_news()
