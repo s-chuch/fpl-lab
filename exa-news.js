@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-08T01:48:48Z",
+ "generated_at": "2026-11-08T08:22:17Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-08T01:48:48Z",
+ "last_attempt": "2026-11-08T08:22:17Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 180,
-  "cost_usd": 1.26
+  "searches": 190,
+  "cost_usd": 1.33
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Maresca provides injury update on Gvardiol and Guehi",
-   "snippet": "Maresca provides injury update on Gvardiol and Guehi Maresca provides injury update on Gvardiol and Guehi 07 Nov 2026",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-07",
-   "url": "https://www.premierleague.com/en/news/4759501",
+   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {
@@ -42,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Man City suffer double injury blow in awful Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Injury for Marc Guehi and Josko Gvardiol had some issue during the week, so it was just because they had problems.\" City have now conceded 17 goals in their last eight games, with no clean sheet since a 3-0 win at…",
+   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-07",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-suffer-double-injury-34879493",
+   "published": "2026-11-08",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {
@@ -81,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Three players to miss Man City vs Nottingham Forest after 'really tough setback' - Manchester Evening News",
-   "snippet": "Antonie Semenyo is the only player currently sidelined after injuring his left knee three weeks ago during the 3-2 win over Ipswich Town.",
+   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-07",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-vs-nottingham-forest-34877375",
+   "published": "2026-11-08",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {

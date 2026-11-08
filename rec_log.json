@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "95a27123c348",
+  "code_sha": "a65d4ec66335",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-08T07:42:41+00:00",
-  "saved_at_et": "2026-11-08 2:42 AM ET",
+  "saved_at": "2026-11-08T08:22:03+00:00",
+  "saved_at_et": "2026-11-08 3:22 AM ET",
   "source": "plan",
   "squad": [
    {
