@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Barnes",
         "bench_ep": 3.23,
         "starter": "Manzambi",
-        "starter_ep": 2.7
+        "starter_ep": 2.8
       }
     ],
     "bench_order": [
@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.7,
+        "ep_next": 2.8,
         "status": "ok"
       },
       {
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 3.84,
+        "ep_next": 4.36,
         "status": "ok"
       }
     ],
