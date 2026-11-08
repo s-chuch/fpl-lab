@@ -156,6 +156,12 @@
    "name": "Muharemovi\u0107",
    "side": "over"
   },
+  "368": {
+   "back_gw": null,
+   "flag_gw": 7,
+   "name": "Szoboszlai",
+   "side": "under"
+  },
   "372": {
    "back_gw": null,
    "flag_gw": 8,
