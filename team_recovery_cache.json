@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-08T12:17:52.460757+00:00",
+    "fetched_at": "2026-11-08T12:57:13.526553+00:00",
     "target_gw": 11,
     "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
@@ -11,7 +11,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Hull",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -53,7 +53,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Arsenal",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-22",
@@ -203,7 +203,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Man City",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -224,7 +224,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Spurs",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -272,7 +272,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Leeds",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -347,7 +347,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Nott'm Forest",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -395,7 +395,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Fulham",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
@@ -443,7 +443,7 @@
           "date": "2026-11-07",
           "competition": "Premier League",
           "opponent": "Newcastle",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-21",
