@@ -240,7 +240,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-07",
-      "total_cost": 96.0,
+      "total_cost": 96.1,
       "prices": {
         "Raya": 6.2,
         "Vuskovic": 5.2,
@@ -250,7 +250,7 @@ window.FPL_WILDCARD_WATCH = {
         "Hill": 5.6,
         "Groß": 6.3,
         "Dewsbury-Hall": 6.6,
-        "Tavernier": 6.6,
+        "Tavernier": 6.7,
         "Haaland": 15.8,
         "Evanilson": 6.5,
         "Tzolakis": 4.7,
@@ -265,8 +265,17 @@ window.FPL_WILDCARD_WATCH = {
       "Vuskovic": 5.2,
       "Van Hecke": 5.0
     },
-    "total_delta": 3.4,
+    "total_delta": 3.5,
     "players": [
+      {
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.7,
+        "delta": 0.6,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
@@ -280,15 +289,6 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Groß",
         "baseline_cost": 5.8,
         "current_cost": 6.3,
-        "delta": 0.5,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Tavernier",
-        "baseline_cost": 6.1,
-        "current_cost": 6.6,
         "delta": 0.5,
         "entry_cost": null,
         "delta_since_added": null,
@@ -440,14 +440,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-09-21",
-        "event": "price_change",
-        "player": "Hall",
-        "from": 5.2,
-        "to": 5.3,
-        "delta": 0.1
-      },
       {
         "date": "2026-09-21",
         "event": "price_change",
@@ -743,6 +735,14 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Vuskovic",
         "price_at_change": 5.2
+      },
+      {
+        "date": "2026-11-07",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.6,
+        "to": 6.7,
+        "delta": 0.1
       }
     ]
   },
