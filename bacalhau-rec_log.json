@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "21690c859497",
+  "code_sha": "7c6c74e45cf1",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-08T14:52:35+00:00",
-  "saved_at_et": "2026-11-08 9:52 AM ET",
+  "saved_at": "2026-11-08T14:55:49+00:00",
+  "saved_at_et": "2026-11-08 9:55 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -268,7 +268,7 @@
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.63
+    "xp": 2.64
    },
    {
     "club": "HUL",
