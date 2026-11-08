@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-07T19:15:16Z",
+ "generated_at": "2026-11-08T01:48:48Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-07T19:15:16Z",
+ "last_attempt": "2026-11-08T01:48:48Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 170,
-  "cost_usd": 1.19
+  "searches": 180,
+  "cost_usd": 1.26
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,37 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "FPL player price changes - risers, fallers and top transfers in Gameweek 10",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Barry (EVE) 36,544 Joao Pedro (CHE) 31,924 Jackson (AVL) 19,387 Calvert-Lewin (LEE) 17,583 Van Hecke (TOT) 17,014 Hall (NEW) 10,245…",
+   "headline": "Chelsea’s Alonso identity still to form in a midfield that remains a problem Chelsea The Guardian",
+   "snippet": "The striker João Pedro is out with a thigh injury, the centre-back Maxence Lacroix is hamstrung and there will have to be further adjustment if Caicedo cannot prove his fitness before Chelsea face the league’s bottom…",
+   "source_domain": "theguardian.com",
+   "published": "2026-11-07",
+   "url": "https://www.theguardian.com/football/2026/nov/07/chelsea-xabi-alonso-midfield-problem-area",
+   "yours": []
+  },
+  {
+   "player": "Gvardiol",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Maresca provides injury update on Gvardiol and Guehi",
+   "snippet": "Maresca provides injury update on Gvardiol and Guehi Maresca provides injury update on Gvardiol and Guehi 07 Nov 2026",
    "source_domain": "premierleague.com",
    "published": "2026-11-07",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
+   "url": "https://www.premierleague.com/en/news/4759501",
+   "yours": []
+  },
+  {
+   "player": "Guéhi",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Man City suffer double injury blow in awful Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Injury for Marc Guehi and Josko Gvardiol had some issue during the week, so it was just because they had problems.\" City have now conceded 17 goals in their last eight games, with no clean sheet since a 3-0 win at…",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-07",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-suffer-double-injury-34879493",
    "yours": []
   },
   {
@@ -37,19 +63,6 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Semenyo",
-   "team": "MCI",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Three players to miss Man City vs Nottingham Forest after 'really tough setback' - Manchester Evening News",
-   "snippet": "Antonie Semenyo is the only player currently sidelined after injuring his left knee three weeks ago during the 3-2 win over Ipswich Town.",
-   "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-07",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-vs-nottingham-forest-34877375",
-   "yours": []
-  },
-  {
    "player": "Saka",
    "team": "ARS",
    "fpl_status": "i",
@@ -60,6 +73,19 @@ window.EXA_NEWS = {
    "source_domain": "arsenal.com",
    "published": "2026-11-07",
    "url": "https://www.arsenal.com/news/preview-arsenal-v-hull-city-aGabV1u7EDt0",
+   "yours": []
+  },
+  {
+   "player": "Semenyo",
+   "team": "MCI",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Three players to miss Man City vs Nottingham Forest after 'really tough setback' - Manchester Evening News",
+   "snippet": "Antonie Semenyo is the only player currently sidelined after injuring his left knee three weeks ago during the 3-2 win over Ipswich Town.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-07",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-vs-nottingham-forest-34877375",
    "yours": []
   },
   {
@@ -89,16 +115,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Shaw",
-   "team": "MUN",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Unspecified injury - Unknown return date",
-   "headline": "10 players set to miss Man United vs Aston Villa after injury blow confirmed",
-   "snippet": "Luke Shaw is expected to remain unavailable until after the international break.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "player": "King",
+   "team": "FUL",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Groin injury - 75% chance of playing",
+   "headline": "Alvaro Arbeloa issues Fulham FC update after Josh King injury worry against Newcastle The Standard",
+   "snippet": "Alvaro Arbeloa issues Fulham FC update after Josh King injury worry against Newcastle The Standard",
+   "source_domain": "standard.co.uk",
    "published": "2026-11-07",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-united-aston-villa-injuries-34877014",
+   "url": "https://www.standard.co.uk/sport/football/fulham-fc-injury-latest-arbeloa-king-b1303986.html",
    "yours": []
   },
   {
@@ -107,11 +133,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Xabi Alonso names 'very important' player that has finally found his role at Chelsea Football London",
-   "snippet": "Lavia is likely to stay in the side for Sunday’s game with Reece James injured and Jordan Henderson only recently recovered from illness.",
+   "headline": "Nine players set to miss Sunderland vs Chelsea as Xabi Alonso gives injury update Football London",
+   "snippet": "There’s no injury, but he was not feeling well yesterday and today had a fever in the morning, so he was not feeling good enough to come with the team.” Reece James and Jamie Gittens remain sidelined for Chelsea and…",
    "source_domain": "football.london",
    "published": "2026-11-07",
-   "url": "https://www.football.london/chelsea-fc/news/xabi-alonso-romeo-lavia-sunderland-34878090",
+   "url": "https://www.football.london/chelsea-fc/news/chelsea-injury-update-sunderland-alonso-34876903",
    "yours": []
   },
   {
@@ -120,11 +146,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Estevao Willian agreement reached, Emi Martinez decision made - Chelsea line-ups for Sunderland Football London",
-   "snippet": "Emiliano Martinez returned to Chelsea training this week.",
+   "headline": "Nine players set to miss Sunderland vs Chelsea as Xabi Alonso gives injury update Football London",
+   "snippet": "Not not, not yet to be close, so maybe after the international, but it's going to take longer.” Chelsea also face a wait to discover if Emi Martinez will be available, with the goalkeeper returning to training after…",
    "source_domain": "football.london",
    "published": "2026-11-07",
-   "url": "https://www.football.london/chelsea-fc/news/estevao-willian-agreement-reached-emi-34867908",
+   "url": "https://www.football.london/chelsea-fc/news/chelsea-injury-update-sunderland-alonso-34876903",
    "yours": []
   }
  ]
