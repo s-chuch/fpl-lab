@@ -170,13 +170,13 @@
   "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "0ba2e622c8ce",
+  "code_sha": "3a12517a45be",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-08T15:35:49+00:00",
-  "saved_at_et": "2026-11-08 10:35 AM ET",
+  "saved_at": "2026-11-08T16:15:08+00:00",
+  "saved_at_et": "2026-11-08 11:15 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -191,14 +191,14 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.98
+    "xp": 5.97
    },
    {
     "club": "BHA",
     "id": 504,
     "name": "Vuskovic",
     "pos": "DEF",
-    "xp": 5.83
+    "xp": 5.86
    },
    {
     "club": "TOT",
@@ -212,21 +212,21 @@
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 5.01
+    "xp": 5.05
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.07
+    "xp": 5.17
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.9
+    "xp": 4.95
    },
    {
     "club": "EVE",
@@ -254,7 +254,7 @@
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 5.14
+    "xp": 5.18
    },
    {
     "club": "HUL",
@@ -275,7 +275,7 @@
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.66
+    "xp": 2.89
    },
    {
     "club": "HUL",
@@ -309,7 +309,7 @@
    249,
    79
   ],
-  "xp": 63.5
+  "xp": 63.8
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
