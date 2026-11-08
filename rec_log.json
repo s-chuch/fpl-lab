@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "5761ed39b28a",
+  "code_sha": "2db10e6dbdaf",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-08T18:13:35+00:00",
-  "saved_at_et": "2026-11-08 1:13 PM ET",
+  "saved_at": "2026-11-08T18:53:06+00:00",
+  "saved_at_et": "2026-11-08 1:53 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -254,7 +254,7 @@
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 4.83
+    "xp": 4.81
    },
    {
     "club": "HUL",
@@ -275,7 +275,7 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 2.95
+    "xp": 3.03
    },
    {
     "club": "IPS",
@@ -315,7 +315,7 @@
    249,
    166
   ],
-  "xp": 57.6
+  "xp": 57.5
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
