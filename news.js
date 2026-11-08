@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-08 20:51 UTC",
+  "generated_at": "2026-11-08 21:30 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -19,6 +19,47 @@ window.FPL_NEWS = {
       "stance": {},
       "quotes": [],
       "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "B.Fernandes",
+      "club": "MUN",
+      "tags": [],
+      "id": 426,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Branthwaite",
+      "club": "EVE",
+      "tags": [],
+      "id": 230,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Jarrad Branthwaite (\u00a35.5m) is now level with Tarkowski for DefCon points (10), while Vitalii Mykolenko (\u00a34.6m) is up to six \u2013 a very decent tally for a full-back.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
+          "title": "FPL notes: Barry haul + Thomas injury latest"
+        }
+      ],
       "tone": "neutral"
     },
     {
@@ -92,6 +133,70 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
+    },
+    {
+      "text": "Elvedi (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Elvedi",
+      "club": "LEE",
+      "tags": [],
+      "id": 598,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Kamara (AVL) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Kamara",
+      "club": "AVL",
+      "tags": [],
+      "id": 47,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Konsa (ARS) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [],
+      "id": 31,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Lindel\u00f6f (AVL) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Lindel\u00f6f",
+      "club": "AVL",
+      "tags": [],
+      "id": 37,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     },
     {
       "text": "Maguire (MUN) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",

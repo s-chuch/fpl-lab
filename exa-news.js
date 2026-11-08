@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-08T14:52:37Z",
+ "generated_at": "2026-11-08T21:31:04Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-08T14:52:37Z",
+ "last_attempt": "2026-11-08T21:31:04Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 200,
-  "cost_usd": 1.4
+  "searches": 210,
+  "cost_usd": 1.47
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -20,7 +20,7 @@ window.EXA_NEWS = {
    "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
    "source_domain": "standard.co.uk",
    "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-starting-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
    "yours": []
   },
   {
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "source_domain": "manchestereveningnews.co.uk",
+   "headline": "'I'm always concerned' - Enzo Maresca demands ‘balance’ as Manchester City fall to third straight Premier League defeat Goal.com US",
+   "snippet": "Josko Gvardiol had some issue already during the week, so it was just because they had problems.\" ...",
+   "source_domain": "goal.com",
    "published": "2026-11-08",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
+   "url": "https://www.goal.com/en-us/news/enzo-maresca-manchester-city-premier-league/blt8cea272028fb285a",
    "yours": []
   },
   {
@@ -42,11 +42,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "headline": "Marc Guehi: Manchester City defender a doubt for England camp with hip issue - BBC Sport",
+   "snippet": "Manchester City defender Marc Guehi will undergo a scan on a hip complaint on Sunday to determine whether he can report for England duty this week.",
+   "source_domain": "bbc.com",
    "published": "2026-11-08",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
+   "url": "https://www.bbc.com/sport/football/articles/cmwyq8x6nx5lo",
+   "yours": []
+  },
+  {
+   "player": "Thiago",
+   "team": "BRE",
+   "fpl_status": "s",
+   "fpl_chance": 0,
+   "fpl_news": "Suspended until 5 Dec",
+   "headline": "Igor Thiago's moment of madness - Brentford striker sees red against Brighton after VAR review Goal.com",
+   "snippet": "Thiago ban adds to Brentford's fixture nightmare The timing of Thiago's dismissal creates a major headache for Brentford given their daunting upcoming schedule.",
+   "source_domain": "goal.com",
+   "published": "2026-11-08",
+   "url": "https://www.goal.com/en/news/igor-thiago-red-card-brighton-brentford/blt877132547dc3fff2",
    "yours": []
   },
   {
@@ -63,19 +76,6 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Saka",
-   "team": "ARS",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Preview: Arsenal v Hull City Arsenal FC Official Website Arsenal.com",
-   "snippet": "That means Bukayo Saka is our only injury victim at present following the thigh strain he picked up at Bayern Munich a fortnight ago.",
-   "source_domain": "arsenal.com",
-   "published": "2026-11-07",
-   "url": "https://www.arsenal.com/news/preview-arsenal-v-hull-city-aGabV1u7EDt0",
-   "yours": []
-  },
-  {
    "player": "Semenyo",
    "team": "MCI",
    "fpl_status": "i",
@@ -86,6 +86,19 @@ window.EXA_NEWS = {
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-08",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
+   "yours": []
+  },
+  {
+   "player": "Saka",
+   "team": "ARS",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Thigh injury - Unknown return date",
+   "headline": "Preview: Arsenal v Hull City Arsenal FC Official Website Arsenal.com",
+   "snippet": "That means Bukayo Saka is our only injury victim at present following the thigh strain he picked up at Bayern Munich a fortnight ago.",
+   "source_domain": "arsenal.com",
+   "published": "2026-11-07",
+   "url": "https://www.arsenal.com/news/preview-arsenal-v-hull-city-aGabV1u7EDt0",
    "yours": []
   },
   {
@@ -102,16 +115,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Cash",
-   "team": "AVL",
-   "fpl_status": "s",
-   "fpl_chance": 0,
-   "fpl_news": "Suspended until 21 Nov",
-   "headline": "10 players set to miss Man United vs Aston Villa after injury blow confirmed",
-   "snippet": "The former West Ham defender could replace Matty Cash, who is serving a one-match suspension after accumulating too many yellow cards.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "player": "King",
+   "team": "FUL",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Groin injury - 75% chance of playing",
+   "headline": "Alvaro Arbeloa issues Fulham FC update after Josh King injury worry against Newcastle The Standard",
+   "snippet": "There was a state of worry plastered across the home fans’ faces as star playmaker Josh King was forced off with injury in west London, and he was replaced by Cesar Palacios, the summer signing from Real Madrid, in the…",
+   "source_domain": "standard.co.uk",
    "published": "2026-11-07",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-united-aston-villa-injuries-34877014",
+   "url": "https://www.standard.co.uk/sport/football/fulham-fc-injury-latest-arbeloa-king-b1303986.html",
    "yours": []
   },
   {
@@ -120,24 +133,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
-   "yours": []
-  },
-  {
-   "player": "Martinez",
-   "team": "CHE",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Chelsea FC XI vs Sunderland: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "But Martinez - wearing a protective face mask - was this week involved in Chelsea training at Cobham to raise suggestions of an early return, but he is not included in the squad at all.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
+   "headline": "FPL gameweek 10 tips: Should you keep or sell Ezri Konsa? - BBC Sport",
+   "snippet": "Antonio Silva (£5.1m) or James Hill (£5.6m) at Bournemouth both stand out as good options this week and beyond.",
+   "source_domain": "bbc.co.uk",
+   "published": "2026-11-05",
+   "url": "https://www.bbc.co.uk/sport/football/articles/cm4g112qp051o",
    "yours": []
   }
  ]
