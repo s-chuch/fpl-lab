@@ -170,13 +170,13 @@
   "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "380d97bd7387",
+  "code_sha": "bc39e7186587",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-08T20:12:14+00:00",
-  "saved_at_et": "2026-11-08 3:12 PM ET",
+  "saved_at": "2026-11-08T20:51:45+00:00",
+  "saved_at_et": "2026-11-08 3:51 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -212,7 +212,7 @@
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 5.05
+    "xp": 5.09
    },
    {
     "club": "BOU",
@@ -309,7 +309,7 @@
    249,
    79
   ],
-  "xp": 63.8
+  "xp": 63.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
