@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-08T18:52:56.726041+00:00",
+    "fetched_at": "2026-11-08T19:32:38.426394+00:00",
     "target_gw": 11,
     "anchor": "2026-11-21T11:00:00+00:00",
     "teams": {
@@ -87,13 +87,7 @@
           "opponent": "Sporting CP",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Aston Villa"
-          }
-        ]
+        "between": []
       },
       "EVE": {
         "rest_days": 17,
@@ -303,13 +297,7 @@
           "opponent": "Galatasaray",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-08",
-            "competition": "Premier League",
-            "opponent": "Man Utd"
-          }
-        ]
+        "between": []
       },
       "MCI": {
         "rest_days": 14,
