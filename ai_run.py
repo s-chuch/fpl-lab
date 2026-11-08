@@ -177,6 +177,17 @@ def run_planner(boot, team_id, ds, hist, chips_used, team, teams_by_id, inputs, 
     return planner.build_planner(boot, clone, ds, fix_scan, uwins, risk, signals=signals)
 
 
+def fresh_player(el):
+    """The FPL facts `fpl_common.sane_tags` checks a news tag against, from today's bootstrap element."""
+    el = el or {}
+    try:
+        owned = float(el.get("selected_by_percent") or 0)
+    except (TypeError, ValueError):
+        owned = 0.0
+    return {"owned": owned, "status": el.get("status") or "a", "chance": el.get("chance_of_playing_next_round"),
+            "net_transfers": int(el.get("transfers_in_event") or 0) - int(el.get("transfers_out_event") or 0)}
+
+
 def build_news_players(boot, ds, teams_by_id, inputs, news, they_share=(), mine=()):
     """The numbers to put beside each News theme's player: ownership, price, FPL status, the model's expected
     points and next fixture, plus whether you own him and whether 1st and 2nd both own him."""
@@ -192,6 +203,7 @@ def build_news_players(boot, ds, teams_by_id, inputs, news, they_share=(), mine=
     played = max(1, finished + (1 if locked and not events.get(locked, {}).get("finished") else 0))
     vals = ai_team.player_values(boot, fixture_scan(nxt, teams_by_id), {}, played, uwins, risk)
     by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
+    el_by_id = {e["id"]: e for e in boot["elements"]}
     out = {}
     for it in (news.get("agreed") or []) + (news.get("split") or []):
         eid = it.get("id") or by_key.get((it.get("player"), it.get("club")))
@@ -200,7 +212,8 @@ def build_news_players(boot, ds, teams_by_id, inputs, news, they_share=(), mine=
             continue
         out[str(eid)] = {"name": v["name"], "club": v["club"], "pos": v["pos"], "cost": v["cost"], "owned": v["owned"], "xp": v["xp"],
                          "fixture": v["fixture"], "status": v["status"], "chance": int(v["avail"] * 100), "news": v["news"],
-                         "yours": eid in mine, "top2": v["name"] in set(they_share)}
+                         "yours": eid in mine, "top2": v["name"] in set(they_share),
+                         "tags": sorted(fpl_common.sane_tags(it.get("tags") or [], fresh_player(el_by_id.get(eid))))}
     return out
 
 

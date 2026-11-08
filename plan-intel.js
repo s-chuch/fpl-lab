@@ -1,5 +1,5 @@
 window.planIntel = function(D){
-  const N0=window.FPL_NEWS||{};
+  const N0=(typeof newsStale==="function"&&newsStale(window.FPL_NEWS||{}))?{}:(window.FPL_NEWS||{});     // themes over 3 days old are ignored
   const P=D.plan||{}, up=P.upcoming||[];
   const deadline=D.deadline||{};
   const intelGw=P.intel_gw||deadline.intel_gw||deadline.next_gw||(up.find(u=>!u.deadline_passed)||up[0]||{}).gw;

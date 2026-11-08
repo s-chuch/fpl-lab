@@ -45,7 +45,11 @@ function rivalExtra(card, pronoun){
 }
 const NEWS_ALIAS=[["de cuyper","De Cuyper"],["decuyper","De Cuyper"],["joao pedro","João Pedro"],["joão pedro","João Pedro"],["szoboszlai","Szoboszlai"],["szobos","Szoboszlai"],["b.fernandes","B.Fernandes"],["fernandes","B.Fernandes"],["calvert-lewin","Calvert-Lewin"],["gakpo","Gakpo"],["isak","Isak"],["rogers","Rogers"],["palmer","Palmer"],["haaland","Haaland"],["wissa","Wissa"],["shaw","Shaw"],["gibbs-white","Gibbs-White"],["gibbs white","Gibbs-White"],["gvardiol","Gvardiol"],["saka","Saka"]];
 function normTxt(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
-function agreedPool(){const N=window.FPL_NEWS||{}; return (N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:x.tags,sources:x.sources,verdict:String(x.verdict||"").split(" (")[0],llm:(x.llm||{}).verdict}));}
+// news.js themes older than 3 days are not used (the Python side ignores them too): age in days, or null when undated
+function newsAgeDays(N){const t=new Date(String((N||{}).generated_at||"").replace(" UTC","Z").replace(" ","T")).getTime(); return isNaN(t)?null:Math.floor((Date.now()-t)/86400000);}
+function newsStale(N){const a=newsAgeDays(N); return a==null||a>3;}
+function newsStaleNote(N){const a=newsAgeDays(N); return `<p class="note" data-keep>News themes are ${a==null?"undated":a+" days old"} (limit 3), so they are hidden until the next scrape.</p>`;}
+function agreedPool(){const N=window.FPL_NEWS||{}; if(newsStale(N)) return []; return (N.agreed||[]).map(x=>({text:x.text,from:"News",player:x.player,club:x.club,tags:(((window.FPL_DATA||{}).news_players||{})[String(x.id)]||{}).tags||x.tags,sources:x.sources,verdict:String(x.verdict||"").split(" (")[0],llm:(x.llm||{}).verdict}));}
 function namesInText(text){const t=normTxt(text), hits=[]; for(const [key,name] of NEWS_ALIAS){ if(t.includes(normTxt(key)) && !hits.includes(name)) hits.push(name);} return hits;}
 // news_scrape.py now discovers trending players dynamically and tags each theme
 // with the exact player it found (it.player), rather than the page having to
@@ -850,7 +854,8 @@ function exaNewsHtml(D,opts){
   }catch(e){return "";}
 }
 function renderNews(){
-  const N=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};
+  const N0=window.FPL_NEWS||D.news||{}, NP=D.news_players||{};
+  const stale=newsStale(N0), N=stale?{...N0,agreed:[],split:[]}:N0;
   const rank=(x)=>{const p=NP[String(x.id)]||{}; return [p.yours?0:1, -(x.sources||[]).length, -(p.owned||0)];};
   const order=(a,b)=>{const ra=rank(a), rb=rank(b); for(let i=0;i<3;i++) if(ra[i]!==rb[i]) return ra[i]-rb[i]; return 0;};
   const rows=list=>(list||[]).slice().sort(order).map(x=>newsThemeRow(x,NP)).join("");
@@ -861,7 +866,7 @@ function renderNews(){
   const rawCap=8;
   const newBlock=fresh.length?fresh.slice(0,rawCap).map(x=>`<li><span class="who">${esc(x.title)}</span><div class="detail"><span class="pill free">${esc(x.source)}</span> <a href="${safeHref(x.url)}" target="_blank" rel="noopener">open</a></div></li>`).join("")+(fresh.length>rawCap?`<li><span class="note">+${fresh.length-rawCap} more this scrape - already folded into the themes above.</span></li>`:""):`<li><span class="note">No new articles this scrape.</span></li>`;
   const sites=N.sites_checked?` · ${N.sites_with_articles??"?"} of ${N.sites_checked} sites had fresh articles`:"";
-  document.getElementById("news").innerHTML=`${exaNewsHtml(D)}${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. ${W.Your} players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
+  document.getElementById("news").innerHTML=`${exaNewsHtml(D)}${stale?newsStaleNote(N0):""}${staleWarn(N,"news")}<div class="card"><h2>News · GW${N.gw||""}</h2>${freshnessMeta(N,"news")}<ul class="note-list"><li>Themes from title + article text${sites}</li><li>Each name gets a verdict from what the articles say about him (buy / keep / sell / captain / fitness), with the sentences behind it. Emerging = 2 sites · Agreed = 3+ sites</li><li>Numbers beside each name are FPL's: ownership, price, the program's expected points and next fixture. ${W.Your} players come first</li><li>Tags are checked against FPL: injury only if FPL flags the player, differential only under 15% owned</li></ul></div><div class="card"><h2>Agreed for GW${N.gw||""}</h2><ul class="chiplist">${agreed}</ul></div><div class="card"><h2>Emerging (2 sources)</h2><ul class="chiplist">${split}</ul></div><div class="card"><details><summary><h2 style="display:inline">New since last scrape (${fresh.length})</h2></summary><p class="note">Sources: ${links||"-"}</p><ul class="chiplist">${newBlock}</ul></details></div>`;
 }
 function renderSetPieces(){
   const S=D.set_pieces||{rows:[]};
@@ -992,11 +997,9 @@ function labNews(D,they){
   const mine=labMyNames(D); const av=(D.plan||{}).availability||{};
   const flags=Object.keys(av).map(n=>`<li><b>${esc(n)}</b> <span class="lab-pill ${av[n].kind==="out"?"bad":"warn"}">${esc(av[n].label||av[n].status)}</span><div class="note">${esc(av[n].news||"")}</div></li>`).join("");
   const aiIds=new Set((((D.ai_team||{}).plan||{}).squad||[]).map(x=>x.id));
-  const tnAll=((D.team_news||{}).rows||[]).map(r=>({r,own:r.yours||mine.has(r.name),ai:aiIds.has(r.id)})).filter(x=>x.own||x.ai||(x.r.owned||0)>=10);
-  const tn=tnAll.slice(0,6).map(({r,own,ai})=>`<li><b>${esc(r.name)}</b> <span class="note">${esc(r.club)}</span> <span class="lab-pill ${r.status==="d"?"warn":"bad"}">${r.status==="d"?"DOUBT "+(r.chance??""):r.status==="s"?"SUS":r.status==="u"?"OUT":"INJ"}</span> <span class="lab-pill ${own?"used":""}">${own?(they?"theirs":"yours"):ai?"in AI team":esc(r.owned)+"% own"}</span><div class="note">${esc(r.news||"")}</div></li>`).join("");
   const N=window.FPL_NEWS||{};
-  const ag=(N.agreed||[]).slice(0,6).map(x=>`<li><b>${esc(x.player||"")}</b> <span class="note">${esc(x.club||"")}</span> · ${esc(x.verdict||"")}<div class="note">${(x.sources||[]).length} sites: ${esc((x.sources||[]).join(", "))}</div></li>`).join("");
-  return exaNewsHtml(D)+`<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>New flags that could matter · last ${(D.team_news||{}).hours||72}h</h3><ul class="lab-list col">${tn||'<li class="note">No new flags on players you own or that 10%+ of managers own.</li>'}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">No agreed themes yet.</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
+  const ag=(newsStale(N)?[]:(N.agreed||[])).slice(0,6).map(x=>`<li><b>${esc(x.player||"")}</b> <span class="note">${esc(x.club||"")}</span> · ${esc(x.verdict||"")}<div class="note">${(x.sources||[]).length} sites: ${esc((x.sources||[]).join(", "))}</div></li>`).join("");
+  return exaNewsHtml(D)+`<h3>${they?"Their":"Your"} squad</h3><ul class="lab-list col">${flags||`<li class="note">No injury or suspension flags in ${they?"their":"your"} squad.</li>`}</ul><h3>What the FPL sites agree on${N.gw?" · GW"+N.gw:""}</h3><ul class="lab-list col">${ag||'<li class="note">${newsStale(N)?"News themes are "+(newsAgeDays(N)==null?"undated":newsAgeDays(N)+" days old")+" and hidden until the next scrape.":"No agreed themes yet."}</li>'}</ul><p class="note">Full news, injuries, rotation, price radar and set pieces: More › Intel.</p>`;
 }
 // ---------------------------------------------------------------- PREDICTIONS (data.predictions, ai_run.build_predictions)
 // ---------------------------------------------------------------- SCORECARD: the model's top 10 vs the Target tab's top 10, graded the same way
@@ -1198,7 +1201,6 @@ function labAcc(id,title,sub,body){
 function labPool(D,h){
   const mine=labMyNames(D), out=new Set();
   ((D.injury_watch||{}).rows||[]).forEach(r=>{if(/INJ|SUS|OUT|LEFT/.test(r.label||"")) out.add(r.name+"|"+r.club);});
-  ((D.team_news||{}).rows||[]).forEach(r=>{if(r.status!=="d") out.add(r.name+"|"+r.club);});
   Object.values(D.news_players||{}).forEach(r=>{if(["i","s","u"].includes(r.status)) out.add(r.name+"|"+r.club);});
   const M=new Map();
   const add=(r,f)=>{ if(!r||!r.name) return; const k=r.name+"|"+(r.club||""); if(mine.has(r.name)||out.has(k)) return;
@@ -1267,7 +1269,6 @@ function labFix(s){ // "A NFO" -> "NFO (A)"; "H EVE, A ARS" -> "EVE (H), ARS (A)
 }
 function labAvail(D,name){
   const a=((D.plan||{}).availability||{})[name]; if(a) return a;
-  const t=(((D.team_news||{}).rows)||[]).find(r=>r.name===name); if(t) return {status:t.status,chance:t.chance,news:t.news};
   const w=(((D.injury_watch||{}).rows)||[]).find(r=>r.name===name); if(w) return {status:w.status,chance:w.chance,news:w.label};
   return null;
 }

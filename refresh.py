@@ -14,7 +14,7 @@ from fplbase import _warn, _fixtures_for, _fixtures_cache, _memo
 from chips import *
 from chips import _chip_week_facts, _best_xi_hindsight, _pair_squads, _rank_text
 from signals import *
-from signals import (_imminent_returns, _imminent_understat, _imminent_fpl, _load_theme_file,
+from signals import (_imminent_returns, _imminent_understat, _imminent_fpl, _load_theme_file, load_fresh_themes,
                      _rotation_flagged_players, _comp_abbrev)
 from ai_run import *
 from ai_run import _clone_user_team
@@ -1421,6 +1421,7 @@ def main(team_id=TEAM_ID, out_path=None):
     # club short name -> FPL team code, for the Plan pitch view's shirt images
     data["team_codes"] = {t["short_name"]: t["code"] for t in boot["teams"] if t.get("code") is not None}
     data.pop("af_team_ids", None)  # left over from the removed API-Football code
+    data.pop("team_news", None)    # orphan: nothing writes it any more (frozen at 12 Oct, contradicted FPL); injury_watch / news_players replace it
     data["form_fdr"] = section("form_fdr", build_form_fdr, boot, next_fixture_map, exclude=owned, fallback={})
     data["value_board"] = section("value_board", build_value_board, boot, exclude=owned, fallback={})
     squad_names = {r[1] for r in (plan.get("rows") or [])}
@@ -1470,7 +1471,7 @@ def main(team_id=TEAM_ID, out_path=None):
     _by_key = {(e["web_name"], teams_by_id[e["team"]]["short_name"]): e["id"] for e in boot["elements"]}
     my_ids = {_by_key[(row[1], row[2])] for row in (plan.get("rows") or []) if (row[1], row[2]) in _by_key}
     data["set_pieces"] = section("set_pieces", build_set_pieces, boot, my_ids, fallback={"rows": []})
-    data["news_players"] = section("news_players", build_news_players, boot, ds, teams_by_id, inputs, fpl_common.load_js_object(ROOT / "news.js"),
+    data["news_players"] = section("news_players", build_news_players, boot, ds, teams_by_id, inputs, load_fresh_themes(ROOT),
                                    [x["name"] for x in (tac.get("they_share") or [])], my_ids, fallback={})
     # Injury list: drop players who left and the near-zero-ownership rows, except anyone yours, held by a rival in any of the
     # leagues, or in the news (the league table above was built from the full list first).
@@ -1501,7 +1502,7 @@ def main(team_id=TEAM_ID, out_path=None):
     elif _rank is not None and _rank > 3:
         _mode = "climb"
     _lc = counts_by_league.get(125784) or {}
-    signals = section("transfer_signals", build_transfer_signals, boot, fpl_common.load_js_object(ROOT / "news.js"), data.get("elite"),
+    signals = section("transfer_signals", build_transfer_signals, boot, load_fresh_themes(ROOT), data.get("elite"),
                       {"counts": _lc.get("counts") or {}, "n": _lc.get("n"), "mode": _mode}, data.get("set_pieces"), fallback={}) or {}
     data["elo_ratings"] = section("elo", lambda: __import__("elo").fetch_ratings(boot, cache_path=ROOT / "elo_cache.json").get("ratings") or {}, fallback={})
     if not data["elo_ratings"] and health.get("elo", {}).get("ok"):

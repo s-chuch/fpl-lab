@@ -293,6 +293,24 @@ def strip_headers(raw_text):
     return ARTICLE_SEP.join(body for _u, _t, body in items_of(raw_text))
 
 
+# Market reports ("most sold midfielders", "most popular defender transfer in") say what the crowd did, not what the writer advises.
+_MARKET_FACT = re.compile(r"\b(?:managers|owners|in droves|most[- ]sold|most[- ]bought|most[- ]popular|most[- ]transferred|sales|top 10|transfer combinations?)\b", re.I)
+# "if in doubt, give Haaland the armband", "no doubt he knows where the net is": idioms, not an injury doubt
+_DOUBT_IDIOM = re.compile(r"\b(?:if|when) (?:you(?:'re| are) |we(?:'re| are) |ever )?in doubt\b|\b(?:no|without(?: a| any)?|little|beyond(?: a)?|zero|any) doubts?\b", re.I)
+# a player proving he is fit is good news, whatever injury word sits next to it
+_POSITIVE_FITNESS = re.compile(r"\bback to (?:full )?fitness\b|\bprov(?:ed|es|ing) (?:his |her )?(?:full )?fitness\b|\bfully fit\b|\bpassed (?:a )?(?:late )?(?:fitness test|fit)\b|\bfit again\b|\bregained fitness\b", re.I)
+# scraped table dumps: "Player fixtures Next 5 GWs", "Forward £ 6.8 m N.Jackson FUL ( H )"
+_TABLE_DUMP = re.compile(r"\bNext \d+ GWs?\b|\b(?:Goalkeeper|Defender|Midfielder|Forward)s?\s+\u00a3\s?\d|\u00a3\s?\d+(?:\.\d)?\s?m\b[^.]{0,60}\(\s*[HA]\s*\)|(?:\(\s*[HA]\s*\)\s*\S+\s*){2,}", re.I)
+
+
+def _risk_cue_ok(low, m):
+    """A risk/injury cue match `m` in lower-cased `low` counts unless it is an idiom ("if in doubt") or the sentence is
+    about the player proving his fitness."""
+    if _POSITIVE_FITNESS.search(low):
+        return False
+    return not _DOUBT_IDIOM.search(low[max(0, m.start() - 22):m.end()])
+
+
 def qualifiers_near(text, key, window=90):
     """Tags describing HOW a name is being talked about, from the words actually
     surrounding each mention (not a per-player hand-written script). The window is
@@ -306,8 +324,13 @@ def qualifiers_near(text, key, window=90):
         right = len(text) if right == -1 else right
         ctx = text[max(left, m.start() - window):min(right, m.end() + window)].lower()
         for tag, pat in QUALIFIER_PATTERNS:
-            if re.search(pat, ctx):
+            for cue in re.finditer(pat, ctx):
+                if tag in ("fade/sell", "transfer target", "differential") and _MARKET_FACT.search(ctx[max(0, cue.start() - 60):cue.end() + 60]):
+                    continue            # a market report, not advice
+                if tag == "injury/doubt" and not _risk_cue_ok(ctx, cue):
+                    continue
                 tags.add(tag)
+                break
     return tags
 
 
@@ -362,7 +385,6 @@ _NEGATION = re.compile(r"(?:\bnot|n't|\bnever|\bno)\s+(?:\w+\s+){0,2}$", re.I)
 _SENT_SPLIT = re.compile(r"(?<=[.!?])\s+|\n+")
 
 
-_MARKET_FACT = re.compile(r"\b(?:managers|owners|in droves|most[- ]sold|most[- ]bought|sales|top 10|transfer combinations?)\b", re.I)
 _BOILERPLATE = re.compile(r"coming soon|player profile|mini-league code|ultimate guide|sign up|subscribe|newsletter|cookie|free trial|related topics|unlock all|% off|start your|membership|discount|click on the image|promo", re.I)
 
 
@@ -378,6 +400,8 @@ def sentence_stance(sentence, key):
             t = tag
             if tag in ("buy", "sell") and _MARKET_FACT.search(sentence):
                 continue            # "100,000 managers sold him" reports what the market did, not what the writer advises
+            if tag == "risk" and not _risk_cue_ok(low, m):
+                continue
             if tag in ("buy", "sell") and _NEGATION.search(before):
                 t = "sell" if tag == "buy" else "buy"
             hits[t] = hits.get(t, 0) + 1
@@ -407,7 +431,7 @@ def stance_quotes(raw_text, key, window=80):
         for sent in _SENT_SPLIT.split(item):
             sent = _FEED_FOOTER.sub("", sent).strip()
             if (len(sent) < 25 or _LIST_OF_NAMES.search(sent) or re.search(r"keep or sell|buy, hold or sell", sent, re.I)
-                    or _BOILERPLATE.search(sent) or sent.count("\u00a3") >= 3):
+                    or _BOILERPLATE.search(sent) or sent.count("\u00a3") >= 3 or _TABLE_DUMP.search(sent)):
                 continue
             plain = norm_keep_case(sent)
             near = ""
@@ -438,7 +462,16 @@ TOPICS = [
 TOPIC_ORDER = [t for t, _p in TOPICS]
 
 
-def fact_sentences(raw_text, key, window=110):
+_GW_MENTION = re.compile(r"\b(?:gw|gameweek)\s?(\d{1,2})(?:\s?[-\u2013]\s?(\d{1,2}))?\b", re.I)
+
+
+def names_old_gameweek(sent, gw):
+    """True when the sentence names gameweeks and every one of them (a range counts by its end) is before `gw`."""
+    nums = [int(m.group(2) or m.group(1)) for m in _GW_MENTION.finditer(sent)]
+    return bool(nums) and gw is not None and max(nums) < int(gw)
+
+
+def fact_sentences(raw_text, key, window=110, gw=None):
     """Specific claims about a player: sentences that mention him with a concrete cue (fitness, role, fixture, form, price,
     captaincy), tagged by topic, with the article link and headline. Numbers and short sentences rank first."""
     out, seen = [], set()
@@ -447,7 +480,8 @@ def fact_sentences(raw_text, key, window=110):
         for sent in _SENT_SPLIT.split(item):
             sent = _FEED_FOOTER.sub("", sent).strip()
             if (len(sent) < 30 or len(sent) > 400 or _noisy(sent) or _LIST_OF_NAMES.search(sent) or _BOILERPLATE.search(sent)
-                    or re.search(r"keep or sell|buy, hold or sell", sent, re.I) or sent.count("\u00a3") >= 3):
+                    or re.search(r"keep or sell|buy, hold or sell", sent, re.I) or sent.count("\u00a3") >= 3
+                    or _TABLE_DUMP.search(sent) or names_old_gameweek(sent, gw)):
                 continue
             plain = norm_keep_case(sent)
             near = " ".join(plain[max(0, m.start() - window):m.end() + window] for m in pat.finditer(plain))
@@ -472,6 +506,7 @@ _BAD = re.compile(r"\b(?:injur\w*|knock|doubt\w*|fitness test|ruled out|miss(?:e
                   r"rotat\w*|rested|benched|bench|dropped|out of the (?:team|squad)|sub(?:bed)? off|tough|difficult|hard|poor|struggl\w*|"
                   r"avoid|sell|fade|dump|overpriced|overrated|not worth|stay away|lacklustre|blank(?:ed|s)?|no returns?|dry|slump|price fall|"
                   r"unwanted|risk(?:y)?|worry|(?:injury|fitness) concerns?)\b", re.I)
+_FITNESS_WORD = re.compile(r"injur|knock|doubt|fitness|hamstring|ankle|calf|groin|illness", re.I)
 _TONE_NEG = re.compile(r"(?:\bnot|n't|\bnever|\bno|\bwithout)\s+(?:\w+\s+){0,2}$", re.I)
 
 
@@ -480,8 +515,12 @@ def tone_of(sentence):
     "no injury"); mixed or cue-less sentences are neutral. Rule-based: it reads wording, not meaning."""
     good = bad = 0
     low = sentence
+    proved = _POSITIVE_FITNESS.search(low) is not None
+    good += proved
     for pat, is_good in ((_GOOD, True), (_BAD, False)):
         for m in pat.finditer(low):
+            if not is_good and _FITNESS_WORD.search(m.group(0)) and (proved or _DOUBT_IDIOM.search(low[max(0, m.start() - 22):m.end()])):
+                continue            # "back to full fitness", "if in doubt": the injury word is not bad news here
             flip = bool(_TONE_NEG.search(low[max(0, m.start() - 26):m.start()]))
             if is_good != flip:
                 good += 1
@@ -561,7 +600,7 @@ def build_themes(blobs, gw, player_index, unit="sites", checked=None):
             rec["ex"][source] = rec["ex"].get(source, []) + [t for t in mention_sentences(raw_text, p["match"], 4) if t not in rec["ex"].get(source, [])]
             for q in stance_quotes(raw_text, p["match"]):
                 rec["sent"].setdefault((source, q["key"]), {"source": source, **q})      # one record per sentence, however many aliases hit it
-            for fct in fact_sentences(raw_text, p["match"]):
+            for fct in fact_sentences(raw_text, p["match"], gw=gw):
                 rec["facts"].setdefault((source, fct["key"]), {"source": source, **fct})
     agreed, split = [], []
     for name, rec in sorted(mentions.items(), key=lambda kv: (-len(kv[1]["sources"]), kv[0])):

@@ -380,7 +380,7 @@ def update_pred_log(log, ds, boot, plan, ai):
             entry["ai_locked"] = bool(ap.get("locked"))
         # the players the news themes agreed on at the time (3+ sites), to be scored against what they scored
         try:
-            themes = fpl_common.load_js_object(ROOT / "news.js")
+            themes = load_fresh_themes(ROOT)
             by_key = {(e["web_name"], teams_short[e["team"]]): e["id"] for e in boot["elements"]}
             entry["news"] = [{"id": it.get("id") or by_key.get((it.get("player"), it.get("club"))), "name": it.get("player"), "club": it.get("club")}
                              for it in (themes.get("agreed") or [])]
@@ -533,8 +533,14 @@ def _load_theme_file(root, filename, max_age_days=3):
     try:
         age = datetime.now(timezone.utc) - datetime.strptime(stamp, "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
     except ValueError:
-        return data if filename == "news.js" else None
+        return None          # no readable timestamp: cannot show it is fresh, so it does not count
     return data if age <= timedelta(days=max_age_days) else None
+
+
+def load_fresh_themes(root, filename="news.js", max_age_days=3):
+    """news.js themes for every reader that acts on them (transfer signals, news numbers, prediction log): the
+    file when it is at most `max_age_days` old, else {} so stale or undated themes feed nothing."""
+    return _load_theme_file(root, filename, max_age_days) or {}
 
 def _rotation_flagged_players(root):
     """Players already reported (news.js themes) as rotated for

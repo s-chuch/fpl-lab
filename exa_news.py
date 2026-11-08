@@ -142,7 +142,7 @@ def build_candidates(boot: dict, squads: dict) -> list[dict]:
             continue
         t = teams.get(el["team"], {})
         cands.append({"id": el["id"], "name": el["web_name"], "full": f"{el['first_name']} {el['second_name']}", "first": el["first_name"], "second": el["second_name"],
-                      "team": t.get("short_name", ""), "club": t.get("name", ""), "status": el.get("status"),
+                      "team": t.get("short_name", ""), "team_id": el["team"], "club": t.get("name", ""), "status": el.get("status"),
                       "chance": chance, "news": (el.get("news") or "")[:160], "owned": owned, "squads": sorted(mine)})
     cands.sort(key=lambda c: (0 if c["squads"] else 1, -c["owned"]))
     return cands
@@ -248,8 +248,42 @@ def is_about(c: dict, key: str, phrases: list[str], blob: str) -> bool:
     return bool(norm(c["club"]) and norm(c["club"]) in blob)
 
 
-def items_from_results(results: list[dict], cands: list[dict], now: datetime, only: dict | None = None) -> dict[int, dict]:
-    """Best item per candidate id from one search's results. `only` limits to a single candidate."""
+PREDICTED_LINEUP = re.compile(r"predicted (?:line-?ups?|xi|team|starting)|probable (?:line-?ups?|xi)|expected (?:line-?ups?|xi)", re.I)
+
+
+def last_played(fixtures: list[dict]) -> dict[int, datetime]:
+    """{team id: kick-off of its latest finished match}, from FPL's fixtures feed."""
+    out: dict[int, datetime] = {}
+    for f in fixtures or []:
+        ko = parse_date(f.get("kickoff_time"))
+        if ko and (f.get("finished") or f.get("finished_provisional")):
+            for t in (f.get("team_h"), f.get("team_a")):
+                if t is not None and (t not in out or ko > out[t]):
+                    out[t] = ko
+    return out
+
+
+def one_per_url(found: dict[int, dict]) -> dict[int, dict]:
+    """One article is one item: when several players resolve to the same URL (one roundup named Gvardiol, Guehi and
+    Semenyo) only the one the headline names stays, else the best-ranked, else the first by id."""
+    by_url: dict[str, list[dict]] = {}
+    for it in found.values():
+        by_url.setdefault(it.get("url") or "", []).append(it)
+    keep = set()
+    for url, group in by_url.items():
+        if len(group) == 1 or not url:
+            keep.update(i["_id"] for i in group)
+            continue
+        def in_headline(i):
+            return bool(re.search(NAME_EDGE.format(re.escape(norm(i["player"]).split()[-1])), norm(i.get("headline"))))
+        keep.add(min(group, key=lambda i: (0 if in_headline(i) else 1, i["_rank"], i["_id"]))["_id"])
+    return {cid: it for cid, it in found.items() if cid in keep}
+
+
+def items_from_results(results: list[dict], cands: list[dict], now: datetime, only: dict | None = None,
+                       played: dict[int, datetime] | None = None) -> dict[int, dict]:
+    """Best item per candidate id from one search's results, one candidate per article. `only` limits to a single
+    candidate; `played` ({team id: last finished kick-off}) drops a 'predicted lineup' written before that match."""
     found: dict[int, dict] = {}
     pool = [only] if only else cands
     for r in results or []:
@@ -267,9 +301,12 @@ def items_from_results(results: list[dict], cands: list[dict], now: datetime, on
             key, phrases = name_forms(c)
             if not is_about(c, key, phrases, blob):
                 continue
-            snip = pick_snippet(texts + [title], key)
-            if not snip:
-                continue
+            snip = pick_snippet(texts, key)
+            nt, ns = norm(title), norm(snip or "").rstrip("…. ")
+            if not snip or ns in nt or (nt in ns and len(ns) < len(nt) + 20):
+                continue            # a snippet that only repeats the headline says nothing more
+            if PREDICTED_LINEUP.search(title + " " + snip) and (played or {}).get(c.get("team_id"), pub) > pub:
+                continue            # predicted lineup for a match that has since been played
             rank = (tier(dom), -pub.timestamp(), 0 if INJURY_WORDS.search(snip) else 1)
             item = {"player": c["name"], "team": c["team"], "fpl_status": c["status"], "fpl_chance": c["chance"],
                     "fpl_news": c["news"], "headline": title[:140], "snippet": snip, "source_domain": dom,
@@ -277,7 +314,7 @@ def items_from_results(results: list[dict], cands: list[dict], now: datetime, on
             cur = found.get(c["id"])
             if cur is None or rank < cur["_rank"]:
                 found[c["id"]] = item
-    return found
+    return one_per_url(found)
 
 
 # ---------------------------------------------------------------- main
@@ -301,6 +338,11 @@ def main() -> int:
         print(f"exa_news.py: monthly cap of {MONTH_CAP} searches reached - skipping")
         return 0
     cands = build_candidates(boot, load_squads())
+    try:
+        played = last_played(fpl_common.get("https://fantasy.premierleague.com/api/fixtures/"))
+    except Exception as e:                       # optional filter: without it every predicted lineup in the window stays
+        log.warning(f"fixtures unavailable ({e}): predicted lineups not filtered")
+        played = {}
     start = now - timedelta(days=RECENT_DAYS)
     found: dict[int, dict] = {}
     used, cost, failed_ids = 0, 0.0, set()
@@ -317,7 +359,7 @@ def main() -> int:
             if c is not None:
                 failed_ids.add(c["id"])
             continue
-        for cid, it in items_from_results(resp.get("results"), cands, now, only=c).items():
+        for cid, it in items_from_results(resp.get("results"), cands, now, only=c, played=played).items():
             cur = found.get(cid)
             if cur is None or it["_rank"] < cur["_rank"]:
                 found[cid] = it
@@ -332,6 +374,7 @@ def main() -> int:
         d = parse_date(it.get("published"))
         if pid in failed_ids and pid not in found and d and d >= now - timedelta(days=RECENT_DAYS):
             found[pid] = {**it, "_rank": (tier(it.get("source_domain", "")), 0, 0), "_id": pid}
+    found = one_per_url(found)                   # the same article can come back from several players' searches
     order = {c["id"]: i for i, c in enumerate(cands)}
     items = sorted(found.values(), key=lambda i: (order.get(i["_id"], 999), i["_rank"]))[:MAX_ITEMS]
     for i in items:
