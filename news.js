@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 02:05 UTC",
+  "generated_at": "2026-11-09 02:45 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -237,14 +237,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "FPL notes: King injury latest as Fulham + Newcastle sign off favourable runs",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-king-injury-latest-as-fulham-newcastle-sign-off-favourable-runs"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 2
 };
