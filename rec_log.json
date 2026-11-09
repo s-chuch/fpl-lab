@@ -345,13 +345,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "5d7a2e66689f",
+  "code_sha": "c76dfc420cac",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-09T18:31:04+00:00",
-  "saved_at_et": "2026-11-09 1:31 PM ET",
+  "saved_at": "2026-11-09T22:29:12+00:00",
+  "saved_at_et": "2026-11-09 5:29 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -359,63 +359,63 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 5.04
+    "xp": 5.13
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 6.3
+    "xp": 6.4
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.61
+    "xp": 5.62
    },
    {
     "club": "BOU",
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
-    "xp": 5.31
+    "xp": 5.32
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
+    "club": "ARS",
+    "id": 8,
+    "name": "Calafiori",
     "pos": "DEF",
-    "xp": 3.86
+    "xp": 3.93
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.37
+    "xp": 5.31
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.87
+    "xp": 4.83
    },
    {
     "club": "CHE",
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.42
+    "xp": 3.41
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.72
+    "xp": 5.82
    },
    {
     "club": "EVE",
@@ -429,7 +429,7 @@
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 4.81
+    "xp": 4.9
    },
    {
     "club": "HUL",
@@ -450,14 +450,14 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 3.05
+    "xp": 3.11
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 2.66
+    "xp": 2.67
    }
   ],
   "status": "pending",
@@ -465,8 +465,8 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Calafiori",
-    "out_id": 8
+    "out": "Tarkowski",
+    "out_id": 229
    },
    {
     "in": "Barry",
@@ -482,7 +482,7 @@
    4,
    115,
    566,
-   229,
+   8,
    68,
    124,
    154,
@@ -490,7 +490,7 @@
    249,
    166
   ],
-  "xp": 58.0
+  "xp": 58.5
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -1,26 +1,9 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 18:30 UTC",
+  "generated_at": "2026-11-09 22:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
-    {
-      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "B.Fernandes",
-      "club": "MUN",
-      "tags": [],
-      "id": 426,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
     {
       "text": "Tavernier (BOU) \u2014 Leaning buy (1 buy mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
       "sources": [
@@ -87,6 +70,22 @@ window.FPL_NEWS = {
     }
   ],
   "split": [
+    {
+      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "B.Fernandes",
+      "club": "MUN",
+      "tags": [],
+      "id": 426,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
     {
       "text": "Belloumi (HUL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
@@ -164,45 +163,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Cash (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Cash",
-      "club": "AVL",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 32,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "Matty Cash , Joao Gomes and Emiliano Buendia make way, with Cash suspended.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/08/man-utd-v-aston-villa-team-news-tielemans-starts",
-          "title": "Man Utd v Aston Villa team news: Tielemans starts"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Matty Cash , Joao Gomes and Emiliano Buendia make way, with Cash suspended.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/08/man-utd-v-aston-villa-team-news-tielemans-starts",
-          "title": "Man Utd v Aston Villa team news: Tielemans starts"
-        }
-      ],
-      "tone": "bad"
     },
     {
       "text": "De Cuyper (BHA) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
@@ -404,35 +364,69 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Kamara (AVL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
-        "Hub",
+        "Fix",
         "Scout"
       ],
-      "player": "Kamara",
+      "player": "N.Jackson",
       "club": "AVL",
       "tags": [],
-      "id": 47,
+      "id": 166,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
-      "tone": "neutral"
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Jackson has scored 50 points in the last six Gameweeks, Barry leads the way for big chances and Evanilson has scored in five straight matches.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Dominic Calvert-Lewin and Igor Thiago are losing owners too, given the form of budget alternatives such as Jackson, Barry and Evanilson.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Nicolas Jackson is the most-bought player ahead of Gameweek 11 after 33 FPL points over the last three Gameweeks.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "good"
     },
     {
-      "text": "Lindel\u00f6f (AVL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
-        "Hub",
-        "Scout"
+        "Fix",
+        "Hub"
       ],
-      "player": "Lindel\u00f6f",
-      "club": "AVL",
+      "player": "Rogers",
+      "club": "CHE",
       "tags": [],
-      "id": 37,
+      "id": 40,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
+      "facts": [
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Maxim De Cuyper , Morgan Rogers , Dominic Calvert-Lewin and Virgil van Dijk are among the highly owned players on three bookings.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
+          "title": "FPL suspensions: Yellow and red cards tracker"
+        }
+      ],
       "tone": "neutral"
     }
   ],
@@ -461,13 +455,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Jackson in demand + two poor defences",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-jackson-in-demand-two-poor-defences"
-    },
-    {
-      "source": "Scout",
-      "title": "Guehi out of England squad with hip problem",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/guehi-out-of-england-squad-with-hip-problem"
+      "title": "FPL notes: Szoboszlai injury latest + Sage on the brink",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-szoboszlai-injury-latest-sage-on-the-brink"
     }
   ],
   "no_new": false,
