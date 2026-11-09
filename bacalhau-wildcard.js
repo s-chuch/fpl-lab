@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Vuskovic",
-    "captain_ep": 5.85,
+    "captain_ep": 5.86,
     "vice": "Haaland",
-    "vice_ep": 5.72,
+    "vice_ep": 5.82,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -125,61 +125,61 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 5.04,
+        "ep_next": 5.13,
         "status": "ok"
       },
       {
         "name": "Vuskovic",
         "pos": "DEF",
-        "ep_next": 5.85,
+        "ep_next": 5.86,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.86,
+        "ep_next": 3.87,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.61,
+        "ep_next": 5.62,
         "status": "ok"
       },
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.49,
+        "ep_next": 5.68,
         "status": "ok"
       },
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 5.28,
+        "ep_next": 5.29,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.87,
+        "ep_next": 4.83,
         "status": "ok"
       },
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 4.14,
+        "ep_next": 4.11,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.37,
+        "ep_next": 5.31,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.72,
+        "ep_next": 5.82,
         "status": "ok"
       },
       {
@@ -199,13 +199,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.26,
+        "ep_next": 2.29,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.91,
+        "ep_next": 2.92,
         "status": "ok"
       },
       {

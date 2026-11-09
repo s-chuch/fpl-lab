@@ -66,14 +66,26 @@
    "name": "Palmer",
    "side": "over"
   },
+  "155": {
+   "back_gw": null,
+   "flag_gw": 10,
+   "name": "Enzo",
+   "side": "under"
+  },
   "165": {
    "back_gw": null,
    "flag_gw": 2,
    "name": "Jo\u00e3o Pedro",
    "side": "over"
   },
-  "167": {
+  "166": {
    "back_gw": null,
+   "flag_gw": 10,
+   "name": "N.Jackson",
+   "side": "over"
+  },
+  "167": {
+   "back_gw": 10,
    "flag_gw": 7,
    "name": "Delap",
    "side": "under"
@@ -103,7 +115,7 @@
    "side": "over"
   },
   "249": {
-   "back_gw": null,
+   "back_gw": 10,
    "flag_gw": 4,
    "name": "Barry",
    "side": "under"
@@ -160,6 +172,12 @@
    "back_gw": null,
    "flag_gw": 3,
    "name": "Muharemovi\u0107",
+   "side": "over"
+  },
+  "366": {
+   "back_gw": null,
+   "flag_gw": 10,
+   "name": "Wirtz",
    "side": "over"
   },
   "368": {
@@ -331,5 +349,5 @@
    "side": "over"
   }
  },
- "gw": 9
+ "gw": 10
 }

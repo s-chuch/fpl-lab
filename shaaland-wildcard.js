@@ -109,15 +109,15 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Haaland",
-    "captain_ep": 5.72,
+    "captain_ep": 5.82,
     "vice": "De Cuyper",
-    "vice_ep": 5.61,
+    "vice_ep": 5.62,
     "bench_swaps": [
       {
         "bench": "Barnes",
         "bench_ep": 3.23,
         "starter": "Manzambi",
-        "starter_ep": 3.05
+        "starter_ep": 3.11
       }
     ],
     "bench_order": [
@@ -132,67 +132,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 5.04,
+        "ep_next": 5.13,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.61,
+        "ep_next": 5.62,
         "status": "ok"
       },
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.86,
+        "ep_next": 3.87,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.85,
+        "ep_next": 3.93,
         "status": "ok"
       },
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 5.31,
+        "ep_next": 5.32,
         "status": "ok"
       },
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 3.05,
+        "ep_next": 3.11,
         "status": "ok"
       },
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.87,
+        "ep_next": 4.83,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.42,
+        "ep_next": 3.41,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.37,
+        "ep_next": 5.31,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.72,
+        "ep_next": 5.82,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.81,
+        "ep_next": 4.9,
         "status": "ok"
       }
     ],
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.66,
+        "ep_next": 2.67,
         "status": "ok"
       }
     ]

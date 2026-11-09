@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 14:33 UTC",
+  "generated_at": "2026-11-09 18:30 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -19,40 +19,6 @@ window.FPL_NEWS = {
       "stance": {},
       "quotes": [],
       "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Tarkowski (EVE) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Tarkowski",
-      "club": "EVE",
-      "tags": [],
-      "id": 229,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "The Sky Blues had a couple of penalty shouts (one for a ponytail tug from James Tarkowski (\u00a36.2m)), while even Barry himself didn\u2019t deny that he hadn\u2019t handled the ball in for his second goal.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Jarrad Branthwaite (\u00a35.5m) is now level with Tarkowski for DefCon points (10), while Vitalii Mykolenko (\u00a34.6m) is up to six \u2013 a very decent tally for a full-back.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        }
-      ],
       "tone": "neutral"
     },
     {
@@ -118,152 +84,9 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
-    },
-    {
-      "text": "Thomas (COV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Thomas",
-      "club": "COV",
-      "tags": [
-        "injury/doubt"
-      ],
-      "id": 173,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "FPL notes: Barry haul + Thomas injury latest FPL notes: Barry haul + Thomas injury latest Scout Notes FPL notes: Barry haul + Thomas injury latest November 7 156 comments 7 November 2026 156 comments Thierno Barry (\u00a35.7m) delivere...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "FPL notes: Barry haul + Thomas injury latest FPL notes: Barry haul + Thomas injury latest Scout Notes FPL notes: Barry haul + Thomas injury latest November 7 156 comments 7 November 2026 156 comments Thierno Barry (\u00a35.7m) delivered his biggest ever Fantasy Pre...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "topic": "price",
-          "tone": "bad",
-          "text": "It\u2019s not a bad couple of home games up next, either: THOMAS INJURY LATEST Like the reviewer who critiqued Spinal Tap\u2019s Shark Sandwich, Lampard kept the word count down when giving us an update on Bobby Thomas (\u00a34.0m).",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        }
-      ],
-      "tone": "bad"
     }
   ],
   "split": [
-    {
-      "text": "Barry (EVE) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Barry",
-      "club": "EVE",
-      "tags": [],
-      "id": 249,
-      "verdict": "Leaning buy",
-      "stance": {
-        "risk": 1,
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "FPL notes: Barry haul + Thomas injury latest FPL notes: Barry haul + Thomas injury latest Scout Notes FPL notes: Barry haul + Thomas injury latest November 7 156 comments 7 November 2026 156 comments Thierno Barry (\u00a35.7m) delivere...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "source": "Fix",
-          "text": "Dominic Calvert-Lewin and Charalampos Kostoulas are also among the forwards making way, while Evanilson, Thierno Barry and Alexander Isak are popular targets.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "FPL notes: Barry haul + Thomas injury latest FPL notes: Barry haul + Thomas injury latest Scout Notes FPL notes: Barry haul + Thomas injury latest November 7 156 comments 7 November 2026 156 comments Thierno Barry (\u00a35.7m) delivered his biggest ever Fantasy Pre...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "The Sky Blues had a couple of penalty shouts (one for a ponytail tug from James Tarkowski (\u00a36.2m)), while even Barry himself didn\u2019t deny that he hadn\u2019t handled the ball in for his second goal.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "More than 150,000 FPL managers have brought in Thierno Barry despite the 24-year-old\u2019s upcoming fixtures against Brentford, Liverpool and Aston Villa.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Jackson has scored 50 points in the last six Gameweeks, Barry leads the way for big chances and Evanilson has scored in five straight matches.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Dominic Calvert-Lewin and Igor Thiago are losing owners too, given the form of budget alternatives such as Jackson, Barry and Evanilson.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "\ud83d\udd35 https://t.co/4O9iwn92Wk \u2014 Everton (@Everton) November 7, 2026 Having assisted Kiernan Dewsbury \u2013 Hall (\u00a36.6m) for Everton\u2019s third strike, Barry then nearly sealed his hat-trick, missing with a late header and almost getting on the end of a couple of crosses.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Nicolas Jackson, Thierno Barry and Evanilson are the three most-bought players in FPL this week.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "good"
-    },
     {
       "text": "Belloumi (HUL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
@@ -300,31 +123,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
-    },
-    {
-      "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Branthwaite",
-      "club": "EVE",
-      "tags": [],
-      "id": 230,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Jarrad Branthwaite (\u00a35.5m) is now level with Tarkowski for DefCon points (10), while Vitalii Mykolenko (\u00a34.6m) is up to six \u2013 a very decent tally for a full-back.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
-          "title": "FPL notes: Barry haul + Thomas injury latest"
-        }
-      ],
-      "tone": "neutral"
     },
     {
       "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
@@ -604,6 +402,38 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Kamara (AVL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Kamara",
+      "club": "AVL",
+      "tags": [],
+      "id": 47,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Lindel\u00f6f (AVL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Lindel\u00f6f",
+      "club": "AVL",
+      "tags": [],
+      "id": 37,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     }
   ],
   "links": [
@@ -631,8 +461,13 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-vuskovic-and-gross-haul-how-long-is-the-thiago-ban"
+      "title": "FPL notes: Jackson in demand + two poor defences",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-jackson-in-demand-two-poor-defences"
+    },
+    {
+      "source": "Scout",
+      "title": "Guehi out of England squad with hip problem",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/guehi-out-of-england-squad-with-hip-problem"
     }
   ],
   "no_new": false,
