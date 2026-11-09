@@ -247,10 +247,10 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-08",
-      "total_cost": 101.3,
+      "total_cost": 101.4,
       "prices": {
         "Raya": 6.2,
-        "De Cuyper": 5.4,
+        "De Cuyper": 5.5,
         "Tarkowski": 6.2,
         "Calafiori": 5.9,
         "Silva": 5.1,
@@ -274,13 +274,13 @@ window.FPL_WILDCARD_WATCH = {
       "Manzambi": 6.2,
       "Silva": 5.1
     },
-    "total_delta": 2.5,
+    "total_delta": 2.6,
     "players": [
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.4,
-        "delta": 0.5,
+        "current_cost": 5.5,
+        "delta": 0.6,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -476,12 +476,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-09",
-        "event": "added",
-        "player": "João Pedro",
-        "price_at_change": 7.7
-      },
       {
         "date": "2026-10-10",
         "event": "removed",
@@ -760,6 +754,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.6,
         "to": 6.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-08",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.4,
+        "to": 5.5,
         "delta": 0.1
       }
     ]

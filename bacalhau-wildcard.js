@@ -240,13 +240,13 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-08",
-      "total_cost": 96.1,
+      "total_cost": 96.4,
       "prices": {
         "Raya": 6.2,
-        "Vuskovic": 5.2,
+        "Vuskovic": 5.3,
         "Tarkowski": 6.2,
-        "De Cuyper": 5.4,
-        "Van Hecke": 5.0,
+        "De Cuyper": 5.5,
+        "Van Hecke": 5.1,
         "Hill": 5.6,
         "Groß": 6.3,
         "Dewsbury-Hall": 6.6,
@@ -265,22 +265,22 @@ window.FPL_WILDCARD_WATCH = {
       "Vuskovic": 5.2,
       "Van Hecke": 5.0
     },
-    "total_delta": 3.5,
+    "total_delta": 3.8,
     "players": [
       {
-        "name": "Tavernier",
-        "baseline_cost": 6.1,
-        "current_cost": 6.7,
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.5,
         "delta": 0.6,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
       },
       {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 5.4,
-        "delta": 0.5,
+        "name": "Tavernier",
+        "baseline_cost": 6.1,
+        "current_cost": 6.7,
+        "delta": 0.6,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -423,47 +423,23 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "baseline_cost": null,
-        "current_cost": 5.0,
+        "current_cost": 5.1,
         "delta": null,
         "entry_cost": 5.0,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
         "name": "Vuskovic",
         "baseline_cost": null,
-        "current_cost": 5.2,
+        "current_cost": 5.3,
         "delta": null,
         "entry_cost": 5.2,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       }
     ],
     "log": [
-      {
-        "date": "2026-09-21",
-        "event": "price_change",
-        "player": "Schade",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-09-24",
-        "event": "price_change",
-        "player": "Tzolakis",
-        "from": 4.6,
-        "to": 4.7,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-09-25",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 4.9,
-        "to": 5.0,
-        "delta": 0.1
-      },
       {
         "date": "2026-09-30",
         "event": "price_change",
@@ -742,6 +718,30 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.6,
         "to": 6.7,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-08",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.4,
+        "to": 5.5,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-08",
+        "event": "price_change",
+        "player": "Van Hecke",
+        "from": 5.0,
+        "to": 5.1,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-08",
+        "event": "price_change",
+        "player": "Vuskovic",
+        "from": 5.2,
+        "to": 5.3,
         "delta": 0.1
       }
     ]
