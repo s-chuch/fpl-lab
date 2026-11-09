@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 13:15 UTC",
+  "generated_at": "2026-11-09 13:54 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -381,22 +381,6 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Cherki (MCI) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Cherki",
-      "club": "MCI",
-      "tags": [],
-      "id": 399,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "De Cuyper (BHA) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -555,6 +539,45 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Gvardiol (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Gvardiol",
+      "club": "MCI",
+      "tags": [
+        "injury/doubt"
+      ],
+      "id": 391,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "FPL notes: Gvardiol, Guehi + Gibbs-White fitness updates, \u00a35.3m forward brace  City's defence crumbles again as Forest end their home goal drought",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-gvardiol-guehi-gibbs-white-fitness-updates-5-3m-forward-brace",
+          "title": "FPL notes: Gvardiol, Guehi + Gibbs-White fitness updates, \u00a35.3m forward brace"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "FPL notes: Gvardiol, Guehi + Gibbs-White fitness updates, \u00a35.3m forward brace  City's defence crumbles again as Forest end their home goal drought",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-gvardiol-guehi-gibbs-white-fitness-updates-5-3m-forward-brace",
+          "title": "FPL notes: Gvardiol, Guehi + Gibbs-White fitness updates, \u00a35.3m forward brace"
+        }
+      ],
+      "tone": "good"
     }
   ],
   "links": [
@@ -579,8 +602,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "When are the FPL Blank and Double Gameweeks in 2026/27?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/when-are-the-fpl-blank-and-double-gameweeks-in-2026-27"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
