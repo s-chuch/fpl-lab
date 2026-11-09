@@ -170,13 +170,13 @@
   "captain_name": "De Cuyper",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "5b1060776a30",
+  "code_sha": "6242725c9d6a",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-09T06:01:57+00:00",
-  "saved_at_et": "2026-11-09 1:01 AM ET",
+  "saved_at": "2026-11-09T06:41:22+00:00",
+  "saved_at_et": "2026-11-09 1:41 AM ET",
   "source": "plan",
   "squad": [
    {
