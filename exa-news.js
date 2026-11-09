@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-09T04:04:14Z",
+ "generated_at": "2026-11-09T10:38:19Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-09T04:04:14Z",
+ "last_attempt": "2026-11-09T10:38:19Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 220,
-  "cost_usd": 1.54
+  "searches": 230,
+  "cost_usd": 1.61
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "FPL player price changes - risers, fallers and top transfers in Gameweek 10",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Barry (EVE) 97,742 Joao Pedro (CHE) 96,669 Van Hecke (TOT) 61,984 Gvardiol (MCI) 69,565 Jackson (AVL) 60,266 Calvert-Lewin (LEE)…",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-08",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
+   "headline": "Chelsea FC injury update: Josh Acheampong, Emi Martinez, Joao Pedro latest news and return dates The Standard",
+   "snippet": "Joao Pedro Joao Pedro was forced to sit out Chelsea’s rare home loss to Tottenham due to picking up a thigh injury in training on the eve of the game.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-09",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-acheampong-martinez-joao-pedro-latest-news-return-dates-b1304028.html",
    "yours": []
   },
   {
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat Manchester City endured a difficult night at the City Ground as they lost 3-1 to Nottingham Forest for their third…",
-   "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
+   "headline": "Manchester City news: 'Big questions to ask Maresca' - BBC Sport",
+   "snippet": "Enzo Maresca was forced to chop and change his defence again, withdrawing both Josko Gvardiol and Marc Guehi at half-time because of injuries, according to the manager.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-09",
+   "url": "https://www.bbc.com/sport/football/articles/cm369gr5g75yo",
    "yours": []
   },
   {
@@ -42,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Thomas Tuchel braced for more England withdrawals after Marc Guehi injury scare - The Mirror",
-   "snippet": "Manchester City defender Marc Guehi could be forced to withdraw from England's upcoming Nations League matches against Croatia and Spain due to an injury ...",
-   "source_domain": "mirror.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.mirror.co.uk/sport/football/news/marc-guehi-injury-england-squad-37856605",
+   "headline": "Monday Marker: Your guide to City's week ahead",
+   "snippet": "Gvardiol and Kovačić could feature at the same time, before Anderson and Guéhi travel to face the world champions in a tasty looking fixture to end the week.",
+   "source_domain": "mancity.com",
+   "published": "2026-11-09",
+   "url": "https://www.mancity.com/news/club/monday-marker-9-november-2026-63929665",
    "yours": []
   },
   {
@@ -55,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "Igor Thiago's moment of madness - Brentford striker sees red against Brighton after VAR review Goal.com",
-   "snippet": "Brentford striker Igor Thiago endured a disastrous afternoon at the Amex Stadium after being sent off for a moment of madness against Brighton.",
-   "source_domain": "goal.com",
-   "published": "2026-11-08",
-   "url": "https://www.goal.com/en/news/igor-thiago-red-card-brighton-brentford/blt877132547dc3fff2",
+   "headline": "Brentford suffer major blow ahead of Everton as Keith Andrews fumes - 'I'm struggling to believe' - Liverpool Echo",
+   "snippet": "But it clearly cost us.” But while Thiago looks set to miss the game against Everton, Jack Grealish could return to the travelling matchday squad for the clash at the Gtech.",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-09",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/igor-thiago-red-card-everton-34882514",
    "yours": []
   },
   {
@@ -68,11 +68,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 50,
    "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Lampard's update on Bobby Thomas fitness and other injury concerns",
-   "snippet": "Lampard's update on Bobby Thomas fitness and other injury concerns Lampard's update on Bobby Thomas fitness and other injury concerns 06 Nov 2026",
+   "headline": "Lampard compartió novedades sobre el estado físico de Bobby Thomas",
+   "snippet": "Lampard compartió novedades sobre el estado físico de Bobby Thomas Lampard compartió novedades sobre el estado físico de Bobby Thomas 06 nov 2026",
    "source_domain": "premierleague.com",
    "published": "2026-11-06",
-   "url": "https://www.premierleague.com/en/news/4757100/lampards-update-on-bobby-thomas-fitness",
+   "url": "https://www.premierleague.com/es/news/4757100/lampards-update-on-bobby-thomas-fitness",
+   "yours": []
+  },
+  {
+   "player": "Semenyo",
+   "team": "MCI",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {
@@ -81,24 +94,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Preview: Arsenal v Hull City Arsenal FC Official Website Arsenal.com",
-   "snippet": "That means Bukayo Saka is our only injury victim at present following the thigh strain he picked up at Bayern Munich a fortnight ago.",
-   "source_domain": "arsenal.com",
-   "published": "2026-11-07",
-   "url": "https://www.arsenal.com/news/preview-arsenal-v-hull-city-aGabV1u7EDt0",
-   "yours": []
-  },
-  {
-   "player": "Lacroix",
-   "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Starting lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
+   "headline": "Arsenal FC injury update: Declan Rice, William Saliba, Bukayo Saka latest return dates The Standard",
+   "snippet": "Bukayo Saka Bukayo Saka has now missed five games in a row with a quad injury that he picked up against Bayern Munich.",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-starting-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
+   "published": "2026-11-09",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-rice-saliba-saka-latest-news-return-dates-b1303990.html",
    "yours": []
   },
   {
