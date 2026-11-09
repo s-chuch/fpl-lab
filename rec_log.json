@@ -166,17 +166,17 @@
    53,
    305
   ],
-  "captain": 115,
-  "captain_name": "De Cuyper",
+  "captain": 4,
+  "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "71b346162360",
+  "code_sha": "5aff9f844933",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-09T11:17:09+00:00",
-  "saved_at_et": "2026-11-09 6:17 AM ET",
+  "saved_at": "2026-11-09T11:56:30+00:00",
+  "saved_at_et": "2026-11-09 6:56 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -184,14 +184,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.89
+    "xp": 5.04
    },
    {
     "club": "ARS",
     "id": 4,
     "name": "Gabriel",
     "pos": "DEF",
-    "xp": 6.0
+    "xp": 6.3
    },
    {
     "club": "BHA",
@@ -208,11 +208,11 @@
     "xp": 5.04
    },
    {
-    "club": "ARS",
-    "id": 8,
-    "name": "Calafiori",
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 4.0
+    "xp": 3.86
    },
    {
     "club": "BOU",
@@ -290,8 +290,8 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
+    "out": "Calafiori",
+    "out_id": 8
    },
    {
     "in": "Barry",
@@ -307,7 +307,7 @@
    4,
    115,
    566,
-   8,
+   229,
    68,
    124,
    154,
@@ -315,7 +315,7 @@
    249,
    166
   ],
-  "xp": 57.5
+  "xp": 58.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

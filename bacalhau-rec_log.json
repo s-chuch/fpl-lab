@@ -162,21 +162,21 @@
   "backfilled": false,
   "bench": [
    572,
-   229,
    94,
-   286
+   286,
+   321
   ],
-  "captain": 115,
-  "captain_name": "De Cuyper",
+  "captain": 4,
+  "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "71b346162360",
+  "code_sha": "5aff9f844933",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-09T11:17:22+00:00",
-  "saved_at_et": "2026-11-09 6:17 AM ET",
+  "saved_at": "2026-11-09T11:56:41+00:00",
+  "saved_at_et": "2026-11-09 6:56 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -184,7 +184,14 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 4.89
+    "xp": 5.04
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 6.3
    },
    {
     "club": "BHA",
@@ -243,13 +250,6 @@
     "xp": 5.72
    },
    {
-    "club": "EVE",
-    "id": 249,
-    "name": "Barry",
-    "pos": "FWD",
-    "xp": 5.4
-   },
-   {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
@@ -264,13 +264,6 @@
     "xp": 4.0
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.86
-   },
-   {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
@@ -283,21 +276,29 @@
     "name": "Belloumi",
     "pos": "MID",
     "xp": 2.26
+   },
+   {
+    "club": "IPS",
+    "id": 321,
+    "name": "Walle Egeli",
+    "pos": "FWD",
+    "xp": 0.06
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Barry",
-    "in_id": 249,
-    "out": "Walle Egeli",
-    "out_id": 321
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 504,
   "vice_name": "Vuskovic",
   "xi": [
    1,
+   4,
    115,
    504,
    112,
@@ -306,10 +307,9 @@
    124,
    236,
    411,
-   249,
    79
   ],
-  "xp": 63.9
+  "xp": 65.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

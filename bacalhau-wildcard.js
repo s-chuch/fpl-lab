@@ -125,7 +125,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.89,
+        "ep_next": 5.04,
         "status": "ok"
       },
       {
