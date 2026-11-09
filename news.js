@@ -1,26 +1,10 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 07:59 UTC",
+  "generated_at": "2026-11-09 08:39 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
-    {
-      "text": "Ampadu (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Ampadu",
-      "club": "LEE",
-      "tags": [],
-      "id": 338,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
     {
       "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
@@ -63,39 +47,6 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Calvert-Lewin",
-      "club": "LEE",
-      "tags": [],
-      "id": 346,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "As expected, Calvert-Lewin\u2019s usual partners in crime in the Leeds attack aren\u2019t in the starting XI.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/leeds-v-spurs-team-news-calvert-lewin-starts-no-stach",
-          "title": "Leeds v Spurs team news: Calvert-Lewin starts, no Stach"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Maxim De Cuyper , Morgan Rogers , Dominic Calvert-Lewin and Virgil van Dijk are among the highly owned players on three bookings.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
-          "title": "FPL suspensions: Yellow and red cards tracker"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
       "text": "Cash (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
@@ -133,22 +84,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
-    },
-    {
-      "text": "Elvedi (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Elvedi",
-      "club": "LEE",
-      "tags": [],
-      "id": 598,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
     },
     {
       "text": "Kamara (AVL) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -213,6 +148,63 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
+    },
+    {
+      "text": "Mainoo (MUN) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Mainoo",
+      "club": "MUN",
+      "tags": [],
+      "id": 432,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Mukiele (SUN) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Mukiele",
+      "club": "SUN",
+      "tags": [],
+      "id": 533,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Mykolenko (EVE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Mykolenko",
+      "club": "EVE",
+      "tags": [],
+      "id": 233,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Jarrad Branthwaite (\u00a35.5m) is now level with Tarkowski for DefCon points (10), while Vitalii Mykolenko (\u00a34.6m) is up to six \u2013 a very decent tally for a full-back.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/07/fpl-notes-barry-haul-thomas-injury-latest",
+          "title": "FPL notes: Barry haul + Thomas injury latest"
+        }
+      ],
+      "tone": "neutral"
     }
   ],
   "links": [
@@ -237,8 +229,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL notes: Silva + Tavernier near bans, Evanilson scores again",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-silva-tavernier-near-bans-evanilson-scores-again"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 2
 };
