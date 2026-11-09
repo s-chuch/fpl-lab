@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-08T21:31:04Z",
+ "generated_at": "2026-11-09T04:04:14Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-08T21:31:04Z",
+ "last_attempt": "2026-11-09T04:04:14Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 210,
-  "cost_usd": 1.47
+  "searches": 220,
+  "cost_usd": 1.54
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea FC XI vs Sunderland: Starting lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "Estevao started against United and impressed, but drops down to the bench., Joao Pedro and Maxence Lacroix are both still sidelined, along with Jorrel Hato and captain Reece James, who is recovering from knee surgery…",
-   "source_domain": "standard.co.uk",
+   "headline": "FPL player price changes - risers, fallers and top transfers in Gameweek 10",
+   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Barry (EVE) 97,742 Joao Pedro (CHE) 96,669 Van Hecke (TOT) 61,984 Gvardiol (MCI) 69,565 Jackson (AVL) 60,266 Calvert-Lewin (LEE)…",
+   "source_domain": "premierleague.com",
    "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-sunderland-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303742.html",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
    "yours": []
   },
   {
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "'I'm always concerned' - Enzo Maresca demands ‘balance’ as Manchester City fall to third straight Premier League defeat Goal.com US",
-   "snippet": "Josko Gvardiol had some issue already during the week, so it was just because they had problems.\" ...",
-   "source_domain": "goal.com",
+   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
+   "snippet": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat Manchester City endured a difficult night at the City Ground as they lost 3-1 to Nottingham Forest for their third…",
+   "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-08",
-   "url": "https://www.goal.com/en-us/news/enzo-maresca-manchester-city-premier-league/blt8cea272028fb285a",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {
@@ -42,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Marc Guehi: Manchester City defender a doubt for England camp with hip issue - BBC Sport",
-   "snippet": "Manchester City defender Marc Guehi will undergo a scan on a hip complaint on Sunday to determine whether he can report for England duty this week.",
-   "source_domain": "bbc.com",
+   "headline": "Thomas Tuchel braced for more England withdrawals after Marc Guehi injury scare - The Mirror",
+   "snippet": "Manchester City defender Marc Guehi could be forced to withdraw from England's upcoming Nations League matches against Croatia and Spain due to an injury ...",
+   "source_domain": "mirror.co.uk",
    "published": "2026-11-08",
-   "url": "https://www.bbc.com/sport/football/articles/cmwyq8x6nx5lo",
+   "url": "https://www.mirror.co.uk/sport/football/news/marc-guehi-injury-england-squad-37856605",
    "yours": []
   },
   {
@@ -56,7 +56,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
    "headline": "Igor Thiago's moment of madness - Brentford striker sees red against Brighton after VAR review Goal.com",
-   "snippet": "Thiago ban adds to Brentford's fixture nightmare The timing of Thiago's dismissal creates a major headache for Brentford given their daunting upcoming schedule.",
+   "snippet": "Brentford striker Igor Thiago endured a disastrous afternoon at the Amex Stadium after being sent off for a moment of madness against Brighton.",
    "source_domain": "goal.com",
    "published": "2026-11-08",
    "url": "https://www.goal.com/en/news/igor-thiago-red-card-brighton-brentford/blt877132547dc3fff2",
@@ -73,19 +73,6 @@ window.EXA_NEWS = {
    "source_domain": "premierleague.com",
    "published": "2026-11-06",
    "url": "https://www.premierleague.com/en/news/4757100/lampards-update-on-bobby-thomas-fitness",
-   "yours": []
-  },
-  {
-   "player": "Semenyo",
-   "team": "MCI",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Guehi, Gvardiol, Semenyo - Man City injury news and return dates after Nottingham Forest defeat - Manchester Evening News",
-   "snippet": "Antoine Semenyo, Marc Guehi and Josko Gvardiol are all injury concerns for Manchester City(Image: Getty Images) Manchester City must reset during the international break after their third straight Premier League defeat.",
-   "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/guehi-gvardiol-semenyo-man-city-34879533",
    "yours": []
   },
   {
@@ -128,16 +115,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "James",
+   "player": "Martinez",
    "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "FPL gameweek 10 tips: Should you keep or sell Ezri Konsa? - BBC Sport",
-   "snippet": "Antonio Silva (£5.1m) or James Hill (£5.6m) at Bournemouth both stand out as good options this week and beyond.",
-   "source_domain": "bbc.co.uk",
-   "published": "2026-11-05",
-   "url": "https://www.bbc.co.uk/sport/football/articles/cm4g112qp051o",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Head injury - 75% chance of playing",
+   "headline": "Man Utd XI vs Aston Villa: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "There will also be no place in the squad for Lisandro Martinez, who serves his one-match suspension after his red card in the defeat at Chelsea, while Maguire is expected to be fit despite limping off late on against…",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-08",
+   "url": "https://www.standard.co.uk/sport/football/man-utd-xi-vs-aston-villa-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303729.html",
    "yours": []
   }
  ]
