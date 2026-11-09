@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-09 13:54 UTC",
+  "generated_at": "2026-11-09 14:33 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -92,6 +92,32 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Thiago (BRE) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Thiago",
+      "club": "BRE",
+      "tags": [],
+      "id": 106,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest  Fantasy notes from Brighton 2-0 Brentford",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-vuskovic-and-gross-haul-how-long-is-the-thiago-ban",
+          "title": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest"
+        }
+      ],
+      "tone": "neutral"
     },
     {
       "text": "Thomas (COV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
@@ -605,8 +631,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "When are the FPL Blank and Double Gameweeks in 2026/27?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/when-are-the-fpl-blank-and-double-gameweeks-in-2026-27"
+      "title": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-vuskovic-and-gross-haul-how-long-is-the-thiago-ban"
     }
   ],
   "no_new": false,

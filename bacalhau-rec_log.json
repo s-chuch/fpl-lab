@@ -170,13 +170,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "eb959640a331",
+  "code_sha": "4627e3b23207",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-09T13:54:50+00:00",
-  "saved_at_et": "2026-11-09 8:54 AM ET",
+  "saved_at": "2026-11-09T14:34:07+00:00",
+  "saved_at_et": "2026-11-09 9:34 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -195,17 +195,17 @@
    },
    {
     "club": "BHA",
-    "id": 115,
-    "name": "De Cuyper",
-    "pos": "DEF",
-    "xp": 5.98
-   },
-   {
-    "club": "BHA",
     "id": 504,
     "name": "Vuskovic",
     "pos": "DEF",
-    "xp": 5.87
+    "xp": 5.85
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 5.61
    },
    {
     "club": "TOT",
@@ -219,21 +219,21 @@
     "id": 60,
     "name": "Hill",
     "pos": "DEF",
-    "xp": 5.09
+    "xp": 5.28
    },
    {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.17
+    "xp": 5.37
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.95
+    "xp": 4.87
    },
    {
     "club": "EVE",
@@ -254,7 +254,7 @@
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 5.18
+    "xp": 5.26
    },
    {
     "club": "HUL",
@@ -268,7 +268,7 @@
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.89
+    "xp": 2.91
    },
    {
     "club": "HUL",
@@ -282,7 +282,7 @@
     "id": 321,
     "name": "Walle Egeli",
     "pos": "FWD",
-    "xp": 0.06
+    "xp": 0.02
    }
   ],
   "status": "pending",
@@ -294,13 +294,13 @@
     "out_id": 229
    }
   ],
-  "vice": 504,
-  "vice_name": "Vuskovic",
+  "vice": 115,
+  "vice_name": "De Cuyper",
   "xi": [
    1,
    4,
-   115,
    504,
+   115,
    112,
    60,
    68,
