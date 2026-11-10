@@ -352,13 +352,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "d020c38c24f7",
+  "code_sha": "b10190e3df0a",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-10T16:15:39+00:00",
-  "saved_at_et": "2026-11-10 11:15 AM ET",
+  "saved_at": "2026-11-10T19:50:20+00:00",
+  "saved_at_et": "2026-11-10 2:50 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -457,7 +457,7 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 2.2
+    "xp": 1.69
    },
    {
     "club": "IPS",

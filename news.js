@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-10 16:15 UTC",
+  "generated_at": "2026-11-10 19:49 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -196,32 +196,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Thiago (BRE) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Thiago",
-      "club": "BRE",
-      "tags": [],
-      "id": 106,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest  Fantasy notes from Brighton 2-0 Brentford",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-notes-vuskovic-and-gross-haul-how-long-is-the-thiago-ban",
-          "title": "FPL notes: Vuskovic + Gross haul, Thiago ban + Mitoma latest"
-        }
-      ],
-      "tone": "neutral"
     },
     {
       "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
@@ -667,39 +641,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/"
-    },
-    {
       "source": "Scout",
-      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 11?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/goals-assists-imminent-who-is-due-in-fpl-gameweek-11-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Who is close to a ban or suspended in FPL Gameweek 11?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-11-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Van Dijk out of international duty + Szoboszlai injury update",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/van-dijk-out-of-international-duty-szoboszlai-injury-update"
-    },
-    {
-      "source": "Scout",
-      "title": "Konsa fitness update as defender ruled out of England v Croatia",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/konsa-fitness-update-as-defender-ruled-out-of-england-v-croatia"
-    },
-    {
-      "source": "Scout",
-      "title": "45 mins for Saliba in return to action with under-21s",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/45-mins-for-saliba-in-return-to-action-with-under-21s"
-    },
-    {
-      "source": "Scout",
-      "title": "WUCL Fantasy Matchday 4: Team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/wucl-fantasy-matchday-4-team-reveal"
+      "title": "When is the best time to Free Hit in FPL?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/when-is-the-best-time-to-free-hit-in-fpl"
     }
   ],
   "no_new": false,
