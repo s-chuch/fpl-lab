@@ -352,13 +352,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "47330aaa4604",
+  "code_sha": "d020c38c24f7",
   "ft": 1,
   "gw": 11,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-10T07:28:29+00:00",
-  "saved_at_et": "2026-11-10 2:28 AM ET",
+  "saved_at": "2026-11-10T16:15:39+00:00",
+  "saved_at_et": "2026-11-10 11:15 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -422,7 +422,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 4.11
+    "xp": 3.8
    },
    {
     "club": "MCI",
@@ -443,7 +443,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.0
+    "xp": 4.04
    },
    {
     "club": "BRE",
@@ -457,7 +457,7 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 2.29
+    "xp": 2.2
    },
    {
     "club": "IPS",
@@ -491,7 +491,7 @@
    411,
    79
   ],
-  "xp": 65.7
+  "xp": 65.4
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

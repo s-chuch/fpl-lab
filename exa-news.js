@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-10T07:28:30Z",
+ "generated_at": "2026-11-10T16:15:41Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-10T07:28:30Z",
+ "last_attempt": "2026-11-10T16:15:41Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 260,
-  "cost_usd": 1.82
+  "searches": 270,
+  "cost_usd": 1.89
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,9 +17,9 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "FPL player price changes - risers, fallers and top transfers in Gameweek 10",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 202,969 Joao Pedro (CHE) 225,256 Barry (EVE) 168,757 Gvardiol (MCI) 212,133 Evanilson (BOU) 138,519 Guehi (MCI) 93,615…",
+   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 255,706 Joao Pedro (CHE) 268,808 Barry (EVE) 189,215 Gvardiol (MCI) 250,422 Evanilson (BOU) 174,359 Guehi (MCI) 117,947…",
    "source_domain": "premierleague.com",
-   "published": "2026-11-09",
+   "published": "2026-11-10",
    "url": "https://www.premierleague.com/en/news/2884829",
    "yours": []
   },
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Liverpool FC injury update: Virgil van Dijk, Ryan Gravenberch, Dominik Szoboszlai latest news and return dates The Standard",
-   "snippet": "Virgil van Dijk The Liverpool captain was called up by new Dutch head coach Xavi for the Nations League double-header against Greece and Germany.",
-   "source_domain": "standard.co.uk",
+   "headline": "Van Dijk, Szoboszlai, Gravenberch, Leoni, Ekitike - Liverpool injury latest and return dates - Liverpool Echo",
+   "snippet": "Liverpool were then handed a further two injury scares as Dominik Szoboszlai suffered an issue with his knee against the Eagles, before Virgil van Dijk withdrew from the Netherlands squad due to his own fitness setback.",
+   "source_domain": "liverpoolecho.co.uk",
    "published": "2026-11-10",
-   "url": "https://www.standard.co.uk/sport/football/liverpool-fc-injury-update-van-dijk-gravenberch-szoboszlai-latest-news-return-dates-b1304227.html",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/van-dijk-szoboszlai-gravenberch-leoni-34889138",
    "yours": []
   },
   {
@@ -55,24 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "Brentford suffer major blow ahead of Everton as Keith Andrews fumes - 'I'm struggling to believe' - Liverpool Echo",
-   "snippet": "But while Thiago looks set to miss the game against Everton, Jack Grealish could return to the travelling matchday squad for the clash at the Gtech.",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-09",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/igor-thiago-red-card-everton-34882514",
-   "yours": []
-  },
-  {
-   "player": "Semenyo",
-   "team": "MCI",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
-   "snippet": "7 Semenyo: Possibly a bigger miss than many realised in recent weeks, Semenyo will hope to pick up where he left off when he returns from injury in December.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "headline": "Brentford news: Bees to appeal Igor Thiago's red card - BBC Sport",
+   "snippet": "Brentford are planning to appeal Igor Thiago's red card shown during Sunday's 2-0 defeat at Brighton.",
+   "source_domain": "bbc.com",
    "published": "2026-11-10",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
+   "url": "https://www.bbc.com/sport/football/articles/cm4g1gjknee8o",
    "yours": []
   },
   {
@@ -89,16 +76,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Lacroix",
-   "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Seven Chelsea players set for extra training as Xabi Alonso faces uphill battle Football London",
-   "snippet": "Neither Maxence Lacroix, who's recovering from a hamstring problem, nor Wesley Fofana were given the nod, though.",
-   "source_domain": "football.london",
-   "published": "2026-11-09",
-   "url": "https://www.football.london/chelsea-fc/news/seven-chelsea-players-set-extra-34883075",
+   "player": "Brobbey",
+   "team": "SUN",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Muscular injury - 75% chance of playing",
+   "headline": "Sunderland sweat on key duo's fitness after international break decision made Chronicle Live",
+   "snippet": "Brobbey was replaced by Wilson Isidor in the 67th minute and has been suffering from a hamstring problem that caused him to miss games.",
+   "source_domain": "chroniclelive.co.uk",
+   "published": "2026-11-10",
+   "url": "https://www.chroniclelive.co.uk/sport/football/football-news/sunderland-sweat-key-duos-fitness-34891438",
    "yours": []
   }
  ]
