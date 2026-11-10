@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-10T01:20:30Z",
+ "generated_at": "2026-11-10T07:28:30Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-10T01:20:30Z",
+ "last_attempt": "2026-11-10T07:28:30Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 250,
-  "cost_usd": 1.75
+  "searches": 260,
+  "cost_usd": 1.82
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Fatal blow: Van Dijk leaves Xavi in trouble Goal.com",
-   "snippet": "Captain Virgil van Dijk and striker Brian Brobbey will miss the next two matches, both ruled out through a lack of physical readiness.",
-   "source_domain": "goal.com",
-   "published": "2026-11-09",
-   "url": "https://www.goal.com/en/news/a-fatal-blow-van-dijk-leaves-xavi-in-trouble/blt6184fcc0f9d793e2",
+   "headline": "Liverpool FC injury update: Virgil van Dijk, Ryan Gravenberch, Dominik Szoboszlai latest news and return dates The Standard",
+   "snippet": "Virgil van Dijk The Liverpool captain was called up by new Dutch head coach Xavi for the Nations League double-header against Greece and Germany.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-10",
+   "url": "https://www.standard.co.uk/sport/football/liverpool-fc-injury-update-van-dijk-gravenberch-szoboszlai-latest-news-return-dates-b1304227.html",
    "yours": []
   },
   {
@@ -42,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Man City release Marc Guehi statement amid defensive injury issues - Manchester Evening News",
-   "snippet": "Guehi had been called up to Thomas Tuchel's 25-man squad for the fixtures against Croatia and Spain in the Nations League this week.",
+   "headline": "Khusanov, Guehi, Gvardiol - Man City injury news and return dates as duo withdraw from national teams - Manchester Evening News",
+   "snippet": "Marc Guehi Injury: Unknown Maresca confirmed on Saturday that Guehi had asked to be substituted at half time due to injury.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-09",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-release-marc-guehi-34884614",
+   "published": "2026-11-10",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/khusanov-guehi-gvardiol-man-city-34886691",
    "yours": []
   },
   {
@@ -56,10 +56,23 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
    "headline": "Brentford suffer major blow ahead of Everton as Keith Andrews fumes - 'I'm struggling to believe' - Liverpool Echo",
-   "snippet": "But while Thiago looks set to miss the game against Everton, Jack",
+   "snippet": "But while Thiago looks set to miss the game against Everton, Jack Grealish could return to the travelling matchday squad for the clash at the Gtech.",
    "source_domain": "liverpoolecho.co.uk",
    "published": "2026-11-09",
    "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/igor-thiago-red-card-everton-34882514",
+   "yours": []
+  },
+  {
+   "player": "Semenyo",
+   "team": "MCI",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
+   "snippet": "7 Semenyo: Possibly a bigger miss than many realised in recent weeks, Semenyo will hope to pick up where he left off when he returns from injury in December.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-10",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
    "yours": []
   },
   {
@@ -86,19 +99,6 @@ window.EXA_NEWS = {
    "source_domain": "football.london",
    "published": "2026-11-09",
    "url": "https://www.football.london/chelsea-fc/news/seven-chelsea-players-set-extra-34883075",
-   "yours": []
-  },
-  {
-   "player": "Martinez",
-   "team": "CHE",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Man Utd XI vs Aston Villa: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
-   "snippet": "There will also be no place in the squad for Lisandro Martinez, who serves his one-match suspension after his red card in the defeat at Chelsea, while Maguire is expected to be fit despite limping off late on against…",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-08",
-   "url": "https://www.standard.co.uk/sport/football/man-utd-xi-vs-aston-villa-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1303729.html",
    "yours": []
   }
  ]
