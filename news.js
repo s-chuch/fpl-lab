@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-10 19:49 UTC",
+  "generated_at": "2026-11-10 22:59 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -639,14 +639,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "When is the best time to Free Hit in FPL?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/when-is-the-best-time-to-free-hit-in-fpl"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
