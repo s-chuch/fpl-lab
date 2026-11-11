@@ -345,13 +345,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "862ec3a0b480",
+  "code_sha": "31ee5db96ce6",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-11T15:57:25+00:00",
-  "saved_at_et": "2026-11-11 10:57 AM ET",
+  "saved_at": "2026-11-11T19:42:31+00:00",
+  "saved_at_et": "2026-11-11 2:42 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -443,7 +443,7 @@
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.23
+    "xp": 3.29
    },
    {
     "club": "AVL",

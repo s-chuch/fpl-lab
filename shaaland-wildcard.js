@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.23,
+        "bench_ep": 3.29,
         "starter": "Manzambi",
         "starter_ep": 3.11
       }
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.23,
+        "ep_next": 3.29,
         "status": "ok"
       },
       {

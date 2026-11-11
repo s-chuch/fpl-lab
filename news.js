@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-11 15:57 UTC",
+  "generated_at": "2026-11-11 19:42 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -403,7 +403,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (1 buy mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "Barry (EVE) \u2014 Leaning buy (2 buy mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -414,7 +414,7 @@ window.FPL_NEWS = {
       "id": 249,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 1
+        "buy": 2
       },
       "quotes": [
         {
@@ -425,6 +425,15 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
           "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "Scout",
+          "text": "Is it too late to buy in-form FPL forward Barry?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/is-it-too-late-to-buy-in-form-fpl-forward-barry",
+          "title": "Is it too late to buy in-form FPL forward Barry?"
         }
       ],
       "facts": [
@@ -791,14 +800,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/"
-    },
-    {
       "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 5 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/sofascore-nations-league-fantasy-round-5-team-reveals"
+      "title": "Is it too late to buy in-form FPL forward Barry?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/is-it-too-late-to-buy-in-form-fpl-forward-barry"
     }
   ],
   "no_new": false,
