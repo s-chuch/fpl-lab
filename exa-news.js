@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-10T23:00:13Z",
+ "generated_at": "2026-11-11T06:39:53Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-10T23:00:13Z",
+ "last_attempt": "2026-11-11T06:39:53Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 280,
-  "cost_usd": 1.96
+  "searches": 290,
+  "cost_usd": 2.03
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -45,7 +45,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
    "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
-   "snippet": "6 Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
+   "snippet": "Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-10",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
@@ -57,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Van Dijk, Szoboszlai, Gravenberch, Leoni, Ekitike - Liverpool injury latest and return dates - Liverpool Echo",
-   "snippet": "Liverpool were then handed a further two injury scares as Dominik Szoboszlai suffered an issue with his knee against the Eagles, before Virgil van Dijk withdrew from the Netherlands squad due to his own fitness setback.",
+   "headline": "Andoni Iraola could soon get his wish as Liverpool wait for confirmation of big injury boost - Liverpool Echo",
+   "snippet": "Admittedly, Iraola was likely referring to the likes of Dominik Szoboszlai, who suffered a knee injury against the Eagles, and Virgil van Dijk, who has since withdrawn from the Netherlands squad with a minor injury, in…",
    "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/van-dijk-szoboszlai-gravenberch-leoni-34889138",
+   "published": "2026-11-11",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/andoni-iraola-could-soon-wish-34892504",
    "yours": []
   },
   {
@@ -96,11 +96,24 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal FC boost after shock Noni Madueke snub as training plan revealed for new undroppable The Standard",
-   "snippet": "That is despite Bukayo Saka not being involved due to the quad injury he suffered against Bayern Munich last month.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-09",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-noni-madueke-england-snub-b1304188.html",
+   "headline": "Transfer talks, injury boost and behind-closed-doors friendly – Dream Arsenal international break Football London",
+   "snippet": "With Saliba back and only Saka missing, some serious players are going to have to be left out of the 20-man Premier League matchday squad.",
+   "source_domain": "football.london",
+   "published": "2026-11-11",
+   "url": "https://www.football.london/arsenal-fc/transfer-news/transfer-talks-injury-boost-behind-34892015",
+   "yours": []
+  },
+  {
+   "player": "Maguire",
+   "team": "MUN",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Back injury - 75% chance of playing",
+   "headline": "Which players are suspended or close to a ban in Premier League matches?",
+   "snippet": "Players close to a one-match ban Player Club Pos Yellow cards --- --- --- --- Vitaly Janelt BRE MID 4 Igor Thiago BRE FWD 4 Pascal Groß BHA DEF 4 Oliver Boscagli BHA MID 4 Adam Smith BOU DEF 4 Marcus Tavernier BOU MID…",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-08",
+   "url": "https://www.premierleague.com/en/news/4425344/which-players-are-suspended-or-close-to-a-ban-in-fantasy",
    "yours": []
   }
  ]
