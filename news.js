@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-10 22:59 UTC",
+  "generated_at": "2026-11-11 00:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -608,10 +608,10 @@ window.FPL_NEWS = {
         {
           "topic": "price",
           "tone": "neutral",
-          "text": "Login here FPL Team of the Season So Far \u2013 Which \u00a34.5m Defender Has Outscored Haaland?",
+          "text": "Ten Gameweeks later, the Brighton defender costs \u00a35.5m and leads the scoring with 75 points, five ahead of Erling Haaland.",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
+          "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
         }
       ],
       "tone": "mixed"

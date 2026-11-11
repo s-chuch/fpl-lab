@@ -246,7 +246,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-10",
-      "total_cost": 96.4,
+      "total_cost": 96.5,
       "prices": {
         "Raya": 6.2,
         "Vuskovic": 5.3,
@@ -255,7 +255,7 @@ window.FPL_WILDCARD_WATCH = {
         "Van Hecke": 5.1,
         "Hill": 5.6,
         "Groß": 6.3,
-        "Dewsbury-Hall": 6.6,
+        "Dewsbury-Hall": 6.7,
         "Tavernier": 6.7,
         "Haaland": 15.8,
         "Evanilson": 6.5,
@@ -271,7 +271,7 @@ window.FPL_WILDCARD_WATCH = {
       "Vuskovic": 5.2,
       "Van Hecke": 5.0
     },
-    "total_delta": 3.8,
+    "total_delta": 3.9,
     "players": [
       {
         "name": "De Cuyper",
@@ -319,6 +319,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
+        "name": "Dewsbury-Hall",
+        "baseline_cost": 6.6,
+        "current_cost": 6.7,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Raya",
         "baseline_cost": 6.1,
         "current_cost": 6.2,
@@ -341,15 +350,6 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 4.6,
         "current_cost": 4.7,
         "delta": 0.1,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Dewsbury-Hall",
-        "baseline_cost": 6.6,
-        "current_cost": 6.6,
-        "delta": 0.0,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -446,14 +446,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-09-30",
-        "event": "price_change",
-        "player": "Tarkowski",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-03",
         "event": "price_change",
@@ -748,6 +740,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Vuskovic",
         "from": 5.2,
         "to": 5.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-10",
+        "event": "price_change",
+        "player": "Dewsbury-Hall",
+        "from": 6.6,
+        "to": 6.7,
         "delta": 0.1
       }
     ]
