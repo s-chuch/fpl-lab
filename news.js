@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-11 06:39 UTC",
+  "generated_at": "2026-11-11 15:57 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -89,6 +89,63 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
+      "text": "Konsa (ARS) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 31,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "source": "Scout",
+          "text": "Konsa fitness update as defender ruled out of England v Croatia  James Hill gets a maiden Three Lions call-up",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/konsa-fitness-update-as-defender-ruled-out-of-england-v-croatia",
+          "title": "Konsa fitness update as defender ruled out of England v Croatia"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Konsa fitness update as defender ruled out of England v Croatia  James Hill gets a maiden Three Lions call-up",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/konsa-fitness-update-as-defender-ruled-out-of-england-v-croatia",
+          "title": "Konsa fitness update as defender ruled out of England v Croatia"
+        },
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        }
+      ],
+      "tone": "bad"
+    },
+    {
       "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -103,6 +160,14 @@ window.FPL_NEWS = {
       "stance": {},
       "quotes": [],
       "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Midfield \u2013 Four value picks alongside Morgan Rogers With premium midfielders Bukayo Saka, Bruno Fernandes and Cole Palmer either injured or out of form, the Algorithm spreads the budget across midfield.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
         {
           "topic": "price",
           "tone": "neutral",
@@ -123,12 +188,22 @@ window.FPL_NEWS = {
       ],
       "player": "Silva",
       "club": "BOU",
-      "tags": [],
+      "tags": [
+        "rotation risk"
+      ],
       "id": 566,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
       "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Ant\u00f3nio Silva offers cover when the fixtures call for it.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
         {
           "topic": "price",
           "tone": "neutral",
@@ -179,12 +254,28 @@ window.FPL_NEWS = {
       ],
       "facts": [
         {
+          "topic": "role",
+          "tone": "bad",
+          "text": "The best FPL Wildcard squad for Gameweek 11 Gro\u00df and Tavernier are both one booking away from a one-match ban, so bench depth matters.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
           "topic": "form",
           "tone": "good",
           "text": "Best FPL midfielders \u2013 Gro\u00df for assists, Tavernier for goals Pascal Gro\u00df (\u00a36.3m, 70 points) has averaged one attacking return per appearance, with four goals and six FPL assists in ten games.",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
           "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Marcus Tavernier offers a goal threat from midfield.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
         },
         {
           "topic": "price",
@@ -195,7 +286,7 @@ window.FPL_NEWS = {
           "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
         }
       ],
-      "tone": "good"
+      "tone": "mixed"
     },
     {
       "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
@@ -275,7 +366,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "B.Fernandes (MUN) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Hub"
@@ -285,9 +376,30 @@ window.FPL_NEWS = {
       "tags": [],
       "id": 426,
       "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Midfield \u2013 Four value picks alongside Morgan Rogers With premium midfielders Bukayo Saka, Bruno Fernandes and Cole Palmer either injured or out of form, the Algorithm spreads the budget across midfield.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Midfield \u2013 Four value picks alongside Morgan Rogers With premium midfielders Bukayo Saka, Bruno Fernandes and Cole Palmer either injured or out of form, the Algorithm spreads the budget across midfield.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        }
+      ],
       "tone": "neutral"
     },
     {
@@ -360,22 +472,6 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Caicedo (CHE) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Caicedo",
-      "club": "CHE",
-      "tags": [],
-      "id": 159,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "Calafiori (ARS) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -388,8 +484,17 @@ window.FPL_NEWS = {
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
-      "tone": "neutral"
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "Riccardo Calafiori also faces competition at left-back from Piero Hincapi\u00e9 and Myles Lewis-Skelly.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        }
+      ],
+      "tone": "good"
     },
     {
       "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
@@ -615,6 +720,51 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "mixed"
+    },
+    {
+      "text": "Hill (BOU) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Hill",
+      "club": "BOU",
+      "tags": [],
+      "id": 60,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "Konsa fitness update as defender ruled out of England v Croatia  James Hill gets a maiden Three Lions call-up",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/konsa-fitness-update-as-defender-ruled-out-of-england-v-croatia",
+          "title": "Konsa fitness update as defender ruled out of England v Croatia"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Konsa fitness update as defender ruled out of England v Croatia  James Hill gets a maiden Three Lions call-up",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/10/konsa-fitness-update-as-defender-ruled-out-of-england-v-croatia",
+          "title": "Konsa fitness update as defender ruled out of England v Croatia"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "James Hill (\u00a35.6m) ranks third on 18.0 predicted points, just ahead of Ant\u00f3nio Silva (\u00a35.1m) on 17.9.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
+          "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
+        }
+      ],
+      "tone": "bad"
     }
   ],
   "links": [
@@ -639,8 +789,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/"
+    },
+    {
+      "source": "Scout",
+      "title": "Sofascore Nations League Fantasy: Round 5 team reveals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/sofascore-nations-league-fantasy-round-5-team-reveals"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 3
 };

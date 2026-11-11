@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-11T06:39:53Z",
+ "generated_at": "2026-11-11T15:57:37Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-11T06:39:53Z",
+ "last_attempt": "2026-11-11T15:57:37Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 290,
-  "cost_usd": 2.03
+  "searches": 300,
+  "cost_usd": 2.1
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Chelsea warn staff over Fantasy Premier League leaks - sources - ESPN",
-   "snippet": "João Pedro has been out of action since Chelsea's 2-0 win over Everton last month.",
-   "source_domain": "espn.com",
-   "published": "2026-11-09",
-   "url": "https://www.espn.com/soccer/story/_/id/50435016/chelsea-staff-fantasy-premier-league-leaks",
+   "headline": "Chelsea Q&A: January transfer plans, Estevao future, Cole Palmer snub - your questions answered Football London",
+   "snippet": "Emmanuel Emegha is not long back from a lengthy injury, but they should both be getting more minutes while Joao Pedro is out.",
+   "source_domain": "football.london",
+   "published": "2026-11-11",
+   "url": "https://www.football.london/chelsea-fc/transfer-news/chelsea-qa-january-transfer-plans-34892644",
    "yours": []
   },
   {
@@ -45,7 +45,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
    "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
-   "snippet": "Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
+   "snippet": "6 Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-10",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
@@ -83,11 +83,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "Brentford FC learn Igor Thiago red card verdict after official appeal The Standard",
-   "snippet": "Brentford appealed Thiago’s three-game ban after the match, but confirmed in a short, written statement on the club’s website that it had been turned down.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.standard.co.uk/sport/football/brentford-fc-thiago-red-card-verdict-appeal-b1304371.html",
+   "headline": "Brentford news: Fan views on the Bees' discipline record this season - BBC Sport",
+   "snippet": "We asked for your views on whether Keith Andrews' side has a discipline issue after Igor Thiago was shown a red card for violent conduct in Brentford's 2-0 defeat by Brighton on Sunday.",
+   "source_domain": "bbc.co.uk",
+   "published": "2026-11-11",
+   "url": "https://www.bbc.co.uk/sport/football/articles/cmly0yey1y4lo",
    "yours": []
   },
   {
@@ -97,23 +97,10 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Transfer talks, injury boost and behind-closed-doors friendly – Dream Arsenal international break Football London",
-   "snippet": "With Saliba back and only Saka missing, some serious players are going to have to be left out of the 20-man Premier League matchday squad.",
+   "snippet": "Furthermore, they go into this fortnight knowing Bukayo Saka is the only player currently expected to be out injured when this period comes to a close.",
    "source_domain": "football.london",
    "published": "2026-11-11",
    "url": "https://www.football.london/arsenal-fc/transfer-news/transfer-talks-injury-boost-behind-34892015",
-   "yours": []
-  },
-  {
-   "player": "Maguire",
-   "team": "MUN",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Back injury - 75% chance of playing",
-   "headline": "Which players are suspended or close to a ban in Premier League matches?",
-   "snippet": "Players close to a one-match ban Player Club Pos Yellow cards --- --- --- --- Vitaly Janelt BRE MID 4 Igor Thiago BRE FWD 4 Pascal Groß BHA DEF 4 Oliver Boscagli BHA MID 4 Adam Smith BOU DEF 4 Marcus Tavernier BOU MID…",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-08",
-   "url": "https://www.premierleague.com/en/news/4425344/which-players-are-suspended-or-close-to-a-ban-in-fantasy",
    "yours": []
   }
  ]
