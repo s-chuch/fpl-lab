@@ -1,30 +1,15 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-12T16:40:50Z",
+ "generated_at": "2026-11-12T23:22:23Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-12T16:40:50Z",
+ "last_attempt": "2026-11-12T23:22:23Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 330,
-  "cost_usd": 2.31
+  "searches": 340,
+  "cost_usd": 2.38
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
-  {
-   "player": "Belloumi",
-   "team": "HUL",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Hamstring injury - 75% chance of playing",
-   "headline": "Belloumi throws Algeria's plans into disarray before the double test against Togo Goal.com",
-   "snippet": "Belloumi, meanwhile, missed Hull City's 1-0 defeat at Arsenal on Saturday.",
-   "source_domain": "goal.com",
-   "published": "2026-11-09",
-   "url": "https://www.goal.com/en/news/belloumi-throws-algeria-s-plans-into-disarray-ahead-of-the-double-test-against-togo/blt2f7911378a10a659",
-   "yours": [
-    "1360920"
-   ]
-  },
   {
    "player": "Manzambi",
    "team": "AVL",
@@ -46,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Joao Pedro posts cryptic three-word injury update as Xabi Alonso sweats over Chelsea star Football London",
-   "snippet": "Joao Pedro has missed Chelsea's last four matches in all competitions due to a thigh injury and the Brazilian is working hard behind the scenes in his rehabilitation View 3 Images Joao Pedro has missed Chelsea's last…",
-   "source_domain": "football.london",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
+   "snippet": "Jackson (AVL) 295,122 Joao Pedro ( ...",
+   "source_domain": "premierleague.com",
    "published": "2026-11-12",
-   "url": "https://www.football.london/chelsea-fc/news/joao-pedro-posts-cryptic-three-34902110",
+   "url": "https://www.premierleague.com/en/news/2884829",
    "yours": []
   },
   {
@@ -72,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Andoni Iraola could soon get his wish as Liverpool wait for confirmation of big injury boost - Liverpool Echo",
-   "snippet": "Admittedly, Iraola was likely referring to the likes of Dominik Szoboszlai, who suffered a knee injury against the Eagles, and Virgil van Dijk, who has since withdrawn from the Netherlands squad with a minor injury, in…",
-   "source_domain": "liverpoolecho.co.uk",
+   "headline": "Contract nearing its end: Liverpool settles its decision on Van Dijk's future Goal.com",
+   "snippet": "Captain Virgil van Dijk and forward Brian Brobbey will both miss the two upcoming fixtures through a lack of physical readiness.",
+   "source_domain": "goal.com",
    "published": "2026-11-11",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/andoni-iraola-could-soon-wish-34892504",
+   "url": "https://www.goal.com/en/news/contract-nearing-its-end-liverpool-settle-decision-on-van-dijk-s-future/bltbd31595e0f010cd9",
    "yours": []
   },
   {
@@ -85,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "England XI vs Croatia: Predicted lineup, confirmed team news, injury latest for Nations League today The Standard",
-   "snippet": "Manchester City centre-back Marc Guehi was assessed over the weekend after being substituted with a hip injury at half-time of Saturday’s defeat by Nottingham Forest and has since pulled out of the England squad.",
+   "headline": "England XI vs Croatia: Starting lineup, confirmed team news, injury latest for Nations League today The Standard",
+   "snippet": "Dan Burn gets the nod following his call-up as a replacement for the injured Marc Guehi.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-predicted-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
+   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-starting-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
    "yours": []
   },
   {
@@ -106,26 +91,13 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Thomas",
-   "team": "COV",
-   "fpl_status": "d",
-   "fpl_chance": 50,
-   "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Kiernan Dewsbury-Hall issues Everton warning and explains emotional reaction against Coventry - Liverpool Echo",
-   "snippet": "We've got more tough games coming up but, look, we'll be ready.\" Dewsbury-Hall scored his team's third goal against the Sky Blues - and the strike came just hours after he was once again snubbed by Thomas Tuchel in the…",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/kiernan-dewsbury-hall-everton-goal-34889716",
-   "yours": []
-  },
-  {
    "player": "Semenyo",
    "team": "MCI",
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Khusanov, Guehi, Gvardiol - Man City injury news and return dates as duo withdraw from national teams - Manchester Evening News",
-   "snippet": "Antoine Semenyo Injury: Leg The winger is a long-term concern for City after picking up a leg injury during the victory over Ipswich Town.",
+   "snippet": "Potential return date: November 21 vs Fulham Antoine Semenyo Injury: Leg The winger is a long-term concern for City after picking up a leg injury during the victory over Ipswich Town.",
    "source_domain": "manchestereveningnews.co.uk",
    "published": "2026-11-10",
    "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/khusanov-guehi-gvardiol-man-city-34886691",

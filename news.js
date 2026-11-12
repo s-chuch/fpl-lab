@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-12 20:03 UTC",
+  "generated_at": "2026-11-12 23:22 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -416,6 +416,23 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "mixed"
+    },
+    {
+      "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Thomas",
+      "club": "COV",
+      "tags": [],
+      "id": 173,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     },
     {
       "text": "Van Hecke (TOT) \u2014 Mentioned, no clear view \u00b7 3/3 sites with fresh articles (5 checked)",
@@ -1095,8 +1112,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Sage sacked + next Palace manager odds",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sage-sacked-next-palace-manager-odds"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
