@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-12T00:16:50Z",
+ "generated_at": "2026-11-12T07:22:34Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-12T00:16:50Z",
+ "last_attempt": "2026-11-12T07:22:34Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 310,
-  "cost_usd": 2.17
+  "searches": 320,
+  "cost_usd": 2.24
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 279,976 Joao Pedro (CHE) 289,801 Barry (EVE) 198,727 Gvardiol (MCI) 268,534 Evanilson (BOU) 191,898 Guehi (MCI) 129,261…",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-11",
-   "url": "https://www.premierleague.com/en/news/2884829",
+   "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
+   "snippet": "6 Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-10",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
    "yours": []
   },
   {
@@ -96,11 +96,24 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Transfer talks, injury boost and behind-closed-doors friendly – Dream Arsenal international break Football London",
-   "snippet": "With Saliba back and only Saka missing, some serious players are going to have to be left out of the 20-man Premier League matchday squad.",
-   "source_domain": "football.london",
-   "published": "2026-11-11",
-   "url": "https://www.football.london/arsenal-fc/transfer-news/transfer-talks-injury-boost-behind-34892015",
+   "headline": "Arsenal FC injury update: Ezri Konsa, William Saliba, Bukayo Saka latest return dates The Standard",
+   "snippet": "Amid fears Saka could be out for action for up to eight weeks, Arteta confirmed that the winger’s recovery was going well ahead of the Hull fixture, but it will still be some weeks until he can make a full comeback.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-konsa-saliba-saka-latest-news-return-dates-b1304543.html",
+   "yours": []
+  },
+  {
+   "player": "Maguire",
+   "team": "MUN",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Back injury - 75% chance of playing",
+   "headline": "Man Utd injury update: Latest news and return dates for first Mauricio Pochettino game The Standard",
+   "snippet": "Harry Maguire Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-pochettino-shaw-maguire-baleba-latest-news-return-dates-b1304535.html",
    "yours": []
   },
   {
