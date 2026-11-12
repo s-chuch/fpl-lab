@@ -338,20 +338,20 @@
   "bench": [
    572,
    453,
-   53,
-   305
+   305,
+   53
   ],
   "captain": 4,
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "53211d85fc82",
+  "code_sha": "033fe3ba18f7",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-12T07:22:24+00:00",
-  "saved_at_et": "2026-11-12 2:22 AM ET",
+  "saved_at": "2026-11-12T16:40:39+00:00",
+  "saved_at_et": "2026-11-12 11:40 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -446,18 +446,18 @@
     "xp": 3.29
    },
    {
-    "club": "AVL",
-    "id": 53,
-    "name": "Manzambi",
-    "pos": "MID",
-    "xp": 3.11
-   },
-   {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
     "xp": 2.67
+   },
+   {
+    "club": "AVL",
+    "id": 53,
+    "name": "Manzambi",
+    "pos": "MID",
+    "xp": 2.37
    }
   ],
   "status": "pending",

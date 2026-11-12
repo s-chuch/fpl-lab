@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Barnes",
         "bench_ep": 3.29,
         "starter": "Manzambi",
-        "starter_ep": 3.11
+        "starter_ep": 2.37
       }
     ],
     "bench_order": [
@@ -127,7 +127,13 @@ window.FPL_WILDCARD_WATCH = {
       "Davis"
     ],
     "bench_order_changed": false,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Manzambi",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
@@ -162,8 +168,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 3.11,
-        "status": "ok"
+        "ep_next": 2.37,
+        "status": "doubt"
       },
       {
         "name": "Groß",

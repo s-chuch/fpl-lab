@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-12T07:22:34Z",
+ "generated_at": "2026-11-12T16:40:50Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-12T07:22:34Z",
+ "last_attempt": "2026-11-12T16:40:50Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 320,
-  "cost_usd": 2.24
+  "searches": 330,
+  "cost_usd": 2.31
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -26,16 +26,44 @@ window.EXA_NEWS = {
    ]
   },
   {
+   "player": "Manzambi",
+   "team": "AVL",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Calf injury - 75% chance of playing",
+   "headline": "Johan Manzambi injury update as Aston Villa star sent home from international duty The Standard",
+   "snippet": "Johan Manzambi has been forced to withdraw from Switzerland duty due to injury, raising concerns over the midfielder’s availability for Aston Villa in the coming weeks.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/manzambi-injury-update-aston-villa-b1304675.html",
+   "yours": [
+    "1360999"
+   ]
+  },
+  {
+   "player": "João Pedro",
+   "team": "CHE",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Thigh injury - Unknown return date",
+   "headline": "Joao Pedro posts cryptic three-word injury update as Xabi Alonso sweats over Chelsea star Football London",
+   "snippet": "Joao Pedro has missed Chelsea's last four matches in all competitions due to a thigh injury and the Brazilian is working hard behind the scenes in his rehabilitation View 3 Images Joao Pedro has missed Chelsea's last…",
+   "source_domain": "football.london",
+   "published": "2026-11-12",
+   "url": "https://www.football.london/chelsea-fc/news/joao-pedro-posts-cryptic-three-34902110",
+   "yours": []
+  },
+  {
    "player": "Gvardiol",
    "team": "MCI",
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Man City season ratings so far with four 8/10s, one 3/10 and Enzo Maresca marked - Manchester Evening News",
-   "snippet": "6 Gvardiol: His last two games have probably been his worst two for the club, all over the place defensively and with his decision-making.",
+   "headline": "Josko Gvardiol gives Man City injury boost but issue remains after rocky start to season - Manchester Evening News",
+   "snippet": "Gvardiol will hope the pain of recent performances and from his injury recedes in the coming weeks as the Blues aim to keep their season on track.",
    "source_domain": "manchestereveningnews.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-season-ratings-far-34884846",
+   "published": "2026-11-12",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/josko-gvardiol-gives-man-city-34897211",
    "yours": []
   },
   {
@@ -57,11 +85,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "England XI vs Croatia: Confirmed team news, predicted lineup and injury latest The Standard",
-   "snippet": "Manchester City centre-back Guehi was assessed over the weekend after being substituted with a hip injury at half time of their defeat to Nottingham Forest but has now pulled out of the squad.",
+   "headline": "England XI vs Croatia: Predicted lineup, confirmed team news, injury latest for Nations League today The Standard",
+   "snippet": "Manchester City centre-back Marc Guehi was assessed over the weekend after being substituted with a hip injury at half-time of Saturday’s defeat by Nottingham Forest and has since pulled out of the England squad.",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-confirmed-team-news-predicted-lineup-injury-latest-nations-league-b1304147.html",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-predicted-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
    "yours": []
   },
   {
@@ -78,6 +106,19 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
+   "player": "Thomas",
+   "team": "COV",
+   "fpl_status": "d",
+   "fpl_chance": 50,
+   "fpl_news": "Calf injury - 50% chance of playing",
+   "headline": "Kiernan Dewsbury-Hall issues Everton warning and explains emotional reaction against Coventry - Liverpool Echo",
+   "snippet": "We've got more tough games coming up but, look, we'll be ready.\" Dewsbury-Hall scored his team's third goal against the Sky Blues - and the strike came just hours after he was once again snubbed by Thomas Tuchel in the…",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-10",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/kiernan-dewsbury-hall-everton-goal-34889716",
+   "yours": []
+  },
+  {
    "player": "Semenyo",
    "team": "MCI",
    "fpl_status": "i",
@@ -91,26 +132,13 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Saka",
-   "team": "ARS",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal FC injury update: Ezri Konsa, William Saliba, Bukayo Saka latest return dates The Standard",
-   "snippet": "Amid fears Saka could be out for action for up to eight weeks, Arteta confirmed that the winger’s recovery was going well ahead of the Hull fixture, but it will still be some weeks until he can make a full comeback.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-konsa-saliba-saka-latest-news-return-dates-b1304543.html",
-   "yours": []
-  },
-  {
    "player": "Maguire",
    "team": "MUN",
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Back injury - 75% chance of playing",
    "headline": "Man Utd injury update: Latest news and return dates for first Mauricio Pochettino game The Standard",
-   "snippet": "Harry Maguire Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
+   "snippet": "Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
    "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-pochettino-shaw-maguire-baleba-latest-news-return-dates-b1304535.html",
@@ -122,11 +150,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Xabi Alonso confirms Chelsea team news for Sunderland",
-   "snippet": "Martinez has been sidelined since our win at Everton, after which he underwent jaw surgery, but has returned to training this week wearing protective headgear.",
-   "source_domain": "chelseafc.com",
-   "published": "2026-11-11",
-   "url": "https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-sunderland",
+   "headline": "Chelsea FC injury update: Maxence Lacroix, Emi Martinez, Joao Pedro latest news and return dates The Standard",
+   "snippet": "Emi Martinez Argentine international Martinez has sat out the Blues’ last four matches having had surgery on a broken jaw.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-lacroix-martinez-joao-pedro-latest-news-return-dates-b1304582.html",
    "yours": []
   }
  ]
