@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-11 19:42 UTC",
+  "generated_at": "2026-11-12 00:16 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -628,38 +628,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Gu\u00e9hi (MCI) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Gu\u00e9hi",
-      "club": "MCI",
-      "tags": [],
-      "id": 388,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Gvardiol (MCI) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Gvardiol",
-      "club": "MCI",
-      "tags": [],
-      "id": 391,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "Haaland (MCI) \u2014 Mentioned, no clear view (1 captain mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -774,6 +742,76 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
+    },
+    {
+      "text": "Isak (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Isak",
+      "club": "LIV",
+      "tags": [],
+      "id": 379,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Dominic Calvert-Lewin and Charalampos Kostoulas are also among the forwards making way, while Evanilson, Thierno Barry and Alexander Isak are popular targets.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Alexander Isak (\u00a39.3m, 61 points) has scored seven open-play goals in nine appearances for Liverpool.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
+          "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Alexander Isak ranks third for expected goals (5.79 xG), with Nicolas Jackson fourth (5.32 xG), as shown in the Stats Sandbox .",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Jacquet (LIV) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Jacquet",
+      "club": "LIV",
+      "tags": [],
+      "id": 362,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "The same goes for Liverpool duo Virgil van Dijk (\u00a36.4m) and Jeremy Jacquet (\u00a35.1m).",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
+          "title": "FPL Gameweek 11 early Scout Picks: 4-3-3 with no Chelsea"
+        }
+      ],
+      "tone": "neutral"
     }
   ],
   "links": [
@@ -801,8 +839,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Is it too late to buy in-form FPL forward Barry?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/is-it-too-late-to-buy-in-form-fpl-forward-barry"
+      "title": "Every FPL player on international duty in November \u2013 and when",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/11/every-fpl-player-on-international-duty-in-november-and-when-2"
     }
   ],
   "no_new": false,
