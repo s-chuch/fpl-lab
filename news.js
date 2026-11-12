@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-12 16:40 UTC",
+  "generated_at": "2026-11-12 20:03 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -894,7 +894,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Manzambi (AVL) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
+      "text": "Manzambi (AVL) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/3 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -905,9 +905,9 @@ window.FPL_NEWS = {
         "injury/doubt"
       ],
       "id": 53,
-      "verdict": "Fitness or rotation doubts",
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "risk": 2
+        "risk": 1
       },
       "quotes": [
         {
@@ -918,25 +918,16 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/manzambi-injury-latest-after-switzerland-international-withdrawal",
           "title": "Manzambi injury latest after Switzerland withdrawal"
-        },
-        {
-          "source": "Scout",
-          "text": "Manzambi injury latest after Switzerland withdrawal",
-          "stance": [
-            "risk"
-          ],
-          "url": "",
-          "title": ""
         }
       ],
       "facts": [
         {
           "topic": "fitness",
           "tone": "bad",
-          "text": "Manzambi injury latest after Switzerland withdrawal",
+          "text": "Manzambi injury latest after Switzerland withdrawal  Villa face Sunderland after the international break",
           "source": "Scout",
-          "url": "",
-          "title": ""
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/manzambi-injury-latest-after-switzerland-international-withdrawal",
+          "title": "Manzambi injury latest after Switzerland withdrawal"
         },
         {
           "topic": "fixture",
@@ -1104,34 +1095,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/"
-    },
-    {
-      "source": "Scout",
-      "title": "Who makes the FPL Team of the Season - so far?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/who-makes-the-fpl-team-of-the-season-so-far"
-    },
-    {
-      "source": "Scout",
-      "title": "Man Utd sack Carrick, Pochettino expected to take over",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/man-utd-sack-carrick-pochettino-expected-to-take-over"
-    },
-    {
-      "source": "Scout",
-      "title": "Manzambi injury latest after Switzerland withdrawal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/manzambi-injury-latest-after-switzerland-international-withdrawal"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 3
 };
