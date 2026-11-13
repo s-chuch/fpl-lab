@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-13T06:55:14Z",
+ "generated_at": "2026-11-13T16:00:05Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-13T06:55:14Z",
+ "last_attempt": "2026-11-13T16:00:05Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 350,
-  "cost_usd": 2.45
+  "searches": 360,
+  "cost_usd": 2.52
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Joao Pedro posts cryptic three-word injury update as Xabi Alonso sweats over Chelsea star Football London",
-   "snippet": "Joao Pedro is working hard behind the scenes as he continues his rehabilitation programme following the thigh injury he sustained last month.",
-   "source_domain": "football.london",
-   "published": "2026-11-12",
-   "url": "https://www.football.london/chelsea-fc/news/joao-pedro-posts-cryptic-three-34902110",
+   "headline": "What to do with Cole Palmer in FPL?",
+   "snippet": "Joao Pedro's injury has affected Palmer By breaking down Palmer's output on a Gameweek-by-Gameweek basis, it's clear to see that the loss of forward Joao Pedro (£7.6m) through injury has had a major impact.",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-13",
+   "url": "https://www.premierleague.com/en/news/4763384",
    "yours": []
   },
   {
@@ -57,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Contract nearing its end: Liverpool settles its decision on Van Dijk's future Goal.com",
-   "snippet": "Captain Virgil van Dijk and forward Brian Brobbey will both miss the two upcoming fixtures through a lack of physical readiness.",
+   "headline": "Hans Kraay: ‘That’s not a major loss for the Netherlands national team’ Goal.com",
+   "snippet": "Hans Kraay: ‘That’s not a major loss for the Netherlands national team’ Goal.com IMAGO Rian Rosendaal 10 minutes ago Hans Kraay: ‘That is no great loss for the Netherlands national team’ Hans Kraay junior sees no…",
    "source_domain": "goal.com",
-   "published": "2026-11-11",
-   "url": "https://www.goal.com/en/news/contract-nearing-its-end-liverpool-settle-decision-on-van-dijk-s-future/bltbd31595e0f010cd9",
+   "published": "2026-11-13",
+   "url": "https://www.goal.com/en/news/hans-kraay-that-is-no-great-loss-for-the-netherlands-national-team/bltc4ae38be23290c89",
    "yours": []
   },
   {
@@ -70,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "England XI vs Croatia: Predicted lineup, confirmed team news, injury latest for Nations League today The Standard",
-   "snippet": "Manchester City centre-back Marc Guehi was assessed over the weekend after being substituted with a hip injury at half-time of Saturday’s defeat by Nottingham Forest and has since pulled out of the England squad.",
+   "headline": "England XI vs Croatia: Starting lineup, confirmed team news, injury latest for Nations League today The Standard",
+   "snippet": "Dan Burn gets the nod following his call-up as a replacement for the injured Marc Guehi.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-predicted-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
+   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-starting-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
    "yours": []
   },
   {
@@ -84,23 +84,10 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
    "headline": "Brentford news: Fan views on the Bees' discipline record this season - BBC Sport",
-   "snippet": "We asked for your views on whether Keith Andrews' side has a discipline issue after Igor Thiago was shown a red card for violent conduct in Brentford's 2-0 defeat by Brighton on Sunday.",
+   "snippet": "VJanelt is frequently booked while speaking to the referee as a captain, Kevin Schade is frequently fouled without recompense and Thiago is held by the shirt or the shoulders on most goal-kicks.",
    "source_domain": "bbc.co.uk",
    "published": "2026-11-11",
    "url": "https://www.bbc.co.uk/sport/football/articles/cmly0yey1y4lo",
-   "yours": []
-  },
-  {
-   "player": "Thomas",
-   "team": "COV",
-   "fpl_status": "d",
-   "fpl_chance": 50,
-   "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Kiernan Dewsbury-Hall issues Everton warning and explains emotional reaction against Coventry - Liverpool Echo",
-   "snippet": "Dewsbury-Hall scored his team's third goal against the Sky Blues - and the strike came just hours after he was once again snubbed by Thomas Tuchel in",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-10",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/kiernan-dewsbury-hall-everton-goal-34889716",
    "yours": []
   },
   {
@@ -110,7 +97,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Back injury - 75% chance of playing",
    "headline": "Man Utd injury update: Latest news and return dates for first Mauricio Pochettino game The Standard",
-   "snippet": "Harry Maguire Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
+   "snippet": "Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
    "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-pochettino-shaw-maguire-baleba-latest-news-return-dates-b1304535.html",
