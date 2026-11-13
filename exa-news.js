@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-12T23:22:23Z",
+ "generated_at": "2026-11-13T06:55:14Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-12T23:22:23Z",
+ "last_attempt": "2026-11-13T06:55:14Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 340,
-  "cost_usd": 2.38
+  "searches": 350,
+  "cost_usd": 2.45
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
-   "headline": "Johan Manzambi injury update as Aston Villa star sent home from international duty The Standard",
-   "snippet": "Johan Manzambi has been forced to withdraw from Switzerland duty due to injury, raising concerns over the midfielder’s availability for Aston Villa in the coming weeks.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/manzambi-injury-update-aston-villa-b1304675.html",
+   "headline": "Aston Villa's Johan Manzambi ruled out against Slovenia and Scotland - BBC Sport",
+   "snippet": "Aston Villa midfielder Johan Manzambi has been ruled out of Switzerland's Nations League matches against Slovenia and Scotland.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-13",
+   "url": "https://www.bbc.com/sport/articles/c9rkgdxnjr5yo",
    "yours": [
     "1360999"
    ]
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
-   "snippet": "Jackson (AVL) 295,122 Joao Pedro ( ...",
-   "source_domain": "premierleague.com",
+   "headline": "Joao Pedro posts cryptic three-word injury update as Xabi Alonso sweats over Chelsea star Football London",
+   "snippet": "Joao Pedro is working hard behind the scenes as he continues his rehabilitation programme following the thigh injury he sustained last month.",
+   "source_domain": "football.london",
    "published": "2026-11-12",
-   "url": "https://www.premierleague.com/en/news/2884829",
+   "url": "https://www.football.london/chelsea-fc/news/joao-pedro-posts-cryptic-three-34902110",
    "yours": []
   },
   {
@@ -70,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "England XI vs Croatia: Starting lineup, confirmed team news, injury latest for Nations League today The Standard",
-   "snippet": "Dan Burn gets the nod following his call-up as a replacement for the injured Marc Guehi.",
+   "headline": "England XI vs Croatia: Predicted lineup, confirmed team news, injury latest for Nations League today The Standard",
+   "snippet": "Manchester City centre-back Marc Guehi was assessed over the weekend after being substituted with a hip injury at half-time of Saturday’s defeat by Nottingham Forest and has since pulled out of the England squad.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-starting-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
+   "url": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-predicted-lineup-confirmed-team-news-injury-latest-nations-league-2026-today-b1304147.html",
    "yours": []
   },
   {
@@ -91,16 +91,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Semenyo",
-   "team": "MCI",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Khusanov, Guehi, Gvardiol - Man City injury news and return dates as duo withdraw from national teams - Manchester Evening News",
-   "snippet": "Potential return date: November 21 vs Fulham Antoine Semenyo Injury: Leg The winger is a long-term concern for City after picking up a leg injury during the victory over Ipswich Town.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "player": "Thomas",
+   "team": "COV",
+   "fpl_status": "d",
+   "fpl_chance": 50,
+   "fpl_news": "Calf injury - 50% chance of playing",
+   "headline": "Kiernan Dewsbury-Hall issues Everton warning and explains emotional reaction against Coventry - Liverpool Echo",
+   "snippet": "Dewsbury-Hall scored his team's third goal against the Sky Blues - and the strike came just hours after he was once again snubbed by Thomas Tuchel in",
+   "source_domain": "liverpoolecho.co.uk",
    "published": "2026-11-10",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/khusanov-guehi-gvardiol-man-city-34886691",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/kiernan-dewsbury-hall-everton-goal-34889716",
    "yours": []
   },
   {
@@ -110,7 +110,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Back injury - 75% chance of playing",
    "headline": "Man Utd injury update: Latest news and return dates for first Mauricio Pochettino game The Standard",
-   "snippet": "Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
+   "snippet": "Harry Maguire Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
    "source_domain": "standard.co.uk",
    "published": "2026-11-12",
    "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-pochettino-shaw-maguire-baleba-latest-news-return-dates-b1304535.html",
