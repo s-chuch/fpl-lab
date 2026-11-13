@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-13T16:00:05Z",
+ "generated_at": "2026-11-13T23:24:35Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-13T16:00:05Z",
+ "last_attempt": "2026-11-13T23:24:35Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 360,
-  "cost_usd": 2.52
+  "searches": 370,
+  "cost_usd": 2.59
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "What to do with Cole Palmer in FPL?",
-   "snippet": "Joao Pedro's injury has affected Palmer By breaking down Palmer's output on a Gameweek-by-Gameweek basis, it's clear to see that the loss of forward Joao Pedro (£7.6m) through injury has had a major impact.",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
+   "snippet": "393 Joao Pedro (CHE) 315,799 Evanilson (BOU) 213 ...",
    "source_domain": "premierleague.com",
    "published": "2026-11-13",
-   "url": "https://www.premierleague.com/en/news/4763384",
+   "url": "https://www.premierleague.com/en/news/2884829",
    "yours": []
   },
   {
@@ -57,11 +57,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Hans Kraay: ‘That’s not a major loss for the Netherlands national team’ Goal.com",
-   "snippet": "Hans Kraay: ‘That’s not a major loss for the Netherlands national team’ Goal.com IMAGO Rian Rosendaal 10 minutes ago Hans Kraay: ‘That is no great loss for the Netherlands national team’ Hans Kraay junior sees no…",
+   "headline": "Viewers are scathing about one Netherlands international: ‘We need him like a hole in the head!’ Goal.com",
+   "snippet": "Netherlands fans are not sorry Virgil van Dijk is missing Friday evening's Nations League match against Greece.",
    "source_domain": "goal.com",
    "published": "2026-11-13",
-   "url": "https://www.goal.com/en/news/hans-kraay-that-is-no-great-loss-for-the-netherlands-national-team/bltc4ae38be23290c89",
+   "url": "https://www.goal.com/en/news/viewers-are-scathing-about-one-netherlands-international-we-need-him-like-a-hole-in-the-head/blt96004e347371a672",
    "yours": []
   },
   {
@@ -88,19 +88,6 @@ window.EXA_NEWS = {
    "source_domain": "bbc.co.uk",
    "published": "2026-11-11",
    "url": "https://www.bbc.co.uk/sport/football/articles/cmly0yey1y4lo",
-   "yours": []
-  },
-  {
-   "player": "Maguire",
-   "team": "MUN",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Back injury - 75% chance of playing",
-   "headline": "Man Utd injury update: Latest news and return dates for first Mauricio Pochettino game The Standard",
-   "snippet": "Maguire shook off a knock to start against Aston Villa, but had to be withdrawn at half-time with a back problem.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-12",
-   "url": "https://www.standard.co.uk/sport/football/man-utd-injury-update-pochettino-shaw-maguire-baleba-latest-news-return-dates-b1304535.html",
    "yours": []
   },
   {
