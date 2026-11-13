@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-13 15:59 UTC",
+  "generated_at": "2026-11-13 19:50 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -701,7 +701,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (4 buy, 1 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Barry (EVE) \u2014 Leaning buy (3 buy, 1 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -715,7 +715,7 @@ window.FPL_NEWS = {
       "verdict": "Leaning buy",
       "stance": {
         "captain": 1,
-        "buy": 4
+        "buy": 3
       },
       "quotes": [
         {
@@ -1225,29 +1225,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "10 Surprising FPL Stats After 10 Gameweeks of 2026/27",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-surprising-stats-after-10-gameweeks-2026-27/"
-    },
-    {
       "source": "Scout",
-      "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using"
-    },
-    {
-      "source": "Scout",
-      "title": "Fantasy EFL Gameweek 14: Scout Picks",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/fantasy-efl-gameweek-14-scout-picks-3"
-    },
-    {
-      "source": "Scout",
-      "title": "WSL Fantasy 2026/27: Expert team reveal for Matchweek 10",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/wsl-fantasy-2026-27-expert-team-reveal-for-matchweek-10"
-    },
-    {
-      "source": "AAFPL",
-      "title": "Worst Individual FPL Scores of All Time- FPL Disasters",
-      "url": "https://allaboutfpl.com/2026/11/worst-individual-fpl-scores-of-all-time-fpl-disasters/"
+      "title": "Which highly-owned FPL players could be worth going against?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/which-highly-owned-fpl-players-could-be-worth-going-against"
     }
   ],
   "no_new": false,
