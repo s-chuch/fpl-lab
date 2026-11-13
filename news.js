@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-12 23:22 UTC",
+  "generated_at": "2026-11-13 00:57 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1115,8 +1115,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Sage sacked + next Palace manager odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sage-sacked-next-palace-manager-odds"
+      "title": "The xG form tables: Which FPL players and teams top the pile?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/the-xg-form-tables-which-fpl-players-and-teams-top-the-pile"
     }
   ],
   "no_new": false,
