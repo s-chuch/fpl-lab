@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-14 20:34 UTC",
+  "generated_at": "2026-11-14 20:57 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -122,6 +122,129 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Muharemovi\u0107 (LEE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 334,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "How to rotate Jack Rudoni with Dominic Calvert-Lewin or Tarek Muharemovi\u0107 Rudoni could be particularly useful if you already own Dominic Calvert-Lewin or Tarek Muharemovi\u0107.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
+          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        },
+        {
+          "source": "Scout",
+          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, comp...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, complete the defensive selections.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Meanwhile, Tarik Muharemovic (\u00a35.1m) and Jan Paul van Hecke (\u00a35.1m) have the upside of DefCon points and attacking threat; combined, the pair have two goals and two assists in the last seven Gameweeks.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "That\u2019s why DefCon monster Tarik Muharemovic (\u00a35.1m), two points behind, is gaining popularity.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/who-makes-the-fpl-team-of-the-season-so-far",
+          "title": "Who makes the FPL Team of the Season - so far?"
+        }
+      ],
+      "tone": "mixed"
+    },
+    {
+      "text": "Silva (BOU) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Silva",
+      "club": "BOU",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 566,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, comp...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, complete the defensive selections.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Ant\u00f3nio Silva offers cover when the fixtures call for it.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "James Hill (\u00a35.6m) ranks third on 18.0 predicted points, just ahead of Ant\u00f3nio Silva (\u00a35.1m) on 17.9.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
+          "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
+        }
+      ],
+      "tone": "bad"
     },
     {
       "text": "Thiago (BRE) \u2014 Leaning sell / avoid (2 sell/avoid mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
@@ -702,71 +825,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 334,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "risk": 2
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "How to rotate Jack Rudoni with Dominic Calvert-Lewin or Tarek Muharemovi\u0107 Rudoni could be particularly useful if you already own Dominic Calvert-Lewin or Tarek Muharemovi\u0107.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
-          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "source": "Scout",
-          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, comp...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "The rotation between Muharemovic/van Hecke also works very well\u2026 Antonio Silva (\u00a35.1m), who has hit the DefCon threshold in seven out of 10 matches so far, and Luka Vuskovic (\u00a35.0m), another DefCon-plus-attacking-threat pick, complete the defensive selections.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "Meanwhile, Tarik Muharemovic (\u00a35.1m) and Jan Paul van Hecke (\u00a35.1m) have the upside of DefCon points and attacking threat; combined, the pair have two goals and two assists in the last seven Gameweeks.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "That\u2019s why DefCon monster Tarik Muharemovic (\u00a35.1m), two points behind, is gaining popularity.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/who-makes-the-fpl-team-of-the-season-so-far",
-          "title": "Who makes the FPL Team of the Season - so far?"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
       "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -880,40 +938,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Rogers",
-      "club": "CHE",
-      "tags": [],
-      "id": 40,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "Midfield \u2013 Four value picks alongside Morgan Rogers With premium midfielders Bukayo Saka, Bruno Fernandes and Cole Palmer either injured or out of form, the Algorithm spreads the budget across midfield.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Indeed, Chelsea\u2019s Morgan Rogers (\u00a38.2m) is the priciest of this bunch.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
-        }
-      ],
-      "tone": "neutral"
     }
   ],
   "split": [
@@ -1284,28 +1308,19 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Rashford (MUN) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Murillo (NFO) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
-        "Scout"
+        "Hub"
       ],
-      "player": "Rashford",
-      "club": "MUN",
+      "player": "Murillo",
+      "club": "NFO",
       "tags": [],
-      "id": 429,
+      "id": 472,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Pochettino has also spoken fondly of Marcus Rashford (\u00a36.8m) in the past.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
-          "title": "Will Pochettino improve Man Utd players in FPL?"
-        }
-      ],
+      "facts": [],
       "tone": "neutral"
     }
   ],
@@ -1334,8 +1349,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "AAFPL",
-      "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold",
-      "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/"
+      "title": "FPL GW11 Ultimate Guide: Tips, Captaincy, Differentials & More",
+      "url": "https://allaboutfpl.com/2026/11/fpl-gw11-ultimate-guide-tips-captaincy-differentials-more/"
     }
   ],
   "no_new": false,

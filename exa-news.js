@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-14T14:53:06Z",
+ "generated_at": "2026-11-14T20:58:12Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-14T14:53:06Z",
+ "last_attempt": "2026-11-14T20:58:12Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 390,
-  "cost_usd": 2.73
+  "searches": 400,
+  "cost_usd": 2.8
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -18,9 +18,9 @@ window.EXA_NEWS = {
    "fpl_news": "Calf injury - 75% chance of playing",
    "headline": "Aston Villa's Johan Manzambi ruled out against Slovenia and Scotland - BBC Sport",
    "snippet": "Aston Villa midfielder Johan Manzambi has been ruled out of Switzerland's Nations League matches against Slovenia and Scotland.",
-   "source_domain": "bbc.com",
+   "source_domain": "bbc.co.uk",
    "published": "2026-11-13",
-   "url": "https://www.bbc.com/sport/articles/c9rkgdxnjr5yo",
+   "url": "https://www.bbc.co.uk/sport/articles/c9rkgdxnjr5yo",
    "yours": [
     "1360999"
    ]
@@ -32,7 +32,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Estevao frustration, Palmer problem but 9/10 dazzles - Chelsea player ratings for season so far Football London",
-   "snippet": "5 Joao Pedro - Despite missing a total of five matches due to a couple of injury problems, the Brazilian has enjoyed a fine start to the campaign.",
+   "snippet": "Joao Pedro - Despite missing a total of five matches due to a couple of injury problems, the Brazilian has enjoyed a fine start to the campaign.",
    "source_domain": "football.london",
    "published": "2026-11-14",
    "url": "https://www.football.london/chelsea-fc/news/estevao-frustration-palmer-problem-910-34902891",
@@ -44,11 +44,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
-   "snippet": "222,728 Gvardiol (MCI ...",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-13",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
+   "headline": "Josko Gvardiol gives Man City injury boost but issue remains after rocky start to season - Manchester Evening News",
+   "snippet": "Gvardiol will hope the pain of recent performances and from his injury recedes in the coming weeks as the Blues aim to keep their season on track.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/josko-gvardiol-gives-man-city-34897211",
    "yours": []
   },
   {
@@ -65,16 +65,16 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "Saka",
-   "team": "ARS",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Arsenal Q&A: January transfer plans, Zubimendi & Eze future, injury updates - your questions answered Football London",
-   "snippet": "Now we no longer want to rely on Saka alone; we should plan for a future without him.",
-   "source_domain": "football.london",
-   "published": "2026-11-12",
-   "url": "https://www.football.london/arsenal-fc/news/arsenal-qa-january-transfer-plans-34900050",
+   "player": "Guéhi",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Arsenal FC handed injury boost as Ezri Konsa spotted in England training The Standard",
+   "snippet": "First-choice centre-back Marc Guehi had already withdrawn from the squad with a hip problem, leaving James Hill to be called up in his place.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-14",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-boost-konsa-england-b1304866.html",
    "yours": []
   },
   {
@@ -83,11 +83,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Xabi Alonso confirms Chelsea team news for Sunderland",
-   "snippet": "It’s a discomfort, more than his calf.’ Three players who will definitely be absent this weekend are Hato, Lacroix and Joao Pedro, and Alonso stated that the trio will be assessed over the international break.",
-   "source_domain": "chelseafc.com",
-   "published": "2026-11-11",
-   "url": "https://www.chelseafc.com/en/news/article/xabi-alonso-confirms-chelsea-team-news-for-sunderland",
+   "headline": "Chelsea FC injury update: Maxence Lacroix, Emi Martinez, Joao Pedro latest news and return dates The Standard",
+   "snippet": "Potential return date: January Maxence Lacroix Summer signing Lacroix was forced off with a hamstring injury in the Carabao Cup defeat at Liverpool.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-12",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-lacroix-martinez-joao-pedro-latest-news-return-dates-b1304582.html",
    "yours": []
   },
   {
