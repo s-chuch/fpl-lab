@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-13 23:24 UTC",
+  "generated_at": "2026-11-14 00:48 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -981,7 +981,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Haaland (MCI) \u2014 Captain candidate (2 buy, 4 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Haaland (MCI) \u2014 Captain candidate (4 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -995,18 +995,17 @@ window.FPL_NEWS = {
       "id": 411,
       "verdict": "Captain candidate",
       "stance": {
-        "buy": 2,
         "captain": 4
       },
       "quotes": [
         {
           "source": "Fix",
-          "text": "Who to Target Best FPL Wildcard Team for Gameweek 11 Who To Target FPL Team of the Season So Far \u2013 Which \u00a34.5m Defender Has Outscored Haaland?",
+          "text": "Two of the biggest decisions concern Barry\u2019s transfer appeal and when to captain Haaland.",
           "stance": [
-            "buy"
+            "captain"
           ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-surprising-stats-after-10-gameweeks-2026-27/",
-          "title": "10 Surprising FPL Stats After 10 Gameweeks of 2026/27"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
+          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
         },
         {
           "source": "Scout",
@@ -1019,21 +1018,21 @@ window.FPL_NEWS = {
         },
         {
           "source": "Fix",
-          "text": "Who to Target FPL Team of the Season So Far \u2013 Which \u00a34.5m Defender Has Outscored Haaland?",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "source": "Fix",
-          "text": "Two of the biggest decisions concern Barry\u2019s transfer appeal and when to captain Haaland.",
+          "text": "When is Erling Haaland the best FPL captain between GW11 and GW16?",
           "stance": [
             "captain"
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        },
+        {
+          "source": "Fix",
+          "text": "Erling Haaland (\u00a315.8m, 70 points) has been the go-to captain for many FPL managers this season, with few other premiums delivering consistently.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-team-of-the-season-so-far-2026-27-gw11/",
+          "title": "FPL Team of the Season So Far 2026/27 | Best Picks For GW11"
         }
       ],
       "facts": [
@@ -1079,14 +1078,6 @@ window.FPL_NEWS = {
         },
         {
           "topic": "price",
-          "tone": "good",
-          "text": "Who to Target Best FPL Wildcard Team for Gameweek 11 Who To Target FPL Team of the Season So Far \u2013 Which \u00a34.5m Defender Has Outscored Haaland?",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-surprising-stats-after-10-gameweeks-2026-27/",
-          "title": "10 Surprising FPL Stats After 10 Gameweeks of 2026/27"
-        },
-        {
-          "topic": "price",
           "tone": "neutral",
           "text": "Ten Gameweeks later, the Brighton defender costs \u00a35.5m and leads the scoring with 75 points, five ahead of Erling Haaland.",
           "source": "Fix",
@@ -1097,6 +1088,14 @@ window.FPL_NEWS = {
           "topic": "captain",
           "tone": "bad",
           "text": "Haaland has blanked in his last two appearances, but our Player Points Projections still make him the top captaincy pick against Fulham in Gameweek 11.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
+          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "When is Erling Haaland the best FPL captain between GW11 and GW16?",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
@@ -1223,14 +1222,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "More features added to our FPL Toolkit",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/more-features-added-to-our-fpl-toolkit"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
