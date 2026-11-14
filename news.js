@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-14 14:52 UTC",
+  "generated_at": "2026-11-14 16:47 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1285,8 +1285,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Fantasy EFL Gameweek 14: Expert team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fantasy-efl-gameweek-14-expert-team-reveals"
+      "title": "The nailed-on FPL picks for the busy festive period",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/the-nailed-on-fpl-picks-for-the-busy-festive-period"
     }
   ],
   "no_new": false,
