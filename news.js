@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-14 00:48 UTC",
+  "generated_at": "2026-11-14 06:38 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -52,10 +52,10 @@ window.FPL_NEWS = {
         {
           "topic": "role",
           "tone": "good",
-          "text": "MIDFIELDERS A home match against Denmark, with set pieces at his disposal, makes Bruno Fernandes (\u00a39.9m) a shoo-in.",
+          "text": "He goes to great lengths to create a positive environment for his players, especially attackers.\u201d \u2013 Chelsea writer Liam Twomey, via The Athletic Bruno Fernandes (\u00a311.6m) as the \u201910\u2019 on penalties is an obvious consideration for Fantasy managers.",
           "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
-          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
+          "title": "Will Pochettino improve Man Utd players in FPL?"
         }
       ],
       "tone": "good"
@@ -281,6 +281,40 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Mbeumo (MUN) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Scout"
+      ],
+      "player": "Mbeumo",
+      "club": "MUN",
+      "tags": [],
+      "id": 427,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Mbeumo(Brace) and Wissa(Brace) were the goal scorers for Brentford- Just to remember that they were playing together not long ago before moving to Manchester United and Newcastle.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/worst-individual-fpl-scores-of-all-time-fpl-disasters/",
+          "title": "Worst Individual FPL Scores of All Time- FPL Disasters"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Aside from Fernandes, the narrow positions Pochettino\u2019s wingers occupy (remember, the full-backs provide the width) should suit Bryan Mbeumo (\u00a37.9m) and Matheus Cunha (\u00a37.8m).",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
+          "title": "Will Pochettino improve Man Utd players in FPL?"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Muharemovi\u0107 (LEE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -392,6 +426,14 @@ window.FPL_NEWS = {
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
         },
         {
+          "topic": "form",
+          "tone": "good",
+          "text": "Cole Palmer (\u00a39.8m) in particular flourished, with 22 goals and 13 assists in 29 starts and a handful of substitute appearances.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
+          "title": "Will Pochettino improve Man Utd players in FPL?"
+        },
+        {
           "topic": "price",
           "tone": "neutral",
           "text": "For example, it may now be easier to dodge players who might have shown some signs of form early in the campaign before losing it more recently \u2013 such as those from Manchester United\u2019s ranks, or even Cole Palmer (\u00a39.8m).",
@@ -400,7 +442,7 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
         }
       ],
-      "tone": "neutral"
+      "tone": "good"
     },
     {
       "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -597,6 +639,32 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "mixed"
+    },
+    {
+      "text": "Thiago (BRE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Thiago",
+      "club": "BRE",
+      "tags": [],
+      "id": 106,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Dominic Calvert-Lewin and Igor Thiago are losing owners too, given the form of budget alternatives such as Jackson, Barry and Evanilson.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "neutral"
     },
     {
       "text": "Thomas (COV) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -1046,14 +1114,6 @@ window.FPL_NEWS = {
         },
         {
           "topic": "fixture",
-          "tone": "bad",
-          "text": "FORWARDS Up front, it\u2019s difficult to look past Erling Haaland (\u00a311.6m) against a Wales side who have lost three of their four Nations League matches.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
-          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
-        },
-        {
-          "topic": "fixture",
           "tone": "neutral",
           "text": "After Fulham, Haaland doesn\u2019t top the projections again until Gameweek 16 against Hull.",
           "source": "Fix",
@@ -1222,8 +1282,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Will Pochettino improve Man Utd players in FPL?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
