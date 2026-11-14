@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-14 16:47 UTC",
+  "generated_at": "2026-11-14 18:14 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -52,10 +52,10 @@ window.FPL_NEWS = {
         {
           "topic": "role",
           "tone": "good",
-          "text": "He goes to great lengths to create a positive environment for his players, especially attackers.\u201d \u2013 Chelsea writer Liam Twomey, via The Athletic Bruno Fernandes (\u00a311.6m) as the \u201910\u2019 on penalties is an obvious consideration for Fantasy managers.",
+          "text": "MIDFIELDERS A home match against Denmark, with set pieces at his disposal, makes Bruno Fernandes (\u00a39.9m) a shoo-in.",
           "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
-          "title": "Will Pochettino improve Man Utd players in FPL?"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
+          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
         }
       ],
       "tone": "good"
@@ -769,7 +769,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Barry (EVE) \u2014 Leaning buy (3 buy, 1 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Barry (EVE) \u2014 Leaning buy (2 buy, 1 captain mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -783,7 +783,7 @@ window.FPL_NEWS = {
       "verdict": "Leaning buy",
       "stance": {
         "captain": 1,
-        "buy": 3
+        "buy": 2
       },
       "quotes": [
         {
@@ -794,15 +794,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "source": "Scout",
-          "text": "READ MORE: Is it too late to buy in-form FPL forward Barry?",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/fantasy-efl-gameweek-14-scout-picks-3",
-          "title": "Fantasy EFL Gameweek 14: Scout Picks"
         },
         {
           "source": "Fix",
@@ -1114,6 +1105,14 @@ window.FPL_NEWS = {
         },
         {
           "topic": "fixture",
+          "tone": "bad",
+          "text": "FORWARDS Up front, it\u2019s difficult to look past Erling Haaland (\u00a311.6m) against a Wales side who have lost three of their four Nations League matches.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
+          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
+        },
+        {
+          "topic": "fixture",
           "tone": "neutral",
           "text": "After Fulham, Haaland doesn\u2019t top the projections again until Gameweek 16 against Hull.",
           "source": "Fix",
@@ -1282,14 +1281,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "The nailed-on FPL picks for the busy festive period",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/the-nailed-on-fpl-picks-for-the-busy-festive-period"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
