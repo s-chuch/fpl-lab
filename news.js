@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-15 06:45 UTC",
+  "generated_at": "2026-11-15 15:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -52,10 +52,10 @@ window.FPL_NEWS = {
         {
           "topic": "role",
           "tone": "good",
-          "text": "MIDFIELDERS A home match against Denmark, with set pieces at his disposal, makes Bruno Fernandes (\u00a39.9m) a shoo-in.",
+          "text": "He goes to great lengths to create a positive environment for his players, especially attackers.\u201d \u2013 Chelsea writer Liam Twomey, via The Athletic Bruno Fernandes (\u00a311.6m) as the \u201910\u2019 on penalties is an obvious consideration for Fantasy managers.",
           "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
-          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/14/will-pochettino-improve-man-utd-players-in-fpl",
+          "title": "Will Pochettino improve Man Utd players in FPL?"
         }
       ],
       "tone": "good"
@@ -677,11 +677,11 @@ window.FPL_NEWS = {
         },
         {
           "topic": "fixture",
-          "tone": "bad",
-          "text": "FORWARDS Up front, it\u2019s difficult to look past Erling Haaland (\u00a311.6m) against a Wales side who have lost three of their four Nations League matches.",
+          "tone": "good",
+          "text": "FORWARDS The forward line focuses heavily on favourable fixtures, although Erling Haaland (\u00a311.6m) is the obvious exception.",
           "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/12/sofascore-nations-league-fantasy-round-5-scout-picks",
-          "title": "Sofascore Nations League Fantasy: Round 5 Scout Picks"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/15/sofascore-nations-league-fantasy-round-6-scout-picks",
+          "title": "Sofascore Nations League Fantasy: Round 6 Scout Picks"
         },
         {
           "topic": "fixture",
@@ -1346,8 +1346,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Sofascore Nations League Fantasy: Round 6 team reveals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/15/sofascore-nations-league-fantasy-round-6-team-reveals"
+    },
+    {
+      "source": "Scout",
+      "title": "Sofascore Nations League Fantasy: Round 6 Scout Picks",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/15/sofascore-nations-league-fantasy-round-6-scout-picks"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
