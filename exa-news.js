@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-15T15:29:20Z",
+ "generated_at": "2026-11-15T22:00:00Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-15T15:29:20Z",
+ "last_attempt": "2026-11-15T22:00:00Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 420,
-  "cost_usd": 2.94
+  "searches": 430,
+  "cost_usd": 3.01
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,10 +17,10 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
    "headline": "BBC Sport: Manzambi withdraws from Switzerland squad with injury",
-   "snippet": "BBC Sport: Manzambi withdraws from Switzerland squad with injury BBC Sport: Manzambi withdraws from Switzerland squad with injury 14 nov 2026",
+   "snippet": "BBC Sport: Manzambi withdraws from Switzerland squad with injury BBC Sport: Manzambi withdraws from Switzerland squad with injury 14 Nov 2026",
    "source_domain": "premierleague.com",
    "published": "2026-11-14",
-   "url": "https://www.premierleague.com/es/news/4763768",
+   "url": "https://www.premierleague.com/en/news/4763768",
    "yours": [
     "1360999"
    ]
@@ -39,6 +39,19 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
+   "player": "Gvardiol",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
+   "snippet": "Evanilson (BOU) 229,479 Gvardiol (MCI) 306,588 Barry ( ...",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-13",
+   "url": "https://www.premierleague.com/en/news/2884829",
+   "yours": []
+  },
+  {
    "player": "Virgil",
    "team": "LIV",
    "fpl_status": "d",
@@ -49,6 +62,19 @@ window.EXA_NEWS = {
    "source_domain": "goal.com",
    "published": "2026-11-13",
    "url": "https://www.goal.com/en/news/viewers-are-scathing-about-one-netherlands-international-we-need-him-like-a-hole-in-the-head/blt96004e347371a672",
+   "yours": []
+  },
+  {
+   "player": "Guéhi",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Arsenal FC handed injury boost as Ezri Konsa spotted in England training The Standard",
+   "snippet": "First-choice centre-back Marc Guehi had already withdrawn from the squad with a hip problem, leaving James Hill to be called up in his place.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-14",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-boost-konsa-england-b1304866.html",
    "yours": []
   },
   {
