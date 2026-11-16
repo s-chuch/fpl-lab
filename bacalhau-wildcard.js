@@ -110,8 +110,8 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Vuskovic",
     "captain_ep": 5.86,
-    "vice": "Haaland",
-    "vice_ep": 5.82,
+    "vice": "Van Hecke",
+    "vice_ep": 5.68,
     "bench_swaps": [],
     "bench_order": [
       "Tzolakis",
@@ -143,7 +143,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.85,
+        "ep_next": 4.01,
         "status": "ok"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.8,
+        "ep_next": 3.94,
         "status": "ok"
       },
       {
@@ -185,7 +185,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.82,
+        "ep_next": 5.38,
         "status": "ok"
       },
       {
@@ -199,19 +199,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.04,
+        "ep_next": 4.06,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 1.69,
+        "ep_next": 1.7,
         "status": "doubt"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.92,
+        "ep_next": 3.01,
         "status": "ok"
       },
       {

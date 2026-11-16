@@ -344,21 +344,21 @@
   "backfilled": false,
   "bench": [
    572,
+   236,
    94,
-   286,
-   321
+   286
   ],
   "captain": 4,
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "548e6177da88",
+  "code_sha": "696db44ede69",
   "ft": 1,
   "gw": 11,
-  "hit_cost": 0,
-  "hits": 0,
-  "saved_at": "2026-11-16T06:45:08+00:00",
-  "saved_at_et": "2026-11-16 1:45 AM ET",
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-11-16T18:08:33+00:00",
+  "saved_at_et": "2026-11-16 1:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -419,17 +419,17 @@
    },
    {
     "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
-    "xp": 3.8
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.8
    },
    {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.82
+    "xp": 5.38
    },
    {
     "club": "BOU",
@@ -443,28 +443,28 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.04
+    "xp": 4.06
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 3.94
    },
    {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 2.92
+    "xp": 3.01
    },
    {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 1.69
-   },
-   {
-    "club": "IPS",
-    "id": 321,
-    "name": "Walle Egeli",
-    "pos": "FWD",
-    "xp": 0.02
+    "xp": 1.7
    }
   ],
   "status": "pending",
@@ -474,10 +474,16 @@
     "in_id": 4,
     "out": "Tarkowski",
     "out_id": 229
+   },
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Walle Egeli",
+    "out_id": 321
    }
   ],
-  "vice": 411,
-  "vice_name": "Haaland",
+  "vice": 112,
+  "vice_name": "Van Hecke",
   "xi": [
    1,
    4,
@@ -487,11 +493,11 @@
    60,
    68,
    124,
-   236,
+   249,
    411,
    79
   ],
-  "xp": 65.4
+  "xp": 63.0
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

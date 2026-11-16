@@ -345,13 +345,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "548e6177da88",
+  "code_sha": "696db44ede69",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-16T06:44:57+00:00",
-  "saved_at_et": "2026-11-16 1:44 AM ET",
+  "saved_at": "2026-11-16T18:08:20+00:00",
+  "saved_at_et": "2026-11-16 1:08 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -383,11 +383,11 @@
     "xp": 5.32
    },
    {
-    "club": "ARS",
-    "id": 8,
-    "name": "Calafiori",
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
     "pos": "DEF",
-    "xp": 3.93
+    "xp": 4.01
    },
    {
     "club": "BOU",
@@ -408,56 +408,56 @@
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.41
-   },
-   {
-    "club": "MCI",
-    "id": 411,
-    "name": "Haaland",
-    "pos": "FWD",
-    "xp": 5.82
+    "xp": 3.45
    },
    {
     "club": "EVE",
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 5.4
+    "xp": 5.8
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 5.38
    },
    {
     "club": "AVL",
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 4.9
+    "xp": 5.33
    },
    {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.04
+    "xp": 4.06
    },
    {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.29
+    "xp": 3.37
    },
    {
     "club": "IPS",
     "id": 305,
     "name": "Davis",
     "pos": "DEF",
-    "xp": 2.67
+    "xp": 2.71
    },
    {
     "club": "AVL",
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 2.37
+    "xp": 2.13
    }
   ],
   "status": "pending",
@@ -465,8 +465,8 @@
    {
     "in": "Gabriel",
     "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
+    "out": "Calafiori",
+    "out_id": 8
    },
    {
     "in": "Barry",
@@ -475,22 +475,22 @@
     "out_id": 138
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 411,
+  "vice_name": "Haaland",
   "xi": [
    1,
    4,
    115,
    566,
-   8,
+   229,
    68,
    124,
    154,
-   411,
    249,
+   411,
    166
   ],
-  "xp": 58.5
+  "xp": 59.0
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

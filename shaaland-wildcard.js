@@ -108,16 +108,16 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "Haaland",
-    "captain_ep": 5.82,
-    "vice": "De Cuyper",
-    "vice_ep": 5.62,
+    "captain": "De Cuyper",
+    "captain_ep": 5.62,
+    "vice": "Haaland",
+    "vice_ep": 5.38,
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.29,
+        "bench_ep": 3.37,
         "starter": "Manzambi",
-        "starter_ep": 2.37
+        "starter_ep": 2.13
       }
     ],
     "bench_order": [
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.85,
+        "ep_next": 4.01,
         "status": "ok"
       },
       {
@@ -168,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.37,
+        "ep_next": 2.13,
         "status": "doubt"
       },
       {
@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.41,
+        "ep_next": 3.45,
         "status": "ok"
       },
       {
@@ -192,13 +192,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.82,
+        "ep_next": 5.38,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.9,
+        "ep_next": 5.33,
         "status": "ok"
       }
     ],
@@ -206,7 +206,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.04,
+        "ep_next": 4.06,
         "status": "ok"
       },
       {
@@ -218,13 +218,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.29,
+        "ep_next": 3.37,
         "status": "ok"
       },
       {
         "name": "Davis",
         "pos": "DEF",
-        "ep_next": 2.67,
+        "ep_next": 2.71,
         "status": "ok"
       }
     ]
