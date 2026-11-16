@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-16 18:08 UTC",
+  "generated_at": "2026-11-16 22:17 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1313,34 +1313,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Fix",
-      "title": "FPL Gameweek 11 Suspension Watch: Players on 4 Yellow Cards",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-11-suspensions-yellow-cards-2026-27/"
-    },
-    {
-      "source": "Scout",
-      "title": "Jackson, Barry, Mbeumo, Hall: Buy, keep or sell in Gameweek 11?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/16/jackson-barry-mbeumo-hall-buy-keep-or-sell-in-gameweek-11"
-    },
-    {
-      "source": "Scout",
-      "title": "Set pieces + penalties: All 20 Premier League clubs\u2019 takers \u2013 updated",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/16/set-pieces-penalties-all-20-premier-league-clubs-takers-updated-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Jump on, jump off: Best FPL fixture runs for each team",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/16/jump-on-jump-off-best-fpl-fixture-runs-for-each-team-3"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "Premier League Goal Involvement Breakdown: Gameweek 11",
-      "url": "https://ingenuityfantasy.com/game-week-tips/premier-league-goal-involvement-breakdown-gameweek-11/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
