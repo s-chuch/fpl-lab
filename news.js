@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-15 23:52 UTC",
+  "generated_at": "2026-11-16 01:27 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1346,14 +1346,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "AAFPL",
-      "title": "FPL\u2019s Top 10 All-Time Points Scorers: The Greatest Assets Ever",
-      "url": "https://allaboutfpl.com/2026/11/fpls-top-10-all-time-points-scorers-the-greatest-assets-ever/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
