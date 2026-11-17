@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-17T08:04:53Z",
+ "generated_at": "2026-11-17T17:29:06Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-17T08:04:53Z",
+ "last_attempt": "2026-11-17T17:29:06Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 470,
-  "cost_usd": 3.29
+  "searches": 480,
+  "cost_usd": 3.36
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,10 +17,23 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 342,607 Joao Pedro (CHE) 344,112 Evanilson (BOU) 236,003 Gvardiol (MCI) 313,337 ...",
+   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 358,546 Joao Pedro (CHE) 355,262 Evanilson ( ...",
    "source_domain": "premierleague.com",
-   "published": "2026-11-16",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
+   "published": "2026-11-17",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-11",
+   "yours": []
+  },
+  {
+   "player": "Gvardiol",
+   "team": "MCI",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Unspecified injury - 75% chance of playing",
+   "headline": "Man City transfer rumours: Josko Gvardiol - BBC Sport",
+   "snippet": "Man City transfer rumours: Josko Gvardiol - BBC Sport Gossip: Barca hold interest in Gvardiol 5 hours ago Barcelona remain interested in Manchester City's Croatia defender Josko Gvardiol, 24, but do not think a deal…",
+   "source_domain": "bbc.com",
+   "published": "2026-11-17",
+   "url": "https://www.bbc.com/sport/football/articles/c6j9m0gxvy8xo",
    "yours": []
   },
   {
@@ -29,11 +42,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Liverpool FC injury update: Virgil van Dijk, Ryan Gravenberch, Dominik Szoboszlai latest news and return dates The Standard",
-   "snippet": "Liverpool injury update: Virgil van Dijk, Ryan Gravenberch, Dominik Szoboszlai latest news and return dates Oli Gent, Sports Reporter @oli gent 1 minute ago Liverpool are sweating over the fitness of several key…",
-   "source_domain": "standard.co.uk",
+   "headline": "Germany boss Jurgen Klopp gushes over ‘best-looking’ Virgil van Dijk ahead of Netherlands clash Goal.com",
+   "snippet": "When asked by a German journalist about his lasting impressions of working with Virgil van Dijk at Anfield, the newly appointed Die Mannschaft boss could not help but highlight the defender's aesthetic qualities.",
+   "source_domain": "goal.com",
    "published": "2026-11-16",
-   "url": "https://www.standard.co.uk/sport/football/liverpool-fc-injury-update-van-dijk-gravenberch-szoboszlai-latest-news-return-dates-b1304963.html",
+   "url": "https://www.goal.com/en/news/germany-jurgen-klopp-virgil-van-dijk-netherlands/blt7f7866a14ecaaf4d",
+   "yours": []
+  },
+  {
+   "player": "Thiago",
+   "team": "BRE",
+   "fpl_status": "s",
+   "fpl_chance": 0,
+   "fpl_news": "Suspended until 5 Dec",
+   "headline": "Brentford suffer double injury blow ahead of Everton after Igor Thiago appeal decision - Liverpool Echo",
+   "snippet": "Brentford suffer double injury blow ahead of Everton after Igor Thiago appeal decision David Moyes' Everton side return to Premier League action when they take on Brentford at the Gtech Community Stadium on Monday…",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-17",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/brentford-everton-injury-news-thiago-34923294",
    "yours": []
   },
   {
@@ -42,11 +68,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 50,
    "fpl_news": "Calf injury - 50% chance of playing",
-   "headline": "Thomas Frank pushing to bring two ex-Tottenham staff members to Crystal Palace Football London",
-   "snippet": "Former Tottenham head coach Thomas Frank has returned to work with Crystal Palace Spurs Ryan Taylor 16:58, 16 Nov 2026 Updated 17:20, 16 Nov 2026 ...",
-   "source_domain": "football.london",
+   "headline": "Crystal Palace news: What is Thomas Frank's to-do list? - BBC Sport",
+   "snippet": "Crystal Palace are set to appoint Thomas Frank as the club's new head coach following the departure of Pierre Sage.",
+   "source_domain": "bbc.com",
    "published": "2026-11-16",
-   "url": "https://www.football.london/tottenham-hotspur-fc/news/tottenham-thomas-frank-crystal-palace-34920608",
+   "url": "https://www.bbc.com/sport/football/articles/cqdj1gl4jmljo",
    "yours": []
   },
   {
@@ -81,11 +107,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Chelsea FC injury update: Joao Pedro, Emi Martinez, Josh Acheampong latest news and return dates The Standard",
-   "snippet": "Martinez has now missed Chelsea's last four games across all competitions after undergoing surgery for a broken jaw sustained upon a collision with Jarrad Branthwaite in the win over Everton last month.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-16",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-martinez-acheampong-latest-news-return-dates-b1304937.html",
+   "headline": "Xabi Alonso handed crucial Chelsea injury green light ahead of Leeds showdown Football London",
+   "snippet": "Martinez, who is wearing a protective mask on the lower part of his face when in action, was close to returning to the Chelsea side last time out away at Sunderland but Xabi Alonso instead opted with Mike Penders at…",
+   "source_domain": "football.london",
+   "published": "2026-11-17",
+   "url": "https://www.football.london/chelsea-fc/news/xabi-alonso-handed-crucial-chelsea-34922674",
    "yours": []
   }
  ]

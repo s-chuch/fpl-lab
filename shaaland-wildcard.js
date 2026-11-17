@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "De Cuyper",
-    "captain_ep": 5.62,
+    "captain_ep": 5.58,
     "vice": "Haaland",
     "vice_ep": 5.38,
     "bench_swaps": [
@@ -122,11 +122,11 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "bench_order": [
       "Tzolakis",
-      "Kostoulas",
       "Barnes",
+      "Kostoulas",
       "Davis"
     ],
-    "bench_order_changed": false,
+    "bench_order_changed": true,
     "availability_flags": [
       {
         "name": "Manzambi",
@@ -138,13 +138,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 5.13,
+        "ep_next": 4.97,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.62,
+        "ep_next": 5.58,
         "status": "ok"
       },
       {
@@ -156,13 +156,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.93,
+        "ep_next": 3.83,
         "status": "ok"
       },
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 5.32,
+        "ep_next": 5.22,
         "status": "ok"
       },
       {
@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.83,
+        "ep_next": 4.8,
         "status": "ok"
       },
       {
@@ -186,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.31,
+        "ep_next": 5.11,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 3.41,
+        "ep_next": 2.91,
         "status": "ok"
       },
       {
