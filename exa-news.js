@@ -1,15 +1,28 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-16T18:08:35Z",
+ "generated_at": "2026-11-17T01:45:42Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-16T18:08:35Z",
+ "last_attempt": "2026-11-17T01:45:42Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 450,
-  "cost_usd": 3.15
+  "searches": 460,
+  "cost_usd": 3.22
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
+  {
+   "player": "João Pedro",
+   "team": "CHE",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Thigh injury - Unknown return date",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
+   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 342,607 Joao Pedro (CHE) 344,112 Evanilson (BOU) 236,003 Gvardiol ...",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-16",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers",
+   "yours": []
+  },
   {
    "player": "Virgil",
    "team": "LIV",
@@ -43,7 +56,7 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
    "headline": "Zubimendi, Tzolis, Saka, Dowman - Arsenal injury news and return dates after MRI scan conducted Football London",
-   "snippet": "There is still no definitive timeframe on Saka's return following the quad injury he sustained in the 2-2 Champions League draw at Bayern Munich.",
+   "snippet": "Bukayo Saka There is still no definitive timeframe on Saka's return following the quad injury he sustained in the 2-2 Champions League draw at Bayern Munich.",
    "source_domain": "football.london",
    "published": "2026-11-16",
    "url": "https://www.football.london/arsenal-fc/news/arsenal-injury-news-zubimendi-tzolis-34919663",
@@ -60,6 +73,19 @@ window.EXA_NEWS = {
    "source_domain": "birminghammail.co.uk",
    "published": "2026-11-16",
    "url": "https://www.birminghammail.co.uk/sport/football/football-news/aston-villa-sunderland-injuries-manzambi-34916507",
+   "yours": []
+  },
+  {
+   "player": "James",
+   "team": "CHE",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Tottenham injury update: Mathys Tel, James Maddison, Mykhailo Mudryk latest news and return dates The Standard",
+   "snippet": "Potential return date: Unknown James Maddison Fitness concerns remain regarding James Maddison after failing to come off the bench in Tottenham’s last two games.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-16",
+   "url": "https://www.standard.co.uk/sport/football/tottenham-injury-update-tel-maddison-savio-latest-news-return-dates-b1304934.html",
    "yours": []
   },
   {
