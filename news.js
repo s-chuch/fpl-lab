@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-17 17:28 UTC",
+  "generated_at": "2026-11-17 21:02 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1228,23 +1228,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "The best value FPL players of 2026/27 so far",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/the-best-value-fpl-players-of-2026-27-so-far"
-    },
-    {
-      "source": "Scout",
-      "title": "4 low-owned FPL midfielders for Gameweek 11 and beyond",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/4-low-owned-fpl-midfielders-for-gameweek-11-and-beyond"
-    },
-    {
-      "source": "Scout",
-      "title": "Sofascore Nations League Fantasy: Round 6 team reveals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/sofascore-nations-league-fantasy-round-6-team-reveals"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 11 Wildcard Team",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/"
+      "title": "\u00ad\u00ad\u00adMcGinn v Manzambi: How do the two Villa midfielders compare?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/mcginn-v-manzambi-how-do-the-two-villa-midfielders-compare"
     }
   ],
   "no_new": false,
