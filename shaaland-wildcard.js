@@ -253,7 +253,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-17",
-      "total_cost": 101.4,
+      "total_cost": 101.3,
       "prices": {
         "Raya": 6.2,
         "De Cuyper": 5.5,
@@ -268,7 +268,7 @@ window.FPL_WILDCARD_WATCH = {
         "N.Jackson": 7.1,
         "Tzolakis": 4.7,
         "Kostoulas": 5.8,
-        "Barnes": 6.1,
+        "Barnes": 6.0,
         "Davis": 4.0
       }
     },
@@ -280,7 +280,7 @@ window.FPL_WILDCARD_WATCH = {
       "Manzambi": 6.2,
       "Silva": 5.1
     },
-    "total_delta": 2.6,
+    "total_delta": 2.5,
     "players": [
       {
         "name": "De Cuyper",
@@ -348,8 +348,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
+        "current_cost": 6.0,
+        "delta": -0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -482,12 +482,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "removed",
-        "player": "Cherki",
-        "price_at_change": 7.8
-      },
       {
         "date": "2026-10-10",
         "event": "removed",
@@ -769,6 +763,14 @@ window.FPL_WILDCARD_WATCH = {
         "from": 5.4,
         "to": 5.5,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-17",
+        "event": "price_change",
+        "player": "Barnes",
+        "from": 6.1,
+        "to": 6.0,
+        "delta": -0.1
       }
     ]
   },

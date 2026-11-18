@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-17 21:02 UTC",
+  "generated_at": "2026-11-18 00:45 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1225,14 +1225,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "\u00ad\u00ad\u00adMcGinn v Manzambi: How do the two Villa midfielders compare?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/mcginn-v-manzambi-how-do-the-two-villa-midfielders-compare"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
