@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-18 17:02 UTC",
+  "generated_at": "2026-11-18 20:40 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -109,7 +109,8 @@ window.FPL_NEWS = {
       "player": "N.Jackson",
       "club": "AVL",
       "tags": [
-        "captain talk"
+        "captain talk",
+        "transfer target"
       ],
       "id": 166,
       "verdict": "Leaning buy",
@@ -228,6 +229,87 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Calafiori (ARS) \u2014 Mentioned, no clear view (1 captain mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Calafiori",
+      "club": "ARS",
+      "tags": [
+        "captain talk"
+      ],
+      "id": 8,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "captain": 1
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "But my captain Riccardo Calafiori delivered the six-point floor I expected and I will take that.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/giannibuttice/team-reveal",
+          "title": "Gianni Buttice's FPL team reveal 2026/27"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "Riccardo Calafiori also faces competition at left-back from Piero Hincapi\u00e9 and Myles Lewis-Skelly.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "There is also Calafiori, whose minutes will surely be managed now as Arsenal play 11 competitive games in the next 45 days.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        },
+        {
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "Riccardo Calafiori vs NEW (A) Newcastle are also struggling at both ends of the pitch.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
+          "title": "The Best FPL Gameweek 11 Captains"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Similar to De Cuyper, Calafiori offers a strong clean sheet chance plus a real attacking threat.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
+          "title": "The Best FPL Gameweek 11 Captains"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "He ranks ahead of Riccardo Calafiori for expected FPL points (53.72 to 49.65) and third among all defenders for xG (1.80).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "But my captain Riccardo Calafiori delivered the six-point floor I expected and I will take that.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/giannibuttice/team-reveal",
+          "title": "Gianni Buttice's FPL team reveal 2026/27"
+        }
+      ],
+      "tone": "mixed"
+    },
+    {
       "text": "De Cuyper (BHA) \u2014 Leaning buy (3 buy mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
@@ -336,7 +418,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Haaland (MCI) \u2014 Captain candidate (6 captain mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Haaland (MCI) \u2014 Captain candidate (7 captain mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -351,7 +433,7 @@ window.FPL_NEWS = {
       "id": 411,
       "verdict": "Captain candidate",
       "stance": {
-        "captain": 6
+        "captain": 7
       },
       "quotes": [
         {
@@ -373,6 +455,15 @@ window.FPL_NEWS = {
           "title": "Best FPL players for Gameweek 11"
         },
         {
+          "source": "AAFPL",
+          "text": "FDR sorted by best to worst fixtures overall for the period For captaincy, I am looking at Haaland against Fulham at home.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        },
+        {
           "source": "Fix",
           "text": "When is Erling Haaland the best FPL captain between GW11 and GW16?",
           "stance": [
@@ -380,15 +471,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "source": "Hub",
-          "text": "Haaland remains a strong captaincy candidate but rather than revisit his established goalscoring credentials, we're focusing on five players whose underlying numbers and individual match-ups reveal potentially overlooked opportuni...",
-          "stance": [
-            "captain"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-11-article-26-27",
-          "title": "FPL GW11 fixtures: Goal, clean-sheet odds and hidden gems"
         }
       ],
       "facts": [
@@ -458,6 +540,73 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "mixed"
+    },
+    {
+      "text": "Konsa (ARS) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 31,
+      "verdict": "Leaning buy",
+      "stance": {
+        "risk": 1,
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Konsa has been well in form, but Saliba is very close to returning.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "The Arsenal clean sheet came in, with Ezri Konsa providing eight points too.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
+          "title": "Fantasy Football Hub AI FPL team reveal 2026/27"
+        }
+      ],
+      "tone": "good"
     },
     {
       "text": "Mbeumo (MUN) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
@@ -630,6 +779,41 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Rogers",
+      "club": "CHE",
+      "tags": [],
+      "id": 40,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Midfield \u2013 Four value picks alongside Morgan Rogers With premium midfielders Bukayo Saka, Bruno Fernandes and Cole Palmer either injured or out of form, the Algorithm spreads the budget across midfield.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Midfield: Morgan Rogers \u2013 \u00a37.9m For me, Rogers is the most dangerous-looking Chelsea player right now.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        }
+      ],
+      "tone": "neutral"
     },
     {
       "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
@@ -867,7 +1051,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Vuskovic (BHA) \u2014 Leaning buy (2 buy mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "Vuskovic (BHA) \u2014 Leaning buy (3 buy mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -882,9 +1066,18 @@ window.FPL_NEWS = {
       "id": 504,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 2
+        "buy": 3
       },
       "quotes": [
+        {
+          "source": "AAFPL",
+          "text": "The ideal target is Vuskovic , who has a great run of games coming up, and I don\u2019t really mind a triple up on Brighton.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        },
         {
           "source": "AAFPL",
           "text": "FPL Gameweek 11 Transfer Tips: Players to BUY Luka Vu\u0161kovi\u0107 (\u00a35.3m) \u2013 DEF, Brighton \u2013 9.4% TSB Assuming you already own De Cuyper and Gro\u00df, there is a strong case for completing the Brighton triple-up.",
@@ -905,6 +1098,14 @@ window.FPL_NEWS = {
         }
       ],
       "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "The ideal target is Vuskovic , who has a great run of games coming up, and I don\u2019t really mind a triple up on Brighton.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        },
         {
           "topic": "form",
           "tone": "good",
@@ -936,212 +1137,6 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-11-differentials/",
           "title": "FPL Gameweek 11 Differentials: 5 Picks Under 10% Owned"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Calafiori (ARS) \u2014 Mentioned, no clear view (1 captain mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Calafiori",
-      "club": "ARS",
-      "tags": [
-        "captain talk"
-      ],
-      "id": 8,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "captain": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "But my captain Riccardo Calafiori delivered the six-point floor I expected and I will take that.",
-          "stance": [
-            "captain"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/giannibuttice/team-reveal",
-          "title": "Gianni Buttice's FPL team reveal 2026/27"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "good",
-          "text": "Riccardo Calafiori also faces competition at left-back from Piero Hincapi\u00e9 and Myles Lewis-Skelly.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        },
-        {
-          "topic": "fixture",
-          "tone": "bad",
-          "text": "Riccardo Calafiori vs NEW (A) Newcastle are also struggling at both ends of the pitch.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
-          "title": "The Best FPL Gameweek 11 Captains"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Similar to De Cuyper, Calafiori offers a strong clean sheet chance plus a real attacking threat.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
-          "title": "The Best FPL Gameweek 11 Captains"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "He ranks ahead of Riccardo Calafiori for expected FPL points (53.72 to 49.65) and third among all defenders for xG (1.80).",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "topic": "captain",
-          "tone": "neutral",
-          "text": "But my captain Riccardo Calafiori delivered the six-point floor I expected and I will take that.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/giannibuttice/team-reveal",
-          "title": "Gianni Buttice's FPL team reveal 2026/27"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
-      "text": "Gro\u00df (BHA) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Gro\u00df",
-      "club": "BHA",
-      "tags": [],
-      "id": 124,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Ingenuity",
-          "text": "Pascal Gross \u2013 \u00a35.9m Essential.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Pascal Gro\u00df vs HUL (A) For the same reasons as De Cuyper, Gro\u00df is also an excellent option this week.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
-          "title": "The Best FPL Gameweek 11 Captains"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Pascal Gro\u00df is still attracting buyers despite being one booking away from suspension.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "\ud83d\udc40 pic.twitter.com/k8tppEQnxn \u2014 Fantasy Football Fix (@FantasyFootyFix) November 10, 2026 Pascal Gro\u00df leads all players for both attempted assists (29) and big chances created (eight) this season, according to the Stats Sandbox .",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "Pascal Gross \u2013 \u00a35.9m Essential.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Isak (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 3/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Isak",
-      "club": "LIV",
-      "tags": [
-        "captain talk"
-      ],
-      "id": 379,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Dominic Calvert-Lewin and Charalampos Kostoulas are also among the forwards making way, while Evanilson, Thierno Barry and Alexander Isak are popular targets.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Alexander Isak has four Anfield fixtures in six Gameweeks Alexander Isak has scored seven league goals this season.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
-          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Elsewhere, Alexander Isak has four home games in six, while four away trips could make Thierno Barry a less appealing transfer than his recent form suggests.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
-          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Alexander Isak ranks third for expected goals (5.79 xG), with Nicolas Jackson fourth (5.32 xG), as shown in the Stats Sandbox .",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Alexander Isak \u2013 \u00a39.3m Liverpool are hitting their stride too, and Isak is leading the line.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
         }
       ],
       "tone": "good"
@@ -1273,69 +1268,6 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Calvert-Lewin (LEE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Calvert-Lewin",
-      "club": "LEE",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 346,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "How to rotate Jack Rudoni with Dominic Calvert-Lewin or Tarek Muharemovi\u0107 Rudoni could be particularly useful if you already own Dominic Calvert-Lewin or Tarek Muharemovi\u0107.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
-          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "How to rotate Jack Rudoni with Dominic Calvert-Lewin or Tarek Muharemovi\u0107 Rudoni could be particularly useful if you already own Dominic Calvert-Lewin or Tarek Muharemovi\u0107.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
-          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Kostoulas and Calvert-Lewin fall behind After bright starts, Kostoulas and Calvert-Lewin now trail the three most popular picks for shots inside the box and big chances.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Dominic Calvert-Lewin and Igor Thiago are losing owners too, given the form of budget alternatives such as Jackson, Barry and Evanilson.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Maxim De Cuyper , Morgan Rogers , Dominic Calvert-Lewin and Virgil van Dijk are among the highly owned players on three bookings.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
-          "title": "FPL suspensions: Yellow and red cards tracker"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
       "text": "Cherki (MCI) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
@@ -1426,6 +1358,85 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
+    },
+    {
+      "text": "Evanilson (BOU) \u2014 Leaning buy (1 buy, 1 keep mentions) \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Ingenuity"
+      ],
+      "player": "Evanilson",
+      "club": "BOU",
+      "tags": [],
+      "id": 79,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1,
+        "hold": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Dominic Calvert-Lewin and Charalampos Kostoulas are also among the forwards making way, while Evanilson, Thierno Barry and Alexander Isak are popular targets.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "Fix",
+          "text": "Can Evanilson keep his scoring run going?",
+          "stance": [
+            "hold"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Evanilson is one goal away from matching his entire 2025/26 tally Last season, Evanilson scored six goals from 11.30 xG for Bournemouth.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-surprising-stats-after-10-gameweeks-2026-27/",
+          "title": "10 Surprising FPL Stats After 10 Gameweeks of 2026/27"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Evanilson\u2019s stock continues to rise Evanilson\u2019s goal against Ipswich was his fifth in as many Gameweeks.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Jackson has scored 50 points in the last six Gameweeks, Barry leads the way for big chances and Evanilson has scored in five straight matches.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Rayan \u2013 Bournemouth v Nottingham Forest 4.7 predicted points \u00b7 2.4% ownership Rayan and Evanilson have each had nine big chances for Bournemouth this season.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-11-differentials/",
+          "title": "FPL Gameweek 11 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Nicolas Jackson, Thierno Barry and Evanilson are the three most-bought players in FPL this week.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "good"
     }
   ],
   "links": [
@@ -1452,44 +1463,19 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Hub",
-      "title": "Best FPL players for Gameweek 11",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-11-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL GW11 fixtures: Goal, clean-sheet odds and hidden gems",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-11-article-26-27"
-    },
-    {
       "source": "Scout",
-      "title": "DefCon deep dive: Top 5 defenders + how we can break the FPL template",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/18/defcon-deep-dive-top-5-defenders-how-we-can-break-the-fpl-template"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11: Best clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/18/fpl-gameweek-11-best-clean-sheet-odds-2"
-    },
-    {
-      "source": "Scout",
-      "title": "Play Simple Manager: A whole season in one evening",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/18/play-simple-manager-a-whole-season-in-one-evening"
+      "title": "What can FPL managers expect from Thomas Frank at Crystal Palace?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/18/what-can-fpl-managers-expect-from-thomas-frank-at-crystal-palace"
     },
     {
       "source": "Scout",
       "title": "WUCL Fantasy Matchday 5: Team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/wucl-fantasy-matchday-5-team-reveal"
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/15/wucl-fantasy-matchday-5-team-reveal"
     },
     {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 11 Captains",
-      "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "The Best FPL Gameweek 11 Differentials",
-      "url": "https://ingenuityfantasy.com/game-week-tips/gameweek-11-differentials/"
+      "source": "AAFPL",
+      "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes",
+      "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/"
     }
   ],
   "no_new": false,
