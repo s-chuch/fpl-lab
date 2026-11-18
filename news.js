@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-18 02:15 UTC",
+  "generated_at": "2026-11-18 07:40 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -62,7 +62,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "text": "Muharemovi\u0107 (LEE) \u2014 Fitness or rotation doubts (4 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -78,7 +78,7 @@ window.FPL_NEWS = {
       "id": 334,
       "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 2
+        "risk": 4
       },
       "quotes": [
         {
@@ -98,6 +98,24 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
           "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+        },
+        {
+          "source": "Fix",
+          "text": "Muharemovi\u0107 is an option for managers looking to rotate defenders.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "source": "Fix",
+          "text": "For a rotation option, consider Tarek Muharemovi\u0107.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         }
       ],
       "facts": [
@@ -160,12 +178,28 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
         },
         {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "He starts De Cuyper, Calafiori and Silva in a back three, with Konsa and Lewis Hall on his bench.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
           "topic": "fixture",
           "tone": "neutral",
           "text": "Team-mate Ant\u00f3nio Silva is one yellow card away from suspension, as detailed in our Gameweek 11 suspensions and yellow cards guide .",
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-11-differentials/",
           "title": "FPL Gameweek 11 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "By comparison, Gabriel has recorded 1.80 xG with only seven shots inside the box, while Silva ranks sixth for xG (1.50) with just six attempts from inside the area.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         },
         {
           "topic": "price",
@@ -254,7 +288,7 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Van Hecke (TOT) \u2014 Mentioned, no clear view \u00b7 5/5 sites with fresh articles",
+      "text": "Van Hecke (TOT) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -264,12 +298,34 @@ window.FPL_NEWS = {
       ],
       "player": "Van Hecke",
       "club": "TOT",
-      "tags": [],
+      "tags": [
+        "rotation risk"
+      ],
       "id": 112,
       "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "He ranks second for defensive contributions (112), and his upcoming fixtures rotate well with Van Hecke\u2019s.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        }
+      ],
       "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "He ranks second for defensive contributions (112), and his upcoming fixtures rotate well with Van Hecke\u2019s.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
         {
           "topic": "fixture",
           "tone": "good",
@@ -279,20 +335,28 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
         },
         {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Pairing him with Van Hecke gives you two players with DEFCON potential and a favourable run of fixtures when you alternate between them, as shown in the Fixture Rotation Optimiser .",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
           "topic": "form",
           "tone": "good",
-          "text": "Meanwhile, Tarik Muharemovic (\u00a35.1m) and Jan Paul van Hecke (\u00a35.1m) have the upside of DefCon points and attacking threat; combined, the pair have two goals and two assists in the last seven Gameweeks.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-          "title": "FPL Gameweek 11 Wildcard best team + pros/cons of using"
+          "text": "Van Hecke is the only centre-back in the top 12, but his 10 chances have produced just 0.29 xA.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "Van Hecke then layers on 8.5 defensive contributions per 90 and a very tidy 0.24 xGI per 90, with 2 goals already.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
+          "text": "The Brighton full-back has taken 11 shots inside the box and had five big chances, a tally only Van Hecke can match among defenders.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         },
         {
           "topic": "price",
@@ -406,7 +470,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "De Cuyper (BHA) \u2014 Leaning buy (1 buy mentions) \u00b7 4/5 sites with fresh articles",
+      "text": "De Cuyper (BHA) \u2014 Leaning buy (3 buy mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
         "Fix",
@@ -415,13 +479,24 @@ window.FPL_NEWS = {
       ],
       "player": "De Cuyper",
       "club": "BHA",
-      "tags": [],
+      "tags": [
+        "transfer target"
+      ],
       "id": 115,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 1
+        "buy": 3
       },
       "quotes": [
+        {
+          "source": "Fix",
+          "text": "Jan Paul van Hecke's goal threat is also significant, no defender has scored more goals (two) or landed more shots on target (five) than Dutch international while only De Cuyper (2.45) has amassed a higher xG tally than his 2.13.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
         {
           "source": "AAFPL",
           "text": "FPL Gameweek 11 Transfer Tips: Players to BUY Luka Vu\u0161kovi\u0107 (\u00a35.3m) \u2013 DEF, Brighton \u2013 9.4% TSB Assuming you already own De Cuyper and Gro\u00df, there is a strong case for completing the Brighton triple-up.",
@@ -430,24 +505,41 @@ window.FPL_NEWS = {
           ],
           "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "source": "Fix",
+          "text": "Maxim De Cuyper is the standout defensive target for Gameweek 11.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         }
       ],
       "facts": [
         {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "He starts De Cuyper, Calafiori and Silva in a back three, with Konsa and Lewis Hall on his bench.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
           "topic": "form",
           "tone": "good",
-          "text": "De Cuyper is currently the highest-scoring player in FPL on 75 points, thanks to 2 goals, 4 assists and 7 clean sheets.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
+          "text": "Maxim De Cuyper leads all FPL defenders for expected goals, expected assists and expected FPL points after 10 Gameweeks.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         },
         {
           "topic": "form",
           "tone": "neutral",
-          "text": "1 goal \u2013 again, just one fewer than De Cuyper.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "text": "Spurs defender Jan Paul van Hecke ranks second for expected goals, making him an alternative to Brighton\u2019s Maxim De Cuyper for FPL Gameweek 11.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         },
         {
           "topic": "price",
@@ -1027,6 +1119,14 @@ window.FPL_NEWS = {
           "source": "Ingenuity",
           "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
           "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "He ranks ahead of Riccardo Calafiori for expected FPL points (53.72 to 49.65) and third among all defenders for xG (1.80).",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
         }
       ],
       "tone": "good"
@@ -1162,6 +1262,33 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Jacquet (LIV) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "Jacquet",
+      "club": "LIV",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 362,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "The price gap makes Jacquet an appealing option for managers targeting DEFCON returns.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Janelt (BRE) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
       "sources": [
         "Fix",
@@ -1176,31 +1303,6 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
-    },
-    {
-      "text": "Kostoulas (BHA) \u2014 Mentioned, no clear view \u00b7 2/5 sites with fresh articles",
-      "sources": [
-        "Fix",
-        "Ingenuity"
-      ],
-      "player": "Kostoulas",
-      "club": "BHA",
-      "tags": [],
-      "id": 138,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Kostoulas and Calvert-Lewin fall behind After bright starts, Kostoulas and Calvert-Lewin now trail the three most popular picks for shots inside the box and big chances.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 11 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "good"
     }
   ],
   "links": [
@@ -1225,8 +1327,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More",
+      "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
