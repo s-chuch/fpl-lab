@@ -337,7 +337,7 @@
   "backfilled": false,
   "bench": [
    572,
-   453,
+   154,
    305,
    53
   ],
@@ -345,13 +345,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "fb52b3049867",
+  "code_sha": "ebe5675957ba",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-19T07:36:36+00:00",
-  "saved_at_et": "2026-11-19 2:36 AM ET",
+  "saved_at": "2026-11-19T17:11:12+00:00",
+  "saved_at_et": "2026-11-19 12:11 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -404,11 +404,11 @@
     "xp": 4.8
    },
    {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
     "pos": "MID",
-    "xp": 3.45
+    "xp": 3.37
    },
    {
     "club": "EVE",
@@ -439,11 +439,11 @@
     "xp": 4.06
    },
    {
-    "club": "NEW",
-    "id": 453,
-    "name": "Barnes",
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
     "pos": "MID",
-    "xp": 3.37
+    "xp": 2.79
    },
    {
     "club": "IPS",
@@ -485,7 +485,7 @@
    229,
    68,
    124,
-   154,
+   453,
    249,
    411,
    166
