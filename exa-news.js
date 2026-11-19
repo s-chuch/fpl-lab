@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-19T00:04:11Z",
+ "generated_at": "2026-11-19T07:36:46Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-19T00:04:11Z",
+ "last_attempt": "2026-11-19T07:36:46Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 520,
-  "cost_usd": 3.64
+  "searches": 530,
+  "cost_usd": 3.71
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -17,39 +17,13 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
    "headline": "Aston Villa v Sunderland: Fan preview - BBC Sport",
-   "snippet": "3 minutes ago Aston Villa fan Amy Rose Finley hopes Aston Villa's superior consistency can override the club's injury list - which includes Matty Cash and Johan Manzambi - when Sunderland visit Villa Park on Saturday.",
-   "source_domain": "bbc.co.uk",
+   "snippet": "18 November 2026, 09:02 GMT Aston Villa fan Amy Rose Finley hopes Aston Villa's superior consistency can override the club's injury list - which includes Matty Cash and Johan Manzambi - when Sunderland visit Villa Park…",
+   "source_domain": "bbc.com",
    "published": "2026-11-18",
-   "url": "https://www.bbc.co.uk/sport/football/articles/cxnv4qy7q3r1o",
+   "url": "https://www.bbc.com/sport/football/articles/cxnv4qy7q3r1o",
    "yours": [
     "1360999"
    ]
-  },
-  {
-   "player": "João Pedro",
-   "team": "CHE",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "GW11 FPL Challenge: Who's most likely to get points off the bench?",
-   "snippet": "Keep an eye on the Chelsea line-up for Joao Pedro (£7.8m), who has missed the last three Gameweeks due to a thigh issue.",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-18",
-   "url": "https://www.premierleague.com/en/news/4764509/gameweek-11-fpl-challenge-deep-dive",
-   "yours": []
-  },
-  {
-   "player": "Gvardiol",
-   "team": "MCI",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
-   "snippet": "Most transfers for Gameweek 11 Most transfers in Most transfers out --- --- --- --- Jackson (AVL) 380,652 Joao Pedro (CHE) 369,572 Evanilson (BOU) 256,834 Gvardiol (MCI) 340,703",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-17",
-   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-11",
-   "yours": []
   },
   {
    "player": "Virgil",
@@ -57,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Van Dijk, Gravenberch, Leoni, Bradley - Liverpool injury latest and return dates ahead of Man United - Liverpool Echo",
-   "snippet": "Virgil van Dijk Virgil van Dijk withdrew from the Netherlands squad he captains with an official statement from the Dutch football association confirming he wasn't fit enough to play in their Nations League contests.",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-18",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/van-dijk-gravenberch-leoni-bradley-34928609",
+   "headline": "Liverpool FC injury update: Virgil van Dijk, Giovanni Leoni, Jeremie Frimpong latest news and return dates The Standard",
+   "snippet": "Virgil van Dijk Van Dijk dropped out of the Netherlands’ squad for Nations League clashes with Greece and Germany, with the defender’s absence explained as fitness reasons.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-19",
+   "url": "https://www.standard.co.uk/sport/football/liverpool-fc-injury-update-van-dijk-leoni-frimpong-latest-news-return-dates-b1305419.html",
    "yours": []
   },
   {
@@ -70,11 +44,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "What’s eating Marc Guehi & Gianluigi Donnarumma? Ex-Man City captain Richard Dunne explains uncharacteristic errors - with Pep Guardiola par",
-   "snippet": "Guehi may not figure against the Cottagers, having withdrawn from the latest England squad with a hip injury, but Donnarumma will be between the sticks after taking in an eventful international break with Italy that…",
-   "source_domain": "goal.com",
-   "published": "2026-11-18",
-   "url": "https://www.goal.com/en-us/news/marc-guehi-gianluigi-donnarumma-man-city-richard-dunne-errors-pep-guardiola/blt72a73fddfa65cb91",
+   "headline": "Man City about to face biggest test of Enzo Maresca era - Manchester Evening News",
+   "snippet": "Marc Guehi withdrew from international duty with England and it remains to be seen if the centre back will be fit enough to return this weekend.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-19",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-city-face-biggest-test-34931591",
    "yours": []
   },
   {
@@ -91,16 +65,29 @@ window.EXA_NEWS = {
    "yours": []
   },
   {
-   "player": "James",
-   "team": "CHE",
+   "player": "Thomas",
+   "team": "COV",
+   "fpl_status": "d",
+   "fpl_chance": 50,
+   "fpl_news": "Calf injury - 50% chance of playing",
+   "headline": "Watch: Frank's first Palace training session",
+   "snippet": "Watch: Frank's first Palace training session 1 day ago True to form, Thomas Frank was quick to get down to work after being appointed Crystal Palace Manager – and you can watch his first training session in charge…",
+   "source_domain": "cpfc.co.uk",
+   "published": "2026-11-17",
+   "url": "https://www.cpfc.co.uk/news/video/watch-franks-first-palace-training-session/",
+   "yours": []
+  },
+  {
+   "player": "Saka",
+   "team": "ARS",
    "fpl_status": "i",
    "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Chelsea FC injury update: Joao Pedro, Emi Martinez, Josh Acheampong latest news and return dates The Standard",
-   "snippet": "Ahead of the Leeds game, I will have more [news] but not today.” Potential return date: Saturday November 21, vs Leeds (H) Reece James Chelsea’s influential captain Reece James suffered a knee injury in training at…",
+   "fpl_news": "Thigh injury - Unknown return date",
+   "headline": "Arsenal FC injury update: Martin Zubimendi, William Saliba, Bukayo Saka latest return dates The Standard",
+   "snippet": "Amid fears Saka could be out for action for up to eight weeks, Arteta confirmed that the winger’s recovery was going well ahead of the Hull fixture, but it will still be some weeks until he can make a full comeback.",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-16",
-   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-martinez-acheampong-latest-news-return-dates-b1304937.html",
+   "published": "2026-11-19",
+   "url": "https://www.standard.co.uk/sport/football/arsenal-fc-injury-update-zubimendi-saliba-saka-latest-news-return-dates-b1305436.html",
    "yours": []
   },
   {
@@ -109,11 +96,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Head injury - 75% chance of playing",
-   "headline": "Martinez returns from injury in Argentina victory",
-   "snippet": "Martinez returns from injury in Argentina victory Martinez returns from injury in Argentina victory 18 Nov 2026",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-18",
-   "url": "https://www.premierleague.com/en/news/4764463/martinez-returns-from-injury",
+   "headline": "Chelsea FC injury update: Joao Pedro, Emi Martinez, Reece James latest news and return dates The Standard",
+   "snippet": "Emi Martinez No1 Martinez has been out for four matches after he broke his jaw.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-19",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-injury-update-joao-pedro-martinez-james-latest-news-return-dates-b1305473.html",
    "yours": []
   }
  ]
