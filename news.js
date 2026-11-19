@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-19 00:03 UTC",
+  "generated_at": "2026-11-19 01:48 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -93,6 +93,44 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "McGinn (AVL) \u2014 Mentioned, no clear view \u00b7 5/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "McGinn",
+      "club": "AVL",
+      "tags": [
+        "differential"
+      ],
+      "id": 45,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Good form AND good fixtures: McGinn: 2.90 xAtt, the best form of any midfielder, with 16 chances created and 3 assists.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-ultimate-guide-tips-captaincy-differentials-more/",
+          "title": "FPL GW11 Ultimate Guide: Tips, Captaincy, Differentials & More"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Login here FPL Price Changes: McGinn Rises as Gonzalo and Georginio Fall Price Changes Seven of FPL\u2019s Top 12 Scorers Are Defenders \u2013 Is It Time to Go Big at the Back?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
         }
       ],
       "tone": "good"
@@ -700,43 +738,6 @@ window.FPL_NEWS = {
           "source": "AAFPL",
           "url": "https://allaboutfpl.com/2026/11/worst-individual-fpl-scores-of-all-time-fpl-disasters/",
           "title": "Worst Individual FPL Scores of All Time- FPL Disasters"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "McGinn (AVL) \u2014 Mentioned, no clear view \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "McGinn",
-      "club": "AVL",
-      "tags": [
-        "differential"
-      ],
-      "id": 45,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Good form AND good fixtures: McGinn: 2.90 xAtt, the best form of any midfielder, with 16 chances created and 3 assists.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-ultimate-guide-tips-captaincy-differentials-more/",
-          "title": "FPL GW11 Ultimate Guide: Tips, Captaincy, Differentials & More"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "John McGinn \u2013 AVL \u2013 \u00a35.4m Ownership: 3.8% Yes, he\u2019s back.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/gameweek-11-differentials/",
-          "title": "The Best FPL Gameweek 11 Differentials"
         }
       ],
       "tone": "good"
@@ -1381,14 +1382,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "Which Premier League teams have the busiest winter schedules?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/18/which-premier-league-teams-have-the-busiest-winter-schedules"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
