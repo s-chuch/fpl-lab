@@ -1,9 +1,233 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-19 17:11 UTC",
+  "generated_at": "2026-11-19 20:46 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
+    {
+      "text": "De Cuyper (BHA) \u2014 Leaning buy (4 buy, 1 captain mentions) \u00b7 5/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "De Cuyper",
+      "club": "BHA",
+      "tags": [
+        "captain talk",
+        "transfer target"
+      ],
+      "id": 115,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 4,
+        "captain": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Jan Paul van Hecke's goal threat is also significant, no defender has scored more goals (two) or landed more shots on target (five) than Dutch international while only De Cuyper (2.45) has amassed a higher xG tally than his 2.13.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "source": "Scout",
+          "text": "Best midfielders, Konsa + is it too late to buy De Cuyper?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/best-midfielders-konsa-is-it-too-late-to-buy-de-cuyper-fpl-qa",
+          "title": "Best midfielders, Konsa + is it too late to buy De Cuyper? FPL Q&A"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Brighton against Ipswich in GW16 is another attractive fixture, with 2.4 projected goals, but I wouldn\u2019t be comfortable Triple Captaining a player like Gross or De Cuyper.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-chip-strategy-best-gameweeks-to-play-the-remaining-chips/",
+          "title": "FPL Chip Strategy: Best Gameweeks to play the Remaining Chips"
+        },
+        {
+          "source": "Fix",
+          "text": "Maxim De Cuyper is the standout defensive target for Gameweek 11.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "De Cuyper also hangs on to a top 10 spot, although FPL managers will have a close eye on the fitness of Yankuba Minteh and Kaoru Mitoma , who could soon start to impact his minutes.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-11-article-26-27",
+          "title": "Best FPL Wildcard and team of the week for Gameweek 11"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "He starts De Cuyper, Calafiori and Silva in a back three, with Konsa and Lewis Hall on his bench.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Pascal Gro\u00df vs HUL (A) For the same reasons as De Cuyper, Gro\u00df is also an excellent option this week.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
+          "title": "The Best FPL Gameweek 11 Captains"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Maxim De Cuyper vs HUL (A) De Cuyper is the highest-scoring player in the whole game right now, with 75 points.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
+          "title": "The Best FPL Gameweek 11 Captains"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Maxim De Cuyper leads all FPL defenders for expected goals, expected assists and expected FPL points after 10 Gameweeks.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Spurs defender Jan Paul van Hecke ranks second for expected goals, making him an alternative to Brighton\u2019s Maxim De Cuyper for FPL Gameweek 11.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
+          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "FPL Gameweek 11 Transfer Tips: Players to BUY Luka Vu\u0161kovi\u0107 (\u00a35.3m) \u2013 DEF, Brighton \u2013 9.4% TSB Assuming you already own De Cuyper and Gro\u00df, there is a strong case for completing the Brighton triple-up.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Maxim De Cuyper \u2013 \u00a35.1m The guy is a monster.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Konsa (ARS) \u2014 Mixed: some say buy, some say sell (2 buy, 2 keep, 1 sell/avoid, 1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity",
+        "Scout"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 31,
+      "verdict": "Mixed: some say buy, some say sell",
+      "stance": {
+        "risk": 1,
+        "hold": 2,
+        "sell": 1,
+        "buy": 2
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "For now, Konsa is a definitive hold but not a buy.",
+          "stance": [
+            "hold",
+            "sell"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
+          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
+        },
+        {
+          "source": "Scout",
+          "text": "Best midfielders, Konsa + is it too late to buy De Cuyper?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/best-midfielders-konsa-is-it-too-late-to-buy-de-cuyper-fpl-qa",
+          "title": "Best midfielders, Konsa + is it too late to buy De Cuyper? FPL Q&A"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Konsa has been well in form, but Saliba is very close to returning.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
+          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "The Arsenal clean sheet came in, with Ezri Konsa providing eight points too.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
+          "title": "Fantasy Football Hub AI FPL team reveal 2026/27"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Ezri Konsa (\u00a34.9m), meanwhile, has barely put a foot wrong.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
+          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
+        }
+      ],
+      "tone": "good"
+    },
     {
       "text": "McGinn (AVL) \u2014 Mentioned, no clear view \u00b7 5/5 sites with fresh articles",
       "sources": [
@@ -302,132 +526,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "De Cuyper (BHA) \u2014 Leaning buy (3 buy, 1 captain mentions) \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "De Cuyper",
-      "club": "BHA",
-      "tags": [
-        "captain talk",
-        "transfer target"
-      ],
-      "id": 115,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 3,
-        "captain": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Jan Paul van Hecke's goal threat is also significant, no defender has scored more goals (two) or landed more shots on target (five) than Dutch international while only De Cuyper (2.45) has amassed a higher xG tally than his 2.13.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "source": "AAFPL",
-          "text": "Brighton against Ipswich in GW16 is another attractive fixture, with 2.4 projected goals, but I wouldn\u2019t be comfortable Triple Captaining a player like Gross or De Cuyper.",
-          "stance": [
-            "captain"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-chip-strategy-best-gameweeks-to-play-the-remaining-chips/",
-          "title": "FPL Chip Strategy: Best Gameweeks to play the Remaining Chips"
-        },
-        {
-          "source": "Fix",
-          "text": "Maxim De Cuyper is the standout defensive target for Gameweek 11.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "source": "AAFPL",
-          "text": "FPL Gameweek 11 Transfer Tips: Players to BUY Luka Vu\u0161kovi\u0107 (\u00a35.3m) \u2013 DEF, Brighton \u2013 9.4% TSB Assuming you already own De Cuyper and Gro\u00df, there is a strong case for completing the Brighton triple-up.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "good",
-          "text": "De Cuyper also hangs on to a top 10 spot, although FPL managers will have a close eye on the fitness of Yankuba Minteh and Kaoru Mitoma , who could soon start to impact his minutes.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-11-article-26-27",
-          "title": "Best FPL Wildcard and team of the week for Gameweek 11"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "He starts De Cuyper, Calafiori and Silva in a back three, with Konsa and Lewis Hall on his bench.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Pascal Gro\u00df vs HUL (A) For the same reasons as De Cuyper, Gro\u00df is also an excellent option this week.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
-          "title": "The Best FPL Gameweek 11 Captains"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Maxim De Cuyper vs HUL (A) De Cuyper is the highest-scoring player in the whole game right now, with 75 points.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-captains/",
-          "title": "The Best FPL Gameweek 11 Captains"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Maxim De Cuyper leads all FPL defenders for expected goals, expected assists and expected FPL points after 10 Gameweeks.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Spurs defender Jan Paul van Hecke ranks second for expected goals, making him an alternative to Brighton\u2019s Maxim De Cuyper for FPL Gameweek 11.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/best-fpl-defenders-gameweek-11-2026/",
-          "title": "Best FPL Defenders for Gameweek 11: De Cuyper, Gabriel & More"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "FPL Gameweek 11 Transfer Tips: Players to BUY Luka Vu\u0161kovi\u0107 (\u00a35.3m) \u2013 DEF, Brighton \u2013 9.4% TSB Assuming you already own De Cuyper and Gro\u00df, there is a strong case for completing the Brighton triple-up.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-11-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 11 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Maxim De Cuyper \u2013 \u00a35.1m The guy is a monster.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        }
-      ],
-      "tone": "good"
-    },
-    {
       "text": "Haaland (MCI) \u2014 Captain candidate (1 buy, 11 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
@@ -604,102 +702,6 @@ window.FPL_NEWS = {
           "source": "Ingenuity",
           "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
           "title": "The Best FPL Gameweek 11 Wildcard Team"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Konsa (ARS) \u2014 Mixed: some say buy, some say sell (1 buy, 2 keep, 1 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity"
-      ],
-      "player": "Konsa",
-      "club": "ARS",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 31,
-      "verdict": "Mixed: some say buy, some say sell",
-      "stance": {
-        "risk": 1,
-        "hold": 2,
-        "sell": 1,
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "For now, Konsa is a definitive hold but not a buy.",
-          "stance": [
-            "hold",
-            "sell"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "source": "AAFPL",
-          "text": "Konsa has been well in form, but Saliba is very close to returning.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
-          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "FPL verdict: Konsa should keep his place at Newcastle.",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "Defence \u2013 Two secure Arsenal picks and a Brighton rotation option William Saliba\u2019s return to fitness puts Ezri Konsa\u2019s minutes in doubt as Arsenal\u2019s fixtures come thick and fast after the second international break.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-          "title": "FPL Gameweek 11 Wildcard: Best Team & AI Draft"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "The Arsenal clean sheet came in, with Ezri Konsa providing eight points too.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
-          "title": "Fantasy Football Hub AI FPL team reveal 2026/27"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Ezri Konsa (\u00a34.9m), meanwhile, has barely put a foot wrong.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
         }
       ],
       "tone": "good"
@@ -1475,64 +1477,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best FPL Players for Gameweek 11: Top Five Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-top-5-players-2026-27/"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL Wildcard and team of the week for Gameweek 11",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-ai-teams-gameweek-11-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL captain for GW11: Could a defender rival Haaland?",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-captain-gameweek-11-article-26-27"
-    },
-    {
       "source": "Scout",
-      "title": "Prizes to win as both 2026/27 FFS Cup contests open for entry",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/prizes-to-win-as-both-2026-27-ffs-cup-contests-open-for-entry"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11 team news: Thursday\u2019s live injury updates",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/fpl-gameweek-11-team-news-thursdays-live-injury-updates-3"
-    },
-    {
-      "source": "Scout",
-      "title": "Why do the best FPL managers always seem to have lots of free transfers?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/why-do-the-best-fpl-managers-always-seem-to-have-lots-of-free-transfers"
-    },
-    {
-      "source": "Scout",
-      "title": "Every FPL player\u2019s minutes in the November international break",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/every-fpl-players-minutes-in-the-november-international-break"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11: Players with the best chance of DefCon points",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/fpl-gameweek-11-players-with-the-best-chance-of-defcon-points"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11: Which players are predicted to get goals + assists?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/fpl-gameweek-11-which-players-are-predicted-to-get-goals-assists"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL Chip Strategy: Best Gameweeks to play the Remaining Chips",
-      "url": "https://allaboutfpl.com/2026/11/fpl-chip-strategy-best-gameweeks-to-play-the-remaining-chips/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "Do International Breaks Kill FPL Motivation? What the Data Says",
-      "url": "https://ingenuityfantasy.com/game-week-tips/do-international-breaks-kill-fpl-motivation-what-the-data-says/"
-    },
-    {
-      "source": "Ingenuity",
-      "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11",
-      "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/"
+      "title": "Best midfielders, Konsa + is it too late to buy De Cuyper? FPL Q&A",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/19/best-midfielders-konsa-is-it-too-late-to-buy-de-cuyper-fpl-qa"
     }
   ],
   "no_new": false,
