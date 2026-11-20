@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-19T17:11:24Z",
+ "generated_at": "2026-11-20T00:26:42Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-19T17:11:24Z",
+ "last_attempt": "2026-11-20T00:26:42Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 540,
-  "cost_usd": 3.78
+  "searches": 550,
+  "cost_usd": 3.85
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Nine players set to miss Chelsea vs Leeds with anxious Joao Pedro injury wait Football London",
-   "snippet": "Joao Pedro being the main one; with the Brazilian missing the four matches before the international break with a thigh issue.",
-   "source_domain": "football.london",
+   "headline": "Leeds confirm huge injury boost for Chelsea FC clash as two stars return The Standard",
+   "snippet": "It is not yet clear whether Joao Pedro will be available to return from his own injury, while Moises Caicedo has also picked up an issue on international duty.",
+   "source_domain": "standard.co.uk",
    "published": "2026-11-19",
-   "url": "https://www.football.london/chelsea-fc/news/nine-players-set-miss-chelsea-34934384",
+   "url": "https://www.standard.co.uk/sport/football/leeds-injury-latest-team-news-chelsea-fc-b1305630.html",
    "yours": []
   },
   {
@@ -83,24 +83,37 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
-   "headline": "Frank Lampard press conference: Coventry vs Crystal Palace - BBC Sport",
-   "snippet": "Here are the key lines from his news conference: - Lampard confirmed defender Bobby Thomas will be assessed before the weekend to determine his availability, as will midfielder Caleb Yirenkyi, who picked up a knock on…",
+   "headline": "Thomas Frank press conference: Coventry City vs Crystal Palace - BBC Sport",
+   "snippet": "New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
    "source_domain": "bbc.com",
    "published": "2026-11-19",
-   "url": "https://www.bbc.com/sport/football/articles/c5vg2wxnz4g3o",
+   "url": "https://www.bbc.com/sport/football/articles/ck3rgnlz0dppo",
    "yours": []
   },
   {
-   "player": "Brobbey",
-   "team": "SUN",
+   "player": "Semenyo",
+   "team": "MCI",
    "fpl_status": "i",
    "fpl_chance": 0,
-   "fpl_news": "Muscular injury - Unknown return date",
-   "headline": "Regis le Bris press conference: Aston Villa vs Sunderland - BBC Sport",
-   "snippet": "Here are the key lines from his news conference: - On Brian Brobbey and Granit Xhaka's injuries: \"It's a big injury for Brian, which we'll have to assess weekly.",
+   "fpl_news": "Knee injury - Unknown return date",
+   "headline": "Manchester City vs Fulham: TV channel, kick-off time (Sat Nov 21) - ESPN",
+   "snippet": "Manchester City vs Fulham team news and injuries Manchester City Marc Guéhi, D, muscle, DOUBT Antoine Semenyo, F, leg, OUT Fulham Tom Cairney, M, knee, DOUBT",
+   "source_domain": "espn.com",
+   "published": "2026-11-19",
+   "url": "https://www.espn.com/soccer/story/_/id/50530118/manchester-city-vs-fulham-tv-channel-how-watch-uk-kickoff-live-stream-team-news-referee-predicted-lineups",
+   "yours": []
+  },
+  {
+   "player": "N.Williams",
+   "team": "NFO",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Ankle injury - 75% chance of playing",
+   "headline": "Oliver Glasner press conference: Bournemouth vs Nottingham Forest - BBC Sport",
+   "snippet": "Neco Williams will also be a doubt for the weekend.",
    "source_domain": "bbc.com",
    "published": "2026-11-19",
-   "url": "https://www.bbc.com/sport/football/articles/c63eg48v1eweo",
+   "url": "https://www.bbc.com/sport/football/articles/cx7v2z680np8o",
    "yours": []
   }
  ]

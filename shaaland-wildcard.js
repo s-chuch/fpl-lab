@@ -253,7 +253,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-19",
-      "total_cost": 101.3,
+      "total_cost": 101.4,
       "prices": {
         "Raya": 6.2,
         "De Cuyper": 5.5,
@@ -265,7 +265,7 @@ window.FPL_WILDCARD_WATCH = {
         "Palmer": 9.8,
         "Tavernier": 6.7,
         "Haaland": 15.8,
-        "N.Jackson": 7.1,
+        "N.Jackson": 7.2,
         "Tzolakis": 4.7,
         "Kostoulas": 5.8,
         "Barnes": 6.0,
@@ -280,7 +280,7 @@ window.FPL_WILDCARD_WATCH = {
       "Manzambi": 6.2,
       "Silva": 5.1
     },
-    "total_delta": 2.5,
+    "total_delta": 2.6,
     "players": [
       {
         "name": "De Cuyper",
@@ -429,10 +429,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "baseline_cost": null,
-        "current_cost": 7.1,
+        "current_cost": 7.2,
         "delta": null,
         "entry_cost": 6.9,
-        "delta_since_added": 0.2,
+        "delta_since_added": 0.3,
         "status": "added"
       },
       {
@@ -482,12 +482,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "removed",
-        "player": "Konsa",
-        "price_at_change": 4.6
-      },
       {
         "date": "2026-10-10",
         "event": "added",
@@ -771,6 +765,14 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.1,
         "to": 6.0,
         "delta": -0.1
+      },
+      {
+        "date": "2026-11-19",
+        "event": "price_change",
+        "player": "N.Jackson",
+        "from": 7.1,
+        "to": 7.2,
+        "delta": 0.1
       }
     ]
   },

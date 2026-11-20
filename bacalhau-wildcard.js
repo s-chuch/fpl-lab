@@ -246,7 +246,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-19",
-      "total_cost": 96.5,
+      "total_cost": 96.4,
       "prices": {
         "Raya": 6.2,
         "Vuskovic": 5.3,
@@ -262,7 +262,7 @@ window.FPL_WILDCARD_WATCH = {
         "Tzolakis": 4.7,
         "Belloumi": 5.3,
         "Schade": 6.1,
-        "Walle Egeli": 4.5
+        "Walle Egeli": 4.4
       }
     },
     "entry_prices": {
@@ -271,7 +271,7 @@ window.FPL_WILDCARD_WATCH = {
       "Vuskovic": 5.2,
       "Van Hecke": 5.0
     },
-    "total_delta": 3.9,
+    "total_delta": 3.8,
     "players": [
       {
         "name": "De Cuyper",
@@ -366,8 +366,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Walle Egeli",
         "baseline_cost": 4.5,
-        "current_cost": 4.5,
-        "delta": 0.0,
+        "current_cost": 4.4,
+        "delta": -0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -446,14 +446,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-03",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 5.8,
-        "to": 5.9,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-10",
         "event": "price_change",
@@ -749,6 +741,14 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.6,
         "to": 6.7,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-19",
+        "event": "price_change",
+        "player": "Walle Egeli",
+        "from": 4.5,
+        "to": 4.4,
+        "delta": -0.1
       }
     ]
   },
