@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-20 20:30 UTC",
+  "generated_at": "2026-11-20 23:16 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1758,24 +1758,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11 differentials: 3 low-owned picks to consider",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/fpl-gameweek-11-differentials-3-low-owned-picks-to-consider-2"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 11 Scout Picks: Arsenal triple-up",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/fpl-gameweek-11-scout-picks-arsenal-triple-up-2"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist",
-      "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 5
 };
