@@ -337,7 +337,7 @@
   "backfilled": false,
   "bench": [
    572,
-   154,
+   453,
    53,
    305
   ],
@@ -345,13 +345,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e91577caadce",
+  "code_sha": "727fa1742fba",
   "ft": 1,
   "gw": 11,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-20T16:49:26+00:00",
-  "saved_at_et": "2026-11-20 11:49 AM ET",
+  "saved_at": "2026-11-20T20:30:20+00:00",
+  "saved_at_et": "2026-11-20 3:30 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -404,11 +404,11 @@
     "xp": 5.18
    },
    {
-    "club": "NEW",
-    "id": 453,
-    "name": "Barnes",
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
     "pos": "MID",
-    "xp": 3.25
+    "xp": 3.58
    },
    {
     "club": "MCI",
@@ -439,11 +439,11 @@
     "xp": 3.78
    },
    {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
+    "club": "NEW",
+    "id": 453,
+    "name": "Barnes",
     "pos": "MID",
-    "xp": 2.9
+    "xp": 3.25
    },
    {
     "club": "AVL",
@@ -485,12 +485,12 @@
    229,
    68,
    124,
-   453,
+   154,
    411,
    249,
    166
   ],
-  "xp": 60.4
+  "xp": 60.7
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
