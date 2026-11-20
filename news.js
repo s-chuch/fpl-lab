@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-20 01:43 UTC",
+  "generated_at": "2026-11-20 07:28 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1557,8 +1557,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "The Scout Squad: Our top picks for FPL Gameweek 11",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/the-scout-squad-our-top-picks-for-fpl-gameweek-11-3"
+      "title": "The death of FPL midfielders: Is it exaggerated?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/the-death-of-fpl-midfielders-is-it-exaggerated"
     }
   ],
   "no_new": false,

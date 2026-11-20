@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-20T00:26:42Z",
+ "generated_at": "2026-11-20T07:28:27Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-20T00:26:42Z",
+ "last_attempt": "2026-11-20T07:28:27Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 550,
-  "cost_usd": 3.85
+  "searches": 560,
+  "cost_usd": 3.92
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -31,11 +31,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Leeds confirm huge injury boost for Chelsea FC clash as two stars return The Standard",
-   "snippet": "It is not yet clear whether Joao Pedro will be available to return from his own injury, while Moises Caicedo has also picked up an issue on international duty.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-19",
-   "url": "https://www.standard.co.uk/sport/football/leeds-injury-latest-team-news-chelsea-fc-b1305630.html",
+   "headline": "Trent Alexander-Arnold transfer, Rudiger return and Estevao exit - 26 Chelsea questions answered Football London",
+   "snippet": "Do you know if Joao Pedro is back from injury?",
+   "source_domain": "football.london",
+   "published": "2026-11-20",
+   "url": "https://www.football.london/chelsea-fc/transfer-news/trent-alexander-arnold-transfer-rudiger-34936610",
    "yours": []
   },
   {
@@ -44,11 +44,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Liverpool FC XI vs Man Utd: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "The Reds are still waiting on the availability of club captain Virgil van Dijk and midfielder Ryan Gravenberch.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-19",
-   "url": "https://www.standard.co.uk/sport/football/liverpool-xi-vs-man-utd-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1305596.html",
+   "headline": "Alexander Isak backed for Liverpool success as Virgil van Dijk compared to three Premier League icons - Liverpool Echo",
+   "snippet": "I think Virgil is still going strong.",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-20",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/alexander-isak-backed-liverpool-success-34934335",
    "yours": []
   },
   {
@@ -70,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "Brentford v Everton - match preview, kick-off time and more - Brentford FC",
-   "snippet": "With Thiago suspended following his red card at Brighton, Brentford will be without their Brazilian striker this time round - but face an Everton striker in a purple patch.",
-   "source_domain": "brentfordfc.com",
-   "published": "2026-11-19",
-   "url": "https://www.brentfordfc.com/en/news/match-previews-brentford-v-everton-premier-league-23-11-2026",
+   "headline": "Nine players players could miss Brentford vs Everton as Jack Grealish update expected today - Liverpool Echo",
+   "snippet": "The Bees did apply against the decision, but a club statement released last week confirmed: “Brentford’s appeal against Igor Thiago’s red card in Sunday’s Premier League match against Brighton and Hove Albion has been…",
+   "source_domain": "liverpoolecho.co.uk",
+   "published": "2026-11-20",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/everton-brentford-injury-news-grealish-34937656",
    "yours": []
   },
   {
@@ -84,7 +84,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
    "headline": "Thomas Frank press conference: Coventry City vs Crystal Palace - BBC Sport",
-   "snippet": "New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
+   "snippet": "By George Booth BBC Sport journalist 19 November 2026 New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
    "source_domain": "bbc.com",
    "published": "2026-11-19",
    "url": "https://www.bbc.com/sport/football/articles/ck3rgnlz0dppo",
@@ -97,23 +97,10 @@ window.EXA_NEWS = {
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
    "headline": "Manchester City vs Fulham: TV channel, kick-off time (Sat Nov 21) - ESPN",
-   "snippet": "Manchester City vs Fulham team news and injuries Manchester City Marc Guéhi, D, muscle, DOUBT Antoine Semenyo, F, leg, OUT Fulham Tom Cairney, M, knee, DOUBT",
+   "snippet": "Manchester City vs Fulham team news and injuries Manchester City Marc Guéhi, D, muscle, DOUBT Antoine Semenyo, F, leg, OUT Fulham Tom Cairney, M, knee, DOUBT Manchester City vs Fulham predicted line-ups",
    "source_domain": "espn.com",
    "published": "2026-11-19",
    "url": "https://www.espn.com/soccer/story/_/id/50530118/manchester-city-vs-fulham-tv-channel-how-watch-uk-kickoff-live-stream-team-news-referee-predicted-lineups",
-   "yours": []
-  },
-  {
-   "player": "N.Williams",
-   "team": "NFO",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Ankle injury - 75% chance of playing",
-   "headline": "Oliver Glasner press conference: Bournemouth vs Nottingham Forest - BBC Sport",
-   "snippet": "Neco Williams will also be a doubt for the weekend.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-19",
-   "url": "https://www.bbc.com/sport/football/articles/cx7v2z680np8o",
    "yours": []
   }
  ]
