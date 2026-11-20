@@ -1,54 +1,26 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-20T07:28:27Z",
+ "generated_at": "2026-11-20T16:49:39Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-20T07:28:27Z",
+ "last_attempt": "2026-11-20T16:49:39Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 560,
-  "cost_usd": 3.92
+  "searches": 570,
+  "cost_usd": 3.99
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
-  {
-   "player": "Manzambi",
-   "team": "AVL",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Calf injury - 75% chance of playing",
-   "headline": "Aston Villa v Sunderland: Fan preview - BBC Sport",
-   "snippet": "Image source, Getty Images 18 November 2026 Aston Villa fan Amy Rose Finley hopes Aston Villa's superior consistency can override the club's injury list - which includes Matty Cash and Johan Manzambi - when Sunderland…",
-   "source_domain": "bbc.com",
-   "published": "2026-11-18",
-   "url": "https://www.bbc.com/sport/football/articles/cxnv4qy7q3r1o",
-   "yours": [
-    "1360999"
-   ]
-  },
   {
    "player": "João Pedro",
    "team": "CHE",
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Trent Alexander-Arnold transfer, Rudiger return and Estevao exit - 26 Chelsea questions answered Football London",
-   "snippet": "Do you know if Joao Pedro is back from injury?",
-   "source_domain": "football.london",
+   "headline": "Alonso: João Pedro still unavailable, team needs to step up - ESPN",
+   "snippet": "We want Joao Pedro back but I don't want to make a big thing out of that.\"",
+   "source_domain": "espn.co.uk",
    "published": "2026-11-20",
-   "url": "https://www.football.london/chelsea-fc/transfer-news/trent-alexander-arnold-transfer-rudiger-34936610",
-   "yours": []
-  },
-  {
-   "player": "Virgil",
-   "team": "LIV",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Alexander Isak backed for Liverpool success as Virgil van Dijk compared to three Premier League icons - Liverpool Echo",
-   "snippet": "I think Virgil is still going strong.",
-   "source_domain": "liverpoolecho.co.uk",
-   "published": "2026-11-20",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/alexander-isak-backed-liverpool-success-34934335",
+   "url": "https://www.espn.co.uk/football/story/_/id/50541499/joao-pedro-unavailable-chelsea-injuries-team-news",
    "yours": []
   },
   {
@@ -57,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Unspecified injury - 75% chance of playing",
-   "headline": "Man City XI vs Fulham: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
-   "snippet": "Marc Guehi missed international duty with England after coming off with an issue against Nottingham Forest, while Antoine Semenyo is a long-term absentee with a knee issue.",
-   "source_domain": "standard.co.uk",
-   "published": "2026-11-19",
-   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-fulham-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1305590.html",
+   "headline": "Manchester City handed Marc Guehi boost ahead of Premier League return The Independent",
+   "snippet": "Guehi pulled out of Thomas Tuchel’s squad for last week’s Nations League games against Croatia and Spain, after coming off at half-time during City’s 3-1 defeat to Nottingham Forest in their last top-flight outing.",
+   "source_domain": "independent.co.uk",
+   "published": "2026-11-20",
+   "url": "https://www.independent.co.uk/sport/football/man-city-fulham-enzo-maresca-marc-guehi-injury-update-b3088734.html",
    "yours": []
   },
   {
@@ -70,11 +42,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "Nine players players could miss Brentford vs Everton as Jack Grealish update expected today - Liverpool Echo",
-   "snippet": "The Bees did apply against the decision, but a club statement released last week confirmed: “Brentford’s appeal against Igor Thiago’s red card in Sunday’s Premier League match against Brighton and Hove Albion has been…",
-   "source_domain": "liverpoolecho.co.uk",
+   "headline": "David Moyes press conference: Brentford vs Everton - BBC Sport",
+   "snippet": "Striker Igor Thiago will also miss the game because of suspension.",
+   "source_domain": "bbc.com",
    "published": "2026-11-20",
-   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/everton-brentford-injury-news-grealish-34937656",
+   "url": "https://www.bbc.com/sport/football/articles/c50mdwj10w21o",
    "yours": []
   },
   {
@@ -84,7 +56,7 @@ window.EXA_NEWS = {
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
    "headline": "Thomas Frank press conference: Coventry City vs Crystal Palace - BBC Sport",
-   "snippet": "By George Booth BBC Sport journalist 19 November 2026 New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
+   "snippet": "BBC Sport journalist 19 November 2026 New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
    "source_domain": "bbc.com",
    "published": "2026-11-19",
    "url": "https://www.bbc.com/sport/football/articles/ck3rgnlz0dppo",
@@ -96,11 +68,50 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Manchester City vs Fulham: TV channel, kick-off time (Sat Nov 21) - ESPN",
-   "snippet": "Manchester City vs Fulham team news and injuries Manchester City Marc Guéhi, D, muscle, DOUBT Antoine Semenyo, F, leg, OUT Fulham Tom Cairney, M, knee, DOUBT Manchester City vs Fulham predicted line-ups",
-   "source_domain": "espn.com",
+   "headline": "Man City XI vs Fulham: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
+   "snippet": "Marc Guehi missed international duty with England after coming off with an issue against Nottingham Forest, while Antoine Semenyo is a long-term absentee with a knee issue.",
+   "source_domain": "standard.co.uk",
    "published": "2026-11-19",
-   "url": "https://www.espn.com/soccer/story/_/id/50530118/manchester-city-vs-fulham-tv-channel-how-watch-uk-kickoff-live-stream-team-news-referee-predicted-lineups",
+   "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-fulham-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1305590.html",
+   "yours": []
+  },
+  {
+   "player": "N.Williams",
+   "team": "NFO",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Ankle injury - 75% chance of playing",
+   "headline": "Oliver Glasner press conference: Bournemouth vs Nottingham Forest - BBC Sport",
+   "snippet": "Neco Williams will also be a doubt for the weekend.",
+   "source_domain": "bbc.com",
+   "published": "2026-11-19",
+   "url": "https://www.bbc.com/sport/football/articles/cx7v2z680np8o",
+   "yours": []
+  },
+  {
+   "player": "Maguire",
+   "team": "MUN",
+   "fpl_status": "d",
+   "fpl_chance": 75,
+   "fpl_news": "Back injury - 75% chance of playing",
+   "headline": "Man Utd XI vs Liverpool FC: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
+   "snippet": "Lisandro Martinez has served his red card suspension and will be available to partner Harry Maguire, with Diogo Dalot at right-back.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-19",
+   "url": "https://www.standard.co.uk/sport/football/man-utd-xi-vs-liverpool-fc-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1305631.html",
+   "yours": []
+  },
+  {
+   "player": "Brobbey",
+   "team": "SUN",
+   "fpl_status": "i",
+   "fpl_chance": 0,
+   "fpl_news": "Muscular injury - Unknown return date",
+   "headline": "Predicted line-ups for Premier League teams in Matchweek 11",
+   "snippet": "Sunderland: The Black Cats will be without Brian Brobbey and Granit Xhaka for this match, with both men substituted early through injury in their last outing.",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-20",
+   "url": "https://www.premierleague.com/en/news/4764715/predicted-line-ups-for-premier-league-teams-in-matchweek-11",
    "yours": []
   }
  ]
