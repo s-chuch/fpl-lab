@@ -156,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.83,
+        "ep_next": 3.09,
         "status": "ok"
       },
       {
