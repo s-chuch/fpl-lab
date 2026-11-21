@@ -496,21 +496,21 @@
   "backfilled": false,
   "bench": [
    572,
-   154,
    453,
-   53
+   53,
+   138
   ],
   "captain": 4,
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "9e8c2821838f",
+  "code_sha": "857b1fe74629",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-21T12:54:37+00:00",
-  "saved_at_et": "2026-11-21 7:54 AM ET",
+  "saved_at": "2026-11-21T13:34:20+00:00",
+  "saved_at_et": "2026-11-21 8:34 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -542,18 +542,18 @@
     "xp": 4.79
    },
    {
+    "club": "ARS",
+    "id": 31,
+    "name": "Konsa",
+    "pos": "DEF",
+    "xp": 4.7
+   },
+   {
     "club": "BOU",
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
     "xp": 4.61
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.61
    },
    {
     "club": "BOU",
@@ -570,11 +570,18 @@
     "xp": 4.17
    },
    {
-    "club": "EVE",
-    "id": 249,
-    "name": "Barry",
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.23
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
     "pos": "FWD",
-    "xp": 5.0
+    "xp": 4.81
    },
    {
     "club": "AVL",
@@ -584,25 +591,11 @@
     "xp": 4.64
    },
    {
-    "club": "MCI",
-    "id": 411,
-    "name": "Haaland",
-    "pos": "FWD",
-    "xp": 4.54
-   },
-   {
     "club": "HUL",
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
     "xp": 3.86
-   },
-   {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.23
    },
    {
     "club": "NEW",
@@ -617,21 +610,28 @@
     "name": "Manzambi",
     "pos": "MID",
     "xp": 2.57
+   },
+   {
+    "club": "BHA",
+    "id": 138,
+    "name": "Kostoulas",
+    "pos": "FWD",
+    "xp": 2.55
    }
   ],
   "status": "pending",
   "transfers": [
    {
-    "in": "Gabriel",
-    "in_id": 4,
+    "in": "Konsa",
+    "in_id": 31,
     "out": "Calafiori",
     "out_id": 8
    },
    {
-    "in": "Barry",
-    "in_id": 249,
-    "out": "Kostoulas",
-    "out_id": 138
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 115,
@@ -641,15 +641,15 @@
    4,
    112,
    115,
+   31,
    566,
-   229,
    68,
    124,
-   249,
-   166,
-   411
+   154,
+   411,
+   166
   ],
-  "xp": 52.5
+  "xp": 52.1
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Haaland",
-        "bench_ep": 4.54,
+        "bench_ep": 4.81,
         "starter": "João Pedro",
         "starter_ep": 0.0
       }
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.54,
+        "ep_next": 4.81,
         "status": "ok"
       },
       {

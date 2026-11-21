@@ -110,8 +110,8 @@ window.FPL_WILDCARD_WATCH = {
   "recommend": {
     "captain": "Van Hecke",
     "captain_ep": 5.09,
-    "vice": "De Cuyper",
-    "vice_ep": 4.79,
+    "vice": "Haaland",
+    "vice_ep": 4.81,
     "bench_swaps": [
       {
         "bench": "Barnes",
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.54,
+        "ep_next": 4.81,
         "status": "ok"
       },
       {
@@ -357,15 +357,6 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Cherki",
         "baseline_cost": 7.8,
-        "current_cost": null,
-        "delta": null,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "removed"
-      },
-      {
-        "name": "Davis",
-        "baseline_cost": null,
         "current_cost": null,
         "delta": null,
         "entry_cost": null,

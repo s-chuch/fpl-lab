@@ -312,6 +312,12 @@
    "name": "Hill",
    "side": "under"
   },
+  "650": {
+   "back_gw": null,
+   "flag_gw": 9,
+   "name": "Affengruber",
+   "side": "over"
+  },
   "67": {
    "back_gw": null,
    "flag_gw": 6,
