@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Van Hecke",
-    "captain_ep": 5.09,
+    "captain_ep": 5.22,
     "vice": "Haaland",
     "vice_ep": 4.85,
     "bench_swaps": [
@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Barnes",
         "bench_ep": 3.1,
         "starter": "Manzambi",
-        "starter_ep": 2.61
+        "starter_ep": 2.71
       }
     ],
     "bench_order": [
@@ -150,19 +150,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 4.61,
+        "ep_next": 4.66,
         "status": "ok"
       },
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.09,
+        "ep_next": 5.22,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.3,
+        "ep_next": 3.38,
         "status": "ok"
       },
       {
@@ -174,13 +174,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.58,
+        "ep_next": 4.61,
         "status": "ok"
       },
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.61,
+        "ep_next": 2.71,
         "status": "ok"
       },
       {
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.69,
+        "ep_next": 4.78,
         "status": "ok"
       }
     ],

@@ -109,9 +109,9 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
     "captain": "Van Hecke",
-    "captain_ep": 5.09,
-    "vice": "Vuskovic",
-    "vice_ep": 4.85,
+    "captain_ep": 5.22,
+    "vice": "Hill",
+    "vice_ep": 5.03,
     "bench_swaps": [
       {
         "bench": "Haaland",
@@ -156,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.09,
+        "ep_next": 5.22,
         "status": "ok"
       },
       {
@@ -168,7 +168,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.62,
+        "ep_next": 5.03,
         "status": "ok"
       },
       {
@@ -186,7 +186,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.58,
+        "ep_next": 4.61,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "pos": "FWD",
-        "ep_next": 4.29,
+        "ep_next": 5.01,
         "status": "ok"
       }
     ],

@@ -504,13 +504,13 @@
   "captain_name": "Van Hecke",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "cab7b7b42f0d",
+  "code_sha": "5080d0dfc91d",
   "ft": 1,
   "gw": 12,
-  "hit_cost": 4,
-  "hits": 1,
-  "saved_at": "2026-11-21T14:53:16+00:00",
-  "saved_at_et": "2026-11-21 9:53 AM ET",
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-11-21T15:32:39+00:00",
+  "saved_at_et": "2026-11-21 10:32 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -525,14 +525,14 @@
     "id": 112,
     "name": "Van Hecke",
     "pos": "DEF",
-    "xp": 5.09
+    "xp": 5.22
    },
    {
-    "club": "BHA",
-    "id": 504,
-    "name": "Vuskovic",
+    "club": "BOU",
+    "id": 566,
+    "name": "Silva",
     "pos": "DEF",
-    "xp": 4.8
+    "xp": 4.66
    },
    {
     "club": "BHA",
@@ -542,13 +542,6 @@
     "xp": 4.65
    },
    {
-    "club": "BOU",
-    "id": 566,
-    "name": "Silva",
-    "pos": "DEF",
-    "xp": 4.61
-   },
-   {
     "club": "ARS",
     "id": 8,
     "name": "Calafiori",
@@ -556,11 +549,18 @@
     "xp": 3.77
    },
    {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.61
+   },
+   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.58
+    "xp": 4.61
    },
    {
     "club": "BHA",
@@ -588,7 +588,7 @@
     "id": 166,
     "name": "N.Jackson",
     "pos": "FWD",
-    "xp": 4.69
+    "xp": 4.78
    },
    {
     "club": "HUL",
@@ -602,7 +602,7 @@
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.3
+    "xp": 3.38
    },
    {
     "club": "NEW",
@@ -616,7 +616,7 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 2.61
+    "xp": 2.71
    }
   ],
   "status": "pending",
@@ -626,30 +626,24 @@
     "in_id": 249,
     "out": "Kostoulas",
     "out_id": 138
-   },
-   {
-    "in": "Vuskovic",
-    "in_id": 504,
-    "out": "Tarkowski",
-    "out_id": 229
    }
   ],
-  "vice": 411,
-  "vice_name": "Haaland",
+  "vice": 166,
+  "vice_name": "N.Jackson",
   "xi": [
    1,
    112,
-   504,
-   115,
    566,
+   115,
    8,
+   229,
    68,
    124,
    249,
    411,
    166
   ],
-  "xp": 51.6
+  "xp": 54.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
