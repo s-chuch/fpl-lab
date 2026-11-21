@@ -15,69 +15,69 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Raya",
       "club": "ARS",
-      "fixture": "NEW (A)"
+      "fixture": "MCI (H)"
     },
     {
       "pos": "DEF",
       "name": "De Cuyper",
       "club": "BHA",
-      "fixture": "HUL (A)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Tarkowski",
-      "club": "EVE",
-      "fixture": "BRE (A)"
+      "fixture": "NEW (H)"
     },
     {
       "pos": "DEF",
       "name": "Calafiori",
       "club": "ARS",
-      "fixture": "NEW (A)"
+      "fixture": "MCI (H)"
     },
     {
       "pos": "DEF",
       "name": "Silva",
       "club": "BOU",
-      "fixture": "NFO (H)"
+      "fixture": "FUL (A)"
     },
     {
-      "pos": "MID",
-      "name": "Manzambi",
-      "club": "AVL",
-      "fixture": "SUN (H)"
-    },
-    {
-      "pos": "MID",
-      "name": "Groß",
-      "club": "BHA",
-      "fixture": "HUL (A)"
+      "pos": "DEF",
+      "name": "Van Hecke",
+      "club": "TOT",
+      "fixture": "SUN (A)"
     },
     {
       "pos": "MID",
       "name": "Palmer",
       "club": "CHE",
-      "fixture": "LEE (H)"
+      "fixture": "NFO (A)"
+    },
+    {
+      "pos": "MID",
+      "name": "Groß",
+      "club": "BHA",
+      "fixture": "NEW (H)"
     },
     {
       "pos": "MID",
       "name": "Tavernier",
       "club": "BOU",
-      "fixture": "NFO (H)",
+      "fixture": "FUL (A)",
       "vice": true
+    },
+    {
+      "pos": "MID",
+      "name": "Manzambi",
+      "club": "AVL",
+      "fixture": "IPS (A)"
     },
     {
       "pos": "FWD",
       "name": "Haaland",
       "club": "MCI",
-      "fixture": "FUL (H)",
+      "fixture": "ARS (A)",
       "captain": true
     },
     {
       "pos": "FWD",
       "name": "N.Jackson",
       "club": "AVL",
-      "fixture": "SUN (H)"
+      "fixture": "IPS (A)"
     }
   ],
   "bench": [
@@ -85,46 +85,52 @@ window.FPL_WILDCARD_WATCH = {
       "pos": "GKP",
       "name": "Tzolakis",
       "club": "HUL",
-      "fixture": "BHA (H)"
+      "fixture": "CRY (A)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Tarkowski",
+      "club": "EVE",
+      "fixture": "LIV (H)"
     },
     {
       "pos": "FWD",
       "name": "Kostoulas",
       "club": "BHA",
-      "fixture": "HUL (A)"
+      "fixture": "NEW (H)"
     },
     {
       "pos": "MID",
       "name": "Barnes",
       "club": "NEW",
-      "fixture": "ARS (H)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Davis",
-      "club": "IPS",
-      "fixture": "TOT (A)"
+      "fixture": "BHA (A)"
     }
   ],
-  "note": "Confirmed GW10 squad — the GW10 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
+  "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "De Cuyper",
-    "captain_ep": 5.58,
-    "vice": "Haaland",
-    "vice_ep": 5.38,
+    "captain": "Van Hecke",
+    "captain_ep": 5.09,
+    "vice": "De Cuyper",
+    "vice_ep": 4.79,
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.37,
+        "bench_ep": 3.01,
         "starter": "Manzambi",
-        "starter_ep": 2.78
+        "starter_ep": 2.57
+      },
+      {
+        "bench": "Tarkowski",
+        "bench_ep": 3.61,
+        "starter": "Calafiori",
+        "starter_ep": 3.33
       }
     ],
     "bench_order": [
       "Tzolakis",
+      "Tarkowski",
       "Barnes",
-      "Kostoulas",
-      "Davis"
+      "Kostoulas"
     ],
     "bench_order_changed": true,
     "availability_flags": [],
@@ -132,67 +138,67 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.97,
+        "ep_next": 4.34,
         "status": "ok"
       },
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 5.58,
-        "status": "ok"
-      },
-      {
-        "name": "Tarkowski",
-        "pos": "DEF",
-        "ep_next": 4.01,
+        "ep_next": 4.79,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.09,
+        "ep_next": 3.33,
         "status": "ok"
       },
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 5.22,
+        "ep_next": 4.61,
         "status": "ok"
       },
       {
-        "name": "Manzambi",
-        "pos": "MID",
-        "ep_next": 2.78,
-        "status": "ok"
-      },
-      {
-        "name": "Groß",
-        "pos": "MID",
-        "ep_next": 4.8,
+        "name": "Van Hecke",
+        "pos": "DEF",
+        "ep_next": 5.09,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 2.79,
+        "ep_next": 3.23,
+        "status": "ok"
+      },
+      {
+        "name": "Groß",
+        "pos": "MID",
+        "ep_next": 4.17,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.11,
+        "ep_next": 4.54,
+        "status": "ok"
+      },
+      {
+        "name": "Manzambi",
+        "pos": "MID",
+        "ep_next": 2.57,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 5.38,
+        "ep_next": 4.54,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 5.33,
+        "ep_next": 4.64,
         "status": "ok"
       }
     ],
@@ -200,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 4.06,
+        "ep_next": 3.86,
+        "status": "ok"
+      },
+      {
+        "name": "Tarkowski",
+        "pos": "DEF",
+        "ep_next": 3.61,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.91,
+        "ep_next": 2.55,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.37,
-        "status": "ok"
-      },
-      {
-        "name": "Davis",
-        "pos": "DEF",
-        "ep_next": 2.71,
+        "ep_next": 3.01,
         "status": "ok"
       }
     ]
@@ -247,34 +253,34 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-21",
-      "total_cost": 101.5,
+      "total_cost": 102.6,
       "prices": {
         "Raya": 6.3,
         "De Cuyper": 5.5,
-        "Tarkowski": 6.2,
         "Calafiori": 5.9,
         "Silva": 5.1,
-        "Manzambi": 6.2,
-        "Groß": 6.3,
+        "Van Hecke": 5.1,
         "Palmer": 9.8,
+        "Groß": 6.3,
         "Tavernier": 6.7,
+        "Manzambi": 6.2,
         "Haaland": 15.8,
         "N.Jackson": 7.2,
         "Tzolakis": 4.7,
+        "Tarkowski": 6.2,
         "Kostoulas": 5.8,
-        "Barnes": 6.0,
-        "Davis": 4.0
+        "Barnes": 6.0
       }
     },
     "entry_prices": {
-      "Davis": 4.0,
       "Palmer": 9.8,
       "N.Jackson": 6.9,
       "Tavernier": 6.5,
       "Manzambi": 6.2,
-      "Silva": 5.1
+      "Silva": 5.1,
+      "Van Hecke": 5.1
     },
-    "total_delta": 2.7,
+    "total_delta": 3.8,
     "players": [
       {
         "name": "De Cuyper",
@@ -360,11 +366,11 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Davis",
         "baseline_cost": null,
-        "current_cost": 4.0,
+        "current_cost": null,
         "delta": null,
-        "entry_cost": 4.0,
-        "delta_since_added": 0.0,
-        "status": "added"
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "removed"
       },
       {
         "name": "Hall",
@@ -473,21 +479,18 @@ window.FPL_WILDCARD_WATCH = {
         "entry_cost": null,
         "delta_since_added": null,
         "status": "added"
+      },
+      {
+        "name": "Van Hecke",
+        "baseline_cost": null,
+        "current_cost": 5.1,
+        "delta": null,
+        "entry_cost": 5.1,
+        "delta_since_added": 0.0,
+        "status": "added"
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "added",
-        "player": "Davis",
-        "price_at_change": 4.0
-      },
-      {
-        "date": "2026-10-10",
-        "event": "removed",
-        "player": "B.Fernandes",
-        "price_at_change": 11.9
-      },
       {
         "date": "2026-10-10",
         "event": "added",
@@ -769,8 +772,20 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.2,
         "to": 6.3,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-21",
+        "event": "removed",
+        "player": "Davis",
+        "price_at_change": 4.0
+      },
+      {
+        "date": "2026-11-21",
+        "event": "added",
+        "player": "Van Hecke",
+        "price_at_change": 5.1
       }
     ]
   },
-  "squad_gw": 10
+  "squad_gw": 11
 };

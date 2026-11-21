@@ -467,7 +467,7 @@
     "xp": 2.14
    }
   ],
-  "status": "pending",
+  "status": "frozen",
   "transfers": [
    {
     "in": "Gabriel",
@@ -498,6 +498,159 @@
    79
   ],
   "xp": 64.9
+ },
+ "gw12": {
+  "backfilled": false,
+  "bench": [
+   572,
+   94,
+   286,
+   165
+  ],
+  "captain": 4,
+  "captain_name": "Gabriel",
+  "chip": null,
+  "chip_note": "The model plans no chips (chips stay your call).",
+  "code_sha": "9e8c2821838f",
+  "ft": 1,
+  "gw": 12,
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-11-21T12:54:46+00:00",
+  "saved_at_et": "2026-11-21 7:54 AM ET",
+  "source": "plan",
+  "squad": [
+   {
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
+    "pos": "GKP",
+    "xp": 4.34
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.6
+   },
+   {
+    "club": "TOT",
+    "id": 112,
+    "name": "Van Hecke",
+    "pos": "DEF",
+    "xp": 5.09
+   },
+   {
+    "club": "BHA",
+    "id": 504,
+    "name": "Vuskovic",
+    "pos": "DEF",
+    "xp": 4.85
+   },
+   {
+    "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.79
+   },
+   {
+    "club": "BOU",
+    "id": 60,
+    "name": "Hill",
+    "pos": "DEF",
+    "xp": 4.62
+   },
+   {
+    "club": "BOU",
+    "id": 68,
+    "name": "Tavernier",
+    "pos": "MID",
+    "xp": 4.54
+   },
+   {
+    "club": "BHA",
+    "id": 124,
+    "name": "Groß",
+    "pos": "MID",
+    "xp": 4.17
+   },
+   {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 3.5
+   },
+   {
+    "club": "MCI",
+    "id": 411,
+    "name": "Haaland",
+    "pos": "FWD",
+    "xp": 4.54
+   },
+   {
+    "club": "BOU",
+    "id": 79,
+    "name": "Evanilson",
+    "pos": "FWD",
+    "xp": 4.35
+   },
+   {
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
+    "pos": "GKP",
+    "xp": 3.86
+   },
+   {
+    "club": "BRE",
+    "id": 94,
+    "name": "Schade",
+    "pos": "MID",
+    "xp": 2.77
+   },
+   {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 2.09
+   },
+   {
+    "club": "CHE",
+    "id": 165,
+    "name": "João Pedro",
+    "pos": "FWD",
+    "xp": 0.0
+   }
+  ],
+  "status": "pending",
+  "transfers": [
+   {
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
+   }
+  ],
+  "vice": 504,
+  "vice_name": "Vuskovic",
+  "xi": [
+   1,
+   4,
+   112,
+   504,
+   115,
+   60,
+   68,
+   124,
+   236,
+   411,
+   79
+  ],
+  "xp": 56.0
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

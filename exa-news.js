@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-21T07:22:08Z",
- "gw": 11,
+ "generated_at": "2026-11-21T12:54:47Z",
+ "gw": 12,
  "searches_used": 10,
- "last_attempt": "2026-11-21T07:22:08Z",
+ "last_attempt": "2026-11-21T12:54:47Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 590,
-  "cost_usd": 4.13
+  "searches": 600,
+  "cost_usd": 4.2
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,24 +16,26 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Predicted Chelsea XI vs Leeds as Joao Pedro solution found and Estevao Willian decision made Football London",
-   "snippet": "The bad news for Chelsea: Joao Pedro will not be fit in time for this afternoon's clash with Leeds.",
-   "source_domain": "football.london",
+   "headline": "Will Joao Pedro play against Leeds? Latest Chelsea FC team news after Xabi Alonso update The Standard",
+   "snippet": "Blues striker has been out for more than a month due to thigh injury Arthur Ferridge, Sports Reporter @ArthurFerridge 1 minute ago Chelsea boss Xabi Alonso has delivered a new update on Joao Pedro’s injury ahead of the…",
+   "source_domain": "standard.co.uk",
    "published": "2026-11-21",
-   "url": "https://www.football.london/chelsea-fc/news/predicted-chelsea-xi-vs-leeds-34942093",
-   "yours": []
+   "url": "https://www.standard.co.uk/sport/football/joao-pedro-chelsea-fc-injury-latest-fpl-b1305788.html",
+   "yours": [
+    "1360920"
+   ]
   },
   {
-   "player": "Guéhi",
-   "team": "MCI",
+   "player": "Thomas",
+   "team": "COV",
    "fpl_status": "d",
    "fpl_chance": 75,
-   "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "Maresca gives fitness update on Nunes and Khusanov for Fulham",
-   "snippet": "Khusanov and Nunes along with Marc Guéhi suffered injury setbacks in the defeat to Nottingham Forest and the England defender missed the Three Lions’ Nations League matches.",
-   "source_domain": "mancity.com",
+   "fpl_news": "Calf injury - 75% chance of playing",
+   "headline": "Predicted line-ups for Premier League teams in Matchweek 11",
+   "snippet": "Coventry v Crystal Palace predicted line-ups Coventry: Bobby Thomas has missed Coventry’s last two games, but Frank Lampard confirmed he is training with the team so “we’ll see” if he makes this.",
+   "source_domain": "premierleague.com",
    "published": "2026-11-20",
-   "url": "https://www.mancity.com/news/mens/enzo-maresca-21-november-fulham-press-conference-63930777",
+   "url": "https://www.premierleague.com/en/news/4764715/predicted-line-ups-for-premier-league-teams-in-matchweek-11",
    "yours": []
   },
   {
@@ -42,24 +44,11 @@ window.EXA_NEWS = {
    "fpl_status": "s",
    "fpl_chance": 0,
    "fpl_news": "Suspended until 5 Dec",
-   "headline": "David Moyes press conference: Brentford vs Everton - BBC Sport",
-   "snippet": "Striker Igor Thiago will also miss the game because of suspension.",
-   "source_domain": "bbc.com",
+   "headline": "Brentford missing seven players for Everton as double injury blow confirmed - Liverpool Echo",
+   "snippet": "Meanwhile, striker Igor Thiago, who scored five goals against Everton last season, serves the first game of his three-match suspension.",
+   "source_domain": "liverpoolecho.co.uk",
    "published": "2026-11-20",
-   "url": "https://www.bbc.com/sport/football/articles/c50mdwj10w21o",
-   "yours": []
-  },
-  {
-   "player": "Thomas",
-   "team": "COV",
-   "fpl_status": "d",
-   "fpl_chance": 75,
-   "fpl_news": "Calf injury - 75% chance of playing",
-   "headline": "The Opposite View: Coventry boss Lampard's connection with Thomas Frank",
-   "snippet": "Bobby [Thomas, who has missed the last two matches] was training with us so we’ll see how he is for the weekend.",
-   "source_domain": "cpfc.co.uk",
-   "published": "2026-11-20",
-   "url": "https://www.cpfc.co.uk/news/match-previews/the-opposite-view-coventry-manager-frank-lampard-on-thomas-frank/",
+   "url": "https://www.liverpoolecho.co.uk/sport/football/football-news/brentford-missing-seven-players-everton-34944762",
    "yours": []
   },
   {
@@ -81,11 +70,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Expected back 20 Dec",
-   "headline": "Arsenal's Saka out for a month, Saliba available - Arteta - ESPN",
-   "snippet": "Saka sustained his latest injury early in a Champions League match against Bayern Munich on Oct.",
-   "source_domain": "espn.com",
-   "published": "2026-11-20",
-   "url": "https://www.espn.com/soccer/story/_/id/50540215/arsenal-saka-saliba-arteta-injury",
+   "headline": "Preview: Newcastle United v Arsenal Arsenal FC Official Website Arsenal.com",
+   "snippet": "TEAM NEWS Martin Zubimendi was forced to withdraw from the field during Spain’s 3-2 loss to England during the international break, Bukayo Saka remains sidelined with the thigh injury sustained at Bayern Munich earlier…",
+   "source_domain": "arsenal.com",
+   "published": "2026-11-21",
+   "url": "https://www.arsenal.com/news/preview-newcastle-united-v-arsenal-aSvdm5s8P3nk",
    "yours": []
   },
   {
@@ -94,11 +83,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Ankle injury - 75% chance of playing",
-   "headline": "Oliver Glasner press conference: Bournemouth vs Nottingham Forest - BBC Sport",
-   "snippet": "Neco Williams will also be a doubt for the weekend.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-19",
-   "url": "https://www.bbc.com/sport/football/articles/cx7v2z680np8o",
+   "headline": "FPL player price changes - risers, fallers and top transfers for Gameweek 11",
+   "snippet": "Price falls Kaye Furo (Brentford) £4.4m Joao Pedro (Chelsea) £7.7m Josh King (Fulham) £5.5m Rayan Cherki (Man City) £7.9m Igor Jesus (Nott'm Forest) £5.6m Neco Williams (Nott'm Forest) £4.9m Daniel Ballard (Sunderland)…",
+   "source_domain": "premierleague.com",
+   "published": "2026-11-21",
+   "url": "https://www.premierleague.com/en/news/2884829/fpl-player-price-changes-risers-fallers-and-top-transfers-for-gameweek-11",
    "yours": []
   },
   {
@@ -107,11 +96,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Back injury - 75% chance of playing",
-   "headline": "10 players could miss Liverpool vs Man United as Pochettino left sweating on stars' fitness - Manchester Evening News",
-   "snippet": "Harry Maguire has had a back issue that forced him off against Aston Villa, while Dorgu wasn't deemed fit enough for international duty with Denmark, but both have trained this week.",
-   "source_domain": "manchestereveningnews.co.uk",
+   "headline": "Liverpool v Manchester United: Team news - Liverpool FC",
+   "snippet": "Patrick Dorgu and Harry Maguire are also likely to be in contention – both have trained this week after prior issues.",
+   "source_domain": "liverpoolfc.com",
    "published": "2026-11-21",
-   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-united-team-news-liverpool-34946472",
+   "url": "https://www.liverpoolfc.com/news/liverpool-v-manchester-united-team-news-premier-league-112026",
    "yours": []
   },
   {
@@ -120,11 +109,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Hamstring injury - Unknown return date",
-   "headline": "Latest update on James and Lacroix returns from Alonso News Official Site Chelsea Football Club",
-   "snippet": "Xabi Alonso discussed the chances of Reece James and Maxence Lacroix getting back on the pitch before the end of the year, as the pair continue their recovery from injury.",
-   "source_domain": "chelseafc.com",
-   "published": "2026-11-20",
-   "url": "https://www.chelseafc.com/en/news/article/latest-update-on-james-and-lacroix-returns-from-alonso?ssoc=1",
+   "headline": "Chelsea FC XI vs Leeds: Predicted lineup, confirmed team news, injury latest for Premier League today The Standard",
+   "snippet": "Alonso still cannot call on any of Joao Pedro, Maxence Lacroix, Jorrel Hato or Reece James after ruling all four out of the Leeds game at his pre-match press conference on Friday.",
+   "source_domain": "standard.co.uk",
+   "published": "2026-11-21",
+   "url": "https://www.standard.co.uk/sport/football/chelsea-fc-xi-vs-leeds-predicted-lineup-confirmed-team-news-injury-latest-premier-league-2026-today-b1305661.html",
    "yours": []
   }
  ]
