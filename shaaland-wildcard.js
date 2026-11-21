@@ -115,25 +115,37 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.65,
+        "bench_ep": 3.6,
         "starter": "Manzambi",
         "starter_ep": 2.66
+      },
+      {
+        "bench": "Tzolakis",
+        "bench_ep": 3.86,
+        "starter": "Raya",
+        "starter_ep": 3.33
       }
     ],
     "bench_order": [
       "Tzolakis",
-      "Barnes",
       "Tarkowski",
+      "Barnes",
       "Kostoulas"
     ],
     "bench_order_changed": true,
-    "availability_flags": [],
+    "availability_flags": [
+      {
+        "name": "Raya",
+        "label": "DOUBT 75%",
+        "chance": 75
+      }
+    ],
     "xi_ep": [
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.49,
-        "status": "ok"
+        "ep_next": 3.33,
+        "status": "doubt"
       },
       {
         "name": "De Cuyper",
@@ -144,7 +156,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.93,
+        "ep_next": 3.85,
         "status": "ok"
       },
       {
@@ -218,7 +230,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.65,
+        "ep_next": 3.6,
         "status": "ok"
       }
     ]

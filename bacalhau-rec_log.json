@@ -502,7 +502,7 @@
  "gw12": {
   "backfilled": false,
   "bench": [
-   572,
+   1,
    236,
    94,
    286
@@ -511,21 +511,21 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "747bcefb417a",
+  "code_sha": "9708c26eb803",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-21T18:50:30+00:00",
-  "saved_at_et": "2026-11-21 1:50 PM ET",
+  "saved_at": "2026-11-21T19:25:39+00:00",
+  "saved_at_et": "2026-11-21 2:25 PM ET",
   "source": "plan",
   "squad": [
    {
-    "club": "ARS",
-    "id": 1,
-    "name": "Raya",
+    "club": "HUL",
+    "id": 572,
+    "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.44
+    "xp": 3.86
    },
    {
     "club": "BOU",
@@ -598,11 +598,11 @@
     "xp": 4.85
    },
    {
-    "club": "HUL",
-    "id": 572,
-    "name": "Tzolakis",
+    "club": "ARS",
+    "id": 1,
+    "name": "Raya",
     "pos": "GKP",
-    "xp": 3.86
+    "xp": 3.33
    },
    {
     "club": "EVE",
@@ -644,7 +644,7 @@
   "vice": 112,
   "vice_name": "Van Hecke",
   "xi": [
-   1,
+   572,
    60,
    112,
    4,
@@ -656,7 +656,7 @@
    79,
    411
   ],
-  "xp": 56.8
+  "xp": 56.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
