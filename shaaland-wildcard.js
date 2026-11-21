@@ -247,9 +247,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-20",
-      "total_cost": 101.4,
+      "total_cost": 101.5,
       "prices": {
-        "Raya": 6.2,
+        "Raya": 6.3,
         "De Cuyper": 5.5,
         "Tarkowski": 6.2,
         "Calafiori": 5.9,
@@ -274,7 +274,7 @@ window.FPL_WILDCARD_WATCH = {
       "Manzambi": 6.2,
       "Silva": 5.1
     },
-    "total_delta": 2.6,
+    "total_delta": 2.7,
     "players": [
       {
         "name": "De Cuyper",
@@ -313,18 +313,18 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Calafiori",
-        "baseline_cost": 5.8,
-        "current_cost": 5.9,
-        "delta": 0.1,
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.3,
+        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
       },
       {
-        "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.2,
+        "name": "Calafiori",
+        "baseline_cost": 5.8,
+        "current_cost": 5.9,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -476,12 +476,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "added",
-        "player": "B.Fernandes",
-        "price_at_change": 11.9
-      },
       {
         "date": "2026-10-10",
         "event": "added",
@@ -766,6 +760,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "N.Jackson",
         "from": 7.1,
         "to": 7.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-20",
+        "event": "price_change",
+        "player": "Raya",
+        "from": 6.2,
+        "to": 6.3,
         "delta": 0.1
       }
     ]
