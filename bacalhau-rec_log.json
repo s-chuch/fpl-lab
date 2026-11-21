@@ -503,21 +503,21 @@
   "backfilled": false,
   "bench": [
    572,
+   236,
    94,
-   286,
-   165
+   286
   ],
-  "captain": 4,
-  "captain_name": "Gabriel",
+  "captain": 60,
+  "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "f42054b8044c",
+  "code_sha": "28b87d6d3400",
   "ft": 1,
   "gw": 12,
-  "hit_cost": 0,
-  "hits": 0,
-  "saved_at": "2026-11-21T16:12:25+00:00",
-  "saved_at_et": "2026-11-21 11:12 AM ET",
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-11-21T16:51:51+00:00",
+  "saved_at_et": "2026-11-21 11:51 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -528,25 +528,25 @@
     "xp": 4.34
    },
    {
-    "club": "ARS",
-    "id": 4,
-    "name": "Gabriel",
+    "club": "BOU",
+    "id": 60,
+    "name": "Hill",
     "pos": "DEF",
-    "xp": 5.6
+    "xp": 5.72
    },
    {
     "club": "TOT",
     "id": 112,
     "name": "Van Hecke",
     "pos": "DEF",
-    "xp": 5.2
+    "xp": 5.61
    },
    {
-    "club": "BOU",
-    "id": 60,
-    "name": "Hill",
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
     "pos": "DEF",
-    "xp": 5.02
+    "xp": 5.6
    },
    {
     "club": "BHA",
@@ -567,7 +567,7 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.85
+    "xp": 5.19
    },
    {
     "club": "BHA",
@@ -578,17 +578,17 @@
    },
    {
     "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
-    "xp": 3.54
+    "id": 249,
+    "name": "Barry",
+    "pos": "FWD",
+    "xp": 5.0
    },
    {
     "club": "BOU",
     "id": 79,
     "name": "Evanilson",
     "pos": "FWD",
-    "xp": 4.99
+    "xp": 4.87
    },
    {
     "club": "MCI",
@@ -605,6 +605,13 @@
     "xp": 3.86
    },
    {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 3.54
+   },
+   {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
@@ -617,17 +624,16 @@
     "name": "Belloumi",
     "pos": "MID",
     "xp": 1.88
-   },
-   {
-    "club": "CHE",
-    "id": 165,
-    "name": "João Pedro",
-    "pos": "FWD",
-    "xp": 0.0
    }
   ],
   "status": "pending",
   "transfers": [
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "João Pedro",
+    "out_id": 165
+   },
    {
     "in": "Gabriel",
     "in_id": 4,
@@ -635,22 +641,22 @@
     "out_id": 229
    }
   ],
-  "vice": 79,
-  "vice_name": "Evanilson",
+  "vice": 112,
+  "vice_name": "Van Hecke",
   "xi": [
    1,
-   4,
-   112,
    60,
+   112,
+   4,
    504,
    115,
    68,
    124,
-   236,
+   249,
    79,
    411
   ],
-  "xp": 57.7
+  "xp": 56.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

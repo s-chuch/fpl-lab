@@ -500,17 +500,17 @@
    453,
    53
   ],
-  "captain": 112,
-  "captain_name": "Van Hecke",
+  "captain": 60,
+  "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "f42054b8044c",
+  "code_sha": "28b87d6d3400",
   "ft": 1,
   "gw": 12,
-  "hit_cost": 0,
-  "hits": 0,
-  "saved_at": "2026-11-21T16:12:12+00:00",
-  "saved_at_et": "2026-11-21 11:12 AM ET",
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-11-21T16:51:38+00:00",
+  "saved_at_et": "2026-11-21 11:51 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -521,18 +521,25 @@
     "xp": 4.34
    },
    {
+    "club": "BOU",
+    "id": 60,
+    "name": "Hill",
+    "pos": "DEF",
+    "xp": 5.7
+   },
+   {
     "club": "TOT",
     "id": 112,
     "name": "Van Hecke",
     "pos": "DEF",
-    "xp": 5.2
+    "xp": 5.61
    },
    {
     "club": "BOU",
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
-    "xp": 4.76
+    "xp": 5.34
    },
    {
     "club": "BHA",
@@ -549,18 +556,11 @@
     "xp": 3.77
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.61
-   },
-   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 4.85
+    "xp": 5.19
    },
    {
     "club": "BHA",
@@ -577,18 +577,18 @@
     "xp": 5.0
    },
    {
+    "club": "AVL",
+    "id": 166,
+    "name": "N.Jackson",
+    "pos": "FWD",
+    "xp": 4.95
+   },
+   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
     "xp": 4.85
-   },
-   {
-    "club": "AVL",
-    "id": 166,
-    "name": "N.Jackson",
-    "pos": "FWD",
-    "xp": 4.82
    },
    {
     "club": "HUL",
@@ -602,7 +602,7 @@
     "id": 154,
     "name": "Palmer",
     "pos": "MID",
-    "xp": 3.38
+    "xp": 3.49
    },
    {
     "club": "NEW",
@@ -616,11 +616,17 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 2.77
+    "xp": 2.74
    }
   ],
   "status": "pending",
   "transfers": [
+   {
+    "in": "Hill",
+    "in_id": 60,
+    "out": "Tarkowski",
+    "out_id": 229
+   },
    {
     "in": "Barry",
     "in_id": 249,
@@ -632,18 +638,18 @@
   "vice_name": "Tavernier",
   "xi": [
    1,
+   60,
    112,
    566,
    115,
    8,
-   229,
    68,
    124,
    249,
-   411,
-   166
+   166,
+   411
   ],
-  "xp": 55.2
+  "xp": 55.3
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
