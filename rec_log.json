@@ -504,13 +504,13 @@
   "captain_name": "Gabriel",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "857b1fe74629",
+  "code_sha": "c10534fc78a6",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-21T13:34:20+00:00",
-  "saved_at_et": "2026-11-21 8:34 AM ET",
+  "saved_at": "2026-11-21T14:13:48+00:00",
+  "saved_at_et": "2026-11-21 9:13 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -581,7 +581,7 @@
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
-    "xp": 4.81
+    "xp": 4.87
    },
    {
     "club": "AVL",
@@ -649,7 +649,7 @@
    411,
    166
   ],
-  "xp": 52.1
+  "xp": 52.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
