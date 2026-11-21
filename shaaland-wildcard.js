@@ -111,13 +111,13 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Van Hecke",
     "captain_ep": 5.61,
     "vice": "Silva",
-    "vice_ep": 5.34,
+    "vice_ep": 5.39,
     "bench_swaps": [
       {
         "bench": "Barnes",
         "bench_ep": 3.1,
         "starter": "Manzambi",
-        "starter_ep": 2.74
+        "starter_ep": 2.66
       }
     ],
     "bench_order": [
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 5.34,
+        "ep_next": 5.39,
         "status": "ok"
       },
       {
@@ -174,13 +174,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 5.19,
+        "ep_next": 5.21,
         "status": "ok"
       },
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.74,
+        "ep_next": 2.66,
         "status": "ok"
       },
       {
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.95,
+        "ep_next": 4.83,
         "status": "ok"
       }
     ],

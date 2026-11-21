@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "28b87d6d3400",
+  "code_sha": "47d4a4425da2",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-21T16:51:38+00:00",
-  "saved_at_et": "2026-11-21 11:51 AM ET",
+  "saved_at": "2026-11-21T17:31:08+00:00",
+  "saved_at_et": "2026-11-21 12:31 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -539,7 +539,7 @@
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
-    "xp": 5.34
+    "xp": 5.39
    },
    {
     "club": "BHA",
@@ -560,7 +560,7 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.19
+    "xp": 5.21
    },
    {
     "club": "BHA",
@@ -577,18 +577,18 @@
     "xp": 5.0
    },
    {
-    "club": "AVL",
-    "id": 166,
-    "name": "N.Jackson",
-    "pos": "FWD",
-    "xp": 4.95
-   },
-   {
     "club": "MCI",
     "id": 411,
     "name": "Haaland",
     "pos": "FWD",
     "xp": 4.85
+   },
+   {
+    "club": "AVL",
+    "id": 166,
+    "name": "N.Jackson",
+    "pos": "FWD",
+    "xp": 4.83
    },
    {
     "club": "HUL",
@@ -616,7 +616,7 @@
     "id": 53,
     "name": "Manzambi",
     "pos": "MID",
-    "xp": 2.74
+    "xp": 2.66
    }
   ],
   "status": "pending",
@@ -634,8 +634,8 @@
     "out_id": 138
    }
   ],
-  "vice": 68,
-  "vice_name": "Tavernier",
+  "vice": 566,
+  "vice_name": "Silva",
   "xi": [
    1,
    60,
@@ -646,10 +646,10 @@
    68,
    124,
    249,
-   166,
-   411
+   411,
+   166
   ],
-  "xp": 55.3
+  "xp": 55.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
