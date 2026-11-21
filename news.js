@@ -1,234 +1,9 @@
 window.FPL_NEWS = {
   "gw": 11,
   "cutoff": "2026-11-06 18:30 UTC",
-  "generated_at": "2026-11-21 01:14 UTC",
+  "generated_at": "2026-11-21 07:21 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
-    {
-      "text": "Konsa (ARS) \u2014 Mixed: some say buy, some say sell (2 buy, 4 keep, 1 sell/avoid, 1 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Konsa",
-      "club": "ARS",
-      "tags": [
-        "captain talk",
-        "rotation risk"
-      ],
-      "id": 31,
-      "verdict": "Mixed: some say buy, some say sell",
-      "stance": {
-        "hold": 4,
-        "buy": 2,
-        "sell": 1,
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "William Saliba meanwhile is a headache for those who have Ezri Konsa - although for now, Konsa could keep his place in Arsenal\u2019s defence.",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "Ezri Konsa (\u00a34.9m): Hold, but I wouldn\u2019t buy him.",
-          "stance": [
-            "buy",
-            "hold"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
-          "title": "Key Tips for FPL Gameweek 11"
-        },
-        {
-          "source": "AAFPL",
-          "text": "With most, if not all, of Arsenal\u2019s first team defenders now back fit, it would be risky to go for the likes of Konsa and Calafiori considering the rotation risks.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-scout-picks-based-on-stats-analysis-and-matchups/",
-          "title": "FPL GW11 Scout Picks Based on Stats, Analysis and Matchups"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "For now, Konsa is a definitive hold but not a buy.",
-          "stance": [
-            "hold",
-            "sell"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "He\u2019s ready.\u201d This means that Konsa should go out of my team soon as his minutes will be difficult to predict.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
-          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
-          "title": "The Best FPL Gameweek 11 Wildcard Team"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Silva vs NFO(H) Muahremovic vs CHE(A) Konsa vs NEW(A) Rogers vs LEE(H) Barry vs BRE(A) Calvert Lewin vs CHE(A) Data from FFHUB : Join today for just \u00a329.99 (Normally \u00a347.95) and access AI transfers, captain picks, & expert team reveals every gameweek, for the ...",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
-          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "The Arsenal clean sheet came in, with Ezri Konsa providing eight points too.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
-          "title": "Fantasy Football Hub AI FPL team reveal 2026/27"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "If I owned Konsa, I\u2019d be planning to upgrade him to Gabriel (\u00a38.1m) if I didn\u2019t have him already.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
-          "title": "Key Tips for FPL Gameweek 11"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Ezri Konsa (\u00a34.9m): Hold, but I wouldn\u2019t buy him.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
-          "title": "Key Tips for FPL Gameweek 11"
-        }
-      ],
-      "tone": "mixed"
-    },
-    {
-      "text": "Saliba (ARS) \u2014 Fitness or rotation doubts (2 buy, 2 fitness/rotation mentions) \u00b7 5/5 sites with fresh articles",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Ingenuity",
-        "Scout"
-      ],
-      "player": "Saliba",
-      "club": "ARS",
-      "tags": [
-        "rotation risk"
-      ],
-      "id": 6,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "risk": 2,
-        "buy": 2
-      },
-      "quotes": [
-        {
-          "source": "AAFPL",
-          "text": "Further Read : Top FPL GW11 Differential Picks to Target before GW11 Deadline GW11 Bus Team: GW11 Transfer Plans: (1 FT, 0.5 ITB) Arteta confirmed that Saliba is ready to start now after coming back from injury.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
-          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "William Saliba (\u00a35.9m) hasn\u2019t played a competitive game since injuring his back at the World Cup.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "source": "AAFPL",
-          "text": "Konsa has been well in form, but Saliba is very close to returning.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
-          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
-        },
-        {
-          "source": "Ingenuity",
-          "text": "Saliba also isn\u2019t a buy until he\u2019s starting league games.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "William Saliba (\u00a35.9m) hasn\u2019t played a competitive game since injuring his back at the World Cup.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "topic": "fitness",
-          "tone": "good",
-          "text": "Further Read : Top FPL GW11 Differential Picks to Target before GW11 Deadline GW11 Bus Team: GW11 Transfer Plans: (1 FT, 0.5 ITB) Arteta confirmed that Saliba is ready to start now after coming back from injury.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
-          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
-        },
-        {
-          "topic": "role",
-          "tone": "good",
-          "text": "Saliba hasn\u2019t played more than 45 minutes in any game yet, and a first competitive start away at St James\u2019 Park would be a big ask.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "He said Saliba felt \u201cready to go\u201d after playing 45 minutes behind closed doors.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Saliba was an unused substitute in Prague and wasn\u2019t in the squad against Hull.",
-          "source": "Ingenuity",
-          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
-          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Konsa has been well in form, but Saliba is very close to returning.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw11-team-reveal-transfer-plans-3x-top-5k-finishes/",
-          "title": "AK\u2019s FPL GW11 Team Reveal & Transfer Plans | 3x Top 5K Finishes"
-        }
-      ],
-      "tone": "good"
-    },
     {
       "text": "B.Fernandes (MUN) \u2014 Leaning sell / avoid (1 sell/avoid, 1 captain, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
@@ -1060,6 +835,120 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
+      "text": "Konsa (ARS) \u2014 Mixed: some say buy, some say sell (2 buy, 4 keep, 1 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Konsa",
+      "club": "ARS",
+      "tags": [
+        "captain talk",
+        "rotation risk"
+      ],
+      "id": 31,
+      "verdict": "Mixed: some say buy, some say sell",
+      "stance": {
+        "hold": 4,
+        "buy": 2,
+        "sell": 1,
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "William Saliba meanwhile is a headache for those who have Ezri Konsa - although for now, Konsa could keep his place in Arsenal\u2019s defence.",
+          "stance": [
+            "hold"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "Ezri Konsa (\u00a34.9m): Hold, but I wouldn\u2019t buy him.",
+          "stance": [
+            "buy",
+            "hold"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
+          "title": "Key Tips for FPL Gameweek 11"
+        },
+        {
+          "source": "AAFPL",
+          "text": "With most, if not all, of Arsenal\u2019s first team defenders now back fit, it would be risky to go for the likes of Konsa and Calafiori considering the rotation risks.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-scout-picks-based-on-stats-analysis-and-matchups/",
+          "title": "FPL GW11 Scout Picks Based on Stats, Analysis and Matchups"
+        },
+        {
+          "source": "Ingenuity",
+          "text": "For now, Konsa is a definitive hold but not a buy.",
+          "stance": [
+            "hold",
+            "sell"
+          ],
+          "url": "https://ingenuityfantasy.com/game-week-tips/arsenal-fpl-team-news-saliba-konsa-saka-and-every-big-question-for-gameweek-11/",
+          "title": "Arsenal FPL Team News: Saliba, Konsa, Timber and Every Big Question for Gameweek 11"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "He\u2019s ready.\u201d This means that Konsa should go out of my team soon as his minutes will be difficult to predict.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
+          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "With question marks over Calafiori and Konsa\u2019s minutes, Gabriel is the one you can bank on to play 90 every week.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Silva vs NFO(H) Muahremovic vs CHE(A) Konsa vs NEW(A) Rogers vs LEE(H) Barry vs BRE(A) Calvert Lewin vs CHE(A) Data from FFHUB : Join today for just \u00a329.99 (Normally \u00a347.95) and access AI transfers, captain picks, & expert team reveals every gameweek, for the ...",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
+          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "The Arsenal clean sheet came in, with Ezri Konsa providing eight points too.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/team-reveals/hubai/team-reveal",
+          "title": "Fantasy Football Hub AI FPL team reveal 2026/27"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "If I owned Konsa, I\u2019d be planning to upgrade him to Gabriel (\u00a38.1m) if I didn\u2019t have him already.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
+          "title": "Key Tips for FPL Gameweek 11"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Ezri Konsa (\u00a34.9m): Hold, but I wouldn\u2019t buy him.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/key-tips-for-fpl-gameweek-11/",
+          "title": "Key Tips for FPL Gameweek 11"
+        }
+      ],
+      "tone": "mixed"
+    },
+    {
       "text": "Manzambi (AVL) \u2014 Leaning keep / hold (1 keep, 1 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
       "sources": [
         "AAFPL",
@@ -1384,6 +1273,125 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
           "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Palmer (CHE) \u2014 Fitness or rotation doubts (1 buy, 1 keep, 3 fitness/rotation mentions) \u00b7 4/5 sites with fresh articles",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Ingenuity"
+      ],
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [
+        "captain talk",
+        "rotation risk"
+      ],
+      "id": 154,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "hold": 1,
+        "risk": 3,
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "AAFPL",
+          "text": "GW11- GW12 : Hold Palmer GW13- GW15 : Palmer to Bruno/Mbeumo GW16 : Back to Palmer for good fixtures all the way till GW25 Gives 2 more weeks of eye test to see Bruno under Pochettino before making the decision.",
+          "stance": [
+            "hold"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw11-team-selection-drafts-transfer-plans-and-watchlist/",
+          "title": "FPL GW11 Team Selection \u2013 Drafts, Transfer Plans and Watchlist"
+        },
+        {
+          "source": "Fix",
+          "text": "Best Premium FPL Midfielder: Cole Palmer (LEE) Cole Palmer was fully rested over the international break and will be looking to help Chelsea return to winning ways as they host Leeds United at Stamford Bridge.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 11: Top Five Picks"
+        },
+        {
+          "source": "Hub",
+          "text": "The fact Chelsea do not have any European commitments means Palmer\u2019s minutes and fitness are going to be good long term.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-11-article-26-27",
+          "title": "Best FPL players for Gameweek 11"
+        },
+        {
+          "source": "Fix",
+          "text": "With premium midfielders such as Bruno Fernandes, Cole Palmer and Bukayo Saka either injured or out of form, Isak makes a strong case for a premium spot up front.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
+          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "good",
+          "text": "The fact Chelsea do not have any European commitments means Palmer\u2019s minutes and fitness are going to be good long term.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-11-article-26-27",
+          "title": "Best FPL players for Gameweek 11"
+        },
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "With premium midfielders such as Bruno Fernandes, Cole Palmer and Bukayo Saka either injured or out of form, Isak makes a strong case for a premium spot up front.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-worst-fixtures-gameweek-11-2026/",
+          "title": "Best and Worst FPL Fixtures for Gameweeks 11\u201316"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Best Premium FPL Midfielder: Cole Palmer (LEE) Cole Palmer was fully rested over the international break and will be looking to help Chelsea return to winning ways as they host Leeds United at Stamford Bridge.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-top-5-players-2026-27/",
+          "title": "Best FPL Players for Gameweek 11: Top Five Picks"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Chelsea against Palace in GW13 is also decent on paper, but Palmer\u2019s recent returns haven\u2019t been convincing.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-chip-strategy-best-gameweeks-to-play-the-remaining-chips/",
+          "title": "FPL Chip Strategy: Best Gameweeks to play the Remaining Chips"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "He\u2019s actually got a higher xGI per 90 than Palmer this season (0.48 vs 0.38), with better fixtures.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "That\u2019s more than Palmer\u2019s 0.38, for nearly \u00a32m less.",
+          "source": "Ingenuity",
+          "url": "https://ingenuityfantasy.com/game-week-tips/the-best-fpl-gameweek-11-wildcard-team/",
+          "title": "The Best FPL Gameweek 11 Wildcard Team"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "Best FPL Gameweek 11 Captain Picks 1\ufe0f\u20e3 Erling Haaland \u2014 5.6 predicted points 2\ufe0f\u20e3 Gabriel Magalh\u00e3es \u2014 5.4 predicted points 3\ufe0f\u20e3 Cole Palmer \u2014 5.3 predicted points Haaland tops the Gameweek 11 points projections as Manchester City host Fulham.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-11-tips/",
+          "title": "FPL Gameweek 11 Tips: Transfers, Captain & Team News"
         }
       ],
       "tone": "good"
@@ -1763,8 +1771,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL General\u2019s Gameweek 11 team reveal",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/21/fpl-generals-gameweek-11-team-reveal"
+      "title": "No Raya? 3 FPL goalkeeper pairings who rotate well",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/21/no-raya-3-fpl-goalkeeper-pairings-who-rotate-well"
     }
   ],
   "no_new": false,

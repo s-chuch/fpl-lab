@@ -1,12 +1,12 @@
 window.EXA_NEWS = {
- "generated_at": "2026-11-20T23:17:20Z",
+ "generated_at": "2026-11-21T07:22:08Z",
  "gw": 11,
  "searches_used": 10,
- "last_attempt": "2026-11-20T23:17:20Z",
+ "last_attempt": "2026-11-21T07:22:08Z",
  "month_usage": {
   "month": "2026-11",
-  "searches": 580,
-  "cost_usd": 4.06
+  "searches": 590,
+  "cost_usd": 4.13
  },
  "note": "Display only (Exa web search); not used by the model. FPL flag shown beside each item.",
  "items": [
@@ -16,11 +16,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Unknown return date",
-   "headline": "Alonso: João Pedro still unavailable, team needs to step up - ESPN",
-   "snippet": "We want Joao Pedro back but I don't want to make a big thing out of that.\"",
-   "source_domain": "espn.co.uk",
-   "published": "2026-11-20",
-   "url": "https://www.espn.co.uk/football/story/_/id/50541499/joao-pedro-unavailable-chelsea-injuries-team-news",
+   "headline": "Predicted Chelsea XI vs Leeds as Joao Pedro solution found and Estevao Willian decision made Football London",
+   "snippet": "The bad news for Chelsea: Joao Pedro will not be fit in time for this afternoon's clash with Leeds.",
+   "source_domain": "football.london",
+   "published": "2026-11-21",
+   "url": "https://www.football.london/chelsea-fc/news/predicted-chelsea-xi-vs-leeds-34942093",
    "yours": []
   },
   {
@@ -29,11 +29,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Hip injury - 75% chance of playing",
-   "headline": "Manchester City handed Marc Guehi boost ahead of Premier League return The Independent",
-   "snippet": "Guehi pulled out of Thomas Tuchel’s squad for last week’s Nations League games against Croatia and Spain, after coming off at half-time during City’s 3-1 defeat to Nottingham Forest in their last top-flight outing.",
-   "source_domain": "independent.co.uk",
+   "headline": "Maresca gives fitness update on Nunes and Khusanov for Fulham",
+   "snippet": "Khusanov and Nunes along with Marc Guéhi suffered injury setbacks in the defeat to Nottingham Forest and the England defender missed the Three Lions’ Nations League matches.",
+   "source_domain": "mancity.com",
    "published": "2026-11-20",
-   "url": "https://www.independent.co.uk/sport/football/man-city-fulham-enzo-maresca-marc-guehi-injury-update-b3088734.html",
+   "url": "https://www.mancity.com/news/mens/enzo-maresca-21-november-fulham-press-conference-63930777",
    "yours": []
   },
   {
@@ -55,11 +55,11 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Calf injury - 75% chance of playing",
-   "headline": "Thomas Frank press conference: Coventry City vs Crystal Palace - BBC Sport",
-   "snippet": "By George Booth BBC Sport journalist 19 November 2026 New Crystal Palace boss Thomas Frank has been speaking to the media before Saturday's Premier League game against Coventry City at CBS Arena (kick-off 15:00 GMT).",
-   "source_domain": "bbc.com",
-   "published": "2026-11-19",
-   "url": "https://www.bbc.com/sport/football/articles/ck3rgnlz0dppo",
+   "headline": "The Opposite View: Coventry boss Lampard's connection with Thomas Frank",
+   "snippet": "Bobby [Thomas, who has missed the last two matches] was training with us so we’ll see how he is for the weekend.",
+   "source_domain": "cpfc.co.uk",
+   "published": "2026-11-20",
+   "url": "https://www.cpfc.co.uk/news/match-previews/the-opposite-view-coventry-manager-frank-lampard-on-thomas-frank/",
    "yours": []
   },
   {
@@ -71,7 +71,7 @@ window.EXA_NEWS = {
    "headline": "Man City XI vs Fulham: Confirmed team news, predicted lineup and injury latest for Premier League The Standard",
    "snippet": "Injured: Semenyo Doubts: Guehi, Khusanov, Nunes Date and time: 12.30pm GMT on Saturday, November 21 Venue: Etihad",
    "source_domain": "standard.co.uk",
-   "published": "2026-11-19",
+   "published": "2026-11-20",
    "url": "https://www.standard.co.uk/sport/football/man-city-xi-vs-fulham-confirmed-team-news-predicted-lineup-injury-latest-premier-league-b1305590.html",
    "yours": []
   },
@@ -81,11 +81,11 @@ window.EXA_NEWS = {
    "fpl_status": "i",
    "fpl_chance": 0,
    "fpl_news": "Thigh injury - Expected back 20 Dec",
-   "headline": "Predicted line-ups for Premier League teams in Matchweek 11",
-   "snippet": "Higher up the pitch, Martin Zubimendi has been ruled out, while Bukayo Saka is not expected back for another month or so.",
-   "source_domain": "premierleague.com",
+   "headline": "Arsenal's Saka out for a month, Saliba available - Arteta - ESPN",
+   "snippet": "Saka sustained his latest injury early in a Champions League match against Bayern Munich on Oct.",
+   "source_domain": "espn.com",
    "published": "2026-11-20",
-   "url": "https://www.premierleague.com/en/news/4764715/predicted-line-ups-for-premier-league-teams-in-matchweek-11",
+   "url": "https://www.espn.com/soccer/story/_/id/50540215/arsenal-saka-saliba-arteta-injury",
    "yours": []
   },
   {
@@ -107,37 +107,24 @@ window.EXA_NEWS = {
    "fpl_status": "d",
    "fpl_chance": 75,
    "fpl_news": "Back injury - 75% chance of playing",
-   "headline": "Dorgu and Maguire return to training ahead of Liverpool clash",
-   "snippet": "Dorgu y Maguire volvieron a los entrenamientos antes del partido contra Liverpool Dorgu y Maguire volvieron a los entrenamientos antes del partido contra Liverpool 20 nov 2026",
-   "source_domain": "premierleague.com",
-   "published": "2026-11-20",
-   "url": "https://www.premierleague.com/es/news/4765073/dorgu-and-maguire-return-to-training-ahead-of-liverpool-clash",
+   "headline": "10 players could miss Liverpool vs Man United as Pochettino left sweating on stars' fitness - Manchester Evening News",
+   "snippet": "Harry Maguire has had a back issue that forced him off against Aston Villa, while Dorgu wasn't deemed fit enough for international duty with Denmark, but both have trained this week.",
+   "source_domain": "manchestereveningnews.co.uk",
+   "published": "2026-11-21",
+   "url": "https://www.manchestereveningnews.co.uk/sport/football/football-news/man-united-team-news-liverpool-34946472",
    "yours": []
   },
   {
-   "player": "Brobbey",
-   "team": "SUN",
-   "fpl_status": "i",
-   "fpl_chance": 0,
-   "fpl_news": "Muscular injury - Unknown return date",
-   "headline": "Sunderland news: Black Cats must 'adapt' without Xhaka and Brobbey - BBC Sport",
-   "snippet": "Sunderland head to Villa Park facing a huge challenge after losing Granit Xhaka and Brian Brobbey to injury.",
-   "source_domain": "bbc.com",
-   "published": "2026-11-20",
-   "url": "https://www.bbc.com/sport/football/articles/cmy0ed5j3xe7o",
-   "yours": []
-  },
-  {
-   "player": "James",
+   "player": "Lacroix",
    "team": "CHE",
    "fpl_status": "i",
    "fpl_chance": 0,
-   "fpl_news": "Knee injury - Unknown return date",
-   "headline": "Premier League news: Grealish available again for Everton, Maresca hints at City tweaks Premier League The Guardian",
-   "snippet": "The Brazil striker João Pedro is yet to return from a thigh injury, Reece James is unlikely to recover",
-   "source_domain": "theguardian.com",
+   "fpl_news": "Hamstring injury - Unknown return date",
+   "headline": "Latest update on James and Lacroix returns from Alonso News Official Site Chelsea Football Club",
+   "snippet": "Xabi Alonso discussed the chances of Reece James and Maxence Lacroix getting back on the pitch before the end of the year, as the pair continue their recovery from injury.",
+   "source_domain": "chelseafc.com",
    "published": "2026-11-20",
-   "url": "https://www.theguardian.com/football/2026/nov/20/premier-league-news-everton-jack-grealish-manchester-city-liverpool-chelsea",
+   "url": "https://www.chelseafc.com/en/news/article/latest-update-on-james-and-lacroix-returns-from-alonso?ssoc=1",
    "yours": []
   }
  ]

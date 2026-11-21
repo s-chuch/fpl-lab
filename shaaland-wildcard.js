@@ -3,7 +3,7 @@ window.FPL_WILDCARD_WATCH = {
   "gw": 6,
   "deadline": "2026-10-10 06:00 ET",
   "status": "confirmed",
-  "captured_at": "2026-11-20",
+  "captured_at": "2026-11-21",
   "chips": {
     "bboost": "played_gw1",
     "3xc": "played_gw3",
@@ -174,7 +174,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.45,
+        "ep_next": 2.79,
         "status": "ok"
       },
       {
@@ -246,7 +246,7 @@ window.FPL_WILDCARD_WATCH = {
       }
     },
     "current": {
-      "date": "2026-11-20",
+      "date": "2026-11-21",
       "total_cost": 101.5,
       "prices": {
         "Raya": 6.3,
