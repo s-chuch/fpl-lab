@@ -209,7 +209,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "pos": "FWD",
-        "ep_next": 4.96,
+        "ep_next": 4.99,
         "status": "ok"
       }
     ],

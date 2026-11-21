@@ -111,7 +111,7 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Van Hecke",
     "captain_ep": 5.56,
     "vice": "Silva",
-    "vice_ep": 5.39,
+    "vice_ep": 5.38,
     "bench_swaps": [
       {
         "bench": "Barnes",
@@ -162,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Silva",
         "pos": "DEF",
-        "ep_next": 5.39,
+        "ep_next": 5.38,
         "status": "ok"
       },
       {
