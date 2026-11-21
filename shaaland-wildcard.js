@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.1,
+        "bench_ep": 3.14,
         "starter": "Manzambi",
         "starter_ep": 2.66
       }
@@ -132,7 +132,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 4.34,
+        "ep_next": 4.44,
         "status": "ok"
       },
       {
@@ -144,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.77,
+        "ep_next": 3.86,
         "status": "ok"
       },
       {
@@ -218,7 +218,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.1,
+        "ep_next": 3.14,
         "status": "ok"
       }
     ]
