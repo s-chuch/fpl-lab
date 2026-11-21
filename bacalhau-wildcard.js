@@ -115,7 +115,7 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Haaland",
-        "bench_ep": 4.87,
+        "bench_ep": 4.85,
         "starter": "João Pedro",
         "starter_ep": 0.0
       }
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.79,
+        "ep_next": 4.65,
         "status": "ok"
       },
       {
@@ -180,13 +180,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.5,
+        "ep_next": 3.54,
         "status": "ok"
       },
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.54,
+        "ep_next": 4.58,
         "status": "ok"
       },
       {
@@ -198,7 +198,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "pos": "FWD",
-        "ep_next": 4.35,
+        "ep_next": 4.29,
         "status": "ok"
       }
     ],
@@ -212,19 +212,19 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.87,
+        "ep_next": 4.85,
         "status": "ok"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.77,
+        "ep_next": 2.93,
         "status": "ok"
       },
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.09,
+        "ep_next": 1.88,
         "status": "ok"
       }
     ]

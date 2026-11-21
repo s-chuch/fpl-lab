@@ -111,19 +111,13 @@ window.FPL_WILDCARD_WATCH = {
     "captain": "Van Hecke",
     "captain_ep": 5.09,
     "vice": "Haaland",
-    "vice_ep": 4.87,
+    "vice_ep": 4.85,
     "bench_swaps": [
       {
         "bench": "Barnes",
-        "bench_ep": 3.01,
+        "bench_ep": 3.1,
         "starter": "Manzambi",
-        "starter_ep": 2.57
-      },
-      {
-        "bench": "Tarkowski",
-        "bench_ep": 3.61,
-        "starter": "Calafiori",
-        "starter_ep": 3.33
+        "starter_ep": 2.61
       }
     ],
     "bench_order": [
@@ -144,13 +138,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.79,
+        "ep_next": 4.65,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.33,
+        "ep_next": 3.77,
         "status": "ok"
       },
       {
@@ -168,7 +162,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.23,
+        "ep_next": 3.3,
         "status": "ok"
       },
       {
@@ -180,25 +174,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "pos": "MID",
-        "ep_next": 4.54,
+        "ep_next": 4.58,
         "status": "ok"
       },
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.57,
+        "ep_next": 2.61,
         "status": "ok"
       },
       {
         "name": "Haaland",
         "pos": "FWD",
-        "ep_next": 4.87,
+        "ep_next": 4.85,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.64,
+        "ep_next": 4.69,
         "status": "ok"
       }
     ],
@@ -218,13 +212,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.55,
+        "ep_next": 2.46,
         "status": "ok"
       },
       {
         "name": "Barnes",
         "pos": "MID",
-        "ep_next": 3.01,
+        "ep_next": 3.1,
         "status": "ok"
       }
     ]
