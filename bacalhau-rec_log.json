@@ -504,20 +504,20 @@
   "bench": [
    1,
    236,
-   94,
-   286
+   286,
+   94
   ],
   "captain": 60,
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "206be0fe39cb",
+  "code_sha": "8316b94341ad",
   "ft": 1,
   "gw": 12,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-22T16:02:44+00:00",
-  "saved_at_et": "2026-11-22 11:02 AM ET",
+  "saved_at": "2026-11-22T16:30:37+00:00",
+  "saved_at_et": "2026-11-22 11:30 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -543,17 +543,17 @@
    },
    {
     "club": "BHA",
+    "id": 115,
+    "name": "De Cuyper",
+    "pos": "DEF",
+    "xp": 4.88
+   },
+   {
+    "club": "BHA",
     "id": 504,
     "name": "Vuskovic",
     "pos": "DEF",
     "xp": 4.86
-   },
-   {
-    "club": "BHA",
-    "id": 115,
-    "name": "De Cuyper",
-    "pos": "DEF",
-    "xp": 4.75
    },
    {
     "club": "EVE",
@@ -612,18 +612,18 @@
     "xp": 3.54
    },
    {
+    "club": "HUL",
+    "id": 286,
+    "name": "Belloumi",
+    "pos": "MID",
+    "xp": 3.1
+   },
+   {
     "club": "BRE",
     "id": 94,
     "name": "Schade",
     "pos": "MID",
     "xp": 2.93
-   },
-   {
-    "club": "HUL",
-    "id": 286,
-    "name": "Belloumi",
-    "pos": "MID",
-    "xp": 2.41
    }
   ],
   "status": "pending",
@@ -641,8 +641,8 @@
    572,
    60,
    112,
-   504,
    115,
+   504,
    229,
    68,
    124,
@@ -650,7 +650,7 @@
    79,
    411
   ],
-  "xp": 59.5
+  "xp": 59.6
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

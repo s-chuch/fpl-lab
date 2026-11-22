@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.75,
+        "ep_next": 4.88,
         "status": "ok"
       },
       {
@@ -224,7 +224,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 2.64,
+        "ep_next": 1.96,
         "status": "ok"
       },
       {

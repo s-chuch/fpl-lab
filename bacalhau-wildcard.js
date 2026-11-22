@@ -129,10 +129,10 @@ window.FPL_WILDCARD_WATCH = {
     "bench_order": [
       "Tzolakis",
       "Haaland",
-      "Schade",
-      "Belloumi"
+      "Belloumi",
+      "Schade"
     ],
-    "bench_order_changed": false,
+    "bench_order_changed": true,
     "availability_flags": [
       {
         "name": "Raya",
@@ -161,7 +161,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.75,
+        "ep_next": 4.88,
         "status": "ok"
       },
       {
@@ -235,7 +235,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.41,
+        "ep_next": 3.1,
         "status": "ok"
       }
     ]
