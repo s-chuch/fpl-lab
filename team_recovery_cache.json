@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-22T16:30:14.232936+00:00",
+    "fetched_at": "2026-11-22T17:10:00.438394+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -72,13 +72,7 @@
           "opponent": "Nott'm Forest",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-22",
-            "competition": "Premier League",
-            "opponent": "Brighton"
-          }
-        ]
+        "between": []
       },
       "MUN": {
         "rest_days": 3,
@@ -324,11 +318,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-11-22",
-            "competition": "Premier League",
-            "opponent": "Hull"
-          },
           {
             "date": "2026-11-26",
             "competition": "Conference League",
