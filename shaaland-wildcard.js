@@ -114,16 +114,16 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 5.38,
     "bench_swaps": [
       {
+        "bench": "Tzolakis",
+        "bench_ep": 4.2,
+        "starter": "Raya",
+        "starter_ep": 3.2
+      },
+      {
         "bench": "Barnes",
         "bench_ep": 3.61,
         "starter": "Manzambi",
         "starter_ep": 2.68
-      },
-      {
-        "bench": "Tzolakis",
-        "bench_ep": 3.86,
-        "starter": "Raya",
-        "starter_ep": 3.2
       }
     ],
     "bench_order": [
@@ -150,7 +150,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.65,
+        "ep_next": 4.82,
         "status": "ok"
       },
       {
@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.17,
+        "ep_next": 4.29,
         "status": "ok"
       },
       {
@@ -212,7 +212,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.86,
+        "ep_next": 4.2,
         "status": "ok"
       },
       {
