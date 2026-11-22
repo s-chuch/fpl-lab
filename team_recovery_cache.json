@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-22T02:43:32.879464+00:00",
+    "fetched_at": "2026-11-22T03:23:06.011858+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -38,7 +38,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Crystal Palace",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-28",
@@ -172,7 +172,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Spurs",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-28",
@@ -220,7 +220,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Bournemouth",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-27",
@@ -241,7 +241,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Chelsea",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-28",
@@ -289,7 +289,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Ipswich",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
@@ -423,7 +423,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Arsenal",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
@@ -476,7 +476,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Man City",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
@@ -497,7 +497,7 @@
           "date": "2026-11-21",
           "competition": "Premier League",
           "opponent": "Leeds",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-27",
