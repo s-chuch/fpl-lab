@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "aa63b9c6bd75",
+  "code_sha": "206be0fe39cb",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-22T15:50:53+00:00",
-  "saved_at_et": "2026-11-22 10:50 AM ET",
+  "saved_at": "2026-11-22T16:02:31+00:00",
+  "saved_at_et": "2026-11-22 11:02 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -518,7 +518,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.83
+    "xp": 4.76
    },
    {
     "club": "BOU",
@@ -546,7 +546,7 @@
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 5.31
+    "xp": 4.75
    },
    {
     "club": "ARS",
@@ -567,7 +567,7 @@
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.5
+    "xp": 4.51
    },
    {
     "club": "EVE",
@@ -634,8 +634,8 @@
     "out_id": 138
    }
   ],
-  "vice": 115,
-  "vice_name": "De Cuyper",
+  "vice": 68,
+  "vice_name": "Tavernier",
   "xi": [
    572,
    60,
@@ -649,7 +649,7 @@
    411,
    166
   ],
-  "xp": 56.8
+  "xp": 56.1
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
