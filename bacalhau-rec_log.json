@@ -511,13 +511,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "bf9281b566be",
+  "code_sha": "aa63b9c6bd75",
   "ft": 1,
   "gw": 12,
-  "hit_cost": 4,
-  "hits": 1,
-  "saved_at": "2026-11-22T15:11:36+00:00",
-  "saved_at_et": "2026-11-22 10:11 AM ET",
+  "hit_cost": 0,
+  "hits": 0,
+  "saved_at": "2026-11-22T15:51:08+00:00",
+  "saved_at_et": "2026-11-22 10:51 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -525,7 +525,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.34
+    "xp": 4.83
    },
    {
     "club": "BOU",
@@ -533,13 +533,6 @@
     "name": "Hill",
     "pos": "DEF",
     "xp": 5.71
-   },
-   {
-    "club": "ARS",
-    "id": 4,
-    "name": "Gabriel",
-    "pos": "DEF",
-    "xp": 5.6
    },
    {
     "club": "TOT",
@@ -550,17 +543,24 @@
    },
    {
     "club": "BHA",
-    "id": 504,
-    "name": "Vuskovic",
-    "pos": "DEF",
-    "xp": 4.86
-   },
-   {
-    "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.75
+    "xp": 5.31
+   },
+   {
+    "club": "BHA",
+    "id": 504,
+    "name": "Vuskovic",
+    "pos": "DEF",
+    "xp": 5.27
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 3.61
    },
    {
     "club": "BOU",
@@ -574,7 +574,7 @@
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.45
+    "xp": 4.5
    },
    {
     "club": "EVE",
@@ -623,7 +623,7 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 1.95
+    "xp": 2.16
    }
   ],
   "status": "pending",
@@ -633,12 +633,6 @@
     "in_id": 249,
     "out": "João Pedro",
     "out_id": 165
-   },
-   {
-    "in": "Gabriel",
-    "in_id": 4,
-    "out": "Tarkowski",
-    "out_id": 229
    }
   ],
   "vice": 112,
@@ -646,17 +640,17 @@
   "xi": [
    572,
    60,
-   4,
    112,
-   504,
    115,
+   504,
+   229,
    68,
    124,
    249,
    79,
    411
   ],
-  "xp": 57.0
+  "xp": 60.5
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
