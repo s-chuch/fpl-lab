@@ -264,23 +264,23 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-21",
-      "total_cost": 99.7,
+      "total_cost": 99.8,
       "prices": {
         "Raya": 6.3,
         "Vuskovic": 5.3,
         "De Cuyper": 5.5,
-        "Van Hecke": 5.1,
+        "Van Hecke": 5.2,
         "Tarkowski": 6.2,
         "Hill": 5.6,
         "Groß": 6.3,
         "Dewsbury-Hall": 6.7,
         "Tavernier": 6.7,
         "João Pedro": 7.6,
-        "Evanilson": 6.5,
+        "Evanilson": 6.6,
         "Tzolakis": 4.7,
         "Haaland": 15.8,
         "Schade": 6.1,
-        "Belloumi": 5.3
+        "Belloumi": 5.2
       }
     },
     "entry_prices": {
@@ -290,7 +290,7 @@ window.FPL_WILDCARD_WATCH = {
       "Van Hecke": 5.0,
       "João Pedro": 7.6
     },
-    "total_delta": 7.1,
+    "total_delta": 7.2,
     "players": [
       {
         "name": "De Cuyper",
@@ -320,15 +320,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Belloumi",
-        "baseline_cost": 5.1,
-        "current_cost": 5.3,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Haaland",
         "baseline_cost": 15.6,
         "current_cost": 15.8,
@@ -342,6 +333,15 @@ window.FPL_WILDCARD_WATCH = {
         "baseline_cost": 6.1,
         "current_cost": 6.3,
         "delta": 0.2,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Belloumi",
+        "baseline_cost": 5.1,
+        "current_cost": 5.2,
+        "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -394,10 +394,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "baseline_cost": null,
-        "current_cost": 6.5,
+        "current_cost": 6.6,
         "delta": null,
         "entry_cost": 6.5,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       },
       {
@@ -448,10 +448,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "baseline_cost": null,
-        "current_cost": 5.1,
+        "current_cost": 5.2,
         "delta": null,
         "entry_cost": 5.0,
-        "delta_since_added": 0.1,
+        "delta_since_added": 0.2,
         "status": "added"
       },
       {
@@ -474,30 +474,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-11",
-        "event": "price_change",
-        "player": "Bogle",
-        "from": 4.6,
-        "to": 4.7,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-11",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 5.0,
-        "to": 5.1,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-12",
-        "event": "price_change",
-        "player": "Kostoulas",
-        "from": 5.6,
-        "to": 5.7,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-16",
         "event": "price_change",
@@ -773,6 +749,30 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "João Pedro",
         "price_at_change": 7.6
+      },
+      {
+        "date": "2026-11-21",
+        "event": "price_change",
+        "player": "Belloumi",
+        "from": 5.3,
+        "to": 5.2,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-21",
+        "event": "price_change",
+        "player": "Evanilson",
+        "from": 6.5,
+        "to": 6.6,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-21",
+        "event": "price_change",
+        "player": "Van Hecke",
+        "from": 5.1,
+        "to": 5.2,
+        "delta": 0.1
       }
     ]
   },

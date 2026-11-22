@@ -117,7 +117,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Barnes",
         "bench_ep": 3.61,
         "starter": "Manzambi",
-        "starter_ep": 2.66
+        "starter_ep": 2.68
       },
       {
         "bench": "Tzolakis",
@@ -192,7 +192,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.66,
+        "ep_next": 2.68,
         "status": "ok"
       },
       {
@@ -204,7 +204,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 4.83,
+        "ep_next": 4.8,
         "status": "ok"
       }
     ],
@@ -259,13 +259,13 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-21",
-      "total_cost": 102.6,
+      "total_cost": 102.7,
       "prices": {
         "Raya": 6.3,
         "De Cuyper": 5.5,
         "Calafiori": 5.9,
         "Silva": 5.1,
-        "Van Hecke": 5.1,
+        "Van Hecke": 5.2,
         "Palmer": 9.8,
         "Groß": 6.3,
         "Tavernier": 6.7,
@@ -286,7 +286,7 @@ window.FPL_WILDCARD_WATCH = {
       "Silva": 5.1,
       "Van Hecke": 5.1
     },
-    "total_delta": 3.8,
+    "total_delta": 3.9,
     "players": [
       {
         "name": "De Cuyper",
@@ -480,20 +480,14 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "baseline_cost": null,
-        "current_cost": 5.1,
+        "current_cost": 5.2,
         "delta": null,
         "entry_cost": 5.1,
-        "delta_since_added": 0.0,
+        "delta_since_added": 0.1,
         "status": "added"
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "added",
-        "player": "Saka",
-        "price_at_change": 9.6
-      },
       {
         "date": "2026-10-10",
         "event": "price_change",
@@ -781,6 +775,14 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Van Hecke",
         "price_at_change": 5.1
+      },
+      {
+        "date": "2026-11-21",
+        "event": "price_change",
+        "player": "Van Hecke",
+        "from": 5.1,
+        "to": 5.2,
+        "delta": 0.1
       }
     ]
   },
