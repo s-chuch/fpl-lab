@@ -511,13 +511,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "dada0e643194",
+  "code_sha": "699eb72c95e5",
   "ft": 1,
   "gw": 12,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-22T19:09:01+00:00",
-  "saved_at_et": "2026-11-22 2:09 PM ET",
+  "saved_at": "2026-11-22T19:48:11+00:00",
+  "saved_at_et": "2026-11-22 2:48 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -574,7 +574,7 @@
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.51
+    "xp": 4.46
    },
    {
     "club": "EVE",
@@ -616,7 +616,7 @@
     "id": 286,
     "name": "Belloumi",
     "pos": "MID",
-    "xp": 3.1
+    "xp": 3.09
    },
    {
     "club": "BRE",

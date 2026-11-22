@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-22T19:08:40.791154+00:00",
+    "fetched_at": "2026-11-22T19:47:51.057833+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -94,11 +94,6 @@
           "days_after": 4
         },
         "between": [
-          {
-            "date": "2026-11-22",
-            "competition": "Premier League",
-            "opponent": "Liverpool"
-          },
           {
             "date": "2026-11-25",
             "competition": "Champions League",
@@ -447,11 +442,6 @@
           "days_after": 3
         },
         "between": [
-          {
-            "date": "2026-11-22",
-            "competition": "Premier League",
-            "opponent": "Man Utd"
-          },
           {
             "date": "2026-11-25",
             "competition": "Champions League",

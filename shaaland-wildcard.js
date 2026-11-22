@@ -180,7 +180,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "pos": "MID",
-        "ep_next": 4.51,
+        "ep_next": 4.46,
         "status": "ok"
       },
       {

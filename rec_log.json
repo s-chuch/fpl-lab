@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "dada0e643194",
+  "code_sha": "699eb72c95e5",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-22T19:08:49+00:00",
-  "saved_at_et": "2026-11-22 2:08 PM ET",
+  "saved_at": "2026-11-22T19:47:59+00:00",
+  "saved_at_et": "2026-11-22 2:47 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -567,7 +567,7 @@
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.51
+    "xp": 4.46
    },
    {
     "club": "EVE",
@@ -649,7 +649,7 @@
    411,
    166
   ],
-  "xp": 56.3
+  "xp": 56.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
