@@ -1,10 +1,63 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 12:12 UTC",
+  "generated_at": "2026-11-23 12:51 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
+    {
+      "text": "Calvert-Lewin (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Calvert-Lewin",
+      "club": "LEE",
+      "tags": [],
+      "id": 346,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "Once a template pick, Calvert-Lewin now almost feels like a differential.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "By missing three bigs, Calvert-Lewin failed to secure any bonus points; a tiny victory for the 705,000 FPL managers who benched him.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Once a template pick, Calvert-Lewin now almost feels like a differential.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "The Swiss international quickly equalised when defensive hesitation allowed Dominic Calvert-Lewin (\u00a36.0m) to find him out wide.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "tone": "mixed"
+    },
     {
       "text": "Haaland (MCI) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
@@ -20,6 +73,144 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
+    },
+    {
+      "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Jo\u00e3o Pedro",
+      "club": "CHE",
+      "tags": [
+        "injury/doubt"
+      ],
+      "id": 165,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "Managers are also awaiting another update on Chelsea\u2019s Joao Pedro , who has missed the last four league games through injury.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "source": "Scout",
+          "text": "It\u2019s coincided with Joao Pedro (\u00a37.6m) injury, worsened here by Moises Caicedo \u2018s (\u00a35.3m) removal after a 22nd-minute collision had him in pain.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "It\u2019s coincided with Joao Pedro (\u00a37.6m) injury, worsened here by Moises Caicedo \u2018s (\u00a35.3m) removal after a 22nd-minute collision had him in pain.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "tone": "bad"
+    },
+    {
+      "text": "Muharemovi\u0107 (LEE) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [
+        "differential"
+      ],
+      "id": 334,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Centre-back Muharemovic is predicted to score 5.0 points in this one, having secured the two point defensive contribution bonus in seven of his 11 starts in this campaign.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "As for centre-back Tarik Muharemovic (\u00a35.1m), he experienced a rare day without success, only reaching six actions.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Palmer (CHE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [],
+      "id": 154,
+      "verdict": "Leaning sell / avoid",
+      "stance": {
+        "sell": 1,
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "Above: All players with at least 15 non-penalty shots, between Gameweeks 3 and 11 Basically, Palmer is not worth his price tag, and these numbers wouldn\u2019t justify selection even if he cost \u00a36.0m.",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        },
+        {
+          "source": "Scout",
+          "text": "So, is there a chance that Palmer will get benched on Friday night against Nottingham Forest?",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Above: All players with at least 15 non-penalty shots, between Gameweeks 3 and 11 Basically, Palmer is not worth his price tag, and these numbers wouldn\u2019t justify selection even if he cost \u00a36.0m.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Palmer has produced 14 shots and 10 key passes in this period though and has been somewhat unlucky not to deliver more.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        }
+      ],
+      "tone": "bad"
     },
     {
       "text": "Rudoni (COV) \u2014 Leaning buy (1 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -106,7 +297,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Wirtz (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Wirtz (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -117,11 +308,20 @@ window.FPL_NEWS = {
         "differential"
       ],
       "id": 366,
-      "verdict": "Mentioned, no clear view",
+      "verdict": "Fitness or rotation doubts",
       "stance": {
-        "risk": 1
+        "risk": 2
       },
       "quotes": [
+        {
+          "source": "Scout",
+          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morg...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+        },
         {
           "source": "Scout",
           "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
@@ -136,10 +336,10 @@ window.FPL_NEWS = {
         {
           "topic": "fitness",
           "tone": "neutral",
-          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
+          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
           "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
-          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
         },
         {
           "topic": "form",
@@ -178,23 +378,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "UCL Fantasy: Matchday 5 best captains",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-captains"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 5 best differentials",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-differentials-2"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 5 projected team goals",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-projected-team-goals"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Matchday 5 clean sheet odds",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-clean-sheet-odds"
+      "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus"
     }
   ],
   "no_new": false,
