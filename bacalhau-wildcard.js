@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.65,
+        "ep_next": 3.72,
         "status": "ok"
       },
       {
@@ -191,7 +191,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.62,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {
