@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "513dfa44e102",
+  "code_sha": "809f38e92b13",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-23T14:10:49+00:00",
-  "saved_at_et": "2026-11-23 9:10 AM ET",
+  "saved_at": "2026-11-23T14:50:18+00:00",
+  "saved_at_et": "2026-11-23 9:50 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -595,7 +595,7 @@
     "id": 1,
     "name": "Raya",
     "pos": "GKP",
-    "xp": 3.08
+    "xp": 2.06
    },
    {
     "club": "NEW",

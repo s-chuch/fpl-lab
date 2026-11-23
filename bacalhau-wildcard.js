@@ -123,7 +123,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tzolakis",
         "bench_ep": 4.76,
         "starter": "Raya",
-        "starter_ep": 3.08
+        "starter_ep": 2.06
       }
     ],
     "bench_order": [
@@ -136,8 +136,8 @@ window.FPL_WILDCARD_WATCH = {
     "availability_flags": [
       {
         "name": "Raya",
-        "label": "DOUBT 75%",
-        "chance": 75
+        "label": "DOUBT 50%",
+        "chance": 50
       },
       {
         "name": "João Pedro",
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.08,
+        "ep_next": 2.06,
         "status": "doubt"
       },
       {
