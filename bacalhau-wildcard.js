@@ -196,7 +196,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.74,
+        "ep_next": 3.82,
         "status": "ok"
       },
       {
@@ -234,7 +234,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.93,
+        "ep_next": 3.04,
         "status": "ok"
       },
       {
