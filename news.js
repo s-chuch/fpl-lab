@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 12:51 UTC",
+  "generated_at": "2026-11-23 13:30 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -27,17 +27,17 @@ window.FPL_NEWS = {
             "buy"
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "facts": [
         {
           "topic": "role",
           "tone": "bad",
-          "text": "By missing three bigs, Calvert-Lewin failed to secure any bonus points; a tiny victory for the 705,000 FPL managers who benched him.",
+          "text": "By missing three of those big chances, Calvert-Lewin failed to secure any bonus points; no real consolation for the 705,000 FPL managers who benched him.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "topic": "price",
@@ -45,7 +45,7 @@ window.FPL_NEWS = {
           "text": "Once a template pick, Calvert-Lewin now almost feels like a differential.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "topic": "price",
@@ -53,7 +53,7 @@ window.FPL_NEWS = {
           "text": "The Swiss international quickly equalised when defensive hesitation allowed Dominic Calvert-Lewin (\u00a36.0m) to find him out wide.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "tone": "mixed"
@@ -107,7 +107,7 @@ window.FPL_NEWS = {
             "risk"
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "facts": [
@@ -117,7 +117,7 @@ window.FPL_NEWS = {
           "text": "It\u2019s coincided with Joao Pedro (\u00a37.6m) injury, worsened here by Moises Caicedo \u2018s (\u00a35.3m) removal after a 22nd-minute collision had him in pain.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "tone": "bad"
@@ -152,7 +152,7 @@ window.FPL_NEWS = {
           "text": "As for centre-back Tarik Muharemovic (\u00a35.1m), he experienced a rare day without success, only reaching six actions.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "tone": "good"
@@ -180,7 +180,7 @@ window.FPL_NEWS = {
             "sell"
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "source": "Scout",
@@ -189,7 +189,7 @@ window.FPL_NEWS = {
             "risk"
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
       "facts": [
@@ -199,7 +199,15 @@ window.FPL_NEWS = {
           "text": "Above: All players with at least 15 non-penalty shots, between Gameweeks 3 and 11 Basically, Palmer is not worth his price tag, and these numbers wouldn\u2019t justify selection even if he cost \u00a36.0m.",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+        },
+        {
+          "topic": "form",
+          "tone": "bad",
+          "text": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "topic": "form",
@@ -320,7 +328,7 @@ window.FPL_NEWS = {
             "risk"
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "source": "Scout",
@@ -339,7 +347,7 @@ window.FPL_NEWS = {
           "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus"
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         },
         {
           "topic": "form",
@@ -375,14 +383,8 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [
-    {
-      "source": "Scout",
-      "title": "FPL notes: Chelsea collapse, Palmer anonymous + no DCL bonus",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus"
-    }
-  ],
-  "no_new": false,
+  "new_articles": [],
+  "no_new": true,
   "sites_checked": 5,
   "sites_with_articles": 2
 };
