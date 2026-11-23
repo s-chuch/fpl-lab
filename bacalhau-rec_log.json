@@ -511,13 +511,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "da907d436975",
+  "code_sha": "628ca080463a",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-23T22:43:40+00:00",
-  "saved_at_et": "2026-11-23 5:43 PM ET",
+  "saved_at": "2026-11-23T23:23:11+00:00",
+  "saved_at_et": "2026-11-23 6:23 PM ET",
   "source": "plan",
   "squad": [
    {

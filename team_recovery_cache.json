@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-23T22:42:41.752980+00:00",
+    "fetched_at": "2026-11-23T23:22:07.638462+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -120,13 +120,7 @@
           "opponent": "Aston Villa",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-23",
-            "competition": "Premier League",
-            "opponent": "Brentford"
-          }
-        ]
+        "between": []
       },
       "CRY": {
         "rest_days": 3,
@@ -264,13 +258,7 @@
           "opponent": "Arsenal",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-11-23",
-            "competition": "Premier League",
-            "opponent": "Everton"
-          }
-        ]
+        "between": []
       },
       "TOT": {
         "rest_days": 8,
