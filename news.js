@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 22:03 UTC",
+  "generated_at": "2026-11-23 22:42 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -434,8 +434,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "FPL Gameweek 12 early Scout Picks: Leeds triple-up, no Haaland",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-gameweek-12-early-scout-picks-leeds-triple-up-no-haaland"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 2
 };

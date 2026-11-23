@@ -503,21 +503,21 @@
   "backfilled": false,
   "bench": [
    1,
+   236,
    286,
-   94,
-   229
+   94
   ],
   "captain": 60,
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "84d5823779a7",
+  "code_sha": "da907d436975",
   "ft": 1,
   "gw": 12,
-  "hit_cost": 0,
-  "hits": 0,
-  "saved_at": "2026-11-23T22:04:34+00:00",
-  "saved_at_et": "2026-11-23 5:04 PM ET",
+  "hit_cost": 4,
+  "hits": 1,
+  "saved_at": "2026-11-23T22:43:40+00:00",
+  "saved_at_et": "2026-11-23 5:43 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -540,6 +540,13 @@
     "name": "Van Hecke",
     "pos": "DEF",
     "xp": 5.62
+   },
+   {
+    "club": "ARS",
+    "id": 4,
+    "name": "Gabriel",
+    "pos": "DEF",
+    "xp": 5.0
    },
    {
     "club": "BHA",
@@ -571,17 +578,10 @@
    },
    {
     "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
-    "xp": 3.82
-   },
-   {
-    "club": "EVE",
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 5.5
+    "xp": 5.4
    },
    {
     "club": "BOU",
@@ -605,6 +605,13 @@
     "xp": 2.06
    },
    {
+    "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 3.68
+   },
+   {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
@@ -616,14 +623,7 @@
     "id": 94,
     "name": "Schade",
     "pos": "MID",
-    "xp": 3.04
-   },
-   {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 0.0
+    "xp": 2.27
    }
   ],
   "status": "pending",
@@ -633,6 +633,12 @@
     "in_id": 249,
     "out": "João Pedro",
     "out_id": 165
+   },
+   {
+    "in": "Gabriel",
+    "in_id": 4,
+    "out": "Tarkowski",
+    "out_id": 229
    }
   ],
   "vice": 112,
@@ -641,16 +647,16 @@
    572,
    60,
    112,
+   4,
    115,
    504,
    68,
    124,
-   236,
    249,
    79,
    411
   ],
-  "xp": 60.1
+  "xp": 57.1
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
