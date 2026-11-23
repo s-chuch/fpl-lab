@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ca41bb2f64b5",
+  "code_sha": "e7bdab829e60",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-23T20:44:37+00:00",
-  "saved_at_et": "2026-11-23 3:44 PM ET",
+  "saved_at": "2026-11-23T21:24:11+00:00",
+  "saved_at_et": "2026-11-23 4:24 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -622,16 +622,16 @@
   "status": "pending",
   "transfers": [
    {
-    "in": "Barry",
-    "in_id": 249,
-    "out": "Kostoulas",
-    "out_id": 138
-   },
-   {
     "in": "Hill",
     "in_id": 60,
     "out": "Tarkowski",
     "out_id": 229
+   },
+   {
+    "in": "Barry",
+    "in_id": 249,
+    "out": "Kostoulas",
+    "out_id": 138
    }
   ],
   "vice": 68,

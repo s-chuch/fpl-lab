@@ -503,21 +503,21 @@
   "backfilled": false,
   "bench": [
    1,
-   229,
    286,
-   94
+   94,
+   229
   ],
   "captain": 60,
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ca41bb2f64b5",
+  "code_sha": "e7bdab829e60",
   "ft": 1,
   "gw": 12,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-23T20:45:05+00:00",
-  "saved_at_et": "2026-11-23 3:45 PM ET",
+  "saved_at": "2026-11-23T21:24:38+00:00",
+  "saved_at_et": "2026-11-23 4:24 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -574,7 +574,7 @@
     "id": 236,
     "name": "Dewsbury-Hall",
     "pos": "MID",
-    "xp": 3.72
+    "xp": 3.74
    },
    {
     "club": "EVE",
@@ -605,13 +605,6 @@
     "xp": 2.06
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.62
-   },
-   {
     "club": "HUL",
     "id": 286,
     "name": "Belloumi",
@@ -624,6 +617,13 @@
     "name": "Schade",
     "pos": "MID",
     "xp": 2.93
+   },
+   {
+    "club": "EVE",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
+    "xp": 0.0
    }
   ],
   "status": "pending",

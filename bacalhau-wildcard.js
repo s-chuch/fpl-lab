@@ -140,6 +140,11 @@ window.FPL_WILDCARD_WATCH = {
         "chance": 50
       },
       {
+        "name": "Tarkowski",
+        "label": "SUS",
+        "chance": 0
+      },
+      {
         "name": "João Pedro",
         "label": "INJ",
         "chance": 0
@@ -173,8 +178,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.62,
-        "status": "ok"
+        "ep_next": 0.0,
+        "status": "out"
       },
       {
         "name": "Hill",
@@ -191,7 +196,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.72,
+        "ep_next": 3.74,
         "status": "ok"
       },
       {

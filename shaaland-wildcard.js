@@ -128,9 +128,9 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "bench_order": [
       "Tzolakis",
-      "Tarkowski",
       "Barnes",
-      "Kostoulas"
+      "Kostoulas",
+      "Tarkowski"
     ],
     "bench_order_changed": true,
     "availability_flags": [
@@ -138,6 +138,11 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Raya",
         "label": "DOUBT 50%",
         "chance": 50
+      },
+      {
+        "name": "Tarkowski",
+        "label": "SUS",
+        "chance": 0
       }
     ],
     "xi_ep": [
@@ -218,8 +223,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.62,
-        "status": "ok"
+        "ep_next": 0.0,
+        "status": "out"
       },
       {
         "name": "Kostoulas",
