@@ -503,7 +503,7 @@
   "backfilled": false,
   "bench": [
    1,
-   236,
+   229,
    286,
    94
   ],
@@ -511,13 +511,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "01644ed1334a",
+  "code_sha": "ca41bb2f64b5",
   "ft": 1,
   "gw": 12,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-23T20:05:17+00:00",
-  "saved_at_et": "2026-11-23 3:05 PM ET",
+  "saved_at": "2026-11-23T20:45:05+00:00",
+  "saved_at_et": "2026-11-23 3:45 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -556,13 +556,6 @@
     "xp": 4.86
    },
    {
-    "club": "EVE",
-    "id": 229,
-    "name": "Tarkowski",
-    "pos": "DEF",
-    "xp": 3.65
-   },
-   {
     "club": "BOU",
     "id": 68,
     "name": "Tavernier",
@@ -578,10 +571,17 @@
    },
    {
     "club": "EVE",
+    "id": 236,
+    "name": "Dewsbury-Hall",
+    "pos": "MID",
+    "xp": 3.72
+   },
+   {
+    "club": "EVE",
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 5.3
+    "xp": 5.4
    },
    {
     "club": "BOU",
@@ -606,9 +606,9 @@
    },
    {
     "club": "EVE",
-    "id": 236,
-    "name": "Dewsbury-Hall",
-    "pos": "MID",
+    "id": 229,
+    "name": "Tarkowski",
+    "pos": "DEF",
     "xp": 3.62
    },
    {
@@ -643,14 +643,14 @@
    112,
    115,
    504,
-   229,
    68,
    124,
+   236,
    249,
    79,
    411
   ],
-  "xp": 59.7
+  "xp": 59.9
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",

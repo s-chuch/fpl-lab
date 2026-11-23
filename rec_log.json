@@ -504,13 +504,13 @@
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "01644ed1334a",
+  "code_sha": "ca41bb2f64b5",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-23T20:04:46+00:00",
-  "saved_at_et": "2026-11-23 3:04 PM ET",
+  "saved_at": "2026-11-23T20:44:37+00:00",
+  "saved_at_et": "2026-11-23 3:44 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -574,7 +574,7 @@
     "id": 249,
     "name": "Barry",
     "pos": "FWD",
-    "xp": 5.3
+    "xp": 5.4
    },
    {
     "club": "MCI",
@@ -649,7 +649,7 @@
    411,
    166
   ],
-  "xp": 56.1
+  "xp": 56.2
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
