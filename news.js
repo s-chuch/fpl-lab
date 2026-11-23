@@ -1,47 +1,10 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 11:32 UTC",
+  "generated_at": "2026-11-23 12:12 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
-    {
-      "text": "B.Fernandes (MUN) \u2014 Leaning buy (1 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "B.Fernandes",
-      "club": "MUN",
-      "tags": [],
-      "id": 426,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "With Manchester City travelling to Arsenal, Erling Haaland slips down the rankings, which is led by Bruno Fernandes - but two defenders with high points ceilings offer a differential alternative.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "With Manchester City travelling to Arsenal, Erling Haaland slips down the rankings, which is led by Bruno Fernandes - but two defenders with high points ceilings offer a differential alternative.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        }
-      ],
-      "tone": "good"
-    },
     {
       "text": "Haaland (MCI) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
@@ -59,7 +22,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Rudoni (COV) \u2014 Leaning buy (2 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Rudoni (COV) \u2014 Leaning buy (1 buy mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
@@ -72,7 +35,7 @@ window.FPL_NEWS = {
       "id": 183,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 2
+        "buy": 1
       },
       "quotes": [
         {
@@ -83,15 +46,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-4-9m-rudoni-in-form-a-first-look-at-franks-palace",
           "title": "FPL notes: \u00a34.9m Rudoni in form + a first look at Frank\u2019s Palace"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: \u00a34.9m Rudoni in form + a first look at Frank\u2019s Palace",
-          "stance": [
-            "buy"
-          ],
-          "url": "",
-          "title": ""
         }
       ],
       "facts": [
@@ -186,9 +140,17 @@ window.FPL_NEWS = {
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
           "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "One player worth considering is Florian Wirtz (\u20ac8.5m), who has arguably been Liverpool\u2019s most in-form attacker.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-captains",
+          "title": "UCL Fantasy: Matchday 5 best captains"
         }
       ],
-      "tone": "neutral"
+      "tone": "good"
     }
   ],
   "links": [
@@ -216,8 +178,23 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: \u00a34.9m Rudoni in form + a first look at Frank\u2019s Palace",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-4-9m-rudoni-in-form-a-first-look-at-franks-palace"
+      "title": "UCL Fantasy: Matchday 5 best captains",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-captains"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 5 best differentials",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-differentials-2"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 5 projected team goals",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-projected-team-goals"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 5 clean sheet odds",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-clean-sheet-odds"
     }
   ],
   "no_new": false,
