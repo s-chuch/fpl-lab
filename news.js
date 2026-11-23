@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 18:45 UTC",
+  "generated_at": "2026-11-23 19:25 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -351,14 +351,6 @@ window.FPL_NEWS = {
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-4-9m-rudoni-in-form-a-first-look-at-franks-palace",
           "title": "FPL notes: \u00a34.9m Rudoni in form + a first look at Frank\u2019s Palace"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "And while the home side were under pressure for large periods, they did always look to quickly burst forward when they won possession, with half-time substitute Sorba Thomas (\u00a35.5m) \u2013 who hit the bar \u2013 particularly lively after the break.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/22/fpl-notes-mcburnie-brace-why-kostoulas-was-benched",
-          "title": "FPL notes: McBurnie brace + why Kostoulas was benched"
         }
       ],
       "tone": "good"
@@ -442,8 +434,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Brentford v Everton team news: Schade, Grealish + Sangare subs",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/brentford-v-everton-team-news-schade-grealish-sangare-subs"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 2
 };
