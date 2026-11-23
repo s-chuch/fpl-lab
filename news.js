@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 14:49 UTC",
+  "generated_at": "2026-11-23 15:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -59,20 +59,29 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "Haaland (MCI) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
         "Scout"
       ],
-      "player": "Haaland",
-      "club": "MCI",
+      "player": "Gibbs-White",
+      "club": "NFO",
       "tags": [],
-      "id": 411,
+      "id": 480,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
-      "tone": "neutral"
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Forest stunned Manchester City at the City Ground with a 3-1 win before the international break, with Gibbs-White picking up an assist for his fourth goal involvement of the campaign.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        }
+      ],
+      "tone": "good"
     },
     {
       "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -383,8 +392,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Keep or sell? What to do with the injured Raya in FPL",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/what-to-do-with-injured-raya-in-fpl"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 2
 };
