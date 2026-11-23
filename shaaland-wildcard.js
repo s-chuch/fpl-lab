@@ -109,7 +109,7 @@ window.FPL_WILDCARD_WATCH = {
   "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
     "captain": "Van Hecke",
-    "captain_ep": 5.56,
+    "captain_ep": 5.62,
     "vice": "Silva",
     "vice_ep": 5.38,
     "bench_swaps": [
@@ -168,13 +168,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.56,
+        "ep_next": 5.62,
         "status": "ok"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.49,
+        "ep_next": 3.7,
         "status": "ok"
       },
       {

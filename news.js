@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-23 16:08 UTC",
+  "generated_at": "2026-11-23 16:47 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -59,6 +59,36 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
+      "text": "Cherki (MCI) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Cherki",
+      "club": "MCI",
+      "tags": [
+        "fade/sell"
+      ],
+      "id": 399,
+      "verdict": "Mentioned, no clear view",
+      "stance": {
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "\ud83d\udea8 FPL Gameweek 12 deadline: Friday, November 27, 18:30 UK time \ud83e\udd15 David Raya picked up a shoulder injury against Newcastle on Saturday, with Mikel Arteta expected to update the media on Monday \ud83e\udd26\u200d\u2642\ufe0f Rayan Cherki and Josko Gvardiol w...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        }
+      ],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
       "sources": [
         "Hub",
@@ -82,6 +112,24 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Haaland (MCI) \u2014 Mentioned, no clear view \u00b7 2/2 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Haaland",
+      "club": "MCI",
+      "tags": [
+        "fade/sell"
+      ],
+      "id": 411,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     },
     {
       "text": "Jo\u00e3o Pedro (CHE) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/2 sites with fresh articles (5 checked)",
@@ -174,7 +222,9 @@ window.FPL_NEWS = {
       ],
       "player": "Palmer",
       "club": "CHE",
-      "tags": [],
+      "tags": [
+        "fade/sell"
+      ],
       "id": 154,
       "verdict": "Leaning sell / avoid",
       "stance": {
@@ -392,8 +442,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "Wirtz, Cherki, Haaland, Palmer: Buy, keep or sell in Gameweek 12?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/wirtz-cherki-haaland-palmer-buy-keep-or-sell-in-gameweek-12"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 2
 };

@@ -496,21 +496,21 @@
   "backfilled": false,
   "bench": [
    1,
-   453,
    154,
+   453,
    53
   ],
   "captain": 60,
   "captain_name": "Hill",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "e09cd3cf9665",
+  "code_sha": "d9e89dbbd2db",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-23T16:09:00+00:00",
-  "saved_at_et": "2026-11-23 11:09 AM ET",
+  "saved_at": "2026-11-23T16:48:13+00:00",
+  "saved_at_et": "2026-11-23 11:48 AM ET",
   "source": "plan",
   "squad": [
    {
@@ -532,7 +532,7 @@
     "id": 112,
     "name": "Van Hecke",
     "pos": "DEF",
-    "xp": 5.56
+    "xp": 5.62
    },
    {
     "club": "BOU",
@@ -598,18 +598,18 @@
     "xp": 2.06
    },
    {
+    "club": "CHE",
+    "id": 154,
+    "name": "Palmer",
+    "pos": "MID",
+    "xp": 3.7
+   },
+   {
     "club": "NEW",
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
     "xp": 3.61
-   },
-   {
-    "club": "CHE",
-    "id": 154,
-    "name": "Palmer",
-    "pos": "MID",
-    "xp": 3.49
    },
    {
     "club": "AVL",
