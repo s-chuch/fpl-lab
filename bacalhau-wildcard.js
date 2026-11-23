@@ -123,7 +123,7 @@ window.FPL_WILDCARD_WATCH = {
         "bench": "Tzolakis",
         "bench_ep": 4.76,
         "starter": "Raya",
-        "starter_ep": 3.2
+        "starter_ep": 3.08
       }
     ],
     "bench_order": [
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 3.2,
+        "ep_next": 3.08,
         "status": "doubt"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tarkowski",
         "pos": "DEF",
-        "ep_next": 3.61,
+        "ep_next": 3.65,
         "status": "ok"
       },
       {
@@ -191,7 +191,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.54,
+        "ep_next": 3.62,
         "status": "ok"
       },
       {
