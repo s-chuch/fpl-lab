@@ -271,10 +271,10 @@ window.FPL_WILDCARD_WATCH = {
         "Tavernier": 6.7,
         "Manzambi": 6.2,
         "Haaland": 15.8,
-        "N.Jackson": 7.2,
+        "N.Jackson": 7.3,
         "Tzolakis": 4.7,
         "Tarkowski": 6.2,
-        "Kostoulas": 5.8,
+        "Kostoulas": 5.7,
         "Barnes": 6.0
       }
     },
@@ -316,15 +316,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Kostoulas",
-        "baseline_cost": 5.6,
-        "current_cost": 5.8,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Raya",
         "baseline_cost": 6.1,
         "current_cost": 6.3,
@@ -337,6 +328,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 5.9,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Kostoulas",
+        "baseline_cost": 5.6,
+        "current_cost": 5.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -426,10 +426,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "N.Jackson",
         "baseline_cost": null,
-        "current_cost": 7.2,
+        "current_cost": 7.3,
         "delta": null,
         "entry_cost": 6.9,
-        "delta_since_added": 0.3,
+        "delta_since_added": 0.4,
         "status": "added"
       },
       {
@@ -488,22 +488,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-10",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 5.9,
-        "to": 6.0,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-11",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 5.0,
-        "to": 5.1,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-11",
         "event": "price_change",
@@ -782,6 +766,22 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Van Hecke",
         "from": 5.1,
         "to": 5.2,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-22",
+        "event": "price_change",
+        "player": "Kostoulas",
+        "from": 5.8,
+        "to": 5.7,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-22",
+        "event": "price_change",
+        "player": "N.Jackson",
+        "from": 7.2,
+        "to": 7.3,
         "delta": 0.1
       }
     ]
