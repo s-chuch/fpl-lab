@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 00:41 UTC",
+  "generated_at": "2026-11-24 01:20 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [],
   "split": [
@@ -94,6 +94,22 @@ window.FPL_NEWS = {
       "club": "LEE",
       "tags": [],
       "id": 330,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Scout"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -289,22 +305,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "bad"
-    },
-    {
-      "text": "McBurnie (HUL) \u2014 Mentioned, no clear view \u00b7 2/3 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Scout"
-      ],
-      "player": "McBurnie",
-      "club": "HUL",
-      "tags": [],
-      "id": 295,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
     }
   ],
   "links": [
