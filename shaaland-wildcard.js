@@ -264,7 +264,7 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-23",
-      "total_cost": 102.7,
+      "total_cost": 102.8,
       "prices": {
         "Raya": 6.3,
         "De Cuyper": 5.5,
@@ -273,7 +273,7 @@ window.FPL_WILDCARD_WATCH = {
         "Van Hecke": 5.2,
         "Palmer": 9.8,
         "Groß": 6.3,
-        "Tavernier": 6.7,
+        "Tavernier": 6.8,
         "Manzambi": 6.2,
         "Haaland": 15.8,
         "N.Jackson": 7.3,
@@ -291,7 +291,7 @@ window.FPL_WILDCARD_WATCH = {
       "Silva": 5.1,
       "Van Hecke": 5.1
     },
-    "total_delta": 3.9,
+    "total_delta": 4.0,
     "players": [
       {
         "name": "De Cuyper",
@@ -467,10 +467,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Tavernier",
         "baseline_cost": null,
-        "current_cost": 6.7,
+        "current_cost": 6.8,
         "delta": null,
         "entry_cost": 6.5,
-        "delta_since_added": 0.2,
+        "delta_since_added": 0.3,
         "status": "added"
       },
       {
@@ -493,14 +493,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-11",
-        "event": "price_change",
-        "player": "João Pedro",
-        "from": 7.7,
-        "to": 7.8,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-12",
         "event": "price_change",
@@ -787,6 +779,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "N.Jackson",
         "from": 7.2,
         "to": 7.3,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-23",
+        "event": "price_change",
+        "player": "Tavernier",
+        "from": 6.7,
+        "to": 6.8,
         "delta": 0.1
       }
     ]
