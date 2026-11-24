@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-24T11:50:34.175426+00:00",
+    "fetched_at": "2026-11-24T12:29:47.477992+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -59,7 +59,7 @@
           "date": "2026-11-22",
           "competition": "Premier League",
           "opponent": "Brighton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
@@ -107,7 +107,7 @@
           "date": "2026-11-23",
           "competition": "Premier League",
           "opponent": "Brentford",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
@@ -245,7 +245,7 @@
           "date": "2026-11-23",
           "competition": "Premier League",
           "opponent": "Everton",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-28",

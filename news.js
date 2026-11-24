@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 11:50 UTC",
+  "generated_at": "2026-11-24 12:29 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -87,7 +87,7 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Barcola (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Barcola (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Hub",
@@ -97,9 +97,9 @@ window.FPL_NEWS = {
       "club": "LIV",
       "tags": [],
       "id": 627,
-      "verdict": "Fitness or rotation doubts",
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "risk": 2
+        "risk": 1
       },
       "quotes": [
         {
@@ -110,15 +110,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
           "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
-          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
         }
       ],
       "facts": [
@@ -654,7 +645,23 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Gakpo (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Fofana (CHE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Hub",
+        "Scout"
+      ],
+      "player": "Fofana",
+      "club": "CHE",
+      "tags": [],
+      "id": 145,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Gakpo (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
         "Scout"
@@ -665,9 +672,9 @@ window.FPL_NEWS = {
         "injury/doubt"
       ],
       "id": 367,
-      "verdict": "Fitness or rotation doubts",
+      "verdict": "Mentioned, no clear view",
       "stance": {
-        "risk": 2
+        "risk": 1
       },
       "quotes": [
         {
@@ -678,15 +685,6 @@ window.FPL_NEWS = {
           ],
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
           "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
-          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
         }
       ],
       "facts": [
@@ -800,22 +798,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
-    },
-    {
-      "text": "Janelt (BRE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub"
-      ],
-      "player": "Janelt",
-      "club": "BRE",
-      "tags": [],
-      "id": 98,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
     }
   ],
   "links": [
@@ -840,8 +822,19 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Expert team reveals for Matchday 5",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-expert-team-reveals-for-matchday-5"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Predicted Matchday 5 line-ups for all 36 teams",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-predicted-matchday-5-line-ups-for-all-36-teams"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
