@@ -12,6 +12,12 @@
    "name": "Henderson",
    "side": "over"
   },
+  "105": {
+   "back_gw": null,
+   "flag_gw": 11,
+   "name": "Anthony",
+   "side": "over"
+  },
   "109": {
    "back_gw": null,
    "flag_gw": 4,
@@ -180,6 +186,12 @@
    "name": "Muharemovi\u0107",
    "side": "over"
   },
+  "336": {
+   "back_gw": null,
+   "flag_gw": 11,
+   "name": "Okafor",
+   "side": "over"
+  },
   "350": {
    "back_gw": null,
    "flag_gw": 5,
@@ -204,6 +216,12 @@
    "name": "Mac Allister",
    "side": "under"
   },
+  "377": {
+   "back_gw": null,
+   "flag_gw": 11,
+   "name": "Munoz",
+   "side": "over"
+  },
   "385": {
    "back_gw": null,
    "flag_gw": 3,
@@ -214,6 +232,12 @@
    "back_gw": null,
    "flag_gw": 2,
    "name": "Cherki",
+   "side": "over"
+  },
+  "40": {
+   "back_gw": null,
+   "flag_gw": 11,
+   "name": "Rogers",
    "side": "over"
   },
   "411": {
@@ -318,6 +342,12 @@
    "name": "Araujo",
    "side": "over"
   },
+  "580": {
+   "back_gw": null,
+   "flag_gw": 11,
+   "name": "Charles",
+   "side": "under"
+  },
   "592": {
    "back_gw": null,
    "flag_gw": 7,
@@ -373,5 +403,5 @@
    "side": "over"
   }
  },
- "gw": 10
+ "gw": 11
 }

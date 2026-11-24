@@ -352,6 +352,174 @@
   "hits": 1,
   "saved_at": "2026-11-21T07:21:59+00:00",
   "saved_at_et": "2026-11-21 2:21 AM ET",
+  "score": {
+   "captain": {
+    "diff": 1,
+    "model": "Gabriel",
+    "model_mult": 2,
+    "model_pts": 1,
+    "you": "Haaland",
+    "you_mult": 2,
+    "you_pts": 2
+   },
+   "chip": {
+    "model": null,
+    "you": null
+   },
+   "diff": 9,
+   "lineup": {
+    "diff": 0,
+    "model_autosubs": [],
+    "model_bench_pts": 14,
+    "you_autosubs": [],
+    "you_bench_pts": 14
+   },
+   "model": 29,
+   "model_bench_lines": [
+    {
+     "name": "Tzolakis",
+     "played": true,
+     "pts": 10
+    },
+    {
+     "name": "Palmer",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "name": "Manzambi",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "name": "Davis",
+     "played": true,
+     "pts": 1
+    }
+   ],
+   "model_lines": [
+    {
+     "mult": 1,
+     "name": "Raya",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 2,
+     "name": "Gabriel",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "De Cuyper",
+     "played": true,
+     "pts": 1
+    },
+    {
+     "mult": 1,
+     "name": "Silva",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "Tarkowski",
+     "played": true,
+     "pts": -4
+    },
+    {
+     "mult": 1,
+     "name": "Tavernier",
+     "played": true,
+     "pts": 8
+    },
+    {
+     "mult": 1,
+     "name": "Groß",
+     "played": true,
+     "pts": 4
+    },
+    {
+     "mult": 1,
+     "name": "Barnes",
+     "played": true,
+     "pts": 7
+    },
+    {
+     "mult": 1,
+     "name": "Haaland",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "Barry",
+     "played": true,
+     "pts": 2
+    },
+    {
+     "mult": 1,
+     "name": "N.Jackson",
+     "played": true,
+     "pts": 2
+    }
+   ],
+   "transfers": {
+    "diff": 8,
+    "model": [
+     {
+      "in": "Gabriel",
+      "in_pts": 1,
+      "net": 0,
+      "out": "Calafiori",
+      "out_pts": 1
+     },
+     {
+      "in": "Barry",
+      "in_pts": 2,
+      "net": 1,
+      "out": "Kostoulas",
+      "out_pts": 1
+     }
+    ],
+    "model_hits": 4,
+    "model_net": -3,
+    "you": [
+     {
+      "in": "Van Hecke",
+      "in_pts": 6,
+      "net": 5,
+      "out": "Davis",
+      "out_pts": 1
+     }
+    ],
+    "you_hits": 0,
+    "you_net": 5
+   },
+   "verdict": "You +9",
+   "you": 38,
+   "you_bench": [
+    "Tzolakis",
+    "Tarkowski",
+    "Kostoulas",
+    "Barnes"
+   ],
+   "you_xi": [
+    "Raya",
+    "De Cuyper",
+    "Calafiori",
+    "Silva",
+    "Van Hecke",
+    "Palmer",
+    "Groß",
+    "Tavernier",
+    "Manzambi",
+    "Haaland",
+    "N.Jackson"
+   ]
+  },
+  "scored_at_et": "2026-11-24 2:25 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -460,7 +628,7 @@
     "xp": 2.37
    }
   ],
-  "status": "frozen",
+  "status": "scored",
   "transfers": [
    {
     "in": "Gabriel",
@@ -500,17 +668,17 @@
    453,
    53
   ],
-  "captain": 60,
-  "captain_name": "Hill",
+  "captain": 112,
+  "captain_name": "Van Hecke",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "05eaec9ea9f3",
+  "code_sha": "fef682e32852",
   "ft": 1,
   "gw": 12,
   "hit_cost": 4,
   "hits": 1,
-  "saved_at": "2026-11-24T13:49:07+00:00",
-  "saved_at_et": "2026-11-24 8:49 AM ET",
+  "saved_at": "2026-11-24T19:25:49+00:00",
+  "saved_at_et": "2026-11-24 2:25 PM ET",
   "source": "plan",
   "squad": [
    {
@@ -518,14 +686,7 @@
     "id": 572,
     "name": "Tzolakis",
     "pos": "GKP",
-    "xp": 4.76
-   },
-   {
-    "club": "BOU",
-    "id": 60,
-    "name": "Hill",
-    "pos": "DEF",
-    "xp": 5.7
+    "xp": 4.9
    },
    {
     "club": "TOT",
@@ -536,17 +697,24 @@
    },
    {
     "club": "BOU",
+    "id": 60,
+    "name": "Hill",
+    "pos": "DEF",
+    "xp": 5.6
+   },
+   {
+    "club": "BOU",
     "id": 566,
     "name": "Silva",
     "pos": "DEF",
-    "xp": 5.38
+    "xp": 5.29
    },
    {
     "club": "BHA",
     "id": 115,
     "name": "De Cuyper",
     "pos": "DEF",
-    "xp": 4.88
+    "xp": 5.09
    },
    {
     "club": "ARS",
@@ -560,14 +728,14 @@
     "id": 68,
     "name": "Tavernier",
     "pos": "MID",
-    "xp": 5.21
+    "xp": 4.99
    },
    {
     "club": "BHA",
     "id": 124,
     "name": "Groß",
     "pos": "MID",
-    "xp": 4.46
+    "xp": 4.68
    },
    {
     "club": "EVE",
@@ -609,7 +777,7 @@
     "id": 453,
     "name": "Barnes",
     "pos": "MID",
-    "xp": 3.61
+    "xp": 3.42
    },
    {
     "club": "AVL",
@@ -634,12 +802,12 @@
     "out_id": 138
    }
   ],
-  "vice": 68,
-  "vice_name": "Tavernier",
+  "vice": 566,
+  "vice_name": "Silva",
   "xi": [
    572,
-   60,
    112,
+   60,
    566,
    115,
    8,
@@ -649,7 +817,7 @@
    411,
    166
   ],
-  "xp": 56.2
+  "xp": 56.3
  },
  "gw4": {
   "backfill_note": "Rebuilt from data.js at c31d02d: that day's Plan lineup and armband, plus its suggested transfer if any. No xP or hit plan was stored then.",
