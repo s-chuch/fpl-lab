@@ -19,9 +19,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "DEF",
-      "name": "Vuskovic",
-      "club": "BHA",
-      "fixture": "NEW (H)"
+      "name": "Hill",
+      "club": "BOU",
+      "fixture": "FUL (A)"
     },
     {
       "pos": "DEF",
@@ -32,10 +32,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "DEF",
-      "name": "Van Hecke",
-      "club": "TOT",
-      "fixture": "SUN (A)",
-      "vice": true
+      "name": "Vuskovic",
+      "club": "BHA",
+      "fixture": "NEW (H)"
     },
     {
       "pos": "DEF",
@@ -45,7 +44,14 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "DEF",
-      "name": "Hill",
+      "name": "Van Hecke",
+      "club": "TOT",
+      "fixture": "SUN (A)",
+      "vice": true
+    },
+    {
+      "pos": "MID",
+      "name": "Tavernier",
       "club": "BOU",
       "fixture": "FUL (A)"
     },
@@ -62,22 +68,16 @@ window.FPL_WILDCARD_WATCH = {
       "fixture": "LIV (H)"
     },
     {
-      "pos": "MID",
-      "name": "Tavernier",
-      "club": "BOU",
-      "fixture": "FUL (A)"
-    },
-    {
-      "pos": "FWD",
-      "name": "João Pedro",
-      "club": "CHE",
-      "fixture": "NFO (A)"
-    },
-    {
       "pos": "FWD",
       "name": "Evanilson",
       "club": "BOU",
       "fixture": "FUL (A)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Haaland",
+      "club": "MCI",
+      "fixture": "ARS (A)"
     }
   ],
   "bench": [
@@ -89,9 +89,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     {
       "pos": "FWD",
-      "name": "Haaland",
-      "club": "MCI",
-      "fixture": "ARS (A)"
+      "name": "João Pedro",
+      "club": "CHE",
+      "fixture": "NFO (A)"
     },
     {
       "pos": "MID",
@@ -114,12 +114,6 @@ window.FPL_WILDCARD_WATCH = {
     "vice_ep": 5.62,
     "bench_swaps": [
       {
-        "bench": "Haaland",
-        "bench_ep": 4.55,
-        "starter": "João Pedro",
-        "starter_ep": 0.0
-      },
-      {
         "bench": "Tzolakis",
         "bench_ep": 4.76,
         "starter": "Raya",
@@ -128,9 +122,9 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "bench_order": [
       "Tzolakis",
-      "Haaland",
       "Belloumi",
-      "Schade"
+      "Schade",
+      "João Pedro"
     ],
     "bench_order_changed": true,
     "availability_flags": [
@@ -158,9 +152,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "doubt"
       },
       {
-        "name": "Vuskovic",
+        "name": "Hill",
         "pos": "DEF",
-        "ep_next": 4.86,
+        "ep_next": 5.71,
         "status": "ok"
       },
       {
@@ -170,9 +164,9 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Van Hecke",
+        "name": "Vuskovic",
         "pos": "DEF",
-        "ep_next": 5.62,
+        "ep_next": 4.86,
         "status": "ok"
       },
       {
@@ -182,9 +176,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "out"
       },
       {
-        "name": "Hill",
+        "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.71,
+        "ep_next": 5.62,
+        "status": "ok"
+      },
+      {
+        "name": "Tavernier",
+        "pos": "MID",
+        "ep_next": 5.21,
         "status": "ok"
       },
       {
@@ -200,21 +200,15 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Tavernier",
-        "pos": "MID",
-        "ep_next": 5.21,
-        "status": "ok"
-      },
-      {
-        "name": "João Pedro",
-        "pos": "FWD",
-        "ep_next": 0.0,
-        "status": "out"
-      },
-      {
         "name": "Evanilson",
         "pos": "FWD",
         "ep_next": 4.99,
+        "status": "ok"
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "ep_next": 4.55,
         "status": "ok"
       }
     ],
@@ -226,10 +220,10 @@ window.FPL_WILDCARD_WATCH = {
         "status": "ok"
       },
       {
-        "name": "Haaland",
+        "name": "João Pedro",
         "pos": "FWD",
-        "ep_next": 4.55,
-        "status": "ok"
+        "ep_next": 0.0,
+        "status": "out"
       },
       {
         "name": "Schade",
@@ -272,18 +266,18 @@ window.FPL_WILDCARD_WATCH = {
       "total_cost": 99.9,
       "prices": {
         "Raya": 6.3,
-        "Vuskovic": 5.3,
-        "De Cuyper": 5.5,
-        "Van Hecke": 5.2,
-        "Tarkowski": 6.2,
         "Hill": 5.6,
+        "De Cuyper": 5.5,
+        "Vuskovic": 5.3,
+        "Tarkowski": 6.2,
+        "Van Hecke": 5.2,
+        "Tavernier": 6.8,
         "Groß": 6.3,
         "Dewsbury-Hall": 6.7,
-        "Tavernier": 6.8,
-        "João Pedro": 7.6,
         "Evanilson": 6.6,
-        "Tzolakis": 4.7,
         "Haaland": 15.8,
+        "Tzolakis": 4.7,
+        "João Pedro": 7.6,
         "Schade": 6.1,
         "Belloumi": 5.2
       }

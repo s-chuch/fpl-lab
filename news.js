@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 10:31 UTC",
+  "generated_at": "2026-11-24 11:11 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -131,23 +131,6 @@ window.FPL_NEWS = {
           "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Boscagli",
-      "club": "BHA",
-      "tags": [],
-      "id": 114,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
       "tone": "neutral"
     },
     {
@@ -561,6 +544,23 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "Tavernier (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": [],
+      "id": 68,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     }
   ],
   "split": [
@@ -606,6 +606,22 @@ window.FPL_NEWS = {
       "club": "FUL",
       "tags": [],
       "id": 257,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -800,22 +816,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
-    },
-    {
-      "text": "Janelt (BRE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub"
-      ],
-      "player": "Janelt",
-      "club": "BRE",
-      "tags": [],
-      "id": 98,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
     }
   ],
   "links": [
@@ -842,9 +842,14 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best Raya Replacements in FPL for Gameweek 12",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-best-raya-replacements/"
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 5 Scout Picks",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-matchday-5-early-scout-picks"
+    },
+    {
+      "source": "Scout",
+      "title": "UCL Fantasy: Matchday 5 best Wildcard team",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-matchday-5-best-wildcard-team-2"
     }
   ],
   "no_new": false,
