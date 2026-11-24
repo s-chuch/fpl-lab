@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-24T19:25:17.909562+00:00",
+    "fetched_at": "2026-11-24T22:33:59.453882+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -327,13 +327,7 @@
           "opponent": "Everton",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-11-24",
-            "competition": "Champions League",
-            "opponent": "Galatasaray"
-          }
-        ]
+        "between": []
       },
       "MCI": {
         "rest_days": 5,
