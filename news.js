@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 10:02 UTC",
+  "generated_at": "2026-11-24 10:31 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -131,6 +131,23 @@ window.FPL_NEWS = {
           "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
         }
       ],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
       "tone": "neutral"
     },
     {
@@ -277,6 +294,35 @@ window.FPL_NEWS = {
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Jacquet (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Jacquet",
+      "club": "LIV",
+      "tags": [],
+      "id": 362,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
       "facts": [],
       "tone": "neutral"
     },
@@ -477,40 +523,6 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Rogers (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Scout"
-      ],
-      "player": "Rogers",
-      "club": "CHE",
-      "tags": [],
-      "id": 40,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "But as well, the physicality and the mentality are parts we can do better.\u201d \u2013 Xabi Alonso Five-shot Rogers looked bright on Saturday, though Cole Palmer (\u00a39.8m) was anonymous yet again.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
       "text": "Rudoni (COV) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -549,23 +561,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Tavernier (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Tavernier",
-      "club": "BOU",
-      "tags": [],
-      "id": 68,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
     }
   ],
   "split": [
@@ -586,6 +581,22 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Arrizabalaga (ARS) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Scout"
+      ],
+      "player": "Arrizabalaga",
+      "club": "ARS",
+      "tags": [],
+      "id": 2,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Bassey (FUL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -595,22 +606,6 @@ window.FPL_NEWS = {
       "club": "FUL",
       "tags": [],
       "id": 257,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub"
-      ],
-      "player": "Boscagli",
-      "club": "BHA",
-      "tags": [],
-      "id": 114,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -807,30 +802,18 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Jacquet (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Janelt (BRE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
-        "Fix",
-        "Scout"
+        "AAFPL",
+        "Hub"
       ],
-      "player": "Jacquet",
-      "club": "LIV",
+      "player": "Janelt",
+      "club": "BRE",
       "tags": [],
-      "id": 362,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
+      "id": 98,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
       "facts": [],
       "tone": "neutral"
     }
@@ -857,8 +840,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "Best Raya Replacements in FPL for Gameweek 12",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-best-raya-replacements/"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
