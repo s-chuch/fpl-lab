@@ -1,14 +1,15 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 09:52 UTC",
+  "generated_at": "2026-11-24 10:02 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
-      "text": "Bogle (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Bogle (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
+        "Hub",
         "Scout"
       ],
       "player": "Bogle",
@@ -31,6 +32,105 @@ window.FPL_NEWS = {
         }
       ],
       "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Silva",
+      "club": "BOU",
+      "tags": [],
+      "id": 566,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Ampadu (LEE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Ampadu",
+      "club": "LEE",
+      "tags": [],
+      "id": 338,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "DEFCON WATCH Ampadu, a former Blue, added a defensive contributions (DefCon) reward to his assist, meaning a total of seven points.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Then, some more Okafor, guiding a half-volley high into the net once Ethan Ampadu \u2018s (\u00a35.3m) cross deflected into his path.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Barcola (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Barcola",
+      "club": "LIV",
+      "tags": [],
+      "id": 627,
+      "verdict": "Fitness or rotation doubts",
+      "stance": {
+        "risk": 2
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morg...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+        },
+        {
+          "source": "Scout",
+          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
+          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
+          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+        }
+      ],
       "tone": "neutral"
     },
     {
@@ -238,6 +338,23 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
+      "text": "McBurnie (HUL) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ],
+      "player": "McBurnie",
+      "club": "HUL",
+      "tags": [],
+      "id": 295,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -434,16 +551,34 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Tavernier (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
-        "Scout"
+        "Hub"
       ],
-      "player": "Silva",
+      "player": "Tavernier",
       "club": "BOU",
       "tags": [],
-      "id": 566,
+      "id": 68,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    }
+  ],
+  "split": [
+    {
+      "text": "Andr\u00e9s (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Andr\u00e9s",
+      "club": "BHA",
+      "tags": [],
+      "id": 639,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -451,163 +586,58 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Wirtz (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Wirtz",
-      "club": "LIV",
-      "tags": [
-        "differential"
-      ],
-      "id": 366,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "risk": 2
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morg...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
-          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Liverpool Midfielders: Florian Wirtz vs Dominik Szoboszlai Wirtz and Szoboszlai both registered attacking returns against Manchester United.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Florian Wirtz sets a new record Florian Wirtz created five big chances against Manchester United, the most by any player in a single Premier League match since Opta began tracking the metric in 2015.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "One player worth considering is Florian Wirtz (\u20ac8.5m), who has arguably been Liverpool\u2019s most in-form attacker.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/ucl-fantasy-matchday-5-best-captains",
-          "title": "UCL Fantasy: Matchday 5 best captains"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Liverpool put 10-man Manchester United to the sword, with Florian Wirtz setting a new record for big chances created in a single match.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "good"
-    }
-  ],
-  "split": [
-    {
-      "text": "Ampadu (LEE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Bassey (FUL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
-        "Scout"
+        "Hub"
       ],
-      "player": "Ampadu",
-      "club": "LEE",
+      "player": "Bassey",
+      "club": "FUL",
       "tags": [],
-      "id": 338,
+      "id": 257,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Costinha (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Costinha",
+      "club": "BHA",
+      "tags": [],
+      "id": 119,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
       "facts": [
         {
-          "topic": "form",
-          "tone": "good",
-          "text": "DEFCON WATCH Ampadu, a former Blue, added a defensive contributions (DefCon) reward to his assist, meaning a total of seven points.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "topic": "price",
+          "topic": "fixture",
           "tone": "neutral",
-          "text": "Then, some more Okafor, guiding a half-volley high into the net once Ethan Ampadu \u2018s (\u00a35.3m) cross deflected into his path.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Barcola (LIV) \u2014 Fitness or rotation doubts (2 fitness/rotation mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Scout"
-      ],
-      "player": "Barcola",
-      "club": "LIV",
-      "tags": [],
-      "id": 627,
-      "verdict": "Fitness or rotation doubts",
-      "stance": {
-        "risk": 2
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morg...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
-        },
-        {
-          "source": "Scout",
-          "text": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban  Plus, United thrashed in nightmare start for Pochettino",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-gakpo-injury-wirtz-in-demand-barcola-nears-ban",
-          "title": "FPL notes: Gakpo injury, Wirtz in demand + Barcola nears ban"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "neutral",
-          "text": "READ MORE: FPL notes \u2013 More Cherries joy as Kroupi\u2019s wait for a start goes on READ MORE: FPL notes \u2013 Gakpo injury, Wirtz in demand + Barcola nears ban DCL + OKAFOR INSPIRE VICTORY Things began so promisingly for the Blues, as Morgan Rogers (\u00a38.3m) picked up a ...",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-notes-chelsea-collapse-palmer-anonymous-no-dcl-bonus",
-          "title": "FPL notes: Chelsea collapse, Palmer poor + why no DCL bonus?"
+          "text": "Yoro and Costinha face one-match bans, although Manchester United reportedly plan to appeal Yoro\u2019s dismissal for denying Alexander Isak a goalscoring opportunity.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
+          "title": "FPL suspensions: Yellow and red cards tracker"
         }
       ],
       "tone": "neutral"
@@ -752,6 +782,31 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
+      "text": "Isak (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "Isak",
+      "club": "LIV",
+      "tags": [],
+      "id": 379,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Yoro and Costinha face one-match bans, although Manchester United reportedly plan to appeal Yoro\u2019s dismissal for denying Alexander Isak a goalscoring opportunity.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
+          "title": "FPL suspensions: Yellow and red cards tracker"
+        }
+      ],
+      "tone": "neutral"
+    },
+    {
       "text": "Jacquet (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -776,63 +831,6 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
         }
       ],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Manzambi (AVL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Manzambi",
-      "club": "AVL",
-      "tags": [],
-      "id": 53,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Jack Rudoni, Tavernier and Noah Okafor are also attracting buyers, while Cole Palmer, Bryan Mbeumo, Kevin Schade, Johan Manzambi, Cody Gakpo and Morgan Gibbs-White are among the midfielders being sold.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "neutral"
-    },
-    {
-      "text": "Marmoush (TOT) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Marmoush",
-      "club": "TOT",
-      "tags": [],
-      "id": 401,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "McBurnie (HUL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Scout"
-      ],
-      "player": "McBurnie",
-      "club": "HUL",
-      "tags": [],
-      "id": 295,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
       "facts": [],
       "tone": "neutral"
     }
