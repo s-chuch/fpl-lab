@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 12:29 UTC",
+  "generated_at": "2026-11-24 13:09 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -645,22 +645,6 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Fofana (CHE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Hub",
-        "Scout"
-      ],
-      "player": "Fofana",
-      "club": "CHE",
-      "tags": [],
-      "id": 145,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "Gakpo (LIV) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -798,6 +782,22 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
+    },
+    {
+      "text": "Janelt (BRE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Janelt",
+      "club": "BRE",
+      "tags": [],
+      "id": 98,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
     }
   ],
   "links": [
@@ -824,14 +824,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Scout",
-      "title": "UCL Fantasy: Expert team reveals for Matchday 5",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-expert-team-reveals-for-matchday-5"
-    },
-    {
-      "source": "Scout",
-      "title": "UCL Fantasy: Predicted Matchday 5 line-ups for all 36 teams",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/ucl-fantasy-predicted-matchday-5-line-ups-for-all-36-teams"
+      "source": "Hub",
+      "title": "What to do with David Raya in FPL? | Fantasy Football Hub",
+      "url": "https://www.fantasyfootballhub.co.uk/articles/david-raya-fpl-options-26-27-article"
     }
   ],
   "no_new": false,
