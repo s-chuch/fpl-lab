@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 08:33 UTC",
+  "generated_at": "2026-11-24 09:13 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -861,9 +861,9 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/"
+      "source": "Scout",
+      "title": "Who is close to a ban or suspended in FPL Gameweek 12?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/who-is-close-to-a-ban-or-suspended-in-fpl-gameweek-12-2"
     }
   ],
   "no_new": false,
