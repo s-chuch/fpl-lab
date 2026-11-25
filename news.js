@@ -1,9 +1,78 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-25 18:31 UTC",
+  "generated_at": "2026-11-25 21:48 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
+    {
+      "text": "Cherki (MCI) \u2014 Leaning sell / avoid (2 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Cherki",
+      "club": "MCI",
+      "tags": [
+        "fade/sell",
+        "rotation risk"
+      ],
+      "id": 399,
+      "verdict": "Leaning sell / avoid",
+      "stance": {
+        "risk": 1,
+        "sell": 2
+      },
+      "quotes": [
+        {
+          "source": "Hub",
+          "text": "\ud83d\udea8 FPL Gameweek 12 deadline: Friday, November 27, 18:30 UK time \ud83e\udd15 David Raya picked up a shoulder injury against Newcastle on Saturday, with Mikel Arteta expected to update the media on Monday \ud83e\udd26\u200d\u2642\ufe0f Rayan Cherki and Josko Gvardiol w...",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "source": "AAFPL",
+          "text": "BASH verdict: Sell Cherki.",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Latest on Raya: Raya update via @Rodra10_97 FPL GW12 Transfer Tips: Players to SELL Rayan Cherki (\u00a37.8m) \u2013 MID, Man City \u2013 32.0% TSB A nine-point haul in GW10 might have given Cherki owners some hope, but the bigger picture isn\u2019t ...",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "At the other end of the market, Rayan Cherki is the most-sold player after another appearance off the bench.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Latest on Raya: Raya update via @Rodra10_97 FPL GW12 Transfer Tips: Players to SELL Rayan Cherki (\u00a37.8m) \u2013 MID, Man City \u2013 32.0% TSB A nine-point haul in GW10 might have given Cherki owners some hope, but the bigger picture isn\u2019t particularly encouraging.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        }
+      ],
+      "tone": "bad"
+    },
     {
       "text": "Haaland (MCI) \u2014 Leaning keep / hold (2 keep mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
@@ -14,7 +83,9 @@ window.FPL_NEWS = {
       ],
       "player": "Haaland",
       "club": "MCI",
-      "tags": [],
+      "tags": [
+        "rotation risk"
+      ],
       "id": 411,
       "verdict": "Leaning keep / hold",
       "stance": {
@@ -51,6 +122,51 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
+    },
+    {
+      "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "N.Jackson",
+      "club": "AVL",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 166,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "neutral",
+          "text": "Villa should create plenty and Jackson will no doubt be on the end of most of the opportunities.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27",
+          "title": "Best FPL players for Gameweek 12"
+        },
+        {
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "A blank against Sunderland has done little to put managers off Nicolas Jackson.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Alysson: The \u00a34.9m Villa Double-Up Only 0.6% Own Fixture: Ipswich Town (A) Predicted points: 4.5 Ownership: 0.6% Already own Nicolas Jackson?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        }
+      ],
+      "tone": "bad"
     },
     {
       "text": "Tarkowski (EVE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
@@ -190,6 +306,23 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
+      "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Branthwaite",
+      "club": "EVE",
+      "tags": [],
+      "id": 230,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Calvert-Lewin (LEE) \u2014 Leaning buy (3 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -268,73 +401,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Cherki (MCI) \u2014 Leaning sell / avoid (2 sell/avoid, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Cherki",
-      "club": "MCI",
-      "tags": [
-        "fade/sell"
-      ],
-      "id": 399,
-      "verdict": "Leaning sell / avoid",
-      "stance": {
-        "risk": 1,
-        "sell": 2
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "\ud83d\udea8 FPL Gameweek 12 deadline: Friday, November 27, 18:30 UK time \ud83e\udd15 David Raya picked up a shoulder injury against Newcastle on Saturday, with Mikel Arteta expected to update the media on Monday \ud83e\udd26\u200d\u2642\ufe0f Rayan Cherki and Josko Gvardiol w...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        },
-        {
-          "source": "AAFPL",
-          "text": "BASH verdict: Sell Cherki.",
-          "stance": [
-            "sell"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "source": "AAFPL",
-          "text": "Latest on Raya: Raya update via @Rodra10_97 FPL GW12 Transfer Tips: Players to SELL Rayan Cherki (\u00a37.8m) \u2013 MID, Man City \u2013 32.0% TSB A nine-point haul in GW10 might have given Cherki owners some hope, but the bigger picture isn\u2019t ...",
-          "stance": [
-            "sell"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "At the other end of the market, Rayan Cherki is the most-sold player after another appearance off the bench.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Latest on Raya: Raya update via @Rodra10_97 FPL GW12 Transfer Tips: Players to SELL Rayan Cherki (\u00a37.8m) \u2013 MID, Man City \u2013 32.0% TSB A nine-point haul in GW10 might have given Cherki owners some hope, but the bigger picture isn\u2019t particularly encouraging.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "tone": "bad"
     },
     {
       "text": "Costinha (BHA) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -433,6 +499,80 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
+      "text": "Jacquet (LIV) \u2014 Leaning buy (1 buy, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Jacquet",
+      "club": "LIV",
+      "tags": [
+        "rotation risk"
+      ],
+      "id": 362,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1,
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "AAFPL",
+          "text": "If you\u2019re looking to upgrade your fifth defender and want someone who can rotate with your other DefCon options, Jacquet is a very good pick.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "good",
+          "text": "Jacquet \u2013 best combination of price, minutes and overall value 2.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "If you\u2019re looking to upgrade your fifth defender and want someone who can rotate with your other DefCon options, Jacquet is a very good pick.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Jacquet \u2013 Liverpool Liverpool are another team with an excellent run of fixtures, and I think a Liverpool defender is definitely worth considering.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Van Dijk has played more consistently and has a greater attacking threat, with six shots compared to Jacquet\u2019s three.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Mateta (CRY) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -476,6 +616,118 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (4 buy, 2 captain, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Muharemovi\u0107",
+      "club": "LEE",
+      "tags": [
+        "captain talk",
+        "differential",
+        "rotation risk"
+      ],
+      "id": 334,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 4,
+        "captain": 2,
+        "risk": 1
+      },
+      "quotes": [
+        {
+          "source": "AAFPL",
+          "text": "Muharemovic is also an outside shout as a Differential Captaincy shout for this week.",
+          "stance": [
+            "buy",
+            "captain"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "source": "Fix",
+          "text": "Tarik Muharemovi\u0107: The Perfect Rotation Partner for Van Hecke?",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "source": "Fix",
+          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "source": "AAFPL",
+          "text": "A few of those aren\u2019t players I particularly want to target, making Muharemovi\u0107 an attractive option.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "Tarik Muharemovi\u0107: The Perfect Rotation Partner for Van Hecke?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Start Muharemovi\u0107 at home to Coventry, Ipswich and Fulham in Gameweeks 12, 14 and 16.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Fixture: Coventry City (H) Predicted points: 4.3 Ownership: 7.3% Muharemovi\u0107 (\u00a35.1m) has played every minute for Leeds, and his 118 defensive contributions (DEFCON) rank fourth among defenders.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Centre-back Muharemovic is predicted to score 5.0 points in this one, having secured the two point defensive contribution bonus in seven of his 11 starts in this campaign.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Muharemovic is also an outside shout as a Differential Captaincy shout for this week.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "Muharemovic as a Captaincy punt this week..?",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "tone": "good"
+    },
+    {
       "text": "Murillo (NFO) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -491,187 +743,6 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
-    },
-    {
-      "text": "Rudoni (COV) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Rudoni",
-      "club": "COV",
-      "tags": [
-        "differential"
-      ],
-      "id": 183,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Silva",
-      "club": "BOU",
-      "tags": [],
-      "id": 566,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Tavernier (BOU) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Tavernier",
-      "club": "BOU",
-      "tags": [],
-      "id": 68,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "No midfielder has registered more shots on target than Tavernier (15) this season, and he ranks eighth for xG (3.87).",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 12: Top Five Picks"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Best Budget FPL Midfielder: Marcus Tavernier (ful) Tavernier registered his first assist of the season against Nottingham Forest, but the 27-year-old\u2019s underlying numbers have been strong throughout the campaign.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 12: Top Five Picks"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "No midfielder has registered more shots on target than Tavernier (15) this season, and he ranks eighth for xG (3.87).",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 12: Top Five Picks"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Wirtz (LIV) \u2014 Leaning buy (3 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub"
-      ],
-      "player": "Wirtz",
-      "club": "LIV",
-      "tags": [
-        "captain talk",
-        "differential"
-      ],
-      "id": 366,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 3
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "2026 Top 5 FPL Gameweek 12 Differentials: Is This Your Last Chance to Buy Wirtz Early?",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
-          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
-        },
-        {
-          "source": "AAFPL",
-          "text": "BASH verdict: Buy Florian Wirtz.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        },
-        {
-          "source": "Fix",
-          "text": "Fixture: Everton (A) Predicted points: 5.3 Ownership: 9.5% We first recommended Wirtz (\u00a37.4m) at just 5.1% ownership in our Gameweek 10 differentials , before his double-digit haul at Crystal Palace.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
-          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "He\u2019s also taken 26 shots, one more than Wirtz despite playing 105 fewer minutes.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
-          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
-        },
-        {
-          "topic": "fixture",
-          "tone": "good",
-          "text": "Liverpool Midfielders: Florian Wirtz vs Dominik Szoboszlai Wirtz and Szoboszlai both registered attacking returns against Manchester United.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "fixture",
-          "tone": "neutral",
-          "text": "Florian Wirtz sets a new record Florian Wirtz created five big chances against Manchester United, the most by any player in a single Premier League match since Opta began tracking the metric in 2015.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "As the image below from our Opta Stats Sandbox shows, only Florian Wirtz (4.02) can better Fernandes\u2019 tally of 2.50 expected assists (xA) over that period.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 12: Top Five Picks"
-        },
-        {
-          "topic": "form",
-          "tone": "neutral",
-          "text": "Liverpool put 10-man Manchester United to the sword, with Florian Wirtz setting a new record for big chances created in a single match.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "topic": "price",
-          "tone": "good",
-          "text": "Florian Wirtz is already the most-bought player ahead of Gameweek 12, but there\u2019s still time to own him as a differential.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
-          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
-        }
-      ],
-      "tone": "good"
     }
   ],
   "split": [
@@ -722,6 +793,39 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
+    },
+    {
+      "text": "Araujo (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Scout"
+      ],
+      "player": "Araujo",
+      "club": "LIV",
+      "tags": [],
+      "id": 579,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fitness",
+          "tone": "bad",
+          "text": "Alex Toth (hamstring), Julian Araujo (thigh) and Juanlu Sanchez (ankle) remain out.",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
+          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "Araujo has the best xGI over the last five Gameweeks at 1.31, including one big chance, but his minutes are a concern.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "tone": "bad"
     },
     {
       "text": "B.Fernandes (MUN) \u2014 Leaning buy (1 buy mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
@@ -789,7 +893,16 @@ window.FPL_NEWS = {
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
-      "facts": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Compared to Barcola, Barcola has similar shots, but Wirtz has considerably more key passes and big chances created.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
       "tone": "neutral"
     },
     {
@@ -839,22 +952,6 @@ window.FPL_NEWS = {
       "club": "FUL",
       "tags": [],
       "id": 257,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Branthwaite",
-      "club": "EVE",
-      "tags": [],
-      "id": 230,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -978,44 +1075,19 @@ window.FPL_NEWS = {
   ],
   "new_articles": [
     {
-      "source": "Fix",
-      "title": "Best FPL Players for Gameweek 12: Top Five Picks",
-      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/"
-    },
-    {
-      "source": "Hub",
-      "title": "Best FPL players for Gameweek 12",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27"
-    },
-    {
-      "source": "Hub",
-      "title": "FPL GW12 fixtures: Goal, clean-sheet odds and hidden gems",
-      "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-fixtures-gameweek-12-article-26-27"
-    },
-    {
       "source": "Scout",
-      "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates"
+      "title": "FPL notes: Haaland + Jackson quiet, Cherki 90, City defence poor again",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-notes-haaland-jackson-quiet-cherki-90-city-defence-poor-again"
     },
     {
-      "source": "Scout",
-      "title": "Who has the best fixtures from FPL Gameweek 12?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/who-has-the-best-fixtures-from-fpl-gameweek-12"
+      "source": "AAFPL",
+      "title": "AK\u2019s FPL GW12 Team Reveal & Transfer Plans | 3x Top 5K Finishes",
+      "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw12-team-reveal-transfer-plans-3x-top-5k-finishes/"
     },
     {
-      "source": "Scout",
-      "title": "FPL notes: Raya latest, Calafiori rest + still no Saliba minutes",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-notes-raya-latest-calafiori-rest-still-no-saliba-minutes"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Gameweek 12: Which teams are projected to score the most goals?",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-which-teams-are-projected-to-score-the-most-goals"
-    },
-    {
-      "source": "Scout",
-      "title": "FPL Challenge best picks + team reveal \u2013 Gameweek 12",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-challenge-best-picks-team-reveal-gameweek-12-2"
+      "source": "AAFPL",
+      "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12",
+      "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/"
     }
   ],
   "no_new": false,
