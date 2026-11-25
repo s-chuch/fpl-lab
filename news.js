@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-25 03:27 UTC",
+  "generated_at": "2026-11-25 08:46 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -131,7 +131,66 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Wirtz (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "text": "Tarkowski (EVE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ],
+      "player": "Tarkowski",
+      "club": "EVE",
+      "tags": [
+        "fade/sell"
+      ],
+      "id": 229,
+      "verdict": "Leaning sell / avoid",
+      "stance": {
+        "risk": 1,
+        "sell": 1
+      },
+      "quotes": [
+        {
+          "source": "Scout",
+          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
+          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
+        },
+        {
+          "source": "AAFPL",
+          "text": "BASH verdict: Sell Tarkowski.",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        }
+      ],
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
+          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "James Tarkowski (\u00a36.2m) \u2013 DEF, Everton \u2013 18.1% TSB At \u00a36.2m, Tarkowski is a fairly expensive defender to carry, particularly when he is about to spend the next three Gameweeks watching from the sidelines.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        }
+      ],
+      "tone": "bad"
+    },
+    {
+      "text": "Wirtz (LIV) \u2014 Leaning buy (3 buy mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
@@ -146,9 +205,18 @@ window.FPL_NEWS = {
       "id": 366,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 1
+        "buy": 3
       },
       "quotes": [
+        {
+          "source": "Fix",
+          "text": "2026 Top 5 FPL Gameweek 12 Differentials: Is This Your Last Chance to Buy Wirtz Early?",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
         {
           "source": "AAFPL",
           "text": "BASH verdict: Buy Florian Wirtz.",
@@ -157,9 +225,26 @@ window.FPL_NEWS = {
           ],
           "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "source": "Fix",
+          "text": "Fixture: Everton (A) Predicted points: 5.3 Ownership: 9.5% We first recommended Wirtz (\u00a37.4m) at just 5.1% ownership in our Gameweek 10 differentials , before his double-digit haul at Crystal Palace.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
         }
       ],
       "facts": [
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "He\u2019s also taken 26 shots, one more than Wirtz despite playing 105 fewer minutes.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
         {
           "topic": "fixture",
           "tone": "good",
@@ -179,10 +264,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "good",
-          "text": "Wirtz is consistently creating opportunities, providing assists and accumulating bonus points.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "text": "\ud83d\udc40 pic.twitter.com/CE6RVZbzxJ \u2014 Fantasy Football Fix (@FantasyFootyFix) November 23, 2026 Wirtz has six FPL assists, the joint-most in the league, and leads all players for attempted assists (33) as shown in the Opta Stats Sandbox .",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
         },
         {
           "topic": "form",
@@ -191,6 +276,14 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
           "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "price",
+          "tone": "good",
+          "text": "Florian Wirtz is already the most-bought player ahead of Gameweek 12, but there\u2019s still time to own him as a differential.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
+          "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
         }
       ],
       "tone": "good"
@@ -370,6 +463,23 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
+      "text": "Murillo (NFO) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Murillo",
+      "club": "NFO",
+      "tags": [],
+      "id": 472,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -440,64 +550,6 @@ window.FPL_NEWS = {
       "quotes": [],
       "facts": [],
       "tone": "neutral"
-    },
-    {
-      "text": "Tarkowski (EVE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Tarkowski",
-      "club": "EVE",
-      "tags": [
-        "fade/sell"
-      ],
-      "id": 229,
-      "verdict": "Leaning sell / avoid",
-      "stance": {
-        "risk": 1,
-        "sell": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
-          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
-        },
-        {
-          "source": "AAFPL",
-          "text": "BASH verdict: Sell Tarkowski.",
-          "stance": [
-            "sell"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "role",
-          "tone": "bad",
-          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
-          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "James Tarkowski (\u00a36.2m) \u2013 DEF, Everton \u2013 18.1% TSB At \u00a36.2m, Tarkowski is a fairly expensive defender to carry, particularly when he is about to spend the next three Gameweeks watching from the sidelines.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "tone": "bad"
     },
     {
       "text": "Tavernier (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -687,6 +739,22 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
+      "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "Branthwaite",
+      "club": "EVE",
+      "tags": [],
+      "id": 230,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Costinha (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -735,39 +803,6 @@ window.FPL_NEWS = {
         }
       ],
       "tone": "neutral"
-    },
-    {
-      "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Gibbs-White",
-      "club": "NFO",
-      "tags": [],
-      "id": 480,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Forest stunned Manchester City at the City Ground with a 3-1 win before the international break, with Gibbs-White picking up an assist for his fourth goal involvement of the campaign.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Jack Rudoni, Tavernier and Noah Okafor are also attracting buyers, while Cole Palmer, Bryan Mbeumo, Kevin Schade, Johan Manzambi, Cody Gakpo and Morgan Gibbs-White are among the midfielders being sold.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "tone": "good"
     }
   ],
   "links": [
@@ -792,8 +827,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
