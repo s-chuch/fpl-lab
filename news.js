@@ -1,39 +1,9 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-24 22:33 UTC",
+  "generated_at": "2026-11-25 02:02 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
-    {
-      "text": "Bogle (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Bogle",
-      "club": "LEE",
-      "tags": [],
-      "id": 330,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [],
-      "tone": "neutral"
-    },
     {
       "text": "Cherki (MCI) \u2014 Leaning sell / avoid (2 sell/avoid, 1 fitness/rotation mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
@@ -161,24 +131,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 4/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Silva",
-      "club": "BOU",
-      "tags": [],
-      "id": 566,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "Wirtz (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -244,53 +196,31 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Ampadu (LEE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Bogle (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
-        "Hub",
-        "Scout"
+        "Fix",
+        "Hub"
       ],
-      "player": "Ampadu",
+      "player": "Bogle",
       "club": "LEE",
       "tags": [],
-      "id": 338,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Barcola (LIV) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
+      "id": 330,
+      "verdict": "Leaning buy",
+      "stance": {
+        "buy": 1
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        }
       ],
-      "player": "Barcola",
-      "club": "LIV",
-      "tags": [],
-      "id": 627,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Boscagli",
-      "club": "BHA",
-      "tags": [],
-      "id": 114,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
       "facts": [],
       "tone": "neutral"
     },
@@ -337,40 +267,6 @@ window.FPL_NEWS = {
           "source": "AAFPL",
           "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
-        }
-      ],
-      "tone": "good"
-    },
-    {
-      "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Gibbs-White",
-      "club": "NFO",
-      "tags": [],
-      "id": 480,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "form",
-          "tone": "good",
-          "text": "Forest stunned Manchester City at the City Ground with a 3-1 win before the international break, with Gibbs-White picking up an assist for his fourth goal involvement of the campaign.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        },
-        {
-          "topic": "price",
-          "tone": "neutral",
-          "text": "Jack Rudoni, Tavernier and Noah Okafor are also attracting buyers, while Cole Palmer, Bryan Mbeumo, Kevin Schade, Johan Manzambi, Cody Gakpo and Morgan Gibbs-White are among the midfielders being sold.",
-          "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
         }
       ],
       "tone": "good"
@@ -426,35 +322,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Jacquet (LIV) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Jacquet",
-      "club": "LIV",
-      "tags": [],
-      "id": 362,
-      "verdict": "Leaning buy",
-      "stance": {
-        "buy": 1
-      },
-      "quotes": [
-        {
-          "source": "Fix",
-          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        }
-      ],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
       "text": "Jo\u00e3o Pedro (CHE) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -503,16 +370,54 @@ window.FPL_NEWS = {
       "tone": "mixed"
     },
     {
-      "text": "McBurnie (HUL) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
-        "AAFPL",
+        "Fix",
         "Hub",
         "Scout"
       ],
-      "player": "McBurnie",
-      "club": "HUL",
-      "tags": [],
-      "id": 295,
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [
+        "fade/sell"
+      ],
+      "id": 154,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Cole Palmer and Chelsea disappointed again at home to Leeds United.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Palmer has produced 14 shots and 10 key passes in this period though and has been somewhat unlucky not to deliver more.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        }
+      ],
+      "tone": "neutral"
+    },
+    {
+      "text": "Rudoni (COV) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Rudoni",
+      "club": "COV",
+      "tags": [
+        "differential"
+      ],
+      "id": 183,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -520,47 +425,132 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (1 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Silva (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
+        "AAFPL",
         "Fix",
+        "Hub"
+      ],
+      "player": "Silva",
+      "club": "BOU",
+      "tags": [],
+      "id": 566,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Tarkowski (EVE) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
         "Hub",
         "Scout"
       ],
-      "player": "Muharemovi\u0107",
-      "club": "LEE",
+      "player": "Tarkowski",
+      "club": "EVE",
       "tags": [
-        "differential"
+        "fade/sell"
       ],
-      "id": 334,
-      "verdict": "Leaning buy",
+      "id": 229,
+      "verdict": "Leaning sell / avoid",
       "stance": {
-        "buy": 1
+        "risk": 1,
+        "sell": 1
       },
       "quotes": [
         {
-          "source": "Fix",
-          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "source": "Scout",
+          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
           "stance": [
-            "buy"
+            "risk"
           ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
+          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
+        },
+        {
+          "source": "AAFPL",
+          "text": "BASH verdict: Sell Tarkowski.",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
         }
       ],
       "facts": [
         {
-          "topic": "form",
-          "tone": "good",
-          "text": "Centre-back Muharemovic is predicted to score 5.0 points in this one, having secured the two point defensive contribution bonus in seven of his 11 starts in this campaign.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+          "topic": "role",
+          "tone": "bad",
+          "text": "FPL notes: Barry early sub, Schade benched + Tarkowski ban  Fantasy takeaways from Brentford 4-0 Everton",
+          "source": "Scout",
+          "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
+          "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "James Tarkowski (\u00a36.2m) \u2013 DEF, Everton \u2013 18.1% TSB At \u00a36.2m, Tarkowski is a fairly expensive defender to carry, particularly when he is about to spend the next three Gameweeks watching from the sidelines.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
+          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
         }
       ],
-      "tone": "good"
+      "tone": "bad"
+    },
+    {
+      "text": "Tavernier (BOU) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Tavernier",
+      "club": "BOU",
+      "tags": [],
+      "id": 68,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "GW12 coverage is talking about a wildcard window \u2014 mentioned by 4/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub",
+        "Scout"
+      ]
+    },
+    {
+      "text": "GW12 coverage is talking about a free hit window \u2014 mentioned by 3/4 sites.",
+      "sources": [
+        "AAFPL",
+        "Hub",
+        "Scout"
+      ]
     }
   ],
   "split": [
+    {
+      "text": "Ampadu (LEE) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Ampadu",
+      "club": "LEE",
+      "tags": [],
+      "id": 338,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
     {
       "text": "Anderson (MCI) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
@@ -587,22 +577,6 @@ window.FPL_NEWS = {
       "club": "BHA",
       "tags": [],
       "id": 639,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Arrizabalaga (ARS) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Scout"
-      ],
-      "player": "Arrizabalaga",
-      "club": "ARS",
-      "tags": [],
-      "id": 2,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -665,6 +639,22 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
+      "text": "Barcola (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Barcola",
+      "club": "LIV",
+      "tags": [],
+      "id": 627,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
       "text": "Bassey (FUL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -674,6 +664,22 @@ window.FPL_NEWS = {
       "club": "FUL",
       "tags": [],
       "id": 257,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -706,109 +712,62 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "De Cuyper (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Gakpo (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
-        "AAFPL",
+        "Fix",
         "Scout"
       ],
-      "player": "De Cuyper",
-      "club": "BHA",
-      "tags": [],
-      "id": 115,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [],
-      "tone": "neutral"
-    },
-    {
-      "text": "Hall (NEW) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Hall",
-      "club": "NEW",
-      "tags": [
-        "injury/doubt"
-      ],
-      "id": 449,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "Newcastle\u2019s Lewis Hall also picked up an injury in the same fixture, although his manager hoped it was just cramp.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Newcastle\u2019s Lewis Hall also picked up an injury in the same fixture, although his manager hoped it was just cramp.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
-          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
-        }
-      ],
-      "tone": "bad"
-    },
-    {
-      "text": "Isak (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "Fix",
-        "Hub"
-      ],
-      "player": "Isak",
+      "player": "Gakpo",
       "club": "LIV",
       "tags": [],
-      "id": 379,
+      "id": 367,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
       "facts": [
         {
-          "topic": "fixture",
-          "tone": "bad",
-          "text": "Costinha faces a one-match ban, however Manchester United\u2019s appeal against Yoro\u2019s dismissal for denying Alexander Isak a goalscoring opportunity was upheld on Tuesday, so he will not face a suspension.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
-          "title": "FPL suspensions: Yellow and red cards tracker"
-        }
-      ],
-      "tone": "bad"
-    },
-    {
-      "text": "J.Timber (ARS) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Scout"
-      ],
-      "player": "J.Timber",
-      "club": "ARS",
-      "tags": [],
-      "id": 5,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "role",
+          "topic": "price",
           "tone": "neutral",
-          "text": "That\u2019s certainly a possibility, but with Ben White and Jurrien Timber also competing for that position, it is hardly a guarantee of regular minutes.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "text": "Jack Rudoni, Tavernier and Noah Okafor are also attracting buyers, while Cole Palmer, Bryan Mbeumo, Kevin Schade, Johan Manzambi, Cody Gakpo and Morgan Gibbs-White are among the midfielders being sold.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
         }
       ],
       "tone": "neutral"
+    },
+    {
+      "text": "Gibbs-White (NFO) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "Fix",
+        "Hub"
+      ],
+      "player": "Gibbs-White",
+      "club": "NFO",
+      "tags": [],
+      "id": 480,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Forest stunned Manchester City at the City Ground with a 3-1 win before the international break, with Gibbs-White picking up an assist for his fourth goal involvement of the campaign.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "Jack Rudoni, Tavernier and Noah Okafor are also attracting buyers, while Cole Palmer, Bryan Mbeumo, Kevin Schade, Johan Manzambi, Cody Gakpo and Morgan Gibbs-White are among the midfielders being sold.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        }
+      ],
+      "tone": "good"
     }
   ],
   "links": [
@@ -836,8 +795,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "Last chance to enter the FFS Cups + win prizes",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/last-chance-to-enter-the-ffs-cups-win-prizes"
+      "title": "Gakpo, Shaw, Yoro: Latest FPL team news pre-Gameweek 12",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/gakpo-shaw-yoro-latest-fpl-team-news-pre-gameweek-12"
     }
   ],
   "no_new": false,

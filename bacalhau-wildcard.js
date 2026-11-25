@@ -263,10 +263,10 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-24",
-      "total_cost": 99.9,
+      "total_cost": 100.0,
       "prices": {
         "Raya": 6.3,
-        "Hill": 5.6,
+        "Hill": 5.7,
         "De Cuyper": 5.5,
         "Vuskovic": 5.3,
         "Tarkowski": 6.2,
@@ -289,7 +289,7 @@ window.FPL_WILDCARD_WATCH = {
       "Van Hecke": 5.0,
       "João Pedro": 7.6
     },
-    "total_delta": 7.3,
+    "total_delta": 7.4,
     "players": [
       {
         "name": "Tavernier",
@@ -420,10 +420,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Hill",
         "baseline_cost": null,
-        "current_cost": 5.6,
+        "current_cost": 5.7,
         "delta": null,
         "entry_cost": 5.5,
-        "delta_since_added": 0.1,
+        "delta_since_added": 0.2,
         "status": "added"
       },
       {
@@ -473,14 +473,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-16",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 6.0,
-        "to": 6.1,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-16",
         "event": "price_change",
@@ -771,6 +763,14 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Tavernier",
         "from": 6.7,
         "to": 6.8,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-24",
+        "event": "price_change",
+        "player": "Hill",
+        "from": 5.6,
+        "to": 5.7,
         "delta": 0.1
       }
     ]

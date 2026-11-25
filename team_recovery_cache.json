@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-24T22:33:59.453882+00:00",
+    "fetched_at": "2026-11-25T02:02:29.553988+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -24,13 +24,7 @@
           "opponent": "Brentford",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-24",
-            "competition": "Champions League",
-            "opponent": "B. Dortmund"
-          }
-        ]
+        "between": []
       },
       "COV": {
         "rest_days": 7,
@@ -348,13 +342,7 @@
           "opponent": "Leeds",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-24",
-            "competition": "Champions League",
-            "opponent": "Napoli"
-          }
-        ]
+        "between": []
       },
       "BOU": {
         "rest_days": 3,
