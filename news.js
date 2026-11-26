@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-26 02:43 UTC",
+  "generated_at": "2026-11-26 08:33 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -74,7 +74,7 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "Haaland (MCI) \u2014 Leaning keep / hold (2 keep mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
+      "text": "Haaland (MCI) \u2014 Leaning sell / avoid (3 keep, 1 sell/avoid, 2 captain mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
@@ -84,14 +84,27 @@ window.FPL_NEWS = {
       "player": "Haaland",
       "club": "MCI",
       "tags": [
+        "captain talk",
+        "fade/sell",
         "rotation risk"
       ],
       "id": 411,
-      "verdict": "Leaning keep / hold",
+      "verdict": "Leaning sell / avoid",
       "stance": {
-        "hold": 2
+        "captain": 2,
+        "hold": 3,
+        "sell": 1
       },
       "quotes": [
+        {
+          "source": "Fix",
+          "text": "2026 FPL Gameweek 12 Team Reveals: Who Gets the Armband Over Haaland?",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
         {
           "source": "AAFPL",
           "text": "FPL GW12 Transfer Tips: Players to HOLD Erling Haaland (\u00a315.8m) \u2013 FWD, Man City \u2013 77.8% TSB Three consecutive two-point returns against Brighton, Nottingham Forest and Fulham have understandably frustrated Haaland owners.",
@@ -102,16 +115,33 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
         },
         {
-          "source": "AAFPL",
-          "text": "The fact that I have to write about Haaland in the HOLD section is a surprise in itself!",
+          "source": "Fix",
+          "text": "With Erling Haaland facing Arsenal, who gets the armband in FPL Gameweek 12?",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "source": "Fix",
+          "text": "Dan Bennett | 10 top 10k finishes \u201cMan City's form is definitely a concern but I plan to keep Haaland for now, even against Arsenal this week.",
           "stance": [
             "hold"
           ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
       "facts": [
+        {
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "I\u2019ll pick a different captain though, maybe Jackson against Ipswich or Muharemovic against Coventry.\u201d Mark Mansfield | 7 top 10k finishes \u201cNot sure in terms of captaincy maybe Gro\u00df or Muharemovic is OK, even Jackson.\u201d Tarek Balbaa | 10 top 10k finishes \u201cHaalan...",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
         {
           "topic": "fixture",
           "tone": "good",
@@ -119,12 +149,28 @@ window.FPL_NEWS = {
           "source": "AAFPL",
           "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "With Erling Haaland facing Arsenal, who gets the armband in FPL Gameweek 12?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "2026 FPL Gameweek 12 Team Reveals: Who Gets the Armband Over Haaland?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
-      "tone": "good"
+      "tone": "mixed"
     },
     {
-      "text": "N.Jackson (AVL) \u2014 Mentioned, no clear view \u00b7 4/4 sites with fresh articles (5 checked)",
+      "text": "N.Jackson (AVL) \u2014 Captain candidate (2 captain mentions) \u00b7 4/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
@@ -134,12 +180,35 @@ window.FPL_NEWS = {
       "player": "N.Jackson",
       "club": "AVL",
       "tags": [
-        "rotation risk"
+        "captain talk",
+        "rotation risk",
+        "transfer target"
       ],
       "id": 166,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
+      "verdict": "Captain candidate",
+      "stance": {
+        "captain": 2
+      },
+      "quotes": [
+        {
+          "source": "Fix",
+          "text": "I\u2019ll pick a different captain though, maybe Jackson against Ipswich or Muharemovic against Coventry.\u201d Mark Mansfield | 7 top 10k finishes \u201cNot sure in terms of captaincy maybe Gro\u00df or Muharemovic is OK, even Jackson.\u201d Tarek Balbaa...",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "source": "Fix",
+          "text": "Konsa might be a risk soon with Saliba's comeback, I am still undecided between Vuksovic & Van Hecke.\u201d Follow the Elite XI managers before the Gameweek 12 deadline Will Dan give Jackson the armband?",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        }
+      ],
       "facts": [
         {
           "topic": "fitness",
@@ -152,10 +221,10 @@ window.FPL_NEWS = {
         {
           "topic": "fixture",
           "tone": "bad",
-          "text": "A blank against Sunderland has done little to put managers off Nicolas Jackson.",
+          "text": "I\u2019ll pick a different captain though, maybe Jackson against Ipswich or Muharemovic against Coventry.\u201d Mark Mansfield | 7 top 10k finishes \u201cNot sure in terms of captaincy maybe Gro\u00df or Muharemovic is OK, even Jackson.\u201d Tarek Balbaa | 10 top 10k finishes \u201cHaalan...",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         },
         {
           "topic": "fixture",
@@ -164,6 +233,14 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
           "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "captain",
+          "tone": "bad",
+          "text": "Konsa might be a risk soon with Saliba's comeback, I am still undecided between Vuksovic & Van Hecke.\u201d Follow the Elite XI managers before the Gameweek 12 deadline Will Dan give Jackson the armband?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
       "tone": "bad"
@@ -266,46 +343,6 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Boscagli",
-      "club": "BHA",
-      "tags": [
-        "injury/doubt"
-      ],
-      "id": 114,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "Another first-team regular, Olivier Boscagli , is a doubt because of illness, however.",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Another first-team regular, Olivier Boscagli , is a doubt because of illness, however.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
-        }
-      ],
-      "tone": "bad"
-    },
-    {
       "text": "Branthwaite (EVE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
@@ -323,7 +360,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Calvert-Lewin (LEE) \u2014 Leaning buy (3 buy mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Calvert-Lewin (LEE) \u2014 Leaning buy (4 buy, 2 captain mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
@@ -331,11 +368,15 @@ window.FPL_NEWS = {
       ],
       "player": "Calvert-Lewin",
       "club": "LEE",
-      "tags": [],
+      "tags": [
+        "captain talk",
+        "transfer target"
+      ],
       "id": 346,
       "verdict": "Leaning buy",
       "stance": {
-        "buy": 3
+        "buy": 4,
+        "captain": 2
       },
       "quotes": [
         {
@@ -348,6 +389,15 @@ window.FPL_NEWS = {
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
         },
         {
+          "source": "Fix",
+          "text": "His Gameweek 12 armband is currently on Dominic Calvert-Lewin.",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
           "source": "Hub",
           "text": "\ud83e\udd47 Dominic Calvert-Lewin Target: Coventry's left defensive channel and headed opportunities Leeds return to Elland Road following their outstanding 1-4 win at Chelsea, with Calvert-Lewin well positioned to benefit from Coventry's d...",
           "stance": [
@@ -357,23 +407,23 @@ window.FPL_NEWS = {
           "title": "FPL GW12 fixtures: Goal, clean-sheet odds and hidden gems"
         },
         {
-          "source": "AAFPL",
-          "text": "BASH verdict: Buy Dominic Calvert-Lewin.",
+          "source": "Fix",
+          "text": "If it was just one game I'd probably take it on the chin\u201d Why buy Dominic Calvert-Lewin for Gameweek 12?",
           "stance": [
             "buy"
           ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
-          "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
       "facts": [
         {
           "topic": "role",
           "tone": "neutral",
-          "text": "Calvert-Lewin's minutes are another major attraction.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27",
-          "title": "Best FPL players for Gameweek 12"
+          "text": "At some point, patience becomes stubbornness, and Calvert-Lewin's reliable minutes make him a more appealing asset going forward\u201d Midfield transfer plans: move for Wirtz, revisit Fernandes or roll?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         },
         {
           "topic": "fixture",
@@ -382,6 +432,14 @@ window.FPL_NEWS = {
           "source": "Hub",
           "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27",
           "title": "Best FPL players for Gameweek 12"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Calvert-Lewin has a lot more xGI than people realise and is a great captaincy option this week.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         },
         {
           "topic": "form",
@@ -398,55 +456,17 @@ window.FPL_NEWS = {
           "source": "AAFPL",
           "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
           "title": "FPL Gameweek 12 Transfer Tips: Players to Buy, Avoid, Sell & Hold"
+        },
+        {
+          "topic": "captain",
+          "tone": "neutral",
+          "text": "His Gameweek 12 armband is currently on Dominic Calvert-Lewin.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
       "tone": "good"
-    },
-    {
-      "text": "Costinha (BHA) \u2014 Mentioned, no clear view (1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Hub",
-        "Scout"
-      ],
-      "player": "Costinha",
-      "club": "BHA",
-      "tags": [],
-      "id": 119,
-      "verdict": "Mentioned, no clear view",
-      "stance": {
-        "risk": 1
-      },
-      "quotes": [
-        {
-          "source": "Scout",
-          "text": "So, definitely a long-term injury, unfortunately, but I think he\u2019s a quick healer and he will come back as quick as possible.\u201d \u2013 Fabian Hurzeler on Malick Yalcouye Costinha is suspended domestically but can feature against Craiova...",
-          "stance": [
-            "risk"
-          ],
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
-        }
-      ],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "So, definitely a long-term injury, unfortunately, but I think he\u2019s a quick healer and he will come back as quick as possible.\u201d \u2013 Fabian Hurzeler on Malick Yalcouye Costinha is suspended domestically but can feature against Craiova on Thursday.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
-        },
-        {
-          "topic": "fixture",
-          "tone": "bad",
-          "text": "Costinha faces a one-match ban, however Manchester United\u2019s appeal against Yoro\u2019s dismissal for denying Alexander Isak a goalscoring opportunity was upheld on Tuesday, so he will not face a suspension.",
-          "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
-          "title": "FPL suspensions: Yellow and red cards tracker"
-        }
-      ],
-      "tone": "bad"
     },
     {
       "text": "Gvardiol (MCI) \u2014 Leaning sell / avoid (1 sell/avoid, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -573,30 +593,108 @@ window.FPL_NEWS = {
       "tone": "good"
     },
     {
-      "text": "Mateta (CRY) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Kinsky (TOT) \u2014 Mixed: some say buy, some say sell (2 buy, 2 keep, 1 sell/avoid, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
-        "Hub",
-        "Scout"
+        "Fix",
+        "Hub"
       ],
-      "player": "Mateta",
-      "club": "CRY",
-      "tags": [],
-      "id": 223,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
+      "player": "Kinsky",
+      "club": "TOT",
+      "tags": [
+        "fade/sell",
+        "rotation risk"
+      ],
+      "id": 496,
+      "verdict": "Mixed: some say buy, some say sell",
+      "stance": {
+        "buy": 2,
+        "hold": 2,
+        "sell": 1,
+        "risk": 1
+      },
+      "quotes": [
         {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Jean-Philippe Mateta and Yeremy Pino will miss Gameweek 12 through suspension but can play in the Europa League this week.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
+          "source": "Fix",
+          "text": "Walter Randazzo could buy Kinsky and keep Raya.",
+          "stance": [
+            "buy",
+            "hold"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "source": "AAFPL",
+          "text": "Kinsk\u00fd \u2013 Spurs Kinsk\u00fd is my second goalkeeper to target.",
+          "stance": [
+            "buy"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "source": "Hub",
+          "text": "Another option in the short term is to sell your second keeper, if he is non-playing, for somebody like Antonin Kinsky , who is cheap and has three good fixtures in the next four games.",
+          "stance": [
+            "sell"
+          ],
+          "url": "https://www.fantasyfootballhub.co.uk/articles/david-raya-fpl-options-26-27-article",
+          "title": "FPL tips: Keep or sell Raya and best replacements"
+        },
+        {
+          "source": "AAFPL",
+          "text": "If you are looking to move away from Raya, you could potentially go with Trafford and Kinsk\u00fd, who also rotate reasonably well.",
+          "stance": [
+            "risk"
+          ],
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
         }
       ],
-      "tone": "bad"
+      "facts": [
+        {
+          "topic": "role",
+          "tone": "bad",
+          "text": "If you are looking to move away from Raya, you could potentially go with Trafford and Kinsk\u00fd, who also rotate reasonably well.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "James Cooper would wait out a one-game absence Walter Randazzo | 7 top 10k finishes \u201cIf it\u2019s long term, he probably becomes Verbruggen or Trafford, if it\u2019s short term I can upgrade my \u00a34.0m bench fodder to Kinsky.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Trafford is my preferred long-term pick because of Leeds\u2019 fixtures, while Kinsk\u00fd is a good short-term option if you want to keep the flexibility of bringing Raya back later.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        },
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Another option in the short term is to sell your second keeper, if he is non-playing, for somebody like Antonin Kinsky , who is cheap and has three good fixtures in the next four games.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/articles/david-raya-fpl-options-26-27-article",
+          "title": "FPL tips: Keep or sell Raya and best replacements"
+        },
+        {
+          "topic": "price",
+          "tone": "neutral",
+          "text": "At just \u00a34.4m, Kinsk\u00fd is also an attractive option as a second goalkeeper.",
+          "source": "AAFPL",
+          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
+          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+        }
+      ],
+      "tone": "mixed"
     },
     {
       "text": "McBurnie (HUL) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -616,7 +714,7 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Muharemovi\u0107 (LEE) \u2014 Leaning buy (4 buy, 2 captain, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
+      "text": "Muharemovi\u0107 (LEE) \u2014 Captain candidate (4 buy, 4 captain, 1 fitness/rotation mentions) \u00b7 3/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Fix",
@@ -630,13 +728,22 @@ window.FPL_NEWS = {
         "rotation risk"
       ],
       "id": 334,
-      "verdict": "Leaning buy",
+      "verdict": "Captain candidate",
       "stance": {
+        "captain": 4,
         "buy": 4,
-        "captain": 2,
         "risk": 1
       },
       "quotes": [
+        {
+          "source": "Fix",
+          "text": "I\u2019ll pick a different captain though, maybe Jackson against Ipswich or Muharemovic against Coventry.\u201d Mark Mansfield | 7 top 10k finishes \u201cNot sure in terms of captaincy maybe Gro\u00df or Muharemovic is OK, even Jackson.\u201d Tarek Balbaa...",
+          "stance": [
+            "captain"
+          ],
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
         {
           "source": "AAFPL",
           "text": "Muharemovic is also an outside shout as a Differential Captaincy shout for this week.",
@@ -658,21 +765,12 @@ window.FPL_NEWS = {
         },
         {
           "source": "Fix",
-          "text": "Muharemovi\u0107\u2019s Leeds team-mates James Justin and Jayden Bogle are also popular targets, alongside James Hill, J\u00e9r\u00e9my Jacquet and Van Hecke.",
+          "text": "Two of our Elite XI: Team Reveal managers are even weighing up captaining a defender in Tarik Muharemovi\u0107.",
           "stance": [
-            "buy"
+            "captain"
           ],
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
-          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
-        },
-        {
-          "source": "AAFPL",
-          "text": "A few of those aren\u2019t players I particularly want to target, making Muharemovi\u0107 an attractive option.",
-          "stance": [
-            "buy"
-          ],
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
-          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
       "facts": [
@@ -683,6 +781,14 @@ window.FPL_NEWS = {
           "source": "Fix",
           "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-differentials/",
           "title": "FPL Gameweek 12 Differentials: 5 Picks Under 10% Owned"
+        },
+        {
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "I\u2019ll pick a different captain though, maybe Jackson against Ipswich or Muharemovic against Coventry.\u201d Mark Mansfield | 7 top 10k finishes \u201cNot sure in terms of captaincy maybe Gro\u00df or Muharemovic is OK, even Jackson.\u201d Tarek Balbaa | 10 top 10k finishes \u201cHaalan...",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         },
         {
           "topic": "fixture",
@@ -719,13 +825,13 @@ window.FPL_NEWS = {
         {
           "topic": "captain",
           "tone": "neutral",
-          "text": "Muharemovic as a Captaincy punt this week..?",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
-          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
+          "text": "Two of our Elite XI: Team Reveal managers are even weighing up captaining a defender in Tarik Muharemovi\u0107.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
-      "tone": "good"
+      "tone": "mixed"
     },
     {
       "text": "Murillo (NFO) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
@@ -738,6 +844,65 @@ window.FPL_NEWS = {
       "club": "NFO",
       "tags": [],
       "id": 472,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Palmer (CHE) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Palmer",
+      "club": "CHE",
+      "tags": [],
+      "id": 154,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [
+        {
+          "topic": "fixture",
+          "tone": "neutral",
+          "text": "Cole Palmer and Chelsea disappointed again at home to Leeds United.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-transfer-tips-2026-27/",
+          "title": "FPL Gameweek 12 Transfer Tips 2026/27: Who to Target"
+        },
+        {
+          "topic": "form",
+          "tone": "good",
+          "text": "Dan Bennett | 10 top 10k finishes \u201cWe could revisit bringing in Bruno Fernandes given Palmer has been disappointing but, as a Man Utd fan, I\u2019d like to see an improvement in form first.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
+          "topic": "form",
+          "tone": "neutral",
+          "text": "Palmer has produced 14 shots and 10 key passes in this period though and has been somewhat unlucky not to deliver more.",
+          "source": "Hub",
+          "url": "https://www.fantasyfootballhub.co.uk/fantasy-premier-league-ultimate-guide-fpl-tips",
+          "title": "FPL tips for 2026/27: The Ultimate Guide to Gameweek 11"
+        }
+      ],
+      "tone": "good"
+    },
+    {
+      "text": "Pinnock (COV) \u2014 Mentioned, no clear view \u00b7 3/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Fix",
+        "Hub"
+      ],
+      "player": "Pinnock",
+      "club": "COV",
+      "tags": [],
+      "id": 91,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -795,39 +960,6 @@ window.FPL_NEWS = {
       "tone": "neutral"
     },
     {
-      "text": "Araujo (LIV) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
-      "sources": [
-        "AAFPL",
-        "Scout"
-      ],
-      "player": "Araujo",
-      "club": "LIV",
-      "tags": [],
-      "id": 579,
-      "verdict": "Mentioned, no clear view",
-      "stance": {},
-      "quotes": [],
-      "facts": [
-        {
-          "topic": "fitness",
-          "tone": "bad",
-          "text": "Alex Toth (hamstring), Julian Araujo (thigh) and Juanlu Sanchez (ankle) remain out.",
-          "source": "Scout",
-          "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-gameweek-12-team-news-weds-injury-updates",
-          "title": "FPL Gameweek 12 team news: Weds\u2019 live injury updates"
-        },
-        {
-          "topic": "role",
-          "tone": "neutral",
-          "text": "Araujo has the best xGI over the last five Gameweeks at 1.31, including one big chance, but his minutes are a concern.",
-          "source": "AAFPL",
-          "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/",
-          "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12"
-        }
-      ],
-      "tone": "bad"
-    },
-    {
       "text": "B.Fernandes (MUN) \u2014 Leaning buy (1 buy mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "Fix",
@@ -854,6 +986,14 @@ window.FPL_NEWS = {
       ],
       "facts": [
         {
+          "topic": "role",
+          "tone": "neutral",
+          "text": "At some point, patience becomes stubbornness, and Calvert-Lewin's reliable minutes make him a more appealing asset going forward\u201d Midfield transfer plans: move for Wirtz, revisit Fernandes or roll?",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
+        },
+        {
           "topic": "fixture",
           "tone": "neutral",
           "text": "Best Premium FPL Midfielder: Bruno Fernandes (BRE) Bruno Fernandes could play a key role when Manchester United host Brentford at Old Trafford in Pochettino\u2019s first home game in charge.",
@@ -864,10 +1004,10 @@ window.FPL_NEWS = {
         {
           "topic": "form",
           "tone": "good",
-          "text": "Over the last six Gameweeks, Fernandes ranks third among midfielders for attempted assists (15) and has created three big chances.",
+          "text": "Dan Bennett | 10 top 10k finishes \u201cWe could revisit bringing in Bruno Fernandes given Palmer has been disappointing but, as a Man Utd fan, I\u2019d like to see an improvement in form first.",
           "source": "Fix",
-          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw12-top-5-players-2026-27/",
-          "title": "Best FPL Players for Gameweek 12: Top Five Picks"
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         },
         {
           "topic": "price",
@@ -913,7 +1053,10 @@ window.FPL_NEWS = {
       ],
       "player": "Barry",
       "club": "EVE",
-      "tags": [],
+      "tags": [
+        "captain talk",
+        "transfer target"
+      ],
       "id": 249,
       "verdict": "Mentioned, no clear view",
       "stance": {
@@ -938,9 +1081,17 @@ window.FPL_NEWS = {
           "source": "Scout",
           "url": "https://www.fantasyfootballscout.co.uk/2026/11/24/fpl-notes-barry-early-sub-schade-benched-tarkowski-ban",
           "title": "FPL notes: Barry early sub, Schade benched + Tarkowski ban"
+        },
+        {
+          "topic": "fixture",
+          "tone": "good",
+          "text": "Barry has been superb but his fixtures swing pretty big.",
+          "source": "Fix",
+          "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/",
+          "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans"
         }
       ],
-      "tone": "bad"
+      "tone": "mixed"
     },
     {
       "text": "Bassey (FUL) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
@@ -952,6 +1103,22 @@ window.FPL_NEWS = {
       "club": "FUL",
       "tags": [],
       "id": 257,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
+      "facts": [],
+      "tone": "neutral"
+    },
+    {
+      "text": "Boscagli (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
+      "sources": [
+        "AAFPL",
+        "Hub"
+      ],
+      "player": "Boscagli",
+      "club": "BHA",
+      "tags": [],
+      "id": 114,
       "verdict": "Mentioned, no clear view",
       "stance": {},
       "quotes": [],
@@ -1014,41 +1181,29 @@ window.FPL_NEWS = {
       "tone": "bad"
     },
     {
-      "text": "De Cuyper (BHA) \u2014 Leaning keep / hold (1 keep mentions) \u00b7 2/4 sites with fresh articles (5 checked)",
+      "text": "Costinha (BHA) \u2014 Mentioned, no clear view \u00b7 2/4 sites with fresh articles (5 checked)",
       "sources": [
         "AAFPL",
         "Hub"
       ],
-      "player": "De Cuyper",
+      "player": "Costinha",
       "club": "BHA",
       "tags": [],
-      "id": 115,
-      "verdict": "Leaning keep / hold",
-      "stance": {
-        "hold": 1
-      },
-      "quotes": [
-        {
-          "source": "Hub",
-          "text": "They are the second favourites to keep a clean sheet (33%) and lead the way for goal projection (2.14), so De Cuyper should have chances to return at both ends of the pitch.",
-          "stance": [
-            "hold"
-          ],
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27",
-          "title": "Best FPL players for Gameweek 12"
-        }
-      ],
+      "id": 119,
+      "verdict": "Mentioned, no clear view",
+      "stance": {},
+      "quotes": [],
       "facts": [
         {
-          "topic": "form",
-          "tone": "good",
-          "text": "They are the second favourites to keep a clean sheet (33%) and lead the way for goal projection (2.14), so De Cuyper should have chances to return at both ends of the pitch.",
+          "topic": "fixture",
+          "tone": "bad",
+          "text": "Costinha faces a one-match ban, however Manchester United\u2019s appeal against Yoro\u2019s dismissal for denying Alexander Isak a goalscoring opportunity was upheld on Tuesday, so he will not face a suspension.",
           "source": "Hub",
-          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-12-article-26-27",
-          "title": "Best FPL players for Gameweek 12"
+          "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-yellow-cards-and-suspensions",
+          "title": "FPL suspensions: Yellow and red cards tracker"
         }
       ],
-      "tone": "good"
+      "tone": "bad"
     }
   ],
   "links": [
@@ -1073,8 +1228,14 @@ window.FPL_NEWS = {
       "url": "https://ingenuityfantasy.com/"
     }
   ],
-  "new_articles": [],
-  "no_new": true,
+  "new_articles": [
+    {
+      "source": "Fix",
+      "title": "FPL Gameweek 12 Team Reveals: Elite Managers\u2019 Transfer Plans",
+      "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gameweek-12-elite-manager-team-reveals-2026-27/"
+    }
+  ],
+  "no_new": false,
   "sites_checked": 5,
   "sites_with_articles": 4
 };
