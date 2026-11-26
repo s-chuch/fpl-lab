@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-26T18:14:46.629926+00:00",
+    "fetched_at": "2026-11-26T21:41:41.596672+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -288,13 +288,7 @@
           "opponent": "Bournemouth",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-26",
-            "competition": "Conference League",
-            "opponent": "U. Craiova"
-          }
-        ]
+        "between": []
       },
       "AVL": {
         "rest_days": 4,
@@ -357,13 +351,7 @@
           "opponent": "Brighton",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-26",
-            "competition": "Europa League",
-            "opponent": "Celta"
-          }
-        ]
+        "between": []
       },
       "NEW": {
         "rest_days": 8,
