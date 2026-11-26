@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-26T08:33:05.375892+00:00",
+    "fetched_at": "2026-11-26T18:14:46.629926+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -74,7 +74,7 @@
           "date": "2026-11-25",
           "competition": "Champions League",
           "opponent": "Sporting CP",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-28",
@@ -392,7 +392,7 @@
           "date": "2026-11-25",
           "competition": "Champions League",
           "opponent": "Club Brugge",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-11-29",
