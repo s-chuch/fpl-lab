@@ -264,9 +264,9 @@ window.FPL_WILDCARD_WATCH = {
     },
     "current": {
       "date": "2026-11-25",
-      "total_cost": 102.8,
+      "total_cost": 102.7,
       "prices": {
-        "Raya": 6.3,
+        "Raya": 6.2,
         "De Cuyper": 5.5,
         "Calafiori": 5.9,
         "Silva": 5.1,
@@ -291,7 +291,7 @@ window.FPL_WILDCARD_WATCH = {
       "Silva": 5.1,
       "Van Hecke": 5.1
     },
-    "total_delta": 4.0,
+    "total_delta": 3.9,
     "players": [
       {
         "name": "De Cuyper",
@@ -321,15 +321,6 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Raya",
-        "baseline_cost": 6.1,
-        "current_cost": 6.3,
-        "delta": 0.2,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Calafiori",
         "baseline_cost": 5.8,
         "current_cost": 5.9,
@@ -342,6 +333,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Kostoulas",
         "baseline_cost": 5.6,
         "current_cost": 5.7,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Raya",
+        "baseline_cost": 6.1,
+        "current_cost": 6.2,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -493,14 +493,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-12",
-        "event": "price_change",
-        "player": "Kostoulas",
-        "from": 5.6,
-        "to": 5.7,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-16",
         "event": "price_change",
@@ -788,6 +780,14 @@ window.FPL_WILDCARD_WATCH = {
         "from": 6.7,
         "to": 6.8,
         "delta": 0.1
+      },
+      {
+        "date": "2026-11-25",
+        "event": "price_change",
+        "player": "Raya",
+        "from": 6.3,
+        "to": 6.2,
+        "delta": -0.1
       }
     ]
   },

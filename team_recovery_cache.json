@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-25T21:48:55.835478+00:00",
+    "fetched_at": "2026-11-26T01:42:02.210216+00:00",
     "target_gw": 12,
     "anchor": "2026-11-27T18:30:00+00:00",
     "teams": {
@@ -87,13 +87,7 @@
           "opponent": "Newcastle",
           "days_after": 4
         },
-        "between": [
-          {
-            "date": "2026-11-25",
-            "competition": "Champions League",
-            "opponent": "Sporting CP"
-          }
-        ]
+        "between": []
       },
       "EVE": {
         "rest_days": 6,
@@ -411,13 +405,7 @@
           "opponent": "Sunderland",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-25",
-            "competition": "Champions League",
-            "opponent": "Club Brugge"
-          }
-        ]
+        "between": []
       },
       "FUL": {
         "rest_days": 8,

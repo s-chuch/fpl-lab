@@ -1,7 +1,7 @@
 window.FPL_NEWS = {
   "gw": 12,
   "cutoff": "2026-11-21 11:00 UTC",
-  "generated_at": "2026-11-25 21:48 UTC",
+  "generated_at": "2026-11-26 01:42 UTC",
   "note": "Public pages only. New = published after last finished GW deadline. Agreed = 3+ sites. Themes are player mentions auto-detected in title+article text, not a fixed watchlist.",
   "agreed": [
     {
@@ -1076,18 +1076,8 @@ window.FPL_NEWS = {
   "new_articles": [
     {
       "source": "Scout",
-      "title": "FPL notes: Haaland + Jackson quiet, Cherki 90, City defence poor again",
-      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/fpl-notes-haaland-jackson-quiet-cherki-90-city-defence-poor-again"
-    },
-    {
-      "source": "AAFPL",
-      "title": "AK\u2019s FPL GW12 Team Reveal & Transfer Plans | 3x Top 5K Finishes",
-      "url": "https://allaboutfpl.com/2026/11/aks-fpl-gw12-team-reveal-transfer-plans-3x-top-5k-finishes/"
-    },
-    {
-      "source": "AAFPL",
-      "title": "FPL GW12: Fixtures and Players to Target for Gameweek 12",
-      "url": "https://allaboutfpl.com/2026/11/fpl-gw12-fixtures-and-players-to-target-for-gameweek-12/"
+      "title": "Goals + assists imminent! Who is \u2018due\u2019 in FPL Gameweek 12?",
+      "url": "https://www.fantasyfootballscout.co.uk/2026/11/25/goals-assists-imminent-who-is-due-in-fpl-gameweek-12-2"
     }
   ],
   "no_new": false,
