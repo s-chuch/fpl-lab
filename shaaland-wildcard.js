@@ -267,7 +267,7 @@ window.FPL_WILDCARD_WATCH = {
       "total_cost": 102.7,
       "prices": {
         "Raya": 6.2,
-        "De Cuyper": 5.5,
+        "De Cuyper": 5.6,
         "Calafiori": 5.9,
         "Silva": 5.1,
         "Van Hecke": 5.2,
@@ -275,7 +275,7 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 6.3,
         "Tavernier": 6.8,
         "Manzambi": 6.2,
-        "Haaland": 15.8,
+        "Haaland": 15.7,
         "N.Jackson": 7.3,
         "Tzolakis": 4.7,
         "Tarkowski": 6.2,
@@ -296,8 +296,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "baseline_cost": 4.9,
-        "current_cost": 5.5,
-        "delta": 0.6,
+        "current_cost": 5.6,
+        "delta": 0.7,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -312,18 +312,18 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "Haaland",
-        "baseline_cost": 15.6,
-        "current_cost": 15.8,
-        "delta": 0.2,
+        "name": "Calafiori",
+        "baseline_cost": 5.8,
+        "current_cost": 5.9,
+        "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
       },
       {
-        "name": "Calafiori",
-        "baseline_cost": 5.8,
-        "current_cost": 5.9,
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -493,22 +493,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-16",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 5.1,
-        "to": 5.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-16",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 6.0,
-        "to": 6.1,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-16",
         "event": "price_change",
@@ -787,6 +771,22 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Raya",
         "from": 6.3,
         "to": 6.2,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-26",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.5,
+        "to": 5.6,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-26",
+        "event": "price_change",
+        "player": "Haaland",
+        "from": 15.8,
+        "to": 15.7,
         "delta": -0.1
       }
     ]

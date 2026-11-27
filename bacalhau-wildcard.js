@@ -267,7 +267,7 @@ window.FPL_WILDCARD_WATCH = {
       "prices": {
         "Raya": 6.2,
         "Hill": 5.7,
-        "De Cuyper": 5.5,
+        "De Cuyper": 5.6,
         "Vuskovic": 5.3,
         "Tarkowski": 6.2,
         "Van Hecke": 5.2,
@@ -275,7 +275,7 @@ window.FPL_WILDCARD_WATCH = {
         "Groß": 6.3,
         "Dewsbury-Hall": 6.7,
         "Evanilson": 6.6,
-        "Haaland": 15.8,
+        "Haaland": 15.7,
         "Tzolakis": 4.7,
         "João Pedro": 7.6,
         "Schade": 6.1,
@@ -292,6 +292,15 @@ window.FPL_WILDCARD_WATCH = {
     "total_delta": 7.3,
     "players": [
       {
+        "name": "De Cuyper",
+        "baseline_cost": 4.9,
+        "current_cost": 5.6,
+        "delta": 0.7,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
         "name": "Tavernier",
         "baseline_cost": 6.1,
         "current_cost": 6.8,
@@ -301,28 +310,10 @@ window.FPL_WILDCARD_WATCH = {
         "status": "held"
       },
       {
-        "name": "De Cuyper",
-        "baseline_cost": 4.9,
-        "current_cost": 5.5,
-        "delta": 0.6,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
         "name": "Groß",
         "baseline_cost": 5.8,
         "current_cost": 6.3,
         "delta": 0.5,
-        "entry_cost": null,
-        "delta_since_added": null,
-        "status": "held"
-      },
-      {
-        "name": "Haaland",
-        "baseline_cost": 15.6,
-        "current_cost": 15.8,
-        "delta": 0.2,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -340,6 +331,15 @@ window.FPL_WILDCARD_WATCH = {
         "name": "Dewsbury-Hall",
         "baseline_cost": 6.6,
         "current_cost": 6.7,
+        "delta": 0.1,
+        "entry_cost": null,
+        "delta_since_added": null,
+        "status": "held"
+      },
+      {
+        "name": "Haaland",
+        "baseline_cost": 15.6,
+        "current_cost": 15.7,
         "delta": 0.1,
         "entry_cost": null,
         "delta_since_added": null,
@@ -473,22 +473,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-18",
-        "event": "price_change",
-        "player": "Tavernier",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-19",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 5.2,
-        "to": 5.3,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-19",
         "event": "price_change",
@@ -771,6 +755,22 @@ window.FPL_WILDCARD_WATCH = {
         "player": "Raya",
         "from": 6.3,
         "to": 6.2,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-26",
+        "event": "price_change",
+        "player": "De Cuyper",
+        "from": 5.5,
+        "to": 5.6,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-26",
+        "event": "price_change",
+        "player": "Haaland",
+        "from": 15.8,
+        "to": 15.7,
         "delta": -0.1
       }
     ]
