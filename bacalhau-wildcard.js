@@ -13,120 +13,113 @@ window.FPL_WILDCARD_WATCH = {
   "xi": [
     {
       "pos": "GKP",
-      "name": "Raya",
-      "club": "ARS",
-      "fixture": "MCI (H)"
-    },
-    {
-      "pos": "DEF",
-      "name": "Hill",
-      "club": "BOU",
-      "fixture": "FUL (A)"
-    },
-    {
-      "pos": "DEF",
-      "name": "De Cuyper",
-      "club": "BHA",
-      "fixture": "NEW (H)",
-      "captain": true
+      "name": "Tzolakis",
+      "club": "HUL",
+      "fixture": "NFO (H)"
     },
     {
       "pos": "DEF",
       "name": "Vuskovic",
       "club": "BHA",
-      "fixture": "NEW (H)"
+      "fixture": "BOU (A)"
     },
     {
       "pos": "DEF",
-      "name": "Tarkowski",
-      "club": "EVE",
-      "fixture": "LIV (H)"
+      "name": "De Cuyper",
+      "club": "BHA",
+      "fixture": "BOU (A)",
+      "vice": true
     },
     {
       "pos": "DEF",
       "name": "Van Hecke",
       "club": "TOT",
-      "fixture": "SUN (A)",
-      "vice": true
+      "fixture": "FUL (H)",
+      "captain": true
     },
     {
-      "pos": "MID",
-      "name": "Tavernier",
+      "pos": "DEF",
+      "name": "Hill",
       "club": "BOU",
-      "fixture": "FUL (A)"
+      "fixture": "BHA (H)"
     },
     {
       "pos": "MID",
       "name": "Groß",
       "club": "BHA",
-      "fixture": "NEW (H)"
+      "fixture": "BOU (A)"
     },
     {
       "pos": "MID",
       "name": "Dewsbury-Hall",
       "club": "EVE",
-      "fixture": "LIV (H)"
-    },
-    {
-      "pos": "FWD",
-      "name": "Evanilson",
-      "club": "BOU",
-      "fixture": "FUL (A)"
-    },
-    {
-      "pos": "FWD",
-      "name": "Haaland",
-      "club": "MCI",
-      "fixture": "ARS (A)"
-    }
-  ],
-  "bench": [
-    {
-      "pos": "GKP",
-      "name": "Tzolakis",
-      "club": "HUL",
-      "fixture": "CRY (A)"
-    },
-    {
-      "pos": "FWD",
-      "name": "João Pedro",
-      "club": "CHE",
-      "fixture": "NFO (A)"
+      "fixture": "AVL (A)"
     },
     {
       "pos": "MID",
-      "name": "Schade",
-      "club": "BRE",
-      "fixture": "MUN (A)"
+      "name": "Tavernier",
+      "club": "BOU",
+      "fixture": "BHA (H)"
     },
     {
       "pos": "MID",
       "name": "Belloumi",
       "club": "HUL",
-      "fixture": "CRY (A)"
+      "fixture": "NFO (H)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Haaland",
+      "club": "MCI",
+      "fixture": "LEE (H)"
+    },
+    {
+      "pos": "FWD",
+      "name": "Evanilson",
+      "club": "BOU",
+      "fixture": "BHA (H)"
     }
   ],
-  "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
+  "bench": [
+    {
+      "pos": "GKP",
+      "name": "Raya",
+      "club": "ARS",
+      "fixture": "BRE (A)"
+    },
+    {
+      "pos": "MID",
+      "name": "Schade",
+      "club": "BRE",
+      "fixture": "ARS (H)"
+    },
+    {
+      "pos": "DEF",
+      "name": "Tarkowski",
+      "club": "EVE",
+      "fixture": "AVL (A)"
+    },
+    {
+      "pos": "FWD",
+      "name": "João Pedro",
+      "club": "CHE",
+      "fixture": "CRY (H)"
+    }
+  ],
+  "note": "Confirmed GW12 squad — the GW12 deadline has passed and this matches the lineup FPL locked in (synced from Bacalhau's picks every refresh).",
   "recommend": {
-    "captain": "Hill",
-    "captain_ep": 5.22,
-    "vice": "Evanilson",
-    "vice_ep": 5.02,
-    "bench_swaps": [
-      {
-        "bench": "Tzolakis",
-        "bench_ep": 4.87,
-        "starter": "Raya",
-        "starter_ep": 3.06
-      }
-    ],
+    "captain": "Van Hecke",
+    "captain_ep": 4.82,
+    "vice": "Hill",
+    "vice_ep": 4.55,
+    "bench_swaps": [],
     "bench_order": [
-      "Tzolakis",
-      "Belloumi",
+      "Raya",
       "Schade",
+      "Tarkowski",
       "João Pedro"
     ],
-    "bench_order_changed": true,
+    "bench_order_changed": false,
     "availability_flags": [
       {
         "name": "Raya",
@@ -146,27 +139,83 @@ window.FPL_WILDCARD_WATCH = {
     ],
     "xi_ep": [
       {
-        "name": "Raya",
+        "name": "Tzolakis",
         "pos": "GKP",
-        "ep_next": 3.06,
-        "status": "doubt"
-      },
-      {
-        "name": "Hill",
-        "pos": "DEF",
-        "ep_next": 5.22,
-        "status": "ok"
-      },
-      {
-        "name": "De Cuyper",
-        "pos": "DEF",
-        "ep_next": 4.78,
+        "ep_next": 4.18,
         "status": "ok"
       },
       {
         "name": "Vuskovic",
         "pos": "DEF",
-        "ep_next": 4.78,
+        "ep_next": 4.2,
+        "status": "ok"
+      },
+      {
+        "name": "De Cuyper",
+        "pos": "DEF",
+        "ep_next": 4.18,
+        "status": "ok"
+      },
+      {
+        "name": "Van Hecke",
+        "pos": "DEF",
+        "ep_next": 4.82,
+        "status": "ok"
+      },
+      {
+        "name": "Hill",
+        "pos": "DEF",
+        "ep_next": 4.55,
+        "status": "ok"
+      },
+      {
+        "name": "Groß",
+        "pos": "MID",
+        "ep_next": 4.07,
+        "status": "ok"
+      },
+      {
+        "name": "Dewsbury-Hall",
+        "pos": "MID",
+        "ep_next": 3.36,
+        "status": "ok"
+      },
+      {
+        "name": "Tavernier",
+        "pos": "MID",
+        "ep_next": 4.34,
+        "status": "ok"
+      },
+      {
+        "name": "Belloumi",
+        "pos": "MID",
+        "ep_next": 2.69,
+        "status": "ok"
+      },
+      {
+        "name": "Haaland",
+        "pos": "FWD",
+        "ep_next": 4.4,
+        "status": "ok"
+      },
+      {
+        "name": "Evanilson",
+        "pos": "FWD",
+        "ep_next": 4.34,
+        "status": "ok"
+      }
+    ],
+    "bench_ep": [
+      {
+        "name": "Raya",
+        "pos": "GKP",
+        "ep_next": 2.77,
+        "status": "doubt"
+      },
+      {
+        "name": "Schade",
+        "pos": "MID",
+        "ep_next": 2.03,
         "status": "ok"
       },
       {
@@ -176,66 +225,10 @@ window.FPL_WILDCARD_WATCH = {
         "status": "out"
       },
       {
-        "name": "Van Hecke",
-        "pos": "DEF",
-        "ep_next": 4.3,
-        "status": "ok"
-      },
-      {
-        "name": "Tavernier",
-        "pos": "MID",
-        "ep_next": 4.88,
-        "status": "ok"
-      },
-      {
-        "name": "Groß",
-        "pos": "MID",
-        "ep_next": 4.59,
-        "status": "ok"
-      },
-      {
-        "name": "Dewsbury-Hall",
-        "pos": "MID",
-        "ep_next": 3.65,
-        "status": "ok"
-      },
-      {
-        "name": "Evanilson",
-        "pos": "FWD",
-        "ep_next": 5.02,
-        "status": "ok"
-      },
-      {
-        "name": "Haaland",
-        "pos": "FWD",
-        "ep_next": 4.53,
-        "status": "ok"
-      }
-    ],
-    "bench_ep": [
-      {
-        "name": "Tzolakis",
-        "pos": "GKP",
-        "ep_next": 4.87,
-        "status": "ok"
-      },
-      {
         "name": "João Pedro",
         "pos": "FWD",
         "ep_next": 0.0,
         "status": "out"
-      },
-      {
-        "name": "Schade",
-        "pos": "MID",
-        "ep_next": 2.29,
-        "status": "ok"
-      },
-      {
-        "name": "Belloumi",
-        "pos": "MID",
-        "ep_next": 3.08,
-        "status": "ok"
       }
     ]
   },
@@ -265,21 +258,21 @@ window.FPL_WILDCARD_WATCH = {
       "date": "2026-11-27",
       "total_cost": 99.9,
       "prices": {
-        "Raya": 6.2,
-        "Hill": 5.7,
-        "De Cuyper": 5.6,
+        "Tzolakis": 4.7,
         "Vuskovic": 5.3,
-        "Tarkowski": 6.2,
+        "De Cuyper": 5.6,
         "Van Hecke": 5.2,
-        "Tavernier": 6.8,
+        "Hill": 5.7,
         "Groß": 6.3,
         "Dewsbury-Hall": 6.7,
-        "Evanilson": 6.6,
+        "Tavernier": 6.8,
+        "Belloumi": 5.2,
         "Haaland": 15.7,
-        "Tzolakis": 4.7,
-        "João Pedro": 7.6,
+        "Evanilson": 6.6,
+        "Raya": 6.2,
         "Schade": 6.1,
-        "Belloumi": 5.2
+        "Tarkowski": 6.2,
+        "João Pedro": 7.6
       }
     },
     "entry_prices": {
@@ -775,5 +768,5 @@ window.FPL_WILDCARD_WATCH = {
       }
     ]
   },
-  "squad_gw": 11
+  "squad_gw": 12
 };
