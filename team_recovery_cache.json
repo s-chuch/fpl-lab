@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-27T22:45:23.783716+00:00",
+    "fetched_at": "2026-11-27T23:24:49.254744+00:00",
     "target_gw": 13,
     "anchor": "2026-12-01T18:30:00+00:00",
     "teams": {
@@ -240,13 +240,7 @@
           "opponent": "Brighton",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-27",
-            "competition": "Premier League",
-            "opponent": "Chelsea"
-          }
-        ]
+        "between": []
       },
       "LEE": {
         "rest_days": 4,
@@ -537,13 +531,7 @@
           "opponent": "Liverpool",
           "days_after": 3
         },
-        "between": [
-          {
-            "date": "2026-11-27",
-            "competition": "Premier League",
-            "opponent": "Nott'm Forest"
-          }
-        ]
+        "between": []
       }
     }
   }
