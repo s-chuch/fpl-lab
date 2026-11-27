@@ -108,16 +108,16 @@ window.FPL_WILDCARD_WATCH = {
   ],
   "note": "Confirmed GW11 squad — the GW11 deadline has passed and this matches the lineup FPL locked in (synced from Shaaland's picks every refresh).",
   "recommend": {
-    "captain": "Van Hecke",
-    "captain_ep": 5.33,
-    "vice": "Silva",
-    "vice_ep": 4.96,
+    "captain": "Silva",
+    "captain_ep": 4.96,
+    "vice": "Tavernier",
+    "vice_ep": 4.88,
     "bench_swaps": [
       {
         "bench": "Tzolakis",
         "bench_ep": 4.87,
         "starter": "Raya",
-        "starter_ep": 2.04
+        "starter_ep": 3.06
       },
       {
         "bench": "Barnes",
@@ -136,8 +136,8 @@ window.FPL_WILDCARD_WATCH = {
     "availability_flags": [
       {
         "name": "Raya",
-        "label": "DOUBT 50%",
-        "chance": 50
+        "label": "DOUBT 75%",
+        "chance": 75
       },
       {
         "name": "Tarkowski",
@@ -149,7 +149,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.04,
+        "ep_next": 3.06,
         "status": "doubt"
       },
       {
@@ -173,7 +173,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Van Hecke",
         "pos": "DEF",
-        "ep_next": 5.33,
+        "ep_next": 4.3,
         "status": "ok"
       },
       {
