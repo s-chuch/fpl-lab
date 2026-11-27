@@ -153,7 +153,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.18,
+        "ep_next": 4.3,
         "status": "ok"
       },
       {
@@ -177,7 +177,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Dewsbury-Hall",
         "pos": "MID",
-        "ep_next": 3.36,
+        "ep_next": 3.29,
         "status": "ok"
       },
       {
@@ -189,7 +189,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Belloumi",
         "pos": "MID",
-        "ep_next": 2.69,
+        "ep_next": 2.42,
         "status": "ok"
       },
       {
@@ -201,7 +201,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Evanilson",
         "pos": "FWD",
-        "ep_next": 4.34,
+        "ep_next": 4.43,
         "status": "ok"
       }
     ],
@@ -209,13 +209,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.77,
+        "ep_next": 2.71,
         "status": "doubt"
       },
       {
         "name": "Schade",
         "pos": "MID",
-        "ep_next": 2.03,
+        "ep_next": 1.91,
         "status": "ok"
       },
       {

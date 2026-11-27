@@ -115,15 +115,15 @@ window.FPL_WILDCARD_WATCH = {
     "bench_swaps": [
       {
         "bench": "Palmer",
-        "bench_ep": 3.42,
+        "bench_ep": 3.45,
         "starter": "Manzambi",
-        "starter_ep": 2.46
+        "starter_ep": 2.48
       }
     ],
     "bench_order": [
       "Raya",
-      "Calafiori",
       "Palmer",
+      "Calafiori",
       "Kostoulas"
     ],
     "bench_order_changed": true,
@@ -144,7 +144,7 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "De Cuyper",
         "pos": "DEF",
-        "ep_next": 4.18,
+        "ep_next": 4.3,
         "status": "ok"
       },
       {
@@ -186,13 +186,13 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Manzambi",
         "pos": "MID",
-        "ep_next": 2.46,
+        "ep_next": 2.48,
         "status": "ok"
       },
       {
         "name": "N.Jackson",
         "pos": "FWD",
-        "ep_next": 3.82,
+        "ep_next": 3.74,
         "status": "ok"
       },
       {
@@ -206,25 +206,25 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Raya",
         "pos": "GKP",
-        "ep_next": 2.77,
+        "ep_next": 2.71,
         "status": "doubt"
       },
       {
         "name": "Palmer",
         "pos": "MID",
-        "ep_next": 3.42,
+        "ep_next": 3.45,
         "status": "ok"
       },
       {
         "name": "Kostoulas",
         "pos": "FWD",
-        "ep_next": 1.7,
+        "ep_next": 1.61,
         "status": "ok"
       },
       {
         "name": "Calafiori",
         "pos": "DEF",
-        "ep_next": 3.52,
+        "ep_next": 3.44,
         "status": "ok"
       }
     ]
