@@ -832,13 +832,13 @@
   "captain_name": "Van Hecke",
   "chip": null,
   "chip_note": "The model plans no chips (chips stay your call).",
-  "code_sha": "ebfdcdd493b1",
+  "code_sha": "2e9c7cb44d1a",
   "ft": 2,
   "gw": 13,
   "hit_cost": 0,
   "hits": 0,
-  "saved_at": "2026-11-28T05:59:58+00:00",
-  "saved_at_et": "2026-11-28 12:59 AM ET",
+  "saved_at": "2026-11-28T06:39:14+00:00",
+  "saved_at_et": "2026-11-28 1:39 AM ET",
   "source": "plan",
   "squad": [
    {
