@@ -1,7 +1,7 @@
 {
   "team_recovery": {
     "schema": 4,
-    "fetched_at": "2026-11-28T04:00:56.879324+00:00",
+    "fetched_at": "2026-11-28T04:40:11.426994+00:00",
     "target_gw": 13,
     "anchor": "2026-12-01T18:30:00+00:00",
     "teams": {
@@ -227,7 +227,7 @@
           "date": "2026-11-27",
           "competition": "Premier League",
           "opponent": "Chelsea",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-12-02",
@@ -518,7 +518,7 @@
           "date": "2026-11-27",
           "competition": "Premier League",
           "opponent": "Nott'm Forest",
-          "scheduled": true
+          "scheduled": false
         },
         "next_match": {
           "date": "2026-12-02",
