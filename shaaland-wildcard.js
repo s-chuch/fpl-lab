@@ -261,13 +261,13 @@ window.FPL_WILDCARD_WATCH = {
         "Van Hecke": 5.2,
         "Muharemović": 5.2,
         "Tavernier": 6.8,
-        "Groß": 6.3,
+        "Groß": 6.4,
         "Barnes": 6.0,
         "Manzambi": 6.2,
         "N.Jackson": 7.3,
         "Haaland": 15.7,
         "Raya": 6.2,
-        "Palmer": 9.8,
+        "Palmer": 9.7,
         "Kostoulas": 5.7,
         "Calafiori": 5.9
       }
@@ -295,8 +295,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "baseline_cost": 5.8,
-        "current_cost": 6.3,
-        "delta": 0.5,
+        "current_cost": 6.4,
+        "delta": 0.6,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -430,10 +430,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Palmer",
         "baseline_cost": null,
-        "current_cost": 9.8,
+        "current_cost": 9.7,
         "delta": null,
         "entry_cost": 9.8,
-        "delta_since_added": 0.0,
+        "delta_since_added": -0.1,
         "status": "added"
       },
       {
@@ -492,22 +492,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-18",
-        "event": "price_change",
-        "player": "João Pedro",
-        "from": 7.8,
-        "to": 7.9,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-19",
-        "event": "price_change",
-        "player": "De Cuyper",
-        "from": 5.2,
-        "to": 5.3,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-19",
         "event": "price_change",
@@ -783,6 +767,22 @@ window.FPL_WILDCARD_WATCH = {
         "event": "added",
         "player": "Muharemović",
         "price_at_change": 5.2
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 6.3,
+        "to": 6.4,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "Palmer",
+        "from": 9.8,
+        "to": 9.7,
+        "delta": -0.1
       }
     ]
   },

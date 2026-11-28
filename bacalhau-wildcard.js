@@ -259,20 +259,20 @@ window.FPL_WILDCARD_WATCH = {
       "total_cost": 99.9,
       "prices": {
         "Tzolakis": 4.7,
-        "Vuskovic": 5.3,
+        "Vuskovic": 5.4,
         "De Cuyper": 5.6,
         "Van Hecke": 5.2,
         "Hill": 5.7,
-        "Groß": 6.3,
+        "Groß": 6.4,
         "Dewsbury-Hall": 6.7,
         "Tavernier": 6.8,
         "Belloumi": 5.2,
         "Haaland": 15.7,
         "Evanilson": 6.6,
         "Raya": 6.2,
-        "Schade": 6.1,
+        "Schade": 6.0,
         "Tarkowski": 6.2,
-        "João Pedro": 7.6
+        "João Pedro": 7.5
       }
     },
     "entry_prices": {
@@ -305,8 +305,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Groß",
         "baseline_cost": 5.8,
-        "current_cost": 6.3,
-        "delta": 0.5,
+        "current_cost": 6.4,
+        "delta": 0.6,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -368,8 +368,8 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Schade",
         "baseline_cost": 6.1,
-        "current_cost": 6.1,
-        "delta": 0.0,
+        "current_cost": 6.0,
+        "delta": -0.1,
         "entry_cost": null,
         "delta_since_added": null,
         "status": "held"
@@ -422,10 +422,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "João Pedro",
         "baseline_cost": null,
-        "current_cost": 7.6,
+        "current_cost": 7.5,
         "delta": null,
         "entry_cost": 7.6,
-        "delta_since_added": 0.0,
+        "delta_since_added": -0.1,
         "status": "added"
       },
       {
@@ -449,10 +449,10 @@ window.FPL_WILDCARD_WATCH = {
       {
         "name": "Vuskovic",
         "baseline_cost": null,
-        "current_cost": 5.3,
+        "current_cost": 5.4,
         "delta": null,
         "entry_cost": 5.2,
-        "delta_since_added": 0.1,
+        "delta_since_added": 0.2,
         "status": "added"
       },
       {
@@ -466,38 +466,6 @@ window.FPL_WILDCARD_WATCH = {
       }
     ],
     "log": [
-      {
-        "date": "2026-10-19",
-        "event": "price_change",
-        "player": "Groß",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-24",
-        "event": "price_change",
-        "player": "Kostoulas",
-        "from": 5.7,
-        "to": 5.8,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-24",
-        "event": "price_change",
-        "player": "Raya",
-        "from": 6.1,
-        "to": 6.2,
-        "delta": 0.1
-      },
-      {
-        "date": "2026-10-24",
-        "event": "price_change",
-        "player": "Tavernier",
-        "from": 6.2,
-        "to": 6.3,
-        "delta": 0.1
-      },
       {
         "date": "2026-10-27",
         "event": "price_change",
@@ -765,6 +733,38 @@ window.FPL_WILDCARD_WATCH = {
         "from": 15.8,
         "to": 15.7,
         "delta": -0.1
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "Groß",
+        "from": 6.3,
+        "to": 6.4,
+        "delta": 0.1
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "João Pedro",
+        "from": 7.6,
+        "to": 7.5,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "Schade",
+        "from": 6.1,
+        "to": 6.0,
+        "delta": -0.1
+      },
+      {
+        "date": "2026-11-27",
+        "event": "price_change",
+        "player": "Vuskovic",
+        "from": 5.3,
+        "to": 5.4,
+        "delta": 0.1
       }
     ]
   },
